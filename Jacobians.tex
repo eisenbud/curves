@@ -1,0 +1,182 @@
+\documentclass[12pt, leqno]{article}
+\usepackage{amsmath,amscd,amsthm,amssymb,amsxtra,latexsym,epsfig,epic,graphics}
+\usepackage[matrix,arrow,curve]{xy}
+\usepackage{graphicx}
+\usepackage{diagrams}
+%\usepackage{amsrefs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textwidth16cm
+%\textheight20cm
+%\topmargin-2cm
+\oddsidemargin.8cm
+\evensidemargin1cm
+
+%%%%%Definitions
+\input preamble.tex
+\def\TU{{\bf U}}
+\def\AA{{\mathbb A}}
+\def\BB{{\mathbb B}}
+\def\CC{{\mathbb C}}
+\def\QQ{{\mathbb Q}}
+\def\RR{{\mathbb R}}
+\def\facet{{\bf facet}}
+\def\image{{\rm image}}
+\def\cE{{\cal E}}
+\def\cF{{\cal F}}
+\def\cG{{\cal G}}
+\def\cH{{\cal H}}
+\def\cHom{{{\cal H}om}}
+\def\h{{\rm h}}
+ \def\bs{{Boij-S\"oderberg{} }}
+
+\makeatletter
+\def\Ddots{\mathinner{\mkern1mu\raise\p@
+\vbox{\kern7\p@\hbox{.}}\mkern2mu
+\raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
+\makeatother
+
+%%
+%\pagestyle{myheadings}
+\date{March 13 2017}
+%\date{}
+\title{Curves}
+%{\normalsize ***Preliminary Version***}} 
+\author{David Eisenbud and Joe Harris }
+
+\begin{document}
+
+\maketitle
+
+
+\setlength{\parskip}{5pt}
+
+
+
+
+\section*{Jacobians}
+
+Up to now, we have been treating line bundles on a curve $C$ individually. It is a fundamental fact, however, that the set of line bundles/linear equivalence classes of divisors of a given degree $d$ is naturally parametrized by the points of a variety, called the \emph{Picard variety} ${\rm Pic}^d(C)$. Many of the deeper results about linear systems on $C$ are expressed in terms of the geometry of this variety, and indeed the simple fact of its existence is the key to proving many theorems about linear systems on curves (see for example Theorem~\ref{g+3 theorem}
+below).
+
+In this chapter, we will describe the construction of these varieties, and describe their relationship with the spaces parametrizing effective divisors of a given degree $d$ on $C$; we will go on and exhibit some of the immediate consequences of these constructions.
+
+\subsection{Jacobians}
+
+We start with the construction of a classical object, the \emph{Jacobian} $J(C)$ of a curve $C$, via the notion of \emph{abelian integrals}. This necessitates that we work over the complex numbers $\CC$, and it produces a complex manifold rather than an algebraic variety, but has the virtue of being relatively concrete. The Jacobian $J(C)$ is in fact a projective variety, and may be constructed purely algebraically---so that, for example, if the curve $C$ is defined over a given field $K$ then $J(C)$ will be as well. (Indeed, the search for such a construction was one of the driving forces of algebraic geometry in the first half of the 20th century, giving rise ultimately to the notion of abstract algebraic varieties.) We will not do that here, though; the interested reader can find an account in \cite{??s} [Kleiman must have something for this].
+
+The goal of the 19th century mathematicians who first described abelian integrals was simply to make sense of integrals of algebraic functions. Very briefly: in the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
+$$
+\int_{t_0}^t \frac{dx}{\sqrt{x^2+1}}.
+$$
+To describe the solution in algebrao-geometric terms, the idea was that such integrals could be thought of as path integrals of meromorphic differentials on the Riemann surface associated to the equation $y^2 = x^2+1$. This surface is isomorphic to $\PP^1$, meaning that $x$ and $y$ could be expressed as rational functions of a single variable $z$; making the corresponding change of variables transformed the integral into one of the form
+$$
+\int_{s_0}^s R(z)dz,
+$$
+with $R$ a rational function, and such integrals are readily evaluated by the technique of partial fractions.
+
+When they tried to extend this to similar-looking integrals like
+$$
+\int_{t_0}^t \frac{dx}{\sqrt{x^3+1}},
+$$
+however, they were stymied. The reason gradually emerged: the problem is that the Riemann surface associated to the equation $y^2 = x^3+1$ is not $\PP^1$, but rather a curve of genus 1. In particular  the integral depended on a choice of path; that is, it was defined only modulo a lattice $\ZZ^2 \subset \CC$. This meant, among other things, that the inverse function would be a doubly periodic meromorphic function on $\CC$, and not an elementary function. This led to the introduction of a host of new special functions, such as the Weierstrass $\sP$-function.
+
+The next step was to try to extend this theory to path integrals of holomorphic differentials on curves of arbitrary genus. One problem is that the dependence of the integral on the choice of path is much worse; the set of homology classes of paths between two points $p_0, p \in C$ is identified with $H_1(C,\ZZ) \cong \ZZ^{2g}$ rather than $\ZZ^2$. The solution to this is to consider the integral of \emph{all} holomorphic differentials on $C$ simultaneously, rather than one at a time.
+
+To express the resulting construction in relatively modern terms, let $C$ be as above a smooth projective curve of genus $g$ over $\CC$, and consider the space $V = H^0(K_C)^*$ of linear functions of the space of holomorphic differentials. Integration over closed loops in $C$ defines a linear function on 1-forms, so that we have a map
+$$
+H_1(C,\ZZ) \; \to \;  H^0(K_C)^*.
+$$
+Using fairly basic Hodge theory, we can see that \emph{this map is injective, with image a discrete, cocompact lattice $\Lambda \subset V$}; we define the \emph{Jacobian} $J(C)$ of $C$ to be the quotient
+$$
+J(C) \; = \; V/\Lambda.
+$$
+(As we said, $J(C)$ is in fact an abelian variety, though for any of the applications we have in mind here we don't need to know that; it's sufficient to know that $J(C)$ is a complex torus of dimension $g$.) The point of this construction is that for any pair of points $p, q \in C$, the expression $\int_q^p$ describes a linear functional on $H^0(K_C)$, defined up to functionals obtained by integration over closed loops, and thus a point of $J(C)$. Thus, for example, if we fix the point $q$, we get a holomorphic map
+$$
+\mu \; : \; C \; \to \; J(C).
+$$
+This is an example of what is called an \emph{Abel-Jacobi map}.
+
+To fully utilize this, we want to extend it from points  to divisors on $C$, and to do this we need to find a space parametrizing effective divisors on $C$. This is readily available: since an effective divisor of degree $d$ on $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C_d$ of $C$, defined to be the quotient of the ordinary product $C^d$ by the action of the symmetric group $\Sigma_d$ on $d$ letters. This is a smooth, $d$-dimensional projective variety. Having chosen a base point $q \in C$ as above, we get for each $d$ a map
+$$
+\mu_d \; : \; C_d \; \to \; J(C),
+$$
+defined by
+$$
+\mu_d(p_1 + \dots + p_d) \; = \; \sum \int_q^{p_i};
+$$
+these are similarly called  Abel-Jacobi maps; when there is no ambiguity about $d$, we will denote them simply by $\mu$.
+
+There is a lot to say about these maps; in the following sections, we'll see a description of their differentials, and show that they are birational onto their images for $d \leq g$ and surjective for $d \geq g$. (The last statement in case $d=g$ is the celebrated \emph{Jacobi inversion theorem}.) But before we get into these, we should say what all this has to do with our main concern, the geometry of linear series on curves.
+
+To this point, the discussion in this chapter might seem more at home in an advanced calculus text than in an algebraic geometry book. The connection is made by \emph{Abel's theorem}:
+
+\begin{theorem}
+Two divisors $D, D' \in C_d$ on $C$ are linearly equivalent if and only if $\mu(D) = \mu(D')$; in other words, the fibers of $\mu_d$ are exactly the complete linear systems of degree $d$ on $C$.
+\end{theorem}
+
+\begin{proof}[Half-proof]
+One direction of Abel's theorem---the ``only if" part---is relatively elementary, and that is what we will prove here. (This was in fact the only part proved by Abel; the converse, which is substantially more subtle, was proved by Clebsch. See \cite{} [GH] for a proof.)
+
+To prove the easy half of Abel's theorem, suppose that $D$ and $D'$ are linearly equivalent; that is, $\cO_C(D) \cong \cO_C(D')$. Call this line bundle $\cL$, and suppose that $D$ and $D'$ are the zero divisors of sections $\sigma, \sigma' \in H^0(\cL)$.
+Taking linear combinations of $\sigma$ and $\sigma'$, we get a pencil $\{D_\lambda\}_{\lambda \in \PP^1}$ of divisors on $C$, with
+$$
+D_\lambda \; = \; V(\lambda_0\sigma + \lambda_1\sigma'),
+$$
+and this corresponds to a regular map $\alpha : \PP^1 \to C_d$. 
+
+Consider now the composition
+$$
+\phi = \mu \circ \alpha \; : \; \PP^1 \; \to \; J(C).
+$$
+We observe that, since $J(C)$ is a complex torus, the global holomorphic 1-forms on $J(C)$ generate the cotangent bundle everywhere. But for any 1-form $\omega$ on $J(C)$, the pullback $\phi^*\omega$ is a global holomorphic 1-form on $\PP^1$, and hence identically zero. It follows that the differential $d\phi$ vanishes identically, and hence (since we are blessedly in characteristic 0) that $\phi$ is constant; thus $\mu(D) = \mu(D')$.
+\end{proof}
+
+Note that many of the statements about the Abel-Jacobi map made above follow immediately from Abel's theorem. For example, if  $D = p_1+\dots+p_d\in C_d$ is a general point and $d \leq g$, the points $p_i \in C$ are general and so impose independent conditions on $H^0(K_C)$; thus $h^0(K_C(-D)) = g-d$ and by Riemann-Roch $h^0(\cO_C(D)) = 1$. In other words, the fiber of $\mu_d$ containing $D$ consists just of the single point $D$, and so the map $\mu_d$ is birational onto its image. Similarly, if $d \geq g$, we will have $h^0(K_C(-D)) = 0$ and hence $h^0(\cO_C(D)) = d-g+1$; it follows that the fiber of $\mu_d$ through $D$ has dimension $d-g$, and hence that $\mu_d$ is surjective. In particular, when $d=g$ the map $C_g \to J(C)$ is a birational isomorphism; indeed, it was by using this isomorphism that Weil first gave an algebraic construction of $J(C)$.
+
+To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
+
+\begin{theorem}\label{g+3 theorem}
+Let $C$ be a smooth projective curve of genus $g$, and $D \in C_{g+3}$ a general divisor of degree $g+3$ on $C$. Then $D$ is very ample; in particular, every curve of genus $g$ may be embedded in projective space as a curve of degree $g+3$.
+\end{theorem}
+
+This is, of course, a substantial improvement over our earlier result (\ref{****}) that every curve of genus $g$ may be embedded in projective space as a curve of degree $2g+1$. It is also sharp: hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$. Nonetheless, we will see in Chapter~\ref{****} that we can improve on this: ``most" curves of genus $g$ can in fact be embedded in projective space as curves of degree $d = \lceil 3g/4 \rceil + 3$.
+
+\begin{proof}
+As we observed above, since $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
+\begin{enumerate}
+\item for any point $p \in C$, we have $h^0(\cO_C(D-p)) = 3$ (that is, $|D|$ has no base points, and so defines a regular map $\phi_D : C \to \PP^3$); and
+\item for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
+\end{enumerate}
+The second of these assertions immediately implies the first, and this is what we will prove.
+
+To do this, suppose on the contrary that for some pair of points $p, q \in C$ we have $h^0(\cO_C(D-p-q)) \geq 3$. It follows from Riemann-Roch that $h^0(K_C(-D + p + q)) \geq 1$; that is, $K_C -D + p + q$ is linearly equivalent to an effective divisor $E = r_1 + \dots + r_{g-3}$ of degree $g-3$.
+
+Now consider the map
+$$
+\nu : C_{g-3} \times C_2 \; \to \; J(C)
+$$
+given by
+$$
+\nu : (E,F) \; \mapsto \; \mu(K_C) + \mu(E) - \mu(F),
+$$
+where the $+$ and $-$ on the right refer to the group law on $J(C)$. By what we have just said, and Abel's theorem, our divisor $D$ will fail to be very ample only if there exist effective divisors $F = p+q$ and $E = r_1+\dots+r_{g-3}$ such that $D \sim K_C +E-F$, that is, if
+$\mu(D) \in {\rm Im}(\nu)$. But the source $C_{g-3} \times C_2$ of $\nu$ has dimension $g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image $\mu(D)$ of a general point $D \in C_{g+3}$ will be a general point of $J(C)$ and so will not lie in ${\rm Im}(\nu)$. It follows that $D$ is very ample, and gives an embedding of $C$ in $\PP^3$ as a curve of degree $g+3$.
+\end{proof}
+
+Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!
+
+\
+
+\
+
+****A minor issue, but one that's bothering me: we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. Should this bother us?****
+
+\subsection{Picard varieties}
+
+\subsection{Differential of the Abel-Jacobi map}
+
+\subsection{Further consequences}
+
+\end{document}
+
+
