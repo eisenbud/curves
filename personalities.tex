@@ -49,13 +49,21 @@
 
 \setlength{\parskip}{5pt}
 
+\section{pre-requisites and conventions}
+
+Basic results used in this section: B\'ezout, Riemann-Roch, Lasker (aka AF+BG), Clifford, Adjunction.
+
+Let's explicitly allow things like $\HH^0(D)$ where $D$ is a divisor, as well as $\HH^0(\cO(D))$, but be careful not to mix the two too much.
+
+Would it be more confusing or less to use the same letter for a polynomial vanishing on $C$ and the surface it defines?
 
 
 \section{Personalities}
 
-A theory lacking in interesting examples can be an arid exercise. Happily, the subject of algebraic curves abounds with examples amenable to explicit construction and analysis. In this chapter, we will introduce a number of these, ranging from curves of genus 0 to curves of genus 6. (We stop at genus 6 for two reasons: first, our knowledge of the geometry of curves becomes increasingly less complete as the genus increases, and 6, as we shall see, is a natural turning point; and second, exhaustion.) At the end of this chapter, the reader will be able to say with some confidence that he or she has seen every curve of genus $g \leq 6$, and understands its geometry.
+The subject of algebraic curves abounds with examples amenable to explicit construction and analysis. In this chapter, we will survey the basic geometry and embeddings of the curves of genus 0 to  6. Our knowledge of the geometry of curves becomes increasingly less complete as the genus increases, and 6, as we shall see, is a natural turning point. 
+%At the end of this chapter, the reader will be able to say with some confidence that he or she has seen every curve of genus $g \leq 6$, and understands its geometry.
 
-\subsection{Curves of genus 0}
+\subsection{Curves of genus 0} 
 
 \subsection{Curves of genus 1}
 
@@ -67,70 +75,95 @@ A theory lacking in interesting examples can be an arid exercise. Happily, the s
 
 As in the case of curves of genus 3, the study of curves of genus 4 bifurcates immediately into two cases: hyperelliptic and non-hyperelliptic; again, we will study the geometry of hyperelliptic curves in Chapter~\ref{****} and focus here on the nonhyperelliptic case.
 
-Unlike preceding cases, though, in genus 4 we have a question that the elementary theory based on Riemann-Roch cannot answer: are nonhyperelliptic curves of genus 4 expressible as three-sheeted covers of $\PP^1$? In fact, the answer to this question will emerge from our analysis in Proposition~\ref{genus 4 trigonal} below.
+In genus 4 we have a question that the elementary theory based on the Riemann-Roch formula cannot answer: are nonhyperelliptic curves of genus 4 expressible as three-sheeted covers of $\PP^1$? The answer will emerge from our analysis in Proposition~\ref{genus 4 trigonal} below.
 
-So: let $C$ be a non-hyperelliptic curve of genus 4. We start by considering the canonical map $\phi_K : C \hookrightarrow \PP^3$, which embeds $C$ as a curve of degree 6 in $\PP^3$. The first question to ask is what sort of polynomial equations define the image curve, and as in previous cases we may try to answer this by considering the restriction maps
+Let $C$ be a non-hyperelliptic curve of genus 4. We start by considering the canonical map $\phi_K : C \hookrightarrow \PP^3$, which embeds $C$ as a curve of degree 6 in $\PP^3$. We identify $C$ with its image, and investigate the homogeneous ideal $I = I_C$ of equations it satisfies. As in previous cases we may try to answer this by considering the restriction maps
+\fix{replaced $K_C^m$ with $mK_C$.}
 $$
-r_m : H^0(\cO_{\PP^3}(m)) \; \to \; H^0(\cO_{C}(m)) = H^0(K_C^m).
+r_m : \HH^0(\cO_{\PP^3}(m)) \; \to \; \HH^0(\cO_{C}(m)) = \HH^0(mK_C).
 $$
 
-For $m=1$, this is by construction an isomorphism. In case $m=2$, however, we know that $h^0(\cO_{\PP^3}(2)) = \binom{5}{3} = 10$, while by Riemann-Roch we have
-$$
-h^0(\cO_C(2)) = 12 - 4 + 1 = 9.
-$$
-We conclude from this that \emph{the curve $C \subset \PP^3$ must lie on at least one quadric surface $Q$}.
+For $m=1$, this is by construction an isomorphism; that is, the image of $C$ is non-degenerate (not contained in any plane).
 
-Can it lie on more than one? The answer is ``no:" since any reducible and/or non-reduced quadric must be a union of planes, it cannot contain the nondegenerate curve $C$. Thus any quadric $Q$ containing $C$ must be reduced and irreducible; if there were two such quadrics, then, their intersection would be a curve of degree 4 by Bezout and could not contain $C$. Thus $r_2$ is surjective, and the curve $C$ lies on a unique quadric $Q = V(F)$.
-
-What about cubics? We can play the same game: consider the restriction map
+For $m=2$ we know that $\h^0(\cO_{\PP^3}(2)) = \binom{5}{3} = 10$, while by the Riemann-Roch
+Theorem we have
 $$
-r_3 : H^0(\cO_{\PP^3}(3)) \; \to \; H^0(\cO_{C}(3)) = H^0(K_C^3).
+\h^0(\cO_C(2)) = 12 - 4 + 1 = 9.
 $$
-Again, we know the dimensions of both spaces: the space $H^0(\cO_{\PP^3}(3))$ has dimension $\binom{6}{3} = 20$, while by Riemann-Roch we have
+This shows that the curve $C \subset \PP^3$ must lie on at least one quadric surface $Q$. The quadric $Q$ must be irreducible, since any any reducible and/or non-reduced quadric must be a union of planes, and thus cannot contain an irreducible non-degenerate curve.
+If $Q'\neq Q$ is any other quadric then, by B\'ezout's Theorem, $Q\cap Q'$ is a curve of degree 4 and thus could not contain $C$. From this we see that $Q$ is unique, and it follows that $r_2$ is surjective.
+
+What about cubics? Again we consider the restriction map
 $$
-h^0(\cO_C(3)) = 18 - 4 + 1 = 15.
+r_3 : \HH^0(\cO_{\PP^3}(3)) \; \to \; \HH^0(\cO_{C}(3)) = \HH^0(3K_C).
 $$
-It follows that the ideal of $C$ contains at least a 5-dimensional vector space of cubic polynomials. Of course, a 4-dimensional subspace of these are simply products of the unique quadratic polynomial $F$ vanishing on $C$ with linear forms, but inasmuch as $5 > 4$ we may conclude that the curve $C$ lies on at least one cubic surface $S$ not containing $Q$. 
+The space $\HH^0(\cO_{\PP^3}(3))$ has dimension $\binom{6}{3} = 20$, while  the Riemann-Roch Theorem shows that
+$$
+\h^0(\cO_C(3)) = 18 - 4 + 1 = 15.
+$$
+It follows that the ideal of $C$ contains at least a 5-dimensional vector space of cubic polynomials. We can get a 4-dimensional subspace as products of the unique quadratic polynomial $F$ vanishing on $C$ with linear forms---these define the cubic surfaces containing $Q$. Since $5 > 4$ we  conclude that the curve $C$ lies on at least one cubic surface $S$  not containing $Q$. 
+B\'ezout's Theorem shows that the curve $Q \cap S$ has degree 6; thus it must be equal to $C$. 
 
-By Bezout, then, $C$ must equal the intersection $Q \cap S$; so we have shown that \emph{the canonical model of a nonhyperelliptic curve of genus 4 is a complete intersection of a quadric $Q = V(F)$ and a cubic surface $S = V(G)$}. Note that by Noether's AF+BG theorem it follows that the equations $F$ and $G$ of $Q$ and $S$ generate the homogeneous ideal of  $C$, and in particular that $G$ is the unique cubic polynomial vanishing on $C$ modulo multiples of $F$. ****would it be more confusing or less to use the same letter for a polynomial vanishing on $C$ and the surface it defines?****
+Let $G=0$ be the cubic form defining the surface $S$. By Lasker's Theorem the ideal $(F,G)$ is unmixed, and thus is equal to the homogeneous ideal of $C$. Putting this together, we have proven the first statement of the following result:
 
-We can now answer the question we asked at the outset, whether a nonhyperelliptic curve of genus 4 can be expressed as a three-sheeted cover of $\PP^1$. This amounts to asking if there are any divisors $D$ on $C$ of degree 3 with $r(D) = 1$; since we can take $D$ to be a general fiber of a map $\pi : C \to \PP^1$, we can for simplicity assume $D = p+q+r$ is the sum of three distinct points.
+\begin{theorem}
+The canonical model of any nonhyperelliptic curve of genus 4 is a complete intersection of a quadric $Q = V(F)$ and a cubic surface $S = V(G)$. Conversely, any smooth curve that is the intersection of a quadric and a cubic surface in $\PP^3$ is the canonical model of a nonhyperelliptic curve of genus 4.
+\end{theorem}
+ 
+\begin{proof}
+Let $C = Q\cap S$ with $Q$ a quadric and $S$ a cubic. Applying the Adjunction Formula to $Q\subset \PP^3$ we get
+$$
+\omega_Q = (\omega_{\PP^3} \otimes \cO_{\PP^3}(2))|_Q = \cO_Q(-4+2) = \cO_Q(-2).
+$$
+Applying it again to $C$ on $Q$, and noting that $\O_Q(C) = \O_Q(3)$, we get
+$$
+\omega_C = ((\omega_{Q} \otimes \cO_{3}(3))|_C = \cO_C(-2+3) = \cO_C(1)
+$$
+as required. 
+\end{proof}
 
-The key is the geometric form of the Riemann-Roch theorem, which says that \emph{a divisor $D = p+q+r$ on a canonical curve $C \subset \PP^{g-1}$ has $r(D) \geq 1$ if and only if the three points $p,q,r \in C$ are colinear}. Does the curve $C = Q \cap S \subset \PP^3$ contain any such colinear triples?  Well, if three points $p,q,r \in C$ lie on a line $L \subset \PP^3$, the quadric $F$ vanishing on $C$ would have three zeroes on $L$, and hence would have to vanish identically on $L$; in other words, $L$ would have to be contained in the quadric surface $Q$. Conversely,  if $L \subset Q$ is any line, then the divisor $D = C \cap L = S \cap L$ on $C$ would have degree  3 and hence by geometric Riemann-Roch would have $r(D) = 1$.
+We can now answer the question we asked at the outset, whether a nonhyperelliptic curve of genus 4 can be expressed as a three-sheeted cover of $\PP^1$. This amounts to asking if there are any divisors $D$ on $C$ of degree 3 with $r(D) \geq 1$; since we can take $D$ to be a general fiber of a map $\pi : C \to \PP^1$, we can for simplicity assume $D = p+q+r$ is the sum of three distinct points.
 
-Does the quadric surface $Q$ contain any lines? Indeed it does: if $Q$ is smooth, it has two rulings, families of lines parametrized by $\PP^1$ and sweeping out the quadric; if $Q$ is singular, it will have one such ruling. The pencils of divisors on $C$ cut out by the lines of these rulings will then be the $g^1_3$s on $C$; and we may conclude the
+By the geometric Riemann-Roch theorem, a divisor $D = p+q+r$ on a canonical curve $C \subset \PP^{g-1}$ has $r(D) \geq 1$ if and only if the three points $p,q,r \in C$ are colinear. If three points $p,q,r \in C$ lie on a line $L \subset \PP^3$ then the quadric $Q$ would meet $L$ in at least three points, and hence would contain $L$. Conversely,  if $L$ is a line contained in $Q$, then the divisor $D = C \cap L = S \cap L$ on $C$ has degree  3. Thus we can answer our question in terms of the family of lines contained in $Q$.
+
+Any smooth quadric is isomorphic to $\PP^1\times \PP^1$, and contains two families of lines, or \emph{rulings}. On the other hand, any singular quadric is a cone over a plane conic, and thus has just one ruling. By the argument above, the pencils of divisors on $C$ cut out by the lines of these rulings are the $g^1_3$s on $C$. This proves:
 
 \begin{proposition}\label{genus 4 trigonal}
-A nonhyperelliptic curve of genus 4 may be expressed as a 3-sheeted cover of $\PP^1$ in either one or two ways.  
+A nonhyperelliptic curve of genus 4 may be expressed as a 3-sheeted cover of $\PP^1$ in either one or two ways, depending on whether the unique quadric containing the canonical model of the curve is singular or smooth.
 \end{proposition}
 
 A curve expressible as a 3-sheeted cover of $\PP^1$ is called \emph{trigonal}; by the analyses of the preceding sections, we have shown that \emph{every curve of genus $g \leq 4$ is either hyperelliptic or trigonal}. 
-What about curves of genus $g \geq 5$? We'll see the answer to that question in the next section.
 
-To conclude this discussion, let's describe plane models of nonhyperelliptic curves $C$ of genus 4. This is actually pretty straightforward: by either adjunction or Clifford, we see that a nonhyperelliptic curve of genus 4 cannot have a $g^2_4$. As for $g^2_5$s, if $D$ is a divisor of degree 5 with $r(D)=2$ we see by Riemann-Roch that $h^0(K-D) = 1$; that is, $D$ is of the form $K-p$ for some point $p \in C$.  There are thus two cases:
+We can also describe plane models of nonhyperelliptic curves $C$ of genus 4. By Clifford's Theorem a nonhyperelliptic curve of genus 4 cannot have a $g^2_4$; in particular, there cannot be a plane model of degree 4. 
+
+If now $D$ is a divisor of degree 5 with $r(D)=2$ then, by the Riemann-Roch Theorem,  $\h0(K-D) = 1$; that is, $D$ is of the form $K-p$ for some point $p \in C$.  There are thus two cases:
+
+\fix{revised by DE to here, June 17}
+\fix{This analysis either needs more explanation, or a preliminary section about singularities of plane curves. Also the geometry of projections (``same tangent line'') is usually NOT understood by beginning students, and needs explication here.}
 
 \begin{enumerate}
 \item If $C$ has two $g^1_3$s---that is, if the quadric $Q$ containing the canonical model of $C$ is smooth---then projection $\pi$ of the canonical curve from a point $p \in C$ will be an embedding, except at the  other points of intersection of $C$ with the two lines $L_1, L_2 \subset Q$ passing through $p$. If $L_i$ is transverse to $C$, the two other points of $L_i \cap C$ will map to a node of the image curve (the tangent spaces to $Q$ at the two other points of $L_i \cap C$ will be distinct, so the image curve $\pi(C)$ will have a node); if $L_i$ meets $C$ tangentially at one point other than $p$, the image curve will have a cusp. In sum, then, the plane quintic model of $C$ will have two singularities, each either a node or a cusp.
+
 \item If $C$ has one $g^1_3$---that is, if the quadric $Q$ containing the canonical model of $C$ is a cone---then projection $\pi$ of the canonical curve from a point $p \in C$ will again be an embedding, except at the  other points of intersection of $C$ with the single line $L \subset Q$ passing through $p$. In this case, however, the tangent planes to $Q$ at points of $L$ will all be the same, so that if $L$ is transverse to $C$, the two other points of $L \cap C$ will map to a \emph{tacnode} of the image curve; if $L$ meets $C$ tangentially at one point other than $p$, the image curve will have a \emph{ramphoid cusp}.
 \end{enumerate}
 
 
 \subsection{Curves of genus 5}
 
-We consider now nonhyperelliptic curves of genus 5. There are now two questions that cannot be answered by simple application of Riemann-Roch:
+We consider now nonhyperelliptic curves of genus 5. There are now two questions that cannot be answered by simple application of the Riemann-Roch Theorem:
 
 \begin{enumerate}
 \item Is $C$ expressible as a 3-sheeted cover of $\PP^1$? In other words, does $C$ have a $g^1_3$?; and
 \item Is $C$ expressible as a 4-sheeted cover of $\PP^1$? In other words, does $C$ have a $g^1_4$?
 \end{enumerate}
 
-As we'll see, all other questions about the existence or nonexistence of linear series on $C$ can be answered by Riemann-Roch.
+As we'll see, all other questions about the existence or nonexistence of linear series on $C$ can be answered by the Riemann-Roch Theorem.
 
 As in the preceding case, the answers can be found through an investigation of the geometry of the canonical model $C \subset \PP^4$ of $C$. This is an octic curve in $\PP^4$, and as before the first question to ask is what sort of polynomial equations define $C$. We start with quadrics, by considering the restriction map
 $$
-r_2 : H^0(\cO_{\PP^4}(2)) \; \to \; H^0(\cO_{C}(2)).
+r_2 : \HH^0(\cO_{\PP^4}(2)) \; \to \; \HH^0(\cO_{C}(2)).
 $$
-On the left, we have the space of homogeneous quadratic polynomials on $\PP^4$, which has dimension $\binom{6}{4} = 15$, while by Riemann-Roch the target is a vector space of dimension
+On the left, we have the space of homogeneous quadratic polynomials on $\PP^4$, which has dimension $\binom{6}{4} = 15$, while by the Riemann-Roch Theorem the target is a vector space of dimension
 $$
 2\cdot8 - 5 + 1 = 12.
 $$
@@ -145,9 +178,9 @@ The question now is, what is the intersection of the quadrics containing $C$? Th
 
 For the first case, suppose that the canonical curve $C \subset \PP^4$ is the complete intersection of three quadrics. We can answer the first of our two questions immediately: $C$ cannot contain three colinear points (or, more generally, a divisor of degree 3 contained in a line), because then the line $L$ containing them would necessarily lie on each of the quadrics, meaning that $C$ could not be their complete intersection.
 
-What about $g^1_4$s? Again invoking geometric Riemann-Roch, a divisor of degree 4 moving in a pencil lies in a 2-plane; so the question is, does $C \subset \PP^4$ contain four coplanar points? Suppose first that it does: say $D = p_1+\dots +p_4 \subset C$ is contained in a 2-plane $\Lambda$. In that case, consider the restriction map
+What about $g^1_4$s? Again invoking the geometric Riemann-Roch Theorem, a divisor of degree 4 moving in a pencil lies in a 2-plane; so the question is, does $C \subset \PP^4$ contain four coplanar points? Suppose first that it does: say $D = p_1+\dots +p_4 \subset C$ is contained in a 2-plane $\Lambda$. In that case, consider the restriction map
 $$
-H^0(\cI_{C/\PP^4}(2)) \; \to \; H^0(\cI_{D/\Lambda}(2)).
+\HH^0(\cI_{C/\PP^4}(2)) \; \to \; \HH^0(\cI_{D/\Lambda}(2)).
 $$
 By hypothesis, the left hand space is 3-dimensional; but since $D$ is not contained in a line, it must impose independent conditions on quadrics, so that the right hand space is 2-dimensional. It follows that \emph{$\Lambda$ must be contained in one of the quadrics $Q$ containing $C$}; note in particular that such a quadric $Q$ is necessarily singular.
 
@@ -155,7 +188,7 @@ Conversely, suppose that $Q \subset \PP^4$ is a singular quadric containing $C$.
 $$
 \Lambda \cap C = \Lambda \cap Q' \cap Q'', 
 $$ 
-from which we see that $D = \Lambda \cap C$ is a divisor of degree 4 on $C$, and so has $r(D) = 1$ by geometric Riemann-Roch. Thus, the rulings of  singular quadrics containing $C$ cut out on $C$ pencils of degree 4; and every pencil of degree 4 on $C$ arises in this way.
+from which we see that $D = \Lambda \cap C$ is a divisor of degree 4 on $C$, and so has $r(D) = 1$ by the geometric Riemann-Roch Theorem. Thus, the rulings of  singular quadrics containing $C$ cut out on $C$ pencils of degree 4; and every pencil of degree 4 on $C$ arises in this way.
 
 Does $C$ lie on singular quadrics? You bet: there is a $\PP^2$ of quadrics containing $C$---a 2-plane in the space $\PP^{14}$ of quadrics in $\PP^4$---and its intersection with the discriminant hypersurface in $\PP^{14}$ will be a plane quintic curve $B$. (Note that by Bertini not every quadric containing $C$ can be singular in this case.) So $C$ does indeed have a $g^1_4$, and is expressible as a 4-sheeted cover of $\PP^1$; in fact we can summarize our analysis in the
 
