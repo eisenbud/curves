@@ -17,6 +17,7 @@
 \def\AA{{\mathbb A}}
 \def\BB{{\mathbb B}}
 \def\CC{{\mathbb C}}
+\def\PP{{\mathbb P}}
 \def\QQ{{\mathbb Q}}
 \def\RR{{\mathbb R}}
 \def\facet{{\bf facet}}
@@ -25,6 +26,8 @@
 \def\cF{{\cal F}}
 \def\cG{{\cal G}}
 \def\cH{{\cal H}}
+\def\cO{{\cal O}}
+\def\cD{{\cal D}}
 \def\cHom{{{\cal H}om}}
 \def\h{{\rm h}}
  \def\bs{{Boij-S\"oderberg{} }}
@@ -67,9 +70,109 @@ The subject of algebraic curves abounds with examples amenable to explicit const
 
 rational curves as projections of rational normal curves. Rational quartic in $\PP^3$ as curve of type 1,3 on quadric do dimension count. Branch points can be chosen. $g^3_4$ is sum of $g^1_1$ and a $g^1_3$. Cheerful fact: Set theor comp int problem.. Maximal rank for forms of degree d. Open questions: Hilbert functions? generators of the ideal? mention "secant conjecture"?
 
+\subsubsection{Rational normal curves}
+
+The first thing to observe about curves of genus 0 is that \emph{there is only one}: any curve $C$ of genus 0 is isomorphic to $\PP^1$. This follows immediately from the statement (\ref{**}) that any line bundle of degree $2g+1$ or greater on a curve of genus $g$ is very ample: if $p \in C$ is any point, by Riemann-Roch we have $h^0(\cO_C(p)) = 2$, and so the linear series $|\cO_C(p)|$ gives an ``embedding" of $C$ in $\PP^1$. Note that this works only because we are working over an algebraically closed field $K$: without that assumption, $C$ may not have any $K$-rational points at all, and indeed the classification of curves of genus 0 over non-algebraically closed fields is a subject that goes back to Gauss.
+
+Another key fact about $\PP^1$ is that \emph{there is only one line bundle of degree $d$ on $\PP^1$} for any $d$; this is the bundle $\cO_{\PP^1}(d)$. This follows from the fact that the Jacobian of $\PP^1$ is a single point; or it can be seen directly: if $D = z_1+z_2+\dots+z_d$ and $E = w_1+\dots+w_d$ are two divisors of degree $d$, the rational function
+$$
+f(z) \; = \; \frac{(z-z_1)(z-z_2)\cdots(z-z_d)}{(z-w_1)(z-w_2)\cdots(z-w_d)}
+$$
+gives a rational equivalence between $D$ and $E$. Note that $h^0(\cO_{\PP^1}(d)) = d+1$; this follows from Riemann-Roch, or we can see it directly either by writing out explicitly the vector space of rational functions with poles along a divisor $D = z_1+z_2+\dots+z_d$:
+$$
+L(D) \; = \; \left\{ \frac{g(z)}{(z-z_1)(z-z_2)\cdots(z-z_d)} \mid \deg(g) \leq d \right\}
+$$
+
+The image $C \subset \PP^d$ of $\PP^1$ under the map $\phi_d : \PP^1 \to \PP^d$ associated to the complete linear series $|\cO_{\PP^1}(d)|$ is called the \emph{rational normal curve} of degree $d$. In case $d=2$, this is simply a plane conic (as we'll see, it is the zero locus of a single quadratic polynomial on $\PP^2$); in case $d=3$ it's called the \emph{twisted cubic}.
+
+It's easy to write down the equations that define a rational normal curve. First, in coordinates, we can realize the map $\phi_d$ as
+$$
+\phi_d : z \mapsto [1, z, z^2,\dots,z^d],
+$$
+from which we see that $C$ lies in the zero locus of the homogeneous quadratic polynomial $W_iW_j - W_kW_l$ for every $i+j=k+l$. As a convenient way to package these, we can realize their span as the span of the $2\times 2$ minors of the matrix
+$$
+M \; = \; \begin{pmatrix}
+W_0 & W_1 & \dots & W_{d-1} \\
+W_1 & W_2 & \dots & W_d
+\end{pmatrix}.
+$$
+
+In fact, these are all the quadratic polynomials on $\PP^d$ vanishing on $C$. To see this, consider the restriction map
+$$
+H^0(\cO_{\PP^d}(2)) \; \to \; H^0(\cO_{C}(2)) = H^0(\cO_{\PP^1}(2d)).
+$$
+This map is surjective (every monomial of degree $2d$ on $\PP^1$ is a product of two monomials of degree $d$); comparing dimensions, we see that the dimension of the kernel---that is, the space of quadratic polynomials on $\PP^d$ vanishing on $C$---has dimension
+$$
+\binom{d+2}{2} - (2d+1) \; = \; \binom{d}{2},
+$$
+which is exactly the dimension of the span of the minors of $M$. It's also easy to see that $C$ is exactly the zero locus of these quadratic polynomials \fix{do this out explicitly?} and in fact they generate the homogeneous ideal of the curve $C \subset \PP^d$.
+
+The rational normal curve of degree $d$ can also be characterized as the unique irreducible, nondegenerate curve of minimal degree $d$ in $\PP^d$. To see this, suppose that $C \subset \PP^d$ is any irreducible, nondegenerate curve. If $p_1,p_2,\dots,p_{d}$ are any $d-1$ points of $C$, they lie in a hyperplane which meets $C$ in at least those points, whence $\deg(C) \geq d$; and if we have equality then the projection $\pi_\Lambda : C \to \PP^1$ from the plane $\Lambda = \overline{p_1,p_2,\dots,p_{d-1}}$ has degree 1, from which we see that $C \cong \PP^1$.  Note that by degree considerations, \emph{any $m \leq d+1$ points on a rational normal curve $C \subset \PP^d$ are linearly independent}---in case $m=d+1$, Bezout tells us that the points cannot lie in a hyperplane, and the case $m < d+1$ follows. More generally, by the same argument \emph{any subscheme $\Gamma \subset C$ of degree $m \leq d+1$ spans an $(m-1)$-plane in $\PP^d$}.
+
+(We will see how to describe all irreducible, nondegenerate varieties $X \subset \PP^d$ of minimal degree in Section~\ref{**}.)
+
+MCF: the rational normal curve $C \subset \PP^d$ can also be characterized as the unique \emph{homogeneous} curve in $\PP^d$: that is, such that the automorphisms of $\PP^d$ carrying $C$ to itself act transitively on $C$.
+
+\subsubsection{Other rational curves}
+
+What about other rational curves in projective space? Since any linear series $\cD$ of degree $d$ on $\PP^1$ is a subseries of the complete series $|\cO_{\PP^1}(d)|$, we see that \emph{any rational curve $C \subset \PP^r$ of degree $d$ is a projection of a rational normal curve in $\PP^d$}. Slightly more generally, any map $\phi : \PP^1 \to \PP^r$ of degree $d$ is given as
+$$
+z \; \mapsto \; [f_0(z), \dots, f_r(z)]
+$$
+for some $(r+1)$-tuple of polynomials $f_\alpha$ of degree $d$ on $\PP^1$, which is to say it's the composition of the embedding $\phi_d : \PP^1 \to \PP^d$ of $\PP^1$ as a rational normal curve with a linear projection $\pi : \PP^d \to \PP^r$. To give a sense of what we can say about such curves, we'll consider one of the first and simplest cases: smooth rational curves of degree $4$ in $\PP^3$.
+
+So: let $C \subset \PP^3$ be a smooth, nondegenerate curve of degree 4 and genus 0 in $\PP^3$. To describe the geometry of $C$, the first thing to determine is what surfaces it lies on---that is, what degree polynomials on $\PP^3$ vanish on $C$. To start with, we can ask: does $C$ lie on a quadric surface? To answer this, we consider again the restriction map
+$$
+H^0(\cO_{\PP^3}(2)) \; \to \; H^0(\cO_{C}(2)) = H^0(\cO_{\PP^1}(8)).
+$$
+Here the vector space on the left---homogeneous quadratic polynomials on $\PP^3$---has dimension 10, while the one on the right, either by Riemann-Roch or by direct examination, has dimension 9. We conclude that \emph{the curve $C$ must lie on at least one quadric surface $Q \subset \PP^3$}.
+
+Since $C$ is irreducible and nondegenerate, it can't lie on a union of planes, so the quadric $Q$ must either be smooth or a cone over a conic curve. We'll see in a moment that the latter case can't occur, so let's assume for now that $Q$ is smooth. 
+
+The natural follow-up question is, what is the class of $C$ in the Picard group of $Q$? We know that $Q \cong \PP^1 \times \PP^1$, with the fibers of the two projections appearing as lines of the two rulings of $Q$. Lines $L$ and $M$ of the two rulings generate the Picard group, so that we must have $C \sim aL + bM$ for some $a, b$ (in other words, in terms of the isomorphism $Q \cong \PP^1 \times \PP^1$, $C$ is the zero locus of a bihomogeneous polynomial of bidegree $(a,b)$), and we ask what $a$ and $b$ are. The choices are limited: since $C$ is a quartic curve, we must have $a+b = 4$. Adjunction tells us which must be the case: the genus formula for curves on $Q$ tells us that the genus of a smooth curve of class $(a,b)$ on $Q$ has genus $(a-1)(b-1)$, whence the class of our curve $C$ must be $(1,3)$ (for a suitable ordering of the two rulings).
+
+It follows in particular that \emph{$Q$ is the unique quadric containing $C$}. One way to see this is that since $C$ has class $(1,3)$ it meets the lines of the first ruling three times; if $Q'$ is any quadric containing $C$, then, it must contain all these lines and hence must equal $Q$. Alternatively, we may consider the exact sequence
+$$
+0 \to \cI_{C/Q}(2) \to \cO_Q(2)  \to \cO_C(2) \to 0.
+$$
+If $C$ has class $L+3M$, we have $\cI_{C/Q}(2) = \cO_{Q}(L-M)$. Since this bundle has negative degree of every line of the first ruling, it has no sections; hence the restriction map $H^0(\cO_Q(2))  \to H^0(\cO_C(2))$ is injective and so there are no  quadrics in $\PP^3$ containing $C$ other than $Q$.
+
+(It is interesting to compare the two arguments above: they are exactly the same argument, expressed first in 19th century language and then in the language of the 20th century.)
+
+We can also describe the rest of the ideal of $C$ similarly. For example, to find the cubic polynomials vanishing on $C$ we consider the restriction map
+$$
+H^0(\cO_{\PP^3}(3)) \; \to \; H^0(\cO_{C}(3)) = H^0(\cO_{\PP^1}(12)).
+$$
+The dimensions of these two vector spaces being 20 and 13 respectively, we see that $C$ must lie on at least 7 cubics; four of these are simply products of $Q$ with linear forms, and so we see that $C$ must lie on at least three cubics modulo those containing $Q$. Indeed, these are easy to spot: if $L$ and $L'$ are any two lines of the first ruling, the divisor $C + L + L'$ has class $(3,3)$ on $Q$ and hence is the intersection of $Q$ with a cubic surface. As $L+L'$ varies in a two-dimensional linear series, we get three cubics containing $C$ modulo those containing $Q$. Conversely, any cubic containing $C$ (but not containing $Q$) will intersect $Q$ in the union of $C$ with a curve of type $(2,0)$ on $Q$, which is to say the sum of two lines of the first ruling, so these are all the cubics containing $C$.
+
+Finally, we have to show that the quadric containing the curve $C$ cannot be a cone over a conic plane curve. The key question here is whether or not $C$ contains the vertex $p$ of the cone: if not, the same adjunction-based calculation shows that $C$ must have genus 1; while a parity argument (how many times does $C$ meet a line of the ruling of $Q$?) shows that if a curve $C \subset Q$ of even degree contains $p$ it must be singular there.
+
+Before moving on, we should remark that this one example of a non-linearly normal rational curve in projective space is misleading in that we can give such a complete description. For general $d$ and $r$, we have no idea what may be the Hilbert function of a rational curve of degree $d$ in $\PP^r$, let alone what its resolution might look like.
+
+\underbar{Exercises}:
+
+Find all possible Hilbert functions of smooth rational quintic  curves $C \subset \PP^3$. (There are only two, depending on whether or not $C$ lies on a quadric, so this isn't so bad.)
+
+Every $g^3_4$ on $\PP^1$ is uniquely expressible as a sum of the $g_1^1$ and a $g^1_3$
+
+There is a 1-parameter family of rational quartic curves in $\PP^3$ up to projective equivalence. (Finding the invariants is a nice problem, which we should talk about.)
+
+The quadrics containing a rational normal curve $C \subset \PP^d$ generate the homogeneous ideal.
+
+The homogeneous ideal of a smooth rational quartic curve $C \subset \PP^3$ is generated by the one quadric and the three cubics found above.
+
+
 \subsection{Curves of genus 1}
 
 Wonderful subject; refer to somewhere else. Double cover of $\PP^1$, leading to $y^2 - f(x)$. Plane cubic, quartic in $\PP^3$. Cheerful fact:  elliptic quintic is Pfaffian. Cheerful fact: any $g^5_6$ is the product of two $g^2_3$s. Get a $3\times 3$ matrix of linear forms. The image of the matrix and its transpose are $g^2_3$'s. Prove this by going to the Segre embedding $\PP^2\times \PP^2 \subset\PP^8$.
+
+The subject of curves of genus 1, a.k.a. elliptic curves\footnote{Technically, an elliptic curve is a smooth curve of genus 1 with a distinguished point, called the \emph{origin}.} is a wonderful one. They appeared, in the second half of the 19th century, as key objects in the developing subjects of geometry, number theory and complex analysis, and the literature is correspondingly rich. Here we'll focus on the geometric side, and try to describe maps of genus 1 curves to projective space.
+
+\subsubsection{Double covers of $\PP^1$}
+
+\subsubsection{Plane cubics}
+
+\subsubsection{Quartics in $\PP^3$}
 
 \subsection{Curves of genus 2}
 
