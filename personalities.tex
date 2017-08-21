@@ -208,6 +208,29 @@ y^2 = x(x-1)(x - \alpha)(x - \beta)(x - \gamma)
 $$
 for some triple $\alpha,\beta,\gamma \in \CC$ distinct from each other and from 0 and 1. This representation shows us that the moduli space $M_2$ is the space of 6-tuples of distinct points in $\PP^1$ modulo the action of $PGL_2$. This tells us immediately that $M_2$ is irreducible of dimension 3; with a fair amount of additional work, we can also use this to describe the coordinate ring of $M_2$ (\ref{**}).
 
+Curves of genus 2 can also be expressed as three-sheeted covers of $\PP^1$: if $L$ is any line bundle of degree 3 not of the form $L \cong K(p)$ for some $p \in C$, then $|L|$ is base-point-free, and gives a map $\phi_L : C \to \PP^1$ of degree 3.
+
+\subsubsection{Maps to $\PP^2$}
+
+What about plane models of $C$? Riemann-Roch says that $h^0(L) = \deg(L) - 1$ for any line bundle $L$ of degree 3 or more; this means there are no $g^2_3$s on $C$ and that if $L$ is any line bundle of degree $4$ then $|L|$ is a base-point-free $g^2_4$. What does the map associated to such a linear system $|L|$ look like? There are three cases:
+
+\begin{enumerate}
+
+\item $L=2K$: in this case we claim that the map $\phi_L$ is two-to-one onto a conic curve $Q_0 \subset \PP^2$. To see this, observe that if $D, D' \in |K|$ are any two canonical divisors, then $D+D' \in |L|$; since $|L|$ is only two-dimensional, this says that \emph{every divisor in $|L|$ is a sum of two divisors in $|K|$}, and hence $\phi_L$ factors through $\phi_K$: we have $\phi_L = \nu_2 \circ \phi_K$, where $\phi_K : C \to \PP^1$ is the canonical map and $\nu_2 : \PP^1 \to \PP^2$ is the Veronese map.
+
+\item $L \neq 2K$: in this case, we see that $L = K+D$ for a unique effective divisor $D = p+q$ of degree 2. This splits in turn into two cases:
+
+\begin{enumerate}
+
+\item $p \neq q$. Here, we see that $h^0(L(-p-q)) = h^0(L)-1$, while $h^0(L-E) = h^0(L) - 2$ for any effective divisor $E \neq p+q$; it follows that the map $\phi_L$ is birational onto its image; it maps the two points $p, q \in C$ to a node of the image curve and is otherwise an embedding.
+
+\item $p=q$. This is much the same as the preceding case, except now $\phi_L$ maps $C$ birationally onto a plane curve with a single cusp, that being the image of $p$.
+
+\end{enumerate}
+\end{enumerate}
+
+Need: no $g^2_3$s; a two-dimensional family of $g^2_4$s, all of which are birationally very ample except for $2K$ (image has a node if $L = K+p+q$ for some $p \neq q \in C$: a cusp if $L= K+2p$).
+
 \subsubsection{Embeddings in $\PP^3$}
 
 For line bundles $L$ of degree $d \geq 3$ on $C$, Riemann-Roch tells us simply that $h^0(D) = d - 1$; if we want to embed our curve $C$ in projective space, accordingly, we had better take $d \geq 5$. Conversely, the general lemma above ($\deg \geq 2g+1$ implies very ample; \cite{**}) tells us that any line bundle of degree 5 on $C$ is very ample, so we'll consider first the embeddings of $C$ given by those.
@@ -234,7 +257,31 @@ for some point $p \in C$.
 
 \begin{proof}
 Let's start with the "if" direction: assume that $L \cong K^2(p)$ for some $p \in C$. According to Riemann-Roch, we have $h^0(\cO_C(K^2)) = 3$, so in this case the linear series $|L| = |K^2(p)|$ contains as a subseries of codimension 1 the linear system $|K^2|+p$; in other words, the composition $\pi_p \circ \phi_L$ of the embedding $C \subset \PP^3$ with the projection $\pi_p$ from the point $p$ is the map $\phi_{K^2} : C \to \PP^2$ given by the linear series $|K^2|$.
+
+We will consider the two cases in turn. In each case, we will actually construct the quadric $Q$ geometrically, corroborating the argument above that $C$ must lie on a quadric!
+
+Suppose first that $L \cong 2K+p$ for some $p \in C$. That means that $L$ contains the linear series $|2K| + p$ as a subseries of codimension 1---the subseries corresponding to the point $p_0=\phi_L(p)$. In other words, the composition of the map $\phi_L : C \to \PP^3$ with the projection $\pi_{p_0} : \PP^3 \to \PP^2$ is the map $\phi_{2K} : C \to \PP^2$ associated to the double of the canonical series.
+
+But we have seen that the map $\phi_{2K}$ maps $C$ 2-1 onto a plane conic $Q_0 \subset \PP^2$. Thus $C$ lies on the quadric cone $Q = \overline{p, Q_0}$.
+
+Now suppose that $L$ is not of the form $2K+p$. In that case, as we've seen the series $|L-K|$ is a base-point-free $g^1_3$, and gives a map $\phi_{L-K} : C \to \PP^1$. Consider then the product map
+$$
+\phi_K \times \phi_{L-K} : C \to \PP^1 \times \PP^1 \to \PP^3,
+$$
+composed with the Segre inclusion of $\PP^1 \times \PP^1$ in $\PP^3$ as a quadric $Q$. We note that $C$ meets the lines of one ruling of $Q$ in divisors belonging to the canonical series $|K|$, and meets the lines of the other ruling in divisors of the series $|L-K|$. The hyperplane class in $\PP^3$ accordingly pulls back to the class $L$ on $C$, and we see that the image of $C$ in $\PP^3$ under the embedding $\phi_L$ lies on a smooth quadric.
 \end{proof}
+
+Whether the quadric $Q$ is smooth or not, we can describe a minimal set of generators of the homogeneous ideal $I(C) \subset \CC[x_0, x_1, x_2, x_3]$ similarly. First, we look at the restriction map
+$$
+H^0(\cO_{\PP^3}(3)) \to H^0(\cO_C(3));
+$$
+since the dimensions of these spaces are 20 and $15-2+1 = 14$ respectively, we see that  vector space of cubics vanishing on $C$ has dimension at least 6. Four of these are already accounted for: we can take the defining equation of $Q$ and multiply it by any of the linear forms on $\PP^3$; we conclude, accordingly, that \emph{there are at least two cubics vanishing on $C$ linearly independent modulo those vanishing on $Q$}.
+
+In fact, we can prove the existence of these cubics geometrically, and show that there are no more than 2 linearly independent modulo the ideal of $Q$. Suppose first that $Q$ is smooth, so that $C$ is a curve of type $(2,3)$ on $Q$. In that case, if $L \subset Q$ is any line of the first ruling, the sum $C+L$ is the complete intersection of $Q$ with a cubic $S_L$, unique modulo the ideal of $Q$; conversely, if $S$ is any cubic containing $C$ but not containing $S$, the intersection $S \cap Q$ will be the union of $C$ and a line $L$ of the first ruling; thus, mod $I(Q)$, $S = S_L$. A similar argument applies in case $Q$ is a cone, and $L$ is any line of the (unique) ruling of $Q$.
+
+\begin{exercise}
+Show that for any pair of lines $L, L'$ of the appropriate ruling of $Q$, the three polynomials $Q$, $S_L$ and $S_{L'}$ generate the homogeneous ideal $I(C)$. Find relations among them. Write out the minimal resolution of $I(C)$.
+\end{exercise}
 
 \subsection{Curves of genus 3}
 
