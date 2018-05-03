@@ -11,6 +11,8 @@
 \oddsidemargin.8cm
 \evensidemargin1cm
 
+\setlength{\parskip}{5pt}
+
 %%%%%Definitions
 \input preamble.tex
 \def\TU{{\bf U}}
@@ -95,9 +97,9 @@ E = \sum_{p\in C} \ord_p(f)\cdot p
 $$
 then we have an isomorphism $\cL(D+E) = \cL(D)$ obtained by multiplying by $f$. Accordingly, geometers defined an equivalence relation on the group of divisors, calling two divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ was the divisor of a rational function; the group of equivalence classes of divisors was called the \emph{Picard group} $\Pic(C)$ of $C$.
 
-As we headed into the 20th century, some further tweaking was called for, in order to avoid the evils of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a coherent sheaf $\cO_C(D)$, defined by
+As we headed into the 20th century, some further tweaking was called for in order to avoid the evils of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a coherent sheaf $\cO_C(D)$, defined by
 $$
-\cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \forall p_i \in U \}.
+\cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \quad \forall p_i \in U \}.
 $$
 This is a locally free sheaf of rank 1, also called an \emph{invertible sheaf} or \emph{line bundle}. Two divisors are linearly equivalent iff the associated sheaves are isomorphic, so that the Picard group $\Pic(C)$ could be thought of simply as the group of line bundles on $C$.
 
@@ -106,7 +108,7 @@ $$
 C \setminus f^{-1}(H) \to \AA^r
 $$
 is then given simply by an $r$-tuple $(f_1,\dots,f_r)$ of regular functions on $C \setminus f^{-1}(H)$. Moreover, if we consider $f^{-1}(H)$ as a divisor on $C$, we can think of the functions $f$ as elements of $\cL(D)$.
-\cL
+
 All this requires a choice of hyperplane $H$, as well as an identification of the complement with $\AA^r$---an unnecessary evil. We can do better using the language of line bundles: if we let $\cL = f^*\cO_{\PP^r}(1)$ be the pullback to $C$ of the line bundle on $\PP^r$ associated to the divisor $H$, we can think of the $f_i$ as sections of $\cL$, so that associated to the map $f : C \to \PP^r$ we have a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space of global sections of $\cL$ (including the constant function 1). Conversely, if we are given a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ without common zeroes, we can choose a basis $\sigma_0,\dots,\sigma_r$ for $V$; we then get a map 
 
 \begin{align*}
@@ -122,6 +124,21 @@ C &\to \PP(V^*) \\
 p &\mapsto H_p
 \end{align*}
 where $H_p = \{\sigma \in V \mid \sigma(p) = 0\}$ is the hyperplane in $V$ of sections $\sigma \in V$ vanishing at $p$.
+
+All of this leads us to the fundamental
+
+\begin{definition}
+A \emph{linear system} on a curve $C$ is a pair $(\cL, V)$ with $\cL \in \Pic(C)$ a line bundle on $C$ and $V \subset H^0(\cL)$ a vector space of sections of $\cL$.
+\end{definition}
+
+The degree of the line bundle $\cL$ is called the degree of the linear system; the \emph{dimension} of the linear system is the dimension of the projective space $\PP V$; that is, the dimension of the vector space $V$ minus 1. A linear system is called \emph{base-point-free} is the sections $\sigma \in V \subset H^0(\cL)$ have no common zeroes. With all this said, we have the 
+
+\begin{proposition}
+There is a natural bijection between the set of nondegenerate maps $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and base-point-free linear systems of dimension $r$ on $C$.
+\end{proposition}
+
+Here ``nondegenerate" means the image of the map $\phi$ is not contained in any hyperplane. In this correspondence, the degree of the linear system corresponds to the \emph{projective degree} of the map $\phi$; that is, the cardinality of the preimage $\phi^{-1}(H)$ of a general hyperplane $H \subset \PP^r$.
+
 
 \section{The genus of a curve}
 
