@@ -25,6 +25,7 @@
 \def\cF{{\cal F}}
 \def\cG{{\cal G}}
 \def\cH{{\cal H}}
+\def\cL{{\cal L}}
 \def\cHom{{{\cal H}om}}
 \def\h{{\rm h}}
  \def\bs{{Boij-S\"oderberg{} }}
@@ -70,13 +71,61 @@ Exercise: Projections from on and off a curve
 
 \section{Divisors, line bundles and linear systems}
 
-One of the basic facts about projective varieties is that \emph{any regular function on a connected projective variety $X$ is constant} (such a function gives a regular map $X \to \AA^1$; since the im
-
-\section{The genus of a curve}
 
 The basic objects of study in this book are, simply, smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. Dropping any of these hypotheses leads us to many fascinating questions, some of which we'll discuss in \ref{****}; but before we can get into those we have to start with the basic case.
 
-And any discussion of smooth projective curves pretty much has to start with the notion of the \emph{genus} of a curve, the sole discrete continuous invariant of curves. There are many ways of characterizing the genus of a curve $C$, some of which we'll list here:
+
+\subsection{The history of linear series in one page}
+
+One of the basic facts about projective varieties is that \emph{any regular function on a connected projective curve $C$ is constant} (such a function gives a regular map $C \to \AA^1$; since the image is again a projective variety, it can only be a point).  In order to have nonconstant functions, accordingly, we have to look at rational functions. But the field of all rational functions is too large for most purposes, and so from a very early stage geometers looked at rational functions with \emph{bounded singularities}: they specified a finite collection of points $p_1,\dots,p_n \in C$, a corresponding collection of integers $m_i$, and considered the space of all rational functions $f$ on $C$, regular on $C \setminus \{p_1,\dots,p_n\}$  and satisfying
+
+\begin{equation}\label{divisor condition}
+\ord_{p_i}(f) \geq -m_i.
+\end{equation}
+
+To formalize this, they defined a \emph{divisor} on $C$ to be a formal finite linear combination
+$$
+D = \sum m_i \cdot p_i
+$$
+of points, and denoted by $\cL(D)$ the vector space of rational functions satisfying~(\ref{divisor condition}); the dimension of $\cL(D)$ was denoted $\ell(D)$.
+
+But this is somewhat inefficient: for example, if $f$ is any rational function and we define the divisor $E = (f)$ to be
+$$
+E = \sum_{p\in C} \ord_p(f)\cdot p
+$$
+then we have an isomorphism $\cL(D+E) = \cL(D)$ obtained by multiplying by $f$. Accordingly, geometers defined an equivalence relation on the group of divisors, calling two divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ was the divisor of a rational function; the group of equivalence classes of divisors was called the \emph{Picard group} $\Pic(C)$ of $C$.
+
+As we headed into the 20th century, some further tweaking was called for, in order to avoid the evils of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a coherent sheaf $\cO_C(D)$, defined by
+$$
+\cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \forall p_i \in U \}.
+$$
+This is a locally free sheaf of rank 1, also called an \emph{invertible sheaf} or \emph{line bundle}. Two divisors are linearly equivalent iff the associated sheaves are isomorphic, so that the Picard group $\Pic(C)$ could be thought of simply as the group of line bundles on $C$.
+
+What this formalism is good for is describing maps of a curve to projective space. To start with the classical approach, suppose $f : C \to \PP^r$ is a map. We can choose a hyperplane $H \cong \PP^{r-1} \subset \PP^r$ with complement $\PP^r \setminus H \cong \AA^r$; the map 
+$$
+C \setminus f^{-1}(H) \to \AA^r
+$$
+is then given simply by an $r$-tuple $(f_1,\dots,f_r)$ of regular functions on $C \setminus f^{-1}(H)$. Moreover, if we consider $f^{-1}(H)$ as a divisor on $C$, we can think of the functions $f$ as elements of $\cL(D)$.
+\cL
+All this requires a choice of hyperplane $H$, as well as an identification of the complement with $\AA^r$---an unnecessary evil. We can do better using the language of line bundles: if we let $\cL = f^*\cO_{\PP^r}(1)$ be the pullback to $C$ of the line bundle on $\PP^r$ associated to the divisor $H$, we can think of the $f_i$ as sections of $\cL$, so that associated to the map $f : C \to \PP^r$ we have a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space of global sections of $\cL$ (including the constant function 1). Conversely, if we are given a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ without common zeroes, we can choose a basis $\sigma_0,\dots,\sigma_r$ for $V$; we then get a map 
+
+\begin{align*}
+C &\to \PP^r \\
+p &\mapsto [\sigma_0(p),\dots,\sigma_r(p)].
+\end{align*}
+The point is,  the values $\sigma_i(p)$ are elements of a one-dimensional vector space---the fiber of $\cL$ at $p$---so that the vector $[\sigma_0(p),\dots,\sigma_r(p)]$ is well-defined up to scalars.
+
+If we were even more choice-averse and wanted to describe the map $f$ associated to a pair $(\cL, V)$ without choosing coordinates on $\PP^r$, we could describe $f$ as the map
+
+\begin{align*}
+C &\to \PP(V^*) \\
+p &\mapsto H_p
+\end{align*}
+where $H_p = \{\sigma \in V \mid \sigma(p) = 0\}$ is the hyperplane in $V$ of sections $\sigma \in V$ vanishing at $p$.
+
+\section{The genus of a curve}
+
+Any discussion of smooth projective curves pretty much has to start with the notion of the \emph{genus} of a curve, the sole discrete continuous invariant of curves. There are many ways of characterizing the genus of a curve $C$, some of which we'll list here:
 
 \begin{enumerate}
 
