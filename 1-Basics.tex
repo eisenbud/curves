@@ -209,7 +209,7 @@ All of this means, unfortunately, that it's extremely difficult to be completely
 
 
 
-\section{The genus of a curve, Riemann-Roch and Kodaira-Serre duality}
+\section{Genus, Riemann-Roch and Kodaira-Serre}
 
 \subsection{The genus of a curve}
 
@@ -258,7 +258,7 @@ $$
 
 There are a number of general consequences. To start with, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Another example: since $h^0(D) = 0$ for any divisor $D$ of negative degree, we have the
 
-\begin{corollary}
+\begin{corollary}\label{nonspecial RR}
 For any divisor of degree $d \geq 2g-1$, we have
 $$
 h^0(D) = d - g + 1.
@@ -271,7 +271,7 @@ As a consequence of this, we can apply Proposition~\ref{very ample} to conclude 
 Let $D$ be a divisor of degree $d$ on a smooth, connected projective curve of genus $g$. If $d \geq 2g$, the complete linear series $|D|$ is base point free; and if $d \geq 2g+1$ the associated map $\phi_D : C \to \PP^{d-g}$ is an embedding.
 \end{corollary}
 
-We also use Riemann-Roch in this simple form to determine the Hilbert polynomial of a projective curve. To do this, let $C \subset \PP^r$ be a smooth curve of degree $d$ and genus $g$, and consider the exact sequence of sheaves
+We also use Riemann-Roch in the simple case of Corollary~\ref{nonspecial RR} to determine the Hilbert polynomial of a projective curve. To do this, let $C \subset \PP^r$ be a smooth curve of degree $d$ and genus $g$, and consider the exact sequence of sheaves
 $$
 0 \rTo \cI_{C/\PP^r}(m) \rTo \cO_{\PP^r}(m) \rTo \cO_C(m) \rTo 0
 $$
@@ -283,7 +283,7 @@ The \emph{Hilbert function} $h_C$ of $C$  is defined by
 $$
 h_C(m) = \rank(\rho_m);
 $$
- since $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, this is equal to $h^0(\cO_C(m))$, which by Riemann Roch equals $md-g+1$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}) above.
+ since $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, this is equal to $h^0(\cO_C(m))$, which by Riemann Roch equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}) above.
 
 \subsection{Kodaira-Serre duality}
 
@@ -390,6 +390,7 @@ $$
  $$
  B = \sum_{q \in B} \Big(\sum_{p \in f^{-1}(q)} \ram(f,p) \Big)\cdot q \; \in \; \Div(B).
  $$
+ Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$.
  
  To relate the genera of $B$ and $C$ in this situation, start by choosing any rational 1-form $\omega$ on $B$; let $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (We can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) We know that $\deg(\omega) = 2g(B) - 2$ and $\deg(\eta) = 2g(C) - 2$; we will relate these two by describing the zeroes and poles of $\eta$ in terms of those of $\omega$.
  
@@ -407,7 +408,18 @@ $$
   $$
  or equivalently
  $$
- \deg R = 2d + 2g(C) - 2.
+ \deg R = \deg B  = 2d + 2g(C) - 2.
  $$
+ 
+ \section{An application}
+ 
+ Let $V$ be the vector space of homogeneous polynomials of degree $d$ in two variables; that is, $V = H^0(\cO_{\PP^1}(d))$. In the projectivization $\PP V \cong \PP^d$, let $\Delta$ be the locus of polynomials with a repeated factor. It's not hard to see that $\Delta$ in a hypersurface; we ask, what is its degree?
+ 
+ To answer this, let $L \subset \PP V$ be a general line---that is, a general pencil of divisors of degree $d$ on $\PP^1$. The linear system $L$ defines a map $\phi_L : \PP^1 \to \PP^1$ of degree $d$, and the locus $L \cap \Delta$ is exactly the branch divisor $B$.
+ It follows then that
+ $$
+ \deg(\Delta) = \deg(L \cap \Delta) = \deg B = 2d-2,
+ $$
+ answering our question. Note that since $L$ is general, both $L\cap \Delta$ and $B$ are reduced divisors, so we can interpret the above simply as an equality of cardinality of sets; but if we keep track of multiplicities the argument goes through for an arbitrary $L \not\subset \Delta \subset \PP^d$.
 
 \end{document}
