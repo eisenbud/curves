@@ -53,7 +53,7 @@ Describe the intersection of the closure  of $\cH^\circ$ in $\cH_{3m+1}$ with th
 
 Let's move on to curves $C \subset \PP^3$ of degree 4 (always assumed smooth, irreducible and nondegenerate). The first thing to observe here is that by Clifford such a curve must have genus 0 or 1; we consider these cases in turn.
 
-\subsection{Genus 0}
+\subsection{Genus 0}\label{degree 4 genus 0}
 
 We can deal with rational quartics by a slight variant of the first method we used to deal with twisted cubics; in fact, this method will answer our question for rational curves of any degree. Specifically, a rational curve of degree 4 is the image of a map $\phi_F : \PP^1 \to \PP^3$ given by a four-tuple $F = (F_0,F_1,F_2,F_3)$ with $F_i \in H^0(\cO_{\PP^1}(4))$. The space of all such four-tuples up to scalars is a projective space of dimension $4 \times 5 - 1 = 19$; let $U \subset \PP^{19}$ be the open subset of four-tuples such that the map $\phi$ is a nondegenerate embedding. We then have a surjective map $\pi : U \to \cH^\circ$, whose fiber over a point $C$ is the space of maps with image $C$. Since any two such maps differ by an automorphism of $\PP^1$---that is, and element of $\PGL_2$---the fibers of $\pi$ are three-dimensional; we conclude that \emph{$\cH^\circ_{4m+1}$ is irreducible of dimension 16}.
 
@@ -113,11 +113,72 @@ $$
 $$
 is irreducible, which can be seen readily via projection on the second factor.
 
-\subsection{Genus 1}
+Finally, there is another approach to the problem of describing $\cH^\circ$, which is to describe such curves parametrically rather than via the equations defining them as subsets of $\PP^3$. This approach is a direct generalization of the approach we took to the proof of Proposition~\ref{dimension of rational curves} above, with two additional wrinkles, which involve invoking the existence of  spaces $M_g$ parametrizing abstract curves of genus $g$ and $\Pic_d(C)$ parametrizing line bundles of degree $d$ on a given curve $C$.
 
-\section{degree 6}
-\section{degree 8}
-\section{degree 9}
+To set this up, again let $\cH^\circ$ be the space of smooth, irreducible, nondegenerate curves $C \subset \PP^3$ of degree 5 and genus 2. By forgetting the information of the particular embedding of $C$ in $\PP^3$ and remembering only the isomorphism class of $C$, we have a map
+$$
+\mu : \cH^\circ \rTo M_2.
+$$
+What does the fiber $\Sigma_C =\mu^{-1}(C)$ of the map $\mu$ over a point $C \in M_2$ look like? To start, we have a map
+$$
+\nu : \Sigma_C \rTo \Pic_5(C),
+$$
+obtained by sending a point in $\Sigma_C$ to the line bundle $\cO_C(1)$. Moreover, by Proposition~\ref{**}, which says that any line bundle of degree 5 on a curve of genus 2 is very ample, this map is surjective. Finally, the fiber of $\nu$ over a point $\cL \in \Pic_5(C)$ is simple to describe: once we've specified the abstract curve $C$, and the line bundle $\cL \in \Pic_5(C)$ giving the embedding, since $h^0(\cL) = 4$ all we have to do is to choose a basis for $H^0(\cL)$ up to scalars. In other words, the fiber of $\nu$ are isomorphic to $\PGL_4$. We can now work our way up from $M_2$:
+
+\begin{enumerate}
+
+\item[$\bullet$] We know (or at least have asserted) that $M_2$ is irreducible of dimension 3.
+
+\item[$\bullet$] It follows that the space of pairs $(C,\cL)$ with $C \in M_2$ a smooth curve of genus 2 and $\cL \in \Pic_5(C)$ is irreducible of dimension 3 + 2 = 5; and finally
+
+\item[$\bullet$] It follows that $\cH^\circ$ is irreducible of dimension $5 + 15 = 20$.
+
+\end{enumerate}
+
+In fact, this approach applies to a much wider range of examples: whenever $d \geq 2g+1$ and $3 \leq d-g$, we can look at the tower of spaces
+
+\begin{diagram}
+\cH^\circ = \cH^\circ_{dm-g+1}(\PP^3) \\
+\dTo \\
+\cP_{d,g} = \{(C,\cL) \mid \cL \in \Pic_d(C) \} \\
+\dTo \\
+M_g.
+\end{diagram}
+
+Exactly as in the special case $(d,g) = (5,2)$ above, we can work our way up the tower:
+
+
+\begin{enumerate}
+
+\item[$\bullet$]  $M_g$ is irreducible of dimension $3g-3$;
+
+\item[$\bullet$] it follows that $\cP_{d,g}$ is irreducible of dimension $3g-3+g = 4g-3$; and finally
+
+\item[$\bullet$] since the fibers of $\cH^\circ \to \cP_{d,g}$ consist of four-tuples of linearly independent sections of $\cL$ (mod scalars), it follows that $\cH^\circ$ is irreducible of dimension $4g-3 + 4(d-g+1) - 1 = 4d$.
+
+\end{enumerate}
+
+In sum, we have the
+
+\begin{proposition}\label{nonspecial Hilbert}
+Whenever $d \geq 2g+1$, the space $\cH^\circ$ of smooth, irreducible, nondegenerate curves $C \subset \PP^3$ is either empty (if $d-g < 3$) or irreducible of dimension $4d$.
+\end{proposition}
+
+This covers the case of quintics of genus 1, so we won't deal with that case separately, except in the form of an exercise:
+
+\begin{exercise}
+Show that a smooth, irreducible, nondegenerate curve $C \subset \PP^3$ of degree 5 and genus 1 is residual to a rational quartic in the complete intersection of two cubics, and use the result of subsection~\ref{degree 4 genus 0} to deduce that the space of genus 1 quintics is irreducible of dimension 20.
+\end{exercise}
+
+
+\section{Degree 6}
+
+Moving on to curves of degree 6, the first question to ask would be: what are the possible genera of smooth, irreducible, nondegenerate curves $C \subset \PP^3$ of degree 6? Once more (and for the last time, we're afraid) Clifford and Riemann-Roch suffice to answer this: if the line bundle $\cO_C(1)$ is nonspecial, then by Riemann-Roch we have $g \leq 3$; and if $\cO_C(1)$ is special, $d \leq 2g-2$ and hence $g \leq 4$.
+
+The cases of general 0, 1 and 2 are covered under Proposition~\ref{nonspecial Hilbert}, leaving us the cases $g = 3$ and 4.
+
+\section{Degree 8}
+\section{Degree 9}
 
 
 \input{footer}
