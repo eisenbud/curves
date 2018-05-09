@@ -1,0 +1,354 @@
+\input{header.tex}
+
+
+\chapter{Linear Series}
+
+\begin{center}
+\emph{Another damned thick book! Always scribble, scribble, scribble! Eh, Mr. Gibbon?} --- \scriptsize{Prince William Henry, upon receiving the second  volume of The History of the Decline and Fall of the Roman Empire from the author.}
+\end{center}
+
+
+\section{Divisors, line bundles and linear systems}
+
+
+The basic objects of study in this book are smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. Dropping any of these hypotheses leads us to many fascinating questions, some of which we'll discuss in \ref{****}; but before we can get into those we have to start with the basic case.
+
+
+\subsection{The history of linear series in four pages}
+
+One of the basic facts about projective varieties is that \emph{any regular function on a connected projective curve $C$ is constant} (such a function gives a regular map $C \to \AA^1$; since the image is again a projective variety, it can only be a point).  In order to have nonconstant functions, accordingly, we have to look at rational functions. But the field of all rational functions is too large for most purposes, and so from a very early stage geometers looked at rational functions with \emph{bounded singularities}: they specified a finite collection of points $p_1,\dots,p_n \in C$, a corresponding collection of integers $m_i$, and considered the space of all rational functions $f$ on $C$, regular on $C \setminus \{p_1,\dots,p_n\}$  and satisfying
+
+\begin{equation}\label{divisor condition}
+\ord_{p_i}(f) \geq -m_i.
+\end{equation}
+
+To formalize this, they defined a \emph{divisor} on $C$ to be a formal finite linear combination
+$$
+D = \sum m_i \cdot p_i
+$$
+of points. The \emph{degree} of a divisor $D = \sum m_i \cdot p_i$ is defined to be the sum $\sum m_i$ of its coefficients, and $D$ is said to be \emph{effective} if all $m_i \geq 0$. Note that, in modern language, an effective divisor can be viewed simply as a subscheme of the curve $C$, and conversely (since $C$ is assumed smooth), any zero-dimensional subscheme $D \subset C$ can be thought of as the divisor $\sum m_ip_i$ where $m_i$ is the multiplicity of the component of $D$ supported at $p_i$.
+
+In any event, the vector space of rational functions satisfying~(\ref{divisor condition}) was denoted by $\cL(D)$; the dimension of $\cL(D)$ was denoted $\ell(D)$.
+
+
+But this is somewhat inefficient: for example, if $f$ is any rational function and we define the divisor $E = (f)$ to be
+$$
+E = \sum_{p\in C} \ord_p(f)\cdot p
+$$
+then we have an isomorphism $\cL(D+E) = \cL(D)$ obtained by multiplying by $f$. Accordingly, geometers defined an equivalence relation on the group of divisors, calling two divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ was the divisor of a rational function; the group of equivalence classes of divisors is called the \emph{Picard group} $\Pic(C)$ of $C$. Note that since the divisor $(f)$ of a rational function $f$ on $C$ is 0, linearly equivalent divisors have the same degree.
+
+As we headed into the 20th century, some further tweaking was called for in order to avoid the awkwardness of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a coherent sheaf $\cO_C(D)$, defined by
+$$
+\cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \quad \forall p_i \in U \}.
+$$
+This is a locally free sheaf of rank 1, also called an \emph{invertible sheaf} or \emph{line bundle}. Two divisors are linearly equivalent iff the associated sheaves are isomorphic, so that the Picard group $\Pic(C)$ can be thought of simply as the group of line bundles on $C$. In this setting, the vector space $\cL(D)$ is simply the space of global sections $H^0(\cO_C(D))$ and accordingly the notation $\ell(D)$ was replaced by $h^0(\cO_C(D))$ or, for brevity, $h^0(D)$. 
+
+What this formalism is good for is describing maps of a curve to projective space. To start with the classical approach, suppose $f : C \to \PP^r$ is a map. We can choose a hyperplane $H \cong \PP^{r-1} \subset \PP^r$ with complement $\PP^r \setminus H \cong \AA^r$; the map 
+$$
+C \setminus f^{-1}(H) \to \AA^r
+$$
+is then given simply by an $r$-tuple $(f_1,\dots,f_r)$ of regular functions on $C \setminus f^{-1}(H)$. Moreover, if we consider $f^{-1}(H)$ as a divisor $D$ on $C$, we can think of the functions $f$ as elements of $\cL(D)$.
+
+All this requires a choice of hyperplane $H$, as well as an identification of the complement with $\AA^r$---an unnecessary evil. We can do better using the language of line bundles: if we let $\cL = f^*\cO_{\PP^r}(1) = \cO_C(D)$ be the pullback to $C$ of the line bundle on $\PP^r$ associated to the divisor $H$, we can think of the $f_i$ as sections of $\cL$, so that associated to the map $f : C \to \PP^r$ we have a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ (including the constant function 1). Conversely, if we are given a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ without common zeroes, we can choose a basis $\sigma_0,\dots,\sigma_r$ for $V$; we then get a map 
+
+\begin{align*}
+C &\to \PP^r \\
+p &\mapsto [\sigma_0(p),\dots,\sigma_r(p)].
+\end{align*}
+The point is,  the values $\sigma_i(p)$ are elements of a one-dimensional vector space---the fiber of $\cL$ at $p$---so that the vector $[\sigma_0(p),\dots,\sigma_r(p)]$ is well-defined up to scalars.
+
+If we were even more choice-averse and wanted to describe the map $f$ associated to a pair $(\cL, V)$ without choosing coordinates on $\PP^r$, we could describe $f$ as the map
+
+\begin{align*}
+C &\to \PP(V^*) \\
+p &\mapsto H_p
+\end{align*}
+where $H_p = \{\sigma \in V \mid \sigma(p) = 0\}$ is the hyperplane in $V$ of sections $\sigma \in V$ vanishing at $p$.
+
+All of this leads us to the fundamental
+
+\begin{definition}
+A \emph{linear system} of degree $d$ and dimension $r$ on a curve $C$ is a pair $(\cL, V)$ with $\cL \in \Pic(C)$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ an $(r+1)$-dimensional vector space of sections of $\cL$.
+\end{definition}
+
+A point $p \in C$ is called a \emph{basepoint} of the linear system $(\cL,V)$ if $\sigma(p)=0$ for all $\sigma \in V$; the linear system $(\cL,V)$ is called \emph{basepoint-free} is the sections $\sigma \in V \subset H^0(\cL)$ have no common zeroes. The linear system is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$ (or, if $\cL \cong \cO_C(D))$, it may be denoted $|D|$). In view of this, if $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, a linear system of dimension 1 is called a \emph{pencil}, and a linear system of dimension 2 is called a \emph{net}.
+
+With all this said, we have the 
+
+\begin{proposition}
+There is a natural bijection between the set of nondegenerate maps $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and base-point-free linear systems of dimension $r$ on $C$.
+\end{proposition}
+
+Here ``nondegenerate" means the image of the map $\phi$ is not contained in any hyperplane. In this correspondence, the degree of the linear system corresponds to the \emph{projective degree} of the map $\phi$; that is, the cardinality of the preimage $\phi^{-1}(H)$ of a general hyperplane $H \subset \PP^r$.
+
+Via this correspondence, the statements about the geometry of a map $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear systems. We will see this in many instances throughout this book; for a first example, we have the
+
+\begin{proposition}\label{very ample}
+Let $\cL$ be a line bundle on $C$. The complete linear system $|\cL|$ is base-point-free iff
+$$
+h^0(\cL(-p)) = h^0(\cL) - 1 \quad \forall p \in C;
+$$
+and in this case the associated map $\phi_\cL$ is an embedding iff
+$$
+h^0(\cL(-p-q)) = h^0(\cL) - 2 \quad \forall p, q \in C.
+$$
+\end{proposition} 
+
+\begin{proof}[``Proof"]
+The statement $h^0(\cL(-p-q)) = h^0(\cL) - 2$ for $p \neq q$ implies that $\phi_\cL(p) \neq \phi_\cL(q)$; in case $p=q$ it implies that the differential $d\phi_\cL$ is injective at $p$.
+\end{proof}
+
+We can also relate the geometry of the map associated to a incomplete linear system $V \subset H^0(\cL)$ to the geometry of the map associated to the complete linear system $|\cL|$. In general, if $V \subset W \subset H^0(\cL)$ are a pair of nested linear systems, we have a linear map $W^* \to V^*$ dual to the inclusion $V \hookrightarrow W$, and a corresponding linear projection $\pi : \PP W^* \dashrightarrow \PP V^*$, with indeterminacy locus the subspace $\PP(Ann(V)) \subset \PP W^*$. In this case, we have 
+$$
+\phi_V = \pi \circ \phi_W;
+$$
+that is, we have the diagram 
+
+\begin{diagram}
+& & \PP W^* \\
+& \ruTo^{\phi_W} & \dDashto_\pi \\
+C & \rTo^{\phi_V} & \PP V^*.
+\end{diagram}
+
+Note that in this case, given that $W$ is base-point-free, the condition that $V$ be base-point-free is equivalent to saying that the center $\PP(Ann(V))$ of the projection map $\pi$ is disjoint from $\phi_W(C)$.
+
+\begin{exercise}
+Extend the statement of Proposition~\ref{very ample} to incomplete linear systems; that is, prove that the map associated to a linear system $(\cL, V)$ is an embedding iff
+$$
+\dim\big( V \cap H^0(\cL(-p-q))\big) = \dim V - 2 \quad \forall p, q \in C.
+$$
+\end{exercise}
+
+\subsection{The canonical divisor class/line bundle}
+
+There is one divisor class/line bundle on an arbitrary curve $C$ that plays a particularly important role in the geometry of $C$: the \emph{canonical} divisor class $K_C$. This is the class of the divisor $(\eta)$ of any rational 1-form $\eta$ on $C$; that is,
+$$
+(\eta) = \sum_{p \in C} \ord_p(\eta)\cdot p.
+$$
+Since the ratio of any two (nonzero) 1-forms is a rational function on $C$, this is a well-defined divisor class. Alternatively, in the world of line bundles, the canonical divisor class corresponds simply to the cotangent bundle of $C$, which is also called the \emph{canonical line bundle} and denoted $\omega = \omega_C$.
+
+\subsubsection{A plea for forbearance} 
+
+The introduction of the language and notation of line bundles into the classical theory of divisors and linear systems greatly clarifies many constructions and theorems. It also creates a notational nightmare: in the world of divisors, the group law is given by taking the sum of divisors, suggesting that we denote this operation by $+$; in the world of line bundles, the corresponding operation is tensor product, which seems like it should be denoted $\times$ or $\otimes$.
+
+On top of that, we very often want to consider sections of a given line bundle $\cL$ with bounded singularities: if $D = \sum m_ip_i$ is a divisor, we define the line bundle $\cL(D)$ to be the sheaf of rational sections $\sigma$ of $\cL$ satisfying $\ord_{p_i}(\sigma) \geq -m_i$ for all $i$; as a line bundle, this is the same as $\cL \otimes \cO_C(D)$.
+
+All of this means, unfortunately, that it's extremely difficult to be completely consistent with the notation for divisors and line bundles on a curve, and we ask the reader's forbearance if at times we mix up our conventions.
+
+
+
+
+\section{Genus, Riemann-Roch and Kodaira-Serre}
+
+\subsection{The genus of a curve}
+
+Any discussion of smooth projective curves pretty much has to start with the notion of the \emph{genus} of a curve, the sole discrete continuous invariant of curves. There are many equivalent ways of characterizing the genus of a curve $C$; we'll adopt as our definition the
+
+\begin{definition}\label{genus definition}
+Let $C$ be a smooth, projective curve. We define the \emph{genus} $g$ of $C$ by the relation $\deg(K_C) = 2g-2$; that is,
+$$
+g = \frac{\deg(K_C)}{2} + 1.
+$$
+\end{definition}
+
+Here are some other ways of characterizing the genus:
+
+\begin{enumerate}
+
+\item If we are working over the complex numbers $K = \CC$, we can give $C$ the topology induced from the usual topology on $\PP^n_\CC$ (called the \emph{classical}, or \emph{analytic} topology. With this topology, the points of $C$ form a compact, oriented 2-manifold, and we define the genus of $C$ to be the genus of this surface; in other words,
+$$
+g(C) = 1 - \frac{\chi_{top}(C)}{2}.
+$$
+It follows from the Hopf index theorem that this agrees with Definition~\ref{genus definition}.
+
+\item\label{genus 1forms} Another characterization of the genus of $C$ is simple to state, though the proof that it's equivalent to the preceding ones is non-trivial (it will be a special case of the \emph{Riemann-Roch formula}, described in the following section): the genus of a curve $C$ is simply the dimension of the vector space of regular 1-forms on $C$.
+
+\item The genus of a curve $C$ may also be characterized in terms of the Euler characteristic $\chi(\cO_C) = h^0(\cO_C) - h^1(\cO_C)$ of the structure sheaf $\cO_C$: since $h^0(\cO_C) = 1$, we have
+$$
+g = 1 - \chi(\cO_C).
+$$
+
+\item\label{genus Hilbert} Finally, if $C \subset \PP^r$ is embedded in projective space as a curve of degree $d$, its Hilbert polynomial will be
+$$
+p_C(m) = dm - g + 1,
+$$
+which can also be used as a characterization of the genus: $g = 1 - p_C(0)$.
+
+\end{enumerate}
+
+There are two basic facts from which the equivalence of these various characterizations of the genus follow: the \emph{Riemann-Roch formula}, and \emph{Kodaira-Serre duality}; we'll discuss these now.
+
+\subsection{The Riemann-Roch formula}
+
+The classical Riemann-Roch formula is simple to state: if $C$ is a smooth, connected projective curve of genus $g$, and $D$ a divisor of degree $d$ on $C$, it says that
+$$
+h^0(D) = d - g + 1 + h^0(K_C - D).
+$$
+
+There are a number of general consequences. To start with, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Another example: since $h^0(D) = 0$ for any divisor $D$ of negative degree, we have the
+
+\begin{corollary}\label{nonspecial RR}
+For any divisor of degree $d \geq 2g-1$, we have
+$$
+h^0(D) = d - g + 1.
+$$
+\end{corollary}
+
+As a consequence of this, we can apply Proposition~\ref{very ample} to conclude the
+
+\begin{corollary}
+Let $D$ be a divisor of degree $d$ on a smooth, connected projective curve of genus $g$. If $d \geq 2g$, the complete linear series $|D|$ is base point free; and if $d \geq 2g+1$ the associated map $\phi_D : C \to \PP^{d-g}$ is an embedding.
+\end{corollary}
+
+We also use Riemann-Roch in the simple case of Corollary~\ref{nonspecial RR} to determine the Hilbert polynomial of a projective curve. To do this, let $C \subset \PP^r$ be a smooth curve of degree $d$ and genus $g$, and consider the exact sequence of sheaves
+$$
+0 \rTo \cI_{C/\PP^r}(m) \rTo \cO_{\PP^r}(m) \rTo \cO_C(m) \rTo 0
+$$
+and the corresponding exact sequence
+$$
+ H^0(\cO_{\PP^r}(m)) \rTo^{\rho_m} H^0(\cO_C(m)) \rTo H^1(\cI_{C/\PP^r}(m)) \rTo 0.
+$$
+The \emph{Hilbert function} $h_C$ of $C$  is defined by
+$$
+h_C(m) = \rank(\rho_m);
+$$
+ since $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, this is equal to $h^0(\cO_C(m))$, which by Riemann Roch equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}) above.
+
+\subsection{Kodaira-Serre duality}
+
+In general, if $\cF$ and $\cG$ are coherent sheaves on a scheme $X$, we have for every $i$ and $j$ a cup product map
+$$
+H^i(\cF) \otimes H^j(\cG) \to H^{i+j}(\cF \otimes \cG).
+$$
+
+Suppose now that $C$ is a smooth, projective curve, and that $D$ is any divisor on $C$. Kodaira-Serre duality says first of all that
+$$
+h^1(K) = 1
+$$
+and then that the cup product map
+$$
+H^1(D) \otimes H^0(K-D) \to H^1(K)
+$$
+is a perfect pairing; that is, we have a natural isomorphism
+$$
+H^1(D) = H^0(K-D)^*.
+$$
+
+\subsection{A partial proof}
+
+Proving either the Riemann-Roch formula, in the form given above, or Kodaira-Serre duality, requires a fair amount of work. As it happens, though, if we combine them we arrive at the statement
+$$
+h^0(D) - h^1(D) = d-g+1
+$$
+or in other words, for any line bundle $\cL$ of degree $d$ on $C$,
+$$
+\chi(\cL) = d-g+1
+$$
+which is pretty easy to prove. To see this, observe that for any line bundle $\cL$ on $C$ and any point $p \in C$ we have an exact sequence of sheaves
+$$
+0 \to \cL(-p) \to \cL \to \cL_p \to 0.
+$$
+It follows that $\chi(\cL(-p)) = \chi(\cL) - 1$, so that Riemann-Roch for $\cL$ is equivalent to Riemann-Roch for $\cL(-p)$. Since any divisor can be obtained from 0 by adding and subtracting points, the Riemann-Roch formula for an arbitrary $\cL$ follows from the special case $\cL = \cO_C$.
+
+\section{The canonical map}
+
+Given the central role played by the canonical divisor class, it is natural to look at the geometry of the map $\phi_K : C \to \PP^{g-1}$ associated to the complete canonical series $|K|$. To do this, we first have to single out a special class of curves:
+
+\begin{definition}
+A curve $C$ of genus $g \geq 2$ is said to be \emph{hyperelliptic} if there exists a map $f : C \to \PP^1$ of degree 2; equivalently, if there exists a line bundle $\cL$ on $C$ of degree 2 with $h^0(\cL) = 2$.
+\end{definition}
+
+The basic theorem about the canonical map is then
+
+\begin{proposition}
+Let $C$ be a smooth, projective curve of genus $g\geq 2$. The canonical map $\phi_K : C \to \PP^{g-1}$ is an embedding if and only if $C$ is not hyperelliptic.
+\end{proposition}
+
+\begin{proof}
+This is just a direct application of Proposition~\ref{very ample} to the Riemann-Roch formula. To see that $\phi_K$ is an embedding, we have to show that for any pair of points $p, q \in C$ we have
+$$
+h^0(K_C(-p-q)) = h^0(K_C)-2 = g-2.
+$$
+Applying Riemann-Roch, we see that this is the case if and only if $h^0(\cO_C(p+q)) = 1$ for any $p,q \in C$, which is the case if and only if $C$ is not hyperelliptic.
+\end{proof}
+
+Note that if $C$ is hyperelliptic, the map $\phi_K$ factors through the degree 2 map $\pi : C \to \PP^1$: if $\{p,q\} \subset C$ is a fiber of this map, we have $h^0(\cO_C(p+q)) = 2$ and hence $\phi_K(p) = \phi_K(q)$. The image of the map $\phi_K$ is a nondegenerate curve of degree $g-1$ in $\PP^{g-1}$, which we will see is a \emph{rational normal curve}. This observation implies in particular that if $C$ is hyperelliptic of genus $g \geq 2$, then the line bundle $\cL$ of degree 2 with $h^0(\cL) = 2$ is in fact unique.
+
+Hyperelliptic curves are very special, at least when $g \geq 3$ (in case $g=2$ the canonical map itself is a degree 2 map $C \to \PP^1$; all curves of genus 2 are hyperelliptic): in the family of all curves, as we'll see, they comprise a closed subvariety. In particular, the behavior of linear series and maps on a hyperelliptic curve is very different from that of series on a general curve; when we discuss the geometry of curves of low genus in the following chapter, we will exclude  the hyperelliptic case, and deal with this case in a separate chapter.
+
+For non-hyperelliptic curves, however, the geometry of the canonical map, and its image, the canonical curve, are the keys to understanding the curve. We'll see this in detail in many cases in the following chapter; for now, we mention one highly useful result along these lines.
+
+\subsection{The geometric Riemann-Roch theorem}
+
+Let's state this first in a relatively simple case: let $C$ be a nonhyperelliptic curve, embedded in $\PP^{g-1}$ by its canonical series and let $D = p_1+\dots + p_d$ be a divisor consisting of $d$ distinct points; let $\overline D$ be the span of the points $p_i \in C \subset \PP^{g-1}$. Since the hyperplanes in $\PP^{g-1}$ containing $\{p_1,\dots,p_d\}$ correspond (up to scalars) to sections of $K_C$ vanishing at the points $p_1$, we see that
+$$
+h^0(K_C-D) = g - 1 - \dim \overline D.
+$$
+Plugging this into the Riemann-Roch formula, we arrive at the statement
+$$
+r(D) = d - 1 - \dim \overline D;
+$$
+or in other words, \emph{the dimension of the linear series $|D|$ in which the divisor $D$ moves is equal to the number of linear relations on the points $p_i$ on the canonical curve}. Thus, for example, if $D = p_1+p_2+p_3$, we see that $D$ moves in a pencil if and only if the points $p_i$ are collinear.
+
+We can extend this statement to the case of arbitrary divisors $D$ (and even hyperelliptic curves) if we define our terms correctly. To do this, suppose $f : C \to \PP^d$ is any map, and $D \subset C$ any divisor. We define the \emph{span} of the divisor $D$ under the map $f$ to be the intersection
+$$
+\overline{f(D)} = \bigcap_{H \mid f^{-1}(H)\supset D} H 
+$$
+of all hyperplanes in $\PP^d$ whose inverse image in $C$ contains $D$. In these terms, we can state the \emph{geometric Riemann-Roch} as
+
+\begin{theorem}
+If $C$ is any curve of genus $g \geq 2$,  $\phi : C \to \PP^{g-1}$ its canonical map and $D \subset C$ any effective divisor of degree $d$, then
+$$
+r(D) = d - 1 - \dim \overline{\phi(D)}.
+$$
+\end{theorem}
+
+ \section{The Riemann-Hurwitz formula}
+ 
+ The Riemann-Hurwitz formula does a simple thing: given a (nonconstant) map $f : C \to B$ of smooth projective curves, it relates the genera of $C$ and $B$ via the geometry of the map; the proof is likewise simple.
+ 
+ To set it up, we first introduce the notion of \emph{ramification} of such a map. Suppose $p \in C$ is any point, with $q = f(p) \in B$ its image in $B$. In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $B$ around $q$, we can write the map simply as $z \mapsto w = z^m$ for some integer $m > 0$; the integer $m-1$ is then called the \emph{ramification index} of $f$ at $p$, and denoted $\ram(f,p)$. To characterize this without invoking local coordinates, we can say that for any point $q \in B$ we have
+ $$
+ f^{-1}(q) = \sum_{p\in C \mid f(p)=q} (\ram(f,p)+1)\cdot p
+ $$
+ as subschemes (or, equivalently, divisors) on $C$. The \emph{ramification divisor} of $f$ is defined to be the divisor
+ $$
+ R = \sum_{p \in C} \ram(f,p)\cdot p \; \in \;  \Div(C);
+ $$
+ the \emph{branch divisor} is the corresponding divisor
+ $$
+ B = \sum_{q \in B} \Big(\sum_{p \in f^{-1}(q)} \ram(f,p) \Big)\cdot q \; \in \; \Div(B).
+ $$
+ Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$.
+ 
+ To relate the genera of $B$ and $C$ in this situation, start by choosing any rational 1-form $\omega$ on $B$; let $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (We can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) We know that $\deg(\omega) = 2g(B) - 2$ and $\deg(\eta) = 2g(C) - 2$; we will relate these two by describing the zeroes and poles of $\eta$ in terms of those of $\omega$.
+ 
+ First of all, since the zeroes of $\omega$ lie outside the branch divisor $B$, for every zero of $\omega$ of multiplicity $m$ we have exactly $d$ zeroes of $\eta$, each with multiplicity $m$; and likewise for the poles of $\omega$. Meanwhile, at every point of $B$ the form $\omega$ is regular and nonzero; and by the description of the map $f$ in terms of local coordinates we see that $\eta$ will have a zero of multiplicity $\ram(f,p)$ at every point $p \in R$. In sum, then, we have
+ $$
+ \deg((\eta)) = d\cdot \deg((\omega)) + \sum_{p \in C} \ram(f,p) \cdot p,
+ $$
+ or in other words,
+ $$
+ 2g(C) - 2 = d(2g(B)-2) + \deg R;
+  $$
+  this is the Riemann-Hurwitz formula. Note that if the target curve $B \cong \PP^1$ has genus 0, the formula reads
+  $$
+  g(C) = -d  + 1+ \frac{\deg R}{2}
+  $$
+ or equivalently
+ $$
+ \deg R = \deg B  = 2d + 2g(C) - 2.
+ $$
+ 
+ \section{An application}
+ 
+ Let $V$ be the vector space of homogeneous polynomials of degree $d$ in two variables; that is, $V = H^0(\cO_{\PP^1}(d))$. In the projectivization $\PP V \cong \PP^d$, let $\Delta$ be the locus of polynomials with a repeated factor. It's not hard to see that $\Delta$ in a hypersurface; we ask, what is its degree?
+ 
+ To answer this, let $L \subset \PP V$ be a general line---that is, a general pencil of divisors of degree $d$ on $\PP^1$. The linear system $L$ defines a map $\phi_L : \PP^1 \to \PP^1$ of degree $d$, and the locus $L \cap \Delta$ is exactly the branch divisor $B$.
+ It follows then that
+ $$
+ \deg(\Delta) = \deg(L \cap \Delta) = \deg B = 2d-2,
+ $$
+ answering our question. Note that since $L$ is general, both $L\cap \Delta$ and $B$ are reduced divisors, so we can interpret the above simply as an equality of cardinality of sets; but if we keep track of multiplicities the argument goes through for an arbitrary $L \not\subset \Delta \subset \PP^d$.
+
+\input footer.tex

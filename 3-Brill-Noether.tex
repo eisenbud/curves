@@ -1,0 +1,147 @@
+\input{header.tex}
+%\documentclass[12pt, leqno]{book}
+%\usepackage{amsmath,amscd,amsthm,amssymb,amsxtra,latexsym,epsfig,epic,graphics}
+%\usepackage[matrix,arrow,curve]{xy}
+%\usepackage{graphicx}
+%\usepackage{diagrams}
+%%\usepackage{amsrefs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\textwidth16cm
+%%\textheight20cm
+%%\topmargin-2cm
+%\oddsidemargin.8cm
+%\evensidemargin1cm
+%
+%%%%%%Definitions
+%\input preamble.tex
+%\def\TU{{\bf U}}
+%\def\AA{{\mathbb A}}
+%\def\BB{{\mathbb B}}
+%\def\CC{{\mathbb C}}
+%\def\QQ{{\mathbb Q}}
+%\def\RR{{\mathbb R}}
+%\def\facet{{\bf facet}}
+%\def\image{{\rm image}}
+%\def\cE{{\cal E}}
+%\def\cF{{\cal F}}
+%\def\cG{{\cal G}}
+%\def\cH{{\cal H}}
+%\def\cHom{{{\cal H}om}}
+%\def\h{{\rm h}}
+% \def\bs{{Boij-S\"oderberg{} }}
+%
+%\makeatletter
+%\def\Ddots{\mathinner{\mkern1mu\raise\p@
+%\vbox{\kern7\p@\hbox{.}}\mkern2mu
+%\raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
+%\makeatother
+%
+%%%
+%%\pagestyle{myheadings}
+%\date{April 30, 2018}
+%%\date{}
+%\title{Curves}
+%%{\normalsize ***Preliminary Version***}} 
+%\author{David Eisenbud and Joe Harris }
+%
+%\begin{document}
+
+\chapter{Brill-Noether Theory}
+\section{What is a family of varieties}
+
+\section{Discussion of $M_g$: dimension $3g-3$, irreducible}
+
+\section{What linear series exist?}
+
+In the last chapter, we established a basic correspondence between maps of curves to projective space and linear systems. The next question to ask, naturally, is ``What linear systems exist?"
+
+There are various ways to interpret this question. Let's start by taking the question in its plain, unvarnished form---for which $g, r$ and $d$ does there exist a curve $C$ of genus $g$ and a linear system $(\cL,V)$ on $C$ of degree $d$ and dimension $r$? In this form, the answer is given for line bundles of large degree $d \geq 2g-1$ by the Riemann-Roch theorem: on any curve, there exists a linear series of degree $d \geq 2g-1$ and dimension $r$ iff $r \leq d-g$. 
+
+\subsection{Clifford's theorem} 
+
+Riemann-Roch still leaves open the question of what linear systems of degree $d \leq 2g-2$ may exist on a curve of genus $g$. The answer is given by the classical theorem of Clifford:
+
+\begin{theorem}\label{Clifford}
+Let $C$ be a curve of genus $g$ and $\cL$ a line bundle of degree $d \leq 2g-2$. Then
+$$
+r(\cL) \leq \frac{d}{2}.
+$$
+Moreover, if  equality holds then we must have either
+\begin{enumerate}
+\item $d=0$ and $\cL = \cO_C$;
+\item $d = 2g-2$ and $\cL = K_C$; or
+\item $C$ is hyperelliptic, and $|\cL|$ is a multiple of the $g^1_2$ on $C$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+Combining this with Riemann-Roch, we arrive at the
+
+\begin{theorem}\label{arbitrary linear series}
+There exists a curve $C$ of genus $g$ and line bundle $\cL$ of degree $d$ on $C$ with $h^0(\cL) \geq r+1$ if and only if
+$$
+r \leq
+\begin{cases}
+d-g, \quad \text{if } d \geq 2g-1; \text{ and} \\
+d/2,  \quad \text{if } 0 \leq d \leq 2g-2.
+\end{cases}
+$$
+\end{theorem}
+
+\subsection{Castelnuovo's theorem}
+
+Theorem~\ref{arbitrary linear series} gives a complete and sharp answer to the question originally posed: for which $d,r$ and $g$ does there exists a triple $(C,\cL,V)$ with $C$ a curve of genus $g$, $\cL$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ of dimension $r+1$. 
+
+But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least a birational embedding.  With this restriction, the question is tantamount to the
+
+\begin{question}
+What is the largest possible genus of an irreducible, nondegenerate curve $C \subset \PP^r$ of degree $d$?
+\end{question}
+
+The answer to this question is indeed quite different from the inequality provided by Theorem~\ref{arbitrary linear series}. It is the content of \emph{Castelnuovo's theorem}, which gives a sharp answer to this question, and which we'll describe in detail in Chapter~\ref{}.
+
+\section{Brill-Noether theory}
+
+\subsection{Basic questions addressed by Brill-Noether theory}
+
+\subsection{Heuristic argument leading to the statement of BN}
+
+The Brill-Noether theorem, as we'll see, is a far-reaching description of the linear series to be found on a general curve. It starts, though, with a relatively simple dimension count---one that was first carried out almost a century and a half ago.
+
+To set this up, let $C$ be a smooth projective curve of genus $g$, and $D = p_1 + \dots + p_d$ a divisor on $C$. We'll assume here the points $p_i$ are distinct; the same argument (albeit with much more complicated notation) can be carried out in general.
+
+When does the divisor $D$ move in an $r$-dimensional linear series? Riemann-Roch gives an answer: it says that $h^0(D) \geq r+1$ if and only if the vector space $H^0(K-D)$ of 1-forms vanishing on $D$ has dimension at least $g-d+r$---that is, if and only if the rank of the evaluation map
+$$
+H^0(K) \to H^0(K|_D) = \oplus K_{p_i}
+$$
+has rank at most $d-r$. 
+
+We can represent this map by a $g \times d$ matrix. Choose a basis $\omega_1,\dots,\omega_g$ for the space $H^0(K)$ of 1-forms on $C$; choose an analytic open neighborhood $U_j$ of each point $p_j \in D$ and choose a local coordinate $z_j$ in $U_j$ around each point $p_j$, and write
+$$
+\omega_i = f_{i,j}(z_j)dz_j
+$$
+in $U_j$. We will have $r(D) \geq r$ if and only if the  matrix-valued function
+$$
+A(z_1,\dots,z_d) = 
+\begin{pmatrix}
+f_{1,1}(z_1) & f_{2,1}(z_1) & \dots & f_{g,1}(z_1) \\
+f_{1,2}(z_2) & f_{2,2}(z_2) & \dots & f_{g,2}(z_2) \\
+\vdots & \vdots &  & \vdots \\
+f_{1,d}(z_d) & f_{2,d}(z_d) & \dots & f_{g,d} (z_d)
+\end{pmatrix}
+$$
+has rank $d-r$ or less at $(z_1,\dots,z_d) = (0,\dots,0)$.
+
+The point is, we can think of $A$ as a matrix valued function in the open set $U = U_1 \times U_2 \times \dots \times U_d \subset C_d$; and for divisors $D \in U$, we have $r(D) \geq r$ if and only if $\rank(A(D)) \leq d-r$. Now, in the space $M_d,g$ of $d \times g$ matrices, the subset of matrices of rank $d-r$ or less has codimension $r(g-d+r)$, and so we might naively expect that the locus of divisors with $r(D) \geq r$ would have dimension $d - r(g-d+r)$
+
+\section{Statement of BN and add-ons}
+
+ (very ampleness if $r \geq 3$, irreducibility of $W^r_d$ when $\rho > 0$, etc.)
+
+\section{Special cases and consequences}
+
+
+\input footer.tex
