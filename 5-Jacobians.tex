@@ -3,10 +3,10 @@
 \chapter{Jacobians}
 
 
-Up to now, we have been treating line bundles on a curve $C$ individually. It is a fundamental fact, however, that the set of line bundles/linear equivalence classes of divisors of a given degree $d$ is naturally parametrized by the points of a variety, called the \emph{Picard variety} ${\rm Pic}^d(C)$. Many of the deeper results about linear systems on $C$ are expressed in terms of the geometry of this variety, and indeed the simple fact of its existence is the key to proving many theorems about linear systems on curves (see for example Theorem~\ref{g+3 theorem}
+Up to now, we have been treating line bundles on a curve $C$ individually. It is a fundamental fact, however, that the set of line bundles/linear equivalence classes of divisors of a given degree $d$ on $C$ is naturally parametrized by the points of a variety, called the \emph{Picard variety} and denoted ${\rm Pic}^d(C)$. Many of the deeper results about linear systems on $C$ are expressed in terms of the geometry of this variety, and indeed the simple fact of its existence is the key to proving many theorems about linear systems on curves (see for example Theorem~\ref{g+3 theorem}
 below).
 
-In this chapter, we will describe the construction of these varieties, and describe their relationship with the spaces parametrizing effective divisors of a given degree $d$ on $C$. We then exhibit some of the consequences of these constructions.
+In this chapter, we will describe the construction of these varieties, and their relationship with the spaces parametrizing effective divisors of a given degree $d$ on $C$. We then exhibit some of the consequences of these constructions.
 
 \section{Jacobians}
 
@@ -50,11 +50,11 @@ $$
 $$
 defined by
 $$
-\mu_d(p_1 + \dots + p_d) \; = \; \sum \int_q^{p_i};
+\mu_d(p_1 + \dots + p_d) \; = \; \sum \int_q^{p_i}.
 $$
-these are similarly called  Abel-Jacobi maps; when there is no ambiguity about $d$, we will denote them simply by $\mu$.
+These are similarly called  Abel-Jacobi maps; when there is no ambiguity about $d$, we will denote them simply by $\mu$.
 
-There is a lot to say about these maps; in the following sections, we'll see a description of their differentials, and show that they are birational onto their images for $d \leq g$ and surjective for $d \geq g$. (The last statement in case $d=g$ is the celebrated \emph{Jacobi inversion theorem}.) But before we get into these, we should say what all this has to do with our main concern, the geometry of linear series on curves.
+There is a lot to say about these maps; in the following sections, we'll see a description of their differentials, and show that they are birational onto their images for $d \leq g$ and surjective for $d \geq g$. (These statement in case $d=g$ form the celebrated \emph{Jacobi inversion theorem}.) But before we get into these, we should say what all this has to do with our main concern, the geometry of linear series on curves.
 
 To this point, the discussion in this chapter might seem more at home in an advanced calculus text than in an algebraic geometry book. The connection is made by \emph{Abel's theorem}:
 
@@ -125,7 +125,58 @@ trivial change to Jacobians
 
 \section{Differential of the Abel-Jacobi map}
 
+In this section we will describe the differential $d\mu$ of the Abel-Jacobi map $\mu : C_d \to J(C)$; this turns out to be pretty straightforward, but yields among other things a sharper form of Abel's theorem.
+
+To start, suppose $D = p_1 + \dots + p_d$ is a divisor consisting of $d$ distinct points on our curve $C$. Since the quotient map $C^d \to C_d$ is unramified at $D$, the tangent space to $C_d$ at the point $D$ is naturally identified with the tangent space to $C^d$ at $(p_1,\dots,p_d)$; that is, the direct sum of the tangent spaces to $C$ at the points $p_i$:
+$$
+T_D(C_d) = \bigoplus T_{p_i}(C).
+$$
+On the other hand, the tangent space to $J(C)$ at the image point $\mu(D)$ is simply the vector space $H^0(K_C)^*$ of which $J(C)$ is a quotient (as it is at every point!). The differential $d\mu_D$ is thus a linear map
+$$
+\bigoplus T_{p_i}(C) \rTo H^0(K_C)^*,
+$$
+and the transpose of this a linear map
+$$
+H^0(K_C) \rTo \bigoplus T^*_{p_i}(C).
+$$
+This last map is easy to describe: since the map $\mu$ is given by 
+$$
+\mu_d(p_1 + \dots + p_d) \; = \; \sum \int_q^{p_i},
+$$
+we can simply differentiate under the integral sign to conclude that \emph{the codifferential $d_\mu^*$ is the map}
+\begin{align*}
+H^0(K_C) &\to \bigoplus T^*_{p_i}(C) \\
+\omega &\mapsto (\omega(p_1), \dots, \omega(p_d).
+\end{align*}
+
+There is a natural extension of this to the case of non-reduced divisors $D$, that is, divisors with repeated points. We need here a description of the tangent space to $C_d$ at the point $D$, and to this end we have the
+
+\begin{proposition}\label{symmetric product tangent space}
+The tangent and cotangent spaces to $C_d$ at the point corresponding to an arbitrary divisor $D = \sum a_ip_i$ are naturally identified with $H^0(\cO_C(D)/\cO_C)$ and $H^0(K_C/K_C(-D))$ respectively.
+\end{proposition}
+
+Note that we have a natural pairing between the spaces $H^0(\cO_C(D)/\cO_C)$ and $H^0(K_C/K_C(-D))$, given by sending $(f, \omega)$ to $\sum_i Res_{p_i}(f\omega)$. Note also that the term ``natural" has a precise meaning here: if we let 
+$$
+\cD = \{ (D, p) \in C_d \times C \; \mid \; p \in D \}
+$$
+be the universal effective divisor of degree $d$ on $C$, the proposition says that the cotangent sheaf $T^*_{C_d}$ is the direct image $\alpha_*(\beta^*K_C/\beta^*K_C(-\cD))$, where $\alpha$ and $\beta$ are the projections of $C_d \times C$ onto the two factors.
+
+If you wanted to see an argument for Proposition~\ref{symmetric product tangent space} done out in coordinates (you really don't, but if you did) you could find it in [ACGH].
+
+In any event, given Proposition~\ref{symmetric product tangent space}, we can extend our earlier statement to the
+
+\begin{proposition}\label{differential of Abel-Jacobi}
+The codifferential $d\mu^*$ of the Abel-Jacobi map is simply the natural restriction map
+$$
+H^0(K_C) \rTo H^0(K_C/K_C(-D)).
+$$
+\end{proposition}
+
+Now, note that the codimension of the image of $d\mu^*$---equivalently, the dimension of the kernel of the differential $d\mu$---is by the geometric Riemann-Roch theorem exactly the dimension of the fiber of $C_d$ over the point $\mu(D) \in J(C)$. In other words, the fibers of $\mu$ are smooth, and in particular reduced. Thus we can think of Proposition~\ref{differential of Abel-Jacobi} as a strengthening of the Abel-Clebsch theorem: while Abel and Clebsch show that the fibers of $\mu$ are complete linear series set-theoretically, we see from the above that it is in fact true scheme-theoretically.
+
 \section{Further consequences}
+
+xxx
 
 \input footer.tex
 
