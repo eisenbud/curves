@@ -13,8 +13,102 @@ Hilbert scheme of curves in $\PP^{3}$.}
  When I tell you each cat must have three different 	names.
  --T.S.Eliot, Practical Cats
 \end{verbatim}
+
+Some of the simplest subvarieties in projective space are the \emph{rational normal scrolls}. They appear in many contexts in algebraic geometry, and are useful, in particular, for describing the embeddings of curves of low degree and genus. 
+
+We begin in this chapter by giving three different characterizations of these varieties, each useful in a different context: First a classical geometric construction that gives a good picture, then an algebraic description that allows one to ``find" the scrolls containing a given variety, and then a more modern geometric definition that makes it easy to understand the divisors on a scroll. Finally, we turn to some of the applications to the embeddings of curves.
+
+In each section we will focus on the 2-dimensional case, both because this is the case that occurs in our applications, and to simplify the discussion. We will also indicate the surprisingly simple extensions to higher dimensions.
+
+In this chapter we will refer to rational normal scrolls simply as scrolls. The third characterization we will give lends itself to a natural generalization to families of irrational ruled varieties, which we'll briefly mention, and the reader should be aware that in the literature the word ``scroll'' is used for this wider class.
+
+\section{Some classical geometry}
+
+Recall that the image of the map 
+$$
+\PP^1\to\PP^a: (s,t) \mapsto (s^a, s^{a-1}t, \dots, t^a),
+$$
+corresponding to the complete linear series
+$|\cO_{\PP^1}(a)|$, is called a \emph{rational normal curve}; it is, up to linear transformations, the unique nondegenerate curve of degree $a$ in $\PP^a$.
+
+Scrolls are one answer to the question: ``What is the higher-dimensional analogue of rational normal curves?'' To construct a scroll of dimension 2, we choose integers $0<a_1, a_2$ and consider  a projective space 
+$$
+\PP^{a_1+a_2+1} = \PP(\CC^{a_1+1}\oplus \CC^{a_2+1})
+$$
+with its two subspaces $\PP^{a_i} = \PP(\CC^{a_i+1})$. We choose a rational normal curve $C_i\subset \PP^{a_i}$, and we choose an isomorphism $\phi: C_1\to C_2$. We define the scroll $S(a_1, a_2)$ to be the union of the lines
+$$
+S(a_1,a_2) := \bigcup_{p\in C_1} \overline{p, \phi(p)}.
+$$
+It is not hard to prove directly that this is an algebraic variety, but as we shall soon write down its defining equations we will not bother to do so. The main point to note is:
+
+\begin{proposition}\label{deg and codim}
+Let $S(a_1,a_2)\subset \PP^{a_1+a_2+1}$ be a scroll as defined above.
+\begin{enumerate}
+ \item The variety $S(a_1,a_2)$ is nondegenerate, and independent of the choices made in its
+ definition up to a linear automorphism of $\PP^{a_1+a_2+1}$. 
+ \item $S(a_1,a_2)$ has degree $a_1+a_2$, and codimension $a_1+a_2-1.$
+\end{enumerate}
+\end{proposition}
+\begin{proof} 
+To simplify the notation, set $S := S(a_{1}, a_{2})$ and $\PP := \PP^{a_1+a_2+1}$.
+
+\noindent{\bf 1)} The rational normal curves separately span the spaces $\PP^{a_i}$, so a hyperplane containing both of them would contain $\overline{\PP^{a_1}, \PP^{a_{2}+1}} = \PP$, proving nondegeneracy. 
+
+\noindent{\bf 2)}  To construct $S$ we chose 
+\begin{enumerate}
+ \item disjoint subspaces $\PP^{a_i}\subset \PP$;
+ \item a rational normal curve in each subspace; and
+ \item an isomorphism between these curves.
+\end{enumerate}
+Elementary linear algebra shows that there are automorphisms of $\PP$ carrying any choice of disjoint subspaces to any other choice. Further since the rational normal curve of degree $a$ is unique up to an automorphism of $\PP^{a}$ the choice in (2) can be undone by a linear automorphism. Finally, any automorphism of $C_{a_{2}}$ extends to an automorphism of $\PP^{a_{2}}$, and this extends to an automorphism of $\PP$ fixing $\PP^{a_{1}}$ pointwise,
+showing that $S(a_{1}, a_{2})$ is independent, up to an automorphism of the ambient space, of the choice in (3)  as well.
+
+\noindent{\bf 3)} It is clear from our description that $S$ is 2-dimensional, and thus of
+codimension $a_{1}+a_{2}+1 -2 = a_{1}+a_{2}-1$. To compute the degree, we choose a general hyperplane $H$ containing $\PP^{a_{1}}$. The intersection $H\cap C_{2}$ consists of $a_{2}$ distinct points. Thus the intersection $H\cap S$ consists of $C_{1}$ and the $a_{2}$ lines connecting 
+the points of $H\cap C_{2}$ with their corresponding points on $C_{1}$; this union obviously has degree $a_{1}+a_{2}$.
+\end{proof}
+
+A completely parallel construction creates rational normal scrolls of dimension $r$. Set $N = \sum_{i=1}^{r}(a_{i}+1)$, where each $a_{i}>0$ and
+decompose $\CC^{N}$ as
+$$
+\CC^{\sum_{i=1}^{r}(a_{i}+1)} = \oplus_{i=1}^{r}\CC^{a_{i}+1}.
+$$
+Let $\PP^{a_{i}}\subset \PP^{N}$ be the subspaces corresponding to the summands,  choose
+rational normal curves $C_{i}\subset \PP^{a_{i}}$ and choose isomorphisms $C_{1}\to C_{i}$. 
+Set
+$$
+S:=S(a_{1}, \dots, a_{r)} = \bigcup_{p\in C_{1}}\overline{p, \phi_{2}(p), \dots, \phi_{r}(p)}.
+$$
+The variety $S$ is nondegenerate of codimension $N-r$ and degree $\sum_{i}a_{i} = N-r+1$. The proof follows exactly the same line as the one we gave for $r=2$, but with more notation.
+
+To put this result in context, we recall an elementary fact of projective geometry:
+ 
+\begin{proposition}\label{minimal degree}
+ Any nondegenerate variety of codimension $c$ in $\PP^{N}$ has degree $\geq c +1$.
+\end{proposition}
+
+\begin{proof} We do induction on $c$, the case $c=0$ being trivial.
+ Otherwise, assume that $c\geq1$. A general plane $L\subset \PP^{N}$ meets $X$ in $\deg X$
+ distinct general points, which must be nonsingular points of $X$.
+ 
+Let $p\in L\cap X$ be a point. If every secant to $X$ through $p$ lies entirely in $X$, then $X$ is a cone over $p$; but since $p$ was a general point, this would imply that $X$ is a plane, contradicting non-degeneracy. 
+
+It follows that $\pi_{p}$ is a generically finite (rational) map from $X$ to $X' := \pi_{p}(X)$. The plane 
+$\pi_{p}(L)$ meets $X'$ in the images of the points of $L\cap X$ other than $p$, so
+$\deg X>\deg X'$. But 
+$\dim X' = \dim X$, so by induction, $\deg X' \geq \codim X'+1 = \codim X$. 
+\end{proof}
+
+Thus we see that scrolls are \emph{varieties of minimal degree}. A celebrated Theorem of Del Pezzo (for surfaces) and Bertini (in general) classifies such varieties:
+
+\begin{theorem}\label{classification of scrolls}
+ Any nondegenerate variety of minmal degree in $\PP_{k}^{N}$, for any algebraically closed field $k$, is either a scroll or the Veronese surface in $\PP^{5}$ or a cone over one of these.
+\end{theorem}
+
+A proof will be given in an appendix to this chapter.
+
 \section{1-generic matrices and scrolls}
-Some of the simplest subvarieties in projective space are the \emph{rational normal scrolls}. One way to define a rational normal scroll is to say that it is the variety cut out by the $2\times 2$ minors of a $2\times m$ matrix of linear forms satisfying the following non-degeneracy condition: 
+One way to define a rational normal scroll is to say that it is the variety cut out by the $2\times 2$ minors of a $2\times m$ matrix of linear forms satisfying the following non-degeneracy condition: 
 \begin{definition}
  A matrix of linear forms is said to be \emph{1-generic} if, even after arbitrary row and column transformations, it's entries are all non-zero. Note that if a $2\times n$ matrix
  $M$ of linear forms has rank 2 and is not 1-generic, then the ideal $I_2(M)$ generated by the $2\times 2$ minors of $M$ contains the product of 2 linear forms, and thus is not prime.
@@ -278,11 +372,11 @@ We start by establishing some basic facts about hyperelliptic curves. Many of th
 
 Suppose $C$ is a smooth, projective hyperelliptic curve of genus $g \geq 2$. By definition, $C$ admits a degree 2 map $\pi : C \to \PP^1$; and as we've observed (\ref{**}) this map is unique.
 
-By Riemann-Hurwitz, \fix{attibution?} the map $\pi : C \to \PP^1$ will have $2g+2$ distinct simple branch points, say $\lambda_1,\dots,\lambda_{2g-2} \in \PP^1$. An open subsect $C^\cird$ of $C$ can then be realized as the smooth projective completion of the affine curve given as
+By Riemann-Hurwitz, \fix{attibution?} the map $\pi : C \to \PP^1$ will have $2g+2$ distinct simple branch points, say $\lambda_1,\dots,\lambda_{2g-2} \in \PP^1$. An open subsect $C^\circ$ of $C$ can then be realized as the smooth projective completion of the affine curve given as
 $$
 C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambda_i) \big\}.
 $$ 
-\fix{if two of the $\lambda_i$ coinncide, then the curve develops a singular point. Much of what we will do carries over to the singular case.} \fix{say the smooth model has 2 points at $\inft$.} Note that if we simply take the closure of this locus in $\PP^2$, the resulting curve will be highly singular at the point $[1,0,0]$, as can be seen either  directly by making an appropriate change of variables, or by invoking the genus formula for plane curves: if the closure were smooth, it would have genus $\binom{2g+1}{2}$. We can, however, complete the curve simply in $\PP^1 \times \PP^1$, for example by setting \fix{this is a rabbit from a hat. Consider either saying that by the previous section, if there's an emb in P3 then its on P1 x P1 as a divisor of type
+\fix{if two of the $\lambda_i$ coinncide, then the curve develops a singular point. Much of what we will do carries over to the singular case.} \fix{say the smooth model has 2 points at $\infty$.} Note that if we simply take the closure of this locus in $\PP^2$, the resulting curve will be highly singular at the point $[1,0,0]$, as can be seen either  directly by making an appropriate change of variables, or by invoking the genus formula for plane curves: if the closure were smooth, it would have genus $\binom{2g+1}{2}$. We can, however, complete the curve simply in $\PP^1 \times \PP^1$, for example by setting \fix{this is a rabbit from a hat. Consider either saying that by the previous section, if there's an emb in P3 then its on P1 x P1 as a divisor of type
 2,g+1; and then "finding" this embedding as below; or moving this page to the early place where hyperelliptic curves are first mentioned.}
 $$
 y' = \frac{y}{\prod_{i=1}^{g+1} (x - \lambda_i)};
@@ -303,7 +397,7 @@ $$
 
 We'll denote the two points at infinity---that is, the two points of $C \setminus C^\circ$---as $p$ and $q$.
 
-To start, consider the simple differential $dx\in \Omeba_{C^\circ/k}$. This is clearly regular on $C^\circ$, with zeros at the ramification points $r_i = (\lambda_i, 0)$. But it does not extend to a regular differential on all of $C$: it will have double poles at $p$ and $q$, as can be seen either directly or by degree considerations: as we said, $dx$ has $2g+2$ zeros, while the degree of $K_C$ is $2g-2$, meaning that there must be poles at the points $p$ and $q$.
+To start, consider the simple differential $dx\in \Omega_{C^\circ/k}$. This is clearly regular on $C^\circ$, with zeros at the ramification points $r_i = (\lambda_i, 0)$. But it does not extend to a regular differential on all of $C$: it will have double poles at $p$ and $q$, as can be seen either directly or by degree considerations: as we said, $dx$ has $2g+2$ zeros, while the degree of $K_C$ is $2g-2$, meaning that there must be poles at the points $p$ and $q$.
 
 To kill these poles, we can of course divide by $x^2$ (or any quadratic polynomial in $x$). But that just introduces new poles in the finite part $C^\circ$ of $C$. Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $r_i$.  A natural choice is simply the reciprocal of the partial derivative $f_y = \partial f/ \partial y = 2y$, which vanishes exactly at the points $r_i$, and has correspondingly a pole of order $g+1$ at each of the points $p$ and $q$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$), and exchanges the points $p,q$. In other words, the differential
 $$
@@ -350,7 +444,7 @@ $$
 so that in particular $\deg(E) = n-1-k$. Since each of the lines $L_i$ of the ruling must meet $C$, we have that
 \begin{align*}
 n-1 &= \dim(\overline{S \cap H}) \\
-&\leq \dim(\overline E) + k\\
+&\leq \dim(\overline {E}) + k\\
 &\leq (n-1-k) + k \\
 &= n-1.
 \end{align*}
@@ -371,7 +465,7 @@ Now, the first hypothesis, that $r(D) \geq 1$, says that the points $p_1,\dots,p
 canonical image lies on a 2-dim scroll (non -subcanonical embedding only on 3-dim scrolls).  embedding of a trigonal curve lies on the same scroll.Stratification of trigonal curves by Maroni invariants. Dimensions via automorphism groups of scrolls.
 
 \section{Castelnuovo's Theorem}
-(Statement only) \fix{we'll need the existence of smooth curves in given classes --- base point freeness of certain divisor classes on the scroll. Theorem: bpf iff they meet both a,b rational normal curves positively. reference to Montreal? better to make a tex file of the essential bit and put it in, as appendix. or ACGH?
+(Statement only) \fix{we'll need the existence of smooth curves in given classes --- base point freeness of certain divisor classes on the scroll. Theorem: bpf iff they meet both a,b rational normal curves positively. reference to Montreal? better to make a tex file of the essential bit and put it in, as appendix. or ACGH?}
 
 \section{Appendix: Centennial Account}
 Our paper as appendix.
