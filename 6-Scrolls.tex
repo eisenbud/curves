@@ -570,7 +570,7 @@ isomorphisms, we see that each
 
 Putting this together we have outlined part of the proof of the following:
 
-\begin{fact}
+\begin{fact}\label{push-forward formula}
  If $X := S(a_{1}, a_{2})\subset \PP^{N}$ is a nonsingular rational normal scroll, then
  $X$ is isomorphic to a projective space bundle $\PP_{B}(\sE)$, where $B = \PP^{1}$, and the restriction of $\sO_{\PP^{N}}(1)$ to $X$
  is $\sO_{\PP_B(\sE)}(1)$. Further, writing $\pi: X\to \PP^{1}$ for the structure map, we have
@@ -629,47 +629,72 @@ Note that if $a_{1}<a_{2}$, then $C_{a_{1}}^{2} = a_{1}-a_{2}$ is negative. We s
 Our interest in scrolls in this book is primarily for the curves that lie on them. The following result tells us where to look:
 
 \begin{theorem}\label{where are the curves?}
- Let $X = S(a_{1}, a_{2})$ be a scroll of dimension 2 with $a_{1}\leq a_{2}$, and let $F,H$ denote the class of the ruling and the hyperplane section, respectively. There are smooth curves in the class $D = pH+qF$ if and only if one of the following holds:
+ Let $X = S(a_{1}, a_{2})$ be a scroll of dimension 2 with $a_{1}\leq a_{2}$, and let $F,H$ denote the class of the ruling and the hyperplane section, respectively. There are irreducible curves in the class $D = pH+qF$ if and only if one of the following holds:
 \begin{enumerate}
-\item $D~F$; that is, $p=0, q=1$; or
- \item $D~C_{a_{1}}$; that is, $p=1, q=-a_{2}$; or
- \item $p\geq 1$ and $D\cdot C_{a_{1}}\geq 0$ and $D\cdot C_{a_{2}}>0$; that is, $q\geq 1-pa_{2}.$
+\item $D\sim F$; that is, $p=0, q=1$; or
+ \item $D\sim C_{a_{1}}$; that is, $p=1, q=-a_{2}$; or
+ \item $p\geq 1$ and $D\cdot C_{a_{1}}\geq 0$; that is, $q \geq -pa_{1}.$
 \end{enumerate}
+In case (3) the linear series $|D|$ is basepoint free, and thus in each case the class contains smooth curves.
 \end{theorem}
 
-This result is based on the following computation of the global sections of line bundles:
+Note that in case (1) we have $D^{2} = 0$; in case (2) we have $D^{2}= a_{1}-a_{2}\leq 0$ and in case (3) we have $D^{2}>0$.
+This result follows by identifying the global sections of line bundle $\sO_{X}(D)$:
 
 \begin{theorem}\label{global sections}
-Suppose that $D$ is a divisor on the scroll $X = S(a_{1}, a_{2})$ with $a_{1}\leq a_{2}$. If $D \sim pH+qF$, then 
-$$
-H^{0}(\sO_{X}(D)) = 
-\sum_{0\leq i\leq p}H^{0}\bigl(\sO_{\PP^{1}}(q + (p-i)a_{1}+i a_{2})\bigr).
-$$
-Thus 
+Suppose that $D$ is a divisor on the scroll $X = S(a_{1}, a_{2})$ with $a_{1}\leq a_{2}$, and
+set $\sE = \sO_{\PP^{1}}(a_{1})\oplus \sO_{\PP^{1}}(a_{1})$.   If $D \sim pH+qF$, then 
+\begin{align*}
+ H^{0}(\sO_{X}(D)) &= H^{0}(\sO_{\PP^{1}}(q) \otimes \Sym^{p} \sE)\\
+ &= 
+\oplus_{0\leq i\leq p}H^{0}\bigl(\sO_{\PP^{1}}(q + (p-i)a_{1}+i a_{2})\bigr).
+\end{align*}
+and $|D|$ is basepoint free iff every summand is nonzero.
+Thus, numerically,
 $$
 h^{0}(\sO_{X}(D)) = 
 %\sum_{\{i\ \mid\ q+(p-i)a_{1}+i a_{2} \geq 0\}}H^{0}\bigl(\sO_{\PP^{1}}(q + (p-i)a_{1}+i a_{2})\bigr)
 %= 
-\sum_{\{i\ \mid\ q+(p-i)a_{1}+i a_{2} \geq 0\}}1+(q + (p-i)a_{1}+i a_{2}).
+\sum_{\{i\ \mid\ q+(p-i)a_{1}+i a_{2} \geq 0\}}1+(q + (p-i)a_{1}+i a_{2}),
 $$
-Moreover,
-$|D|$ is base point free iff $p\geq 0$ and $q\geq -pa_{2}$.
+and
+$|D|$ is base point free iff $p\geq 0$ and $q\geq -pa_{1}$.
 \end{theorem}
 
+\begin{proof} Let $\pi:X\to \PP^{1}$ be the structure map of the projective bundle $X = \PP_{\PP^{1}}(\sE)$.
+We have $H^{0}(\sO_{X}(pH+qF)) = H^{0}(\pi_{*}(\sO_{X}(pH+qF)))$. Also, 
+We may write $\sO_{X}(pH+qF)$ as $\sO_{X}(p) \otimes \pi^{*}\sO_{\PP^{1}}(q)$, so by the push-pull formula
+and Fact~\ref{push-forward formula},
+\begin{align*}
+\pi_{*}(\sO_{X}(pH+qF)) &= \pi_{*}(\sO_{X}(p) \otimes \pi^{*}\sO_{\PP^{1}}(q)) \\
+ &= \pi_{*}(\sO_{X}(p))\otimes \sO_{\PP^{1}}(q)\\
+&=  \Sym^{p}(\sE)\otimes \sO_{\PP^{1}}(q)\\
+&=  \bigl(\oplus_{0\leq i\leq p} \sO_{\PP^{1}}((p-i)a_{1}+i a_{2})\bigr) \otimes \sO_{\PP^{1}}(q),
+\end{align*}
+and the first formula follows, and we see that every term 
+$H^{0}(\bigl(\sO_{\PP^{1}}(q + (p-i)a_{1}+i a_{2})\bigr))$ is nonzero iff and only if 
+$H^{0}(\sO_{\PP^{1}}(q + pa_{1})$ is nonzero iff $q\geq -pa_{1}$.
 
- 
+To establish the condition for base-point freeness, note that if all the summands are nonzero then
+there are sections not vanishing on $C_{a_{1}}$ but not $C_{a_{2}}$, and vice versa, so the system is base point free. Conversely, if $q<-pa_{1}$, then 
+$$
+D\cdot C_{a_{1}} = (pH+qF) \cdot (H-a_{2}F) = p(a_{1}+a_{2}) -pa_{1}+q = pa_{1}+q < 0.
+$$
+so any effective divisor in the class of $D$ must have a component in common with $C_{a_{1}}$.
+\end{proof}
 
 
 \begin{exercise} \fix{keep this? sketch proof!}
  Minimal degree varieties; as the varieties of given degree lying on the maximal number of quadrics.
 \end{exercise}
  
-  
+We can easily compute the degrees and genera of curves that lie on scrolls:
+
+\begin{proposition}
+ With notation as in 
+\end{proposition}
   
 \section{Degrees and genera of curves on scrolls.} 
-
-Condition for the existence of integral curves in each class iff the int number with the directrix is >0 and the curve is not a multiple of the fiber. 
-
 
 \section{Hyperelliptic curves}
 \fix{maybe start a new Chapter?}
