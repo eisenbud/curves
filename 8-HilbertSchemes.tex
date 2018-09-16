@@ -23,7 +23,11 @@ We will proceed systematically, starting with curves of the lowest possible degr
 
 The smallest possible degree of an irreducible, nondegenerate curve $C \subset \PP^3$ is 3, so we'll start there. We also know that any irreducible, nondegenerate curve $C \subset \PP^3$ is a twisted cubic, so that in this case $\cH^\circ$ is simply the parameter space for twisted cubics.
 
-As such, we have several ways of answering our two basic questions in this case. To start with the simplest, let $C_0 \subset \PP^3$ be any given twisted cubic, and consider the family of translates of $C_0$ by automorphisms $A \in \PGL_4$ of $\PP^3$: that is, the family
+\begin{proposition}\label{hilb of twisted cubics}
+The open subset $\cH^\circ$ of the Hilbert scheme $\cH_{3m+1}$ parametrizing twisted cubics is irreducible of dimension 12.
+\end{proposition}
+
+\begin{proof}  There are in fact several ways of establishing this statement. To start with the simplest, let $C_0 \subset \PP^3$ be any given twisted cubic, and consider the family of translates of $C_0$ by automorphisms $A \in \PGL_4$ of $\PP^3$: that is, the family
 $$
 \cC = \{ (A, p) \in \PGL_4 \times \PP^3 \; \mid \; p \in A(C_0) \}.
 $$
@@ -32,10 +36,13 @@ $$
 \phi : \PGL_4 \to \cH^\circ.
 $$
 Since every twisted cubic is a translate of $C_0$, this is surjective, with fibers isomorphic to the stabilizer of $C_0$, that is, the subgroup of $\PGL_4$ of automorphisms of $\PP^3$ carrying $C_0$ to itself. Since this group is isomorphic to $\PGL_2$ and has dimension 3, and since $\PGL_4$ is irreducible of dimension 15, we conclude that \emph{$\cH^\circ$ is irreducible of dimension 12}.
+\end{proof}
 
-This argument is based on a rather special fact, that all irreducible nondegenerate cubic curves $C \subset \PP^3$ are translates of one another. There is another, less ad-hoc way of arriving at the conclusion above which we'll now describe. 
 
-The idea behind this approach is the fact the intersection of any two distinct quadrics $Q, Q' \supset C$ containing a twisted cubic curve $C$ is the union of $C$ and a line $L \subset \PP^3$, and the converse fact that if $L \subset \PP^3$ is any line and $Q, Q'$ two general quadrics containing $L$, then the intersection $Q \cap Q' = L \cup C$ will be the union of $L$ and a twisted cubic. This suggests that we set up an incidence correspondence: let $\PP^9$ denote the projective space of quadrics in $\PP^3$, and consider
+This argument is based on a rather special fact, that all irreducible nondegenerate cubic curves $C \subset \PP^3$ are translates of one another. There is another, less ad-hoc way of arriving at the conclusion above which we'll now describe. While it seem much more involved, as we'll see in the next couple of sections it's a broadly applicable technique in general.
+
+\begin{proof}[Second Proof] The idea behind this approach is the fact the intersection of any two distinct quadrics $Q, Q' \supset C$ containing a twisted cubic curve $C$ is the union of $C$ and a line $L \subset \PP^3$, which follows from B\' ezout's theorem. 
+Conversely, suppose that $L \subset \PP^3$ is any line and  $Q, Q'$ two general quadrics containing $L$; write the intersection $Q \cap Q'$ as a union $L \cup C$. Since $Q$ is smooth, and quadric $Q'$ not containing it will intersect it in a curve of type $(2,2)$, and so the curve $C$ will have class $(2,1)$ or $(1,2)$. Since the quadrics $Q'$ containing $L$ cut out on $Q$ the complete linear system of curves of type $(2,1)$, which has no base locus, Bertini's theorem tells us that $C$ will be smooth, so that the intersection $Q \cap Q' = L \cup C$ will be the union of $L$ and a twisted cubic. This suggests that we set up an incidence correspondence: let $\PP^9$ denote the projective space of quadrics in $\PP^3$, and consider
 $$
 \Phi = \{ (C, L, Q, Q') \in \cH^\circ \times \GG(1,3) \times \PP^9 \times \PP^9 \; \mid \; Q \cap Q' = C \cup L \}.
 $$
@@ -49,6 +56,22 @@ We'll analyze $\Phi$ by considering the projection maps to $\cH^\circ$ and $\GG(
 \end{diagram}
 
 Consider first the projection map $\pi_2 : \Phi \to \GG(1,3)$ on the second factor. By what we just said, the fiber over any point $L \in \GG(1,3)$ is an open subset of $\PP^6 \times \PP^6$, where $\PP^6$ is the space of quadrics containing $L$; it follows that $\Phi$ is irreducible of dimension $4 + 2\times 6 = 16$. Going down the other side, we see that the map $\pi_1 : \Phi \to \cH^\circ$ is surjective, with fibers open subsets of $\PP^2 \times \PP^2$; we conclude again that \emph{$\cH^\circ$ is irreducible of dimension 12}.
+\end{proof}
+
+Yet another proof of Proposition~\ref{hilb of twisted cubics} is based on a remarkable fact about twisted cubics, described in the next exercise; the application to $\cH^\circ$ is carried out in the following one.
+
+\begin{exercise}
+Show that if $p_1,\dots, p_6 \in \PP^3$ are any six points in $\PP^3$ in \emph{linear general position}, that is, with no four lying in a plane, then there exists a unique twisted cubic curve $C \subset \PP^3$ containing them.
+\end{exercise}
+
+\begin{exercise}
+Consider the incidence correspondence
+$$
+\Phi = \{ (p_1,\dots,p_6, C) \in (\PP^3)^6 \times \cH^\circ \; \mid p_1,\dots,p_6 \in C  \}.
+$$
+Use the result of the preceding problem to show that $\cH^\circ$ is irreducible of dimension 12.
+\end{exercise}
+
 
 Note that $\cH^\circ$ is open in the Hilbert scheme $\cH = \cH_{3m+1}(\PP^3)$, but its closure is not all of $\cH$! There is a second irreducible component of $\cH$, of dimension 15. To see this, observe that any plane cubic $C \subset \PP^2 \subset \PP^3$ has Hilbert polynomial $p(m) = 3m$. If $p \in \PP^3 \setminus C$ is any point not on $C$, then, the union $C \cup \{p\}$ is a subscheme of $\PP^3$ with Hilbert polynomial $3m+1$, and so corresponds to a point of $\cH$. But the family of such subschemes has dimension 15: we have to specify a plane in $\PP^3$ (3 parameters), a cubic curve $C$ in that plane (9 parameters) and a point $p \in \PP^4$ (3 parameters). In fact, these schemes are dense in a second irreducible component $\cH'$ of $\cH$.
 
@@ -57,6 +80,14 @@ In general, the Hilbert scheme $\cH_{dm-g+1}(\PP^3)$ will have many components (
 \begin{exercise}
 Describe the intersection of the closure  of $\cH^\circ$ in $\cH_{3m+1}$ with the second component described above. In particular, show that the locus $\Sigma$ of schemes $X$ consisting of a nodal plane cubic curve $C$ with a spatial embedded point of multiplicity 1 at the node is dense in the intersection $\overline{\cH^\circ} \cap \cH'$.
 \end{exercise}
+
+\section{Linkage} 
+
+We will generalize the technique used in second proof of Proposition~\ref{hilb of twisted cubics}. Will do first for $C, D$ smooth; at the end, have discussion of full definition and theorem.
+
+\subsection{formulas for degree and genus of linked curves}
+
+\subsection{Cheerful facts: Hartshorne-Rao; smoothness of residual curve when $I_C$ generated in degree $d$ (Prop. 5.6 in 3264)}
 
 \section{Degree 4}
 
@@ -78,7 +109,7 @@ Just to get some practice with the method of linkage, give an argument for Propo
 
 \subsection{Genus 1}
 
-What about genus 1? In fact, this is relatively simple: as we saw in Section~\ref{}, a quartic curve $C \subset \PP^3$ of genus 1 is the zero locus of a pencil $\{Q_\lambda\}_{\lambda \in \PP^1}$ of quadric surfaces, and by the Noether-Lasker theorem this pencil is unique. Conversely, the base locus of a general such pencil is a quartic curve of genus 1. The space of such curves is thus an open subset of the Grassmannian $G(2,10) = \GG(1,9)$, and we conclude that \emph{$\cH^\circ_{4m}$ is irreducible of dimension 16}.
+What about genus 1? In fact, this is relatively simple: as we saw in Section~\ref{}, a quartic curve $C \subset \PP^3$ of genus 1 is the intersection of two quadric surfaces, and by the Noether-Lasker theorem every quadric containing $C$ is a linear combination of those two. Conversely, the intersection of two general quadrics in $\PP^3$ is a quartic curve of genus 1. The space of such curves is thus an open subset of the Grassmannian $G(2,10) = \GG(1,9)$, and we conclude that \emph{$\cH^\circ_{4m}$ is irreducible of dimension 16}.
 
 \section{Degree 5}
 
@@ -122,7 +153,54 @@ $$
 $$
 is irreducible, which can be seen readily via projection on the second factor.
 
-Finally, there is another approach to the problem of describing $\cH^\circ$, which is to describe such curves parametrically rather than via the equations defining them as subsets of $\PP^3$. This approach is a direct generalization of the approach we took to the proof of Proposition~\ref{dimension of rational curves} above, with two additional wrinkles, which involve invoking the existence of  spaces $M_g$ parametrizing abstract curves of genus $g$ and $\Pic_d(C)$ parametrizing line bundles of degree $d$ on a given curve $C$.
+There is another approach to the problem of describing $\cH^\circ$, which is to describe such curves parametrically rather than via the equations defining them as subsets of $\PP^3$, which is a direct generalization of the approach we took to the proof of Proposition~\ref{dimension of rational curves} above. We'll describe this in general in Section~\ref{estimating dim hilb}. It covers the case of quintics of genus 1, so we won't deal with that case separately, except in the form of an exercise:
+
+\begin{exercise}
+Show that a smooth, irreducible, nondegenerate curve $C \subset \PP^3$ of degree 5 and genus 1 is residual to a rational quartic in the complete intersection of two cubics, and use the result of subsection~\ref{degree 4 genus 0} to deduce that the space of genus 1 quintics is irreducible of dimension 20.
+\end{exercise}
+
+\fix{try to eliminate multiple proofs: delete some, and maybe make exercises out of others?}
+
+
+\section{Degree 6}
+
+Moving on to curves of degree 6, the first question to ask would be: what are the possible genera of smooth, irreducible, nondegenerate curves $C \subset \PP^3$ of degree 6? Once more (and for the last time, we're afraid) Clifford and Riemann-Roch suffice to answer this: if the line bundle $\cO_C(1)$ is nonspecial, then by Riemann-Roch we have $g \leq 3$; and if $\cO_C(1)$ is special, $d \leq 2g-2$ and hence $g \leq 4$.
+
+The cases of general 0, 1 and 2 are covered under Proposition~\ref{nonspecial Hilbert}, leaving us the cases $g = 3$ and 4. Both are well-handled by the Cartesian approach of describing their ideals; we'll start with the relatively simple case of $g=4$.
+
+\subsection{Genus 4}
+
+This is easy: by Riemann-Roch, a curve of degree 6 and genus 4 in $\PP^3$ is necessarily a canonical curve, and as we've seen a canonical curve of genus 4 is the complete intersection of a (unique) quadric $Q$ and a cubic surface $S$. We thus have a map
+$$
+\alpha : \cH^\circ \rTo \PP^9
+$$
+sending a curve $C$ to the quadric $Q$ containing it. Moreover, the fibers of this map are open subsets of the projective space $\PP V$, where $V$ is the quotient
+$$
+V = \frac{H^0(\cO_{\PP^3}(3))}{H^0(\cI_{Q/\PP^3}(3))}
+$$
+of the space of all cubic polynomials modulo cubics vanishing on $Q$. Since this vector space has dimension 16, the fibers of $\alpha$ are irreducible of dimension 15, and we deduce that \emph{the space $\cH^\circ_{6m-3}$ is irreducible of dimension 24}.
+
+\subsection{Genus 3}
+
+\begin{exercise}
+Let $C$ be a curve of degree 6 and genus 3, and assume that $C$ does not lie on any quadric surface. Show that $C$ is residual to a twisted cubic in the complete intersection of two cubic surfaces, and use this to deduce that the space of such curves is irreducible of dimension 24.
+\end{exercise}
+
+
+\begin{exercise}
+Now let $C$ again be a curve of degree 6 and genus 3, but now assume that $C$ \emph{does} lie on a quadric surface $Q$. Show that such a curve is a specialization/flat limit of curves of the type described in the last exercise, and conclude that $\cH^\circ_{6m-2}(\PP^3)$ is irreducible of dimension 24.
+\end{exercise}
+
+
+\begin{exercise}
+For another approach, try tweaking the argument for Proposition~\ref{nonspecial Hilbert} to cover the case $d=2g$, and use this to deduce again that $\cH^\circ_{6m-2}(\PP^3)$ is irreducible of dimension 24.
+\end{exercise}
+
+\section{Why  $4d$?}\label{estimating dim hilb}
+
+\subsection{Estimating $\dim \cH^\circ$ by Brill-Noether}
+
+In this section we'll describe another approach to the problem of estimating the dimension of $\cH^\circ$. This is a direct generalization of the approach we took to the proof of Proposition~\ref{dimension of rational curves} above, with two additional wrinkles, which involve invoking the existence of  spaces $M_g$ parametrizing abstract curves of genus $g$ and $\Pic_d(C)$ parametrizing line bundles of degree $d$ on a given curve $C$.
 
 To set this up, again let $\cH^\circ$ be the space of smooth, irreducible, nondegenerate curves $C \subset \PP^3$ of degree 5 and genus 2. By forgetting the information of the particular embedding of $C$ in $\PP^3$ and remembering only the isomorphism class of $C$, we have a map
 $$
@@ -173,46 +251,42 @@ In sum, we have the
 Whenever $d \geq 2g+1$, the space $\cH^\circ$ of smooth, irreducible, nondegenerate curves $C \subset \PP^3$ is either empty (if $d-g < 3$) or irreducible of dimension $4d$.
 \end{proposition}
 
-This covers the case of quintics of genus 1, so we won't deal with that case separately, except in the form of an exercise:
-
-\begin{exercise}
-Show that a smooth, irreducible, nondegenerate curve $C \subset \PP^3$ of degree 5 and genus 1 is residual to a rational quartic in the complete intersection of two cubics, and use the result of subsection~\ref{degree 4 genus 0} to deduce that the space of genus 1 quintics is irreducible of dimension 20.
-\end{exercise}
+\fix{extend this to $\PP^r$}
 
 
-\section{Degree 6}
+\subsection{Estimating $\dim \cH^\circ$ by Euler characteristic of the normal bundle}
 
-Moving on to curves of degree 6, the first question to ask would be: what are the possible genera of smooth, irreducible, nondegenerate curves $C \subset \PP^3$ of degree 6? Once more (and for the last time, we're afraid) Clifford and Riemann-Roch suffice to answer this: if the line bundle $\cO_C(1)$ is nonspecial, then by Riemann-Roch we have $g \leq 3$; and if $\cO_C(1)$ is special, $d \leq 2g-2$ and hence $g \leq 4$.
+It's interesting to compare the estimate of  $\dim \cH^\circ$ above with what we get via a completely different approach. To set this up, let $\cH$ be a component of the scheme $\cH^\circ$, with $C \subset \PP^r$ a curve corresponding to a general point $[C]$ of $\cH$.
 
-The cases of general 0, 1 and 2 are covered under Proposition~\ref{nonspecial Hilbert}, leaving us the cases $g = 3$ and 4. Both are well-handled by the Cartesian approach of describing their ideals; we'll start with the relatively simple case of $g=4$.
+We start with the idea that the dimension of the scheme $\cH$ is approximated by the dimension of its Zariski tangent space $T_{[C]}\cH$ at a general point $[C]$. But we've seen that the tangent space to $\cH$ at $[C]$ is the space $H^0(N_{C/\PP^r})$ of global sections of the normal bundle $N = N_{C/\PP^r}$. And we can think of the dimension $h^0(N)$ as approximated by the Euler characteristic $\chi(N)$, with ``error term" $h^1(N)$ coming from its first cohomology group.
 
-\subsection{Genus 4}
-
-This is easy: by Riemann-Roch, a curve of degree 6 and genus 4 in $\PP^3$ is necessarily a canonical curve, and as we've seen a canonical curve of genus 4 is the complete intersection of a (unique) quadric $Q$ and a cubic surface $S$. We thus have a map
+Given these two approximations, we arrive at a number we can actually compute! From the exact sequence
 $$
-\alpha : \cH^\circ \rTo \PP^9
+0 \to T_C \to T_{\PP^r}|_C \to N \to 0
 $$
-sending a curve $C$ to the quadric $Q$ containing it. Moreover, the fibers of this map are open subsets of the projective space $\PP V$, where $V$ is the quotient
+we deduce that
+\begin{align*}
+c_1(N) &= c_1(T_{\PP^r}|_C) - c_1(T_C) \\
+&= (r+1)d - (2-2g).
+\end{align*}
+
+Now we can apply Riemann-Roch to conclude that
+\begin{align*}
+\chi(N) &= c_1(N) - \rank(N)(g-1) \\
+&= (r+1)d - (r-3)(g-1).
+\end{align*}
+
+Note that our two ``estimates" are actually inequalities. But, unfortunately, they go in opposite directions: we have
 $$
-V = \frac{H^0(\cO_{\PP^3}(3))}{H^0(\cI_{Q/\PP^3}(3))}
+\dim \cH \leq \dim T_{[C]}\cH,
 $$
-of the space of all cubic polynomials modulo cubics vanishing on $Q$. Since this vector space has dimension 16, the fibers of $\alpha$ are irreducible of dimension 15, and we deduce that \emph{the space $\cH^\circ_{6m-3}$ is irreducible of dimension 24}.
-
-\subsection{Genus 3}
-
-\begin{exercise}
-Let $C$ be a curve of degree 6 and genus 3, and assume that $C$ does not lie on any quadric surface. Show that $C$ is residual to a twisted cubic in the complete intersection of two cubic surfaces, and use this to deduce that the space of such curves is irreducible of dimension 24.
-\end{exercise}
+but 
+$$
+\dim T_{[C]}\cH \geq \chi(N).
+$$
 
 
-\begin{exercise}
-Now let $C$ again be a curve of degree 6 and genus 3, but now assume that $C$ \emph{does} lie on a quadric surface $Q$. Show that such a curve is a specialization/flat limit of curves of the type described in the last exercise, and conclude that $\cH^\circ_{6m-2}(\PP^3)$ is irreducible of dimension 24.
-\end{exercise}
-
-
-\begin{exercise}
-For another approach, try tweaking the argument for Proposition~\ref{nonspecial Hilbert} to cover the case $d=2g$, and use this to deduce again that $\cH^\circ_{6m-2}(\PP^3)$ is irreducible of dimension 24.
-\end{exercise}
+\subsection{They're the same!}
 
 \section{Degree 8}
 
