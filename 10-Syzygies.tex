@@ -3,15 +3,76 @@
 \chapter{Syzygies}
 \label{SyzygiesChapter}
 
-\section{Introduction} Motivation: canonical embedding turns intrinsic invariants into projective invariants. Hilbert Function. Projective Normality; Canonical Module.
+\section{Introduction} 
+%Motivation: canonical embedding turns intrinsic invariants into projective invariants. Hilbert Function. Projective Normality; Canonical Module.
+%
+%What are the projective invariants that correspond to Clifford index? Conjecturally, Green's conjecture. Inequality from Eagon-Northcott.
+%
+%Hilbert Syzygy theorem, Hilbert function derivation, Unique minimal resolution, Betti table, 
+%\fix{ introduce tools as they are used}
 
-What are the projective invariants that correspond to Clifford index? Conjecturally, Green's conjecture. Inequality from Eagon-Northcott.
+It is much easier to talk about the geometry of a curve once it is embedded in projective space, but of course this is really the geometry of a pair, the curve \emph{and} the embedding. However if we take the embedding corresponding to the complete linear series associated to the canonical line bundle (or a fixed multiple of it), then we can be sure we are talking about an intrinsic invariant of the curve itself. In genus 0,1 the canonical bundle is not ample, so this approach doesn't work; but in genus $\geq 2$,as we have seen in Chapter ****, the canonical bundle itself determines an embedding for all but hyperelliptic curves; the square of the canonical bundle gives an embedding for all  curves of genus $>2$; and the cube of the canonical bundle gives an embedding for every curve of genus $\geq 2$. 
 
-Hilbert Syzygy theorem, Hilbert function derivation, Unique minimal resolution, Betti table, 
-\fix{ introduce tools as they are used}
+Once a curve is embedded in projective space, the first algebraic invariant we have looked at is it's Hilbert function; but this simply recovers the genus and the degree. A much finer invariant is the minimal free resolution of the homogeneous coordinate ring of the curve. For example according to the conjecture of Mark Green (now verified in many special cases), the free resolution determines the ``smallest'' base point free linear series on the curve, in a precise sense that we will describe.
+
+We begin by reviewing some basic facts about free resolutions from \cite[Ch ?]{E}. Let 
+$R = R_{0} \oplus R_{1}\oplus\cdots$ be a positively graded ring, with $R_{0}$ a field,
+ and let $M$ be a finitely generated graded $S$-module. An  \emph{$R$-free resolution} of $M$ is a sequence of free graded $R$ modules $F_{i}$ and homogeneous maps $d_{i}$ of the form
+$$
+\FF: F_{0}:=\oplus_{j}R(-j)^{\beta_{0,j}} \lTo^{d_{1}} F_{1}:=\oplus_{j}R(-j)^{\beta_{0,j}}\lTo^{d_{2}} F_{2}\cdots
+$$
+and an \emph{augmentation} map $F_{0} \rOnto^{d_{0}} M$ such that the kernel of $d_{i}$ is equal to the image of $d_{i+1}$ for every $i$. 
+
+The resolution $\FF$ is \emph{minimal} if every entry of matrices representing the $d_{i}$ (for $i>0$ is of strictly positive degree. A minimal free resolution of $M$ can be constructed inductively by first choosing a minimal set of homogeneous generators of $M$, determining the map $d_{0}$, then choosing a minimal set of generators of $\ker d_{0}$, determining a map
+$F_{1} \rOnto \ker d_{0} \subset F_{0}$, and so on.
+
+Now let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$. In case $R=S$ something quite special happens \cite[****]{E}:
+
+\begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
+The minimal $S$-free resolution $\FF$ of $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
+\end{theorem}
+
+A much easier result shows that the minimal free resolution can be used to derive invariants of $M$
+\cite[Theorem ***]{E}:
+
+\begin{theorem}[Uniqueness]\label{uniqueness}
+With hypotheses as above, the minimal free resolution of $M$ is unique up to (non-unique) isomorphism.
+\end{theorem}
+
+The numbers $\beta_{i,j}$ in  the minimal resolution of $M$ are called the \emph{graded Betti numbers} of $M$; It follows from this that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
+$$
+H_{S(-j)}(t) = 
+\begin{cases}
+ {n+t-j \choose n} & \hbox{for $t\geq 0$}
+  \\ 
+ 0 & \hbox{for $t<0$}
+\end{cases}
+$$
+we can compute the Hilbert function for a finitely generated graded $S$-module $M$ from its graded Betti numbers 
+$$
+H_{M}(t) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+t-j\choose n}.
+$$
+\begin{example} [The homogeneous coordinate ring of a plane curve] 
+For the simplest non-trivial example, if $C$ is a plane curve with equation $F(x_{0},x_{1}x_{2})$ of 
+degree $d$, then the minimal free resolution of the homogeneous coordinate ring $S_{C}$ has the form
+$$
+\FF: S\lTo^{F}S(-d)\lTo 0
+$$
+Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
+ $\beta_{0,0} = \beta_{1,d} = 1$, so
+$$
+ H_{S_{C}}(t) = {2+t\choose 2} - {2-d+t\choose 2}
+ $$
+ which has the value  $dt + 1+(2-d)(2-d-1)/2 = dt + (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the genus is the constant term minus 1, we get
+$\deg C = d, \hbox{genus} C = (d-1)(d-2)/2$ as we should by now expect.
+\end{example}
+
+
+
 
 \section {general adjunction formula} homological definitions of the canonical sheaf. (The canonical module as dual of a local cohomology, 
-and local duality proves it's  an Ext (compare with the adjunction formula.))
+and local duality proves it's  an Ext (compare with the adjunction f
+ormula.))
 
 
 
