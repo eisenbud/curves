@@ -15,7 +15,10 @@ It is much easier to talk about the geometry of a curve once it is embedded in p
 
 Once a curve is embedded in projective space, the first algebraic invariant we have looked at is it's Hilbert function; but this simply recovers the genus and the degree. A much finer invariant is the minimal free resolution of the homogeneous coordinate ring of the curve. For example according to the conjecture of Mark Green (now verified in many special cases), the free resolution determines the ``smallest'' base point free linear series on the curve, in a precise sense that we will describe.
 
-We begin by reviewing some basic facts about free resolutions from \cite[Ch ?]{E}. Let 
+We begin by reviewing some basic facts about free resolutions. They are usually stated for
+modules over a local ring, and in that form the results here can be found in \cite[Ch ?]{E}. The proofs are essentially identical in the graded case presented here.
+
+Let 
 $R = R_{0} \oplus R_{1}\oplus\cdots$ be a positively graded ring, with $R_{0}$ a field,
  and let $M$ be a finitely generated graded $S$-module. An  \emph{$R$-free resolution} of $M$ is a sequence of free graded $R$ modules $F_{i}$ and homogeneous maps $d_{i}$ of the form
 $$
@@ -26,20 +29,19 @@ and an \emph{augmentation} map $F_{0} \rOnto^{d_{0}} M$ such that the kernel of 
 The resolution $\FF$ is \emph{minimal} if every entry of matrices representing the $d_{i}$ (for $i>0$ is of strictly positive degree. A minimal free resolution of $M$ can be constructed inductively by first choosing a minimal set of homogeneous generators of $M$, determining the map $d_{0}$, then choosing a minimal set of generators of $\ker d_{0}$, determining a map
 $F_{1} \rOnto \ker d_{0} \subset F_{0}$, and so on.
 
-Now let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$. In case $R=S$ something quite special happens \cite[****]{E}:
+The minimal free resolution can be used to derive invariants of $M$
+\cite[Theorem ***]{E} by virtue of the following:
+
+\begin{theorem}[Uniqueness]\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded is unique up to (non-unique) isomorphism.
+\end{theorem}
+
+From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules, and consider resolutions over this ring. In this case something quite special happens \cite[****]{E}:
 
 \begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
 The minimal $S$-free resolution $\FF$ of $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
 \end{theorem}
 
-A much easier result shows that the minimal free resolution can be used to derive invariants of $M$
-\cite[Theorem ***]{E}:
-
-\begin{theorem}[Uniqueness]\label{uniqueness}
-With hypotheses as above, the minimal free resolution of $M$ is unique up to (non-unique) isomorphism.
-\end{theorem}
-
-The numbers $\beta_{i,j}$ in  the minimal resolution of $M$ are called the \emph{graded Betti numbers} of $M$; It follows from this that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
+The numbers $\beta_{i,j}$ in  the minimal $S$-free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; It follows from this that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
 $$
 H_{S(-j)}(t) = 
 \begin{cases}
@@ -63,17 +65,126 @@ Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
 $$
  H_{S_{C}}(t) = {2+t\choose 2} - {2-d+t\choose 2}
  $$
- which has the value  $dt + 1+(2-d)(2-d-1)/2 = dt + (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the genus is the constant term minus 1, we get
-$\deg C = d, \hbox{genus} C = (d-1)(d-2)/2$ as we should by now expect.
+ which has the value  $dt + 1+(2-d)(2-d-1)/2 = dt + (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus is the constant term minus 1, we get
+$\deg C = d, p_{a}(C) = (d-1)(d-2)/2$ as we should, by now, expect. Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
 \end{example}
 
+\begin{exercise} In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
+Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
+$X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
+using the fact that the minimal free resolution of the homogeneous coordinate ring 
+$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex
+$$
+ S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
+ $$
+\end{exercise}
+
+Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing it here. The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. 
+
+\begin{proposition}
+If $M$ is a graded $S$-module then $pd(M)$ is at least the codimension of the support of $M$.
+\end{proposition}
+
+Thus if $C\subset \PP^{n}$ is 1-dimensional the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
+
+\begin{theorem}
+ Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme. The projective dimension of the homogeneous coordinate ring $S_{C}$ of $C$  is
+$$
+ pd_{S}S_{C} = 
+\begin{cases}
+n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
+n &\hbox{otherwise}.
+\end{cases}.
+$$
+In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal.
+\end{theorem}
+
+Here is a quantitative version:
+
+\begin{theorem}
+Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme, and let  
+$$
+\FF: F_{0}\lTo^{d_{1}} F_{1}\lTo^{d_{2}} F_{2}\lTo \cdots \lTo F_{n-1}\lTo {d_{n}}F_{n}\lTo F_{n+1} \lTo 0
+$$
+be the minimal $S$-free resolution of the homogeneous coordinate ring of $C$. We have $F_{n+1}=0$, and 
+$$
+\oplus_{t\in \ZZ} (H^{1}\sO_{C}(t)) = \Hom_{\CC}(\Ext^{n}(S_{C}, S(-n-1)),\CC)
+$$ 
+which is sometimes called the \emph{Rao module} of $C$. Thus, up to a shift in grading,
+the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n}^{*}: F_{n-1}^{*}\to F_{n}$. This is a graded module of finite length.
+\end{theorem}
+
+\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
+is a complete intersection.
+ The Hartshorne-Rao Theorem \cite{} asserts that 
+$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
+\end{fact}
+
+\fix{it's not clear how much of the material here to prove; or, if we do prove it, whether we should introduce the general machinery of depth and admit that local cohomology makes the statements look cleaner. The rest of this section is a possible start on this...}
+
+A famous result of Auslander and Buchsbaum clarifies the meaning of projective dimension. We define the 
+\emph{depth} of $M$ to be the maximum length $\ell$ of a \emph{regular sequence on $M$}; that is, a sequence $G_{1},\dots,G_{\ell}$ of homogeneous forms of strictly positive degree such that 
+\begin{align*}
+G_{1} &\hbox{ is a nonzerodivisor on } M;\\
+G_{2} &\hbox{ is a nonzerodivisor on } M/G_{1}M;\\
+\vdots&\phantom{\hbox{ is a nonzerodivisor on } }\vdots\\
+G_{\ell} &\hbox{ is a nonzerodivisor on } M/(G_{1},\dots,G_{\ell-1})M.
+\end{align*}
+
+\begin{theorem}
+If $M$ is a finitely generated graded module over the polynomial ring $S := \CC[x_{0},\dots,x_{n}]$, and $M$ has depth $\ell$, then the projective dimension of $M$ is $n+1-\ell$.
+\end{theorem}
+
+Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of sheaf cohomology:
+
+Suppose for simplicity that $M = \oplus_{t\in \ZZ}H^{0}\cO_{X}(t)$ for some scheme $X\subset \PP^{n}$ without 0-dimensional (isolated or embedded) components, so that $M$ is a finitely generated $S$-module. 
+\begin{theorem}
+ With hypotheses as above, $\depth M$ is the largest integer $\ell$ such that $H^{i}(\cO_{X}(t) = 0$ for all $0<i<ell-1$ and all 
+\end{theorem}
 
 
+\section {A general adjunction formula} 
 
-\section {general adjunction formula} homological definitions of the canonical sheaf. (The canonical module as dual of a local cohomology, 
-and local duality proves it's  an Ext (compare with the adjunction f
-ormula.))
+%homological definitions of the canonical sheaf. (The canonical module as dual of a local cohomology, 
+%and local duality proves it's  an Ext (compare with the adjunction f
+%ormula.))
 
+\def\sExt{{\mathcal Ext}}
+The classical adjunction formula gives the canonical line bundle on a curve $C$ on a smooth surface $X$ in terms of the canonical bundle $\omega_{X}$ of $X$ as 
+$$
+\omega_{C} = \omega_{X}(C) |_{C},
+$$
+and thus, even more familiarly, gives the genus of $C$ as an intersection number,
+$2g(C)-2 = (K_{X}+C).C$. 
+
+We can reinterpret this formula homologically by noting that there is a short exact sequence
+$$
+0\to \sO_{X}(-C) \to \sO_{X}\to \sO_{C}\to 0.
+$$
+giving a long exact sequence in $\sExt_{\sO_{X}}(-, \omega_{X})$. Taking into account
+that $\sExt_{\sO_{X}}(\sO_{X}, \omega_{X}) =0$ because $\sO_{X}$ is locally free, we get the
+exact sequence
+$$
+\to \sHom_{\sO_{X}}(\sO_{X}, \omega_{X}) \to \sHom_{\sO_{X}}(\sO_{X}(-C), \omega_{X})
+\to \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) \to 0,
+$$ 
+proving that
+ $\sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) = \omega_{X}(C)|_{C}$, 
+ and thus showing in this case that 
+ $$
+ \omega_{C} = \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}).
+ $$
+
+ It turns out that the ``1'' in the $\sExt^{1}_{\sO_{X}}$ in this formula is just the codimension of $C$ in $X$, and that the result holds in great generality:
+ 
+\begin{theorem}
+Let $C\subset X$ be a purely 1-dimensional subscheme of $\PP^{n}$. The canonical sheaf of $C$ is 
+$$
+\omega_{C} \cong \sExt^{n-1}_{\sO_{\PP^{n}}}(\sO_{C}, \omega_{\PP^{n}}) = 
+\sExt^{n-1}_{\sO_{\PP^{n}}}(\sO_{C}, \sO_{\PP^{n}})(-n-1).
+$$
+which is the sheafification of the graded module $\Ext^{n-1}(S_{C},S)(-n-1)$.
+\end{theorem}
 
 
 \section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
