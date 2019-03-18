@@ -91,7 +91,39 @@ Without question, the most fundamental object we deal with in analyzing the geom
 
 The answer is an emphatic ``yes:" if $C$ is Cohen-Macaulay (and in particular, if $C$ is reduced), we can introduce the \emph{dualizing sheaf} $\omega_C$, which is a more than adequate understudy for the role of canonical bundle. (Indeed, in a large range of cases, those of \emph{Gorenstein} curves, it is locally free, as we'll see in the subsection below.) We will give a relatively concrete description of the dualizing sheaf here, and a more abstract, algebraic definition in the next chapter.
 
-To understand the definition of the dualizing sheaf, it is useful (and amusing) to recall a bogus proof of the Riemann-Roch formula, which highlights the key property of the canonical bundle. To set this up, suppose now that $C$ is a smooth projective curve of genus $g$, and imagine we have a divisor $D = p_1 + \dots + p_d$
+To understand the definition of the dualizing sheaf, it is useful (and amusing) to recall a bogus proof of the Riemann-Roch formula, which highlights the key property of the canonical bundle. To set this up, suppose now that $C$ is a smooth projective curve of genus $g$, and imagine we have a divisor $D = p_1 + \dots + p_d$ consisting of $d$ distinct points on $C$. We choose a local coordinate $z_i$ on $C$ around $p_i$, and ask: given a $d$-tuple of scalars $a_1,\dots,a_d$, when is there a rational function on $C$, regular away from the points $p_i$, with polar part $a_i/z_i$ at $p_i$? 
+
+Since any rational function regular away from the $p_i$ is determined, up to the addition of a scalar, by its polar parts at the $p_i$, this is tantamount to asking for the dimension of the vector space $\cL(D)$ of rational functions with at most simple poles along $D$. In particular, we see that the dimension
+$$
+\dim \c(D) \; \leq \; d + 1,
+$$
+with equality holding iff every $d$-tuple of scalars $a_1,\dots,a_d$ represents the polar part of some function $f \in \cL(D)$. But there is an obstruction to this being the case: if $\phi$ is any global regular 1-form on $C$, then for any $f \in \cL(D)$ we have
+$$
+\sum_i Res_{p_i} (f \cdot \phi) \; = \; 0,
+$$
+which (potentially) imposes a linear condition on the polar parts of $f$. Of course, if $\omega$ vanishes at all the points $p_i$ of $D$, this condition is vacuous; the actual number of conditions imposed is the difference $g - h^0(K_C -D)$. Altogether, then, we have established the inequality
+$$
+h^0(D) \; \leq \; d + 1 - g + h^0(K_C - D).
+$$
+
+Now we apply this inequality to the divisor $K-D$, which has degree $2g-2-d$; we arrive at
+$$
+h^0(K-D) \; \leq \; 2g - 2 + 1 - g + h^0(D).
+$$
+Finally, we add the last two inequalities, and almost all the terms cancel, leaving us with
+$$
+h^0(D) + h^0(K-D) \; \leq \; h^0(K-D) + h^0(D);
+$$
+since equality holds here, it most hold in both the inequalities above, and we deduce the statement of the Riemann-Roch formula.
+
+The point of this derivation of Riemann-Roch is that is emphasizes the crucial fact underlying the formula: that \emph{the sum of the residues of a rational 1-form on a smooth projective curve is zero}. Now, suppose that $C$ is a possibly singular projective curve, and $D = p_1+\dots + p_d$ a divisor $D$ (whose support we will for simplicity assume is disjoint from the singular locus of $C$). Say we want to derive an analogous formula for the dimension $h^0(D)$ of the space of rational functions on $C$ with at most poles along a divisor $D$, with the role of a global regular 1-form $\phi \in H^0(K)$ played by a global section of the dualizing sheaf $\omega_C$. We need to define the dualizing sheaf $\omega_C$ so that its sections may be viewed as rational differentials on $C$, with three properties:
+
+\begin{enumerate}
+\item we should have $\deg(\omega_C) = 2p_a(C)-2$;
+\item we should have $h^0(\omega_C) = p_a(C)$; and, crucially,
+\item for any rational function $f \in h^0(D)$ and every section $\phi \in H^0(\omega_C)$, the sum of the residues of the rational differential $f\phi$ at the points of $D$ is 0.
+\end{enumerate}
+
 
 
 \subsection{the Gorenstein condition}
