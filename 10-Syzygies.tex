@@ -82,8 +82,11 @@ $$
 Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing it here. The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. 
 
 \begin{proposition}
-If $M$ is a graded $S$-module then $pd(M)$ is at least the codimension of the support of $M$.
+If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the support of $M$.
 \end{proposition}
+
+In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
+Cohen-Macaulay module, or equivalently that the sheaf $\widetilde M$ is \emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is \emph{arithmetically Cohen-Macaulay.
 
 Thus if $C\subset \PP^{n}$ is 1-dimensional the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
 
@@ -96,8 +99,10 @@ n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
 n &\hbox{otherwise}.
 \end{cases}.
 $$
-In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal.
+Thus in the first case $S_{C}$ is arithmetically Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal.
 \end{theorem}
+
+In general the 
 
 Here is a quantitative version:
 
@@ -114,11 +119,6 @@ which is sometimes called the \emph{Rao module} of $C$. Thus, up to a shift in g
 the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n}^{*}: F_{n-1}^{*}\to F_{n}$. This is a graded module of finite length.
 \end{theorem}
 
-\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
-is a complete intersection.
- The Hartshorne-Rao Theorem \cite{} asserts that 
-$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
-\end{fact}
 
 \fix{it's not clear how much of the material here to prove; or, if we do prove it, whether we should introduce the general machinery of depth and admit that local cohomology makes the statements look cleaner. The rest of this section is a possible start on this...}
 
@@ -149,13 +149,13 @@ Suppose for simplicity that $M = \oplus_{t\in \ZZ}H^{0}\cO_{X}(t)$ for some sche
 %and local duality proves it's  an Ext (compare with the adjunction f
 %ormula.))
 
-\def\sExt{{\mathcal Ext}}
+%\def\sExt{{\mathcal Ext}}
 The classical adjunction formula gives the canonical line bundle on a curve $C$ on a smooth surface $X$ in terms of the canonical bundle $\omega_{X}$ of $X$ as 
 $$
 \omega_{C} = \omega_{X}(C) |_{C},
 $$
 and thus, even more familiarly, gives the genus of $C$ as an intersection number,
-$2g(C)-2 = (K_{X}+C).C$. 
+$2\g(C)-2 = (K_{X}+C).C$. 
 
 We can reinterpret this formula homologically by noting that there is a short exact sequence
 $$
@@ -177,7 +177,7 @@ proving that
 
  It turns out that the ``1'' in the $\sExt^{1}_{\sO_{X}}$ in this formula is just the codimension of $C$ in $X$, and that the result holds in great generality:
  
-\begin{theorem}
+\begin{theorem}\label{canonical is ext}
 Let $C\subset X$ be a purely 1-dimensional subscheme of $\PP^{n}$. The canonical sheaf of $C$ is 
 $$
 \omega_{C} \cong \sExt^{n-1}_{\sO_{\PP^{n}}}(\sO_{C}, \omega_{\PP^{n}}) = 
@@ -186,6 +186,30 @@ $$
 which is the sheafification of the graded module $\Ext^{n-1}(S_{C},S)(-n-1)$.
 \end{theorem}
 
+\begin{fact}
+For an abstract definition of the canonical bundle as a ``dualizing sheaf'' see \cite{AltmanKleiman}. For a smooth variety over $\CC$ the definition is satisfied by the the top exterior power of the cotangent bundle, and for $\PP^{n}$ this is $\sO(-n-1)$. A scheme is said to be Gorenstein if it has a dualizing sheaf that is locally free---the canonical bundle. A more general form of Theorem~\ref{canonical is ext} says that if $\pi: X -> Y$ is a finite morphism of pure dimensional Gorenstein schemes, and $Y$ has a canonical bundle $\omega_{Y}$, then the canonical bundle of $X$ may be
+represented as 
+$$
+\omega_{X} = \sExt^{\dim Y-\dim X}_{\pi_{*}\sO_{X}, \omega_{Y}),
+$$ 
+regarded as a sheaf on $\sO_{X}$.
+\end{fact}
+
+\section{Noether's Theorem}\label{sec:canonical curves} 
+
+As we remarked at the beginning of this Chapter, all canonically embedded smooth curves have the same Hilbert functions. We shall now show that they are all arithmetically Cohen-Macaulay.
+We follow the treatment in \cite{Schreyer}, and treats a more general situation than that of the 
+images of smooth curves under the canonical embeddings.
+
+We define a \emph{canonical curve} in \PP^{g-1} to be a curve such that 
+$$
+
+$$
+
+\begin{theorem}[Max Noether]
+
+ 
+\end{theorem}
 
 \section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
 
@@ -196,8 +220,16 @@ We'll need local cohomology, local duality,
 recall the $2g+1$ theorem from Ch 4. Say that it's ACM+smooth. relate it to regularity as in "geom of syz". Say that the projective
 normality of smooth CI's is really ACM for all CI's. Say that ACM is measured by the length of the free resolution.
 
+
 \section{Liaison of curves in $\PP^3$.}
-Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
+%Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
+
+\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
+is a complete intersection.
+ The Hartshorne-Rao Theorem \cite{} asserts that 
+$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
+\end{fact}
+
 
 Genus formula by filtration: Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
 $C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
@@ -216,8 +248,12 @@ Computing Hilbert polynomials via RR gives the genus formula.
 Construction of curves with given Rao module: Bourbaki's theorem.
 
 
+
+
 \section{Syzygies and the Clifford index}
 Green's Conjecture, Voisin's Theorem, Ein-Lazarsfeld Theorem --- all cheerful facts. proof that low gonality implies long linear part.
+
+
 \subsection{The Eagon-Northcott complex (lite)}: 
 --Koszul complex.
 --The inequality in Green's conjecture.
