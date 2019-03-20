@@ -102,7 +102,69 @@ What is the largest possible genus of an irreducible, nondegenerate curve $C \su
 
 The answer to this question is indeed quite different from the inequality provided by Theorem~\ref{arbitrary linear series}. It is the content of \emph{Castelnuovo's theorem}, which gives a sharp answer to this question. We'll sketch the derivation of the inequality here; we'll prove that it is in fact sharp and describe in detail  the curves that achieve it in Chapter~\ref{}.
 
-To start, Castelnuovo's bound follows from a very straightforward approach: if $C$ is a curve of degree $d$ and genus $g$ in $\PP^r$, the idea is to prove successive lower bounds for the dimension $h^0(\cO_C(m))$ of multiples of the $g^r_d$ cut on $C$ by hyperplanes. For large values of $m$, of course, the line bundle $\cO_C(m)$ is non-special, and so a lower bound on the dimension of its space of sections translated, via Riemann-Roch, into an upper bound on the genus $g$.
+To start, Castelnuovo's bound follows from a very straightforward approach: if $C$ is a curve of degree $d$ and genus $g$ in $\PP^r$, the idea is to prove successive lower bounds for the dimensions $h^0(\cO_C(m))$ of multiples of the $g^r_d$ cut on $C$ by hyperplanes. For large values of $m$, of course, the line bundle $\cO_C(m)$ is non-special, and so a lower bound on the dimension of its space of sections translates, via Riemann-Roch, into an upper bound on the genus $g$.
+
+\begin{definition}
+Let $\cL$ be any line bundle on a smooth projective variety $X$, and $D = \{p_1,\dots,p_d\}$ a collection of points of $X$. By the \emph{number of conditions imposed by $D$ on sections of $\cL$} we will mean simply the difference
+$$
+h^0(\cL) - h^0(\cL \otimes \cI_{D/X});
+$$
+that is, the codimension in $H^0(\cL)$ of the subspace of sections vanishing on $D$. More generally, if $V \subset H^0(\cL)$ is any linear system, by the number of conditions imposed by $D$ on $V$ we will mean the difference
+$$
+\dim(V) - \dim \left(V \cap H^0(\cL\otimes \cI_{D/X}) \right).
+$$
+\end{definition}
+Thus, for example, if $X = \PP^r$, the number of conditions imposed by $D$ on $H^0(\cO_{\PP^r}(m))$ is the value $h_D(m)$ of the Hilbert function of $D$.
+Note that the number of conditions imposed by $D$ on a linear system $V$ is necessarily less than or equal to the degree $d$ of $D$; if it is equal we say that $D$ \emph{imposes independent conditions on $V$}.
+
+To apply this notion, suppose $C \subset \PP^r$ is an irreducible, nondegenerate curve. Let $\Gamma = C \cap H$ be a general hyperplane section of $C$. Let $V_m \subset H^0(\cO_C(m))$ be the linear series cut on $C$ by hypersurfaces of degree $m$ in $\PP^r$, that is, the image of the restriction map
+$$
+H^0(\cO_{\PP^r}(m)) \to H^0(\cO_C(m)).
+$$
+We have then a series of more or less trivial inequalities:
+\begin{align*}
+h^0(\cO_C(m)) - h^0(\cO_C(m-1)) & \geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_C(m))$} \\
+&\geq \text{\# of conditions imposed by $\Gamma$ on $V_m$} \\
+&\geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$} ;
+\end{align*}
+in other words, the dimension $h^0(\cO_C(m))$ is bounded below by the sum
+$$
+h^0(\cO_C(m)) \geq \sum_{k=0}^m h_\Gamma(k).
+$$
+
+We need, in other words, a lower bound on the Hilbert function of a general hyperplane section $\Gamma$ of our curve $C$. This is turn requires that we have some knowledge of the geometry of $\Gamma$, but not in fact all that much: all we need is the basic
+
+\begin{lemma}[general position lemma]
+If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linear general position in $H \cong \PP^{r-1}$, meaning no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
+\end{lemma}
+Thus, for example, if $C \subset \PP^3$ is a space curve, no three points of $\Gamma = H \cap C$ will be colinear.
+
+\begin{exercise}
+Prove this directly.
+\end{exercise}
+
+The general position lemma was originally asserted by Castelnuovo. In more modern treatments, it is usually deduced as a special case of the more general
+
+\begin{lemma}[uniform position lemma]
+With $C \subset \PP^r$ and $\Gamma = C \cap H$ as above, any two subsets $\Gamma', \Gamma'' \subset \Gamma$ of the same cardinality have the same Hilbert function, i.e., impose the same number of conditions on $\cO_{\PP^{r-1}}(m)$ for all $m$.
+\end{lemma}
+
+The general position lemma is just the special case $m=1$ of the uniform position lemma. This may not seem like much information about $\Gamma$, but in fact it's all we need to prove a sharp bound! The basic (and completely elementary) statement is
+
+\begin{proposition}
+If $\Gamma \subset \PP^n$ is a collection of $d$ points in linear general position and spanning $\PP^n$, then 
+$$
+h_\Gamma(m) \geq \min\{d, mn+1\}
+$$
+\end{proposition}
+
+\begin{proof}
+Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mn+1} \in \Gamma$ be any subset of $mn+1$ points. We want to show that $\Gamma' = \{p_1,\dots,p_{mn+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^n}(m))$, that is, for any $p_i \in \Gamma'$ we can find a hypersurface $X \subset \PP^n$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mn+1}$ but not containing $p_i$.
+
+This is easy: simply group the $mn$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $n$; each set $Gamma_k$ will span a hyperplane $H_k \subset \PP^n$, and we can take $X = H_1 \cup \dots \cup H_m$. 
+\end{proof}
+
+This may seem like a crude argument, but the bound derived is sharp: any collection of point $\Gamma \subset \PP^n$ lying on a rational normal curve $D \subset \PP^n$ has exactly this Hilbert function.
 
 
 
