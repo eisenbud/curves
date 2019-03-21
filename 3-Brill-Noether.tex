@@ -161,12 +161,74 @@ $$
 \begin{proof}
 Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mn+1} \in \Gamma$ be any subset of $mn+1$ points. We want to show that $\Gamma' = \{p_1,\dots,p_{mn+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^n}(m))$, that is, for any $p_i \in \Gamma'$ we can find a hypersurface $X \subset \PP^n$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mn+1}$ but not containing $p_i$.
 
-This is easy: simply group the $mn$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $n$; each set $Gamma_k$ will span a hyperplane $H_k \subset \PP^n$, and we can take $X = H_1 \cup \dots \cup H_m$. 
+This is easy: simply group the $mn$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $n$; each set $\Gamma_k$ will span a hyperplane $H_k \subset \PP^n$, and we can take $X = H_1 \cup \dots \cup H_m$. 
 \end{proof}
 
 This may seem like a crude argument, but the bound derived is sharp: any collection of point $\Gamma \subset \PP^n$ lying on a rational normal curve $D \subset \PP^n$ has exactly this Hilbert function.
 
+At this point, all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$, so that we can write
+$$
+d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2.
+$$
+We have then
+\begin{align*}
+h^0(\cO_C(M)) &\geq \sum_{k=0}^M h^0(\cO_C(k)) - h^0(\cO_C(k-1)) \\
+&\geq  \sum_{k=0}^M k(r-1)+1 \\
+&= \frac{M(M+1)}{2}(r-1) + M + 1
+\end{align*}
+and similarly
+$$
+h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M + 1 + md.
+$$
+For sufficiently large $m$, the line bundle $\cO_C(M+m)$ will be nonspecial, so we can plug this in to Riemann-Roch to arrive at
+\begin{align*}
+g &= (M+m)d - h^0(\cO_C(M+m)) + 1 \\
+&\leq (M+m)d - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 + md \bigr) \\
+& = M\bigl( M(r-1) + 1 + \epsilon \bigr) - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 \bigr) \\
+&= \frac{M(M-1)}{2}(r-1) + M\epsilon.
+\end{align*}
 
+To summarize our discussion: for positive integers $d$ and $r$, we write
+$$
+ d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2
+$$
+and set
+$$
+\pi(d,r) = \frac{M(M-1)}{2}(r-1) + M\epsilon.
+$$
+In these terms, we have proved the
+
+\begin{theorem}[Castelnuovo's bound]
+If $C \subset \PP^r$ is an irreducible, nondegenerate curve of degree $d$ and genus $g$, then
+$$
+g \leq \pi(d,r).
+$$
+\end{theorem}
+
+We will see in Chapter~\ref{} that this is in fact sharp: for every $r$ and $d \geq r$, there do exist such curves with genus exactly $\pi(d,r)$. For now, we make a few observations:
+
+\begin{enumerate}
+\item In case $r=2$, all the inequalities used in the derivation of Castenuovo's bound are in fact equalities, and indeed we see that in this case $\pi(d,2) = \binom{d-1}{2}$ is the genus of a smooth plane curve of degree $d$.
+
+\item In case $r=3$, we have
+$$
+\pi(d,3) =
+\begin{cases}
+\left( k - 1 \right)^2 &\text{ if $d=2k$ is even; and} \\
+k(k-1) &\text{ if $d=2k+1$ is odd.}
+\end{cases}
+$$
+In this case again, it's not hard to see the bound is sharp: these are exactly the genera of curves of bidegree $(k,k)$ and $(k+1,k)$ on a quadric surface $Q \cong \PP^1 \times \PP^1 \subset \PP^3$.
+\item In general, we see that for fixed $r$ asymptotically
+$$
+\pi(d,r) \sim \frac{d^2}{2(r-1)}.
+$$
+\end{enumerate}
+
+
+\begin{exercise}
+Show that with $C$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist such curves $C$ with $\cO_C(M-1)$ special).
+\end{exercise}
 
 \section{Brill-Noether theory}
 
