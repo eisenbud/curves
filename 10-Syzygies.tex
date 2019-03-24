@@ -43,16 +43,16 @@ The minimal $S$-free resolution $\FF$ of $M$ is finite: in fact, $F_{i}=0$ for a
 
 The numbers $\beta_{i,j}$ in  the minimal $S$-free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; It follows from this that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
 $$
-H_{S(-j)}(t) = 
+H_{S(-j)}(m) = 
 \begin{cases}
- {n+t-j \choose n} & \hbox{for $t\geq 0$}
+ {n+m-j \choose n} & \hbox{for $t\geq 0$}
   \\ 
  0 & \hbox{for $t<0$}
 \end{cases}
 $$
 we can compute the Hilbert function for a finitely generated graded $S$-module $M$ from its graded Betti numbers 
 $$
-H_{M}(t) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+t-j\choose n}.
+H_{M}(m) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+m-j\choose n}.
 $$
 \begin{example} [The homogeneous coordinate ring of a plane curve] 
 For the simplest non-trivial example, if $C$ is a plane curve with equation $F(x_{0},x_{1}x_{2})$ of 
@@ -63,9 +63,9 @@ $$
 Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
  $\beta_{0,0} = \beta_{1,d} = 1$, so
 $$
- H_{S_{C}}(t) = {2+t\choose 2} - {2-d+t\choose 2}
+ H_{S_{C}}(m) = {2+m\choose 2} - {2-d+m\choose 2}
  $$
- which has the value  $dt + 1+(2-d)(2-d-1)/2 = dt + (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus is the constant term minus 1, we get
+ which has the value  $dm + 1+(2-d)(2-d-1)/2 = dtm+ (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus is the constant term minus 1, we get
 $\deg C = d, p_{a}(C) = (d-1)(d-2)/2$ as we should, by now, expect. Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
 \end{example}
 
@@ -86,7 +86,8 @@ If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the s
 \end{proposition}
 
 In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
-Cohen-Macaulay module, or equivalently that the sheaf $\widetilde M$ is \emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is \emph{arithmetically Cohen-Macaulay.
+Cohen-Macaulay module, or equivalently that the sheaf $\widetilde M$ is 
+\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself. is arithmetically Cohen-Macaulay.
 
 Thus if $C\subset \PP^{n}$ is 1-dimensional the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
 
@@ -99,7 +100,7 @@ n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
 n &\hbox{otherwise}.
 \end{cases}.
 $$
-Thus in the first case $S_{C}$ is arithmetically Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal.
+Thus in the first case $S_{C}$ is arithmetically Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal. \fix{we used Serre's Criterion. Ref?}
 \end{theorem}
 
 In general the 
@@ -143,39 +144,187 @@ Suppose for simplicity that $M = \oplus_{t\in \ZZ}H^{0}\cO_{X}(t)$ for some sche
 \end{theorem}
 
 
-\section {A general adjunction formula} 
+\section {Dualizing sheaves} 
 
-%homological definitions of the canonical sheaf. (The canonical module as dual of a local cohomology, 
-%and local duality proves it's  an Ext (compare with the adjunction f
-%ormula.))
+Other than  the structure sheaf, the most important line bundle on a smooth curve $C$  is the cotangent line bundle, usually called the canonical line bundle or canonical sheaf $\omega_{C}$, and  we have many times used it's key property, that $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$ for any line bundle $\cF$ on $C$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
+$$
+\HH^{0}(\sHom_{C}(\sF, \omega_{C})) 
+\cong 
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+Setting $\sF = \omega_{C}$ we let $\eta: \HH^{1}(\omega_{C})\to k$ be the image of 
+the identity map $\omega_{C} \to \omega_{C}$, and call $\eta$ the residue map corresponding to the isomorphism; and, inversely, any nonzero functional 
+$\eta: \HH^{1}(\omega_{C})\to k$
+determines, for every $\sF$ a map
+$$
+f_{\eta}: \HH^{0}(\sHom_{C}(\sF, \omega_{C}))
+\to
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+sending a homomorphism
+$\alpha \in \HH^{0}(\sHom_{C}(\sF, \omega_{C})) = \Hom_{C}(\sF, \omega_{C})$
+to $\eta \circ \HH^{1}(\alpha)$ so that, for example, $\eta$ itself corresponds to the 
+identity map of $\omega_{C}$  Since $\HH^{1}(\omega_{C})$ is 1-dimensional, such a nonzero functional $\eta$ is unique up to scalars. (When $C$ is smooth over $\CC$, we may take $\eta$ to be the classical residue map of complex analysis if we like.)
 
-%\def\sExt{{\mathcal Ext}}
-The classical adjunction formula gives the canonical line bundle on a curve $C$ on a smooth surface $X$ in terms of the canonical bundle $\omega_{X}$ of $X$ as 
+It turns out that in this form the result is true for \emph{any} coherent sheaf $\cF$, and moreover can be generalized to any purely 1-dimensional projective scheme (and beyond: see Cheerful Fact\ref{fact****}). By way of terminology, if $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
+functional $\eta:\HH^{r}(\omega) \to k$ is \emph{dualizing} if the map
 $$
-\omega_{C} = \omega_{X}(C) |_{C},
+f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
+\to
+\Hom_{k}(\HH^{r}(\cF), k).
 $$
-and thus, even more familiarly, gives the genus of $C$ as an intersection number,
-$2\g(C)-2 = (K_{X}+C).C$. 
+defined as above is an isomorphism for every coherent sheaf $\sF$.
 
-We can reinterpret this formula homologically by noting that there is a short exact sequence
+We often abuse the terminology, and say simply that $\omega$ is a dualizing sheaf. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X}) = k$, then
+$\HH^{r}(\omega) \cong k$, whence $\eta$ is unique up to a scalar. 
+
+\fix{I think the proof given below works for a pure-dimensional scheme $X$ of any dimension, as in the book of Altman-Kleiman. Put this in? The intermediate cohomology groups are dual to each other iff $X$ is Cohen-Macaulay, a cheerful fact.}
+
+\begin{theorem}
+Let $X$ be a purely 1-dimensional projective scheme. There is a coherent sheaf
+$\omega$ on $X$ and a map $\eta_{X}: \HH^{1}(\omega) \to k$ such that
+the corresponding maps
 $$
-0\to \sO_{X}(-C) \to \sO_{X}\to \sO_{C}\to 0.
+f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
+\to
+\Hom_{k}(\HH^{1}(\cF), k): \qquad \alpha \mapsto \eta\circ \HH^{1}(\alpha)
 $$
-giving a long exact sequence in $\sExt_{\sO_{X}}(-, \omega_{X})$. Taking into account
-that $\sExt_{\sO_{X}}(\sO_{X}, \omega_{X}) =0$ because $\sO_{X}$ is locally free, we get the
-exact sequence
+are isomorphisms for any coherent sheaf $\sF$ on $X$. Moreover, this property determines the pair $(\omega_{X}, \eta)$ up to isomorphism in the sense that, given another such pair
+$(\omega'_{X}, \eta')$,  there is a unique isomorphism $g: \omega\to \omega'$ making the diagram
 $$
-\to \sHom_{\sO_{X}}(\sO_{X}, \omega_{X}) \to \sHom_{\sO_{X}}(\sO_{X}(-C), \omega_{X})
-\to \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) \to 0,
+\begin{diagram}
+ \omega&\rTo^{g}&\omega'\\
+ &\rdTo_{\eta}&\dTo_{\eta'}\\
+ &&k
+\end{diagram}
+$$
+commute. 
+\end{theorem}
+
+Any  sheaf $\omega$ with the property given in the Theorem is called a \emph{dualizing sheaf} for $X$, sometimes denoted $\omega_{X}$.
+
+\begin{proof}
+ 
+We first consider the case $C=\PP^{1}$. If $\cF$ is any coherent sheaf, then considering the torsion subsheaf we see that there is an exact sequence
+$$
+0\to \cF' \to \cF \to \cF''\to 0
 $$ 
-proving that
- $\sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) = \omega_{X}(C)|_{C}$, 
- and thus showing in this case that 
- $$
- \omega_{C} = \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}).
- $$
+where $\cF'$ has finite support and $\cF''$ is torsion free, and thus a sum of line bundles. Since
+$\cF'$ is locally free, the sequence is locally split (in fact it is globally split too, but we don't need this.)
 
- It turns out that the ``1'' in the $\sExt^{1}_{\sO_{X}}$ in this formula is just the codimension of $C$ in $X$, and that the result holds in great generality:
+Since $\omega_{\PP^{1}} = \cO_{\PP^{1}}(-2)$ is a line bundle, 
+$$
+\sHom_{\PP^1}(\sF, \omega_{\PP^{1}}) = 
+\sHom_{\PP^1}(\sF', \omega_{\PP^{1}}) \oplus \sHom_{\PP^1}(\sF'', \omega_{\PP^{1}})  = 
+\sHom_{\PP^1}(\sF', \omega_{\PP^{1}}) 
+$$
+and 
+$\HH^{1}(\cF) = \HH^{1}(\cF'')
+$
+because $\HH^{1}(\cF') = 0$, so the duality formula for arbitrary coherent sheaves follows from the case of line bundles.
+
+Now let $X$ be a purely 1-dimensional projective scheme. To construct a pair
+$(\omega_{X}, \eta)$ with the desired property, we choose a finite mapping 
+$\pi: X\to \PP^{1}$ (for example by embedding $X$ in some projective space $\PP^{n}$ and
+projecting from an $(n-2)$-plane disjoint from $X$). We define $\omega_{X}$ to be a sheaf
+on $X$ satisfying
+$$
+\pi_{*}(\omega_{X}) = \sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}).
+$$
+To see that there is such a sheaf, take an open affine cover $\{U_{i}\}$ of $\PP^{1}$ and pull it back to an open affine cover $\{V_{i} = \pi^{-1}(U_{i})\}$ of $X$. Because $\pi$ is finite, the restriction of 
+$\pi_{*} \cO_{X}$ to $U_{i}$ is naturally isomorphic to $\sO_{V_{i}}$, regarded as an $\sO_{U_{i}}$-module, and thus the restriction of
+$\sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}$ to $U_{i}$ is 
+$Hom_{U_{i}}(\cO_{V_{i}}, \omega_{\PP^{1}}|_{U_{i}})$,
+which is naturally a module over $\cO_{V_{i}}$. This gives $\omega_{X}:= \sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}$
+the structure of a sheaf on $X$, and it is obvious from the construction that this has the desired pushforward. Uniqueness (up to isomorphism) follows easily, but we will soon prove a stronger version.
+
+Because $\pi$ is finite we have
+$$
+\HH^{1}(\omega) = \HH^{1}(\pi_{*}\omega) 
+= \HH^{1}(\pi_{*}\sHom(\cO_{C}, \omega_{\PP^{1}}).
+$$
+We may use the structure map $\cO_{\PP^{1}} \to \pi_{*}\cO_{C}$ to deduce
+a map  
+$$
+\HH^{1}(\omega) = 
+\HH^{1}(\pi_{*}\sHom(\cO_{C}, \omega_{\PP^{1}})
+\to
+\HH^{1}(\sHom(\cO_{\PP^{1}}, \omega_{\PP^{1}})
+= \HH^{1}\omega_{\PP^{1}}
+$$
+and thus any residue map $\eta_{\PP^{1}}: \HH^{1}(\omega_{\PP^{1}}) \to k$
+gives rise, by composition, to a residue map 
+$\eta: \HH^{1}(\omega)\to k$.
+
+We next prove that the pair $(\omega, \eta)$ has the dualizing property given in the 
+Theorem.  Because $\pi$ is finite, the cohomology of a sheaf on $X$ is the same as the cohomology of its pushforward. In view of the construction of $\omega$, and the fact that $\omega_{\PP^{1}}$ is a dualizing sheaf for $\PP^{1}$, it suffices to show that there is a natural isomorphism
+$$
+\pi_{*}\sHom_{X}(\sF,\sHom_{\PP^{1}}(\pi_{*\sO_{X}}, \omega_{\PP^{1}})) \to \sHom_{\PP^{1}}(\pi_{*}\sF, \omega_{\PP^{1}}).
+$$
+Passing to an affine open set $U_{i}\subset \PP^{1}$ and its preimage $V_{i}\subset X$
+as in the definition of $\omega$,  the left hand side becomes
+$$
+\Hom_{V_{i}}(\sF|_{V_{i}}, \Hom_{U_{i}}(\cO_{X}|V_{i}, \omega_{\PP^{1}}|_{U_{i}}))
+$$
+where all the $V_{i}$-modules are considered $U_{i}$-modules via the structure
+map $\cO_{U_{i}} \to \cO_{V_{i}}$. The natural map sending an element $a$ to
+the map 
+$$
+f(a) \in \sHom_{U_{i}}(\sF|_{V_{i}}, \omega_{\PP^{1}}|_{U_{i}})
+$$
+that takes $t\in \sF|_{V_{i}}$ to $a(t)(1)\in \omega_{\PP^{1}}|_{U_{i}}$ is the natural
+isomorphism required.
+
+Finally, to prove the uniqueness statement, suppose that $(\omega',\eta')$ is also a dualizing module for $X$. The duality property of $\omega'$ yields
+$$
+\Hom_{X}(\omega, \omega') = \HH^{0}(\sHom(\omega, \omega')) = \Hom(\HH^{1}(\omega), k).
+$$
+Let $g: \omega \to \omega'$ be the map corresponding under this isomorphism to $\eta'$. It follows from the relation of $\eta'$ to the duality isomorphism, that 
+$\eta'g = \eta$. Similarly, we get a map $g':\omega'\to \omega$ such that
+$\eta g = \eta'$, and it also follows that $\eta gg' = f_{\eta}(gg') =  \eta$, so that
+$gg' = 1_{\omega'}$. Similarly, $g'g = 1_{\omega}$, and we are done.
+\end{proof}
+
+\begin{fact}[Dualizing sheaves in higher dimension] The proof given for curves above actually works for a purely $r$-dimensional projective scheme $X$ over $k$ if we replace the occurrences of  $\HH^{1}$ by $\HH^{r}$, and shows that every such scheme has a dualizing sheaf $\omega$. However, the isomorphisms
+$$
+\HH^{i} (\sHom(\sF, \omega)) \not\cong \Hom_{k}(\HH^{r-i}(\sF), k) 
+$$
+hold for all coherent $\sF$ if and only if $X$ is Cohen-Macaulay. In our situation
+this condition means that, if $\pi: X\to \PP^{r}$ is a finite map, then $\pi_{*}\cO_{X}$
+is locally free.
+
+ 
+\end{fact}
+\begin{exercise}[Adjunction formula] Prove directly that if $\omega_{Y}$ is a dualizing sheaf on a surface $Y$ and $X$ is a divisor on $Y$, then
+$\omega := \cO_{X}\otimes_{Y}\omega_{Y}(X))$ is a dualizing sheaf for $X$.  
+\end{exercise}
+
+%The classical adjunction formula gives the canonical line bundle on a curve $C$ on a smooth surface $X$ in terms of the canonical bundle $\omega_{X}$ of $X$ as 
+%$$
+%\omega_{C} = \omega_{X}(C) |_{C},
+%$$
+%and thus, even more familiarly, gives the genus of $C$ as an intersection number,
+%$2\g(C)-2 = (K_{X}+C).C$. 
+%
+%We can reinterpret this formula homologically by noting that there is a short exact sequence
+%$$
+%0\to \sO_{X}(-C) \to \sO_{X}\to \sO_{C}\to 0.
+%$$
+%giving a long exact sequence in $\sExt_{\sO_{X}}(-, \omega_{X})$. Taking into account
+%that $\sExt_{\sO_{X}}(\sO_{X}, \omega_{X}) =0$ because $\sO_{X}$ is locally free, we get the
+%exact sequence
+%$$
+%\to \sHom_{\sO_{X}}(\sO_{X}, \omega_{X}) \to \sHom_{\sO_{X}}(\sO_{X}(-C), \omega_{X})
+%\to \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) \to 0,
+%$$ 
+%proving that
+% $\sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) = \omega_{X}(C)|_{C}$, 
+% and thus showing in this case that 
+% $$
+% \omega_{C} = \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}).
+% $$
+%
+% It turns out that the ``1'' in the $\sExt^{1}_{\sO_{X}}$ in this formula is just the codimension of $C$ in $X$, and that the result holds in great generality:
  
 \begin{theorem}\label{canonical is ext}
 Let $C\subset X$ be a purely 1-dimensional subscheme of $\PP^{n}$. The canonical sheaf of $C$ is 
@@ -190,27 +339,101 @@ which is the sheafification of the graded module $\Ext^{n-1}(S_{C},S)(-n-1)$.
 For an abstract definition of the canonical bundle as a ``dualizing sheaf'' see \cite{AltmanKleiman}. For a smooth variety over $\CC$ the definition is satisfied by the the top exterior power of the cotangent bundle, and for $\PP^{n}$ this is $\sO(-n-1)$. A scheme is said to be Gorenstein if it has a dualizing sheaf that is locally free---the canonical bundle. A more general form of Theorem~\ref{canonical is ext} says that if $\pi: X -> Y$ is a finite morphism of pure dimensional Gorenstein schemes, and $Y$ has a canonical bundle $\omega_{Y}$, then the canonical bundle of $X$ may be
 represented as 
 $$
-\omega_{X} = \sExt^{\dim Y-\dim X}_{\pi_{*}\sO_{X}, \omega_{Y}),
+\omega_{X} = \sExt^{\dim Y-\dim X}_{\sO_{Y}}
+(\pi_{*}\sO_{X}, \omega_{Y}),
 $$ 
 regarded as a sheaf on $\sO_{X}$.
 \end{fact}
 
 \section{Noether's Theorem}\label{sec:canonical curves} 
 
+\fix{we need to do this in a setting where we know the statement of Riemann-Roch. How general is that? Not much harm in retreating to the case of irreducible curves or even smooth ones, and adding a ``fact'' for the general case.}
+
 As we remarked at the beginning of this Chapter, all canonically embedded smooth curves have the same Hilbert functions. We shall now show that they are all arithmetically Cohen-Macaulay.
 We follow the treatment in \cite{Schreyer}, and treats a more general situation than that of the 
 images of smooth curves under the canonical embeddings.
 
-We define a \emph{canonical curve} in \PP^{g-1} to be a curve such that 
+We define a \emph{canonical curve} in $\PP^{g-1}$ to be a purely one-dimensional, nondegenerate closed subscheme  such that
+$$
+ h^{0}(\sO_{C}) = 1, h^{0}(\sO_{C}(1) = g, \hbox{ and } \omega_{C} = \sO_{C}(1).
 $$
 
-$$
+We say that $C$ has a \emph{simple} $g-3$-dimensional $g-2$ secant if $C$ contains $g-2$ reduced points spanning a $(g-3)$ dimensional
+plane in $\PP^{g-1}$ that meets $C$ only in the $g-2$s points.
 
 \begin{theorem}[Max Noether]
-
- 
+A canonical curve in $\PP^{g-1}$ has degree $2g-2$ and arithmetic genus $g$. If the curve has a simple
+$g-3$-dimensional $g-2$ secant, then it is arithmetically Cohen-Macaulay; that is,
+$\h^{1}\sI_{C/\PP^{g-1}}(m) = 0$ for all $m\in \ZZ$.
 \end{theorem}
+ 
+Note that for a canonically embedded irreducible curve, the hypothesis of having a simple $g-3$-dimensional $g-2$ secant plane $\Lambda$ is the same as having a base-point free pencil of degree $g-2$; this is the linear series 
+cut out by the hyperplanes containing $\Lambda$.
 
+ Note that these hypotheses imply that $C$ is connected and Gorenstein.
+ 
+\begin{proof}
+We begin by showing that $\sO(-m)$ has no global sections for $m>0$.
+If $D$ is a divisor equivalent to $n$ times the hyperplane section, we have an exact sequence
+$$
+0\to \HH^{0}(\sO_{C}(-n)) \to \HH^{0}(\sO_{C}) \to \HH^{0}(\sO_{D}) \to \cdots.
+$$
+By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
+restrict non-trivially to $\sO_{D}$, and $\HH^{0}(\sO_{C}(-n)) = 0$ as claimed.
+
+Using the Riemann-Roch Theorem we can now compute the Hilbert function $\chi_{C}(m)$:
+We have 
+$$
+\chi_{C}(0) = h^{0}(\sO_{C}) - h^{1}(\sO_{C}) = h^{0}(\sO_{C}) - h^{0}(\omega_{C}) = 1-g.
+$$
+On the other hand 
+$$
+\chi_{C}(0) = h^{0}(\sO_{C}(1)) - h^{1}(\sO_{C}(1)) = h^{0}(\sO_{C}(1_{}) - h^{0}(\sO_{C}) = g-1.
+$$
+Since $\chi_{C}(m)$ is a polynomial of degree1 in $m$, we deduce
+$\chi_{C}(m) = (2g-2)m -g+1$, whence we see that the degree of $C$ is $2g-2$ and $\p(C) = g$ as claimed.
+
+To show that
+$C$ is arithmetically Cohen-Macaulay we use the sequence
+$$
+\cdots \to \HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
+\to \HH^{1}(\sI_{C}(m))\to \HH^{1}(\sO_{\PP^{n}}(m)) \to\cdots .
+$$
+Since $\HH^{0}(\sO_{\PP^{n}}(m)) = 0$, it
+is enough to show that the natural map 
+$$
+\HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
+$$
+ is surjective for all $m\in \ZZ$. For $m=0,1$ this is immediate from the hypothesis.
+
+For $m <0$ we must show $\HH^{0}(\sO_{\PP^{n}}(m))=0.$ 
+If $D$ is a divisor equivalent to $-m$ times the hyperplane section, we have an exact sequence
+$$
+0\to \HH^{0}(\sO_{C}(m)) 
+\to \HH^{0}(\sO_{C}) 
+\to \HH^{0}(\sO_{D}) \to \cdots.
+$$
+By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
+restrict non-trivially to $\sO_{D}$, so the kernel, $\HH^{0}(\sO_{C}(m))$, is 0 as claimed. 
+
+To prove surjectivity for $m\geq 2$ we use the remaining hypothesis, the existence of
+a simple $g-3$-dimensional $g-2$ secant plane $\Lambda$  and an idea sometimes called the \emph{base-point-free pencil trick}. Let $p_{0},\dots p_{g-3}$ be the points in which $\Lambda$ meets $C$.  Since the
+$p_{i}$ are linearly independent by hypothesis, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
+$x_{i}(p_{j} \neq 0$ if and only if $i = j$. It follows that the sections
+$x_{i}^{m}$ of $\sO_{C}(m)$ span $\HH^{0}(\sO_{C}(m)|_{\{p_{0}, \dots, p_{g-3}\}}$. Let 
+$V\subset \HH^{0}(\sO_{C}(1))$ be the two-dimensional subspace of linear forms vanishing on
+$\Lambda$, and thus on the $p_{i}$. 
+
+For $m\geq 2$ there are maps of vector spaces
+$$
+\wedge^{2} V\otimes \HH^{0}(\sO_{C}(m-2)) \to V\otimes \HH^{0}(\sO_{C}(m-1)) 
+\to \HH^{0}(\sO_{C}(m))
+$$
+where the right hand map is multiplication and the left hand map sends
+$s_{1}\wedge s_{2}\otimes \sigma$ to $s_{1}\sigma-s_{2}\sigma$ for any local section $\sigma$.
+The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never vanish simultaneously except on the $p_{i}$, and has image  consisting of sections that vanish on the points $p_{i}$
+
+\end{proof}
 \section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
 
  Regularity in terms of resolution and in terms of local cohomology. (has the relation of local to global coho been done already?)
