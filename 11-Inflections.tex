@@ -18,7 +18,7 @@ For any point $p \in C$, we can find a basis $\sigma_0, \dots, \sigma_r$ of $V$ 
 $$
 \{ \ord_p(\sigma) \mid \sigma \neq 0 \in V \}
 $$
-thus has cardinality $r+1$, ands we can write it as
+thus has cardinality $r+1$, and we can write it as
 $$
 \{ \ord_p(\sigma) \mid \sigma \neq 0 \in V \} = \{a_0,\dots,a_r\} \; \text{ with } \; a_0 < a_1 < \dots < a_r;
 $$
@@ -66,9 +66,105 @@ $$
 
 There is still much we don't know about Weierstras points in general. Most notably, we don't know what semigroups of finite index in $\NN$ occur as Weierstrass semigroups; an example of Buchweitz shows that not all semigroups occur, but there are also positive results, such as the statement ([EH]) that every semigroup of weight $w \leq g/2$ occurs, and its refinement and strengthening by Pflueger (\cite{**}).
 
-\section{ finiteness of the automorphism group}
+\section{Finiteness of the automorphism group}
 
-As an application of just the basic facts about Weierstrass, we will deduce a basic fact: that the automorphism group of a curve of genus $g\geq 2$ is finite. The idea behind the argument is simple: because the Weierstrass points of a curve $C$ are intrinsically defined, \emph{any automorphism of $C$ must carry Weierstrass points to Weierstrass points}.
+As an application of just a rudimentary knowledge Weierstrass points, we will deduce a fundamental fact: that the automorphism group of a curve of genus $g\geq 2$ is finite. The idea behind the argument is simple: because the Weierstrass points of a curve $C$ are intrinsically defined, \emph{any automorphism of $C$ must carry Weierstrass points to Weierstrass points}. Since there are only finitely many Weierstrass points, then, it will suffice to show that the subgroup of $Aut(C)$ of automorphisms of $C$ that fix all the Weierstrass points individually is finite. In fact, the following two lemmas establish a strong version of this:
+
+\begin{lemma}
+Let $C$ be a smooth projective curve of genus $g \geq 2$, and $f: C \to C$ an automorphism of $C$.
+\begin{enumerate}
+\item If $f$ has $2g+3$ distinct fixed points, then $f$ is the identity; and
+\item If $f$ has $2g+2$ distinct fixed points, then either $f$ is the identity or $C$ is hyperelliptic and $f$ is the hyperelliptic involution.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+There are two possible arguments here, one invoking the classical topology and applying the Lefschetz fixed point formula and the other more algebrao-geometric.
+
+For the first, we recall the definition of the \emph{Lefschetz number} of a map $f : M \to M$ of a compact oriented real $n$-manifold $M$. This is the alternating sum of the traces of the action of $f$ on $H^i(X,\CC)$:
+$$
+L(f) := \sum_{i=0}^n {\rm Trace}\left(f^* : H^i(X,\CC) \to H^i(X,\CC)\right).
+$$
+The Lefschetz fixed point formula then says that if $f$ has isolated fixed points, the number of those points, properly counted, is equal to $L(f)$.
+
+In the situation of a smooth projective curve over $\CC$, any automorphism other than the identity has isolated fixed points, and since the map is orientation-preserving each fixed point contributes positively to the total; thus the number of distinct fixed points is at most $L(f)$.
+
+Now suppose $f: C \to C$ is any automorphism. Of necessity, $f$ acts as the identity on $H^0(C, \CC)$ and $H^2(C, \CC)$, so if we want to bound $L(f)$ we just have to say something about the action of $f$ on $H^1(C,\CC)$. To do this, note that the action of $f$ on $H^1(C,\CC)$ respects the \emph{Hodge decomposition}
+$$
+H^1(C,\CC)  = H^0(K_C) \oplus H^1(\cO_C).
+$$  
+Moreover, the action of $f$ on $H^0(K_C)$ preserves the definite Hermitian inner product
+$$
+H(\eta, \phi) = \int_C \eta \wedge \overline \phi,
+$$
+and it follows that \emph{the eigenvalues of the action of $f$ on $H^0(K_C)$ are all complex numbers of absolute value 1}, and likewise for the action on $H^1(\cO_C)$. The absolute value of the trace of $f^*: H^1(C,\CC) \to H^1(C,\CC)$ is at most 2g, and hence
+$$
+L(f) \leq 2 + 2g,
+$$
+proving the stated inequality in general.
+
+Finally, if we have equality then $f$ must act as $-1$ on $H^1(C,\CC)$, and it follows (again from Lefschetz) that $f^2$ is the identity; applying Riemann-Hurwitz to the map from $C$ to the quotient $B = C/\langle f \rangle$ we may deduce that $B = \PP^1$, so $C$ is hyperelliptic and $f$ the hyperelliptic involution.
+\end{proof}
+
+An alternative, more algebraic argument for the lemma may be given using the intersection pairing on the surface $S = C \times C$ and applying the index theorem for surfaces. To carry this out, let $\Delta$ and $\Gamma \subset S$ be the diagonal and the graph of $f$ respectively, and let $\Phi_1$ and $\Phi_2 \subset S$ be fibers of the two projection maps; let $\delta, \gamma, \varphi_1$ and $\varphi_2 \in N(S)$ be the classes of these curves in the Neron-Severi group of $S$. We are trying to estimate the intersection number $b = \delta \cdot \gamma$.
+
+We know all the other pairwise intersection number of these classes: the ones involving $\varphi_1$ or $\varphi_2$ are obvious; we have
+$$
+\delta^2 = 2 - 2g
+$$
+and since the automorphism $id_C \times f : C\times C \to C \times C$ carries $\Delta$ to $\Gamma$, we see that $\gamma^2 = 2-2g$ as well.
+
+We can now apply the index theorem for surfaces to deduce our inequality. To keep things relatively simple, let's introduce two new classes: set
+$$
+\delta' = \delta - \varphi_1 - \varphi_2 \quad \text{and} \quad \gamma' = \gamma - \varphi_1 - \varphi_2,
+$$
+so that $\delta'$ and $\gamma'$ are orthogonal to the class $\varphi_1 + \varphi_2$. Since $\varphi_1 + \varphi_2$ has positive self-intersection, the index theorem tells us that the intersection pairing must be negative definite on the span $\langle \delta',\gamma' \rangle \subset N(S)$. In particular, the determinant of the intersection matrix
+
+
+\begin{center}
+\begin{tabular}{c|c|c}
+& $\delta'$ &  $\gamma'$  \\
+\hline
+$\delta'$ & $-2g$ & $b-2$ \\
+\hline
+$\gamma'$ & $b-2$ & $-2g$ 
+\end{tabular}
+\end{center}
+(where again $b = \gamma \cdot \delta$) must be positive, from which our inequality follows.
+
+Having established an upper bound on the number of fixed points an automorphism $f$ of $C$ (other than the identity) may have, it remains to find a lower bound on the number of distinct Weierstrass points; this is the content of the next lemma.
+
+
+\begin{lemma}
+If $C$ is a smooth projective curve of genus $g \geq 2$, then $C$ has at least $2g+2$ distinct Weierstrass points; and if it has exactly $2g+2$ Weierstrass points it is hyperelliptic.
+\end{lemma}
+
+\begin{proof}
+Let $p \in C$ be any point, and $w_1=w_1(p),\dots,w_g = w_g(p)$ the ramification sequence of the canonical series $|K_C|$ at $p$. By definition, 
+$$
+h^0(K_C(-(w_i+i)p)) = g - i.
+$$
+Applying Clifford's theorem we have
+$$
+g-i \leq \frac{2g - 2 - w_i - i}{2} + 1;
+$$
+solving, we see that
+$$
+w_i \leq i
+$$
+and hence
+$$
+w_p \leq \binom{g}{2}
+$$
+where $w_p$ is the total weight of $p$ as a Weierstrass point. Since the total weight of the Weierstrass points on $C$ is $g^3-g$ by Pl\"ucker, we see that the number of distinct Weierstrass points must be at least
+$$
+\frac{g^3-g}{\binom{g}{2}} = 2g+2.
+$$
+Finally, by the strong form of Clifford, equality here implies that the curve is hyperelliptic.
+\end{proof}
+
+
+
 
 \section{Proof of 1/2 BN by cuspidal curves}
 \begin{enumerate}
