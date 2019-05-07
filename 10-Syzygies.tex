@@ -1,0 +1,493 @@
+\input{header}
+
+\chapter{Syzygies}
+\label{SyzygiesChapter}
+
+\section{Introduction} 
+%Motivation: canonical embedding turns intrinsic invariants into projective invariants. Hilbert Function. Projective Normality; Canonical Module.
+%
+%What are the projective invariants that correspond to Clifford index? Conjecturally, Green's conjecture. Inequality from Eagon-Northcott.
+%
+%Hilbert Syzygy theorem, Hilbert function derivation, Unique minimal resolution, Betti table, 
+%\fix{ introduce tools as they are used}
+
+It is much easier to talk about the geometry of a curve once it is embedded in projective space, but of course this is really the geometry of a pair, the curve \emph{and} the embedding. However if we take the embedding corresponding to the complete linear series associated to the canonical line bundle (or a fixed multiple of it), then we can be sure we are talking about an intrinsic invariant of the curve itself. In genus 0,1 the canonical bundle is not ample, so this approach doesn't work; but in genus $\geq 2$,as we have seen in Chapter ****, the canonical bundle itself determines an embedding for all but hyperelliptic curves; the square of the canonical bundle gives an embedding for all  curves of genus $>2$; and the cube of the canonical bundle gives an embedding for every curve of genus $\geq 2$. 
+
+Once a curve is embedded in projective space, the first algebraic invariant we have looked at is it's Hilbert function; but this simply recovers the genus and the degree. A much finer invariant is the minimal free resolution of the homogeneous coordinate ring of the curve. For example according to the conjecture of Mark Green (now verified in many special cases), the free resolution determines the ``smallest'' base point free linear series on the curve, in a precise sense that we will describe.
+
+We begin by reviewing some basic facts about free resolutions. They are usually stated for
+modules over a local ring, and in that form the results here can be found in \cite[Ch ?]{E}. The proofs are essentially identical in the graded case presented here.
+
+Let 
+$R = R_{0} \oplus R_{1}\oplus\cdots$ be a positively graded ring, with $R_{0}$ a field,
+ and let $M$ be a finitely generated graded $S$-module. An  \emph{$R$-free resolution} of $M$ is a sequence of free graded $R$ modules $F_{i}$ and homogeneous maps $d_{i}$ of the form
+$$
+\FF: F_{0}:=\oplus_{j}R(-j)^{\beta_{0,j}} \lTo^{d_{1}} F_{1}:=\oplus_{j}R(-j)^{\beta_{0,j}}\lTo^{d_{2}} F_{2}\cdots
+$$
+and an \emph{augmentation} map $F_{0} \rOnto^{d_{0}} M$ such that the kernel of $d_{i}$ is equal to the image of $d_{i+1}$ for every $i$. 
+
+The resolution $\FF$ is \emph{minimal} if every entry of matrices representing the $d_{i}$ (for $i>0$ is of strictly positive degree. A minimal free resolution of $M$ can be constructed inductively by first choosing a minimal set of homogeneous generators of $M$, determining the map $d_{0}$, then choosing a minimal set of generators of $\ker d_{0}$, determining a map
+$F_{1} \rOnto \ker d_{0} \subset F_{0}$, and so on.
+
+The minimal free resolution can be used to derive invariants of $M$
+\cite[Theorem ***]{E} by virtue of the following:
+
+\begin{theorem}[Uniqueness]\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded is unique up to (non-unique) isomorphism.
+\end{theorem}
+
+From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules, and consider resolutions over this ring. In this case something quite special happens \cite[****]{E}:
+
+\begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
+The minimal $S$-free resolution $\FF$ of $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
+\end{theorem}
+
+The numbers $\beta_{i,j}$ in  the minimal $S$-free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; It follows from this that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
+$$
+H_{S(-j)}(m) = 
+\begin{cases}
+ {n+m-j \choose n} & \hbox{for $t\geq 0$}
+  \\ 
+ 0 & \hbox{for $t<0$}
+\end{cases}
+$$
+we can compute the Hilbert function for a finitely generated graded $S$-module $M$ from its graded Betti numbers 
+$$
+H_{M}(m) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+m-j\choose n}.
+$$
+\begin{example} [The homogeneous coordinate ring of a plane curve] 
+For the simplest non-trivial example, if $C$ is a plane curve with equation $F(x_{0},x_{1}x_{2})$ of 
+degree $d$, then the minimal free resolution of the homogeneous coordinate ring $S_{C}$ has the form
+$$
+\FF: S\lTo^{F}S(-d)\lTo 0
+$$
+Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
+ $\beta_{0,0} = \beta_{1,d} = 1$, so
+$$
+ H_{S_{C}}(m) = {2+m\choose 2} - {2-d+m\choose 2}
+ $$
+ which has the value  $dm + 1+(2-d)(2-d-1)/2 = dtm+ (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus is the constant term minus 1, we get
+$\deg C = d, p_{a}(C) = (d-1)(d-2)/2$ as we should, by now, expect. Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
+\end{example}
+
+\begin{exercise} In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
+Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
+$X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
+using the fact that the minimal free resolution of the homogeneous coordinate ring 
+$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex
+$$
+ S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
+ $$
+\end{exercise}
+
+Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing it here. The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. 
+
+\begin{proposition}
+If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the support of $M$.
+\end{proposition}
+
+In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
+Cohen-Macaulay module, or equivalently that the sheaf $\widetilde M$ is 
+\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself. is arithmetically Cohen-Macaulay.
+
+Thus if $C\subset \PP^{n}$ is 1-dimensional the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
+
+\begin{theorem}
+ Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme. The projective dimension of the homogeneous coordinate ring $S_{C}$ of $C$  is
+$$
+ pd_{S}S_{C} = 
+\begin{cases}
+n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
+n &\hbox{otherwise}.
+\end{cases}.
+$$
+Thus in the first case $S_{C}$ is arithmetically Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal. \fix{we used Serre's Criterion. Ref?}
+\end{theorem}
+
+In general the 
+
+Here is a quantitative version:
+
+\begin{theorem}
+Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme, and let  
+$$
+\FF: F_{0}\lTo^{d_{1}} F_{1}\lTo^{d_{2}} F_{2}\lTo \cdots \lTo F_{n-1}\lTo {d_{n}}F_{n}\lTo F_{n+1} \lTo 0
+$$
+be the minimal $S$-free resolution of the homogeneous coordinate ring of $C$. We have $F_{n+1}=0$, and 
+$$
+\oplus_{t\in \ZZ} (H^{1}\sO_{C}(t)) = \Hom_{\CC}(\Ext^{n}(S_{C}, S(-n-1)),\CC)
+$$ 
+which is sometimes called the \emph{Rao module} of $C$. Thus, up to a shift in grading,
+the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n}^{*}: F_{n-1}^{*}\to F_{n}$. This is a graded module of finite length.
+\end{theorem}
+
+
+\fix{it's not clear how much of the material here to prove; or, if we do prove it, whether we should introduce the general machinery of depth and admit that local cohomology makes the statements look cleaner. The rest of this section is a possible start on this...}
+
+A famous result of Auslander and Buchsbaum clarifies the meaning of projective dimension. We define the 
+\emph{depth} of $M$ to be the maximum length $\ell$ of a \emph{regular sequence on $M$}; that is, a sequence $G_{1},\dots,G_{\ell}$ of homogeneous forms of strictly positive degree such that 
+\begin{align*}
+G_{1} &\hbox{ is a nonzerodivisor on } M;\\
+G_{2} &\hbox{ is a nonzerodivisor on } M/G_{1}M;\\
+\vdots&\phantom{\hbox{ is a nonzerodivisor on } }\vdots\\
+G_{\ell} &\hbox{ is a nonzerodivisor on } M/(G_{1},\dots,G_{\ell-1})M.
+\end{align*}
+
+\begin{theorem}
+If $M$ is a finitely generated graded module over the polynomial ring $S := \CC[x_{0},\dots,x_{n}]$, and $M$ has depth $\ell$, then the projective dimension of $M$ is $n+1-\ell$.
+\end{theorem}
+
+Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of sheaf cohomology:
+
+Suppose for simplicity that $M = \oplus_{t\in \ZZ}H^{0}\cO_{X}(t)$ for some scheme $X\subset \PP^{n}$ without 0-dimensional (isolated or embedded) components, so that $M$ is a finitely generated $S$-module. 
+\begin{theorem}
+ With hypotheses as above, $\depth M$ is the largest integer $\ell$ such that $H^{i}(\cO_{X}(t) = 0$ for all $0<i<ell-1$ and all 
+\end{theorem}
+
+
+\section {Dualizing sheaves} 
+
+Other than  the structure sheaf, the most important line bundle on a smooth curve $C$  is the cotangent line bundle, usually called the canonical line bundle or canonical sheaf $\omega_{C}$, and  we have many times used it's key property, that $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$ for any line bundle $\cF$ on $C$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
+$$
+\HH^{0}(\sHom_{C}(\sF, \omega_{C})) 
+\cong 
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+Setting $\sF = \omega_{C}$ we let $\eta: \HH^{1}(\omega_{C})\to k$ be the image of 
+the identity map $\omega_{C} \to \omega_{C}$, and call $\eta$ the residue map corresponding to the isomorphism; and, inversely, any nonzero functional 
+$\eta: \HH^{1}(\omega_{C})\to k$
+determines, for every $\sF$ a map
+$$
+f_{\eta}: \HH^{0}(\sHom_{C}(\sF, \omega_{C}))
+\to
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+sending a homomorphism
+$\alpha \in \HH^{0}(\sHom_{C}(\sF, \omega_{C})) = \Hom_{C}(\sF, \omega_{C})$
+to $\eta \circ \HH^{1}(\alpha)$ so that, for example, $\eta$ itself corresponds to the 
+identity map of $\omega_{C}$  Since $\HH^{1}(\omega_{C})$ is 1-dimensional, such a nonzero functional $\eta$ is unique up to scalars. (When $C$ is smooth over $\CC$, we may take $\eta$ to be the classical residue map of complex analysis if we like.)
+
+It turns out that in this form the result is true for \emph{any} coherent sheaf $\cF$, and moreover can be generalized to any purely 1-dimensional projective scheme (and beyond: see Cheerful Fact\ref{fact****}). By way of terminology, if $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
+functional $\eta:\HH^{r}(\omega) \to k$ is \emph{dualizing} if the map
+$$
+f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
+\to
+\Hom_{k}(\HH^{r}(\cF), k).
+$$
+defined as above is an isomorphism for every coherent sheaf $\sF$.
+
+We often abuse the terminology, and say simply that $\omega$ is a dualizing sheaf. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X}) = k$, then
+$\HH^{r}(\omega) \cong k$, whence $\eta$ is unique up to a scalar. 
+
+\fix{I think the proof given below works for a pure-dimensional scheme $X$ of any dimension, as in the book of Altman-Kleiman. Put this in? The intermediate cohomology groups are dual to each other iff $X$ is Cohen-Macaulay, a cheerful fact.}
+
+\begin{theorem}
+Let $X$ be a purely 1-dimensional projective scheme. There is a coherent sheaf
+$\omega$ on $X$ and a map $\eta_{X}: \HH^{1}(\omega) \to k$ such that
+the corresponding maps
+$$
+f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
+\to
+\Hom_{k}(\HH^{1}(\cF), k): \qquad \alpha \mapsto \eta\circ \HH^{1}(\alpha)
+$$
+are isomorphisms for any coherent sheaf $\sF$ on $X$. Moreover, this property determines the pair $(\omega_{X}, \eta)$ up to isomorphism in the sense that, given another such pair
+$(\omega'_{X}, \eta')$,  there is a unique isomorphism $g: \omega\to \omega'$ making the diagram
+$$
+\begin{diagram}
+ \omega&\rTo^{g}&\omega'\\
+ &\rdTo_{\eta}&\dTo_{\eta'}\\
+ &&k
+\end{diagram}
+$$
+commute. 
+\end{theorem}
+
+Any  sheaf $\omega$ with the property given in the Theorem is called a \emph{dualizing sheaf} for $X$, sometimes denoted $\omega_{X}$.
+
+\begin{proof}
+ 
+We first consider the case $C=\PP^{1}$. If $\cF$ is any coherent sheaf, then considering the torsion subsheaf we see that there is an exact sequence
+$$
+0\to \cF' \to \cF \to \cF''\to 0
+$$ 
+where $\cF'$ has finite support and $\cF''$ is torsion free, and thus a sum of line bundles. Since
+$\cF'$ is locally free, the sequence is locally split (in fact it is globally split too, but we don't need this.)
+
+Since $\omega_{\PP^{1}} = \cO_{\PP^{1}}(-2)$ is a line bundle, 
+$$
+\sHom_{\PP^1}(\sF, \omega_{\PP^{1}}) = 
+\sHom_{\PP^1}(\sF', \omega_{\PP^{1}}) \oplus \sHom_{\PP^1}(\sF'', \omega_{\PP^{1}})  = 
+\sHom_{\PP^1}(\sF', \omega_{\PP^{1}}) 
+$$
+and 
+$\HH^{1}(\cF) = \HH^{1}(\cF'')
+$
+because $\HH^{1}(\cF') = 0$, so the duality formula for arbitrary coherent sheaves follows from the case of line bundles.
+
+Now let $X$ be a purely 1-dimensional projective scheme. To construct a pair
+$(\omega_{X}, \eta)$ with the desired property, we choose a finite mapping 
+$\pi: X\to \PP^{1}$ (for example by embedding $X$ in some projective space $\PP^{n}$ and
+projecting from an $(n-2)$-plane disjoint from $X$). We define $\omega_{X}$ to be a sheaf
+on $X$ satisfying
+$$
+\pi_{*}(\omega_{X}) = \sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}).
+$$
+To see that there is such a sheaf, take an open affine cover $\{U_{i}\}$ of $\PP^{1}$ and pull it back to an open affine cover $\{V_{i} = \pi^{-1}(U_{i})\}$ of $X$. Because $\pi$ is finite, the restriction of 
+$\pi_{*} \cO_{X}$ to $U_{i}$ is naturally isomorphic to $\sO_{V_{i}}$, regarded as an $\sO_{U_{i}}$-module, and thus the restriction of
+$\sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}$ to $U_{i}$ is 
+$Hom_{U_{i}}(\cO_{V_{i}}, \omega_{\PP^{1}}|_{U_{i}})$,
+which is naturally a module over $\cO_{V_{i}}$. This gives $\omega_{X}:= \sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}$
+the structure of a sheaf on $X$, and it is obvious from the construction that this has the desired pushforward. Uniqueness (up to isomorphism) follows easily, but we will soon prove a stronger version.
+
+Because $\pi$ is finite we have
+$$
+\HH^{1}(\omega) = \HH^{1}(\pi_{*}\omega) 
+= \HH^{1}(\pi_{*}\sHom(\cO_{C}, \omega_{\PP^{1}}).
+$$
+We may use the structure map $\cO_{\PP^{1}} \to \pi_{*}\cO_{C}$ to deduce
+a map  
+$$
+\HH^{1}(\omega) = 
+\HH^{1}(\pi_{*}\sHom(\cO_{C}, \omega_{\PP^{1}})
+\to
+\HH^{1}(\sHom(\cO_{\PP^{1}}, \omega_{\PP^{1}})
+= \HH^{1}\omega_{\PP^{1}}
+$$
+and thus any residue map $\eta_{\PP^{1}}: \HH^{1}(\omega_{\PP^{1}}) \to k$
+gives rise, by composition, to a residue map 
+$\eta: \HH^{1}(\omega)\to k$.
+
+We next prove that the pair $(\omega, \eta)$ has the dualizing property given in the 
+Theorem.  Because $\pi$ is finite, the cohomology of a sheaf on $X$ is the same as the cohomology of its pushforward. In view of the construction of $\omega$, and the fact that $\omega_{\PP^{1}}$ is a dualizing sheaf for $\PP^{1}$, it suffices to show that there is a natural isomorphism
+$$
+\pi_{*}\sHom_{X}(\sF,\sHom_{\PP^{1}}(\pi_{*\sO_{X}}, \omega_{\PP^{1}})) \to \sHom_{\PP^{1}}(\pi_{*}\sF, \omega_{\PP^{1}}).
+$$
+Passing to an affine open set $U_{i}\subset \PP^{1}$ and its preimage $V_{i}\subset X$
+as in the definition of $\omega$,  the left hand side becomes
+$$
+\Hom_{V_{i}}(\sF|_{V_{i}}, \Hom_{U_{i}}(\cO_{X}|V_{i}, \omega_{\PP^{1}}|_{U_{i}}))
+$$
+where all the $V_{i}$-modules are considered $U_{i}$-modules via the structure
+map $\cO_{U_{i}} \to \cO_{V_{i}}$. The natural map sending an element $a$ to
+the map 
+$$
+f(a) \in \sHom_{U_{i}}(\sF|_{V_{i}}, \omega_{\PP^{1}}|_{U_{i}})
+$$
+that takes $t\in \sF|_{V_{i}}$ to $a(t)(1)\in \omega_{\PP^{1}}|_{U_{i}}$ is the natural
+isomorphism required.
+
+Finally, to prove the uniqueness statement, suppose that $(\omega',\eta')$ is also a dualizing module for $X$. The duality property of $\omega'$ yields
+$$
+\Hom_{X}(\omega, \omega') = \HH^{0}(\sHom(\omega, \omega')) = \Hom(\HH^{1}(\omega), k).
+$$
+Let $g: \omega \to \omega'$ be the map corresponding under this isomorphism to $\eta'$. It follows from the relation of $\eta'$ to the duality isomorphism, that 
+$\eta'g = \eta$. Similarly, we get a map $g':\omega'\to \omega$ such that
+$\eta g = \eta'$, and it also follows that $\eta gg' = f_{\eta}(gg') =  \eta$, so that
+$gg' = 1_{\omega'}$. Similarly, $g'g = 1_{\omega}$, and we are done.
+\end{proof}
+
+\begin{fact}[Dualizing sheaves in higher dimension] The proof given for curves above actually works for a purely $r$-dimensional projective scheme $X$ over $k$ if we replace the occurrences of  $\HH^{1}$ by $\HH^{r}$, and shows that every such scheme has a dualizing sheaf $\omega$. However, the isomorphisms
+$$
+\HH^{i} (\sHom(\sF, \omega)) \not\cong \Hom_{k}(\HH^{r-i}(\sF), k) 
+$$
+hold for all coherent $\sF$ if and only if $X$ is Cohen-Macaulay. In our situation
+this condition means that, if $\pi: X\to \PP^{r}$ is a finite map, then $\pi_{*}\cO_{X}$
+is locally free.
+
+A scheme is said to be Gorenstein if it has a dualizing sheaf that is locally free---the canonical bundle. A more general form of Theorem~\ref{canonical is ext} says that if $\pi: X -> Y$ is a finite morphism of pure dimensional Gorenstein schemes, and $Y$ has a canonical bundle $\omega_{Y}$, then the canonical bundle of $X$ may be
+represented as 
+$$
+\omega_{X} = \sExt^{\dim Y-\dim X}_{\sO_{Y}}
+(\pi_{*}\sO_{X}, \omega_{Y}),
+$$ 
+regarded as a sheaf on $\sO_{X}$.
+
+For all this and more, see \cite{AltmanKleiman}.
+\end{fact}
+
+ 
+
+\begin{exercise}[Adjunction formula] Prove directly that if $\omega_{Y}$ is a dualizing sheaf on a surface $Y$ and $X$ is a divisor on $Y$, then
+$\omega := \cO_{X}\otimes_{Y}\omega_{Y}(X))$ is a dualizing sheaf for $X$.  
+\end{exercise}
+
+%%The classical adjunction formula gives the canonical line bundle on a curve $C$ on a smooth surface $X$ in terms of the canonical bundle $\omega_{X}$ of $X$ as 
+%%$$
+%%\omega_{C} = \omega_{X}(C) |_{C},
+%%$$
+%%and thus, even more familiarly, gives the genus of $C$ as an intersection number,
+%%$2\g(C)-2 = (K_{X}+C).C$. 
+%%
+%%We can reinterpret this formula homologically by noting that there is a short exact sequence
+%%$$
+%%0\to \sO_{X}(-C) \to \sO_{X}\to \sO_{C}\to 0.
+%%$$
+%%giving a long exact sequence in $\sExt_{\sO_{X}}(-, \omega_{X})$. Taking into account
+%%that $\sExt_{\sO_{X}}(\sO_{X}, \omega_{X}) =0$ because $\sO_{X}$ is locally free, we get the
+%%exact sequence
+%%$$
+%%\to \sHom_{\sO_{X}}(\sO_{X}, \omega_{X}) \to \sHom_{\sO_{X}}(\sO_{X}(-C), \omega_{X})
+%%\to \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) \to 0,
+%%$$ 
+%%proving that
+%% $\sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) = \omega_{X}(C)|_{C}$, 
+%% and thus showing in this case that 
+%% $$
+%% \omega_{C} = \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}).
+%% $$
+%%
+%% It turns out that the ``1'' in the $\sExt^{1}_{\sO_{X}}$ in this formula is just the codimension of $C$ in $X$, and that the result holds in great generality:
+% 
+%\begin{theorem}\label{canonical is ext}
+%Let $C\subset X$ be a purely 1-dimensional subscheme of $\PP^{n}$. The canonical sheaf of $C$ is 
+%$$
+%\omega_{C} \cong \sExt^{n-1}_{\sO_{\PP^{n}}}(\sO_{C}, \omega_{\PP^{n}}) = 
+%\sExt^{n-1}_{\sO_{\PP^{n}}}(\sO_{C}, \sO_{\PP^{n}})(-n-1).
+%$$
+%which is the sheafification of the graded module $\Ext^{n-1}(S_{C},S)(-n-1)$.
+%\end{theorem}
+%
+%For an abstract definition of the canonical bundle as a ``dualizing sheaf'' see \cite{AltmanKleiman}. For a smooth variety over $\CC$ the definition is satisfied by the the top exterior power of the cotangent bundle, and for $\PP^{n}$ this is $\sO(-n-1)$. 
+%\section{Noether's Theorem}\label{sec:canonical curves} 
+%
+%\fix{we need to do this in a setting where we know the statement of Riemann-Roch. How general is that? Not much harm in retreating to the case of irreducible curves or even smooth ones, and adding a ``fact'' for the general case.}
+
+As we remarked at the beginning of this Chapter, all canonically embedded smooth curves have the same Hilbert functions. We shall now show that they are all arithmetically Cohen-Macaulay.
+We follow the treatment in \cite{Schreyer}, and treats a more general situation than that of the 
+images of smooth curves under the canonical embeddings.
+
+We define a \emph{canonical curve} in $\PP^{g-1}$ to be a purely one-dimensional, nondegenerate closed subscheme  such that
+$$
+ h^{0}(\sO_{C}) = 1, h^{0}(\sO_{C}(1) = g, \hbox{ and } \omega_{C} = \sO_{C}(1).
+$$
+
+We say that $C$ has a \emph{simple} $g-3$-dimensional $g-2$ secant if $C$ contains $g-2$ reduced points spanning a $(g-3)$ dimensional
+plane in $\PP^{g-1}$ that meets $C$ only in the $g-2$s points.
+
+\begin{theorem}[Max Noether]
+A canonical curve in $\PP^{g-1}$ has degree $2g-2$ and arithmetic genus $g$. If the curve has a simple
+$g-3$-dimensional $g-2$ secant, then it is arithmetically Cohen-Macaulay; that is,
+$\h^{1}\sI_{C/\PP^{g-1}}(m) = 0$ for all $m\in \ZZ$.
+\end{theorem}
+ 
+Note that for a canonically embedded irreducible curve, the hypothesis of having a simple $g-3$-dimensional $g-2$ secant plane $\Lambda$ is the same as having a base-point free pencil of degree $g-2$; this is the linear series 
+cut out by the hyperplanes containing $\Lambda$.
+
+ Note that these hypotheses imply that $C$ is connected and Gorenstein.
+ 
+\begin{proof}
+We begin by showing that $\sO(-m)$ has no global sections for $m>0$.
+If $D$ is a divisor equivalent to $n$ times the hyperplane section, we have an exact sequence
+$$
+0\to \HH^{0}(\sO_{C}(-n)) \to \HH^{0}(\sO_{C}) \to \HH^{0}(\sO_{D}) \to \cdots.
+$$
+By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
+restrict non-trivially to $\sO_{D}$, and $\HH^{0}(\sO_{C}(-n)) = 0$ as claimed.
+
+Using the Riemann-Roch Theorem we can now compute the Hilbert function $\chi_{C}(m)$:
+We have 
+$$
+\chi_{C}(0) = h^{0}(\sO_{C}) - h^{1}(\sO_{C}) = h^{0}(\sO_{C}) - h^{0}(\omega_{C}) = 1-g.
+$$
+On the other hand 
+$$
+\chi_{C}(0) = h^{0}(\sO_{C}(1)) - h^{1}(\sO_{C}(1)) = h^{0}(\sO_{C}(1_{}) - h^{0}(\sO_{C}) = g-1.
+$$
+Since $\chi_{C}(m)$ is a polynomial of degree1 in $m$, we deduce
+$\chi_{C}(m) = (2g-2)m -g+1$, whence we see that the degree of $C$ is $2g-2$ and $\p(C) = g$ as claimed.
+
+To show that
+$C$ is arithmetically Cohen-Macaulay we use the sequence
+$$
+\cdots \to \HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
+\to \HH^{1}(\sI_{C}(m))\to \HH^{1}(\sO_{\PP^{n}}(m)) \to\cdots .
+$$
+Since $\HH^{0}(\sO_{\PP^{n}}(m)) = 0$, it
+is enough to show that the natural map 
+$$
+\HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
+$$
+ is surjective for all $m\in \ZZ$. For $m=0,1$ this is immediate from the hypothesis.
+
+For $m <0$ we must show $\HH^{0}(\sO_{\PP^{n}}(m))=0.$ 
+If $D$ is a divisor equivalent to $-m$ times the hyperplane section, we have an exact sequence
+$$
+0\to \HH^{0}(\sO_{C}(m)) 
+\to \HH^{0}(\sO_{C}) 
+\to \HH^{0}(\sO_{D}) \to \cdots.
+$$
+By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
+restrict non-trivially to $\sO_{D}$, so the kernel, $\HH^{0}(\sO_{C}(m))$, is 0 as claimed. 
+
+To prove surjectivity for $m\geq 2$ we use the remaining hypothesis, the existence of
+a simple $g-3$-dimensional $g-2$ secant plane $\Lambda$  and an idea sometimes called the \emph{base-point-free pencil trick}. Let $p_{0},\dots p_{g-3}$ be the points in which $\Lambda$ meets $C$.  Since the
+$p_{i}$ are linearly independent by hypothesis, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
+$x_{i}(p_{j} \neq 0$ if and only if $i = j$. It follows that the sections
+$x_{i}^{m}$ of $\sO_{C}(m)$ span $\HH^{0}(\sO_{C}(m)|_{\{p_{0}, \dots, p_{g-3}\}}$. Let 
+$V\subset \HH^{0}(\sO_{C}(1))$ be the two-dimensional subspace of linear forms vanishing on
+$\Lambda$, and thus on the $p_{i}$. 
+
+For $m\geq 2$ there are maps of vector spaces
+$$
+\wedge^{2} V\otimes \HH^{0}(\sO_{C}(m-2)) \to V\otimes \HH^{0}(\sO_{C}(m-1)) 
+\to \HH^{0}(\sO_{C}(m))
+$$
+where the right hand map is multiplication and the left hand map sends
+$s_{1}\wedge s_{2}\otimes \sigma$ to $s_{1}\sigma-s_{2}\sigma$ for any local section $\sigma$.
+The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never vanish simultaneously except on the $p_{i}$, and has image  consisting of sections that vanish on the points $p_{i}$
+
+\end{proof}
+\section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
+
+ Regularity in terms of resolution and in terms of local cohomology. (has the relation of local to global coho been done already?)
+
+We'll need local cohomology, local duality, 
+ Local duality, WMACE
+recall the $2g+1$ theorem from Ch 4. Say that it's ACM+smooth. relate it to regularity as in "geom of syz". Say that the projective
+normality of smooth CI's is really ACM for all CI's. Say that ACM is measured by the length of the free resolution.
+
+
+\section{Liaison of curves in $\PP^3$.}
+%Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
+
+\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
+is a complete intersection.
+ The Hartshorne-Rao Theorem \cite{} asserts that 
+$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
+\end{fact}
+
+
+Genus formula by filtration: Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
+$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
+$\cI_C = (\cI_D:\cI_{C'})$,  and by local duality (?) that 
+$$
+\omega_{C'} = \cHom_{\cO_D}(\cO_C, \omega_D) = 
+\cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))
+=  (\cI_D:\cI_C)(d_1+d_2-4).
+$$
+Thus there is an exact sequence
+$$
+0\to \omega_{C'}(-d_1-d_2+4) \to \cO_D \to \cO_C \to 0.
+$$
+Computing Hilbert polynomials via RR gives the genus formula.
+
+Construction of curves with given Rao module: Bourbaki's theorem.
+
+
+
+
+\section{Syzygies and the Clifford index}
+Green's Conjecture, Voisin's Theorem, Ein-Lazarsfeld Theorem --- all cheerful facts. proof that low gonality implies long linear part.
+
+
+\subsection{The Eagon-Northcott complex (lite)}:  \fix{maybe E-N complex belongs in the scrolls schapter?}
+--Koszul complex.
+--The inequality in Green's conjecture.
+--resolutions of the rational normal curves and scrolls.
+--Green's conjecture inequality.
+
+\subsection{Low genus canonical embeddings} Schreyer's table (include $g=9$)?
+
+\section{Cheerful facts about Stillman's problem}
+%\section{Low degree}
+
+\input{footer}
