@@ -20,7 +20,7 @@ modules over a local ring, and in that form the results here can be found in \ci
 
 Let 
 $R = R_{0} \oplus R_{1}\oplus\cdots$ be a positively graded ring, with $R_{0}$ a field,
- and let $M$ be a finitely generated graded $S$-module. An  \emph{$R$-free resolution} of $M$ is a sequence of free graded $R$ modules $F_{i}$ and homogeneous maps $d_{i}$ of the form
+ and let $M$ be a finitely generated graded $S$-module. An  \emph{$R$-free resolution} of $M$ is a sequence of free graded $R$ modules $F_{i}$ and homogeneous degree 0 maps $d_{i}$ of the form
 $$
 \FF: F_{0}:=\oplus_{j}R(-j)^{\beta_{0,j}} \lTo^{d_{1}} F_{1}:=\oplus_{j}R(-j)^{\beta_{0,j}}\lTo^{d_{2}} F_{2}\cdots
 $$
@@ -38,8 +38,12 @@ The minimal free resolution can be used to derive invariants of $M$
 From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules, and consider resolutions over this ring. In this case something quite special happens \cite[****]{E}:
 
 \begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
-The minimal $S$-free resolution $\FF$ of $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
+The minimal $S$-free resolution $\FF$ of any finitely generated graded $S$-module $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
 \end{theorem}
+
+\begin{fact}
+ There are in fact finite resolutions for all $S$-modules; however there is generally no reasonable notion of a  minimal resolution outside the finitely generated graded or local cases. See \cite{???}.
+\end{fact}
 
 The numbers $\beta_{i,j}$ in  the minimal $S$-free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; It follows from this that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
 $$
@@ -73,7 +77,7 @@ $\deg C = d, p_{a}(C) = (d-1)(d-2)/2$ as we should, by now, expect. Note that th
 Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
 $X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
 using the fact that the minimal free resolution of the homogeneous coordinate ring 
-$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex
+$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex (see \cite{???}):
 $$
  S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
  $$
@@ -86,7 +90,7 @@ If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the s
 \end{proposition}
 
 In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
-Cohen-Macaulay module, or equivalently that the sheaf $\widetilde M$ is 
+Cohen-Macaulay $S$-module, or equivalently that the sheaf $\widetilde M$ is 
 \emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself. is arithmetically Cohen-Macaulay.
 
 Thus if $C\subset \PP^{n}$ is 1-dimensional the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
@@ -100,12 +104,10 @@ n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
 n &\hbox{otherwise}.
 \end{cases}.
 $$
-Thus in the first case $S_{C}$ is arithmetically Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal. \fix{we used Serre's Criterion. Ref?}
+Thus in the first case $S_{C}$ is Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal. \fix{we used Serre's Criterion. Ref?}
 \end{theorem}
 
-In general the 
-
-Here is a quantitative version:
+Here is a version that gives a measure of how far $S_C$ is  from being Cohen-Macaulay:
 
 \begin{theorem}
 Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme, and let  
@@ -146,7 +148,7 @@ Suppose for simplicity that $M = \oplus_{t\in \ZZ}H^{0}\cO_{X}(t)$ for some sche
 
 \section {Dualizing sheaves} 
 
-Other than  the structure sheaf, the most important line bundle on a smooth curve $C$  is the cotangent line bundle, usually called the canonical line bundle or canonical sheaf $\omega_{C}$, and  we have many times used it's key property, that $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$ for any line bundle $\cF$ on $C$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
+Other than  the structure sheaf, the most important line bundle on a smooth curve $C$  is the cotangent line bundle, usually called the canonical line bundle or canonical sheaf $\omega_{C}$, and  we have many times used it's key property, that if  $\cF$  is a line bundle on $C$, then $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
 $$
 \HH^{0}(\sHom_{C}(\sF, \omega_{C})) 
 \cong 
@@ -164,7 +166,7 @@ $$
 sending a homomorphism
 $\alpha \in \HH^{0}(\sHom_{C}(\sF, \omega_{C})) = \Hom_{C}(\sF, \omega_{C})$
 to $\eta \circ \HH^{1}(\alpha)$ so that, for example, $\eta$ itself corresponds to the 
-identity map of $\omega_{C}$  Since $\HH^{1}(\omega_{C})$ is 1-dimensional, such a nonzero functional $\eta$ is unique up to scalars. (When $C$ is smooth over $\CC$, we may take $\eta$ to be the classical residue map of complex analysis if we like.)
+identity map of $\omega_{C}$  Since $\HH^{1}(\omega_{C})$ is 1-dimensional, such a nonzero functional $\eta$ is unique up to scalars. (When $C$ is smooth over $\CC$, we could take $\eta$ to be the classical residue map of complex analysis.)
 
 It turns out that in this form the result is true for \emph{any} coherent sheaf $\cF$, and moreover can be generalized to any purely 1-dimensional projective scheme (and beyond: see Cheerful Fact\ref{fact****}). By way of terminology, if $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
 functional $\eta:\HH^{r}(\omega) \to k$ is \emph{dualizing} if the map
@@ -175,7 +177,7 @@ f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
 $$
 defined as above is an isomorphism for every coherent sheaf $\sF$.
 
-We often abuse the terminology, and say simply that $\omega$ is a dualizing sheaf. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X}) = k$, then
+We often abuse the terminology, and say simply that $\omega$ is a dualizing sheaf. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X})) = k$, then
 $\HH^{r}(\omega) \cong k$, whence $\eta$ is unique up to a scalar. 
 
 \fix{I think the proof given below works for a pure-dimensional scheme $X$ of any dimension, as in the book of Altman-Kleiman. Put this in? The intermediate cohomology groups are dual to each other iff $X$ is Cohen-Macaulay, a cheerful fact.}
@@ -441,7 +443,7 @@ The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never van
  Regularity in terms of resolution and in terms of local cohomology. (has the relation of local to global coho been done already?)
 
 We'll need local cohomology, local duality, 
- Local duality, WMACE
+ WMACE
 recall the $2g+1$ theorem from Ch 4. Say that it's ACM+smooth. relate it to regularity as in "geom of syz". Say that the projective
 normality of smooth CI's is really ACM for all CI's. Say that ACM is measured by the length of the free resolution.
 
@@ -479,7 +481,26 @@ Construction of curves with given Rao module: Bourbaki's theorem.
 Green's Conjecture, Voisin's Theorem, Ein-Lazarsfeld Theorem --- all cheerful facts. proof that low gonality implies long linear part.
 
 
-\subsection{The Eagon-Northcott complex (lite)}:  \fix{maybe E-N complex belongs in the scrolls schapter?}
+\subsection{The Eagon-Northcott complex (lite)}:  \fix{maybe E-N complex belongs in the scrolls schapter?}`	
+
+The first non-trivial example of a finite free resolution is the Koszul complex on 3 variables, which is the minimal $S = k[x,y,z]$-free resolution of the module $S/(x,y,z)$:
+$$
+0\to S(-3) \rTo^{
+\begin{pmatrix}
+x\\y\\z 
+\end{pmatrix}}
+ S^3(-2) \rTo^{\begin{pmatrix}
+0&-z&y\\
+z&0&-x\\
+-y&x &0
+\end{pmatrix}}
+S^3(-1) \rTo^{
+\begin{pmatrix}
+x&y&z
+\end{pmatrix}}
+S
+$$
+In fact this is the first example that Hilbert presented in his famous paper \cite{}. 																											
 --Koszul complex.
 --The inequality in Green's conjecture.
 --resolutions of the rational normal curves and scrolls.
