@@ -3,7 +3,7 @@
 \chapter{Inflections and Brill Noether}
 \label{InflectionsChapter}
 
-In this concluding chapter, we want to introduce one more aspect of the geometry of linear series on curves, the \emph{inflectionary points} of a linear system,and use it to give a proof of at least half of the classical Brill-Noether theorem.
+In this concluding chapter, we want to introduce one more aspect of the geometry of linear series on curves, the \emph{inflectionary points} of a linear system, and use it to give a proof of at least half of the classical Brill-Noether theorem.
 
 Inflectionary points in general are a direct generalization of the notion of flex point of a smooth plane curve to curves in higher-dimensional space. Just as a point $p \in C$ on a smooth plane curve $C \subset \PP^2$ is called a \emph{flex point} if there is a line $L \subset \PP^2$ having contact of order 3 or more with $C$ at $p$, a point on a smooth, nondegenerate curve $C \subset \PP^r$ will be called an inflectionary point if there is a hyperplane $H \subset \PP^r$ having contact of order $r+1$ or more with $C$ at $p$. This notion can be extended to arbitrary linear series on smooth curves (as opposed to very ample ones); we'll see below that every linear series has finitely many inflectionary points, and how to count them.
 
@@ -64,11 +64,11 @@ $$
 \sum_{p \in C} w_p \; = \; g^3-g.
 $$
 
-There is still much we don't know about Weierstras points in general. Most notably, we don't know what semigroups of finite index in $\NN$ occur as Weierstrass semigroups; an example of Buchweitz shows that not all semigroups occur, but there are also positive results, such as the statement ([EH]) that every semigroup of weight $w \leq g/2$ occurs, and its refinement and strengthening by Pflueger (\cite{**}).
+There is still much we don't know about Weierstrass points in general. Most notably, we don't know what semigroups of finite index in $\NN$ occur as Weierstrass semigroups; an example of Buchweitz shows that not all semigroups occur, but there are also positive results, such as the statement ([EH]) that every semigroup of weight $w \leq g/2$ occurs, and its refinement and strengthening by Pflueger (\cite{**}).
 
 \section{Finiteness of the automorphism group}
 
-As an application of just a rudimentary knowledge Weierstrass points, we will deduce a fundamental fact: that the automorphism group of a curve of genus $g\geq 2$ is finite. The idea behind the argument is simple: because the Weierstrass points of a curve $C$ are intrinsically defined, \emph{any automorphism of $C$ must carry Weierstrass points to Weierstrass points}. Since there are only finitely many Weierstrass points, then, it will suffice to show that the subgroup of $Aut(C)$ of automorphisms of $C$ that fix all the Weierstrass points individually is finite. In fact, the following two lemmas establish a strong version of this:
+As an application of just a rudimentary knowledge of Weierstrass points, we will deduce a fundamental fact: that the automorphism group of a curve of genus $g\geq 2$ is finite. The idea behind the argument is simple: because the Weierstrass points of a curve $C$ are intrinsically defined, \emph{any automorphism of $C$ must carry Weierstrass points to Weierstrass points}. Since there are only finitely many Weierstrass points, then, it will suffice to show that the subgroup of $Aut(C)$ of automorphisms of $C$ that fix all the Weierstrass points individually is finite. In fact, the following two lemmas establish a strong version of this:
 
 \begin{lemma}
 Let $C$ be a smooth projective curve of genus $g \geq 2$, and $f: C \to C$ an automorphism of $C$.
@@ -166,10 +166,165 @@ Finally, by the strong form of Clifford, equality here implies that the curve is
 
 
 
-\section{Proof of 1/2 BN by cuspidal curves}
+\section{Proof of (half of) the Brill-Noether theorem}
+
+In its most basic form, the Brill-Noether theorem asserts for any $d, g$ and $r$ that
 \begin{enumerate}
- 
-\item Reference to the appendix of 3264 for the existence half
+\item if $\rho(g,r,d) := g - (r+1)(g-d+r) \geq 0$, then every curve $C$ of genus $g$ possesses as $g^r_d$; and
+\item if $\rho < 0$ then a general curve of genus $g$ does not possess a $g^r_d$.
+\end{enumerate}
+
+The first part, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{}) and Kleiman-Laksov (\cite{}); both proofs relied on an application of the Thom-Porteous formula to a particular map of vector bundles on the Jacobian of $C$. An account of this argument may also be found in Appendix A of \cite{}. 
+
+We will now apply the notion of inflectionary points, and the Pl\"ucker formula in particular, to deduce the second half of the statement above---the ``nonexistence half." We will then go back and deduce some of the other parts of the full Brill-Noether statement from the same set-up.
+
+The basic approach here is to consider a family of curves $\pi : \cC \to B$, where
+\begin{enumerate}
+\item $B$ is a smooth curve, with distinguished point $0 \in B$;
+\item for all $b \neq 0 \in B$, the fiber $C_b = \pi^{-1}(b)$ is a smooth, projective curve of genus $g$;  and
+\item the fiber $C_0$ over $0$ is a rational curve with $g$ ordinary cusps.
+\end{enumerate}
+
+We will establish the
+
+\begin{theorem}
+If $\cC \to B$ is a family of curves as above, then for general $b \in B$ the fiber $C_b$ does not possess a $g^r_d$ with $\rho < 0$.
+\end{theorem}
+
+
+The basic outline of the argument is by contradiction, but straightforward: we assume that the general curve $C_b$ in the family does have a $g^r_d$, consider what the limit of those $g^r_d$s might look like and, using our knowledge of the relatively simple curve $C_0$, arrive at a contradiction. By way of notation, let $B^\circ = B \setminus \{0\}$ and let $\cC^\circ = \pi^{-1}(B^\circ)$ be the complement in $\cC$ of the special fiber. The proof proceeds essentially in four/five steps.
+
+\
+
+\noindent {\bf Step 0: Existence of such a family}
+
+\
+
+\noindent {\bf Step 1: Finding a family of $g^r_d$s over $B^\circ$}
+
+Suppose, accordingly, that the general curve $C_b$ in the family does have a line bundle  of degree $d$ with $r+1$ sections. The first thing to observe is that, possibly after a base change, we can pick out one such line bundle $\cL_b$ for each $b \neq 0$, varying regularly with $b$; or, in other words \emph{there exists a  line bundle $\cL^\circ$ on the complement $\cC^\circ$ of the special fiber such that}
+$$
+\deg(\cL^\circ|_{C_b}) = d \quad \text{and} \quad h^0(\cL^\circ|_{C_b}) \geq r+1
+$$
+for all $b \neq 0 \in B$. \fix{need to give argument for this assertion}
+
+\
+
+\noindent {\bf Step 2: Extending the line bundle $\cL^\circ$ to a sheaf on all of $\cC$}
+
+Next, we want to extend $\cL^\circ$ to a sheaf on all of $\cC$. We claim that \emph{there exists a torsion-free sheaf $\cL$ on all of $\cC$ such that $\cL|_{\cC^\circ} \cong \cL^\circ$}.
+
+To see this, we choose an auxiliary line bundle $\cM$ on $\cC$ with relative degree $e > d + 2g$ (for example, embed $\cC$ is projective space and take $\cM = \cO_{\cC}(m)$ for large $m$); in keeping with our notational conventions, let $\cM^\circ$ be the restriction of $\cM$ to $\cL^\circ$. Consider the line bundle 
+$$
+\cN^\circ = (\cL^\circ)^* \otimes \cM^\circ.
+$$
+The bundle $\cN^\circ$ has lots of sections: the direct image is locally free of rank $e-g+1 > 0$, and after restricting to an open neighborhood of $0 \in B$ we can assume it's generated by them. Choose a section $\sigma$ of $\cN^\circ$; let $D^\circ \subset \cC^\circ$ be its zero divisor, and let $D \subset \cC$ be the closure of $D^\circ$ in $\cC$. Now, away from $C_0$ we can write
+$$
+\cL^\circ = (\cN^\circ)^* \otimes \cM^\circ = \cI_{D^\circ/\cC^\circ} \otimes \cM^\circ
+$$
+and accordingly the sheaf
+$$
+\cL := \cI_{D/\cC} \otimes \cM
+$$
+is the desired sheaf. Note that this need not be locally free: the total space $\cC$ of our family may not be smooth at the cusps of the special fiber $C_0$ (even if the family we originally started with had smooth total space, the base change called for in Step 1 would yield a family with  total space singular at the cusps of $C_0$), and if $D$ passes through any of these points it need not be Cartier.
+
+In sum, if the general fiber $C_b$ of our family has a $g^r_d$, we can conclude that the special fiber $C_0$ has a torsion-free sheaf $\cL_0$ with 
+$$
+c_1(\cL_0) = d;
+$$
+and, by upper-semicontinuity of cohomolgy,
+$$
+h^0(\cL_0) \geq r+1.
+$$
+
+\
+
+\noindent {\bf Step 3: Local description of the sheaf $\cL_0$}
+
+The next question is, what does $\cL_0$ look like if it's not locally free? Here we have a basic lemma:
+
+\begin{lemma}\label{torsion free at cusp}
+Let $p$ be a  cusp of a curve $C$. If $\cF$ is a torsion-free sheaf on $C$, then in a neighborhood of $p$ in $C$ the sheaf $\cF$ is either locally free or isomorphic to the ideal sheaf $\cI_{p/C}$ of $p$ in $C$.
+\end{lemma}
+
+
+\begin{exercise}
+\begin{enumerate}
+\item Show  that the conclusion of Lemma~\ref{torsion free at cusp} holds in case $p$ is a node of $C$
+\item Show by example that the conclusion of Lemma~\ref{torsion free at cusp} is false in case $p$ is either a tacnode or a triple point of $C$.
+\end{enumerate}
+\end{exercise}
+
+\begin{proof}
+
+\end{proof}
+
+\
+
+\noindent {\bf Step 4: Applying the Pl\"ucker formula}
+
+Now, back to our family $\pi : \cC \to B$ of curves. We have assumed that for some $d$ and $r$ with $\rho(g,r,d) < 0$ the general curve $C_b$ has a $g^r_d$, and deduced that the special fiber $C_0$ has a rank 1 torsion-free sheaf $\cL_0$ of degree $d$ with at least $r+1$ sections; we now have to derive from this a contradiction.
+
+To see most clearly where this contradiction comes from, let's start with the simplest case: where $\cL_0$ is indeed locally free. In this case, let $\nu :  C^\nu \cong \PP^1 \to C$ be the normalization of $C$ and let $p_1,\dots,p_g \in \PP^1$ be the points lying over the cusps of $C_0$. We have
+$$
+\nu^*(\cL) \cong \cO_{\PP^1}(d)
+$$  
+and 
+$$
+V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
+$$
+is an $(r+1)$-dimensional space of sections. (If $H^0(\cL_0) > r+1$, just choose any $(r+1)$-dimensional subspace.) 
+
+Now, given that any section $\sigma \in V \subset H^0(\cO_{\PP^1}(d))$ is pulled back from the cuspidal curve $C$, we see that \emph{$\sigma$ cannot vanish to order exactly 1 at the point $p_i \in \PP^1$ lying over any of the cusps of $C_0$}. It follows that for each $k$ the ramification index 
+$$
+\alpha_1(V,p_k) \geq 1 
+$$
+and hence in  general $\alpha_1(p_k,V) \geq 1$ for all $i \geq 1$. In particular, the weight of the inflectionary point $p_i$ for the linear series $V$ satisfies
+$$
+w(V, p_k) \geq r
+$$
+and correspondingly
+$$
+\sum_{k=1}^g w(V, p_k) \geq rg
+$$
+But the Pl\"ucker formula~\ref{} tells us that the total weight of all inflectionary points for the series $V$ is
+$$
+\sum_{p \in \PP^1} w(V,p) = (r+1)(d-r)
+$$
+and there's our contradiction: by the hypothesis that 
+$$
+\rho(g,r,d) := g - (r+1)(g-d+r) < 0
+$$
+we have $rg > (r+1)(d-r)$.
+
+Finally, the case where $\cL_0$ is not locally free is if anything even easier. Suppose now that the sheaf $\cL$ fails to be locally free at $l$ of the cusps of $C_0$, say $\nu(p_1),\dots,\nu(p_l)$. Again, we can pull $\cL$ back to $\PP^1$; again we have
+$$
+\nu^*(\cL_0) \cong \cO_{\PP^1}(d);
+$$  
+and again we pull back section of $\cL$ to arrive at a linear system
+$$
+V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
+$$
+of degree $d$ and genus $g$ on $\PP^1$. The only difference here is that sections of $V$ all vanish at $p_1,\dots,p_l$, so that we have
+$$
+w(V,p_k) \geq 
+\begin{cases}
+r+1 &\text{ if } k \leq l; \text{ and} \\
+r  &\text{ if } k > l.
+\end{cases}
+$$
+so that
+$$
+\sum_{k=1}^g w(V, p_k) \geq rg + l
+$$
+and our contradiction is even more of a contradiction!
+
+\section{Corollaries and extensions of our proof}
+
+\begin{enumerate}
+\item strong form of BN: if $(C,p_1,\dots,p_n)$ is a general pointed curve, the variety of linear series with specified ramification at the $p_i$ has expected dimension.
+\item actual dimension estimate for $W^r_d$ (not just existence or nonexistence)
 \item generic $g^2_*$ is birational; $g^3_*$ is very ample (on a general curve)
+\item general $g^r_d$ has only simple ramification
 \end{enumerate}
 \input{footer}
