@@ -35,10 +35,10 @@ There are two essential facts about the inflectionary points of a linear series 
 
 The first is simply that \emph{not every point of $C$ is an inflectionary point}. This may seem obvious---try to imagine a plane curve in which every point is a flex!---but in fact it's false in characteristic $p$: there exist what are called ``strange curves," smooth curves in $\PP^r$ such that every point is inflectionary. Luckily, we are in characteristic 0 here, so we don't have to worry about this phenomenon.
 
-The second is the total number of inflectionary points, properly counted, is determined by $d, g$ and $r$. Here ``properly counted" means that we count an inflectionary point $p \in C$ $w$ times, where $w = w(\cD,p)$ is the weight of $p$; the actual formula, called the \emph{Pl\"ucker formula}, is
-$$
+The second is that the total number of inflectionary points, properly counted, is determined by $d, g$ and $r$. Here ``properly counted" means that we count an inflectionary point $p \in C$ $w$ times, where $w = w(\cD,p)$ is the weight of $p$; the actual formula, called the \emph{Pl\"ucker formula}, is
+\begin{equation}\label{Plucker formula}
 \sum_{p \in C} w(\cD, p) \; = \; (r+1)d + r(r+1)(g-1).
-$$
+\end{equation}
 Proofs of these two statements can be found in a variety of sources; see for example~\cite{} (3264?). 
 
 It should be emphasized that the Pl\"ucker formula, while extremely useful (as we'll see in the remainder of this chapter), leaves many questions unanswered: we don't know, for example, what combinations of inflectionary points are possible, or what the behavior of the inflectionary points on a suitably general curve may be.
@@ -49,7 +49,7 @@ As with any extrinsic invariant of a curve in projective space, we can derive an
 
 We define a \emph{Weierstrass point} of a curve $C$ to be an inflectionary point of the canonical linear series $|K_C|$. This amounts to saying a point $p$ is a Weierstrass point if there exists a canonical differential on $C$ vanishing to order $g$ or more at $p$; by Riemann-Roch, this is tantamount to the condition that $h^0(\cO_C(gp)) \geq 2$, or in other words to saying that there exists a rational function on $C$, regular away from $p$ and having a pole of order $g$ or less at $p$.
 
-We can similarly characterize all the inflectionary indices of the canonical series at a point. We see from Riemann-Roch that for any $k \geq 0$, there exists a rational function on $C$ with a pole of order exactly $k$ at $p$---that is,
+We can similarly characterize all the inflectionary indices of the canonical series at a point. We see from Riemann-Roch that for any $k \geq 0$, there exists a rational function on $C$, regular on $C \setminus \{p\}$ and having a pole of order exactly $k$ at $p$---that is,
 $$
 h^0(\cO_C(kp)) > h^0(\cO_C((k-1)p))\text{---}
 $$
@@ -57,12 +57,20 @@ if and only if
 $$
 h^0(K_C(-kp)) = h^0(K_C((-k+1)p)); 
 $$
-that is, if and only if there does \emph{not} exist a regular differential on $C$ with a zero of order exactly $k-1$ at $p$. To give the classical terminology, we see from the above that there will exist exactly $g$ values of $k$ such that there does \emph{not} exist a rational function on $C$ with a pole of order exactly $k$ at $p$; these are called the \emph{gap values} of the point $p \in C$, and they comprise exactly the vanishing sequence of the canonical series $|K_C|$ at $p$. Moreover, it is clear that the complement in $\NN$ of the gap values---that is, the set of $k$ such that there does exist a rational function on $C$ with a pole of order exactly $k$ at $p$---for a semigroup, called the \emph{Weierstrass semigroup} of $p \in C$. Finally, the \emph{weight} $w_p$ of a Weierstrass point $p \in C$  is defined to be the weight $w(|K_C|,p)$ of $p$ as an inflectionary point of the canonical series.
+that is, if and only if there does \emph{not} exist a regular differential on $C$ with a zero of order exactly $k-1$ at $p$. To give the classical terminology, we see from the above that there will exist exactly $g$ values of $k$ such that there does \emph{not} exist a rational function on $C$ with a pole of order exactly $k$ at $p$; these are called the \emph{gap values} of the point $p \in C$, and by the above they comprise exactly the vanishing sequence of the canonical series $|K_C|$ at $p$, shifted by 1. Moreover, it is clear that the complement in $\NN$ of the gap values---that is, the set of $k$ such that there \emph{does} exist a rational function on $C$ with a pole of order exactly $k$ at $p$---forms a semigroup, called the \emph{Weierstrass semigroup} of $p \in C$. Finally, the \emph{weight} $w_p$ of a Weierstrass point $p \in C$  is defined to be the weight $w(|K_C|,p)$ of $p$ as an inflectionary point of the canonical series.
 
-From the general theory of ramification above, we see that a general point $p$ on any curve $C$ has gap sequence $(1,2,\dots,g)$, and correspondingly the semigroup $W_p = (0, g+1, g+2, \dots)$. A Weierstrass point is called \emph{normal} if it has weight 1; this is tantamount to saying that the gap sequence is $(1,2,\dots,g-1,g+1)$, or semigroup $(0, g, g+2, g+3, \dots)$. (The full Brill-Noether theorem tells us that a general curve $C$ has only normal Weierstrass points.) Finally, the Pl\"ucker formula tells us  the total weight of the Weierstrass points on a given curve $C$:
+From the general theory of ramification above, we see that a general point $p$ on any curve $C$ has gap sequence $(1,2,\dots,g)$, and correspondingly the semigroup $W_p = (0, g+1, g+2, \dots)$. A Weierstrass point is called \emph{normal} if it has weight 1; this is tantamount to saying that the gap sequence is $(1,2,\dots,g-1,g+1)$, or that the semigroup is $(0, g, g+2, g+3, \dots)$. (The full Brill-Noether theorem tells us that a general curve $C$ has only normal Weierstrass points; this will be a consequence of Theorem~\ref{BN with inflection and dimension} below.) Finally, the Pl\"ucker formula tells us  the total weight of the Weierstrass points on a given curve $C$: plugging in, we have
 $$
-\sum_{p \in C} w_p \; = \; g^3-g.
+\sum_{p \in C} w(|K_C|, p) \; = \; g(2g-2) + (g-1)g(g-1) \; =\;  g^3-g.
+$$ 
+and hence
+
+\begin{theorem}\label{plucker formula}
+The sum of the weights of the Weierstrass points on a curve $C$ of genus $g$ is
 $$
+\sum_{p \in C} w_p = g^3-g.
+$$
+\end{theorem}
 
 There is still much we don't know about Weierstrass points in general. Most notably, we don't know what semigroups of finite index in $\NN$ occur as Weierstrass semigroups; an example of Buchweitz shows that not all semigroups occur, but there are also positive results, such as the statement ([EH]) that every semigroup of weight $w \leq g/2$ occurs, and its refinement and strengthening by Pflueger (\cite{**}).
 
@@ -97,7 +105,7 @@ Moreover, the action of $f$ on $H^0(K_C)$ preserves the definite Hermitian inner
 $$
 H(\eta, \phi) = \int_C \eta \wedge \overline \phi,
 $$
-and it follows that \emph{the eigenvalues of the action of $f$ on $H^0(K_C)$ are all complex numbers of absolute value 1}, and likewise for the action on $H^1(\cO_C)$. The absolute value of the trace of $f^*: H^1(C,\CC) \to H^1(C,\CC)$ is at most 2g, and hence
+and it follows that \emph{the eigenvalues of the action of $f$ on $H^0(K_C)$ are all complex numbers of absolute value 1}, and likewise for the action on $H^1(\cO_C)$. The absolute value of the trace of $f^*: H^1(C,\CC) \to H^1(C,\CC)$ is thus at most 2g, and hence
 $$
 L(f) \leq 2 + 2g,
 $$
@@ -130,7 +138,7 @@ $\delta'$ & $-2g$ & $b-2$ \\
 $\gamma'$ & $b-2$ & $-2g$ 
 \end{tabular}
 \end{center}
-(where again $b = \gamma \cdot \delta$) must be positive, from which our inequality follows.
+(where again $b = \gamma \cdot \delta$) must be nonnegative, from which our inequality follows.
 
 Having established an upper bound on the number of fixed points an automorphism $f$ of $C$ (other than the identity) may have, it remains to find a lower bound on the number of distinct Weierstrass points; this is the content of the next lemma.
 
@@ -187,8 +195,14 @@ The basic approach here is to consider a family of curves $\pi : \cC \to B$, whe
 
 We will establish the
 
-\begin{theorem}
+\begin{lemma}\label{BN in family}
 If $\cC \to B$ is a family of curves as above, then for general $b \in B$ the fiber $C_b$ does not possess a $g^r_d$ with $\rho < 0$.
+\end{lemma}
+
+Once we establish the existence of such a family, we deduce the basic
+
+\begin{theorem}\label{bare-bones BN}
+A general curve $C$ of genus $g$ does not possess a $g^r_d$ with $\rho(g,r,d) < 0$.
 \end{theorem}
 
 
@@ -198,11 +212,15 @@ The basic outline of the argument is by contradiction, but straightforward: we a
 
 \noindent {\bf Step 0: Existence of such a family}
 
+\begin{lemma}\label{cusp smoothing lemma}
+For each $g$, there exists a family $\cC \to B$ of curves with $B$ smooth and one-dimensional; $C_b$ a smooth curve of genus $g$ for $b \neq 0 \in B$ and $C_0$ a rational curve with $g$ cusps.
+\end{lemma}
+
 \
 
 \noindent {\bf Step 1: Finding a family of $g^r_d$s over $B^\circ$}
 
-Suppose, accordingly, that the general curve $C_b$ in the family does have a line bundle  of degree $d$ with $r+1$ sections. The first thing to observe is that, possibly after a base change, we can pick out one such line bundle $\cL_b$ for each $b \neq 0$, varying regularly with $b$; or, in other words \emph{there exists a  line bundle $\cL^\circ$ on the complement $\cC^\circ$ of the special fiber such that}
+Suppose now that the general curve $C_b$ in the family does have a line bundle  of degree $d$ with $r+1$ sections. The first thing to observe is that, possibly after a base change, we can pick out one such line bundle $\cL_b$ for each $b \neq 0$, varying regularly with $b$; or, in other words \emph{there exists a  line bundle $\cL^\circ$ on the complement $\cC^\circ$ of the special fiber such that}
 $$
 \deg(\cL^\circ|_{C_b}) = d \quad \text{and} \quad h^0(\cL^\circ|_{C_b}) \geq r+1
 $$
@@ -247,6 +265,9 @@ The next question is, what does $\cL_0$ look like if it's not locally free? Here
 Let $p$ be a  cusp of a curve $C$. If $\cF$ is a torsion-free sheaf on $C$, then in a neighborhood of $p$ in $C$ the sheaf $\cF$ is either locally free or isomorphic to the ideal sheaf $\cI_{p/C}$ of $p$ in $C$.
 \end{lemma}
 
+\begin{proof}
+
+\end{proof}
 
 \begin{exercise}
 \begin{enumerate}
@@ -255,17 +276,12 @@ Let $p$ be a  cusp of a curve $C$. If $\cF$ is a torsion-free sheaf on $C$, then
 \end{enumerate}
 \end{exercise}
 
-\begin{proof}
-
-\end{proof}
-
-\
 
 \noindent {\bf Step 4: Applying the Pl\"ucker formula}
 
 Now, back to our family $\pi : \cC \to B$ of curves. We have assumed that for some $d$ and $r$ with $\rho(g,r,d) < 0$ the general curve $C_b$ has a $g^r_d$, and deduced that the special fiber $C_0$ has a rank 1 torsion-free sheaf $\cL_0$ of degree $d$ with at least $r+1$ sections; we now have to derive from this a contradiction.
 
-To see most clearly where this contradiction comes from, let's start with the simplest case: where $\cL_0$ is indeed locally free. In this case, let $\nu :  C^\nu \cong \PP^1 \to C$ be the normalization of $C$ and let $p_1,\dots,p_g \in \PP^1$ be the points lying over the cusps of $C_0$. We have
+To see most clearly where this contradiction comes from, let's start with the simplest case: where $\cL_0$ is indeed locally free. In this case, let $\nu :  C^\nu \cong \PP^1 \to C$ be the normalization of $C$ and let $q_1,\dots, q_g \in \PP^1$ be the points lying over the cusps of $C_0$. We have
 $$
 \nu^*(\cL) \cong \cO_{\PP^1}(d)
 $$  
@@ -275,17 +291,17 @@ V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
 $$
 is an $(r+1)$-dimensional space of sections. (If $H^0(\cL_0) > r+1$, just choose any $(r+1)$-dimensional subspace.) 
 
-Now, given that any section $\sigma \in V \subset H^0(\cO_{\PP^1}(d))$ is pulled back from the cuspidal curve $C$, we see that \emph{$\sigma$ cannot vanish to order exactly 1 at the point $p_i \in \PP^1$ lying over any of the cusps of $C_0$}. It follows that for each $k$ the ramification index 
+Now, given that any section $\sigma \in V \subset H^0(\cO_{\PP^1}(d))$ is pulled back from the cuspidal curve $C$, we see that \emph{$\sigma$ cannot vanish to order exactly 1 at the point $q_i \in \PP^1$ lying over any of the cusps of $C_0$}. It follows that for each $i$ the ramification index 
 $$
-\alpha_1(V,p_k) \geq 1 
+\alpha_1(V,q_i) \geq 1 
 $$
-and hence in  general $\alpha_1(p_k,V) \geq 1$ for all $i \geq 1$. In particular, the weight of the inflectionary point $p_i$ for the linear series $V$ satisfies
+and hence in  general $\alpha_1(q_i,V) \geq 1$ for all $i \geq 1$. In particular, the weight of the inflectionary point $q_i$ for the linear series $V$ satisfies
 $$
-w(V, p_k) \geq r
+w(V, q_i) \geq r
 $$
 and correspondingly
 $$
-\sum_{k=1}^g w(V, p_k) \geq rg
+\sum_{i=1}^g w(V, q_i) \geq rg
 $$
 But the Pl\"ucker formula~\ref{} tells us that the total weight of all inflectionary points for the series $V$ is
 $$
@@ -321,10 +337,120 @@ and our contradiction is even more of a contradiction!
 
 \section{Corollaries and extensions of our proof}
 
-\begin{enumerate}
-\item strong form of BN: if $(C,p_1,\dots,p_n)$ is a general pointed curve, the variety of linear series with specified ramification at the $p_i$ has expected dimension.
-\item actual dimension estimate for $W^r_d$ (not just existence or nonexistence)
-\item generic $g^2_*$ is birational; $g^3_*$ is very ample (on a general curve)
-\item general $g^r_d$ has only simple ramification
-\end{enumerate}
+We have proved a bare-bones version of the nonexistence half of Brill-Noether; in particular, the argument does not a priori tell us anything about the geometry of $W^r_d(C)$ for a general curve $C$, or the geometry of $C$ as embedded by a general linear system. In the final section of this chapter, we'll see how we can deduce stronger forms of Brill-Noether from the basic set-up above.
+
+\subsection{Brill-Noether with inflection}
+
+Let's start with the low-hanging fruit. Since the basic ingredient of the proof of Theorem~\ref{bare-bones BN} is the Pl\"ucker formula, the argument tells us something about the inflectionary behavior of linear series on a general curve $C$ as well.
+
+We start with a definition.
+
+\begin{definition}
+Let $C$ be a smooth curve of genus $g$ and $p_1,\dots,p_n \in C$ distinct points of $C$. If $\cD = (L,V)$ is a linear system on $C$ of degree $d$ and dimension $r$, we define the \emph{adjusted Brill-Noether number} of $\cD$ relative to the points $p_k$ to be
+$$
+\rho(\cD; p_1,\dots,p_k) := g - (r+1)(g-d+r) - \sum_{k=1}^n w(\cD,p_k).
+$$
+\end{definition}
+
+In these terms, we have the basic (but powerful) extension of the Brill-Noether theorem proved above:
+
+\begin{theorem}\label{Brill-Noether with inflection}
+Let $(C;p_1,\dots,p_n)$ be a general $n$-pointed curve of genus $g$ (that is, let $C$ be a general curve and $p_1,\dots,p_n \in C$ general points; equivalently, let $(C;p_1,\dots,p_n)$ correspond to a general point of $M_{g,n}$). If $\cD$ is any linear system on $C$, then
+$$
+\rho(\cD; p_1,\dots,p_k) \geq 0.
+$$
+\end{theorem}
+
+\begin{proof}
+The proof is just an extension of the argument for Lemma~\ref{BN in family}. To start, let $\cC \to B$ be a family of curves as in the proof of Lemma~\ref{cusp smoothing lemma}. Let $\sigma_1, \dots, \sigma_n : B \to \cC$ be sections of $\cC \to B$ with $\sigma_k(0)$ a smooth point of $C_0$ for all $k$ (such sections can always be found after passing to an \'etale open neighborhood of $0 \in B$). Exactly as in the proof of Lemma~\ref{BN in family}, if the general curve $C_b$ in our family admits a $g^r_d$ $\cD$ with
+$$
+\rho(\cD;\sigma_1(b),\dots,\sigma_n(b)) < 0
+$$
+we can choose a family $\{\cD_b\}$ of such linear series on the fibers $C_b$ for $b \neq 0$ and, taking limits, we arrive at a $g^r_d$ $\cD_0$ on $\PP^1$ with
+$$
+w(\cD_0, q_i) \geq r
+$$
+for each of the $g$ points $q_i \in \PP^1$ lying over the cusps of $C_0$, and in addition
+$$
+w(\cD_0, r_k) \geq w(\cD_b,\sigma_k(b))
+$$
+where $r_k \in \PP^1$ is the point in $\PP^1$ lying over $\sigma_k(0) \in C_0$. Adding up, we have
+\begin{align*}
+\sum_{i=1}^g w(\cD_0, q_i) + \sum_{k=1}^n w(\cD_0, r_i) &\geq rg + \sum_{k=1}^n w(\cD_b,\sigma_k(b)) \\
+&> rg + g - (r+1)(g-d+r) = (r+1)(d-r)
+\end{align*}
+since we assumed that 
+$$
+\rho(\cD_b;\sigma_1(b),\dots,\sigma_n(b)) = g - (r+1)(g-d+r) - \sum_{k=1}^n w(\cD_b,\sigma_k(b)) < 0.
+$$
+But as before the Pl\"ucker formula for $\PP^1$ tells us that
+$$
+\sum_{p \in \PP^1} w(\cD_0, p) = (r+1)(d-r),
+$$
+a contradiction.
+\end{proof}
+
+\subsection{Brill-Noether with dimension}
+
+Theorem~\ref{Brill-Noether with inflection} might at first glance seem relevant only to problems involving inflection, but in fact in can be used to prove results that have nothing to do with inflection points. For example, one consequence is the stronger form of Brill-Noether:
+
+\begin{theorem}\label{BN with dimension}
+If $C$ is a general curve of genus $g$, then for any $d$ and $r$ with $\rho(g,r,d) \geq 0$,
+$$
+\dim W^r_d(C) = \rho(g,r,d).
+$$
+\end{theorem}
+
+\begin{proof}
+The basic idea of the proof is simple: basically, we argue that if we had a $(\rho+1)$-dimensional family of $g^r_ds$ on $C$, then we could find one with nonzero ramification at $\rho+1$ general points of $C$, violating Theorem~\ref{Brill-Noether with inflection}.
+
+This idea is easier to implement after specializing, so once more we go back to our family $\cC \to B$ of smooth curves specializing to a $g$-cuspidal curve $C_0$, with normalization $\PP^1$. The basic lemma is:
+
+\begin{lemma}\label{forced ramification}
+Let $\Sigma$ be a complete curve and let $\{ \cD_\lambda \}_{\lambda \in \Sigma}$ be a (nonconstant) family of $g^r_ds$ on $\PP^1$ parametrized by $\Sigma$. If $p \in \PP^1$ is any fixed point, then for at least one $\lambda \in \Sigma$ we have $w(\cD_\lambda,p)>0$.
+\end{lemma}
+
+\begin{proof}
+Embed $\PP^1$ in $\PP^d$ as a rational normal curve of degree $d$. Given a $(d-r-1)$-plane $\Lambda \subset \PP^d$, the hyperplanes in $\PP^d$ containing $\Lambda$ cut out a $g^r_d$ $\cD_\Lambda$ on $\PP^1$, and indeed every $g^r_d$ on $\PP^1$ can be described in this way for a unique $\Lambda$. The $g^r_d$s on $\PP^1$ are thus parametrized by the Grassmannian $\GG(d-r-1,d)$, and we can think of $\Sigma$ as a complete curve in $\GG(d-r-1,d)$.
+
+Consider now the hyperplanes $H \subset \PP^d$ such that the divisor $H \cap \PP^1$ has multiplicity $\geq r+1$ at $p$. These correspond to points in a linear space of codimension $r+1$ in $(\PP^d)^*$; in particular, their intersection is an $r$-plane $\Omega \subset \PP^d$, called the \emph{osculating plane} to the rational normal curve at $p$. The condition that a  $g^r_d$ $\cD_\Lambda$ have non-zero ramification at $p$---in other words, that $\cD_\Lambda$ contains a divisor with multiplicity $\geq r+1$ at $p$---is simply that $\Lambda \cap \Omega \neq \emptyset$. But the set of such $\Lambda$ is a hyperplane section of $\GG(d-r-1,d)$ under trhe Pl\"ucker embedding; in particular, any complete curve $\Sigma \subset \GG(d-r-1,d)$ must intersect it.
+\end{proof}
+
+Given this lemma, the proof of Theorem~\ref{BN with dimension} proceeds as follows. We know from the basic dimension estimates of Chapter~\ref{} that $\dim W^r_d(C) \geq \rho(g,r,d)$ for any $C$; we have to show that we cannot have $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$. We argue as follows:
+
+First: if it were the case that $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$, we would have, after specializing and pulling back to $\PP^1$, at least a $(\rho + 1)$-dimensional family of $g^r_d$s on $\PP^1$, all of which had ramification weight at least $r$ at the points $q_i$ of $\PP^1$ lying over the cusps of $C_0$. 
+
+Secondly, we pick any $\rho + 1$ points $r_k \in \PP^1$ other than the $q_i$. Applying Lemma~\ref{forced ramification} repeatedly, we find that there is at least a $\rho$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$, a $(\rho - 1)$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$ and $p_2$, and so on; ultimately, we conclude that there is a $g^r_d$ $\cD$ on $\PP^1$ with ramification index at least $r$ at each $q_i$ and nonzero ramification index at each $r_k$. 
+
+Finally, we observe that the linear series $\cD$ has total ramification at least
+$$
+rg + \rho + 1 = (r+1)(d-r)+1
+$$
+at the points $q_i$ and $r_k$, once more violating the Pl\"ucker formula.
+\end{proof}
+
+We can combine Theorem~\ref{BN with dimension} and Theorem~\ref{Brill-Noether with inflection} into one theorem, more complicated but more inclusive:
+
+\begin{theorem}\label{BN with inflection and dimension}
+Let $C$ be a smooth curve of genus $g$ and $p_1,\dots,p_n \in C$ distinct points; for $k = 1,\dots,n$ let $\alpha^k = (\alpha^k_0,\dots\alpha^k_r)$ be a nondecreasing sequence of nonnegative integers, and let
+$$
+G^r_d(p_1,\dots,p_n; \alpha^1,\dots,\alpha^n) = \{\cD \in G^r_d(D) \mid \alpha_i(\cD, p_k) \geq \alpha^k_i \}.
+$$
+If $(C, p_1,\dots,p_n)$ is a general $n$-pointed curve, then either $G^r_d(p_1,\dots,p_n; \alpha^1,\dots,\alpha^n)$ is empty or
+$$
+\dim G^r_d(p_1,\dots,p_n; \alpha^1,\dots,\alpha^n) = \rho(g,r,d) - \sum_{k+1}^n \sum_{i=0}^r \alpha^k_i.
+$$
+\end{theorem}
+
+Finally, we can combine this last theorem with a little dimension-counting to deduce a simple fact:
+
+\begin{theorem}
+If $\cD$ is a general $g^r_d$ on a general curve, then $\cD$ has only simple ramification; that is,
+$$
+w(\cD, p) \leq 1 \quad \text{for all } p \in C.
+$$
+\end{theorem}
+
+Note that applying this in case $d=2g-2$ and $r = g-1$, we arrive at the statement made earlier: that a general curve $C$ of genus $g$ has only normal Weierstrass points!
+
 \input{footer}
