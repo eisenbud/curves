@@ -15,7 +15,7 @@ We're going to ask two basic questions about the schemes $\cH^\circ$:
 \item[$\bullet$]  What is its dimension or dimensions?
 \end{enumerate}
 
-Of course, there are many more questions we can ask about the geometry of $\cH^\circ$: for example, is it smooth or singular? Can we characterize the closure $\overline{\cH^\circ} \subset \cH$ in the whole Hilbert scheme? (In other words, can we say when a subscheme $X \subset \PP^3$ with Hilbert polynomial $dm-g+1$ is the flat limit of a family of smooth, irreducible, nondegenerate curves?) And can we determine the Picard groups of $\cH^\circ$ and its closure? We will for the most part not address these, though we will indicate the answers in special cases.
+Of course, there are many more questions we can ask about the geometry of $\cH^\circ$: for example, is it smooth or singular? Can we characterize the closure $\overline{\cH^\circ} \subset \cH$ in the whole Hilbert scheme? (In other words, can we say when a subscheme $X \subset \PP^3$ with Hilbert polynomial $dm-g+1$ is \emph{smoothable}, that is, the flat limit of a family of smooth, irreducible, nondegenerate curves?) And can we determine the Picard groups of $\cH^\circ$ and its closure? We will for the most part not address these, though we will indicate the answers in special cases.
 
 We will proceed systematically, starting with curves of the lowest possible degree and going on to successively higher degrees.
 
@@ -367,5 +367,64 @@ Let $\Sigma_1$ and $\Sigma_2 \subset \cH^\circ_{9m-9}(\PP^3)$ be the loci of cur
 \end{enumerate}
 \end{exercise}
 
+\section{Degree 14}
+
+We have seen, in the last two sections, examples of Hilbert schemes of smooth curves that are reducible or of greater than the expected dimension. In this final section, we'll see an example of yet another phenomenon: a component of the Hilbert scheme that is everywhere nonreduced. 
+
+To fix the numerical invariants: we are going to be analyzing here the open subscheme $\cH^\circ$ of the Hilbert scheme parametrizing smooth, irreducible curves of degree 14 and genus 24 in $\PP^3$. As we'll see, there are three irreducible components of this locus. 
+
+We start our analysis in the by now familiar way: we ask, given a smooth, irreducible curve $C \subset \PP^3$ of degree 14 and genus 24, what sort of surfaces may contain it? By applying the genus formula for plane curves and curves on quadrics we see right off the bat that $C$ cannot lie on a quadric, so we start out usual chart in degree 3:
+
+\begin{center}
+\begin{tabular}{ c | c | c }
+ m & $h^0(\cO_C(m))$ & $h^0(\cO_{\PP^3}(m))$ \\
+ \hline
+ 3 & 19, 20 or 21 & 20 \\
+ 4 & 33 & 35 \\
+ 5 & 47 & 56 \\
+ 6 & 61 & 84
+\end{tabular}
+\end{center}
+
+Here we see from degree considerations that $\cO_C(m)$ is nonspecial for $m \geq 4$, so Riemann-Roch gives an exact value of $h^0(\cO_C(m))$ in those cases. For $m=3$, on the other hand, the degree of $K_C(-3)$ is 4, and so 
+$$
+h^1(\cO_C(3)) = h^0(K_C(-3)) = 0, 1 \text{ or } 2.
+$$
+(The curve $C$ cannot be hyperelliptic, since it's embedded in $\PP^3$ by a special linear series, and as we saw in Chapter~\ref{} a special linear series on a hyperelliptic curve can never be very ample; thus by Clifford $h^0(K_C(-3))$ cannot be 3 or more.) Riemann-Roch thus gives three a priori possible values for $h^0(\cO_C(3))$. In particular, as far as the table is concerned $C$ may or may not lie on a cubic surface; we'll consider these cases in turn.
+
+\noindent \underline{Case 1}: $C$ does not lie on a cubic surface. 
+
+In this case, the table says that $C$ lies on at least two linearly independent quartic surfaces $S$ and $S'$; and since $C$ does not lie on any surface of smaller degree, neither can be reducible. It follows that the intersection $S \cap S'$ must consist of the union of the curve $C$ and a curve $D$ of degree 2; and the linkage formula says that
+$$
+g(C) - g(D) = (14 - 2)\frac{4+4-4}{2} = 24,
+$$
+so $D$ has arithmetic genus 0. It follows that $D$ must be a plane conic curve (****); so we see that in this case $C$ is residual to a plane conic curve $D$ in the complete intersection of two quartics. Conversely, if $C$ is any curve residual to a conic curve $D$ in the complete intersection of two quartics, it must have degree 14 and genus 24, and by B\'ezout it cannot lie on a cubic surface, so it must be of this type. We can thus describe the family of all smooth curves of degree 14 and genus 24 not lying on a cubic surface via the incidence correspondence
+$$
+\Phi = \{ (C, D, S, S') \in \cH^\circ \times \cH_D \times \PP^{34} \times \PP^{34} \mid S \cap S' = C \cup D\}.
+$$
+where $\cH_D$ denoted the Hilbert scheme of plane conics. The Hilbert scheme $\cH_D$ is irreducible of dimension 8; and for any conic $D$ the space of quartic surfaces containing it is a linear subspace of $\PP^{34}$ of codimension 9. The fibers of $\Phi$ over $\cH_D$ are thus open subsets of $\PP^{25} \times \PP^{25}$, and we deduce that \emph{$\Phi$ is irreducible of dimension 58}. 
+
+Finally, if $C$ is a curve of degree 14 and genus 24 residual to a conic $D$ in the intersection of two quartic surfaces, we see from the derivation of the linkage formula that $(C\cdot D) = 10$. It follows that any quartic surface containing $C$ must contain $D$ as well, and so by Lasker-Noether must be a linear combination of $S$ and $S'$. The fibers of $\Phi$ over its image in $\cH_C$ are thus open subsets of $\PP^1 \times \PP^1$, and we have established the
+
+\begin{proposition}
+The locus in $\cH^\circ$ of curves not lying on a cubic surface is irreducible of dimension 56.
+\end{proposition} 
+
+Since the condition of not lying on a cubic surface is open, this locus forms an irreducible component of $\cH^\circ$, which we'll call $\cH_1$.
+
+Before we go on to Case 2, let's establish one more fact about the geometry of $\cH_1$: that it is generically smooth. To do this, we have to find the dimension of its Zariski tangent space at a general point $[C]$; that is, the dimension $h^0(\cN_{C/\PP^3})$ of the space of global sections of the normal bundle of $C$ in $\PP^3$.
+
+To do this, we choose a quartic surface $S$ containing $C$, and consider the standard exact sequence for the normal bundle $\cN_{C/\PP^3}$:
+$$
+0 \to \cN_{C/S} \to \cN_{C/\PP^3} \to \cN_{S/\PP^3}|_C \to 0
+$$
+The bundle $\cN_{S/\PP^3}|_C \cong \cO_C(4)$, which as we've seen is nonspecial; we have $h^0(\cO_C(4)) = 33$ and $h^1(\cO_C(4)) = 0$. As for the bundle $\cN_{C/S}$,  since $S$ has trivial canonical bundle adjunction tells us that $\cN_{C/S} \cong K_C$, so we have $h^0(\cN_{C/S}) = 24$ and $h^1(\cN_{C/S}) = 1$.
+
+This leaves two possibilities for the dimension $h^0(\cN_{C/\PP^3})$: 56 and 57. To say which occurs, we have to observe a key fact: \emph{a general quartic surface does not contain any conic curves}. In fact, there is an infinitesimal version of this: if $S$ is a smooth quartic surface containing a conic curve $C$, there exist first-order deformations of $S$ containing no first-order deformations of $C$. What this says is that the map
+$H^0(\cN_{C/\PP^3}) \to H^0(\cN_{S/\PP^3}|_C)$ cannot be surjective; it follows that the coboundary map $H^0(\cN_{S/\PP^3}|_C) \to H^1(\cN_{C/S})$ must be surjective and we have
+$$
+h^1(\cN_{C/\PP^3}) = 0 \quad \text{and} \quad h^0(\cN_{C/\PP^3}) = 56,
+$$
+showing that $\cH_1$ is smooth at $[C]$.
 
 \input{footer}
