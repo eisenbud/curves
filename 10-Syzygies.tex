@@ -91,7 +91,7 @@ If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the s
 
 In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
 Cohen-Macaulay $S$-module, or equivalently that the sheaf $\widetilde M$ is 
-\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself. is arithmetically Cohen-Macaulay.
+\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself is arithmetically Cohen-Macaulay.
 
 Thus if $C\subset \PP^{n}$ is 1-dimensional the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
 
@@ -116,7 +116,7 @@ $$
 $$
 be the minimal $S$-free resolution of the homogeneous coordinate ring of $C$. We have $F_{n+1}=0$, and 
 $$
-\oplus_{t\in \ZZ} (H^{1}\sO_{C}(t)) = \Hom_{\CC}(\Ext^{n}(S_{C}, S(-n-1)),\CC)
+\oplus_{t\in \ZZ} (H^{1}\sI_{C}(t)) = \Hom_{\CC}(\Ext^{n}(S_{C}, S(-n-1)),\CC)
 $$ 
 which is sometimes called the \emph{Rao module} of $C$. Thus, up to a shift in grading,
 the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n}^{*}: F_{n-1}^{*}\to F_{n}$. This is a graded module of finite length.
@@ -139,10 +139,9 @@ If $M$ is a finitely generated graded module over the polynomial ring $S := \CC[
 \end{theorem}
 
 Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of sheaf cohomology:
-
-Suppose for simplicity that $M = \oplus_{t\in \ZZ}H^{0}\cO_{X}(t)$ for some scheme $X\subset \PP^{n}$ without 0-dimensional (isolated or embedded) components, so that $M$ is a finitely generated $S$-module. 
-\begin{theorem}
- With hypotheses as above, $\depth M$ is the largest integer $\ell$ such that $H^{i}(\cO_{X}(t) = 0$ for all $0<i<ell-1$ and all 
+ 
+\begin{theorem} Suppose that $X\subset \PP^{n}$ is a  subscheme without 0-dimensional (isolated or embedded) components. The module $M = \oplus_{t\in \ZZ}H^{0}\cO_{X}(t)$
+is finitely generated, and $\depth M$ is the largest integer $\ell$ such that $H^{i}(\cO_{X}(t) = 0$ for all $0<i<ell-1$ and all $t$.
 \end{theorem}
 
 
@@ -410,7 +409,7 @@ $$
 $$
  is surjective for all $m\in \ZZ$. For $m=0,1$ this is immediate from the hypothesis.
 
-For $m <0$ we must show $\HH^{0}(\sO_{\PP^{n}}(m))=0.$ 
+For $m <0$ we must show $\HH^{0}(\sO_{C}(m))=0.$ 
 If $D$ is a divisor equivalent to $-m$ times the hyperplane section, we have an exact sequence
 $$
 0\to \HH^{0}(\sO_{C}(m)) 
@@ -704,7 +703,7 @@ $F_1 \subset F_1 \otimes K$. This suggests the (correct) generalization that the
 to case where the $F_i$ are not free, but are sufficiently ``like'' free modules.
 
 \begin{fact}
-Theorem~\ref{what makes a complex exact} is true in this form over any Cohen-Macaulay ring; for more general
+Theorem~\ref{WMACE} is true in this form over any Cohen-Macaulay ring; for more general
 rings, ``codimension'' must be replaced by ``grade'', as in the given reference.
 \end{fact}
 
@@ -778,9 +777,12 @@ It now follows from Theorem~\ref{WMACE} that all the $X_{i}$ are equal, so $EN(M
 acyclic if and only if $EN(M)^{*}$ is acyclic. 
 
 
-Finally, we must show that if  $\codim I_{2}(M) = n-1$ then $I_{2}(M)$ is prime. Since $M$ is 1-generic the entries of of the second row of $M$ are linearly independent, and since the dimension of the span of all the linear forms is at least $n+$, some element in the first row is outside the span of the the elements in the second. After a permutation of columns we may assume that $l_{1,1}, l_{2,1}, l_{2,2},\dots l_{2,n}$ are linearly independent.
+Since $M$ is 1-generic the entries of of the second row of $M$ are linearly independent, and since the dimension of the span of all the linear forms is at least $n+1$, some element in the first row is outside the span of the the elements in the second. After a permutation of columns we may assume that $l_{1,1}, l_{2,1}, l_{2,2},\dots l_{2,n}$ are linearly independent, and we may take them to be a subset of the variables, say $x_{0},\dots x_{n+1}$
 
- indetransformation we may assume that $l_{1,1}$ is not in any associated prime of $M$. (This is  called ``prime avoidance'' \cite[??]{E}, and is almost obvious in our case since $k$ is infinite and a subspace contained in a finite union of subspaces of a vector space over an infinite field must be contained in one of them.) Thus it suffices to show that $I_{2}(M)$ becomes prime after inverting
+We next show by induction on $n$ $that  $I_{2}(M)$ is prime. In the case $n=2$ we have $I_{2}(M) =  (x_{0}x_{2}-x_{1}l_{1,2})$ which obviously does not factor. 
+
+Now suppose that $n>2$, and let $M'$ be the matrix $M$ with the first column omitted. we know by induction that $I_{2}(M')$ is prime of codimension $n-2$. Since $I:=I_{2}(M)$ does not have the maximal ideal as an associated prime, it is saturated. The ideal $I_{2}(M)+x_{0}$ properly contains $I_{2}(M')$ and thus has codimension $\geq n-1$ in $S/x_{0}$, whence we see that every component of $I_{2}(M)$ meets the open set
+$x_{0} = 1$. Restricting to this open set
 \end{proof}
 \end{proof}
 %
