@@ -557,9 +557,9 @@ S \lTo{\bigwedge^2 M}
 \end{align*}
 \end{theorem}
 
-\begin{proof} We first show that $r\geq n$. As noted above, to say that the $2\times n$ matrix of linear forms $M$ is 1-generic means that
+\begin{proof} We first show that $r\geq n$; more precisely, we show that the span of the entries of $M$ has dimension $\geq n+1$. As noted above, to say that the $2\times n$ matrix of linear forms $M$ is 1-generic means that
 the kernel of the corresponding map $ \phi: k^2\otimes k^n \to S_1$ contains no pure tensors. In the projective
-space $\P^{2n-1} = \P(k^2\otimes k^n)$ the pure tensors form a variety isomorphic to $\P^1\times \P^{n-1}$, and thus of dimension $n$. Consequently the kernel of $\phi$ can have dimension at most $n-1$, whence the image of $\phi$ 
+space $\PP^{2n-1} = \PP(k^2\otimes k^n)$ the pure tensors form a variety isomorphic to $\PP^1\times \PP^{n-1}$, and thus of dimension $n$. Consequently the kernel of $\phi$ can have dimension at most $n-1$, whence the image of $\phi$ 
 in $S_1 = k^{r+1}$ has dimension at least $2n-(n-1) = n+1$. 
 
 We begin the discussion of $EN(M)$ by defining the maps $\delta_i$ and and proving that the given sequence is indeed a complex---that is, consecutive maps compose to 0. For simplicity of notation, we choose a generator of $\wedge^2 S^2$
@@ -678,7 +678,7 @@ completing the proof of split exactness of $EN(M')^*$ and thus of $EN(M')$.
 To go further we use a basic result, proven in a more general form (and with a slightly different statement) in \cite[Theorem ***]{E}. We make the convention
 that the codimension of the empty set is infinity.
 
-\begin{theorem}\label{what makes a complex exact}
+\begin{theorem}\label{WMACE}
  Let $S = k[x_0,\dots, x_r]$, and
  $$ 
 \FF:  F_0\lTo^{\phi_1}F_1 \lTo \cdots \lTo F_{n-1}\lTo^{\phi_n} F_n\lTo 0
@@ -691,10 +691,14 @@ The complex $\FF$ is \emph{acyclic} (that is, $H_i(\FF) = 0$ for all $i>0$) if a
 $$
 \codim X_i \geq i
 $$
-for all $i>0$. \qed
+for all $i>0$. Moreover, $X_{0}\supseteq X_{1}\supseteq \cdots \supseteq X_{n}$
+\qed
 \end{theorem}
 
-For example, if $n=1$, the theorem simply says that a map $F_1\to F_0$ is a monomorphism iff it becomes a monomorphism after tensoring with the field of rational functions $K$, which follows from the flatness of
+For example, Nakayama's Lemma implies that $X_{0}$ is the support of $\coker \phi_{1}$; thus $X_{0}$ is the set defined by the $\rank F_{0}$-sized minors of $\phi_{1}$. Similarly, 
+and that $X_{n}$ is the support of the cokernel of the dual of $\phi_{n}$. 
+
+Also, if $n=1$, the theorem simply says that a map $F_1\to F_0$ is a monomorphism iff it becomes a monomorphism after tensoring with the field of rational functions $K$, which follows from the flatness of
 localization and the fact that $F_1$ is torsion-free, so that
 $F_1 \subset F_1 \otimes K$. This suggests the (correct) generalization that the Theorem can be generalized
 to case where the $F_i$ are not free, but are sufficiently ``like'' free modules.
@@ -708,12 +712,24 @@ rings, ``codimension'' must be replaced by ``grade'', as in the given reference.
 We will also use a special case of the Auslander-Buchsbaum formula connecting projective dimension and depth:
 
 \begin{theorem}\label{Auslander-Buchsbaum}
-If $R$ is a regular local ring, and 
+If $R$ is a regular local ring of dimension $d$, and $M$ is a finitely generated $R$-module, then the projective dimension of $M$ is $\leq d$ with equality only if
+$M$ contains a submodule of finite length. 
 \end{theorem}
+
+\begin{corollary}\label{associated primes}
+If $R$ is a regular local ring of dimension $d$, and $M$ is a finitely generated $R$-module, then the codimension of an associated prime of $A$ is at most the projective dimension of $A$. 
+\end{corollary}
+\begin{proof}[Proof of  Corollary~\ref{associated primes}]
+ Projective dimension can only decrease under localization, and
+ the associated primes $P$ of $A$ are those for which $A_{P}$ contains a submodule
+ of finite length.
+\end{proof}
+
 With this and the multi-linear algebra above we can  prove the basic acyclicity result for an Eagon-Northcott complex:
 
-\begin{proposition}
- Suppose that 
+\begin{proposition}\label{acyclicity}
+Let $S = k[x_0,\dots, x_r]$ be a polynomial ring,  and let $M: F\to G$ be a homomorphism with
+ $F = S^n(-1), G= S^2$.
  $$
  S^n \cong F \rTo^M G \cong S^2
  $$
@@ -722,6 +738,50 @@ With this and the multi-linear algebra above we can  prove the basic acyclicity 
  the associated primes of $I_2(M)$ are all minimal and of codimension $n-1$.
  \end{proposition}
 
+\begin{proof}[Proof of Proposition~\ref{acyclicity}]
+Let $X_{i}\subset \AA^{r+1}$ be the variety defined from the complex $EN(M)$ as in 
+Theorem~\ref{WMACE}. Since $EN(M)$ becomes split exact after inverting any $2\times 2$ minor of $M$
+$X_{i}$ is
+contained in the closed set defined by $I_{2}(M)$, for all $i$. Thus if $I_{2}(M)$ has codimension $n-1$,
+then $EN(M)$ is acyclic. In this case the projective dimension
+of $S/I_{2}(M)$ is $n-1$, so all the associated primes of $I_{2}(M)$ have codimension
+exactly $n-1$.
+
+If $EN(M)$ is  acylic then, by Theorem~\ref{WMACE}, the codimension of $X_{n-1}$ is at least $n-1$. Thus to prove that the acyclicity of $EN(M)$ implies  $\codim I_{2}(M) \geq n-1$ (and thus
+$\codim I_{2}(M))  n-1$, it suffices to show that $X_{n-1} = X_{0}$ as algebraic sets.
+
+To see this, note that
+the ideal of $2\times 2$ minors of $M$. By definition, $X_{n-1}$ 
+is the set of points $p$ where $\kappa(p)\otimes \delta_{n-1}$ is not an inclusion, 
+or equivalently, that 
+that 
+$$
+\kappa(p)\otimes F\otimes \sym^{n-3}G 
+\cong 
+\kappa(p)\otimes \bigwedge^{n-1} F^{*} \otimes  \sym^{n-3}G 
+\rTo^{\partial_{n-1}}
+\kappa(p)\otimes \bigwedge^{n} F^{*} \otimes  \sym^{n-2}G
+\cong
+\kappa(p)\otimes \sym^{n-2}G
+$$
+is not a split surjection, and it is easy to see that the composite map takes
+$a\otimes b$ to $\kappa(p) \otimes M(a)\cdot b$, so the cokernel is the $(n-2)$-nd symmetric power
+of the cokernel of the map $\kappa(p) \otimes M$. Thus $X_{n}$ is equal to the support
+of the cokernel of $M$ itself. 
+
+By Nakayama's Lemma, $X_{0}$ is the support of $M$; furthermore, the localization of $\coker M$ at $p$ is 0 if and only if
+one of the 
+$2\times 2$ minors of $M$ is a unit locally at $p$ so $X_{0}$, so this is defined
+set-theoretically by $I_{2}(M)$.
+
+It now follows from Theorem~\ref{WMACE} that all the $X_{i}$ are equal, so $EN(M)$ is 
+acyclic if and only if $EN(M)^{*}$ is acyclic. 
+
+
+Finally, we must show that if  $\codim I_{2}(M) = n-1$ then $I_{2}(M)$ is prime. Since $M$ is 1-generic the entries of of the second row of $M$ are linearly independent, and since the dimension of the span of all the linear forms is at least $n+$, some element in the first row is outside the span of the the elements in the second. After a permutation of columns we may assume that $l_{1,1}, l_{2,1}, l_{2,2},\dots l_{2,n}$ are linearly independent.
+
+ indetransformation we may assume that $l_{1,1}$ is not in any associated prime of $M$. (This is  called ``prime avoidance'' \cite[??]{E}, and is almost obvious in our case since $k$ is infinite and a subspace contained in a finite union of subspaces of a vector space over an infinite field must be contained in one of them.) Thus it suffices to show that $I_{2}(M)$ becomes prime after inverting
+\end{proof}
 \end{proof}
 %
 %The first non-trivial example of a finite free resolution is the Koszul complex on 3 variables, which is the minimal $S = k[x,y,z]$-free resolution of the module $S/(x,y,z)$:
