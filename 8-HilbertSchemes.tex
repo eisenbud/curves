@@ -376,7 +376,7 @@ To fix the numerical invariants: we are going to be analyzing here the open subs
 We start our analysis in the by now familiar way: we ask, given a smooth, irreducible curve $C \subset \PP^3$ of degree 14 and genus 24, what sort of surfaces may contain it? By applying the genus formula for plane curves and curves on quadrics we see right off the bat that $C$ cannot lie on a quadric, so we start out usual chart in degree 3:
 
 \begin{center}
-\begin{tabular}{ c | c | c }
+\begin{tabular}{ c | c | c }\label{postulation table}
  m & $h^0(\cO_C(m))$ & $h^0(\cO_{\PP^3}(m))$ \\
  \hline
  3 & 19, 20 or 21 & 20 \\
@@ -392,7 +392,7 @@ h^1(\cO_C(3)) = h^0(K_C(-3)) = 0, 1 \text{ or } 2.
 $$
 (The curve $C$ cannot be hyperelliptic, since it's embedded in $\PP^3$ by a special linear series, and as we saw in Chapter~\ref{} a special linear series on a hyperelliptic curve can never be very ample; thus by Clifford $h^0(K_C(-3))$ cannot be 3 or more.) Riemann-Roch thus gives three a priori possible values for $h^0(\cO_C(3))$. In particular, as far as the table is concerned $C$ may or may not lie on a cubic surface; we'll consider these cases in turn.
 
-\noindent \underline{Case 1}: $C$ does not lie on a cubic surface. 
+\subsection{Case 1: $C$ does not lie on a cubic surface}
 
 In this case, the table says that $C$ lies on at least two linearly independent quartic surfaces $S$ and $S'$; and since $C$ does not lie on any surface of smaller degree, neither can be reducible. It follows that the intersection $S \cap S'$ must consist of the union of the curve $C$ and a curve $D$ of degree 2; and the linkage formula says that
 $$
@@ -426,5 +426,93 @@ $$
 h^1(\cN_{C/\PP^3}) = 0 \quad \text{and} \quad h^0(\cN_{C/\PP^3}) = 56,
 $$
 showing that $\cH_1$ is smooth at $[C]$.
+
+
+\subsection{Case 2: $C$ lies on a cubic surface $S$}
+
+Having shown that the open subset of $\cH^\circ$ corresponding to curves that do not lie on any cubic surface is dense in one irreducible component  $\cH_1 \subset \cH^\circ$, we turn now to the case of curves $C$ that do, that is, to the complement of $\cH_1$ in $\cH^\circ$. In this case, B\'ezout tells us that the cubic surface $S$ containing $C$ is unique, and we will restrict ourselves to the open subset $\cH_2 \subset \cH^\circ \setminus \cH_1$ where the surface $S$ is smooth. (The question of whether there are irreducible components of $\cH^\circ$ whose general members lie on singular cubic surfaces is a side issue that requires an insane amount of case-checking to resolve, and we choose to ignore it.)
+
+As always, the first question to ask about a smooth curve $C \subset \PP^3$ of degree $14$ and genus $24$ lying on a smooth cubic surface $S$ is, ``what other surfaces contain $C$?" B\'ezout immediately tells us that $C$ cannot lie on a quartic surface not containing $S$, and with a little more work we can see that it cannot lie on a quintic surface not containing $S$, either: if $C$ were residual to a line in a complete intersection of a cubic and a quintic, the liaison formula~\ref{} would tell us that 
+$$
+g(C) = (14-1)\frac{3+5-4}{2} = 26.
+$$
+On the other hand, Table~\ref{postulation table} tells us that there is at least a $84-61 = 23$-dimensional vector space of sextic polynomials vanishing on  $C$, only a 20-dimensional subspace of which can vanish on $S$. Thus there is a sextic surface $T$ containing $C$ but not containing $S$, and we can write
+$$
+S \cap T = C \cup D
+$$
+with $D$ a curve of degree 4. We can again apply the liaison formula, which says that
+$$
+g(C) - g(D) = (14 - 4)\frac{3+6-4}{2} = 25,
+$$
+so the arithmetic genus of $D$ is $-1$. Note also that $D$ moves in at least a 2-dimensional linear series on $S$: as we observed, the space of sextics vanishing on $S$ has codimension at least 3 in the space of sextics vanishing on $C$, so that $h^0(\cO_S(D)) \geq 3$. We will henceforth take $T$ to be general among sextics containing $C$, so that $D$ will be a general member of the (at least) 2-dimensional linear system cut by sextics containing $C$.
+
+With this said, we have the
+
+\begin{proposition}
+$D$ must either be (a) the disjoint union of a line and a twisted cubic on $S$; or (b) a union of two disjoint conics on $S$.
+\end{proposition}
+
+Since neither of these cases can be a specialization of the other, we conclude that the locus $\cH_2$ is the union of two irreducible components $\cH_{2a}$ and $\cH_{2b}$ corresponding to these two cases. We consider these in turn.
+
+\subsubsection{Case 2a: $D$ is the disjoint union of a twisted cubic and a line}
+
+To describe the locus in $\cH_2$ corresponding to curves $C$ of this type, let $\cH$ be the locus in the Hilbert scheme $\cH_{4m+2}$ corresponding to disjoint unions of twisted cubics and lines, and set up the usual liaison correspondence
+$$
+\Phi = \{(C,D,S,T) \in \cH_{2a} \times \cH \times \PP^{19} \times \PP^{83} \mid S \cap T = C \cup D \}.
+$$
+We have $\dim \cH = 16$, and the fiber of $\Phi$ over a point $[D] \in \cH$ is an open subset of the product $\PP^5 \times \PP^{37}$; so we see that $\Phi$ is irreducible of dimension 58. As for the fibers of $\Phi$ over $ \cH_{2a}$, these are 2-dimensional, ands we may ultimately conclude that $\cH_{2a}$ is irreducible of dimension 56.
+
+Finally, we calculate the dimension of the Zariski tangent space $H^0(\cN_{C/\PP^3}$ to $\cH_{2a}$ at a general point $[C]$. We do this, as before, by considering the exact sequence associated to the inclusion of $C$ in $S$:
+$$
+0 \to \cN_{C/S} \to \cN_{C/\PP^3} \to \cN_{S/\PP^3}|_C \to 0
+$$ 
+Here there is no ambiguity about the first term: by adjunction, the degree of the normal bundle of $C$ in $S$---that is, the self-intersection of $C$ in $S$---is 60, which is greater than $2g(C) - 2 = 46$; so $h^1(\cN_{C/S}) = 0$ and $h^0(\cN_{C/S}) = 37$.
+
+The issue here is the cohomology of the third term, $\cN_{S/\PP^3}|_C \cong \cO_C(3)$; as we observed in Table~\ref{postulation table}, this can a priori have either 19, 20 or 21 global sections. But given the explicit description of $C$ in this case, we can determine which it is. To start with, some notation: we let $L$ and $T$ denote the divisor class on $S$  of the line component and the twisted cubic component of $D$ respectively; and let $H$ denote the hyperplane class on $S$. By adjunction, we have $L \cdot L = -1$ and $T \cdot T = 1$. Since $C \sim 6H - D$ on $S$, we have
+$$
+(C\cdot L) = (6H - L - T \cdot L) = 7; \quad \text{and} \quad (C\cdot T) = (6H - L - T \cdot L) = 17
+$$
+In other words, the curves $L$ and $T$ intersect $C$ in divisors $E_L$ and $E_T$ of degrees $7$ and $17$ respectively. Now, to determine $h^1(\cO_C(3))$, we can write
+$$
+h^1(\cO_C(3)) = h^0(K_C(-3)) 
+$$
+and by adjunction,
+$$
+K_C(-3) = K_S(C)(-3)|_C = \cO_S(-H + 6H - D - 3H)|_C = \cO_C(2)(-E_L-E_T).
+$$
+Now, the quadrics in $\PP^3$ cut out on $C$ the complete linear series $|\cO_C(2)|$ (****), so we may finally conclude that \emph{$h^1(\cO_C(3))$ is the dimension of the space of quadratic polynomials vanishing on $E_L$ and $E_T$}. But $E_L$ consists of seven points on the line $L$, so any quadric containing $E_L$ contains $L$; and likewise since $E_T$ has degree $17 > 2\cdot 3$, and quadric containing $E_T$ contains $T$. Finally, we simply observe that \emph{no quadric contains the disjoint union of a line and a twisted cubic}; we conclude that $h^1(\cO_C(3))=0$ and $h^0(\cO_C(3)) = 29$.
+
+Putting this all together, we conclude that $h^0(\cN_{C/\PP^3}) = 56$; so the component $\cH_{2a}$ of the Hilbert scheme $\cH^\circ$ is generically smooth of dimension 56.
+
+\subsubsection{Case 2b: $D$ is the disjoint union of two conics}
+
+The analysis of the remaining case---the locus in $\cH^\circ$ of curves $C$ residual to a union of two disjoint conics in the intersection of a smooth cubic and a sextic---follows precisely the same path as the preceding. To start with, we let $\cH$ now be the locus in the Hilbert scheme $\cH_{4m+2}$ corresponding to disjoint unions of two conics, and consider the correspondence
+$$
+\Phi = \{(C,D,S,T) \in \cH_{2a} \times \cH \times \PP^{19} \times \PP^{83} \mid S \cap T = C \cup D \}.
+$$
+Once more we have $\dim \cH = 16$, and the fiber of $\Phi$ over a point $[D] \in \cH$ is again an open subset of the product $\PP^5 \times \PP^{37}$ (unions of two disjoint conics imposes the same number of conditions on cubics and sextics as the disjoint union of a line and a twisted cubic); so we see that $\Phi$ is as before irreducible of dimension 58. The fibers of $\Phi$ over $ \cH_{2a}$ are likewise 2-dimensional, and we may ultimately conclude that $\cH_{2b}$ is irreducible of dimension 56.
+
+Similarly, the calculation of the dimension of the Zariski tangent space $H^0(\cN_{C/\PP^3}$ to $\cH_{2a}$ at a general point $[C]$ proceeds exactly as in the last case: we start with the exact sequence
+$$
+0 \to \cN_{C/S} \to \cN_{C/\PP^3} \to \cN_{S/\PP^3}|_C \to 0.
+$$ 
+Just as before, there is no ambiguity about the first term: the line bundle $\cN_{C/S}$ has degree 60 and so is nonspecial; thus $h^1(\cN_{C/S}) = 0$ and $h^0(\cN_{C/S}) = 37$.
+
+It's only when we come to the last part of the calculation---the determination of the cohomology of the third term, $\cN_{S/\PP^3}|_C \cong \cO_C(3)$---that things are different. We set up in the same way: we let $Q$ and $Q'$ be the divisor class on $S$  of the two conics; and let $H$ denote the hyperplane class on $S$. (Note that $Q$ and $Q'$ are linearly equivalent: each is residual to a line in the intersection of $S$ with a plane, and if $Q$ and $Q'$ are disjoint these  must be the same line $L$; thus we can write the class of $C$ on $S$ as either $6H-2Q$ or, equivalently, $4H+2L$.)
+By adjunction, we have $Q \cdot Q = 0$; and since $C \sim 6H - 2Q$ on $S$, we have
+$$
+(C\cdot Q) = (6H - 2Q \cdot Q) = 12.
+$$
+In other words, the curves $Q$ and $Q'$ intersect $C$ in divisors $E_Q$ and $E_{Q'}$ of degrees $7$ and $17$ respectively. Now, to determine $h^1(\cO_C(3))$, we can write
+$$
+h^1(\cO_C(3)) = h^0(K_C(-3)) 
+$$
+and by adjunction,
+$$
+K_C(-3) = K_S(C)(-3)|_C = \cO_S(-H + 6H - D - 3H)|_C = \cO_C(2)(-E_L-E_T).
+$$
+Now, the quadrics in $\PP^3$ cut out on $C$ the complete linear series $|\cO_C(2)|$ (****), so we may finally conclude that \emph{$h^1(\cO_C(3))$ is the dimension of the space of quadratic polynomials vanishing on $E_L$ and $E_T$}. But $E_L$ consists of seven points on the line $L$, so any quadric containing $E_L$ contains $L$; and likewise since $E_T$ has degree $17 > 2\cdot 3$, and quadric containing $E_T$ contains $T$. Finally, we simply observe that \emph{no quadric contains the disjoint union of a line and a twisted cubic}; we conclude that $h^1(\cO_C(3))=0$ and $h^0(\cO_C(3)) = 29$.
+
+Putting this all together, we conclude that $h^0(\cN_{C/\PP^3}) = 56$; so the component $\cH_{2a}$ of the Hilbert scheme $\cH^\circ$ is generically smooth of dimension 56.
 
 \input{footer}
