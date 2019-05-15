@@ -147,14 +147,8 @@ is finitely generated, and $\depth M$ is the largest integer $\ell$ such that $H
 
 \section {Dualizing sheaves} 
 
-A special case of the Serre duality theorem on $\PP^{r}$ asserts that  there is an isomorphism $\eta: H^{r}(\omega_{\PP^{r}}) \cong k$, where $\omega_{\PP^{r}} = \cO_{\PP^{r}}(-r-1)$, the top exterior power of the cotangent bundle. Further, for any such isomorphism and any coherent sheaf $\cF$ on $\PP^{r}$ the natural map
-$$
-\cHom(\cF, \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), H^{r}(\omega_{\PP^{r}})) 
-\rTo^{\eta \circ -} \Hom(H^{r}(\cF), k)
-$$
-is an isomorphism.
-
-
+%%in the text below we used \HH instead of H for cohomology. This is fixed with a macro:
+\def\HH{{H}}
 
 Other than  the structure sheaf, the most important line bundle on a smooth curve $C$  is the cotangent line bundle, usually called the canonical line bundle or canonical sheaf $\omega_{C}$, and  we have many times used it's key property, that if  $\cF$  is a line bundle on $C$, then $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
 $$
@@ -162,9 +156,43 @@ $$
 \cong 
 \Hom_{k}(\HH^{1}(\cF), k).
 $$
-Setting $\sF = \omega_{C}$ we let $\eta: \HH^{1}(\omega_{C})\to k$ be the image of 
-the identity map $\omega_{C} \to \omega_{C}$, and call $\eta$ the residue map corresponding to the isomorphism; and, inversely, any nonzero functional 
-$\eta: \HH^{1}(\omega_{C})\to k$
+
+This isomorphism is most familiar in the case where $\cF$ is a line bundle, but
+in fact it holds for any coherent sheaf:
+
+\begin{proposition} Let $C$ be a smooth curve.
+There are natural isomorphisms
+$$
+\HH^{0}(\sHom_{C}(\sF, \omega_{C})) 
+\cong 
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+for any coherent sheaf $\cF$ on $C$.
+\end{proposition}
+
+\begin{proof}
+ Let $\cF'$ be the torsion subsheaf  of $\cF$, a sheaf of finite support. And let
+ $\cF'' = \cF/\cF'$.
+ Since
+$\cF'$ is locally free, the sequence is locally split (in fact it is globally split too, but we don't need this.)
+
+Since $\omega_{C}$ is a line bundle, 
+$$
+\sHom_{\PP^1}(\sF, \omega_{C}) = 
+\sHom_{\PP^1}(\sF', \omega_{C}) \oplus \sHom_{\PP^1}(\sF'', \omega_{C})  = 
+\sHom_{\PP^1}(\sF', \omega_{C}) 
+$$
+and 
+$\HH^{1}(\cF) = \HH^{1}(\cF'')
+$
+because $\HH^{1}(\cF') = 0$, so the duality formula for arbitrary coherent sheaves follows from the case of line bundles.
+\end{proof}
+
+We can make a somewhat more explicit version of the isomorphism by
+choosing an isomorphism $\eta_{C}: \HH^{1}(\omega_{C})\to k$. 
+Since $\HH^{1}(\omega_{C})$ is 1-dimensional, such a nonzero functional $\eta$ is unique up to scalars. When $C$ is smooth over $\CC$, we could take $\eta$ to be the classical residue map of complex analysis.
+
+The map $\eta_{C}$
 determines, for every $\sF$ a map
 $$
 f_{\eta}: \HH^{0}(\sHom_{C}(\sF, \omega_{C}))
@@ -174,9 +202,29 @@ $$
 sending a homomorphism
 $\alpha \in \HH^{0}(\sHom_{C}(\sF, \omega_{C})) = \Hom_{C}(\sF, \omega_{C})$
 to $\eta \circ \HH^{1}(\alpha)$ so that, for example, $\eta$ itself corresponds to the 
-identity map of $\omega_{C}$  Since $\HH^{1}(\omega_{C})$ is 1-dimensional, such a nonzero functional $\eta$ is unique up to scalars. (When $C$ is smooth over $\CC$, we could take $\eta$ to be the classical residue map of complex analysis.)
+identity map of $\omega_{C}$  
 
-It turns out that in this form the result is true for \emph{any} coherent sheaf $\cF$, and moreover can be generalized to any purely 1-dimensional projective scheme (and beyond: see Cheerful Fact\ref{fact****}). By way of terminology, if $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
+
+
+
+Another manifestation of these phenomena is a
+special case of the Serre duality theorem on $\PP^{r}$, which asserts that  there is an isomorphism $\eta: H^{r}(\omega_{\PP^{r}}) \cong k$, where $\omega_{\PP^{r}} = \cO_{\PP^{r}}(-r-1)$, the top exterior power of the cotangent bundle. Again, there is
+a natural map
+$$
+H^{0}(\cF^{-1}\otimes \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), k)
+$$
+Of course $\cF^{-1}\otimes \omega_{\PP^{r}}$ may be rewritten as
+$\Hom(\cF, \omega_{\PP^{r}})$, and in the form
+$$
+\Hom(\cF, \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), H^{r}(\omega_{\PP^{r}})) 
+\rTo^{\eta \circ -} \Hom(H^{r}(\cF), k)
+$$
+the map is, as before, an isomorphism for every coherent sheaf $\cF$.
+
+Grothendieck extended these ideas to all pure-dimensional projective schemes and beyond. Here is the basic definition:
+
+\begin{definition}
+If $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
 functional $\eta:\HH^{r}(\omega) \to k$ is \emph{dualizing} if the map
 $$
 f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
@@ -184,23 +232,14 @@ f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
 \Hom_{k}(\HH^{r}(\cF), k).
 $$
 defined as above is an isomorphism for every coherent sheaf $\sF$.
+\end{definition}
 
-We often abuse the terminology, and say simply that $\omega$ is a dualizing sheaf. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X})) = k$, then
-$\HH^{r}(\omega) \cong k$, whence $\eta$ is unique up to a scalar. 
+\begin{proposition} Any two dualizing pairs $(\omega_{X}, \eta)$ and $(\omega'_{X}, \eta')$, on a scheme $X$ are canonically isomorphic.
+\end{proposition}
 
-\fix{I think the proof given below works for a pure-dimensional scheme $X$ of any dimension, as in the book of Altman-Kleiman. Put this in? The intermediate cohomology groups are dual to each other iff $X$ is Cohen-Macaulay, a cheerful fact.}
-
-\begin{theorem}
-Let $X$ be a purely 1-dimensional projective scheme. There is a coherent sheaf
-$\omega$ on $X$ and a map $\eta_{X}: \HH^{1}(\omega) \to k$ such that
-the corresponding maps
-$$
-f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
-\to
-\Hom_{k}(\HH^{1}(\cF), k): \qquad \alpha \mapsto \eta\circ \HH^{1}(\alpha)
-$$
-are isomorphisms for any coherent sheaf $\sF$ on $X$. Moreover, this property determines the pair $(\omega_{X}, \eta)$ up to isomorphism in the sense that, given another such pair
-$(\omega'_{X}, \eta')$,  there is a unique isomorphism $g: \omega\to \omega'$ making the diagram
+ 
+\begin{proof}
+We will show that there is a unique isomorphism $g: \omega\to \omega'$ making the diagram
 $$
 \begin{diagram}
  H^{1}(\omega)&\rTo^{g}&H^{1}(\omega')\\
@@ -209,38 +248,52 @@ $$
 \end{diagram}
 $$
 commute. 
+
+ The duality property of $\omega'$ yields
+$$
+\Hom_{X}(\omega, \omega') = \HH^{0}(\sHom(\omega, \omega')) = \Hom(\HH^{1}(\omega), k).
+$$
+Let $g: \omega \to \omega'$ be the map corresponding under this isomorphism to $\eta'$. It follows from the relation of $\eta'$ to the duality isomorphism, that 
+$\eta'g = \eta$. Similarly, we get a map $g':\omega'\to \omega$ such that
+$\eta g = \eta'$, and it also follows that $\eta gg' = f_{\eta}(gg') =  \eta$, so that
+$gg' = 1_{\omega'}$. Similarly, $g'g = 1_{\omega}$, and we are done.
+\end{proof}
+ 
+
+
+We often abuse the terminology, and say simply that $\omega$ is a dualizing sheaf. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X})) = k$, then
+$\HH^{r}(\omega) \cong k$, whence $\eta$ is unique up to a scalar. 
+
+In general, one can construct a dualizing pair on a variety $X$ by comparing $X$ with a 
+variety $Y$ that already has a dualizing pair, such as $Y=\PP^{r}$. For simplicity
+we treat only the case we need. 
+
+\begin{theorem}\label{construction of omega}
+Let $\pi: X \to Y$ is a finite morphism of a purely $1$-dimensional schemes, and suppose that
+$\omega_{Y}, \eta_{y}$ is a dualizing pair on $Y$.  , and let $\pi: X\to Y$ be a finite morphism. 
+The sheaf $\omega := \sHom(\pi_{*}\cO_{X}, \omega_{Y})$, regarded as a sheaf on $X$
+together with the map $\eta: \HH^{1}(\omega) \to k$ such that
+the corresponding maps
+$$
+f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
+\to
+\Hom_{k}(\HH^{1}(\cF), k): \qquad \alpha \mapsto \eta\circ \HH^{1}(\alpha)
+$$
+are isomorphisms for any coherent sheaf $\sF$ on $X$. 
 \end{theorem}
 
-Any  sheaf $\omega$ with the property given in the Theorem is called a \emph{dualizing sheaf} for $X$, sometimes denoted $\omega_{X}$.
+Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is a finite map to $\PP^{1}$, where $\omega_{\PP^{1}} = \sO_{\PP^{1}}(-2)$. 
 
 \begin{proof}
- 
-We first consider the case $C=\PP^{1}$. If $\cF$ is any coherent sheaf, then considering the torsion subsheaf we see that there is an exact sequence
+The sheaf  
+$\omega:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
+which is, a priori a sheaf on $Y$, has the structure of a sheaf on $X$
+specified by the property that
 $$
-0\to \cF' \to \cF \to \cF''\to 0
-$$ 
-where $\cF'$ has finite support and $\cF''$ is torsion free, and thus a sum of line bundles. Since
-$\cF'$ is locally free, the sequence is locally split (in fact it is globally split too, but we don't need this.)
+\pi_{*}(\omega) = \sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}).
+$$
+as a sheaf on $Y$.
 
-Since $\omega_{\PP^{1}} = \cO_{\PP^{1}}(-2)$ is a line bundle, 
-$$
-\sHom_{\PP^1}(\sF, \omega_{\PP^{1}}) = 
-\sHom_{\PP^1}(\sF', \omega_{\PP^{1}}) \oplus \sHom_{\PP^1}(\sF'', \omega_{\PP^{1}})  = 
-\sHom_{\PP^1}(\sF', \omega_{\PP^{1}}) 
-$$
-and 
-$\HH^{1}(\cF) = \HH^{1}(\cF'')
-$
-because $\HH^{1}(\cF') = 0$, so the duality formula for arbitrary coherent sheaves follows from the case of line bundles.
-
-Now let $X$ be a purely 1-dimensional projective scheme. To construct a pair
-$(\omega_{X}, \eta)$ with the desired property, we choose a finite mapping 
-$\pi: X\to \PP^{1}$ (for example by embedding $X$ in some projective space $\PP^{n}$ and
-projecting from an $(n-2)$-plane disjoint from $X$). We define $\omega_{X}$ to be a sheaf
-on $X$ satisfying
-$$
-\pi_{*}(\omega_{X}) = \sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}).
-$$
 To see that there is such a sheaf, take an open affine cover $\{U_{i}\}$ of $\PP^{1}$ and pull it back to an open affine cover $\{V_{i} = \pi^{-1}(U_{i})\}$ of $X$. Because $\pi$ is finite, the restriction of 
 $\pi_{*} \cO_{X}$ to $U_{i}$ is naturally isomorphic to $\sO_{V_{i}}$, regarded as an $\sO_{U_{i}}$-module, and thus the restriction of
 $\sHom(\pi_{*}\cO_{X}, \omega_{\PP^{1}}$ to $U_{i}$ is 
@@ -284,34 +337,17 @@ f(a) \in \sHom_{U_{i}}(\sF|_{V_{i}}, \omega_{\PP^{1}}|_{U_{i}})
 $$
 that takes $t\in \sF|_{V_{i}}$ to $a(t)(1)\in \omega_{\PP^{1}}|_{U_{i}}$ is the natural
 isomorphism required.
-
-Finally, to prove the uniqueness statement, suppose that $(\omega',\eta')$ is also a dualizing module for $X$. The duality property of $\omega'$ yields
-$$
-\Hom_{X}(\omega, \omega') = \HH^{0}(\sHom(\omega, \omega')) = \Hom(\HH^{1}(\omega), k).
-$$
-Let $g: \omega \to \omega'$ be the map corresponding under this isomorphism to $\eta'$. It follows from the relation of $\eta'$ to the duality isomorphism, that 
-$\eta'g = \eta$. Similarly, we get a map $g':\omega'\to \omega$ such that
-$\eta g = \eta'$, and it also follows that $\eta gg' = f_{\eta}(gg') =  \eta$, so that
-$gg' = 1_{\omega'}$. Similarly, $g'g = 1_{\omega}$, and we are done.
 \end{proof}
 
-\begin{fact}[Dualizing sheaves in higher dimension] The proof given for curves above actually works for a purely $r$-dimensional projective scheme $X$ over $k$ if we replace the occurrences of  $\HH^{1}$ by $\HH^{r}$, and shows that every such scheme has a dualizing sheaf $\omega$. However, the isomorphisms
+\begin{fact}[Dualizing sheaves in higher dimension]  There are two important extensions of Theorem~\ref{construction of omega}:
+
+First, the proof given for curves above actually works for a purely $r$-dimensional projective scheme $X$ over $k$ if we replace the occurrences of  $\HH^{1}$ by $\HH^{r}$, and shows that every such scheme has a dualizing sheaf $\omega$. However, the isomorphisms
 $$
 \HH^{i} (\sHom(\sF, \omega)) \not\cong \Hom_{k}(\HH^{r-i}(\sF), k) 
 $$
 hold for all coherent $\sF$ if and only if $X$ is Cohen-Macaulay. In our situation
 this condition means that, if $\pi: X\to \PP^{r}$ is a finite map, then $\pi_{*}\cO_{X}$
 is locally free.
-
-A scheme is said to be Gorenstein if it has a dualizing sheaf that is locally free---the canonical bundle. A more general form of Theorem~\ref{canonical is ext} says that if $\pi: X \to Y$ is a finite morphism of pure dimensional Gorenstein schemes, and $Y$ has a canonical bundle $\omega_{Y}$, then the canonical bundle of $X$ may be
-represented as 
-$$
-\omega_{X} = \sExt^{\dim Y-\dim X}_{\sO_{Y}}
-(\pi_{*}\sO_{X}, \omega_{Y}),
-$$ 
-regarded as a sheaf on $\sO_{X}$.
-
-For all this and more, see \cite{AltmanKleiman}.
 \end{fact}
 
  
