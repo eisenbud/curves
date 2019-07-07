@@ -3,6 +3,46 @@
 \chapter{Syzygies}
 \label{SyzygiesChapter}
 
+
+%$$
+%\vbox{\offinterlineskip %\baselineskip=15pt
+%\halign{\strut\hfil# \ \vrule\quad&# \ &# \ &# \ &# \ &# \ &# \ 
+%&# \ &# \ &# \ &# \ &# \ 
+%\cr
+%degree&\cr
+%\noalign {\hrule}
+%0&1&--&--&--&--&--&--\cr
+%1&--&17&46&45&4&--&--\cr
+%2&--&--&--&--&25&18&4\cr
+%\noalign{\bigskip}
+%\omit&\multispan{8}{\bf Conjectural shape of $F_\bullet$}\cr
+%\noalign{\smallskip}
+%}}
+%$$
+%
+%
+%
+%
+%\centerline{\scriptsize
+%\begin{tabular}{r|ccc} 
+%$j\backslash i$&0&1&2\\ 
+%\hline 
+%0&1&$-$&$-$\\ 
+%1&$-$&3&2\\ 
+%\end{tabular}}
+%
+%
+%$$
+%\begin{matrix} 
+%j\backslash i&\vline&0   &  1    & \cdots & n    \cr\hline
+%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+%       0&\vline&\beta_{0,0}&\beta_{1,1}&\cdots&\beta_{n,n}\cr
+%       1&\vline&\beta_{0,1}&\beta_{1,2}&\cdots&\beta_{n,n+1}\cr
+%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+%\end{matrix}
+%$$         
+%
+%
 \section{Introduction} 
 %Motivation: canonical embedding turns intrinsic invariants into projective invariants. Hilbert Function. Projective Normality; Canonical Module.
 %
@@ -11,41 +51,90 @@
 %Hilbert Syzygy theorem, Hilbert function derivation, Unique minimal resolution, Betti table, 
 %\fix{ introduce tools as they are used}
 
-It is much easier to talk about the geometry of a curve once it is embedded in projective space, but of course this is really the geometry of a pair, the curve \emph{and} the embedding. However if we take the embedding corresponding to the complete linear series associated to the canonical line bundle (or a fixed multiple of it), then we can be sure we are talking about an intrinsic invariant of the curve itself. In genus 0,1 the canonical bundle is not ample, so this approach doesn't work; but in genus $\geq 2$,as we have seen in Chapter ****, the canonical bundle itself determines an embedding for all but hyperelliptic curves; the square of the canonical bundle gives an embedding for all  curves of genus $>2$; and the cube of the canonical bundle gives an embedding for every curve of genus $\geq 2$. 
+In this section we study the syzygies of curves in projective space, with an emphasis on what they say about varieties (or schemes) containing the curve. For curves in $\PP^{3}$ we ask about the relationship of a curve to the 1-dimensional complete intersections containing it---this is the theory of \emph{linkage} (often called by its French name \emph{liaison}). Questions about abstract curves can be turned into questions about embedded curves via the canonical embedding. We will discuss what is known about the syzygies of canonical curves, and introduce Green's conjecture, which relates the Clifford index of an abstract curve to the syzygies of it canonical embedding. Along the way, we make explicit the syzygies of rational normal scrolls, given by the Eagon-Northcott complex.
 
-Once a curve is embedded in projective space, the first algebraic invariant we have looked at is it's Hilbert function; but this simply recovers the genus and the degree. A much finer invariant is the minimal free resolution of the homogeneous coordinate ring of the curve. For example according to the conjecture of Mark Green (now verified in many special cases), the free resolution determines the ``smallest'' base point free linear series on the curve, in a precise sense that we will describe.
+%It is much easier to talk about the geometry of a curve once it is embedded in projective space, but of course this is really the geometry of a pair, the curve \emph{and} the embedding. However if we take the embedding corresponding to the complete linear series associated to the canonical line bundle (or a fixed multiple of it), then we can be sure we are talking about an intrinsic invariant of the curve itself. In genus 0,1 the canonical bundle is not ample, so this approach doesn't work; but in genus $\geq 2$,as we have seen in Chapter ****, the canonical bundle itself determines an embedding for all but hyperelliptic curves; the square of the canonical bundle gives an embedding for all  curves of genus $>2$; and the cube of the canonical bundle gives an embedding for every curve of genus $\geq 2$. 
+%
+%Once a curve is embedded in projective space, the first algebraic invariant we have looked at is it's Hilbert polynomial; but this simply recovers the genus and the degree. A finer invariant is the Hilbert function of the homogeneous coordinate ring, but for the canonical series this also recovers only the degree and genus. Still finer is the numerical data assocated to the minimal free resolution of the homogeneous coordinate ring of the curve. For example according to the conjecture of Mark Green (now verified in many special cases), this data determines the ``smallest'' base point free linear series on the curve, in a precise sense that we will describe.
 
-We begin by reviewing some basic facts about free resolutions. They are usually stated for
-modules over a local ring, and in that form the results here can be found in \cite[Ch ?]{E}. The proofs are essentially identical in the graded case presented here.
+\section{Syzygies and free resolutions} 
 
 Let 
 $R = R_{0} \oplus R_{1}\oplus\cdots$ be a positively graded ring, with $R_{0}$ a field,
- and let $M$ be a finitely generated graded $S$-module. An  \emph{$R$-free resolution} of $M$ is a sequence of free graded $R$ modules $F_{i}$ and homogeneous degree 0 maps $d_{i}$ of the form
+ and let $M$ be a finitely generated graded $S$-module. An  \emph{$R$-free resolution} of $M$ is a sequence of graded free $R$ modules $F_{i}$ and homogeneous degree 0 maps $d_{i}$ of the form
 $$
-\FF: F_{0}:=\oplus_{j}R(-j)^{\beta_{0,j}} \lTo^{d_{1}} F_{1}:=\oplus_{j}R(-j)^{\beta_{0,j}}\lTo^{d_{2}} F_{2}\cdots
+\FF:\qquad F_{0}:=\oplus_{j}R(-j)^{\beta_{0,j}} \lTo^{d_{1}} F_{1}:=\oplus_{j}R(-j)^{\beta_{0,j}}\lTo^{d_{2}} F_{2}\cdots,
 $$
+where $R(-j)$ denotes the rank one free $R$-module with generator in degree $j$ (so that 
+$R(-j)_{k} = R_{k-j}$), 
 and an \emph{augmentation} map $F_{0} \rOnto^{d_{0}} M$ such that the kernel of $d_{i}$ is equal to the image of $d_{i+1}$ for every $i$. 
 
 The resolution $\FF$ is \emph{minimal} if every entry of matrices representing the $d_{i}$ (for $i>0$ is of strictly positive degree. A minimal free resolution of $M$ can be constructed inductively by first choosing a minimal set of homogeneous generators of $M$, determining the map $d_{0}$, then choosing a minimal set of generators of $\ker d_{0}$, determining a map
-$F_{1} \rOnto \ker d_{0} \subset F_{0}$, and so on.
+$F_{1} \rOnto \ker d_{0} \subset F_{0}$, and so on. The image of $F_{i}$ in $F_{i-1}$ is called the $i$-th syzygy module of $M$. A syzygy of a set of elements 
+$e_{1}, \dots, e_{s}$ of an $R$-module is a linear relation over $R$; that is, a sequence of elements
+$r_{1},\dots, r_{s}$ such that $\sum_{i}r_{i}e_{i} = 0$. The set of all syzygies is thus a submodule of the free module on $s$ generators. Thus the minimal free resolution of $M$ is a way of
+packaging a minimal set of  generators of the module of syzygies of the generators of $M$; then szygyies of the generators of the syzygy module; etc.
 
-The minimal free resolution can be used to derive invariants of $M$
-\cite[Theorem ***]{E} by virtue of the following:
+\begin{example}\label{canonical in P3}
+The minimal free resolution of the homogeneous coordinate ring $S_{C}$ of a canonical curve $C$ of genus 4 in $\PP^{3}$ whose ideal is generated by a quadric $q$ and a cubic $f$, as a module over the homogeneous coordinate ring $S = \CC[x_{0},\dots,x_{3}]$ of $\PP^{3}$, has the form
+\small
+$$
+S \lTo^{
+\begin{pmatrix}
+  q& f
+\end{pmatrix}}
+S(-2) \oplus S(-3) \lTo^{
+\begin{pmatrix}
+f\\-q 
+\end{pmatrix}
+}
+S(-5)\lTo 0.
+$$
+\normalsize
+The reason that this sequence, called the Koszul complex of $(q,f)$, is exact, is that
+$q$ and $f$ are relatively prime, so that the only multiples of $q$ that are multiples of $f$ are actually multiples of $qf$. 
+\end{example}
+The following result assures us that invariants of the minimal free resolution of $M$ are invariants of $M$:
 
-\begin{theorem}[Uniqueness]\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded is unique up to (non-unique) isomorphism.
+\begin{theorem}[Uniqueness]\cite[Theorem ***]{E}\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded is unique up to (non-unique) isomorphism.
 \end{theorem}
 
-From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules, and consider resolutions over this ring. In this case something quite special happens \cite[****]{E}:
+This and the other results in this section are usually stated for
+modules over a local ring, and in that form the results here can be found in \cite[Ch ?]{E}. The proofs are essentially identical in the graded case presented here.
+
+The numbers $\beta_{i,j}$ in  the minimal free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; it follows from Theorem~\ref{uniqueness} that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. 
+We sometimes refer to $\beta_{i,j}$ informally as the \emph{number of $i$-th syzygies of degree $j$}; more properly, it is the number of minimal generators of degree $j$ required by the module of $i$-th syzygies of $M$.
+
+For convenience, the graded Betti numbers are usually displayed in a compact \emph{Betti table}, with the nonzero $\beta_{i,j}$ appearing in the $i$ column and the $(j-i)$-th row. (The reason for the initially non-intuitive choice $j-i$ instead of $j$ is that, for the resolution $\FF$ to be minimal, it is necessary that if $\beta_{i,j}\neq 0$, then some $\beta_{i-1,k}\neq 0$ for some $k<j$. Thus shift by $-j$ makes the diagram more compact.)
+
+We sometimes speak of the \emph{Betti table of a variety $X\subset \PP^{n}$}, by which we will mean the Betti table of the minimal free resolution
+of the homogeneous coordinate ring $S_{X}$ of $X$, as a module over the homogeneous coordinate ring of $\PP^{n}.$
+
+For example, the canonical curve in $\PP^{3}$ discussed in Example~\ref{canonical in P3} has Betti table:
+
+\centerline{\small %\scriptsize
+\begin{tabular}{r|ccc} 
+$j\backslash i$&0&1&2\\ 
+\hline 
+0&1&$-$&$-$\\ 
+1&$-$&1&$-$\\ 
+2&$-$&1&$-$\\ 
+3&$-$&$-$&1\\ 
+\end{tabular}}
+\noindent where, for clarity, we have suppressed the $\beta_{i,j}$ that are 0, and replaced some of
+them with $-$.
+
+From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules. In this case something quite special happens \cite[****]{E}:
 
 \begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
 The minimal $S$-free resolution $\FF$ of any finitely generated graded $S$-module $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
 \end{theorem}
 
 \begin{fact}
- There are in fact finite resolutions for all $S$-modules; however there is generally no reasonable notion of a  minimal resolution outside the finitely generated graded or local cases. See \cite{???}.
+ There are in fact finite resolutions for all $S$-modules; however there is generally no reasonable notion of a  minimal resolution outside the positively graded or finitely generated local cases. See \cite{???}.
 \end{fact}
 
-The numbers $\beta_{i,j}$ in  the minimal $S$-free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; It follows from this that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
+ In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
 $$
 H_{S(-j)}(m) = 
 \begin{cases}
@@ -70,30 +159,70 @@ $$
  H_{S_{C}}(m) = {2+m\choose 2} - {2-d+m\choose 2}
  $$
  which has the value  $dm + 1+(2-d)(2-d-1)/2 = dtm+ (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus is the constant term minus 1, we get
-$\deg C = d, p_{a}(C) = (d-1)(d-2)/2$ as we should, by now, expect. Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
+$\deg C = d,\ p_{a}(C) = (d-1)(d-2)/2$ as we should expect.  Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
 \end{example}
 
-\begin{exercise} In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
+\begin{exercise} 
+\begin{enumerate}
+ \item Show that any curve in $\PP^{3}$ whose homogeneous coordinate ring has the
+ form given in Example ~\ref{canonical in P3} has degree 6 and (arithmetic) genus 4.
+ 
+\item In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
 Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
 $X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
 using the fact that the minimal free resolution of the homogeneous coordinate ring 
 $S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex (see \cite{???}):
+%\scriptsize
+\small
 $$
  S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
  $$
+\normalsize
+\end{enumerate}
 \end{exercise}
 
-Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing it here. The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. 
+Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing it here. A more interesting feature that the Betti table of the homogeneous coordinate ring (or homogeneous ideal) of a variety $X$ reflects is the presence of a variety $Y$ containing 
+$X$ and having low degree syzygies. 
 
-\begin{proposition}
+Green's conjecture, which we shall meet below, is a sophisticated (potential) application of this principle. Here is a much simpler version:
+
+We have seen in Chapter~\ref{Scrolls}, the homogeneous ideal $I$ of the twisted cubic curve in $\PP^{3}$ is generated by the three $2\times 2$ minors of the matrix
+$$
+M = \begin{pmatrix}
+ x_{0}&x_{1}&x_{2}\\
+  x_{1}&x_{2}&x_{3}
+\end{pmatrix}
+$$
+We shall soon compute the Betti tables of all rational normal scrolls. In particular, we shall see that the Betti table of the twisted cubic has the form:
+
+\centerline{\small
+\begin{tabular}{r|ccc} 
+$j\backslash i$&0&1&2\\ 
+\hline 
+0&1&$-$&$-$\\ 
+1&$-$&3&2\\ 
+\end{tabular}}
+\noindent
+This means that there are 2 linear relations on the 3 generators of $I$ (they are in fact just the columns of the transpose of the matrix $M$).
+The homogeneous ideal $J$ of any set of points $\Gamma$ that lies on this curve contains $I$, and the 2 linear relations on the generators of $I$ must be consequences of relations on the generators of $J$. But since the relations on $I$ are linear, they are of the lowest possible degree of any relations on $J$, so there must be at least 2 relations on the generators of $J$. Here is the way this can be used:
+\begin{fact}
+ A lemma of Castelnuovo shows  that every set of 6 points in linearly general position
+in $\PP^{3}$ lies on a twisted cubic;  a set of points $\Gamma\subset \PP^{3}$ in linearly general position of cardinality $n\geq 7$ lies on a twisted cubic curve if and only if
+the Betti table of $\Gamma$ is termwise $\geq$ that of the twisted cubic. \fix{is Castelnuovo's Lemma proven somewhere in this book? should we convert this from a fact to a proposition? Else refer to ``Geometry of Syzygies''.}
+\end{fact}
+
+\subsection{Projective dimension}
+The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. An older name, in some ways more suitable, was \emph{homological codimension}; this is justified by the following results:
+
+\begin{proposition}\label{pd lower bound}
 If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the support of $M$.
 \end{proposition}
 
 In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
 Cohen-Macaulay $S$-module, or equivalently that the sheaf $\widetilde M$ is 
-\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself is arithmetically Cohen-Macaulay.
+\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself is arithmetically Cohen-Macaulay. From the examples above we see that plane curves, and also the twisted cubic, are Cohen-Macaulay.
 
-Thus if $C\subset \PP^{n}$ is 1-dimensional the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
+By Proposition~\ref{pd lower bound}, if $C\subset \PP^{n}$ is 1-dimensional, then the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
 
 \begin{theorem}
  Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme. The projective dimension of the homogeneous coordinate ring $S_{C}$ of $C$  is
@@ -144,9 +273,50 @@ Though this is not obvious from the definition, all maximal regular sequences on
 is finitely generated, and $\depth M$ is the largest integer $\ell$ such that $H^{i}(\cO_{X}(t) = 0$ for all $0<i<ell-1$ and all $t$.
 \end{theorem}
 
+\section{Liaison of curves in $\PP^3$.}
+%Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
+
+One way in which syzygies are useful is in understanding \emph{linkage}. We  give the definition in the case of curves in $\PP^{3}$, where the idea is most useful. See~\cite{PeskineSzpiro} for the general situation.
+
+\begin{definition}
+If $I$ and $J$ are unmixed ideals of codimension $2$ in $\PP^{3}$ then $I$ and $J$ are \emph{directly linked} if there exists a homogeneous complete intersection $G \subset I\cap J$ such that $I = G:J$. We define \emph{linkage} to be the equivalence relation generated by direct linkage. We say that two ideals are \emph{evenly} linked if they are
+connected by an even number of direct linkages, and similarly for \emph{oddly linked}.
+\end{definition}
+
+We first note that direct linkage is a symmetric relation:
+\begin{lemma}
+ If $G$ is a complete intersection of codimension 2, and I is an ideal of codimension 2 containing $G$, then $G:(G:I)$ is the unmixed part of $I$. In particular, if $I$ is unmixed and $J = G:I$ is directly linked to $I$, then $I = G:J$ is is directly linked to $J$.
+\end{lemma}
+
+\begin{proof}
+ Since $G$ is a complete intersection, the associated primes of $G$ are all of codimension 2, and it follows that for any ideal $I$
+\end{proof}
+\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
+is a complete intersection.
+ The Hartshorne-Rao Theorem \cite{} asserts that 
+$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
+\end{fact}
+
+
+Genus formula by filtration: Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
+$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
+$\cI_C = (\cI_D:\cI_{C'})$,  and by local duality (?) that 
+$$
+\omega_{C'} = \cHom_{\cO_D}(\cO_C, \omega_D) = 
+\cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))
+=  \frac{(\cI_D:\cI_C)}{\cI_{D}}(d_1+d_2-4).
+$$
+Thus there is an exact sequence
+$$
+0\to \omega_{C'}(-d_1-d_2+4) \to \cO_D \to \cO_C \to 0.
+$$
+Computing Hilbert polynomials via RR gives the genus formula.
+
+Construction of curves with given Rao module: Bourbaki's theorem.
 
 \section {Dualizing sheaves} 
 
+\fix{Put the linkage computation of the dualizing sheaf in here explicitly!}
 %%in the text below we used \HH instead of H for cohomology. This is fixed with a macro:
 \def\HH{{H}}
 
@@ -493,6 +663,8 @@ The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never van
 \end{proof}
 \section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
 
+\fix{I'm inclined to make this a ``cheerful fact''}
+
  Regularity in terms of resolution and in terms of local cohomology. (has the relation of local to global coho been done already?)
 
 We'll need local cohomology, local duality, 
@@ -501,46 +673,6 @@ recall the $2g+1$ theorem from Ch 4. Say that it's ACM+smooth. relate it to regu
 normality of smooth CI's is really ACM for all CI's. Say that ACM is measured by the length of the free resolution.
 
 
-\section{Liaison of curves in $\PP^3$.}
-%Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
-
-One way in which syzygies are useful is in understanding \emph{linkage}. We are in the case of curves in $\PP^{3}$, so we give the definition in that case. See~\cite{PeskineSzpiro} for the general definitions and theorems.
-
-\begin{definition}
-If $I$ and $J$ are unmixed ideals of codimension $2$ in $\PP^{3}$ then $I$ and $J$ are \emph{directly linked} if there exists a homogeneous complete intersection $G \subset I\cap J$ such that $I = G:J$. We define \emph{linkage} to be the equivalence relation generated by direct linkage. We say that two ideals are \emph{evenly} linked if they are
-connected by an even number of direct linkages, and similarly for \emph{odd linage}d
-\end{definition}
-
-We first note that direct linkage is a symmetric relation:
-\begin{lemma}
- If $G$ is a complete intersection of codimension 2, and I is an ideal of codimension 2 containing $G$, then $G:(G:I)$ is the unmixed part of $I$. In particular, if $I$ is unmixed and $J = G:I$ is directly linked to $I$, then $I = G:J$ is is directly linked to $J$.
-\end{lemma}
-
-\begin{proof}
- Since $G$ is a complete intersection, the associated primes of $G$ are all of codimension 2, and it follows that for any ideal $I$
-\end{proof}
-\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
-is a complete intersection.
- The Hartshorne-Rao Theorem \cite{} asserts that 
-$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
-\end{fact}
-
-
-Genus formula by filtration: Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
-$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
-$\cI_C = (\cI_D:\cI_{C'})$,  and by local duality (?) that 
-$$
-\omega_{C'} = \cHom_{\cO_D}(\cO_C, \omega_D) = 
-\cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))
-=  \frac{(\cI_D:\cI_C)}{\cI_{D}}(d_1+d_2-4).
-$$
-Thus there is an exact sequence
-$$
-0\to \omega_{C'}(-d_1-d_2+4) \to \cO_D \to \cO_C \to 0.
-$$
-Computing Hilbert polynomials via RR gives the genus formula.
-
-Construction of curves with given Rao module: Bourbaki's theorem.
 
 
 \subsection{How syzygies can reflect geometry}
