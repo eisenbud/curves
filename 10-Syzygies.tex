@@ -111,7 +111,18 @@ This result has a consequence that leads to an important definition:
  Obvious, since $R/(x_{1},\dots, x_{i})$ is again regular, and thus a domain, and $x_{i+1}\notin (x_{1},\dots,x_{i})$.
 \end{proof}
 
-More generally, we say that a sequence of elements in the maximal ideal of $R$ that satisfies the condition of the Corollary is a \emph{regular sequence}.
+We say that a sequence of elements in the maximal ideal of $R$ that satisfies the condition of the Corollary is a \emph{regular sequence}. It is convenient to extend
+the definition to modules:
+
+\begin{definition}
+ Let $R$ be a commutative ring, and let $M$ be an $R$-module. A sequence of
+ elements $x_{1}, \dots, x_{n}\in R$ is called a \emph{regular sequence on $M$}, or an
+ \emph{$M$-sequence}, if
+ $x_{i}$ is a nonzerodivisor on $M/(x_{1}, \dots x_{i-1})M$  for all $i= 1,\dots, n$, and 
+ $(x_{1}, \dots, x_{n})M \neq M$.
+\end{definition}
+
+Note that if $(R,\gm,k)$ is a local ring, $(x_{1},\dots,x_{n}\subset \gm$ and $M$ is finitely generated, then he last condition is auttomatic from Nakayama's Lemma.
 
  Recall
 that if $M$ is a finitely generated $R$-module, then an \emph{$R$-free resolution} of $M$ is a sequence of free modules and maps
@@ -167,7 +178,6 @@ x_{2}\\-x_{1}
 \bigwedge^{2}R^{2}\lTo 0.
 $$
 
-
 In general the Koszul complex of a sequence of elements
 $\KK(x_{1}, \dots, x_{n}); R)$ is defined to be the exterior algebra of $R^{n}= \oplus_{i=1}^{n} Re_{i}$, with first differential
 $$
@@ -218,7 +228,6 @@ the Koszul complex $\KK(x_{1},\dots, x_{d};R)$ is the minimal  $R$-free resoluti
 \end{enumerate}
 \end{theorem}
 
-
 The reader may regard the implication 1) $\to$ 2)  of this result as a vast extension of Hilbert's Syzygy Theorem, which says every module over a positively graded polynomial ring $S = k[x_1,\dots,x_{d}]$ over a field $k$ has a free resolution of length $\leq d$. The result enabled the proof of long-standing conjectures:
 \begin{theorem} \cite{AB} If $R$ is a regular local ring then:
 \begin{itemize}
@@ -241,12 +250,47 @@ A local ring $(R,\gm,k)$ of dimension $d$ is said to be \emph{Cohen-Macaulay}  i
 \end{definition}
  Note that every 0-dimensional (that is, Artinian) local ring is automatically Cohen-Macaulay.
  
-The Cohen-Macaulay condition is made easier to check by the following important result:
+The Cohen-Macaulay condition is made easier to check by the following important homological interpretation:
 
 \begin{theorem}\label{depth}
- Let $I$ be a proper ideal in a local ring $R$. Every maximal regular sequence in $I$ has the same length, called the \emph{depth of $I$ on $R$}.
+Let $(R,\gm, k)$ be a local ring, and let $I\subset \gm$ be an ideal. 
+Let $M$ be a finitely generated 
+ $R$-module. Every maximal $M$-sequence in $I$ has the same length, called the \emph{depth of $I$ on $R$}, and this number is the smallest integer $i$ such that
+ $\Ext^{i}_{R}(R/I, M)\neq 0$. Moreover, if $x_{1}, \dots, x_{i}$ is a maximal $M$-sequence
+ in $I$ then $Hom_{R}(R/I, M/(x_{1}, \dots, x_{i})= \Ext^{i}_{R}(R/I, M)$ is independent of the maximal regular sequence.
 \end{theorem}
  
+ 
+\begin{proof} Suppose that $x_{1}, \dots, x_{i}\in \gm$ is a maximal regular sequence
+on $M$. We will show by induction on $i$ that $\Ext^{i}_{R}(R/I, M) = \Hom(R/I,  M/(x_{1}, \dots, x_{i}) \neq 0$ and
+that $\Ext^{j}_{R}(R/I,M) = 0$ for $j<i$.
+
+First suppose $i=0$; that is, every element of $I$ is
+a zero-divisor on $M$. This means that $I$ is contained in the union of the finitely
+many associated primes of $M$. By the Prime Avoidance Lemma \cite[****]{E} I is contained in a single associated prime of $M$, and thus $I$ annihilates a nonzero  element $m\in M$
+of $M$, so that $\Hom(R/I,M)$ contains a nonzero homomorphism sending the class of 1 to $m$.
+
+Next suppose that $i>0$. Since $x_{2}, \dots, x_{i}$ is a maximal regular sequence on $M/(x_{1})M$ we see by induction. that $\Ext^{i-1}(R/I, M/x_{1}M) \neq 0$ and $\Ext^{j}_{R}(R/I,M/x_{1}M) = 0$ for $j<i-1$. From the short exact sequence
+$$
+0\to M\rTo^{x_{1}}M \rTo M/x_{1}M \to 0
+$$
+we get a long exact sequence in $\Ext$ containing the terms
+$$
+\Ext^{j}(R/I,M) \rTo^{0} \Ext^{j}(R/I,M) \rTo \Ext^{j}(R/I,M/x_{1}M) \rTo \Ext^{j+1}(R/I,M)\rTo^{0} \Ext^{j+1}(R/I,M),
+$$
+where the maps marked 0 vanish because $x_{1}$ annihilates $R/I$; that is, we have 
+short exact sequences
+ $$
+0\to \Ext^{j}(R/I,M) \rTo\Ext^{j}(R/I,M/x_{1}M) \rTo \Ext^{j+1}(R/I,M)\to 0.
+ $$
+By induction, the middle term of this sequence vanishes for $j<i-1$, so 
+$\Ext^{j}(R/I,M) = 0$ for $j<i$ and 
+$$
+\Ext^{i}(R/I,M) \cong \Ext^{i-1}(R/I,M/x_{1}M) \cong \Hom(R/I, M/(x_{1}, \dots x_{i}))\neq 0
+$$
+as required.
+\end{proof}
+
 \begin{exercise}
  Use Theorem~\ref{depth} to check that the ring
  $$
@@ -267,8 +311,49 @@ The Cohen-Macaulay property has a homological interpretation that we shall use:
 Intermediate between the class of Cohen-Macaulay rings and the class of regular rings is the class of Gorenstein rings, important for the study of linkage Chapter~\ref{}:
 
 \begin{definition}
-Let $(R,\gm,k)$  be a local ring. If $\dim R = 0$ (that is, if $R$ is Arrtinian), then $R$ is called Gorenstein if $\Hom_{R}(k,R) \cong k$. In general, a $d$ dimensional local ring is said to be Gorenstein if it is Cohen-Macaulay and, 
+A local ring $(R,\gm,k)$  is  said to be Gorenstein if it is Cohen-Macaulay and
+%If $\dim R = 0$ (that is, if $R$ is Arrtinian), then  $\Hom_{R}(k,R) \cong k$. In general, a $d$ dimensional local ring is said to be Gorenstein if it is Cohen-Macaulay and 
+$\Ext^{d}(k, R) \cong k$.
 \end{definition}
+
+Note that if $R$ is regular, so that the maximal ideal is generated by a regular sequence
+$x_{1}, \dots, x_{d}$, then by Theorem~\ref{ABS} we can compute $\Ext^{d}(k,R)$ as the homology of 
+$$
+\Hom(\KK(x_{1}, \dots, x_{d}); R), R)
+$$
+and we see that $\Ext^{d}(k,R) = k$, so that indeed $R$ is Gorenstein.
+
+
+To unpack the Gorenstein condition, we first prove that $R$ is Gorenstein if and only if for some (respectively all) non-zerodivisors $x\in \gm$, the ring $R/(x)$ is Gorenstein. This follows from the more general:
+
+\begin{lemma}
+ Suppose that $(R,\gm,k)$ is a local ring of dimension $d$. If $x_{1},\dots x_{d}$ is a regular sequence, then
+ $\Ext^{i}(k,R) = 0$ for $i<d$ and 
+ $$
+ \Ext_{R}^{d}(k, R) = \Ext_{R}^{d-1}(k, R/(x_{1})).
+ $$
+In particular, $R$ is Gorenstein if and only if $R/(x_{1})$ is Gorenstein.
+ \end{lemma}
+ 
+\begin{proof}
+We do induction on $d =\dim R$, the case $d=0$ being vacuous. If $d\geq 1$ then
+$\Hom(k,R)=0$ follows because $x$ annihilates $k$, but does not annihilate any element of $R$. From the short exact sequence
+$$
+0\to R \rTo^{x_{1}} R\rTo R/(x_{1}) \to 0
+$$
+we get a long exact sequence in $\Ext$ containing the terms
+$$
+\Ext^{i}(k,R) \rTo^{0} \Ext^{i}(k,R) \rTo \Ext^{i}(k,R/(x)) \rTo \Ext^{i+1}(k,R) \rTo^{0} \Ext^{i}(k,R),
+$$
+where the maps marked 0 vanish because $x_{1}$ annihilates $k$; that is, we have 
+short exact sequences
+ $$
+0\to \Ext^{i}(k,R) \rTo \Ext^{i}(k,R/(x)) \rTo \Ext^{i+1}(k,R)\to 0
+ $$
+
+It follows by induction 
+\end{proof}
+
 \begin{theorem}
  An $d$-dimensional local Noetherian ring $R$ with residue field $k$ is said to be Gorenstein if  the following
  equivalent conditions are satisfied:
