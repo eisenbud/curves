@@ -26,18 +26,20 @@ To formalize this, they defined a \emph{divisor} on $C$ to be a formal finite li
 $$
 D = \sum m_i \cdot p_i
 $$
-of points. The \emph{degree} of a divisor $D = \sum m_i \cdot p_i$ is defined to be the sum $\sum m_i$ of its coefficients, and $D$ is said to be \emph{effective} if all $m_i \geq 0$. Note that, in modern language, an effective divisor can be viewed simply as a subscheme of the curve $C$, and conversely (since $C$ is assumed smooth), any zero-dimensional subscheme $D \subset C$ can be thought of as the divisor $\sum m_ip_i$ where $m_i$ is the multiplicity of the component of $D$ supported at $p_i$.
+of points. The \emph{degree} of a divisor $D = \sum m_i \cdot p_i$ is defined to be the sum $\sum m_i$ of its coefficients, and $D$ is said to be \emph{effective} if all $m_i \geq 0$. 
 
-In any event, the vector space of rational functions satisfying~(\ref{divisor condition}) was denoted by $\cL(D)$; the dimension of $\cL(D)$ was denoted $\ell(D)$.
+Note that, in modern language, an effective divisor can be viewed simply as a subscheme of the curve $C$---the subscheme defined by the ideal $\prod \cI_{p_I}^{m_i}$, or in other words the unique subscheme with support $\{p_i\}$ and multiplicity $m_i$ at $p_i$.
+
+In any event, the key point is that  the vector space $\cL(D)$ of rational functions satisfying~(\ref{divisor condition}) is finite-dimensional; the dimension of $\cL(D)$ was denoted $\ell(D)$.
 
 
 But this is somewhat inefficient: for example, if $f$ is any rational function and we define the divisor $E = (f)$ to be
 $$
 E = \sum_{p\in C} \ord_p(f)\cdot p
 $$
-then we have an isomorphism $\cL(D+E) = \cL(D)$ obtained by multiplying by $f$. Accordingly, geometers defined an equivalence relation on the group of divisors, calling two divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ was the divisor of a rational function; the group of equivalence classes of divisors is called the \emph{Picard group} $\Pic(C)$ of $C$. Note that since the degree of the divisor $(f)$ of a rational function $f$ on $C$ is 0, linearly equivalent divisors have the same degree.
+then we have an isomorphism $\cL(D+E) \cong \cL(D)$ obtained by multiplying by $f$. Accordingly, geometers defined an equivalence relation on the group of divisors, calling two divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ was the divisor of a rational function; the group of equivalence classes of divisors is called the \emph{Picard group} $\Pic(C)$ of $C$. Note that since the degree of the divisor $(f)$ of a rational function $f$ on $C$ is 0, linearly equivalent divisors have the same degree.
 
-As we headed into the 20th century, some further tweaking was called for in order to avoid the awkwardness of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a coherent sheaf $\cO_C(D)$, defined by
+As we headed into the 20th century, some further tweaking was called for in order to avoid the awkwardness of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a \emph{coherent sheaf} $\cO_C(D)$, defined by
 $$
 \cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \quad \forall p_i \in U \}.
 $$
@@ -49,7 +51,7 @@ C \setminus f^{-1}(H) \to \AA^r
 $$
 is then given simply by an $r$-tuple $(f_1,\dots,f_r)$ of regular functions on $C \setminus f^{-1}(H)$. Moreover, if we consider $f^{-1}(H)$ as a divisor $D$ on $C$, we can think of the functions $f$ as elements of $\cL(D)$.
 
-All this requires a choice of hyperplane $H$, as well as an identification of the complement with $\AA^r$---an unnecessary evil. We can do better using the language of line bundles: if we let $\cL = f^*\cO_{\PP^r}(1) = \cO_C(D)$ be the pullback to $C$ of the line bundle on $\PP^r$ associated to the divisor $H$, we can think of the $f_i$ as sections of $\cL$, so that associated to the map $f : C \to \PP^r$ we have a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ (including the constant function 1). Conversely, if we are given a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ without common zeroes, we can choose a basis $\sigma_0,\dots,\sigma_r$ for $V$; we then get a map 
+All this requires a choice of hyperplane $H$, as well as an identification of the complement $\PP^r \setminus H$ with $\AA^r$---an unnecessary evil. We can do better using the language of line bundles: if we let $\cL = f^*\cO_{\PP^r}(1) = \cO_C(D)$ be the pullback to $C$ of the line bundle on $\PP^r$ associated to the divisor $H$, we can think of the $f_i$ as sections of $\cL$, so that associated to the map $f : C \to \PP^r$ we have a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ (including the constant function 1). Conversely, if we are given a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ without common zeroes, we can choose a basis $\sigma_0,\dots,\sigma_r$ for $V$; we then get a map 
 
 \begin{align*}
 C &\to \PP^r \\
@@ -138,28 +140,27 @@ All of this means, unfortunately, that it's extremely difficult to be completely
 
 
 
-\section{Genus, Riemann-Roch and Kodaira-Serre}
+\section{Genus, Riemann-Roch and Serre Duality}
 
 \subsection{The genus of a curve}
 
-Any discussion of smooth projective curves pretty much has to start with the notion of the \emph{genus} of a curve, the sole discrete continuous invariant of curves. There are many equivalent ways of characterizing the genus of a curve $C$; we'll adopt as our definition the
+Any discussion of smooth projective curves pretty much has to start with the notion of the \emph{genus} of a curve, the sole discrete continuous invariant of curves. The most natural and intuitive is topological: if $C \subset \PP^r$ is a smooth curve, we can think of it as a submanifold of the complex projective space $\PP^r(\CC)$ with the classical topology; as such, it is a compact, oriented surface, and so its topological type is described by its genus---informally, the ``number of holes."
 
-\begin{definition}\label{genus definition}
-Let $C$ be a smooth, projective curve. We define the \emph{genus} $g$ of $C$ by the relation $\deg(K_C) = 2g-2$; that is,
-$$
-g = \frac{\deg(K_C)}{2} + 1.
-$$
-\end{definition}
+**** obligatory picture ****
 
-Here are some other ways of characterizing the genus:
-
-\begin{enumerate}
-
-\item If we are working over the complex numbers $K = \CC$, we can give $C$ the topology induced from the usual topology on $\PP^n_\CC$ (called the \emph{classical}, or \emph{analytic} topology. With this topology, the points of $C$ form a compact, oriented 2-manifold, and we define the genus of $C$ to be the genus of this surface; in other words,
+This is not a fully satisfactory definition for a couple reasons: for one thing, it doesn't a priori apply to curves over fields other than $\CC$; and in any case it's not clear how we can relate this invariant to the algebra of the curve. There is a fix, however. To start with, we can relate the topological genus of a curve directly to its topological Euler characteristic: we have
 $$
 g(C) = 1 - \frac{\chi_{top}(C)}{2}.
 $$
-It follows from the Hopf index theorem that this agrees with Definition~\ref{genus definition}.
+At the same time, by the Hopf index theorem, the topological Euler characteristic is the degree of the tangent sheaf, which is the dual of the canonical bundle; thus
+$$
+g(C) = \frac{\deg(K_C)}{2} + 1,
+$$
+which we can adopt as the definition of $g(C)$.
+
+This may seem an awkward characterization of the genus, and it is; but there are various other characterizations, whose equivalence with the topological requires some more machinery to establish. We will give some here, and then use the tools established in the following section to prove equivalence.
+
+\begin{enumerate}
 
 \item\label{genus 1forms} Another characterization of the genus of $C$ is simple to state, though the proof that it's equivalent to the preceding ones is non-trivial (it will be a special case of the \emph{Riemann-Roch formula}, described in the following section): the genus of a curve $C$ is simply the dimension of the vector space of regular 1-forms on $C$.
 
@@ -214,14 +215,14 @@ h_C(m) = \rank(\rho_m);
 $$
  since $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, this is equal to $h^0(\cO_C(m))$, which by Riemann Roch equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}) above.
 
-\subsection{Kodaira-Serre duality}
+\subsection{Serre duality}
 
 In general, if $\cF$ and $\cG$ are coherent sheaves on a scheme $X$, we have for every $i$ and $j$ a cup product map
 $$
 H^i(\cF) \otimes H^j(\cG) \to H^{i+j}(\cF \otimes \cG).
 $$
 
-Suppose now that $C$ is a smooth, projective curve, and that $D$ is any divisor on $C$. Kodaira-Serre duality says first of all that
+Suppose now that $C$ is a smooth, projective curve, and that $D$ is any divisor on $C$. Serre duality says first of all that
 $$
 h^1(K) = 1
 $$
@@ -236,7 +237,7 @@ $$
 
 \subsection{A partial proof}
 
-Proving either the Riemann-Roch formula, in the form given above, or Kodaira-Serre duality, requires a fair amount of work. As it happens, though, if we combine them we arrive at the statement
+Proving either the Riemann-Roch formula, in the form given above, or Serre duality, requires a fair amount of work. As it happens, though, if we combine them we arrive at the statement
 $$
 h^0(D) - h^1(D) = d-g+1
 $$
@@ -297,7 +298,7 @@ r(D) = d - 1 - \dim \overline D;
 $$
 or in other words, \emph{the dimension of the linear series $|D|$ in which the divisor $D$ moves is equal to the number of linear relations on the points $p_i$ on the canonical curve}. Thus, for example, if $D = p_1+p_2+p_3$, we see that $D$ moves in a pencil if and only if the points $p_i$ are collinear.
 
-We can extend this statement to the case of arbitrary divisors $D$ (and even hyperelliptic curves) if we define our terms correctly. To do this, suppose $f : C \to \PP^d$ is any map, and $D \subset C$ any divisor. We define the \emph{span} of the divisor $D$ under the map $f$ to be the intersection
+We can extend this statement to the case of arbitrary effectived divisors $D$ (and even hyperelliptic curves) if we define our terms correctly. To do this, suppose $f : C \to \PP^d$ is any map, and $D \subset C$ any divisor. We define the \emph{span} of the divisor $D$ under the map $f$ to be the intersection
 $$
 \overline{f(D)} = \bigcap_{H \mid f^{-1}(H)\supset D} H 
 $$
@@ -312,9 +313,9 @@ $$
 
  \section{The Riemann-Hurwitz formula}
  
- The Riemann-Hurwitz formula does a simple thing: given a (nonconstant) map $f : C \to B$ of smooth projective curves, it relates the genera of $C$ and $B$ via the geometry of the map; the proof is likewise simple.
+ The Riemann-Hurwitz formula does a simple thing: given a (nonconstant) map $f : C \to X$ of smooth projective curves, it relates the genera of $C$ and $X$ via the geometry of the map. The proof is likewise simple.
  
- To set it up, we first introduce the notion of \emph{ramification} of such a map. Suppose $p \in C$ is any point, with $q = f(p) \in B$ its image in $B$. In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $B$ around $q$, we can write the map simply as $z \mapsto w = z^m$ for some integer $m > 0$; the integer $m-1$ is then called the \emph{ramification index} of $f$ at $p$, and denoted $\ram(f,p)$. To characterize this without invoking local coordinates, we can say that for any point $q \in B$ we have
+ To set it up, we first introduce the notion of \emph{ramification} of such a map. Suppose $p \in C$ is any point, with $q = f(p) \in X$ its image in $X$. In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $X$ around $q$, we can write the map simply as $z \mapsto w = z^m$ for some integer $m > 0$; the integer $m-1$ is then called the \emph{ramification index} of $f$ at $p$, and denoted $\ram(f,p)$. To characterize this without invoking local coordinates, we can say that for any point $q \in X$ we have
  $$
  f^{-1}(q) = \sum_{p\in C \mid f(p)=q} (\ram(f,p)+1)\cdot p
  $$
@@ -324,11 +325,11 @@ $$
  $$
  the \emph{branch divisor} is the corresponding divisor
  $$
- B = \sum_{q \in B} \Big(\sum_{p \in f^{-1}(q)} \ram(f,p) \Big)\cdot q \; \in \; \Div(B).
+ B = \sum_{q \in X} \Big(\sum_{p \in f^{-1}(q)} \ram(f,p) \Big)\cdot q \; \in \; \Div(X).
  $$
- Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$.
+ Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$. Note also that just to define the divisor $R$ requires we know that \emph{not every point of $C$ is a ramification point}; that is, $\ram(f,p) = 0$ at a general point $p \in C$, which may be false in characteristic $p > 0$; thus the argument sketched here requires the hypothesis of characteristic 0.
  
- To relate the genera of $B$ and $C$ in this situation, start by choosing any rational 1-form $\omega$ on $B$; let $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (We can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) We know that $\deg(\omega) = 2g(B) - 2$ and $\deg(\eta) = 2g(C) - 2$; we will relate these two by describing the zeroes and poles of $\eta$ in terms of those of $\omega$.
+ To relate the genera of $X$ and $C$ in this situation, start by choosing any rational 1-form $\omega$ on $X$; let $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (We can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) We know that $\deg(\omega) = 2g(B) - 2$ and $\deg(\eta) = 2g(C) - 2$; we will relate these two by describing the zeroes and poles of $\eta$ in terms of those of $\omega$.
  
  First of all, since the zeroes of $\omega$ lie outside the branch divisor $B$, for every zero of $\omega$ of multiplicity $m$ we have exactly $d$ zeroes of $\eta$, each with multiplicity $m$; and likewise for the poles of $\omega$. Meanwhile, at every point of $B$ the form $\omega$ is regular and nonzero; and by the description of the map $f$ in terms of local coordinates we see that $\eta$ will have a zero of multiplicity $\ram(f,p)$ at every point $p \in R$. In sum, then, we have
  $$
@@ -336,9 +337,9 @@ $$
  $$
  or in other words,
  $$
- 2g(C) - 2 = d(2g(B)-2) + \deg R;
+ 2g(C) - 2 = d(2g(X)-2) + \deg R;
   $$
-  this is the Riemann-Hurwitz formula. Note that if the target curve $B \cong \PP^1$ has genus 0, the formula reads
+  this is the Riemann-Hurwitz formula. Note that if the target curve $X \cong \PP^1$ has genus 0, the formula reads
   $$
   g(C) = -d  + 1+ \frac{\deg R}{2}
   $$
