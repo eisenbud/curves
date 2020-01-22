@@ -19,7 +19,7 @@ To describe our approach at the outset: we will start, in Section~\ref{smooth pl
 
 \section{Smooth Plane Curves}\label{smooth plane curves}
 
-Let's start by posing two problems, which we'll solve in this section. In both, we'll be given the equation $F(X,Y,Z)$ of a smooth plane curve $C$; in the second, we'll be given in addition a divisor $D = \sum m_ip_i$ on $C$. We ask:
+Let's start by posing two ``keynote" problems, which we'll solve in this section. In both, we'll be given the equation $F(X,Y,Z)$ of a smooth plane curve $C$; in the second, we'll be given in addition a divisor $D = \sum m_ip_i$ on $C$. We ask:
 \begin{enumerate}
 \item Find all regular differentials/sections of $K_C$; that is, write down a basis for $H^0(K_C)$; and
 \item Describe the complete linear system $|D|$; that is, find all effective divisors $E$ on $C$ with $E \sim D$.
@@ -108,7 +108,7 @@ $$
 $$
 or in other words, \emph{$D'$ is an effective divisor linearly equivalent to $D$.}
 
-Note that in the simplest nontrivial case $d=3$, we have reproduced the classic description of the group law on a plane cubic curve. If we choose as origin on the curve a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) divisor of degree 1 linearly equivalent to $p + q - o$; in this situation, we can carry out the process described above with $m=1$, yielding the classical construction of the group law.
+Note that in the simplest nontrivial case $d=3$, we have reproduced the classic description of the group law on a plane cubic curve. If we choose as origin on the curve a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
 
 We claim now that in fact we have found in this way \emph{all} effective divisors $D' \sim D$. To see this, suppose $D'$ is any effective divisor with $D' \sim D$. Carrying out the first step of the process as before, we arrive at a divisor $A$ with 
 $$
@@ -116,11 +116,121 @@ $$
 $$
 But from the exact sequence 
 $$
-\cO_{\PP^2}(m-d) \to \cO_{\PP^2}(m)  \to \cO_C(m)
+0 \to \cO_{\PP^2}(m-d) \to \cO_{\PP^2}(m)  \to \cO_C(m) ]\to 0
 $$
 and the vanishing of $H^1(\cO_{\PP^2}(m-d))$, we have that every global section of $ \cO_C(m)$ is the restriction to $C$ of a homogeneous polynomial of degree $m$ on $\PP^2$. Thus there is a polynomial $H$ cutting out the divisor $A+F+D'$ on $C$, as claimed.
 
+Note that if, in the process described, it turns out there is no polynomial $H$ vanishing on  $A + F + D$ but not vanishing identically on $C$, that simply means that $|D| = \emptyset$; that is, \emph{$D$ is not linearly equivalent to any effective divisor}. (It may not be obvious that the existence of such an $H$ is independent of the choice of $m$ or $G$, but the argument here shows it is.)
+
 \section{Nodal Plane Curves}\label{nodal plane curves}
+
+As noted, smooth plane curves are very special among all curves. We now want to carry out the analyses above for a larger class of plane curves, curves with at most nodes as singularities. These are still special among all plane curves, but as we'll see in Proposition~\ref{nodal projection} below, every smooth curve is the normalization of a nodal plane curve, so that this will in theory allow us to answer the ``keynote" questions above for an arbitrary smooth curve. (In the final section of this chapter, we'll indicate how the constructions here may be extended to an arbitrary plane curve.)
+
+The set-up, in any event, is as follows: we have nodal plane curve $C_0 \subset \PP^2$, with normalization $\nu : C \to C_0$; or, equivalently, a smooth projective curve $C$ and a birational embedding of $C$ in $\PP^2$ with image a nodal curve $C_0$. Our goals will be as before: 
+\begin{enumerate}
+\item to write out explicitly all global regular 1-forms on $C$; and
+\item given a divisor $D$ on $C$, to  determine $|D|$; that is, find all effective divisors linearly equivalent to $D$.
+\end{enumerate}
+
+As before, we'll choose homogeneous coordinates  $[X,Y,Z]$ on $\PP^2$ so that the curve $C_0$ intersects the line $L = V(Z)$ at infinity transversely at points $p_1,\dots,p_d$ other than $[0,1,0]$; in addition, we can assume that all the nodes of $C_0$ lie in the affine plane $U = \PP^2 \setminus L$, and that neither branch of $C_0$ at a node has vertical tangent. (As before, these conditions are not logically necessary; they serve only to keep the notation reasonably simple, and in any case are satisfied by a general choice of coordinates.) Let the nodes of $C_0$ be $q_1,\dots,q_\delta$, with $r_i, s_i \in C$ lying over $q_i$; we'll denote by $\Delta$ the divisor $\sum r_i + \sum s_i$ on $C$.
+
+Let $F(X,Y,Z)$ be the homogeneous polynomial of degree $d$ defining the curve $C_0$, and let $f(x,y) = F(x,y,1)$ be the defining equation of the affine part $C_0 \cap U$ of $C_0$. We start by considering the rational differential $\nu^*(dx)$ on $C$. In the smooth case, we saw that this differential was regular and nonzero in the finite plane, but had poles of order 2 at the point of $C \cap L$; this followed from the equation
+$$
+ df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy \equiv 0.
+ $$
+and the fact that $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $C_0$. But now $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ do have common zeroes, specifically, the pullbacks $\nu^*(\frac{\partial f}{\partial x})$ and $\nu^*(\frac{\partial f}{\partial y})$ have simple zeroes at the points $r_i$ and $s_i$. We conclude, accordingly, that the differential $\nu^*dx$ has double poles at the points $p_i$, and simple poles at the points $r_i$ and $s_i$; proceeding as before, we see that for a polynomial $g(x,y)$ of degree $\leq d-3$, the differential
+$$
+\nu^*( \frac{g(x,y)dx}{\partial f/\partial y})
+$$
+will be regular except for simple poles at the points $r_i$ and $s_i$.
+
+So, how do we get rid of these poles? There is one simple way: we require that $g$ vanishes at the points $q_i$. We say in this case that $g$ (and the curve defined by $g$) \emph{satisfies the adjoint conditions}. In any event, we see that
+$$
+ \left\{ \nu^* \frac{g(x,y)dx}{\partial f/\partial y} \mid \deg g \leq d-3 \text{ and } g(q_i) = 0 \; \forall i \right\} \subset H^0(K_C).
+$$
+Now, in the smooth case, we were able to compare dimensions to conclude that this inclusion was indeed an equality. We can do the same thing here: to begin with, by the genus formula, we see that the genus of $C$ is
+$$
+g(C) = \binom{d-1}{2} - \delta.
+$$
+On the other hand, the space of polynomials $g$ of degree $\leq d-3$ vanishing at the points $q_i$ has dimension at least $ \binom{d-1}{2} - \delta$; we conclude from this that indeed
+$$
+H^0(K_C) =  \left\{ \nu^* \frac{g(x,y)dx}{\partial f/\partial y} \mid \deg g \leq d-3 \text{ and } g(q_i) = 0 \; \forall i \right\},
+$$
+and as lagniappe we see also that \emph{the nodes $q_i$ of an irreducible nodal plane curve of degree $d$ impose independent conditions on curves of degree $d-3$}.
+
+\subsection{linear series on a nodal curve}
+
+Next, we take up the second of our keynote problems in this setting: with $C \to C_0 \subset \PP^2$ as above, given a divisor $D$ on $C$, can we find the complete linear series $|D|$?
+
+In fact we can, by a process analogous to what we did in the smooth case. We'll do this first in the case where $D = E-F$ is the difference of two effective divisors whose support is disjoint from the support $\{r_i, s_i\}$ of $\Delta$; the general case is only notationally more complicated. To start, we find an integer $m$ and a polynomial $G$ vanishing on the divisor $E$ \emph{and at the nodes $r_1,\dots,r_\delta$ of $C_0$}, but not vanishing identically on $C_0$. We can then write the zero locus of $G$ pulled back to $C$ as
+$$
+(\nu^*G) = E + \Delta + A,
+$$
+as before. Once more, just for simplicity, let's assume that the support of $A$ is disjoint from the support of $\Delta$; this means just that the curve $V(G)$ is smooth at the points $q_i$ and is not tangent to either of the branches of $C_0$ there.
+
+Next, we find polynomials $H$ of the same degree $m$, vanishing at $A+F$ and at the points $q_i$ but not on all of $C_0$. Let $D'$ be the divisor cut on $C$ by $H$ residual to $E + \Delta + A$; that is, we write
+$$
+(\nu^*H) = E + \Delta + A + D'.
+$$
+Finally, since $\nu^*(G/H)$ is a rational function on $C$, we see that 
+$$
+E + \Delta + A = (\nu^*H) \sim (\nu^*G) = E + \Delta + A + D',
+$$
+and we conclude that $D'$ is an effective divisor linearly equivalent to $D$ on $C$.
+
+But, do we get in this way \emph{all} effective divisors linearly equivalent to $D$ on $C$? The answer is yes, but it's not immediate; it follows from the following proposition, known classically as \emph{completeness of the adjoint series}.
+
+\begin{proposition}\label{adjoint completeness}
+If $C_0 \subset \PP^2$ is a nodal plane curve and $\nu : C \to C_0$ its normalization, then the linear series cut on $C$ by plane curves of degree $m$ passing through the nodes is complete.
+\end{proposition}
+
+We will prove this in a moment, but note first that the solution to our problem follows from the proposition exactly as in the smooth case.
+
+\begin{proof}
+To prove Proposition~\ref{adjoint completeness}, we introduce another surface: the blow-up $\pi : S \to \PP^2$ of $\PP^2$ at the points $r_i$. The proper transform on $C_0 \subset \PP^2$ in $S$ is the normalization of $C_0$, which we will again call $C$.
+
+There are two divisor classes on $S$ that will come up in our analysis: the pullback of the class of line in $\PP^2$, which we'll denote $H$; and the sum of the exceptional divisors, which we'll call $E$. In these terms, we have
+$$
+C \sim dH - 2E \quad \text{and} \quad K_S \sim -3H + E
+$$
+(the first follows from the fact that $C_0$ has multiplicity 2 at each of the points $q_i$, the second from considering the pullback to $S$ of a rational 2-form on $\PP^2$). If $A$ is a curve in $\PP^2$ of degree $m$ passing through the points $q_i$, we can associate to it the effective divisor $\pi^*A - E$; this gives us an isomorphism
+$$
+H^0(\cI_{\{q_1,\dots,q_\delta\}/\PP^2}(m)) \cong H^0(\cO_S(mH-E)).
+$$
+In these terms we can describe the linear series cut on $C$ by plane curves of degree $m$ passing through the nodes of $C_0$ as the image of the map
+$$
+H^0(\cO_S(mH-E)) \to H^0(\cO_C(mH-E)),
+$$
+and the proposition amounts to the assertion that this map is surjective.
+
+The obvious way to prove this is to view this map as part of the long exact cohomology sequence associated to the exact sequence of sheaves
+$$
+0 \to \cO_S(mH-E-C) = \cO_S((m-d)H + E)  \to \cO_S(mH-E) \to \cO_C(mH-E) \to 0,
+$$
+from which we see that it will suffice to establish that $H^1(\cO_S((m-d)H + E)) = 0$. To do this, we apply Serre duality, which says that $H^1(\cL) \cong H^1(K_S\otimes \cL^{-1})^*$; in this instance it 
+tells us that
+$$
+H^1(\cO_S((m-d)H + E)) \cong H^1(\cO_S((d-m-3)H))^*
+$$
+Now, the line bundle $\cO_S((d-m-3)H)$ is just the pullback to $S$ of the bundle $\cO_{\PP^2}(d-m-3)$, which has vanishing $H^1$; thus the Proposition will follow from the 
+\begin{lemma}
+Let $X$ be a smooth projective surface, and $\pi : Y \to X$ a blow-up. If $\cL$ is any line bundle on $X$, then
+$$
+H^1(Y, \pi^*\cL) = H^1(X, \cL).
+$$
+\end{lemma}
+The lemma follows by applying the Leray spectral sequence, which relates the cohomology of $\cL$ on $Y$ to the cohomology of the direct image $\pi_*\pi^*\cL$ (Leray is particularly simple in this setting, since all higher direct images are 0), and the observation that $\pi_*\pi^*\cL \cong \cL$.
+\end{proof}
+
+
+
+
+\begin{proposition}\label{nodal projection}
+If $C \subset \PP^n$ is a smooth curve in projective space, and $\Lambda \cong \PP^{n-3} \subset \PP^n$, then the projection $\pi_\Lambda : C \to \PP^2$ is birational onto its image, which will be a nodal curve.
+\end{proposition}
+
+
+
 
 
 
