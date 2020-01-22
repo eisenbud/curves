@@ -19,7 +19,7 @@ To describe our approach at the outset: we will start, in Section~\ref{smooth pl
 
 \section{Smooth Plane Curves}\label{smooth plane curves}
 
-Let's start by posing two ``keynote" problems, which we'll solve in this section. In both, we'll be given the equation $F(X,Y,Z)$ of a smooth plane curve $C$; in the second, we'll be given in addition a divisor $D = \sum m_ip_i$ on $C$. We ask:
+Let's start by posing two ``keynote" problems, which we'll solve in this section for smooth plane curves. In both, we'll be given the equation $F(X,Y,Z)$ of a smooth plane curve $C$; in the second, we'll be given in addition a divisor $D = \sum m_ip_i$ on $C$. We ask:
 \begin{enumerate}
 \item Find all regular differentials/sections of $K_C$; that is, write down a basis for $H^0(K_C)$; and
 \item Describe the complete linear system $|D|$; that is, find all effective divisors $E$ on $C$ with $E \sim D$.
@@ -73,7 +73,11 @@ $$
 $$
 In other words, we have found all the global regular differentials on $C$! We have
 $$
-H^0(K_C) = \left\{ \frac{g(x,y)dx}{\partial f/\partial y} \mid \deg g \leq d-3\right\}.
+H^0(K_C) = \left\{ \frac{g(x,y)dx}{\partial f/\partial y} \mid \deg g \leq d-3\right\};
+$$
+or, equivalently, the space of regular differentials on $C$ has basis $\{\omega_{i,j} \}_{i+j \leq d-3}$, where
+$$
+\omega_{i,j} =  \frac{x^iy^jdx}{\partial f/\partial y}
 $$
 
 In fact, we could have done this all abstractly, without coordinates: by adjunction, we have
@@ -108,7 +112,7 @@ $$
 $$
 or in other words, \emph{$D'$ is an effective divisor linearly equivalent to $D$.}
 
-Note that in the simplest nontrivial case $d=3$, we have reproduced the classic description of the group law on a plane cubic curve. If we choose as origin on the curve a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
+Note that in the simplest nontrivial case $d=3$, we have reproduced the classic description of the group law on a plane cubic curve $C$. If we choose as origin on the curve a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
 
 We claim now that in fact we have found in this way \emph{all} effective divisors $D' \sim D$. To see this, suppose $D'$ is any effective divisor with $D' \sim D$. Carrying out the first step of the process as before, we arrive at a divisor $A$ with 
 $$
@@ -124,7 +128,7 @@ Note that if, in the process described, it turns out there is no polynomial $H$ 
 
 \section{Nodal Plane Curves}\label{nodal plane curves}
 
-As noted, smooth plane curves are very special among all curves. We now want to carry out the analyses above for a larger class of plane curves, curves with at most nodes as singularities. These are still special among all plane curves, but as we'll see in Proposition~\ref{nodal projection} below, every smooth curve is the normalization of a nodal plane curve, so that this will in theory allow us to answer the ``keynote" questions above for an arbitrary smooth curve. (In the final section of this chapter, we'll indicate how the constructions here may be extended to an arbitrary plane curve.)
+As noted, smooth plane curves are very special among all curves. We now want to carry out the analyses above for a larger class of plane curves, curves with at most nodes as singularities. These are still special among all plane curves, but as we'll see in Section~\ref{projection section} below, every smooth curve is the normalization of a nodal plane curve, so that this will in theory allow us to answer the ``keynote" questions above for an arbitrary smooth curve. (In the final section of this chapter, we'll indicate how the constructions here may be extended to an arbitrary plane curve.)
 
 The set-up, in any event, is as follows: we have nodal plane curve $C_0 \subset \PP^2$, with normalization $\nu : C \to C_0$; or, equivalently, a smooth projective curve $C$ and a birational embedding of $C$ in $\PP^2$ with image a nodal curve $C_0$. Our goals will be as before: 
 \begin{enumerate}
@@ -223,16 +227,48 @@ The lemma follows by applying the Leray spectral sequence, which relates the coh
 \end{proof}
 
 
-
+\subsection{Existence of good projections}\label{projection section}
 
 \begin{proposition}\label{nodal projection}
-If $C \subset \PP^n$ is a smooth curve in projective space, and $\Lambda \cong \PP^{n-3} \subset \PP^n$, then the projection $\pi_\Lambda : C \to \PP^2$ is birational onto its image, which will be a nodal curve.
+If $C \subset \PP^n$ is a smooth curve in projective space, and $\Lambda \cong \PP^{n-3} \subset \PP^n$ a general $(n-3)$-plane, then the projection $\pi_\Lambda : C \to \PP^2$ is birational onto its image, which will be a nodal curve.
 \end{proposition}
 
+\begin{proof}
+To start with, we can reduce to the case $n=3$: a general $(n-4)$-plane $\Gamma \subset \PP^n$ will be disjoint from the secant variety to $C$, so that the projection $\pi_\Gamma : C \to \PP^3$ will embed $C$ as a smooth curve in $\PP^3$; since the composition of $\pi_\Gamma$ with projection from a general point in $\PP^3$ is the projection $\pi_\Lambda : C \to \PP^2$ from a general $(n-3)$-plane, we need only prove the proposition for the projection of a smooth space curve $C \subset \PP^3$ from a general point.
+
+Now, when we project $C \subset \PP^3$ from a general point, we do expect to introduce singularities: a general $p \in \PP^3$ will lie on a finite number of secant lines, which will correspond to singular points of the image $C_0$. (Note that since a general $p$ cannot lie on infinitely many secants, the projection will be birational onto its image; thus we just have to make sure the singularities introduced are just nodes. This requires that we verify three things: that if $p \in \PP^3$ is a general point, then
+\begin{enumerate}
+\item $p$ does not lie on any tangent line to $C$;
+\item $p$ does not lie on any trisecant line; and
+\item for each of the secant lines $\overline{q,r}$ to $C$ containing $p$, the tangent lines $\TT_qC$ and $\TT_rC$ are skew.
+\end{enumerate}
+These three conditions ensure that the image $C_0 = \pi_p(C)$ does not have any cusps, triple points or tacnodes, respectively.
+
+The first two are immediate: first, there is only a 1-dimensional family of tangent lines to $C$, which sweep out a surface in $\PP^3$; a general $p \in \PP^3$ will not lie on that surface. Similarly, we claim that there is at most a 1-dimensional family of trisecant lines to $C$; this follows from the Castelnuovo Lemma (\ref{}), which says that a general plane in $\PP^3$ cannot contain a trisecant line to $C$. Finally, it can't be the case that for a general pair of points $q, r \in C$ we have $\TT_qC \cap \TT_rC \neq \emptyset$; otherwise the projection $\pi_{\TT_qC} : C \to \PP^1$ would have derivative everywhere 0, but be nonconstant.
+\end{proof}
+
+Note that the the second and third cases in this argument rely on the hypothesis of characteristic 0. Indeed, in characteristic $p > 0$ it may not be the case that a general projection of a smooth curve to $\PP^2$ is nodal---but it's still true that every curve is the normalization of a nodal plane curve: we have the slightly weaker
+
+\begin{proposition}[Proposition~\ref{nodal projection} in characteristic $p$]\label{positive characteristic nodes}
+Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\tilde C = \nu_m(C)$ be image of $C$---then the projection of $\tilde C$ from a general $\PP^{N-3}$ will be nodal.
+\end{proposition}
+
+\begin{exercise}
+In the setting of Proposition~\ref{positive characteristic nodes}, for a general $\Lambda \cong \PP^{N-3}$ show that
+\begin{enumerate}
+\item there do not exist three points $p,q,r \in \tilde C$ such that $p, q, r$ and $\Lambda$ are all contained in a $\PP^{N-2}$; and
+\item there does not exist a pair of points $p, q \in \tilde C$ such that 
+$p, q$ and $\Lambda$ are contained in a $\PP^{N-2}$ and $\TT_p(\tilde C), \TT_q(\tilde C)$ and $\Lambda$ are contained in a $\PP^{N-1}$.
+\end{enumerate}
+\end{exercise}
+
+From this one can deduce Proposition~\ref{positive characteristic nodes}.
 
 
 
+\section{Arbitrary plane curve}
 
+Well, not exactly arbitrary: in this section, we'll deal with a plane curve $C_0$ that is assumed to be reduced and irreducible, with normalization $\nu : C \to C_0$. In this setting, if we simply try to mimic the analysis above in the nodal case we're led to introduce the \emph{adjoint ideal} of each singularity (which is simply the maximal ideal of the point in the case of a node), in terms of which we have theorems analogous to the results obtained above in the nodal case.
 
 
 %Throughout this book thus far, we have developed techniques for dealing with smooth, projective curves; to the extent that we have considered singular curves we have studied them by applying the ideas and constructions we've developed to their normalizations. But singular curves have a fascinating geometry in their own right, not only for the singularities themselves but the effect singularities have on associated objects such as the Jacobian. In this chapter, we will undertake a brief survey of the geometry of singular curves and what we can say about linear series on them.
