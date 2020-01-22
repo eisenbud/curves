@@ -63,7 +63,165 @@ Once a curve is embedded in projective space, questions about the curve are also
 
 In the first section of this chapter we will introduce some basic notions from the theory free resolutions, regular, Gorenstein and Cohen-Macaulay local rings, and the dualizing module. These will all come into play in our algebraic description of linkage ($=$ liaison) of curves in $\PP^{3}$ in the next section.
 
+\section{Syzygies and the Hilbert Syzygy Theorem} \fix{all or part of this section should be an appendix}
+\fix{introduce free resolution, minimal free resolution over a local ring, then move to
+ $S = k[x_{0}, \dots, x_{n}]$ and homogeneous coordinate rings.}
+ 
+The following result assures us that invariants of the minimal free resolution of $M$ are invariants of $M$:
+
+\begin{theorem}[Uniqueness]\cite[Theorem ***]{E}\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded $S$-module is unique up to (non-unique) isomorphism.
+\end{theorem}
+
+This and the other results in this section are usually stated for
+modules over a local ring, and in that form the results here can be found in \cite[Ch ?]{E}. The proofs are essentially identical in the graded case presented here.
+
+The numbers $\beta_{i,j}$ in  the minimal free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; it follows from Theorem~\ref{uniqueness} that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. 
+We sometimes refer to $\beta_{i,j}$ informally as the \emph{number of $i$-th syzygies of degree $j$}; more properly, it is the number of minimal generators of degree $j$ required by the module of $i$-th syzygies of $M$.
+
+For convenience, the graded Betti numbers are usually displayed in a compact \emph{Betti table}, with the nonzero $\beta_{i,j}$ appearing in the $i$ column and the $(j-i)$-th row. (The reason for the initially non-intuitive choice $j-i$ instead of $j$ is that, for the resolution $\FF$ to be minimal, it is necessary that if $\beta_{i,j}\neq 0$, then some $\beta_{i-1,k}\neq 0$ for some $k<j$. Thus shift by $-j$ makes the diagram more compact.) This useful convention seems to go back to Bayer and Stillman and their work on the program Macaulay in the 1980s. In those days of small displays, efficiency was even more important than now.
+
+We sometimes speak of the \emph{Betti table of a variety $X\subset \PP^{n}$}, by which we will mean the Betti table of the minimal free resolution
+of the homogeneous coordinate ring $S_{X}$ of $X$, as a module over the homogeneous coordinate ring of $\PP^{n}.$
+
+For example, the canonical curve in $\PP^{3}$ discussed in Example~\ref{canonical in P3} \fix{this should refer to an early chapter, where the canonical curve is show to be a CI of quadric and cubic} has Betti table:
+
+\centerline{\small %\scriptsize
+\begin{tabular}{r|ccc} 
+$j\backslash i$&0&1&2\\ 
+\hline 
+0&1&$-$&$-$\\ 
+1&$-$&1&$-$\\ 
+2&$-$&1&$-$\\ 
+3&$-$&$-$&1\\ 
+\end{tabular}}
+\noindent where, for clarity, we have suppressed the $\beta_{i,j}$ that are 0, and replaced some of
+them with $-$.
+
+From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules. In this case something quite special happens \cite[****]{E}:
+
+\begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
+The minimal $S$-free resolution $\FF$ of any finitely generated graded $S$-module $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
+\end{theorem}
+
+\begin{fact}
+ There are in fact finite resolutions for all $S$-modules; however there is generally no reasonable notion of a  minimal resolution outside the positively graded or finitely generated local cases. See \cite{???}.
+\end{fact}
+
+ In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
+$$
+H_{S(-j)}(m) = 
+\begin{cases}
+ {n+m-j \choose n} & \hbox{for $m\geq j$}
+  \\ 
+ 0 & \hbox{for $m<j$}
+\end{cases}
+$$
+we can compute the Hilbert function for a finitely generated graded $S$-module $M$ from its graded Betti numbers 
+$$
+H_{M}(m) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+m-j\choose n}.
+$$
+\begin{example} [The homogeneous coordinate ring of a plane curve] 
+For the simplest non-trivial example, if $C$ is a plane curve with equation $F(x_{0},x_{1}x_{2})$ of 
+degree $d$, then the minimal free resolution of the homogeneous coordinate ring $S_{C}$ has the form
+$$
+\FF: S\lTo^{F}S(-d)\lTo 0
+$$
+Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
+ $\beta_{0,0} = \beta_{1,d} = 1$, so
+$$
+ H_{S_{C}}(m) = {2+m\choose 2} - {2-d+m\choose 2}
+ $$
+ which has the value  $dm + 1+(2-d)(2-d-1)/2 = dtm+ (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus \fix{where is this defined?} is the constant term minus 1, we get
+$\deg C = d,\ p_{a}(C) = (d-1)(d-2)/2$ as we should expect.  Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
+\end{example}
+
+\begin{exercise} 
+\begin{enumerate}
+ \item Show that any curve in $\PP^{3}$ whose homogeneous coordinate ring has the
+ form given in Example ~\ref{canonical in P3} has degree 6 and (arithmetic) genus 4.
+ 
+\item In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
+Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
+$X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
+using the fact that the minimal free resolution of the homogeneous coordinate ring 
+$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex (see \cite{???}):
+%\scriptsize
+\small
+$$
+ S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
+ $$
+\normalsize
+\end{enumerate}
+\end{exercise}
+
+Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing them here. A more interesting feature that the Betti table of the homogeneous coordinate ring (or homogeneous ideal) of a variety $X$ reflects is the presence of a variety $Y$ containing 
+$X$ and having low degree syzygies. 
+
+Here is a  simple example:
+
+We have seen in Chapter~\ref{Scrolls}, the homogeneous ideal $I$ of the twisted cubic curve in $\PP^{3}$ is generated by the three $2\times 2$ minors of the matrix
+$$
+M = \begin{pmatrix}
+ x_{0}&x_{1}&x_{2}\\
+  x_{1}&x_{2}&x_{3}
+\end{pmatrix}
+$$
+We shall soon compute the Betti tables of all rational normal scrolls. In particular, we shall see that the Betti table of the twisted cubic has the form:
+
+\centerline{\small
+\begin{tabular}{r|ccc} 
+$j\backslash i$&0&1&2\\ 
+\hline 
+0&1&$-$&$-$\\ 
+1&$-$&3&2\\ 
+\end{tabular}}
+\noindent
+where the dashes indicate that the corresponding $\beta_{i,j}$ is zero. In plain language, the table indicates  that  the ideal $I$ of the curve is minimally generated by 3 elements of degree 2, and that there are two linear relations on the 3 (that is, generators of total degree $2+1=3$, and that these freely generate the module of  syzygies of $I$ (the two relations are in fact just the columns of the transpose of the matrix $M$).
+
+The homogeneous ideal $J$ of any set of points $\Gamma$ that lies on the twisted cubic contains $I$. Supposing that $\Gamma$ does not lie on a plane, the ideal $J$ contains no linear forms. The 2 linear relations on the generators of $I$ must be consequences of relations on the generators of $J$. But since the relations on $I$ are linear, they are of the lowest possible degree of any relations on $J$, so there must be at least 2 linear relations on the quadratic generators of $J$. Here is the way this can be used:
+\begin{fact}
+ A lemma of Castelnuovo \fix{exercise in Ch 8; is it really Castelnuovo?} shows  that every set of 6 points in linearly general position
+in $\PP^{3}$ lies on a twisted cubic;  a set of points $\Gamma\subset \PP^{3}$ in linearly general position of cardinality $n\geq 7$ lies on a twisted cubic curve if and only if
+the Betti table of $\Gamma$ is termwise $\geq$ that of the twisted cubic.\end{fact}
+
+\subsection{Projective dimension}
+The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. An older name, in some ways more suitable, was \emph{homological codimension}; this is justified by the following results:
+
+\begin{proposition}\label{pd lower bound}
+If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the support of $M$.
+\end{proposition}
+
+In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
+Cohen-Macaulay $S$-module, or equivalently that the sheaf $\widetilde M$ is 
+\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself is arithmetically Cohen-Macaulay. From the examples above we see that plane curves, and also the twisted cubic, are Cohen-Macaulay.
+
+
+A famous result of Auslander and Buchsbaum clarifies the meaning of projective dimension. We define the 
+\emph{depth} of $M$ to be the maximum length $\ell$ of a \emph{regular sequence on $M$}; that is, a sequence $G_{1},\dots,G_{\ell}$ of homogeneous forms of strictly positive degree such that 
+\begin{align*}
+G_{1} &\hbox{ is a nonzerodivisor on } M;\\
+G_{2} &\hbox{ is a nonzerodivisor on } M/G_{1}M;\\
+\vdots&\phantom{\hbox{ is a nonzerodivisor on } }\vdots\\
+G_{\ell} &\hbox{ is a nonzerodivisor on } M/(G_{1},\dots,G_{\ell-1})M.
+\end{align*}
+
+\begin{theorem}
+If $M$ is a finitely generated graded module over the polynomial ring $S := \CC[x_{0},\dots,x_{n}]$, and $M$ has depth $\ell$, then the projective dimension of $M$ is $n+1-\ell$.
+\end{theorem}
+
+Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of sheaf cohomology:
+ 
+\begin{theorem} Suppose that $X\subset \PP^{n}$ is a  subscheme without 0-dimensional (isolated or embedded) components. The module $M = \oplus_{t\in \ZZ}H^{0}(\cO_{X}(t))$
+is finitely generated, and $\depth M$ is the largest integer $\ell$ such that 
+$H^{i}(\cO_{X}(t)) = 0$ for all $0<i<ell-1$ and all $t$.
+\end{theorem}
+
+
+
+
 \section{Homological commutative algebra} 
+
+\fix{This section and the one on dualizing sheaves, after being pruned and completed to satisfy the needs of liaison, will go to the Appendix}
 
 \fix{make remark at the end about the graded case -- or at the beginning?}
 
@@ -153,7 +311,7 @@ R\lTo 0.
 $$
 It is obvious that $\coker \phi_{1} = R/(x_{1}, x_{2})$. Also $\ker \phi_{2}$ is the annihilator of the ideal $(x,y)$, and it follows from the theory of associated primes that this is 0 if and only if the ideal $(x_{1}, x_{2})$ contains a nonzerodivisor. For simplicity, let us assume that $x_{1}$ is a nonzerodivisor itself, although this is not actually necessary. The kernel of $\phi_{1}$ obviously consists of the elements $(y_{2},-y_{1})\in R^{2}$ such that $y_{2}x_{1} = y_{1}x_{2}$. Since we have assumed that $x_{1}$ is a nonzerodivisor,
 the element $y_{2}$ is uniquely determined by $y_{1}$ such that $y_{1}x_{2} \in (x_{1})$, usually written 
-$y_{1}\in (x_{1}):x_{2})$. Thus, given that $x_{1}$ is a nonzerodivisor,
+$y_{1}\in ((x_{1}):x_{2})$. Thus, given that $x_{1}$ is a nonzerodivisor,
 the kernel of $\phi_{1} $ is equal to the image of $\phi_{2}$ if and only if $x_{2}$ is a nonzerodivisor mod $x_{1}$; that is if and only if $x_{1},x_{2}$ is a regular sequence. 
 
 Note that the right-hand term $R^{1}$ of $\KK(x_{1}, x_{2}; R)$ is somehow naturally indexed by the pair of elements $x_{1},x_{2}$; rather pedantically, we could write it as $\wedge^{2}(R^{2})$. This has the advantage that $\phi_{2}$ can be described as the result of extending $\phi_{1}$ to be a degree $-1$ derivation of the exterior algebra: if we denote the basis  elements of $R^{2}$ as $e_{1}, e_{2}$ so that $\phi_{1}(e_{i}) = x_{i}$, then
@@ -210,7 +368,7 @@ Here is the homological characterization of regularity:
 % every finitely generated $R$-module has an $R$-free resolution of finite length; and indeed of length $\leq \dim R$.
 %\end{theorem}
 
-\begin{theorem}[Auslander, Buchsbaum, Serre \cite{}]\label{regularity characterized}
+\begin{theorem}[Auslander, Buchsbaum, Serre \cite{}]\label{regularity characterized}\label{ABS}
 The following conditions on a $d$-dimensional local Noetherian ring $R$ with residue field $k$ are equivalent:
 \begin{enumerate}
  \item $R$ is regular.
@@ -302,25 +460,115 @@ as required.
 \begin{exercise}
  Use Theorem~\ref{depth} to check that the ring
  $$
- R = k[[x,y, z]]/(y^{4}-x^{3}z) \cong k[[s^{4}, s^{3}t, t^{4}]]
+ R = k[[s^{4}, s^{3}t, st^{3}, t^{4}]]
  $$
 is \emph{not} Cohen-Macaulay.
 \end{exercise}
 
 The Cohen-Macaulay property has a homological interpretation that we shall use:
+\fix{should the Auslander-Buchsbaum formula go here?}
 
-\begin{theorem}
+\begin{theorem} \label{lower bound for pd}
  Let $(R,\gm,k)$ be a local ring, and suppose that $S\to R$ is a map of local  rings such that $S$ is a regular local ring and $R$ is a finitely generated $S$-module. The length of a minimal resolution of $R$ as an $S$ module
  is at least $\dim S - \dim R$; and it is equal to this value if and only if the 
  ring $R$ is Cohen-Macaulay.
  \end{theorem}
+  
+  
+  By Proposition~\ref{pd lower bound}, if $C\subset \PP^{n}$ is 1-dimensional, then the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
+
+\begin{theorem}
+ Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme. The projective dimension of the homogeneous coordinate ring $S_{C}$ of $C$  is
+$$
+ pd_{S}S_{C} = 
+\begin{cases}
+n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
+n &\hbox{otherwise}.
+\end{cases}.
+$$
+Thus in the first case $S_{C}$ is Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal. \fix{we used Serre's Criterion. Ref?}
+\end{theorem}
+
+Here is a version that gives a measure of how far $S_C$ is  from being Cohen-Macaulay:
+
+\begin{theorem}
+Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme, and let  
+$$
+\FF: F_{0}\lTo^{d_{1}} F_{1}\lTo^{d_{2}} F_{2}\lTo \cdots \lTo F_{n-1}\lTo {d_{n}}F_{n}\lTo F_{n+1} \lTo 0
+$$
+be the minimal $S$-free resolution of the homogeneous coordinate ring of $C$. We have $F_{n+1}=0$, and 
+$$
+\oplus_{t\in \ZZ} (H^{1}\sI_{C}(t)) = \Hom_{\CC}(\Ext^{n}(S_{C}, S(-n-1)),\CC)
+$$ 
+which is sometimes called the \emph{Rao module} of $C$. Thus, up to a shift in grading,
+the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n}^{*}: F_{n-1}^{*}\to F_{n}$. This is a graded module of finite length.
+\end{theorem}
+
+
+\fix{it's not clear how much of the material here to prove; or, if we do prove it, whether we should introduce the general machinery of depth and admit that local cohomology makes the statements look cleaner. The rest of this section is a possible start on this...}
+
+
+\begin{theorem}
+ Let $C\subset \PP^{n}$ be a  curve (or more generally a purely 1-dimensional subscheme). The homogeneous coordinate ring $S_{C}= S/I_{C})$ of $C$ is Cohen-Macaulay if and only if
+ $H^{1}(\cI_{C}(d)) = 0 $ for all $d$.
+\end{theorem}
+
+\begin{proof}
+ Except in the trivial case $n=1$ we have $H^{1}(\cO_{\PP^{n}} (d)$ for all $d$, and since 
+$C$ is supposed purely 1-dimensional we have $H^{0}(\cO_{C}(d) = 0$ for $d<0$, so from the
+exact sequence 
+$$
+0\to \cI_{c}\to \cO_{PP^{n}} \to \cO_{C}\to 0
+$$
+we deduce that $H^{1}(\cO_{C}(d)= 0$ for all $d<0$ in any case.
+
+
+By Theorem~\ref{lower bound for pd}, the projective dimension of $S_{C}$ is at least $\dim S -\dim S_{c}= n-1$.
+
+ Let $\gm$ be the maximal homogeneous ideal $(x_{0},\dots, x_{n})$ of 
+ the homogeneous coordinate ring $S$ of $\PP^{n}$.
+ By the Auslander-Buchsbaum formula \fix{this should be first, and we should give the graded version too(x} \ref{AB} the projective dimension
+ of $S_{C}$ is $n+1$ (the dimension of  $S$ minus the depth of $\gm S_{C}$, that is, the length of a maximal regular sequence in $S_{C}$, which can be taken to be homogeneous. 
  
+ If a finitely generated graded $S$-module $M$ has depth $>0$ (that is, $\gm$ contains a homogeneous nonzerdivisor on $M$) then clearly no nonzero element of $M$ is annihilated by $\gm$. The converse of this statement is a consequence of the theory of primary decomposition. Further,
+ writing $\tilde M$ for the associated coherent sheaf on $\PP^{n}$, we have a map
+ $M \to \oplus_{d\in \ZZ}H^{0}(\tilde M(d))$ whose kernel is precisely the set of elements annihilated by
+ some power of $\gm$.
+ 
+ If $J$ is the homogeneous ideal of any scheme, then by definition $J$ is saturated; that is, no element is annihilated by $\gm$, or equivalently $\gm$ is not an associated prime ideal. Thus $S/I_{C}$ has projective dimension $\leq n = \dim S - 1$.
+To simplify the notation, if $\cF$ is a coherent sheaf, then we write $H_{*}^{i}(\cF)$ for $\bigoplus_{i}H^{i}(\cF(i))$. 
+
+Suppose now that $f\in S_{C}$ is a nonzerodivisor of degree $d$ and let $H$ be the hypersurface in $\PP^{n}$ that it defines. By Theorem *** we must decide whether $S_{C}/fS_{C}$ contains a non-zerodivisor, that is, whether 
+$S_{C}/fS_{C}$ is saturated, or, equivalently, whether the map
+$$
+\alpha: S_{C}/fS_{C} \to H_{*}^{0}(\widetilde{S_{C}/fS_{C}})  = H_{*}^{0}(\cO_{H\cap C}). 
+$$
+is an injection.
+
+
+The diagram below has exact rows and columns, 
+\begin{diagram}[small]
+&& 0&&0& \\
+&&\dTo&&\dTo\\
+0&\rTo& S_{C}&\rTo^{f}&S_{C}(d)& \rTo &S_{C}/(f)(d)&\rTo&0\\
+&& \dTo&& \dTo&& \dTo^{\alpha}\\
+0&\rTo&H_{*}^{0}(\cO_{C})&\rTo^{f}&H_{*}^{0}(\cO_{C}(d)) &\rTo& H_{*}^{0}(\cO_{H\cap C}(d))&\rTo& 0\\
+&& \dTo&& \dTo&& \dTo\\
+0&\rTo&H_{*}^{1}(\cI_{C})&\rTo^{f}&H_{*}^{1}(\cI_{C}(d)) &\rTo& H_{*}^{1}(\cI_{H\cap C}(d))\\
+&& \dTo&& \dTo\\
+&&0&&0
+\end{diagram}
+and it follows from a diagram chase (the ``snake lemma'') that the kernel of $\alpha$ is the same as the kernel of 
+$$
+H_{*}^{1}(\cI_{C}) \rTo^{f} H_{*}^{1}(\cI_{C}(d)).
+$$
+ By Serre's vanishing theorem, $H_{*}^{1}(\cI_{C})$ is zero in high degree, and since multiplication by $f$ raises the degree, its kernel is 0 if and only if $H_{*}^{1}(\cI_{C})$ is zero, completing the proof.
+\end{proof}
 \subsection{Gorenstein rings and duality}
-Intermediate between the class of Cohen-Macaulay rings and the class of regular rings is the class of Gorenstein rings, important for the study of linkage Chapter~\ref{}:
+Intermediate between the class of Cohen-Macaulay rings and the class of regular rings is the class of Gorenstein rings, important for the study of linkage below.
 
 \begin{definition}
 A local ring $(R,\gm,k)$  is  said to be Gorenstein if it is Cohen-Macaulay and
-%If $\dim R = 0$ (that is, if $R$ is Arrtinian), then  $\Hom_{R}(k,R) \cong k$. In general, a $d$ dimensional local ring is said to be Gorenstein if it is Cohen-Macaulay and 
 $\Ext_R^{d}(k, R) \cong k$.
 \end{definition}
 
@@ -346,8 +594,9 @@ In particular, $R$ is Gorenstein if and only if $R/(x)$ is Gorenstein.
  \fix{of course all we need is depth d for the first part. Put that in if needed for the application}
  
 \begin{proof}
-We do induction on $d =\dim R$. The case $d=0$ being vacuous, we suppose that $d\geq 1$. We have
-$\Hom(k,R)=0$ follows because $x$ annihilates $k$, but does not annihilate any element of $R$. From the short exact sequence
+We do induction on $d =\dim R$. The case $d=0$ being vacuous, we suppose that $d\geq 1$. 
+Because $x$ annihilates $k$, but does not annihilate any element of $R$ we have
+$\Hom(k,R)=0$. From the short exact sequence
 $$
 0\to R \rTo^{x} R\rTo R/(x) \to 0
 $$
@@ -381,7 +630,7 @@ the characterization of regularity in Theorem~\ref{regularity characterized}.
   \qed
 \end{theorem}
 
-Note that Theorem~\ref{characterization of Gorenstein} implies that the localization of a Gorenstein ring is Gorenstein, something not obvious from the definition.
+Note that the equivalence of 1) and 3) in Theorem~\ref{Gorenstein characterized} implies that the localization of a Gorenstein ring is Gorenstein, something not obvious from the definition.
 
 
 %The following proof is incomplete
@@ -428,7 +677,7 @@ Note that Theorem~\ref{characterization of Gorenstein} implies that the localiza
 %packaging a minimal set of  generators of the module of syzygies of the generators of $M$; then szygyies of the generators of the syzygy module; etc.
 
 \begin{example}\label{canonical in P3}
-The minimal free resolution of the homogeneous coordinate ring $S_{C}$ of a canonical curve $C$ of genus 4 in $\PP^{3}$ whose ideal is generated by a quadric $q$ and a cubic $f$, as a module over the homogeneous coordinate ring $S = \CC[x_{0},\dots,x_{3}]$ of $\PP^{3}$, has the form
+The minimal free resolution of the homogeneous coordinate ring $S_{C}$ of a canonical curve $C$ of genus 4 in $\PP^{3}$ whose ideal is generated by a quadric $q$ and a cubic $f$, as a module over the homogeneous coordinate ring $S = \CC[x_{0},\dots,x_{3}]$ of $\PP^{3}$, is the Koszul complex
 \small
 $$
 S \lTo^{
@@ -443,247 +692,11 @@ f\\-q
 S(-5)\lTo 0.
 $$
 \normalsize
-The reason that this sequence, called the Koszul complex of $(q,f)$, is exact, is that
-$q$ and $f$ are relatively prime, so that the only multiples of $q$ that are multiples of $f$ are actually multiples of $qf$. 
-\end{example}
-The following result assures us that invariants of the minimal free resolution of $M$ are invariants of $M$:
-
-\begin{theorem}[Uniqueness]\cite[Theorem ***]{E}\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded is unique up to (non-unique) isomorphism.
-\end{theorem}
-
-This and the other results in this section are usually stated for
-modules over a local ring, and in that form the results here can be found in \cite[Ch ?]{E}. The proofs are essentially identical in the graded case presented here.
-
-The numbers $\beta_{i,j}$ in  the minimal free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; it follows from Theorem~\ref{uniqueness} that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. 
-We sometimes refer to $\beta_{i,j}$ informally as the \emph{number of $i$-th syzygies of degree $j$}; more properly, it is the number of minimal generators of degree $j$ required by the module of $i$-th syzygies of $M$.
-
-For convenience, the graded Betti numbers are usually displayed in a compact \emph{Betti table}, with the nonzero $\beta_{i,j}$ appearing in the $i$ column and the $(j-i)$-th row. (The reason for the initially non-intuitive choice $j-i$ instead of $j$ is that, for the resolution $\FF$ to be minimal, it is necessary that if $\beta_{i,j}\neq 0$, then some $\beta_{i-1,k}\neq 0$ for some $k<j$. Thus shift by $-j$ makes the diagram more compact.)
-
-We sometimes speak of the \emph{Betti table of a variety $X\subset \PP^{n}$}, by which we will mean the Betti table of the minimal free resolution
-of the homogeneous coordinate ring $S_{X}$ of $X$, as a module over the homogeneous coordinate ring of $\PP^{n}.$
-
-For example, the canonical curve in $\PP^{3}$ discussed in Example~\ref{canonical in P3} has Betti table:
-
-\centerline{\small %\scriptsize
-\begin{tabular}{r|ccc} 
-$j\backslash i$&0&1&2\\ 
-\hline 
-0&1&$-$&$-$\\ 
-1&$-$&1&$-$\\ 
-2&$-$&1&$-$\\ 
-3&$-$&$-$&1\\ 
-\end{tabular}}
-\noindent where, for clarity, we have suppressed the $\beta_{i,j}$ that are 0, and replaced some of
-them with $-$.
-
-From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules. In this case something quite special happens \cite[****]{E}:
-
-\begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
-The minimal $S$-free resolution $\FF$ of any finitely generated graded $S$-module $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
-\end{theorem}
-
-\begin{fact}
- There are in fact finite resolutions for all $S$-modules; however there is generally no reasonable notion of a  minimal resolution outside the positively graded or finitely generated local cases. See \cite{???}.
-\end{fact}
-
- In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
-$$
-H_{S(-j)}(m) = 
-\begin{cases}
- {n+m-j \choose n} & \hbox{for $t\geq 0$}
-  \\ 
- 0 & \hbox{for $t<0$}
-\end{cases}
-$$
-we can compute the Hilbert function for a finitely generated graded $S$-module $M$ from its graded Betti numbers 
-$$
-H_{M}(m) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+m-j\choose n}.
-$$
-\begin{example} [The homogeneous coordinate ring of a plane curve] 
-For the simplest non-trivial example, if $C$ is a plane curve with equation $F(x_{0},x_{1}x_{2})$ of 
-degree $d$, then the minimal free resolution of the homogeneous coordinate ring $S_{C}$ has the form
-$$
-\FF: S\lTo^{F}S(-d)\lTo 0
-$$
-Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
- $\beta_{0,0} = \beta_{1,d} = 1$, so
-$$
- H_{S_{C}}(m) = {2+m\choose 2} - {2-d+m\choose 2}
- $$
- which has the value  $dm + 1+(2-d)(2-d-1)/2 = dtm+ (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus is the constant term minus 1, we get
-$\deg C = d,\ p_{a}(C) = (d-1)(d-2)/2$ as we should expect.  Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
+since
+$q$ and $f$ are relatively prime, and thus form a regular sequence
 \end{example}
 
-\begin{exercise} 
-\begin{enumerate}
- \item Show that any curve in $\PP^{3}$ whose homogeneous coordinate ring has the
- form given in Example ~\ref{canonical in P3} has degree 6 and (arithmetic) genus 4.
- 
-\item In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
-Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
-$X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
-using the fact that the minimal free resolution of the homogeneous coordinate ring 
-$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex (see \cite{???}):
-%\scriptsize
-\small
-$$
- S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
- $$
-\normalsize
-\end{enumerate}
-\end{exercise}
 
-Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing it here. A more interesting feature that the Betti table of the homogeneous coordinate ring (or homogeneous ideal) of a variety $X$ reflects is the presence of a variety $Y$ containing 
-$X$ and having low degree syzygies. 
-
-Green's conjecture, which we shall meet below, is a sophisticated (potential) application of this principle. Here is a much simpler version:
-
-We have seen in Chapter~\ref{Scrolls}, the homogeneous ideal $I$ of the twisted cubic curve in $\PP^{3}$ is generated by the three $2\times 2$ minors of the matrix
-$$
-M = \begin{pmatrix}
- x_{0}&x_{1}&x_{2}\\
-  x_{1}&x_{2}&x_{3}
-\end{pmatrix}
-$$
-We shall soon compute the Betti tables of all rational normal scrolls. In particular, we shall see that the Betti table of the twisted cubic has the form:
-
-\centerline{\small
-\begin{tabular}{r|ccc} 
-$j\backslash i$&0&1&2\\ 
-\hline 
-0&1&$-$&$-$\\ 
-1&$-$&3&2\\ 
-\end{tabular}}
-\noindent
-where the dashes indicate that the corresponding $\beta_{i,j}$ is zero. In plain language, the table indicates  that  the ideal $I$ of the curve is minimally generated by 3 elements of degree 2, and that there are two linear relations on the 3 (that is, generators of total degree $2+1=3$, and that these freely generate the module of  syzygies of $I$ (the two relations are in fact just the columns of the transpose of the matrix $M$).
-
-The homogeneous ideal $J$ of any set of points $\Gamma$ that lies on this curve contains $I$, and the 2 linear relations on the generators of $I$ must be consequences of relations on the generators of $J$. But since the relations on $I$ are linear, they are of the lowest possible degree of any relations on $J$, so there must be at least 2 relations on the generators of $J$. Here is the way this can be used:
-\begin{fact}
- A lemma of Castelnuovo shows  that every set of 6 points in linearly general position
-in $\PP^{3}$ lies on a twisted cubic;  a set of points $\Gamma\subset \PP^{3}$ in linearly general position of cardinality $n\geq 7$ lies on a twisted cubic curve if and only if
-the Betti table of $\Gamma$ is termwise $\geq$ that of the twisted cubic. \fix{is Castelnuovo's Lemma proven somewhere in this book? should we convert this from a fact to a proposition? Else refer to ``Geometry of Syzygies''.}
-\end{fact}
-
-\subsection{Projective dimension}
-The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. An older name, in some ways more suitable, was \emph{homological codimension}; this is justified by the following results:
-
-\begin{proposition}\label{pd lower bound}
-If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the support of $M$.
-\end{proposition}
-
-In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
-Cohen-Macaulay $S$-module, or equivalently that the sheaf $\widetilde M$ is 
-\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself is arithmetically Cohen-Macaulay. From the examples above we see that plane curves, and also the twisted cubic, are Cohen-Macaulay.
-
-By Proposition~\ref{pd lower bound}, if $C\subset \PP^{n}$ is 1-dimensional, then the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
-
-\begin{theorem}
- Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme. The projective dimension of the homogeneous coordinate ring $S_{C}$ of $C$  is
-$$
- pd_{S}S_{C} = 
-\begin{cases}
-n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
-n &\hbox{otherwise}.
-\end{cases}.
-$$
-Thus in the first case $S_{C}$ is Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal. \fix{we used Serre's Criterion. Ref?}
-\end{theorem}
-
-Here is a version that gives a measure of how far $S_C$ is  from being Cohen-Macaulay:
-
-\begin{theorem}
-Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme, and let  
-$$
-\FF: F_{0}\lTo^{d_{1}} F_{1}\lTo^{d_{2}} F_{2}\lTo \cdots \lTo F_{n-1}\lTo {d_{n}}F_{n}\lTo F_{n+1} \lTo 0
-$$
-be the minimal $S$-free resolution of the homogeneous coordinate ring of $C$. We have $F_{n+1}=0$, and 
-$$
-\oplus_{t\in \ZZ} (H^{1}\sI_{C}(t)) = \Hom_{\CC}(\Ext^{n}(S_{C}, S(-n-1)),\CC)
-$$ 
-which is sometimes called the \emph{Rao module} of $C$. Thus, up to a shift in grading,
-the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n}^{*}: F_{n-1}^{*}\to F_{n}$. This is a graded module of finite length.
-\end{theorem}
-
-
-\fix{it's not clear how much of the material here to prove; or, if we do prove it, whether we should introduce the general machinery of depth and admit that local cohomology makes the statements look cleaner. The rest of this section is a possible start on this...}
-
-A famous result of Auslander and Buchsbaum clarifies the meaning of projective dimension. We define the 
-\emph{depth} of $M$ to be the maximum length $\ell$ of a \emph{regular sequence on $M$}; that is, a sequence $G_{1},\dots,G_{\ell}$ of homogeneous forms of strictly positive degree such that 
-\begin{align*}
-G_{1} &\hbox{ is a nonzerodivisor on } M;\\
-G_{2} &\hbox{ is a nonzerodivisor on } M/G_{1}M;\\
-\vdots&\phantom{\hbox{ is a nonzerodivisor on } }\vdots\\
-G_{\ell} &\hbox{ is a nonzerodivisor on } M/(G_{1},\dots,G_{\ell-1})M.
-\end{align*}
-
-\begin{theorem}
-If $M$ is a finitely generated graded module over the polynomial ring $S := \CC[x_{0},\dots,x_{n}]$, and $M$ has depth $\ell$, then the projective dimension of $M$ is $n+1-\ell$.
-\end{theorem}
-
-Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of sheaf cohomology:
- 
-\begin{theorem} Suppose that $X\subset \PP^{n}$ is a  subscheme without 0-dimensional (isolated or embedded) components. The module $M = \oplus_{t\in \ZZ}H^{0}(\cO_{X}(t))$
-is finitely generated, and $\depth M$ is the largest integer $\ell$ such that 
-$H^{i}(\cO_{X}(t)) = 0$ for all $0<i<ell-1$ and all $t$.
-\end{theorem}
-
-\section{Liaison of curves in $\PP^3$.}
-%Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
-
-One way in which syzygies are useful is in understanding \emph{linkage}. We  give the definition in the case of curves in $\PP^{3}$, where the idea is most useful. See~\cite{PeskineSzpiro} for the general situation.
-
-\begin{definition}
-If $I$ and $J$ are unmixed ideals of codimension $2$ in $\PP^{3}$ then $I$ and $J$ are \emph{directly linked} if there exists a homogeneous complete intersection $G \subset I\cap J$ such that $I = G:J$. We define \emph{linkage} to be the equivalence relation generated by direct linkage. We say that two ideals are \emph{evenly} linked if they are
-connected by an even number of direct linkages, and similarly for \emph{oddly linked}.
-\end{definition}
-
-We first note that direct linkage is a symmetric relation on unmixed ideals of codimension 2:
-\begin{lemma}
- If $G$ is a complete intersection of codimension 2, and $I$ is an ideal of codimension 2 containing $G$, then $G:(G:I)$ is the unmixed part of $I$. In particular, if $I$ is unmixed and $J = G:I$, then $I = G:J$, so each of $I$ and $J$ is directly linked, via $G$, to the other.
-\end{lemma}
-
-\begin{proof} \fix{this is the wrong beginnng. Localize at a prime of $G$, 
-prove that a RLR mod a regular sequence has appropriately vanishing exts by induction?}
-
- We first prove that $G:I$ is unmixed. Since $G$ is a complete intersection, it is unmixed; that is,  there are prime ideals 
- $P_{j}$ of codimension 2, and $P_{j}$-primary ideals $Q_{j}$, such that 
- $
- G = \bigcap_{j}Q_{j}.
- $
-For any ideal $I$ we have $G:I = \bigcap (Q_{j}:I)$, so it suffices to show that $J_{j}:= Q_{j}:I$
-is either the unit ideal (if $I=Q_{j}$) or else is $P_{j}$-primary; that is, to show that $xy\in J_{j}$ but $x\not \in J_{j}$ implies $y\in P_{j}$. However, if $x\not \in J_{j}$ then
-$xI$ contains an element $xy'\not\in Q_{j}$, and of course $xy'y\in Q_{j}$, so $y\in P_{j}$ as claimed. 
-
-Thus $J = G:I$ has a (possibly redundant) primary decomposition 
-$\bigcap_{j=1}^{s} (Q_{j}:I)$. By the same argument, $G:(G:I) = \bigcap_{j} Q_{j}:(Q_{j}:I)$.
-
-A codimension 2 prime ideal associated to $I$ is one of the 
-ideals $P_{j}$. Thus after re-indexing we may write $I = \bigcap_{j=1}^{t} Q'_{j}$, where
-$Q'_{j}$ is $P_{j}$ primary and $t\leq s$.
-
-\end{proof}
-\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
-is a complete intersection.
- The Hartshorne-Rao Theorem \cite{} asserts that 
-$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
-\end{fact}
-
-
-Genus formula by filtration: Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
-$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
-$\cI_C = (\cI_D:\cI_{C'})$,  and by local duality (?) that 
-$$
-\omega_{C'} = \cHom_{\cO_D}(\cO_C, \omega_D) = 
-\cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))
-=  \frac{(\cI_D:\cI_C)}{\cI_{D}}(d_1+d_2-4).
-$$
-Thus there is an exact sequence
-$$
-0\to \omega_{C'}(-d_1-d_2+4) \to \cO_D \to \cO_C \to 0.
-$$
-Computing Hilbert polynomials via RR gives the genus formula.
-
-Construction of curves with given Rao module: Bourbaki's theorem.
 
 \section {Dualizing sheaves} 
 
@@ -1032,6 +1045,174 @@ $s_{1}\wedge s_{2}\otimes \sigma$ to $s_{1}\sigma-s_{2}\sigma$ for any local sec
 The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never vanish simultaneously except on the $p_{i}$, and has image  consisting of sections that vanish on the points $p_{i}$
 
 \end{proof}
+
+\section{Liaison of curves in $\PP^3$.}
+%Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
+
+One way in which syzygies are useful is in understanding \emph{linkage}. We have already used the relation of \emph{direct linkage} in Chapter 8 \fix{make ref refs}. There, and in the classical literature, we used the notion in the case where the union of two (reduced) curves in $\PP^{3}$ without common components is a complete intersection, such as in the case of the union of a twisted cubic and one of its secant line, which together are the complete intersection of two quadrics. In this setting it is obvious that the relation is symmetric, and that the degrees of the two curves add up to the degree of the complete intersection, and we showed that the (arithmetic) genera of the two curves is related by the formula~\ref{***}. 
+
+It is possible to extend the definition to a more general case, where the two curves may not be reduced or irreducible, and may have common components. 
+
+We  give the definition in the case of curves in $\PP^{3}$, where the idea is most useful. See~\cite{PeskineSzpiro} for the general situation.
+
+\begin{definition}
+If $X$ and $Y$ are purely 1-dimensional subschemes of $\PP^{3}$ then $X$ and $Y$ are \emph{directly linked} if there exists a homogeneous complete intersection $Z \supset X\bigcup Y$ such that $I_{X} = I_{Z}:I_{Y}$. In this case we say that $X$ is directly linked to $Y$ by $Z$. 
+
+More generally, we say that $X$ and $Y$ are \emph{evenly} linked if they are
+connected by an even number of direct linkages, and similarly for \emph{oddly linked}.
+\end{definition}
+
+The extended definition is justified by the fact that it satisfies the same properties related to symmetry, degree and genus as in the special case, and allows interesting new aspects to emerge see Example~\ref{minimal elements}. \fix{I'm thinking first of all about minimal elements of the linkage class; we need to have an example where there is not reduced minimal element.}
+
+
+\begin{theorem}\label{justification of general linkage} The relation of direct linkage is symmetric. Moreover, if $X,Y\subset \PP^{3}$ are purely 1-dimensional subschemes and $X$ is linked to $Y$ by the complete intersection $Z$ of surfaces of degrees $d_{1}, d_{2}$, then
+\begin{enumerate}
+ \item $\deg X+\deg Y = \deg Z = d_{1}d_{2}$.
+ \item  The arithmetic genera of $X$ and $Y$ are related by
+$$
+p_{a}(X) -p_{a}(Y) =\frac{(d_{1}+d_{2})}{2} (\deg X -\deg Y)
+$$
+ %h - g = (e-d)\frac{s+t-4}{2}
+\end{enumerate}
+ \end{theorem}
+ 
+ The proofs involve several important results from commutative algebra:
+ 
+\begin{lemma} \label{double colon}
+\begin{enumerate}
+\item For any ideals $G,I$ in a commutative Noetherian ring $R$, the associated primes   $J = G:I$ are  are among the associated primes of $G$. Moreover, if $I$ is unmixed (that is, all primary components have the same dimension) then  
+the associated primes of $J$ are precisely the associated primes of $I$ whose primary components do not contain $G$.
+
+\item  If $R$ is Gorenstein, $G$ is a complete intersection in $R$, and $I\subset R$ is an ideal containing $G$, then $G:(G:I)$ is the 
+intersection of the primary components of $I$ that have the same codimension as $G$. 
+
+\item Under these hypotheses, the sum of the mulitiplicities of $R/I$ and $R/(G:I)$ is the multiplicity of $R/G$.
+
+\item 
+$$
+\omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G.
+$$
+Note that in case $R = k[x_{0},\dots,x_{n}]$ and both $I$ and $G$ are graded, with $G = (f_{1}, \dots f_{c})$ the intersection of forms of degree
+$d_{1}+\cdots + d_{c}$, then $\omega_{R/G} = R/G(\sum d_{i} -n-1)$ as graded modules, so
+$$
+\omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G(\sum d_{i} -n-1).
+$$
+
+
+\end{enumerate}
+\end{lemma}
+
+
+\begin{proof}[Proof of Lemma~\ref{double colon}]
+ 1) Suppose that $G = \bigcap Q_{i}$ is the primary decomposition of $G$. We have
+$I:J = \bigcap (Q_{i}:J)$. If $P_{i}$ is the associated prime of $I$ that is the radical of $Q_{i}$, then it is easy to see from the definition that $(Q_{i}:J)$ is  the unit ideal if and only if $J\subset Q_{i}$ and is otherwise $P_{i}$-primary.
+ 
+ 2) Since $G$ is a complete intersection, it is unmixed, and it follows that $G:I$ and $G:(G:I)$ are unmixed too and depend only only on the primary components of $G$ and the primary components of $I$ that are among the primary components of $G$. Thus we may assume from the outset that $I$ is unmixed of the same codimension as $G$, and we must show that $G:(G:I) = I$. Since $I$ contains $G$, the same is true after localizing at an associate prime of $I$, and it follows that $\Ass I\subset \Ass G$.
+ 
+It is obvious that $I\subset G:(G:I)$, so it suffices to show that equality holds after localizing at an associated prime $P$ of $I$, so we may harmlessly assume that $R$ is local to begin with, and both $G$ and $I$ are primary to the maximal ideal $P$ of $R$. 
+
+We now apply the theory of duality developed in Appendix ****, and use the fact that $\omega_{R/G} \cong R/G$.
+Note that $(G:I)/G =\Hom(R/I, R/G) \cong \Hom(R/I, \omega_{R/G}) = \omega_{R/I}$. It follows that 
+$\length(R/I) = \length ((G:I)/G)$. By symmetry, $(G:(G:I))/G\cong \Hom(R/(G:I), \omega_{R/G}) = \omega_{R/(G:I)}$.
+Thus 
+$$
+\length(R/(G:(G:I)) = \length(R/I),
+$$
+ proving that $I = G:(G:I)$.
+
+3) Since 
+$$
+\length (R/G) = \length(R/(G:I))+\length((G:I)/G) = \length(R/(G:I) +\length R/I,
+$$ we see from the associativity formula for multiplicity that when $I$ has the same codimension as $G$, then the multiplicity of $I$ plus the
+multiplicity of $G:I$ is the multiplicity of $G$. In the graded case, this means that
+$\deg \Proj(R/I) +\deg \Proj(R/(G:I)) = \deg \Proj(R/G)$.
+\end{proof}
+
+ \begin{proof}[Proof of Theorem~\ref{justification of general linkage}
+] 2) Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
+$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
+$\cI_C = (\cI_D:\cI_{C'})$,  and by local duality (?) that 
+$$
+\omega_{C'} = \cHom_{\cO_D}(\cO_C, \omega_D) = 
+\cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))
+=  \frac{(\cI_D:\cI_C)}{\cI_{D}}(d_1+d_2-4).
+$$
+Thus there is an exact sequence
+$$
+0\to \omega_{C'}(-d_1-d_2+4) \to \cO_D \to \cO_C \to 0.
+$$
+Computing Hilbert polynomials and applying RR gives the genus formula.
+
+ \end{proof}
+
+We can apply Lemma~\ref{double colon} to the ideals of purely 1-dimensional subschemes of $\PP^{3}$ to get:
+\begin{corollary}
+\begin{enumerate}
+\item Direct linkage is a symmetric relation: if $X,Y$ are purely 1-dimensional subschemes of $\PP^{3}$ and $X$ is directly linked to $Y$ by $Z$, then
+$Y$ is directly linked to $X$ by $Z$. 
+\item $\deg X+\deg Y = \deg Z$
+\item If $Z$ is the complete intersection of surfaces of degrees $d_{1}, d_{2}$, then
+
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+ 1) Immedate from part 1) of Lemma~\ref{double colon}.
+ 
+ 2) Immedate from part 2) of Lemma~\ref{double colon}.
+ 
+3) Suppose that $Z$ is the complete intersection of surfaces $f_{1}, f_{2} \in S = k[x_{0},\dots,x_{3}]$ of degrees $d_{1}, d_{2}$. Writing
+$G = (f_{1}, f_{2})$ and $I$ for the homogeneous ideals of $Z$ and $X$ in $\PP^{3}$. Taking the grading into
+account, we have $\omega_{S/G} = S/G[d_{1}+d_{2}-4].$
+
+From the formula  $\omega_{R/I} = (G:I)/G[d_{1}+d_{2}-4$ we see that 
+$$
+H_{Z}(n) = H_{Y}(n) + H_{\omega_{R/I}}(-(d_{1}+d_{2}-4)).
+$$
+
+$$
+H_{\omega_{X}}(n) = H_{Z}(n) - H_{Y}((n+d_{1}+d_{2}-4) ).
+$$
+ \fix{this should be $H_{\omega_{X}}(n-???)$, where the shift
+comes from the shift of $\omega_{Z}$. That will make the next couple of formulas correct}
+
+Since the degree of $\omega_{X}$ is $2p_{a}(X) -2$, and the leading coefficient of the 
+Hilbert polynomial of $\omega_{X}(d_{1}+d_{2}-4$ we get 
+$2p_{a}(X) -2 = \deg Z - \deg Y$, and symmetrically 
+$2p_{a}(Y) -2 = \deg Z - \deg X$.
+
+Subtracting the second of these expressions from the first, we get
+$2p_{a}(X)-2p_{a}(Y) = \deg X -\deg Y$
+
+ then, writing $S = k[x_{0},\dots, x_{3}]$, we see from the free resolution
+$$
+0\to S(-d_{1}-d_{2}) \to S(-d_{1})\oplus S(-d_{2}) \to S \to S/I_{Z}
+$$
+we see that the Hilbert polynomial of $Z$ is $H_{Z}(n)= d_{1}d_{2}(n + d+e-4)$. Thus so the arithmetic genus of $Z$ is Moreover, the sum of the degrees of $X$ and $Y$ is the degree of $Z$, and
+the sum of the constant terms of the Hilbert polynomial
+\end{proof}
+
+\fix{ This will become a theorem!} 
+\begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
+is a complete intersection.
+ The Hartshorne-Rao Theorem \cite{} asserts that 
+$C$ and $C'$ can be connected by an even length sequence of linkages if and only if their Rao modules are equal up to a shift; and by an odd length sequence of linkages if and only if their Rao modules differ by a shift and dualization into $\CC$.
+\end{fact}
+
+
+
+Construction of curves with given Rao module: Bourbaki's theorem.
+%\end{proof}
+
+\begin{exercise} (Schwartau) Linkage addition. \fix{Put this somewhere later.}
+ 
+\end{exercise}
+
+
+
+
+
+
 \section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
 
 \fix{I'm inclined to make this a ``cheerful fact''}
