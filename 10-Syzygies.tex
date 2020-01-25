@@ -61,12 +61,68 @@ For curves in $\PP^{3}$ we ask about the relationship of a curve to the 1-dimens
 
 Once a curve is embedded in projective space, questions about the curve are also questions in commutative algebra. From the work of Emmy Noether in the 1920s through the 1950s commutative algebra focused on the theory of ideals in Noetherian rings. But with the work of Auslander, Buchsbaum and Serre homological techniques became important. This means, roughly, focusing on modules over these rings (representation theory) and on complexes of modules, especially free resolutions. The groundwork for this extension had of course been laid by Cayley, Hilbert, Macaulay, Gr\"obner\dots, but always in the context of polynomial rings. 
 
-In the first section of this chapter we will introduce some basic notions from the theory free resolutions, regular, Gorenstein and Cohen-Macaulay local rings, and the dualizing module. These will all come into play in our algebraic description of linkage ($=$ liaison) of curves in $\PP^{3}$ in the next section.
+\section{Modules and Sheaves}
+
+When we study projective varieties both graded modules and the sheaves associated to them play a role. As Serre explained in \cite{FAC}, the category of coherent sheaves is the category of finitely generated graded modules \emph{modulo} the subcategory of graded modules of finite length. One expression of this is the relationshipe between local and global cohomology, which we will explain in this section. For the sake of simplicity, we will stick with coherent sheaves on projective space.
+
+Let $S= k[x_{0}, \dots, x_{n}]$, the homogeneous coordinate ring of $\PP^{n}$, and write. Recall that the cohomology of the sheaf $\cM$ associated to a graded $S$-module $M$ is the cohomology of the Cech complex:
+$$
+\cC(M): 0\to \bigoplus_{0\leq i \leq n}^{n} M_{x_{i}} \to \bigoplus_{0\leq i<j\leq n} M_{x_{i}x_{j}} \to \cdots
+$$
+where $M_{m}$ denotes the localization of $M$ at the powers of $m$, corresponding to the restriction of the sheaf to the open set where $m \neq 0$. The same formula works for a module 
+over any finitely generated graded $k$-algebra $R$ and the corresponding sheaf on $\Proj R$.
+The homology of this complex at the term
+$$
+\bigoplus_{0\leq j_{0}<j_{1}<\cdots<j_{i}\leq n} M_{x_{j_{0}}x_{j_{1}}\cdots x_{j_{i}}}
+$$
+is 
+$$
+H^{i}_{*}(\cM):= \bigoplus_{d\in \ZZ} H^{i}(\cM(d)),
+$$
+the sum of the $i$-th cohomology spaces of all twists of $\cM$.
+
+It is easy to see that we can add $M$ itself to the left of this complex, making an augmented complex
+$$
+\cC'(M): 0\to M \to \bigoplus_{0\leq i \leq n}^{n} M_{x_{i}} \to \bigoplus_{0\leq i<j\leq n} M_{x_{i}x_{j}} \to \cdots
+$$
+We define the homology of this complex to be the \emph{local cohomology} $H_{\gm}(M)$ of $M$ with respect to the ideal $\gm := (x_{0},\dots,x_{n})$. It follows immediately that for $i\geq 1$ we have
+$H^{i}_{*}(\cM) = H^{i+1}_{\gm}(M)$, and this holds degree by degree: the local cohomology module inherits a grading from $M$ and the fact that the $x_{i}$ are homogeneous and its homogeneous component of degree $d$ is
+$H^{i}(\cM(d))$. Thus the modules $H_{\gm}^{i}$ have geometric meaning for $i\geq 2$. 
+
+We can easily elucidate the meaning for $i=0,1$ as well: First, the elements of $M$ that map to 0 in $M_{x_{j}}$ are the elements annihilated by some power of $x_{j}$ so $H^{0}_{\gm}(M)$ is the set of elements annihilated by some power of every $x_{j}$, or equivalently annihilated by some power of the maximal ideal. This is precisely the set of elements that go to 0 under the natural map
+$M\to H^{0}_{*}(\cM)$.  In particuar, if
+$M$ is the homogeneous coordinate ring $R = S/I$ of an algebraic set $X$, then $I$ is the saturated ideal of $X$ if and only if $H^{0}_{\gm}(R) = 0$.
+
+We can interpret $H^{0}_{\gm}(M)$ in module-theoretic terms too: Write 
+$(0_{M}:\gm^{e})$ for the elements of $M$ annihilated by $\gm^{e}$, and 
+$H^{0}_{\gm}(M) =(0_{M}:\gm^{\infty})$ for the union of all the $(0_{M}:\gm^{e})$. Since $M$ is Noetherian, we have
+$H^{0}_{\gm}(M) =(0_{M}:\gm^{e})$ for some $e$.  Since M is graded, this can be interpreted as the maximal submodule of $M$ of finite length. 
+
+The discussion above shows that the sequence
+$$
+0 \to H^{0}_{\gm} (M) \to M\to H^{0}_{*}(\cM)
+$$
+is exact. But from the definitions it follows at once that we can extend this to an exact sequence
+$$
+0 \to H^{0}_{\gm} (M) \to M\to H^{0}_{*}(\cM) \to H^{1}_{\gm} (M) \to 0.
+$$
+
+
+
+
+The module $H^{1}_{\gm}(M)$ also has an important interpretation: Consider again the case $M = R = S/I$, and suppose for simplicity that 
+$n\geq 2$, so that $H^{1}(\cO_{\PP^{n}}(d) = 0$ for all $d$. In this case
+
+
+
+
 
 \section{Syzygies and the Hilbert Syzygy Theorem} \fix{all or part of this section should be an appendix}
 \fix{introduce free resolution, minimal free resolution over a local ring, then move to
  $S = k[x_{0}, \dots, x_{n}]$ and homogeneous coordinate rings.}
  
+ In this  section we will introduce some basic notions from the theory free resolutions, regular, Gorenstein and Cohen-Macaulay local rings, and the dualizing module. These will all come into play in our algebraic description of linkage ($=$ liaison) of curves in $\PP^{3}$ in the next section.
+
 The following result assures us that invariants of the minimal free resolution of $M$ are invariants of $M$:
 
 \begin{theorem}[Uniqueness]\cite[Theorem ***]{E}\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded $S$-module is unique up to (non-unique) isomorphism.
