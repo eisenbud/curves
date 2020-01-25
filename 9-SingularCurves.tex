@@ -3,11 +3,11 @@
 \chapter{Plane Curves}
 \label{PlaneCurvesChapter}
 
-**** David: This started out as a chapter in which we extend the constructions/theorems of the rest of the book to the case of singular curves. We since abandoned that goal as too difficult and open-ended, and my understanding is that we were going to replace it with a chapter on plane curves. So here's the chapter on plane curves, but I haven't changed the title of the chapter (and I commented out, rather than deleted, the stuff that was already written). ****
+**** David: This started out as a chapter in which we extend the constructions/theorems of the rest of the book to the case of singular curves. We since abandoned that goal as too difficult and open-ended, and my understanding is that we were going to replace it with a chapter on plane curves. So here's the chapter on plane curves, but I haven't changed the name of the file (and I commented out, rather than deleted, the stuff that was already written). ****
 
 \
 
-As anyone who has slogged through the last chapter knows, describing curves in projective space $\PP^3$  is difficult: the ideal of such a curve typically has three or more generators, which in turn have to satisfy certain syzygies; in consequence, even basic facts about them---for example, the dimension of the family of all curves of given degree and genus---remain very unclear.
+As anyone who has read the last chapter knows, describing curves in projective space $\PP^3$  is difficult: the ideal of such a curve typically has three or more generators, which in turn have to satisfy certain syzygies; in consequence, even basic facts about them---for example, the dimension of the family of all curves of given degree and genus---remain very unclear.
 
 The case of plane curves makes a striking contrast: a curve $C \subset \PP^2$ is necessarily the zero locus of a single homogeneous polynomial, and conversely any homogeneous polynomial $F(X,Y,Z)$ defines a plane curve. There is a downside, however: while any smooth projective curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
 
@@ -257,6 +257,8 @@ The lemma follows by applying the Leray spectral sequence, which relates the coh
 
 \subsection{Existence of good projections}\label{projection section}
 
+In this section, we want to verify the assertion made above that every smooth curve is birational to a nodal plane curve. In characteristic 0, this is straightforward, and we will give the argument here.
+
 \begin{proposition}\label{nodal projection}
 If $C \subset \PP^n$ is a smooth curve in projective space, and $\Lambda \cong \PP^{n-3} \subset \PP^n$ a general $(n-3)$-plane, then the projection $\pi_\Lambda : C \to \PP^2$ is birational onto its image, which will be a nodal curve.
 \end{proposition}
@@ -299,25 +301,100 @@ By the genus formula, $C$ has genus 1. Using the construction above, describe th
 
 \section{Arbitrary plane curves}
 
-Well, not exactly arbitrary: in this section, we'll deal with a plane curve $C_0$ that is assumed to be reduced and irreducible, with normalization $\nu : C \to C_0$. In this setting, if we simply try to mimic the analysis above in the nodal case we're led to introduce the \emph{adjoint ideal} of each singularity (which is simply the maximal ideal of the point in the case of a node), in terms of which we have theorems analogous to the results obtained above in the nodal case.
+Well, not exactly arbitrary: in this section, we'll deal with a plane curve $C_0$ that is assumed to be reduced and irreducible, with normalization $\nu : C \to C_0$. 
+
+The geometry of singular curves is a fascinating topic, from the local analysis of the singularities to the global questions involving linear series on singular curves. Indeed, it's remarkable how many of the constructions and theorems we've discussed in the realm of smooth curves can be extended to the world of singular curves, given the right definitions (and some restrictions on the type of singularities, such as the Gorenstein condition). But this is a topic beyond our ken, at least in this book; for us, the questions are about smooth curves, with singular curves appearing as a useful adjunct. The description, in the last section, of complete linear series on a smooth curve $C$, using a nodal plane model $C_0$ of $C$, is a perfect example.
+
+There is, however, one fundamental invariant of a singular curve $C$ that is both readily calculated and highly relevant in relating it to smooth curves: the \emph{arithmetic genus} of $C$. This will come up in what we're going to do next, which is to describe linear series on a smooth curve $C$ via a birational model as a plane curve with general singularities, and so we'll take a moment out here and introduce this notion.
+
+\subsection{Arithmetic genus and geometric genus}
+
+To start with, the arithmetic genus is a very broadly applicable: it is defined for an arbitrary one-dimensional scheme over a field. Recall that among the characterizations of the genus $g$ of a smooth projective curve $C$ there was one in terms of the Euler characteristic of the structure sheaf: we have $g = 1 - \chi(\cO_C)$. This is directly equivalent to the characterization in terms of the constant term of the Hilbert polynomial of any projective embedding.
+
+And that is how we extend the notion of genus to arbitrary singular curves $C_0$: for any 1-dimensional scheme $C_0$ over a field, we define the \emph{arithmetic genus} of $C_0$ to be $1-\chi(\cO_{C_0})$. Very often (as, for example, right now!) we want also to deal at the same time with the genus of the normalization $\nu : C \to C_0$; to distinguish between these two notions of the genus of a singular curve, we call $1-\chi(\cO_{C_0})$ the arithmetic genus of $C_0$ and denote it $p_a(C_0)$; the genus of the normalization is called the \emph{geometric genus} and often denoted $g(C_0)$ or $p_g(C_0)$.
+
+What's the difference? Well, we can relate the two notions via the map of sheaves
+$$
+\cO_{C_0} \to \nu_*\cO_C.
+$$
+This is injective; the cokernel sheaf will be a skyscraper sheaf supported exactly on the singular points of $C_0$. Denoting this sheaf by $\cF$, we have an exact sequence
+$$
+0 \to \cO_{C_0} \to \nu_*\cO_C \to \cF \to 0.
+$$
+
+Now, the normalization map $\nu: C \to C_0$ is finite, so that the higher direct images $R^i\nu_*\cO_C = 0$ for $i > 0$; it follows from the Leray spectral sequence that $\chi(\nu_*\cO_C) = \chi(\cO_C)$. We have, accordingly,
+$$
+p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF);
+$$ 
+in other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks on $\cF$; colloquially, it's the number of linear conditions a function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant of the singularity}; to rephrase the statement above in these terms, we have
+$$
+p_a(C_0) - g(C) = \sum_{p \in (C_0)_{sing}} \delta_p
+$$ 
+
+Happily, the $\delta$ invariant of a singularity is readily calculated. Here are some examples:
+\begin{enumerate}
+
+\item (nodes) If $p \in C_0$ is a node, with points $r,s \in C$ lying over it, the condition for a function $f$ on $C$ to descend is simply that $f(r)=f(s)$; this is one linear condition and accordingly $\delta_p = 1$.
+
+\item (cusps) If $p \in C_0$ is a cusp, with  $r \in C$ lying over it, the condition for a function $f$ on $C$ to descend is simply that the derivative $f'(r)=0$; again, this is one linear condition and accordingly $\delta_p = 1$.
+
+\item (tacnodes) Suppose now that $p \in C_0$ is a \emph{tacnode}, that is, $C_0$ has two smooth branches at $p$ simply tangent to one another. There will be two points $r, s \in C$ lying over it, and the condition for a function $f$ on $C$ to descend is that in terms of suitable local coordinates both $f(r)=f(s)$ and $f'(r)=f'(s)$.  This represents two linear conditions and accordingly $\delta_p = 2$.
+
+\item (planar triple points) Next up, consider an ordinary triple point $p \in C_0$ of a plane curve: that is, a singularity consisting of three smooth branches meeting pairwise transversely, such as the zero locus of $y^3-x^3$. There will be three points $r,s,t \in C$ lying over $p$, and certainly a necessary condition for a function $f$ on $C$ to descend is that $f(r)=f(s)=f(t)$---two linear conditions. But there's a third, less obvious linear condition: in order for $f$ to descend, the derivatives $f'(r), f'(s), f'(t)$ have to satisfy a linear condition---a reflection of the fact that a function on $C_0$ cannot vanish to order 2 on each of two branches without vanishing to order 2 along the third as well. Thus $\delta_p = 3$
+
+\item (spatial triple points) We will be concerned in what follows only with planar singularities, but spatial triple points provide a useful contrast to the last example. A spatial triple point is a singularity consisting of three smooth branches, with linearly independent tangent lines, so that its Zariski tangent space is 3-dimensional. An example would be the union of the three coordinate axes in $\AA^3$.
+
+In this case, in contrast to the last one, the condition that $f(r)=f(s)=f(t)$ is both necessary and sufficient for $f$ to descend, and accordingly we have $\delta_p=2$.
+
+\end{enumerate}
+
+\begin{exercise}
+Let $p \in C$ be a singular point of a reduced curve $C$. Show that if $\delta_p = 1$, then $p$ must be either a node or a cusp.
+\end{exercise}
+
+
+
+\subsection{Linear series on (the normalization of) a plane curve} 
+
+We return now to our basic setting: we have a reduced and irreducible curve $C_0 \subset \PP^2$ with normalization $\nu : C \to C_0$, and we want to extend our solution to the keynote problems---finding all regular differentials on $C$, and finding all divisors on $C$ linearly equivalent to a given $D \in \Div(C)$---to this more general setting.
+
+In this setting, if we simply try to mimic the analysis above in the nodal case we're led to introduce the \emph{adjoint ideal} of each singularity (which is simply the maximal ideal of the point in the case of a node), in terms of which we have theorems analogous to the results obtained above in the nodal case.
 
 So: let $C_0 \subset \PP^2$ be a reduced and irreducible plane curve, with normalization $\nu : C \to C_0$. We focus for now on one singular point $q \in C_0$, with points $r_1,\dots,r_k \in C$ lying over $q$. If our goal is to describe the canonical series on $C$, we can start as we did in the previous two sections: by considering differentials of  the form $g(x,y)\omega_0$, where
 $$
 \omega_0 = \nu^* \frac{dx}{\partial f/\partial y},
 $$
-and $f$ is the defining equation of $C_0$ in an affine open containing $q$. As we saw in the nodal case, $\omega_0$ will have poles at the points $r_i$; let $m_i$ be the order of the pole of $\omega_0$ at $r_i$. At this point, we can define the \emph{adjoint ideal} of $C_0$ at $q$ to be the ideal
+and $f$ is the defining equation of $C_0$ in an affine open containing $q$. As we saw in the nodal case, $\omega_0$ will have poles at the points $r_i$; let $m_i$ be the order of the pole of $\omega_0$ at $r_i$. We can define the \emph{adjoint ideal} of $C_0$ at $q$ to be the ideal
 $$
 A_q = \left\{ g \in \cO_{\PP^2, q} \mid \ord_{r_i}(\nu^*g) \geq m_i \; \forall i \right\}
 $$
 
-In other words, $A$ is the ideal of functions $g$ such that $\nu^* \frac{gdx}{\partial f/\partial y}$ is regular at all the points $r_i$. We accordingly define the \emph{adjoint ideal $\cI_A$ of $C_0$} to be the product of $A_q$ over all singular points  $q \in C_0$; the \emph{adjoint series of degree $m$} is then the linear series $H^0(\cI_A(m))$
+In other words, $A$ is the ideal of functions $g$ such that $\nu^* \frac{gdx}{\partial f/\partial y}$ is regular at all the points $r_i$. We accordingly define the \emph{adjoint ideal $\cI_A$ of $C_0$} to be the product of $A_q$ over all singular points  $q \in C_0$; the \emph{adjoint series of degree $m$} is then the linear series $H^0(\cI_A(m))$. 
 
-At this point it may seem that we have merely slapped a label on our ignorance. But in fact, it's a useful construction, for two reasons: first, the adjoint ideal can in practice be determined readily; and second, there is a remarkable alternative characterization of the adjoint ideal.
+In these terms, we can give the solution to our keynote problems much as we did in the case of plane curves with nodes. Specifically:
 
-Let's start with the first of these. To begin with, let's do some simple examples:
+First, we can say that every global regular 1-form on the curve $C$ is of the form 
+$$
+\frac{g(x,y) dx}{\partial f/\partial y},
+$$
+with $g$ in the adjoint ideal $A$, and of degree $d-3$ or less.
+
+Second, if we are given a divisor $D = E - F$ on the curve $C$, we can find all effective divisors $D'$ on $C$ linearly equivalent to $D$ exactly as we did in the previous case. We start by choosing a polynomial $G$ of any degree $m$ in the adjoint ideal and vanishing on $E$ but not vanishing identically on $C_0$; we write
+$$
+(G) = E + \Delta + A.
+$$
+We then find all polynomials $H$ of degree $m$ in the adjoint ideal, vanishing on $A + F$ but not vanishing identically on $C_0$; writing
+$$
+(H) = F + A + \Delta + D'
+$$
+we arrive at an effective divisor $D'$ on $C$ linearly equivalent to $D$. Indeed,  the analog of the theorem of completeness of the adjoint series tells us that we arrive at \emph{every} effective divisor $D'$ on $C$ linearly equivalent to $D$ in this way.
+
+
+
+At this point it may seem that without an explicit description of the adjoint ideal we have merely slapped a label on our ignorance. But in fact, the adjoint ideal is relatively straightforward to find. To begin with, let's do some simple examples:
 
 \begin{example}[nodes and cusps]
-We have already seen that in case $q$ is a node of $C_0$, there are two point of $C$ lying over it, and $m_1=m_2=1$; the adjoint ideal is thus just the maximal ideal $\cI_q$ at $q$. In the case of a cusp, for example the zero locus of $y^2-x^3$, there is only one point $r=r_1$ of $C$ lying over $q$, and the differential $\omega_0$ vanishes to order $m_1=2$; since the pullback to $C$ of any polynomial $g$ vanishing at $q$ will vanish to order at least two at $r$, and so again the adjoint ideal is simply the maximal ideal at $q$.
+We have already seen that in case $q$ is a node of $C_0$, there are two points of $C$ lying over it, and $m_1=m_2=1$; the adjoint ideal is thus just the maximal ideal $\cI_q$ at $q$. In the case of a cusp, for example the zero locus of $y^2-x^3$, there is only one point $r=r_1$ of $C$ lying over $q$, and the differential $\omega_0$ vanishes to order $m_1=2$; since the pullback to $C$ of any polynomial $g$ vanishing at $q$ will vanish to order at least two at $r$, and so again the adjoint ideal is again just the maximal ideal at $q$.
 \end{example}
 
 
@@ -339,7 +416,15 @@ Find the adjoint ideals of the following plane curve singularities:
 \end{enumerate}
 \end{exercise}
 
-There is in fact a general formula for the adjoint ideal of any isolated plane curve singularity:
+In general, the adjoint ideal of an isolated plane curve singularity is something we can determine in practice; for example, here is a simply general description in case the individual branches of $C_0$ at $p$ are each smooth:
+
+\begin{proposition}
+Let $\nu : C \to C_0$ be the normalization of a plane curve $C_0$ and $p \in C_0$ a singular point. Denote the branches of $C_0$ at $p$ by $B_1,\dots,B_k$, and let $r_i$ be the point in $B_i$ lying over $p$. If the individual branches $B_i$ of $C_0$ at $p$ are each smooth, and we set
+$$
+m_i = \sum_{j \neq i} mult_p(B_i \cdot B_j
+$$
+then the adjoint ideal of $C_0$ at $p$ is simply the ideal of functions $g$ such that $ord_{r_i}(\nu*g) \geq m_i$.
+\end{proposition}
 
 \subsection{The conductor ideal}
 
