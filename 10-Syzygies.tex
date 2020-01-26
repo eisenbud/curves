@@ -61,7 +61,7 @@ For curves in $\PP^{3}$ we ask about the relationship of a curve to the 1-dimens
 
 Once a curve is embedded in projective space, questions about the curve are also questions in commutative algebra. From the work of Emmy Noether in the 1920s through the 1950s commutative algebra focused on the theory of ideals in Noetherian rings. But with the work of Auslander, Buchsbaum and Serre homological techniques became important. This means, roughly, focusing on modules over these rings (representation theory) and on complexes of modules, especially free resolutions. The groundwork for this extension had of course been laid by Cayley, Hilbert, Macaulay, Gr\"obner\dots, but always in the context of polynomial rings. 
 
-\section{Modules and Sheaves}
+\section{Modules and sheaves: local and global cohomology}
 
 When we study projective varieties both graded modules and the sheaves associated to them play a role. As Serre explained in \cite{FAC}, the category of coherent sheaves is the category of finitely generated graded modules \emph{modulo} the subcategory of graded modules of finite length. One expression of this is the relationshipe between local and global cohomology, which we will explain in this section. For the sake of simplicity, we will stick with coherent sheaves on projective space.
 
@@ -110,9 +110,22 @@ $$
 
 
 
-The module $H^{1}_{\gm}(M)$ also has an important interpretation: Consider again the case $M = R = S/I$, and suppose for simplicity that 
-$n\geq 2$, so that $H^{1}(\cO_{\PP^{n}}(d) = 0$ for all $d$. In this case
+The module $H^{1}_{\gm}(M)$ also has an important interpretation: Consider again the case $M = R = S/I$, corresponding to a projective scheme $X$, and suppose for simplicity that 
+$n\geq 2$, so that $H^{1}(\cO_{\PP^{n}}(d)) = 0$ for all $d$. In this case the long exact sequence in cohomology associated to 
+$$
+0\to \cI_{X} \to \cO_{\PP^{n}} \to \cO_{X}\to 0,
+$$
+begins
+$$
+0\to H^{0}_{*}(\cI_{X}) \to H^{0}_{*}(\cO_{\PP^{n}}) \to H^{0}_{*}(\cO_{X})\to H^{1}_{*}(\cI_{X}) \to 0.
+$$
+Since the image of $H^{0}_{*}(\cO_{\PP^{n}}) \to H^{0}_{*}(\cO_{X})$ is  the same as
+the image of $S/I \to H^{0}_{*}(\cO_{X})$ (both are equal to $S_{X}$), 
+this shows that $H^{1}_{\gm}(S/I) = H^{1}_{*}(\cI_{X})$. This module will play an important role in the treatment of linkage, below.
 
+\begin{exercise}
+ Explain what is different from the above in the case $X\subset \PP^{1}$.
+\end{exercise}
 
 
 
@@ -251,7 +264,6 @@ In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that 
 Cohen-Macaulay $S$-module, or equivalently that the sheaf $\widetilde M$ is 
 \emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself is arithmetically Cohen-Macaulay. From the examples above we see that plane curves, and also the twisted cubic, are Cohen-Macaulay.
 
-
 A famous result of Auslander and Buchsbaum clarifies the meaning of projective dimension. We define the 
 \emph{depth} of $M$ to be the maximum length $\ell$ of a \emph{regular sequence on $M$}; that is, a sequence $G_{1},\dots,G_{\ell}$ of homogeneous forms of strictly positive degree such that 
 \begin{align*}
@@ -265,11 +277,26 @@ G_{\ell} &\hbox{ is a nonzerodivisor on } M/(G_{1},\dots,G_{\ell-1})M.
 If $M$ is a finitely generated graded module over the polynomial ring $S := \CC[x_{0},\dots,x_{n}]$, and $M$ has depth $\ell$, then the projective dimension of $M$ is $n+1-\ell$.
 \end{theorem}
 
-Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of sheaf cohomology:
+
+Suppose again that $M$ is a finitely generated graded module. Every associated prime of $M$ must then be homogeneous, and, since the set of zerodivisors on $M$ is the union of all the associated primes,  there is form $G_{1}$ of positive degree that is a nonzerodivisor on $M$ if and only if the maximal ideal $\gm$ is not an associated prime of $M$, or equivalently $M$ contains no element annihilated by $\gm$ \fix{this uses prime avoidance too; probably should have a reference}. Since $H^{1}_{gm}$ is the submodule of all elements of $M$ annihilated by a power of $\gm$, we see that
+the projective dimension of $M$ is $< n+1$ if and only $H^{0}_{\gm}(M) = 0$, or equivalently
+$M$ is a submodule of $H^{0}_{*}(\widetilde M)$.
+
+Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of  cohomology:
+
+\begin{theorem}\label{lc char of depth}
+Let $M$ be a finitely generated graded $S$-module. The depth of $M$ is the smallest integer $i$ such that $H^{i}_{\gm}(M) \neq 0$.
+\end{theorem}
  
+ 
+\begin{exercise}
+ Prove Theorem~\ref{lc char of depth} by induction on the length of a maximal regular sequence.
+\end{exercise}
+We can easily translate this into global cohomology in the case of a module of twisted global sections:
+
 \begin{theorem} Suppose that $X\subset \PP^{n}$ is a  subscheme without 0-dimensional (isolated or embedded) components. The module $M = \oplus_{t\in \ZZ}H^{0}(\cO_{X}(t))$
-is finitely generated, and $\depth M$ is the largest integer $\ell$ such that 
-$H^{i}(\cO_{X}(t)) = 0$ for all $0<i<ell-1$ and all $t$.
+is finitely generated, and $\depth M$ is the smallest strictly positive integer $\ell$ such that 
+$H^{\ell+1}(\cO_{X}(t)) \neq 0$  for some $t$.
 \end{theorem}
 
 
