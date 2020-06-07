@@ -224,6 +224,8 @@ $$
 h_C(m) = \rank(\rho_m);
 $$
  since $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, this is equal to $h^0(\cO_C(m))$, which by Riemann Roch equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}) above.
+ 
+ Note that the Riemann-Roch formula does not give us a formula for the dimension $h^0(D)$ of a complete linear series $|D|$ on a curve $C$ in terms of the degree of $D$ and the genus of $C$, on account of the ``error term" $h^0(K_C - D)$. Given the formula, though, it's natural to identify the classes of divisors $D$ for which $h^0(K_C - D)>0$; these are called \emph{special divisors}, or \emph{special divisor classes}. Classically, the dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$: the idea was that a divisor of degree $d$ had, at a minimum, $d-g+1$ sections and $h^1(D)$ represented the number of ``extra " sections. (Interestingly, even though the introduction of cohomology was still almost a century away, the ranks of cohomology groups $h^1$ had classical names, often involving the term superabundance---a premonition of the Riemann-Roch theorem in general.
 
 \subsection{Serre duality}
 
@@ -358,7 +360,7 @@ $$
  \deg R = \deg B  = 2d + 2g(C) - 2.
  $$
  
- \section{An application}
+ \subsection{An application}
  
  Let $V$ be the vector space of homogeneous polynomials of degree $d$ in two variables; that is, $V = H^0(\cO_{\PP^1}(d))$. In the projectivization $\PP V \cong \PP^d$, let $\Delta$ be the locus of polynomials with a repeated factor. It's not hard to see that $\Delta$ in a hypersurface; we ask, what is its degree?
  
@@ -376,13 +378,13 @@ $$
  
  In this section, we'll lay out the basic facts about hyperelliptic curves. There will be a further discussion of them in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings; but the analysis here will cover most of the questions we'll be asking about curves in general in the next four chapters. 
  
- It should also be said that this section does not have to read in sequence; if you're curious to see some of the questions we ask about curves in general (and some of the answers, and the techniques for arriving at them), you can skip ahead to the following two chapters and return to this section whenever you feel like it.
+ It should also be said that this section does not have to be read in sequence; if you're curious to see some of the questions we ask about curves in general (and some of the answers, and the techniques for arriving at them), you can skip ahead to the following two chapters and return to this section whenever you feel like it.
  
  \subsection{The equation of a hyperelliptic curve}
  
   By definition, a hyperelliptic curve $C$ is one admitting a degree two map $\pi : C \to \PP^1$. The local geometry of such a map is pretty simple: at all but finitely many points $p \in C$ the map $\pi$ is a local isomorphism (``local" here in the complex analytic/classical or \'etale topology, not the Zariski topology!); at any other point $p \in C$, the map is given in terms of local coordinates on $C$ and $\PP^1$ simply by $z \mapsto z^2$. In particular, both the ramification divisor and the branch divisor are reduced, meaning by the Riemann-Hurwitz formula there will be exactly $2g+2$ branch points $q_1,\dots,q_{2g+2} \in \PP^1$.
   
-  In fact, we claim that \emph{there is a unique smooth projective curve $C$ expressible as a 2-sheeted cover of $\PP^1$ branched over a given collection of points $q_1,\dots,q_{2g+2} \in \PP^1$}. Given this, it's not hard to write down the equation of this curve: if the coordinate of the point $q_i \in \PP^1$ is $\lambda_i$, it is the smooth projective model of the curve 
+  In fact, we claim that \emph{there is a unique smooth projective curve $C$ expressible as a 2-sheeted cover of $\PP^1$ branched over a given collection of points $p_1,\dots,p_{2g+2} \in \PP^1$}. Given this, it's not hard to write down the equation of this curve: if the coordinate of the point $p_i \in \PP^1$ is $\lambda_i$, it is the smooth projective model of the affine curve 
   $$
 C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambda_i) \big\}.
 $$ 
@@ -407,57 +409,77 @@ $$
   C \; = \; \big\{ (X,Y) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
   $$
   (No local analysis is needed to see that $C \subset \PP^1 \times \PP^1$ is smooth: it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the genus formula tells us that such a curve has arithmetic genus $g$.)
+  
+%  \
+%  
+%  \
+%  
+%  \
+%  
+%  \
+% 
+% We start by establishing some basic facts about hyperelliptic curves. Many of these follow from general theorems like Riemann-Roch; but since they can be established by direct examination we will carry that out here.
+%
+%Suppose $C$ is a smooth, projective hyperelliptic curve of genus $g \geq 2$. By definition, $C$ admits a degree 2 map $\pi : C \to \PP^1$; and as we've observed (\ref{**}) this map is unique.
+%
+%By Riemann-Hurwitz, \fix{attibution?} the map $\pi : C \to \PP^1$ will have $2g+2$ distinct simple branch points, say $\lambda_1,\dots,\lambda_{2g-2} \in \PP^1$. An open subsect $C^\circ$ of $C$ can then be realized as the smooth projective completion of the affine curve given as
+%$$
+%C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambda_i) \big\}.
+%$$ 
+%\fix{if two of the $\lambda_i$ coinncide, then the curve develops a singular point. Much of what we will do carries over to the singular case.} \fix{say the smooth model has 2 points at $\infty$.} Note that if we simply take the closure of this locus in $\PP^2$, the resulting curve will be highly singular at the point $[1,0,0]$, as can be seen either  directly by making an appropriate change of variables, or by invoking the genus formula for plane curves: if the closure were smooth, it would have genus $\binom{2g+1}{2}$. We can, however, complete the curve simply in $\PP^1 \times \PP^1$, for example by setting \fix{this is a rabbit from a hat. Consider either saying that by the previous section, if there's an emb in P3 then its on P1 x P1 as a divisor of type
+%2,g+1; and then "finding" this embedding as below; or moving this page to the early place where hyperelliptic curves are first mentioned.}
+%$$
+%y' = \frac{y}{\prod_{i=1}^{g+1} (x - \lambda_i)};
+%$$
+%we can then write the equation of a still smaller open subset of $C$ as
+%$$
+%{y'}^2 \cdot \prod_{i=1}^{g+1} (x - \lambda_i) \; = \; \prod_{i=g+2}^{2g+2} (x - \lambda_i).
+%$$
+%If we now take the closure of this locus in $\PP^1 \times \PP^1$, we get a curve of type $(2,g+1)$ on $\PP^1 \times \PP^1$; this curve is smooth, as can be seen again either directly in coordinates or by invoking the genus formula for curves on $\PP^1 \times \PP^1$. In other words,
+%$$
+%C \; = \; V\Big(Y_0^2\cdot \prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) - Y_1^2 \cdot \prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \Big)
+%$$
 
   
-  \
-  
-  \
-  
-  \
-  
-  \
- 
- We start by establishing some basic facts about hyperelliptic curves. Many of these follow from general theorems like Riemann-Roch; but since they can be established by direct examination we will carry that out here.
-
-Suppose $C$ is a smooth, projective hyperelliptic curve of genus $g \geq 2$. By definition, $C$ admits a degree 2 map $\pi : C \to \PP^1$; and as we've observed (\ref{**}) this map is unique.
-
-By Riemann-Hurwitz, \fix{attibution?} the map $\pi : C \to \PP^1$ will have $2g+2$ distinct simple branch points, say $\lambda_1,\dots,\lambda_{2g-2} \in \PP^1$. An open subsect $C^\circ$ of $C$ can then be realized as the smooth projective completion of the affine curve given as
-$$
-C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambda_i) \big\}.
-$$ 
-\fix{if two of the $\lambda_i$ coinncide, then the curve develops a singular point. Much of what we will do carries over to the singular case.} \fix{say the smooth model has 2 points at $\infty$.} Note that if we simply take the closure of this locus in $\PP^2$, the resulting curve will be highly singular at the point $[1,0,0]$, as can be seen either  directly by making an appropriate change of variables, or by invoking the genus formula for plane curves: if the closure were smooth, it would have genus $\binom{2g+1}{2}$. We can, however, complete the curve simply in $\PP^1 \times \PP^1$, for example by setting \fix{this is a rabbit from a hat. Consider either saying that by the previous section, if there's an emb in P3 then its on P1 x P1 as a divisor of type
-2,g+1; and then "finding" this embedding as below; or moving this page to the early place where hyperelliptic curves are first mentioned.}
-$$
-y' = \frac{y}{\prod_{i=1}^{g+1} (x - \lambda_i)};
-$$
-we can then write the equation of a still smaller open subset of $C$ as
-$$
-{y'}^2 \cdot \prod_{i=1}^{g+1} (x - \lambda_i) \; = \; \prod_{i=g+2}^{2g+2} (x - \lambda_i).
-$$
-If we now take the closure of this locus in $\PP^1 \times \PP^1$, we get a curve of type $(2,g+1)$ on $\PP^1 \times \PP^1$; this curve is smooth, as can be seen again either directly in coordinates or by invoking the genus formula for curves on $\PP^1 \times \PP^1$. In other words,
-$$
-C \; = \; V\Big(Y_0^2\cdot \prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) - Y_1^2 \cdot \prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \Big)
-$$
+  \subsection{Differentials on a hyperelliptic curve}
 
 Next, let's describe the space of regular differentials on $C$. For this, it's convenient to work with the affine model $C^\circ = V(f) \subset \AA^2$, where
 $$
 f(x,y) = y^2 - \prod_{i=1}^{2g-2} (x - \lambda_i).
 $$
+Again, we'll denote the two points at infinity---that is, the two points of $C \setminus C^\circ$---as $r$ and $s$; for convenience, we'll denote the divisor $q+r$ by $D$.
 
-We'll denote the two points at infinity---that is, the two points of $C \setminus C^\circ$---as $p$ and $q$.
+To start, consider the simple differential $dx$ on $C$. (Technically, we should write this as $\pi^*dx$, since we mean the pullback to $C$ of the differential $dx$ on $\PP^1$, but for simplicity of notation we'll suppress the $\pi^*$.)  This is clearly regular on $C^\circ$, with zeros at the ramification points $q_i = (\lambda_i, 0)$. But it does not extend to a regular differential on all of $C$: it will have double poles at $r$ and $s$.  This can be seen directly: the differential $dx$ extends to a rational differential on $\PP^1$, and in terms of the local coordinate $w = 1/x$ around the point $x = \infty$ on $\PP^1$, we have
+$$
+dx = d\left(\frac{1}{w}\right) = \frac{-dw}{w^2}
+$$
+so $dx$ has a double pole at the point at $\infty$; since the map $\pi$ is a local isomorphism near $r$ and $s$ the pullback of $dx$ to $C$ likewise has double poles at the points $r$ and $s$.
 
-To start, consider the simple differential $dx\in \Omega_{C^\circ/k}$. This is clearly regular on $C^\circ$, with zeros at the ramification points $r_i = (\lambda_i, 0)$. But it does not extend to a regular differential on all of $C$: it will have double poles at $p$ and $q$, as can be seen either directly or by degree considerations: as we said, $dx$ has $2g+2$ zeros, while the degree of $K_C$ is $2g-2$, meaning that there must be poles at the points $p$ and $q$.
 
-To kill these poles, we can of course divide by $x^2$ (or any quadratic polynomial in $x$). But that just introduces new poles in the finite part $C^\circ$ of $C$. Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $r_i$.  A natural choice is simply the reciprocal of the partial derivative $f_y = \partial f/ \partial y = 2y$, which vanishes exactly at the points $r_i$, and has correspondingly a pole of order $g+1$ at each of the points $p$ and $q$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$), and exchanges the points $p,q$. In other words, the differential
+We could also see that $dx$ must have poles by degree considerations: as we said, $dx$ has $2g+2$ zeros and no poles in $C^\circ$, while the degree of $K_C$ is $2g-2$, meaning that there must be  a total of four poles at the points $r$ and $s$. In any event, we have an expression for the canonical divisor class on $C$: denoting by $R = q_1 + \dots + q_{2g+2}$ the sum of the ramifications points of $\pi$, we have
+$$
+K_C \sim (dx) \sim R - 2D;
+$$
+this is a case of the Riemann-Hurwitz formula above.
+
+So, given that $dx$ has poles at $r$ and $s$, how do we find regular differentials on $C$? One thing to do would be simply to divide by $x^2$ (or any quadratic polynomial in $x$) to kill the poles. But that just introduces new poles in the finite part $C^\circ$ of $C$. Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $q_i$.  A natural choice is simply the reciprocal of the partial derivative $f_y = \partial f/ \partial y = 2y$, which vanishes exactly at the points $r_i$, and has correspondingly a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$), and exchanges the points $p,q$). In other words, the differential
 $$
 \omega = \frac{dx}{f_y}
 $$
 is regular, with divisor
 $$
-(\omega) = (g-1)p + (g-1)q.
+(\omega) = (g-1)r + (g-1)s = (g-1)D.
 $$
 The remaining regular differentials on $C$ are now easy to find: Since $x$ has only a simple pole
-at the two points at infinity \fix{say why}. we can  multiply $\omega$ by any $x^k$ with $k = 0, 1, \dots, g-1$. Since this gives us $g$ independent differentials, these  form a basis for $H^0(K_C)$.
+at the two points at infinity we can  multiply $\omega$ by any $x^k$ with $k = 0, 1, \dots, g-1$. Since this gives us $g$ independent differentials, these  form a basis for $H^0(K_C)$.
+
+\subsection{The canonical map of a hyperelliptic curve}
+
+Given that a basis for $H^0(K_C)$ is given by 
+$$
+H^0(K_C) = \langle \omega, x\omega,\dots,x^{g-1}\omega \rangle,
+$$
+we see that the canonical map $\phi : C \to \PP^{g-1}$ is given by $[1,x,\dots,x^{g-1}]$. In other words, the canonical map $\phi$ is simply the composition of the map $\pi : C \to \PP^1$ with the Veronese embedding $\PP^1 \hookrightarrow \PP^{g-1}$ of $\PP^1$ into $\PP^{g-1}$ as a rational normal curve of degree $g-1$.
 
 
  1) special linear series are mult $g^1_2$+basepoints. 2) Given an embedding, there's a union of lines. If the embedding is complete, we get a matrix...that defines the union of lines. Scrolls in all dimensions as unions of spans of divisors.
