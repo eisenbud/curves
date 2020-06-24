@@ -1040,7 +1040,7 @@ and thus $\omega$, together with $\eta = \eta_{\omega}(1_{\omega})$ is a dualizi
 
 Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$; in this form, at least when $X$ is smooth, it is the Riemann-Hurwitz formula \fix{did we decide on this name?} Another is the inclusion of $X$ into another curve, perhaps a complete intersection curve, and this is the one we need for Liaison:
 
-\begin{corollary}
+\begin{corollary}\label{dualizing formula}
  Let $X\subset Y\subset \PP^{n}$ be closed, purely 1-dimensional schemes. If  $\omega_{Y} = \sO_{Y}(d)$ for some integer $d$, then 
  $$
  \omega_{X} = \frac{\sI_{Y}:\sI_{X}}{\sI_{Y}}(d).
@@ -1329,58 +1329,67 @@ $$
  
 \begin{lemma} \label{double colon}
 \begin{enumerate}
-\item For any ideals $G,I$ in a commutative Noetherian ring $R$, the associated primes   $J = G:I$ are  are among the associated primes of $G$. Moreover, if $I$ is unmixed (that is, all primary components have the same dimension) then  
+\item For any ideals $G,I$ in a commutative Noetherian ring $R$, the associated primes of  $J = G:I$ are  are among the associated primes of $G$. Moreover, if $G$ is unmixed (that is, all primary components have the same dimension) then  
 the associated primes of $J$ are precisely the associated primes of $G$ whose primary components do not contain $I$.
+Moreover, the associated primes of $G:(G:I)$ are the primary components of $G$ whose associated primes contain $I$.
 
 \item  If $R$ is Gorenstein, $G$ is a complete intersection in $R$, and $I\subset R$ is an ideal containing $G$, then $G:(G:I)$ is the 
-intersection of the primary components of $I$ that have the same codimension as $G$. 
+intersection of the primary components of $I$ that have the same codimension as $I$. 
 
 \item Under these hypotheses, the sum of the multiplicities of $R/I$ and $R/(G:I)$ is the multiplicity of $R/G$.
 
 \item 
-$$
+$
 \omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G.
-$$
-Note that in case $R = k[x_{0},\dots,x_{n}]$ and both $I$ and $G$ are graded, with $G = (f_{1}, \dots f_{c})$ the intersection of forms of degree
-$d_{1}+\cdots + d_{c}$, then $\omega_{R/G} = R/G(\sum d_{i} -n-1)$ as graded modules, so
+$\\
+\end{enumerate}
+\end{lemma}
+
+In case $R = k[x_{0},\dots,x_{n}]$ and both $I$ and $G$ are graded, with $G = (f_{1}, \dots f_{c})$ the intersection of forms of degree
+$d_{1}+\cdots + d_{c}$, then $\omega_{R/G} = R/G(\sum d_{i} -n-1)$ as graded modules so, \emph{as graded modules},
 $$
 \omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G(\sum d_{i} -n-1).
 $$
 
 
-\end{enumerate}
-\end{lemma}
-
-
 \begin{proof}[Proof of Lemma~\ref{double colon}]
- 1) If $G = \bigcap Q_{i}$ is the primary decomposition of $G$ then
-$G:I = \bigcap (Q_{i}:I)$, so we may assume that $G$ is $P$-primary for some prime $P$. If $I\not\subset P$ then
-$I$ contains a nonzerodivisor mod $G$, and thus $J = G$. 
+ 1) If $G = \bigcap Q_{i}$ is an irredundant primary decomposition of $G$ then
+$G:I = \bigcap_i (Q_{i}:I)$. If $I \subseteq Q_i$, then $Q_{i}:I = R$, and this term can be omitted. If $P_i$ is the associated prime of $Q_i$
+and $I \not\subseteq Q_i$ then $ Q_i \subset Q_i:I\subset P_i$ (since $P_i$ is the set of zerdivisors mod $Q_i$), 
+so $\sqrt {Q_i:I} = P_i$. Furthermore, if $xy\in Q_i:I$ and $x\notin P_i$, then $x$ is a nonzerodivisor mod $Q_i$, so from
+$xyI\subset Q_i$ we deduce $yI\subset Q_i$; that is, $y\in Q_i:I$. This shows that $Q_i:I$ is $P_i$-primary. 
+Finally, if $I\not\subseteq P_i$, then $I$ contains a nonzerodivisor mod $Q_i$, so $Q_i:I = Q_i$.
 
-Now suppose that $I\subset P$. Clearly $ G:I = R$ if and only if $I\subset G$, in which case $J$ has no associated primes. 
-Otherwise, since $P$ is nilpotent mod $G$ we have $G\subsetneq J$, and $P$ is nilpotent modulo
-$J$, too. Thus $P = \sqrt J$. Any element outside of $P$ is obviously a nonzerodivisor modulo $G:I$, proving that
-$J$ is $P$-primary.
+This proves that $G:I$ has a primary decomposition whose terms are primary to the associated primes of the primary
+components of $G$ that do not contain $I$, so the associated primes of $G:I$ are among these. If some $(Q_i:I)$ were contained
+in the intersection of the others, then we would have $P_i^n \subset \cap_{j\neq i}P_j$, and $P_i$ would be contained in one
+of the $P_j$ with $j\neq i$, and this is impossible if all the $P_i$ have the same codimension.
  
- 2) Since $G$ is a complete intersection, it is unmixed, and it follows that $G:I$ and $G:(G:I)$ are unmixed too and depend only only on the primary components of $G$ and the primary components of $I$ that are among the primary components of $G$. Thus we may assume from the outset that $I$ is unmixed of the same codimension as $G$, and we must show that $G:(G:I) = I$. Since $I$ contains $G$, the same is true after localizing at an associate prime of $I$, and it follows that $\Ass I\subset \Ass G$.
- 
-It is obvious that $I\subset G:(G:I)$, so it suffices to show that equality holds after localizing at an associated prime $P$ of $I$. Thus we may harmlessly assume that $R$ is local to begin with, and both $G$ and $I$ are primary to the maximal ideal $P$ of $R$. 
-
-We now apply the theory of duality developed in Appendix ****, and use the fact that $\omega_{R/G} \cong R/G$.
-Note that $(G:I)/G =\Hom(R/I, R/G) \cong \Hom(R/I, \omega_{R/G}) = \omega_{R/I}$. It follows that 
-$\length(R/I) = \length ((G:I)/G)$. By symmetry, $(G:(G:I))/G\cong \Hom(R/(G:I), \omega_{R/G}) = \omega_{R/(G:I)}$.
-Thus 
-$$
-\length(R/(G:(G:I)) = \length(R/I),
-$$
- proving that $I = G:(G:I)$.
-
+ 2) Since $G$ is a complete intersection, it is unmixed, and it follows from part 1 that $G:I$ and $G:(G:I)$ are unmixed too. Further,
+ the primary components of $G:I$ have the form $Q_i:I$, where the $Q_i$ are the primary components of $G$ that
+ do not contain $I$. Now $Q_i$ contains $Q_i:I$ if and only if $Q_i=Q_i:I$, and this happens if and only if
+  $I\not\subseteq P_i$,  the associated prime of $Q_i$. Since $G$ is unmixed and $G\subseteq I$, this proves that the associated primes of 
+  $G:(G:I)$ are exactly the associated primes of $G$ that are also associated primes of $I$.
+  
+ Now suppose that if $P$ is a minimal prime of $G$ and $Q \subset I \subset P$, where $Q$ is the $P$-primary
+  component of $G$. Since $P$ is minimal over $I$, it is an associated prime. Write $Q'$ for the $P$-primary component
+  of $I$. By the argument above, the $P$-primary component of $G:(G:I)$ is $Q:(Q:Q')$, and we must show that this is the
+  same as $Q'$.
+  
+  Since both $Q'$ and $Q:(Q:Q')$ are $P$-primary, it suffices to prove this after localizing at $P$, so we may assume
+  that $R$ is a local ring, with $\dim R/Q = \dim R/Q' = 0$. Since $R/Q$ is a localization of $R/G$ it is again a complete
+  intersection, and thus Gorenstein (more generally, it is true that the localization of any Gorenstein ring is Gorenstein, but
+  we do not need this.)
+  Furthermore, $Q:Q' = \Hom(R/Q', R/Q)$, and similarly $Q:(Q:Q') = \Hom(\Hom(R/Q', R/Q), R/Q) = R/Q'$ by duality.
+  
 3) Since 
 $$
 \length (R/G) = \length(R/(G:I))+\length((G:I)/G) = \length(R/(G:I) +\length R/I,
 $$ we see from the associativity formula for multiplicity that when $I$ has the same codimension as $G$, then the multiplicity of $I$ plus the
 multiplicity of $G:I$ is the multiplicity of $G$. In the graded case, this means that
 $\deg \Proj(R/I) +\deg \Proj(R/(G:I)) = \deg \Proj(R/G)$.
+
+4) \fix{this was proven at least twice above}.
 \end{proof}
 
  \begin{proof}[Proof of Theorem~\ref{justification of general linkage}
