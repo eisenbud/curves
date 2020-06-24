@@ -24,6 +24,8 @@ In particular, it placed a spotlight on the bridge between the two viewpoints; t
 
 In the same way, the introduction of the notion of abstract curve transformed the way we study algebraic curves, and in particular it put our focus on the problem: given a curve $C$, to describe all the ways in which $C$ can be embedded in (or more generally, mapped to) projective space. In this, a central role is played by the notion of a emph{linear system}, or \emph{linear series} (we will use the two terms interchangeably) on a curve. In this book, accordingly, we start by introducing this fundamental notion.
 
+In the remainder of this chapter, we'll introduce the basic notation and terminology of linear series on curves; then we'll summarize the main results---the Riemann-Roch theorem, and Serre duality---that govern their behavior. In the following chapter, we'll describe three more advanced theorems on linear series: Clifford's theorem, the Brill-Noether theorem and Castelnuovo's bound; then, in Chapter~\ref{personalities chapter}, we'll see how it all plays out for curves of low genus ($\leq 6$). We would encourage the reader to look ahead to Chapter~\ref{personalities chapter} to see examples of how we use the set-up to describe curves in practice.
+
 \subsection{The history of linear series in four pages}
 
 One of the basic facts about projective varieties is that \emph{any regular function on a connected projective curve $C$ is constant} (such a function gives a regular map $C \to \AA^1$; since the image is again a projective variety, it can only be a point).  In order to have nonconstant functions, accordingly, we have to look at rational functions. But the field of all rational functions is too large for most purposes, and so from a very early stage geometers looked at rational functions with \emph{bounded singularities}: they specified a finite collection of points $p_1,\dots,p_n \in C$, a corresponding collection of integers $m_i$, and considered the space of all rational functions $f$ on $C$, regular on $C \setminus \{p_1,\dots,p_n\}$  and satisfying
@@ -38,22 +40,24 @@ D = \sum m_i \cdot p_i
 $$
 of points. The \emph{degree} of a divisor $D = \sum m_i \cdot p_i$ is defined to be the sum $\sum m_i$ of its coefficients, and $D$ is said to be \emph{effective} if all $m_i \geq 0$. 
 
-Note that, in modern language, an effective divisor can be viewed simply as a subscheme of the curve $C$---the subscheme defined by the ideal $\prod \cI_{p_I}^{m_i}$, or in other words the unique subscheme with support $\{p_i\}$ and multiplicity $m_i$ at $p_i$.
-
-In any event, the key point is that  the vector space $\cL(D)$ of rational functions satisfying~(\ref{divisor condition}) is finite-dimensional; the dimension of $\cL(D)$ was denoted $\ell(D)$.
-
-
-But this is somewhat inefficient: for example, if $f$ is any rational function and we define the divisor $E = (f)$ to be
+If $f$ is a rational function on $C$, we associate to $f$ its divisor $(f)$ of zeroes and poles: that is,
 $$
-E = \sum_{p\in C} \ord_p(f)\cdot p
+(f) \; := \; \sum_{p \in C} \ord_p(f)\cdot p.
 $$
-then we have an isomorphism $\cL(D+E) \cong \cL(D)$ obtained by multiplying by $f$. Accordingly, geometers defined an equivalence relation on the group of divisors, calling two divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ was the divisor of a rational function; the group of equivalence classes of divisors is called the \emph{Picard group} $\Pic(C)$ of $C$. Note that since the degree of the divisor $(f)$ of a rational function $f$ on $C$ is 0, linearly equivalent divisors have the same degree.
+One key observation is that \emph{the divisor of a rational function has degree 0}---in other words, a rational function has the same number of zeroes and poles, counting multiplicity. 
+
+Note that, in modern language, an effective divisor can be viewed simply as a subscheme of the curve $C$---the subscheme defined by the ideal $\prod \cI_{p_i}^{m_i}$, or in other words the unique subscheme with support $\{p_i\}$ and multiplicity $m_i$ at $p_i$.
+
+In any event, the key point is that  the vector space $\cL(D)$ of rational functions satisfying~(\ref{divisor condition}) is finite-dimensional; the dimension of $\cL(D)$ was denoted $\ell(D)$. 
+
+
+But this is somewhat inefficient: for example, if $f$ is any rational function, we have an isomorphism $\cL(D+E) \cong \cL(D)$ obtained by multiplying by $f$. Accordingly, geometers defined an equivalence relation on the group of divisors, calling two divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ was the divisor of a rational function; the group of equivalence classes of divisors is called the \emph{Picard group} $\Pic(C)$ of $C$. Note that since the degree of the divisor $(f)$ of a rational function $f$ on $C$ is 0, linearly equivalent divisors have the same degree.
 
 As we headed into the 20th century, some further tweaking was called for in order to avoid the awkwardness of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a \emph{coherent sheaf} $\cO_C(D)$, defined by
 $$
 \cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \quad \forall p_i \in U \}.
 $$
-This is a locally free sheaf of rank 1, also called an \emph{invertible sheaf} or \emph{line bundle}. Two divisors are linearly equivalent iff the associated sheaves are isomorphic, so that the Picard group $\Pic(C)$ can be thought of simply as the group of line bundles on $C$. In this setting, the vector space $\cL(D)$ is simply the space of global sections $H^0(\cO_C(D))$ and accordingly the notation $\ell(D)$ was replaced by $h^0(\cO_C(D))$ or, for brevity, $h^0(D)$. 
+This is a locally free sheaf of rank 1, also called an \emph{invertible sheaf} or a \emph{line bundle}. Two divisors are linearly equivalent iff the associated sheaves are isomorphic, so that the Picard group $\Pic(C)$ can be thought of simply as the group of line bundles on $C$. In this setting, the vector space $\cL(D)$ is simply the space of global sections $H^0(\cO_C(D))$ and accordingly the notation $\ell(D)$ was replaced by $h^0(\cO_C(D))$ or, for brevity, $h^0(D)$. 
 
 What this formalism is good for is describing maps of a curve to projective space. To start with the classical approach, suppose $f : C \to \PP^r$ is a map. We can choose a hyperplane $H \cong \PP^{r-1} \subset \PP^r$ with complement $\PP^r \setminus H \cong \AA^r$; the map 
 $$
@@ -288,7 +292,7 @@ Applying Riemann-Roch, we see that this is the case if and only if $h^0(\cO_C(p+
 
 Note that if $C$ is hyperelliptic, the map $\phi_K$ factors through the degree 2 map $\pi : C \to \PP^1$: if $\{p,q\} \subset C$ is a fiber of this map, we have $h^0(\cO_C(p+q)) = 2$ and hence $\phi_K(p) = \phi_K(q)$. The image of the map $\phi_K$ is a nondegenerate curve of degree $g-1$ in $\PP^{g-1}$, which we will see is a \emph{rational normal curve}. This observation implies in particular that if $C$ is hyperelliptic of genus $g \geq 2$, then the line bundle $\cL$ of degree 2 with $h^0(\cL) = 2$ is in fact unique.
 
-Hyperelliptic curves are very special, at least when $g \geq 3$ (in case $g=2$ the canonical map itself is a degree 2 map $C \to \PP^1$; all curves of genus 2 are hyperelliptic): in the family of all curves, as we'll see, they comprise a closed subvariety. In particular, the behavior of linear series and maps on a hyperelliptic curve is very different from that of series on a general curve; when we discuss the geometry of curves of low genus in the following chapter, we will exclude  the hyperelliptic case, and deal with this case in a separate chapter.
+Hyperelliptic curves are very special, at least when $g \geq 3$ (in case $g=2$ the canonical map itself is a degree 2 map $C \to \PP^1$; all curves of genus 2 are hyperelliptic): in the family of all curves, as we'll see, they comprise a closed subvariety. In particular, the behavior of linear series and maps on a hyperelliptic curve is very different from that of series on a general curve; when we discuss the geometry of curves of low genus in the Chapter~\ref{}, we will exclude  the hyperelliptic case, and deal with this case in a separate chapter.
 
 For non-hyperelliptic curves, however, the geometry of the canonical map, and its image, the canonical curve, are the keys to understanding the curve. We'll see this in detail in many cases in the following chapter; for now, we mention one highly useful result along these lines.
 
@@ -464,7 +468,7 @@ K_C \sim (dx) \sim R - 2D;
 $$
 this is a case of the Riemann-Hurwitz formula above.
 
-So, given that $dx$ has poles at $r$ and $s$, how do we find regular differentials on $C$? One thing to do would be simply to divide by $x^2$ (or any quadratic polynomial in $x$) to kill the poles. But that just introduces new poles in the finite part $C^\circ$ of $C$. Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $q_i$.  A natural choice is simply the reciprocal of the partial derivative $f_y = \partial f/ \partial y = 2y$, which vanishes exactly at the points $r_i$, and has correspondingly a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$), and exchanges the points $p,q$). In other words, the differential
+So, given that $dx$ has poles at $r$ and $s$, how do we find regular differentials on $C$? One thing to do would be simply to divide by $x^2$ (or any quadratic polynomial in $x$) to kill the poles. But that just introduces new poles in the finite part $C^\circ$ of $C$. Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $q_i$.  A natural choice is simply the reciprocal of the partial derivative $f_y = \partial f/ \partial y = 2y$, which vanishes exactly at the points $r_i$, and has correspondingly a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$, and exchanges the points $p,q$). In other words, the differential
 $$
 \omega = \frac{dx}{f_y}
 $$
@@ -483,15 +487,33 @@ H^0(K_C) = \langle \omega, x\omega,\dots,x^{g-1}\omega \rangle,
 $$
 we see that the canonical map $\phi : C \to \PP^{g-1}$ is given by $[1,x,\dots,x^{g-1}]$. In other words, the canonical map $\phi$ is simply the composition of the map $\pi : C \to \PP^1$ with the Veronese embedding $\PP^1 \hookrightarrow \PP^{g-1}$ of $\PP^1$ into $\PP^{g-1}$ as a rational normal curve of degree $g-1$.
 
+Note that as a consequence of this fact, we see that \emph{a hyperelliptic curve $C$ has a \emph{unique} linear series $g^1_2$ of degree 2 and dimension 1}, that is, a unique map of degree 2 to $\PP^1$. 
+Finally, we can give an explicit description of special linear series on a hyperelliptic curve: if $D = \sum p_i$ is any effective divisor on $C$, we can pair up points $p_i$ that are conjugate under the involution $\iota$ exchanging sheets of the degree 2 map $C \to \PP^1$; each conjugate pair is a divisor of the unique $g^1_2$ on $C$, and so we can write
+$$
+D \sim r\cdot g^1_2 + q_1 + \dots + q_{d-2r},
+$$
+where no two of the points $q_i$ are conjugate under $\iota$. Now the geometric form of the Riemann-Roch formula tells us that the dimension $r(D)$ of the complete linear series $|D|$ is exactly $r$, so that in fact 
+$$
+|D| = |r\cdot g^1_2| + + q_1 + \dots + q_{d-2r};
+$$
+that is, the points $q_i$ are base points of the linear series $D$.
 
- 1) special linear series are mult $g^1_2$+basepoints. 2) Given an embedding, there's a union of lines. If the embedding is complete, we get a matrix...that defines the union of lines. Scrolls in all dimensions as unions of spans of divisors.
- 
- 
-\subsection{General embeddings of degree
-genus$+3$} 
+One key observation is that, according to this analysis, \emph{no special linear series on a hyperelliptic curve can be very ample}; the map associated to any special series factors through the degree 2 map $C \to \PP^1$. This is in marked contrast to the case of non-hyperelliptic curves, for which the embeddings of minimal degree in projective space are given by special linear series. 
 
-It's a divisor on a quadric in $\PP^{3}$ of type $(2,g+1)$
+%Also, since any special linear series is a subseries of the canonical series, it must likewise factor through the degree 2 map $C \to \PP^1$; thus in particular \emph{any very ample linear series on $C$ must be non-special}. Finally, since the linear series $\cO_C(1)$ is special on any plane curve, a smooth plane curve cannot be hyperelliptic; thus the  degree of any projective embedding $C \hookrightarrow \PP^r$ of a hyperelliptic curve $C$ is at least $g+3$. In fact, we will see in Chapter~\ref{5} that any hyperelliptic curve can indeed be embedded as a curve of degree $g+3$ in projective space, and we'll describe the geometry of the image curve in Chapter~\ref{7}. Moreover, we'll also see that this is maximal among all curves; that is, any nonhyperelliptic curve admits an embedding of degree $<g+3$. 
+%
+%\fix{this uses the genus formula for smooth plane curves. Do we assume this, should we give a quick proof, or should we just find another way to see that a smooth plane curve is nonhyperelliptic?}
+%
 
+
+% 1) special linear series are mult $g^1_2$+basepoints. 2) Given an embedding, there's a union of lines. If the embedding is complete, we get a matrix...that defines the union of lines. Scrolls in all dimensions as unions of spans of divisors.
+% 
+% 
+%\subsection{General embeddings of degree
+%genus$+3$} 
+%
+%It's a divisor on a quadric in $\PP^{3}$ of type $(2,g+1)$
+%
 
 
 \input footer.tex

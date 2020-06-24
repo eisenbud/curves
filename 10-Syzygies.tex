@@ -627,7 +627,7 @@ the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n
 $C$ is supposed purely 1-dimensional we have $H^{0}(\cO_{C}(d) = 0$ for $d<0$, so from the
 exact sequence 
 $$
-0\to \cI_{c}\to \cO_{PP^{n}} \to \cO_{C}\to 0
+0\to \cI_{c}\to \cO_{\PP^{n}} \to \cO_{C}\to 0
 $$
 we deduce that $H^{1}(\cO_{C}(d)= 0$ for all $d<0$ in any case.
 
@@ -713,6 +713,21 @@ and
 $$
 0 =  Ext_{R}^{i-1}(M,N) \rTo Ext_{R}^{i-1}(M,N/xN) \rTo Ext_{R}^{i}(M,N) \rTo^{0} \cdots.
 $$
+\end{proof}
+
+The algebraic version of the canonical module of a scheme is usually called the \emph{dualizing module}:
+\begin{definition}
+ Let $(R, \gm, k)$ be a local Cohen-Macaulay ring of dimension $d$. A dualizing module for $R$ is a Cohen-Macaulay
+ $R$ module with $\dim M = d$ such that $\Ext^{d}_{R}(M,k)\cong k$.
+\end{definition}
+
+\begin{proposition}
+ Let $R$ be a local Cohen-Macaulay ring. Any two canonical modules for $R$ are isomorphic. Moreover,
+ if $R = S/I$, with $S$ regular, then $\Ext_{S}^{\codim R}(R,S)$ is a canonical module for $R$.
+\end{proposition}
+
+\begin{proof}
+ ******
 \end{proof}
 
 We shall see that $(R,\gm,k)$ is Gorenstein if and only if it is Cohen-Macaulay and 
@@ -985,15 +1000,16 @@ codimension $c$, that
 $$
 \omega_{X} = \sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}).
 $$
- Because $X$ is locally a complete intersection and the $\sExt$ in the formula may be computed from the Koszul complex on a minimal generating set for the ideal $I$ of $X$ in $Y$. At a point $p\in X$ this complex has the form
+To motivate this formula, consider just the simple case where $X$ is a complete intersection of hypersurfaces
+of degrees $d_{i}$ in $Y = \PP^{n}$. In this case the Koszul complex
 $$
-0\to \wedge^{c} \cO_{Y,{p}}^{c} \rTo^{\phi_{c}} \cdots \to \cO_{Y,p}^{c} \rTo^{\phi_{1}}\cO_{Y,p} \to\cO_{X,p} \to 0.
+0\to \wedge^{c} (\oplus_{i}\cO(-d_{i})) \rTo^{\phi_{c}} \cdots \to \oplus_{i}\cO(-d_{i}) \rTo^{\phi_{1}}\cO_{Y,p} \to\cO_{X,p} \to 0.
 $$
 Thus $\sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}) = \sHom(\coker \phi_{c}^{\vee}, \omega_{Y})$
 and $\coker \phi_{c}^{\vee}$ may be canonically identified with $\wedge^{c}(\cI/\cI^{2})$.
 
-This computation suggests the bold idea  that the dualizing module of any closed subscheme
-$X\subset Y$ of pure codimension $c$ can be computed in terms of the canonical module of $Y$ by the formula
+This computation suggests the bold idea that the dualizing module of a closed subscheme
+$X\subset Y$ of pure codimension $c$ can be computed by the formula
 $$
 \omega_{X} : = \sExt_{Y}^{c}(\cO_{X}, \omega_{Y}),
 $$
@@ -1004,11 +1020,11 @@ $$
 Where we can give the sheaf on the right the unique structure of a sheaf on $X$
 such that $\pi_{*}\sExt_{Y}^{c}(\cO_{X}, \omega_{Y}) = \sExt_{Y}^{c}(\pi_{*}\cO_{X}, \omega_{Y})$, as explained below in the case $c=0$.
 
-This makes sense only given the web of theorems necessary to prove that the sheaf 
-$\sExt_{Y}^{c}(\cO_{X}, \pi^{*}\omega_{Y})$ is independent of $\pi$; and given that it makes sense, we would like to know that such sheaves satisfy some form of Serre duality. For all this, see the book
+The truth of this assertion implies a web of theorems proving that the sheaf 
+$\sExt_{Y}^{c}(\cO_{X}, \pi^{*}\omega_{Y})$ is independent of $\pi$; and moreover that such sheaves satisfy some form of Serre duality. For all this, see the book
 \ref{Altman-Kleiman}.
 
-We now explain the construction above in the one case we will need for studying the linkage of curves in $\PP^{3}$
+We now explain the construction above in the one case we will need for studying the linkage of curves in $\PP^{3}$.
 
 
 \begin{theorem}\label{construction of omega}
@@ -1022,9 +1038,29 @@ $$
 and thus $\omega$, together with $\eta = \eta_{\omega}(1_{\omega})$ is a dualizing pair for $X$.
 \end{theorem}
 
-Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$. Another is the inclusion of $X$ into a complete intersection curve.
+Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$; in this form, at least when $X$ is smooth, it is the Riemann-Hurwitz formula \fix{did we decide on this name?} Another is the inclusion of $X$ into another curve, perhaps a complete intersection curve, and this is the one we need for Liaison:
+
+\begin{corollary}
+ Let $X\subset Y\subset \PP^{n}$ be closed, purely 1-dimensional schemes. If  $\omega_{Y} = \sO_{Y}(d)$ for some integer $d$, then 
+ $$
+ \omega_{X} = \frac{\sI_{Y}:\sI_{X}}{\sI_{Y}}(d).
+ $$
+\end{corollary}
 
 \begin{proof}
+By Theorem~\ref{construction of omega} we have 
+$$
+\omega_{X} = \sHom(\sO_{X}, \omega_{Y}) = \sHom(\sO_{X}, \sO_{Y})(d).
+$$
+Clearly any  section of $\sI_{Y}:\sI_{X}$ on on open set $U$ gives rise by multiplication to a
+map   
+$\sO_{X}(U) \to \sO_{Y}(U)$, and the sections of  $\sI_{Y}$ give the zero map,
+so there a natural mapping $\frac{\sI_{Y}:\sI_{X}}{\sI_{Y}} \to \sHom(\sO_{X}, \sO_{Y})$,
+and locally this is an isomorphism because every map from $\sO_{X}$ is determined by the image of the global section 1.
+\end{proof}
+
+
+\begin{proof}[Proof of Theorem~\ref{construction of omega}]
 The sheaf  
 $\omega:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
 which is, a priori a sheaf on $Y$, has the structure of a sheaf on $X$
