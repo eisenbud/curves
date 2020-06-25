@@ -25,7 +25,7 @@ rational curves as projections of rational normal curves. Rational quartic in $\
 
 \subsubsection{Rational normal curves}
 
-The first thing to observe about curves of genus 0 is that \emph{there is only one}: any curve $C$ of genus 0 is isomorphic to $\PP^1$. This follows immediately from the statement (\ref{**}) that any line bundle of degree $2g+1$ or greater on a curve of genus $g$ is very ample: if $p \in C$ is any point, by Riemann-Roch we have $h^0(\cO_C(p)) = 2$, and so the linear series $|\cO_C(p)|$ gives an ``embedding" of $C$ in $\PP^1$. Note that this works only because we are working over an algebraically closed field $K$: without that assumption, $C$ may not have any $K$-rational points at all, and indeed the classification of curves of genus 0 over non-algebraically closed fields is a subject that goes back to Gauss.
+The first thing to observe about curves of genus 0 is that \emph{there is only one}: any curve $C$ of genus 0 is isomorphic to $\PP^1$. This follows immediately from the statement (\ref{degree 2g+1 embedding}) that any line bundle of degree $2g+1$ or greater on a curve of genus $g$ is very ample: if $p \in C$ is any point, by Riemann-Roch we have $h^0(\cO_C(p)) = 2$, and so the linear series $|\cO_C(p)|$ gives an ``embedding" of $C$ in $\PP^1$. Note that this works only because we are working over an algebraically closed field $K$: without that assumption, $C$ may not have any $K$-rational points at all, and indeed the classification of curves of genus 0 over non-algebraically closed fields is a subject that goes back to Gauss.
 
 Another key fact about $\PP^1$ is that \emph{there is only one line bundle of degree $d$ on $\PP^1$} for any $d$; this is the bundle $\cO_{\PP^1}(d)$. This follows from direct observation: if $D = z_1+z_2+\dots+z_d$ and $E = w_1+\dots+w_d$ are two divisors of degree $d$, the rational function
 $$
@@ -58,17 +58,23 @@ This map is surjective (every monomial of degree $2d$ on $\PP^1$ is a product of
 $$
 \binom{d+2}{2} - (2d+1) \; = \; \binom{d}{2},
 $$
-which is exactly the dimension of the span of the minors of $M$. It's also easy to see that $C$ is exactly the zero locus of these quadratic polynomials \fix{do this out explicitly?} and in fact they generate the homogeneous ideal of the curve $C \subset \PP^d$.
+which is exactly the dimension of the span of the minors of $M$. It's also easy to see that $C$ is exactly the zero locus of these quadratic polynomials and in fact they generate the homogeneous ideal of the curve $C \subset \PP^d$.
+
+There is one other property of rational normal curves we should mention. In general, we say that a smooth curve $C \subset \PP^d$ is \emph{projectively normal} if the restriction map
+$$
+H^0(\cO_{\PP^d}(m)) \; \to \; H^0(\cO_{C}(m)) 
+$$
+is surjective for every $m$. By the same logic as above (every monomial of degree $md$ on $\PP^1$ is a product of $m$ monomials of degree $d$), we see that the rational normal curve is projectively normal. 
+
+Projective normality is a significant geometric property of a curve. We'll see it in many settings, in particular the discussion of \emph{liaison} in Chapter~\ref{**}.
+
 
 The rational normal curve of degree $d$ can also be characterized as the unique irreducible, nondegenerate curve of minimal degree $d$ in $\PP^d$. To see this, suppose that $C \subset \PP^d$ is any irreducible, nondegenerate curve. If $p_1,p_2,\dots,p_{d}$ are any $d-1$ points of $C$, they lie in a hyperplane which meets $C$ in at least those points, whence $\deg(C) \geq d$; and if we have equality then the projection $\pi_\Lambda : C \to \PP^1$ from the plane $\Lambda = \overline{p_1,p_2,\dots,p_{d-1}}$ has degree 1, from which we see that $C \cong \PP^1$.  Note that by degree considerations, \emph{any $m \leq d+1$ points on a rational normal curve $C \subset \PP^d$ are linearly independent}---in case $m=d+1$, Bezout tells us that the points cannot lie in a hyperplane, and the case $m < d+1$ follows. More generally, by the same argument \emph{any subscheme $\Gamma \subset C$ of degree $m \leq d+1$ spans an $(m-1)$-plane in $\PP^d$}.
 
-(We will see how to describe all irreducible, nondegenerate varieties $X \subset \PP^d$ of minimal degree in Section~\ref{**}.)
+(Having established that the smallest possible degree of an irreducible, nondegenerate curve in $\PP^d$ is $d$, it's natural to ask what is the minimal degree of an irreducible, nondegenerate variety $X \subset \PP^d$ of dimension $k$. We'll see the answer ($\deg(X) \geq d-k+1$) and describe varieties of minimal degree in Section~\ref{**}.)
 
 MCF: the rational normal curve $C \subset \PP^d$ can also be characterized as the unique \emph{homogeneous} curve in $\PP^d$: that is, such that the automorphisms of $\PP^d$ carrying $C$ to itself act transitively on $C$.
 
-\subsubsection{Projective normality}
-
-Define projective normality; observe that rational normal curves are projectively normal.
 
 \subsubsection{Other rational curves}
 
@@ -76,7 +82,9 @@ What about other rational curves in projective space? Since any linear series $\
 $$
 z \; \mapsto \; [f_0(z), \dots, f_r(z)]
 $$
-for some $(r+1)$-tuple of polynomials $f_\alpha$ of degree $d$ on $\PP^1$, which is to say it's the composition of the embedding $\phi_d : \PP^1 \to \PP^d$ of $\PP^1$ as a rational normal curve with a linear projection $\pi : \PP^d \to \PP^r$. To give a sense of what we can say about such curves, we'll consider one of the first and simplest cases: smooth rational curves of degree $4$ in $\PP^3$.
+for some $(r+1)$-tuple of polynomials $f_\alpha$ of degree $d$ on $\PP^1$, which is to say it's the composition of the embedding $\phi_d : \PP^1 \to \PP^d$ of $\PP^1$ as a rational normal curve with a linear projection $\pi : \PP^d \to \PP^r$. 
+
+Given how easy it is to describe rational curves in projective space in this way, it is in some ways surprising how many open questions there are about such curves: for example, it is not known what are the possible Hilbert functions of such curves; and even the Hilbert function of a general such curve was found only recently (it's now a special case of the \emph{maximal rank conjecture}; see~\ref{**}).  To give a sense of what we can say about such curves, we'll consider one of the first and simplest cases: smooth rational curves of degree $4$ in $\PP^3$.
 
 So: let $C \subset \PP^3$ be a smooth, nondegenerate curve of degree 4 and genus 0 in $\PP^3$. To describe the geometry of $C$, the first thing to determine is what surfaces it lies on---that is, what degree polynomials on $\PP^3$ vanish on $C$. To start with, we can ask: does $C$ lie on a quadric surface? To answer this, we consider again the restriction map
 $$
@@ -106,17 +114,18 @@ Finally, we have to show that the quadric containing the curve $C$ cannot be a c
 
 Before moving on, we should remark that this one example of a non-linearly normal rational curve in projective space is misleading in that we can give such a complete description. For general $d$ and $r$, we have no idea what may be the Hilbert function of a rational curve of degree $d$ in $\PP^r$, let alone what its resolution might look like.
 
-\underbar{Exercises}:
 
+\begin{exercise}
 Find all possible Hilbert functions of smooth rational quintic  curves $C \subset \PP^3$. (There are only two, depending on whether or not $C$ lies on a quadric, so this isn't so bad.)
+\end{exercise}
 
+\begin{exercise}
 Every $g^3_4$ on $\PP^1$ is uniquely expressible as a sum of the $g_1^1$ and a $g^1_3$
+\end{exercise}
 
+\begin{exercise}
 There is a 1-parameter family of rational quartic curves in $\PP^3$ up to projective equivalence. (Finding the invariants is a nice problem, which we should talk about.)
-
-The quadrics containing a rational normal curve $C \subset \PP^d$ generate the homogeneous ideal.
-
-The homogeneous ideal of a smooth rational quartic curve $C \subset \PP^3$ is generated by the one quadric and the three cubics found above.
+\end{exercise}
 
 
 \section{Curves of genus 1}
@@ -132,12 +141,12 @@ Two remarks are in order before we get underway. To begin with, unlike the case 
 Let $E$ be a smooth projective curve of genus 1. If $L$ is any line bundle of degree 1 on $E$, Riemann-Roch says that $h^0(L) = 1$, so if we're looking for nonconstant maps to projective space we have to go to degree 2 and higher.
 
 To start with, suppose $L$ is a line bundle of degree 2 on $E$. By Riemann-Roch, $h^0(L) = 2$ and the linear series $|L|$ is base point free, so we get a map $\phi : E \to \PP^1$ of degree 2. By Riemann-Hurwitz, the map $\phi$ will have 4 branch points; by the remark above, these four points are determined, up to automorphisms of $\PP^1$ by the curve $E$, and are independent of the choice of $L$.
-After composing with an automorphism of $\PP^1$ we can take these four points to be $0, 1, \infty$ and $\lambda$ for some $\lambda \neq 0, 1 \in \CC$. Since there is a unique double cover of $\PP^1$ with given branch divisor \fix{do we need to justify this? we probably should} it follows that $E \cong E_\lambda$, where $E_\lambda$ is the curve given by the affine equation
+After composing with an automorphism of $\PP^1$ we can take these four points to be $0, 1, \infty$ and $\lambda$ for some $\lambda \neq 0, 1 \in \CC$. Since there is a unique double cover of $\PP^1$ with given branch divisor (see~\ref{**}) it follows that $E \cong E_\lambda$, where $E_\lambda$ is the curve given by the affine equation
 $$
 y^2 = x(x-1)(x-\lambda).
 $$
 
-When are two curves $E_\lambda$ and $E_{\lambda'}$ isomorphic? By what we've said, this will be the case if and only if there is an automorphism of $\PP^1$ carrying the points $\{0,1,\infty,\lambda\}$ to $\{0,1,\infty,\lambda\}$, in any order
+When are two curves $E_\lambda$ and $E_{\lambda'}$ isomorphic? By what we've said, this will be the case if and only if there is an automorphism of $\PP^1$ carrying the points $\{0,1,\infty,\lambda\}$ to $\{0,1,\infty,\lambda\}$, in any order; this will be the case if and only if
 
 \subsubsection{Plane cubics}
 
