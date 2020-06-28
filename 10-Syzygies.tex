@@ -1540,17 +1540,61 @@ Before discussing the proof of the Hartshorne-Rao Theorem, we examine the case $
 We next prove Hartshorne's half of the Hartshorne-Rao Theorem:
 
 \begin{theorem} [Hartshorne \cite{}]
-If $X,Y\subset \PP^3$ are closed, purely 1-dimensional subschemes that are directly linked then
+If $X,Y\subset \PP^3$ are closed, purely 1-dimensional subschemes that are directly linked 
+through the complete intersection $Z$, which is given by forms $f_1, f_2$ of degrees $d_1,d_2$ respectively
+then
 $$
-M(X)^\vee \cong M(Y)(t)
+M(X)^\vee \cong M(Y)(d_1+d_2-4)
 $$
 where $M(X)^\vee$ denotes the vector space dual of $M(X)$ equipped with the natural module structure.
  \end{theorem}
 
+\begin{proof}
+Let $S$ be the homogeneous coordinate ring of $\PP^3$. The ring $S/I_X$ may not be Cohen-Macaulay,
+but because it is purely 1-dimensional,  $X = \Proj S/I_X$ is locally Cohen-Macaulay of codimension 2, and thus its
+second syzygy sheafifies to a vector bundle $\sE$ on $\PP^3$, and we see that 
+$$
+M(X) = \oplus_{d \in \ZZ} H^1(\sI_X(d)) \cong \oplus_{d \in \ZZ} H^2(\sE(d)).
+$$
 
+The natural surjection $S/(f_1,f_2) \to S/I_X$ lifts to a map of free resolutions, and sheafifying we get a diagram with exact rows
+and right-hand column:
+$$ 
+\begin{diagram}[small]
+0&\rTo &\sE &\rTo &F_1& \rTo& \sO_{\PP^3}&\rTo &\sO_X &\rTo &0\\
+&&\uTo&&\uTo&&\uTo^1&&\uTo\\
+0&\rTo&\sO_{\PP^3}(-d_1-d_2) &\rTo &\sO_{\PP^3}(-d_1)\oplus \sO_{\PP^3}(-d_2)& \rTo& \sO_{\PP^3}&\rTo &\sO_Z &\rTo &0\\
+&&&&&&&&\uTo\\
+&&&&&&&&\sI_X/(f_1,f_2)\\
+&&&&&&&& \uTo\\
+&&&&&&&& 0.
+\end{diagram}
+$$
+By Theorem *****,  $I_X/(f_1,f_2) \cong \omega_{S/I_Y}(-d_1-d_2+4)$, so the mapping cone of the map of complexes above has first homology
+$\omega_Y(-d_1-d_2-4)$. Dropping the two copies of $\sO_{\PP^3}$ and the identity map between them, we get a locally free resolution
+$$
+\begin{diagram}[small]
+0&\rTo&\sO_{\PP^3}(-d_1-d_2)&\rTo&\sE\oplus \sO_{\PP^3}(-d_1)\oplus \sO_{\PP^3}(-d_2)&\rTo&F_1&\rTo& \omega_Y(-d_1-d_2+4)&\rTo&0.
+\end{diagram}
+$$
 
+Let $R := \oplus_{d\in \ZZ} H^0(\sO_Y(d))$.
+The natural map $S/I_Y \to R$ has cokernel $\oplus_{d\in \ZZ}H^1\sI_Y(d)= M(Y)$, which has finite length. Thus
+$\omega_{S/I_Y} = \Ext_S^2(S/I_Y, \omega_S) = \Ext_S^2(R, \omega_S)$.
+Moreover $R$ is Cohen-Macaulay, so also $\Ext_S^2(\omega_{S/I_Y}, \omega_S) = R$. Dualizing the resolution above 
+ and sheafifying, we get an exact sequence of sheaves
+$$
+0\to F_1^* \to \sE^*\oplus \sO_{\PP^3}(d_1)\oplus \sO_{\PP^3}(d_2) \to \sO_{\PP^3}(d_1+d_2) \to R(d_1+d_2) \to 0.
+$$
+It follows that the image of $\sE^*\oplus \sO_{\PP^3}(d_1)\oplus \sO_{\PP^3}(d_2) $ in $\sO_{\PP^3}(d_1+d_2)$
+is $\sI_Y(d_1+d_2)$. By Serre duality, 
+$M(X) = \oplus_{d\in \ZZ} H^2(\sE(d)) = \bigl(\oplus_{d\in \ZZ} H^1(\sE^*(-d-4))\bigr)^\vee$, the dual over the ground field. From the above sequence we see that 
+$$
+M(X)^\vee \cong \oplus_{d\in \ZZ} H^1(\sE^*(-d-4))\oplus_{d\in \ZZ}  = M(Y).
+$$ 
+Thus $M(X)^\vee = M(Y)(d_1+d_2-4)$ as required.
+ \end{proof}
 Construction of curves with given Rao module: Bourbaki's theorem.
-%\end{proof}
 
 \begin{exercise} (Schwartau) Linkage addition. \fix{Put this somewhere later.}
  
@@ -1558,8 +1602,7 @@ Construction of curves with given Rao module: Bourbaki's theorem.
 
 
 TODO:
-prove: linked curves have dual Rao modules; state converse.
-state minimal linkage, all curves derived.
+state minimal linkage, all curves derived by basic double link plus deformations (Lazarsfeld-Rao)
 state general curves of high genus are minimal
 
 
