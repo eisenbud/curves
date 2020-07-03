@@ -45,20 +45,9 @@
 %
 \def\length{{\rm length}}
 \section{Introduction} 
-%Motivation: canonical embedding turns intrinsic invariants into projective invariants. Hilbert Function. Projective Normality; Canonical Module.
-%
-%What are the projective invariants that correspond to Clifford index? Conjecturally, Green's conjecture. Inequality from Eagon-Northcott.
-%
-%Hilbert Syzygy theorem, Hilbert function derivation, Unique minimal resolution, Betti table, 
-%\fix{ introduce tools as they are used}
-
- \fix{Latest idea: focus on linkage only, drop Green's conj. Maybe still do $2g+1$?}
-
 In this Chapter we will study  invariants associated to a free resolution, or syzygies, of the homogeneous coordinate ring of a curve in projective space, with an emphasis on their relation to the varieties (or schemes) containing the curve. We have two cases in mind:
 
-For curves in $\PP^{3}$ we ask about the relationship of a curve to the 1-dimensional complete intersections containing it---this is the theory of \emph{linkage} (often called by its French name \emph{liaison}). The theory leads quickly away from smooth curves to other purely 1-dimensional subschemes of $\PP^{3}$, and to the canonical (or dualizing) sheaves of these schemes, so we will spend some time on the general theory of dualizing sheaves.
-
-%Questions about abstract curves can be turned into questions about embedded curves, and therefore questions about commutative algebra via the canonical embedding. Here the existence of a low-degree linear series on a curve implies the existence of a rational normal scroll containing the canonical image of the curve, and this implies something about the syzygies of that embedded curve. Green's conjecture is roughly the converse of this chain of implications. Here the main tool is the Eagon-Northcott complex, which makes explicit the syzygies of rational normal scrolls. 
+For curves in $\PP^{3}$ we ask about the relationship of a curve to the 1-dimensional complete intersections containing it---this is the theory of \emph{linkage}. The theory leads quickly away from smooth curves to other purely 1-dimensional subschemes of $\PP^{3}$, and to the canonical (or dualizing) sheaves of these schemes, so we will spend some time on the general theory of dualizing sheaves.
 
 Once a curve is embedded in projective space, questions about the curve are also questions in commutative algebra. From the work of Emmy Noether in the 1920s through the 1950s commutative algebra focused on the theory of ideals in Noetherian rings. But with the work of Auslander, Buchsbaum and Serre homological techniques became important. This means, roughly, focusing on modules over these rings (representation theory) and on complexes of modules, especially free resolutions. The groundwork for this extension had of course been laid by Cayley, Hilbert, Macaulay, Gr\"obner\dots, but always in the context of polynomial rings. 
 
@@ -108,9 +97,6 @@ $$
 0 \to H^{0}_{\gm} (M) \to M\to H^{0}_{*}(\cM) \to H^{1}_{\gm} (M) \to 0.
 $$
 
-
-
-
 The module $H^{1}_{\gm}(M)$ also has an important interpretation: Consider again the case $M = R = S/I$, corresponding to a projective scheme $X$, and suppose for simplicity that 
 $n\geq 2$, so that $H^{1}(\cO_{\PP^{n}}(d)) = 0$ for all $d$. In this case the long exact sequence in cohomology associated to 
 $$
@@ -128,156 +114,7 @@ this shows that $H^{1}_{\gm}(S/I) = H^{1}_{*}(\cI_{X})$. This module will play a
  Explain what is different from the above in the case $X\subset \PP^{1}$.
 \end{exercise}
 
-
-
-
-\section{Syzygies and the Hilbert Syzygy Theorem} \fix{all or part of this section should be an appendix}
-\fix{introduce free resolution, minimal free resolution over a local ring, then move to
- $S = k[x_{0}, \dots, x_{n}]$ and homogeneous coordinate rings.}
- 
- In this  section we will introduce some basic notions from the theory free resolutions, regular, Gorenstein and Cohen-Macaulay local rings, and the dualizing module. These will all come into play in our algebraic description of linkage ($=$ liaison) of curves in $\PP^{3}$ in the next section.
-
-The following result assures us that invariants of the minimal free resolution of $M$ are invariants of $M$:
-
-\begin{theorem}[Uniqueness]\cite[Theorem ***]{E}\label{uniqueness} With hypotheses as above, the minimal free resolution of of a finitely generated graded $S$-module is unique up to (non-unique) isomorphism.
-\end{theorem}
-
-This and the other results in this section are usually stated for
-modules over a local ring, and in that form the results here can be found in \cite[Ch ?]{E}. The proofs are essentially identical in the graded case presented here.
-
-The numbers $\beta_{i,j}$ in  the minimal free resolution of $M$ are called the \emph{graded Betti numbers} of $M$; it follows from Theorem~\ref{uniqueness} that the graded Betti numbers, and all the invariants of the matrices $d_{i}$, are invariants of $M$. 
-We sometimes refer to $\beta_{i,j}$ informally as the \emph{number of $i$-th syzygies of degree $j$}; more properly, it is the number of minimal generators of degree $j$ required by the module of $i$-th syzygies of $M$.
-
-For convenience, the graded Betti numbers are usually displayed in a compact \emph{Betti table}, with the nonzero $\beta_{i,j}$ appearing in the $i$ column and the $(j-i)$-th row. (The reason for the initially non-intuitive choice $j-i$ instead of $j$ is that, for the resolution $\FF$ to be minimal, it is necessary that if $\beta_{i,j}\neq 0$, then some $\beta_{i-1,k}\neq 0$ for some $k<j$. Thus shift by $-j$ makes the diagram more compact.) This useful convention seems to go back to Bayer and Stillman and their work on the program Macaulay in the 1980s. In those days of small displays, efficiency was even more important than now.
-
-We sometimes speak of the \emph{Betti table of a variety $X\subset \PP^{n}$}, by which we will mean the Betti table of the minimal free resolution
-of the homogeneous coordinate ring $S_{X}$ of $X$, as a module over the homogeneous coordinate ring of $\PP^{n}.$
-
-\begin{example}\label{canonical in P3}
-For example, the minimal free resolution of the homogeneous coordinate ring $S_{C}$ of a canonical curve $C$ of genus 4 in $\PP^{3}$ whose ideal is generated by a quadric $q$ and a cubic $f$, as a module over the homogeneous coordinate ring $S = \CC[x_{0},\dots,x_{3}]$ of $\PP^{3}$, is the Koszul complex
-\small
-$$
-S \lTo^{
-\begin{pmatrix}
-  q& f
-\end{pmatrix}}
-S(-2) \oplus S(-3) \lTo^{
-\begin{pmatrix}
-f\\-q 
-\end{pmatrix}
-}
-S(-5)\lTo 0.
-$$
-\normalsize
-since
-$q$ and $f$ are relatively prime, and thus form a regular sequence
-Thus it has  Betti table:
-
-\centerline{\small %\scriptsize
-\begin{tabular}{r|ccc} 
-$j\backslash i$&0&1&2\\ 
-\hline 
-0&1&$-$&$-$\\ 
-1&$-$&1&$-$\\ 
-2&$-$&1&$-$\\ 
-3&$-$&$-$&1\\ 
-\end{tabular}}
-\noindent where, for clarity, we have suppressed the $\beta_{i,j}$ that are 0, and replaced some of
-them with $-$.
-\end{example}
-
-From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules. In this case something quite special happens \cite[****]{E}:
-
-\begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
-The minimal $S$-free resolution $\FF$ of any finitely generated graded $S$-module $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
-\end{theorem}
-
-\begin{fact}
- There are in fact finite resolutions for all $S$-modules; however there is generally no reasonable notion of a  minimal resolution outside the positively graded or finitely generated local cases. See \cite{???}.
-\end{fact}
-
- In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
-$$
-H_{S(-j)}(m) = 
-\begin{cases}
- {n+m-j \choose n} & \hbox{for $m\geq j$}
-  \\ 
- 0 & \hbox{for $m<j$}
-\end{cases}
-$$
-we can compute the Hilbert function for a finitely generated graded $S$-module $M$ from its graded Betti numbers 
-$$
-H_{M}(m) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+m-j\choose n}.
-$$
-\begin{example} [The homogeneous coordinate ring of a plane curve] 
-For the simplest non-trivial example, if $C$ is a plane curve with equation $F(x_{0},x_{1}x_{2})$ of 
-degree $d$, then the minimal free resolution of the homogeneous coordinate ring $S_{C}$ has the form
-$$
-\FF: S\lTo^{F}S(-d)\lTo 0
-$$
-Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
- $\beta_{0,0} = \beta_{1,d} = 1$, so
-$$
- H_{S_{C}}(m) = {2+m\choose 2} - {2-d+m\choose 2}
- $$
- which has the value  $dm + 1+(2-d)(2-d-1)/2 = dtm+ (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus \fix{where is this defined?} is the constant term minus 1, we get
-$\deg C = d,\ p_{a}(C) = (d-1)(d-2)/2$ as we should expect.  Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
-\end{example}
-
-\begin{exercise} 
-\begin{enumerate}
- \item Show that any curve in $\PP^{3}$ whose homogeneous coordinate ring has the
- form given in Example ~\ref{canonical in P3} has degree 6 and (arithmetic) genus 4.
- 
-\item In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
-Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
-$X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
-using the fact that the minimal free resolution of the homogeneous coordinate ring 
-$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex (see \cite{???}):
-%\scriptsize
-\small
-$$
- S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
- $$
-\normalsize
-\end{enumerate}
-\end{exercise}
-
-Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing them here. A more interesting feature that the Betti table of the homogeneous coordinate ring (or homogeneous ideal) of a variety $X$ reflects is the presence of a variety $Y$ containing 
-$X$ and having low degree syzygies. 
-
-Here is a  simple example:
-
-We have seen in Chapter~\ref{Scrolls}, the homogeneous ideal $I$ of the twisted cubic curve in $\PP^{3}$ is generated by the three $2\times 2$ minors of the matrix
-$$
-M = \begin{pmatrix}
- x_{0}&x_{1}&x_{2}\\
-  x_{1}&x_{2}&x_{3}
-\end{pmatrix}
-$$
-We shall soon compute the Betti tables of all rational normal scrolls. In particular, we shall see that the Betti table of the twisted cubic has the form:
-
-\centerline{\small
-\begin{tabular}{r|ccc} 
-$j\backslash i$&0&1&2\\ 
-\hline 
-0&1&$-$&$-$\\ 
-1&$-$&3&2\\ 
-\end{tabular}}
-\noindent
-where the dashes indicate that the corresponding $\beta_{i,j}$ is zero. In plain language, the table indicates  that  the ideal $I$ of the curve is minimally generated by 3 elements of degree 2, and that there are two linear relations on the 3 (that is, generators of total degree $2+1=3$, and that these freely generate the module of  syzygies of $I$ (the two relations are in fact just the columns of the transpose of the matrix $M$).
-
-The homogeneous ideal $J$ of any set of points $\Gamma$ that lies on the twisted cubic contains $I$. Supposing that $\Gamma$ does not lie on a plane, the ideal $J$ contains no linear forms. The 2 linear relations on the generators of $I$ must be consequences of relations on the generators of $J$. But since the relations on $I$ are linear, they are of the lowest possible degree of any relations on $J$, so there must be at least 2 linear relations on the quadratic generators of $J$. Here is the way this can be used:
-\begin{fact}
- A lemma of Castelnuovo \fix{exercise in Ch 8; is it really Castelnuovo?} shows  that every set of 6 points in linearly general position
-in $\PP^{3}$ lies on a twisted cubic;  a set of points $\Gamma\subset \PP^{3}$ in linearly general position of cardinality $n\geq 7$ lies on a twisted cubic curve if and only if
-the Betti table of $\Gamma$ is termwise $\geq$ that of the twisted cubic.\end{fact}
-
-
-
 \section{Homological commutative algebra} 
-
-\fix{This section and the one on dualizing sheaves, after being pruned and completed to satisfy the needs of liaison, will go to the Appendix}
 
 \fix{make remark at the end about the graded case -- or at the beginning?}
 
@@ -413,7 +250,7 @@ $\KK(x_{1}, \dots, x_{n};R)$
 to be a minimal free resolution of $\coker \phi_{1} = R/(x_{1}, \dots, x_{n})$ \cite[]{E}:
 
 \begin{theorem} If $(R,\gm)$ is a local ring, then
- the Koszul complex $\KK(x_{1}, \dots, x_{n};R)$ is a minimal free resolution (of $R/(x_{1}, \dots, x_{n})$ if and only if 
+ the Koszul complex $\KK(x_{1}, \dots, x_{n};R)$ is a minimal free resolution (of $R/(x_{1}, \dots, x_{n})$) if and only if 
 $x_{1},\dots x_{n}$ is a regular sequence in $R$.\qed
 \end{theorem}
 This result also holds in the graded polynomial ring case, if we assume that the $x_{i}$ are all of
@@ -550,9 +387,10 @@ $$
 0\to M\rTo^{x_{1}}M \rTo M/x_{1}M \to 0
 $$
 we get a long exact sequence in $\Ext_R$ containing the terms
-$$
-\Ext_R^{j}(R/I,M) \rTo^{0} \Ext_R^{j}(R/I,M) \rTo \Ext_R^{j}(R/I,M/x_{1}M) \rTo \Ext_R^{j+1}(R/I,M)\rTo^{0} \Ext_R^{j+1}(R/I,M),
-$$
+\begin{align*}
+ &\Ext_R^{j}(R/I,M) \rTo^{0} \Ext_R^{j}(R/I,M) \rTo \Ext_R^{j}(R/I,M/x_{1}M) \rTo\\ 
+ &\Ext_R^{j+1}(R/I,M)\rTo^{0} \Ext_R^{j+1}(R/I,M) \rTo \cdots,
+\end{align*}
 where the maps marked 0 vanish because $x_{1}$ annihilates $R/I$; that is, we have 
 short exact sequences
  $$
@@ -1038,7 +876,7 @@ $$
 and thus $\omega$, together with $\eta = \eta_{\omega}(1_{\omega})$ is a dualizing pair for $X$.
 \end{theorem}
 
-Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$; in this form, at least when $X$ is smooth, it is the Riemann-Hurwitz formula \fix{did we decide on this name?} Another is the inclusion of $X$ into another curve, perhaps a complete intersection curve, and this is the one we need for Liaison:
+Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$; in this form, at least when $X$ is smooth, it is the Riemann-Hurwitz formula \fix{did we decide on this name?} Another is the inclusion of $X$ into another curve, perhaps a complete intersection curve, and this is the one we need for linkage:
 
 \begin{corollary}\label{dualizing formula}
  Let $X\subset Y\subset \PP^{n}$ be closed, purely 1-dimensional schemes. If  $\omega_{Y} = \sO_{Y}(d)$ for some integer $d$, then 
@@ -1185,7 +1023,7 @@ $$
 %\fix{we need to do this in a setting where we know the statement of Riemann-Roch. How general is that? Not much harm in retreating to the case of irreducible curves or even smooth ones, and adding a ``fact'' for the general case.}
 
 Here is a special case that will be important to us:
-\begin{proposition}
+\begin{proposition}\label{computation of omega}
  Suppose that 
 $C \subset \PP^{n}$ is a purely 1-dimensional scheme. If $(f_{1}, \dots, f_{n-1}) \subset I_{C}$ is a regular sequence of forms of degrees $d_{1}\dots,d_{r}$ defining the scheme $X\supset C$, then 
 $$
@@ -1289,8 +1127,6 @@ The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never van
 
 \end{proof}
 
-\fix{We need to show: }
-
 \begin{theorem} \label{canonical of Gor}
  $R$ is Gorenstein if and only if $R$ is Cohen-Macaulay and $\omega_{R} \cong R$ (up to twist in the graded case)
 \end{theorem}
@@ -1300,10 +1136,9 @@ The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never van
 
 \section{Linkage of curves in $\PP^3$.}
 %Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
-\fix{make sure to use linkage, not liaison; mention the translation somewhere}
 
 Linkage, an equivalence relation on curves in $\PP^3$, was first studied extensively by Halphen in **** and taken up in the 1940's by Ap\'ery and Gaeta. The subject was modernized and generalized by Peskine and Szpiro in~\cite{PeskineSzpiro}. Hartshorne~\cite{} and his student
-Rao~\cite{} decisive breakthroughs, showing that a simple invariant classifies curves up to linkage; and Lazarsfeld and Rao~\cite{} explained how to describe a given linkage class.
+Rao~\cite{} decisive breakthroughs, showing that a simple invariant classifies curves up to linkage; and Lazarsfeld and Rao~\cite{} explained how to describe a given linkage class. A thorough exposition of the subject in the general case can be found in the book of Migliore~\cite{Mig}. Note that the linkage relation is often called by its French name, \emph{liaison}.
 
 
 We have already used the relation of \emph{ linkage} in Chapter 8 \fix{make ref refs}. There, and in the classical literature, we used the notion in the case where the union of two (reduced) curves in $\PP^{3}$ without common components is a complete intersection, such as in the case of  a twisted cubic and one of its secant linea, which together form the complete intersection of two quadrics. In this setting it is obvious that the relation is symmetric, and that the degrees of the two curves add up to the degree of the complete intersection. We showed in \ref{***} that the (arithmetic) genera of the two curves is related by the formula~\ref{***}. 
@@ -1317,15 +1152,17 @@ If $X$ and $Y$ are subschemes of pure codimension $c$ in a Gorenstein scheme $P$
 More generally, we say that $X$ and $Y$ are \emph{evenly} (respectively oddly) linked if they are
 connected by an even (respectively odd) number of direct linkages.\end{definition}
 
+In the case of divisors on a reasonably nice surface, even linkage is linear equivalence. We do just the case we need:
+
 
 %%
 
 \begin{theorem}\label{justification of general linkage} The relation of direct linkage is symmetric. Moreover, if $X,Y\subset \PP^{3}$ are purely 1-dimensional subschemes and $X$ is linked to $Y$ by the complete intersection $Z$ of surfaces of degrees $d_{1}, d_{2}$, then
 \begin{enumerate}
- \item $\deg X+\deg Y = \deg Z = d_{1}d_{2}$.
+ \item $\deg X+\deg Y = \deg Z$.
  \item  The arithmetic genera of $X$ and $Y$ are related by
 $$
-p_{a}(X) - p_{a}(Y) =\frac{(d_{1}+d_{2}-4)}{2} (\deg X - \deg Y)
+p_{a}(Y) - p_{a}(X) =\frac{(d_{1}+d_{2}-4)}{2} (\deg Y - \deg X)
 $$
  %h - g = (e-d)\frac{s+t-4}{2}
 \end{enumerate}
@@ -1333,7 +1170,7 @@ $$
  
  The proofs involve several important results from commutative algebra:
  
-\begin{lemma} \label{double colon}
+\begin{theorem} \label{double colon}
 \begin{enumerate}
 \item For any ideals $G,I$ in a commutative Noetherian ring $R$, the associated primes of  $J = G:I$ are  are among the associated primes of $G$. Moreover, if $G$ is unmixed (that is, all primary components have the same dimension) then  
 the associated primes of $J$ are precisely the associated primes of $G$ whose primary components do not contain $I$.
@@ -1349,7 +1186,7 @@ $
 \omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G.
 $\\
 \end{enumerate}
-\end{lemma}
+\end{theorem}
 
 In case $R = k[x_{0},\dots,x_{n}]$ and both $I$ and $G$ are graded, with $G = (f_{1}, \dots f_{c})$ the intersection of forms of degree
 $d_{1}+\cdots + d_{c}$, then $\omega_{R/G} = R/G(\sum d_{i} -n-1)$ as graded modules so, \emph{as graded modules},
@@ -1357,8 +1194,43 @@ $$
 \omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G(\sum d_{i} -n-1).
 $$
 
+Before applying this result to the proof of Theorem~\ref{justification of general linkage} we give an application in a simpler case, where
+the relation of even linkage reduces to
+that of linear equivalence:
 
-\begin{proof}[Proof of Lemma~\ref{double colon}]
+
+
+\begin{proposition}
+Let $S$ be a surface in $\PP^3$, and let $X,Y\subset S$ be purely 1-dimensional schemes. The schemes $X$ and $Y$ are directly linked on $S$ if and only if
+there is a rational function $f$ on $S$ such that the divisor $f$ is $X-Y$. Thus $X$ and $Y$ are evenly linked if and only if 
+$X~Y$, and they are oddly linked if and only if $-X\sim Y$.
+\end{proposition}
+
+\begin{proof} Suppose first that $X,Y$ are directly linked. After passing to an affine open set we have
+$(a):I_X = I_Y$ for some nonzerodivisor $a$. Write $K(S)$ for the sheaf of rational functions on $S$, so that
+when restricted to an affine open set $U$ we have 
+$$
+K(S)|_U = \{a/b\mid a,b \in \sO_S(U), b \hbox{a nonzerdivisor}\}.
+$$  
+In this context the divisor $-X$ is the divisor associated to the
+fractional ideal $I^{-1} := \{q\in K(S) \mid qI \subset \sO_S(U)\}$.
+Write $Z$ for the divisor of $a$. Since $I_X$ contains a nonzerodivisor, $a:I_X = aI_X^{-1}$; that is,
+$-X+Z = Y$, so indeed $-X$ is linearly equivalent to $Y$. Iterating this argument we see that if $X,Y$ are evenly linked then
+they are linearly equivalent, and if oddly linked then $-X$ is linearly equivalent to $Y$, as claimed.
+
+Conversely, suppose that $X \sim Y$. Passing to an open affine subset, this means that there are regular functions $a,b$
+such that $bI_X = aI_Y$. Since $I_X$ and $I_Y$ contain nonzerodivisors on $S$, we may multiply and assume $a\in I_Y$.
+We know from **** that $(a:(a:I_Y)) = I_Y$, and it follows that 
+$$
+I_X = (b/a)(a:(a:I_Y))= b:(a:I_Y)
+$$
+as required.
+\end{proof}
+
+We remark that the same result holds, with the same proof for pure codimension 1 subschemes of a Gorenstein scheme.
+
+
+\begin{proof}[Proof of Theorem~\ref{double colon}]
  1) If $G = \bigcap Q_{i}$ is an irredundant primary decomposition of $G$ then
 $G:I = \bigcap_i (Q_{i}:I)$. If $I \subseteq Q_i$, then $Q_{i}:I = R$, and this term can be omitted. If $P_i$ is the associated prime of $Q_i$
 and $I \not\subseteq Q_i$ then $ Q_i \subset Q_i:I\subset P_i$ (since $P_i$ is the set of zerdivisors mod $Q_i$), 
@@ -1389,116 +1261,100 @@ of the $P_j$ with $j\neq i$, and this is impossible if all the $P_i$ have the sa
   Furthermore, $Q:Q' = \Hom(R/Q', R/Q)$, and similarly $Q:(Q:Q') = \Hom(\Hom(R/Q', R/Q), R/Q) = R/Q'$ by duality.
   
 3) Since 
-$$
-\length (R/G) = \length(R/(G:I))+\length((G:I)/G) = \length(R/(G:I) +\length R/I,
-$$ we see from the associativity formula for multiplicity that when $I$ has the same codimension as $G$, then the multiplicity of $I$ plus the
-multiplicity of $G:I$ is the multiplicity of $G$. In the graded case, this means that
+\begin{align*}
+ \length (R/G) &= \length(R/(G:I))+\length((G:I)/G)\\
+ &= \length(R/(G:I) +\length R/I,
+\end{align*}
+we see from the associativity formula for multiplicity that when $I$ has the same codimension as $G$, then the multiplicity of $I$ plus that of $G:I$ is the multiplicity of $G$. In the graded case, this means that
 $\deg \Proj(R/I) +\deg \Proj(R/(G:I)) = \deg \Proj(R/G)$.
 
-4) \fix{this was proven at least twice above}.
+4)See Proposition~\ref{computation of omega}.
 \end{proof}
 
- \begin{proof}[Proof of Theorem~\ref{justification of general linkage}
-] 2) Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
-$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
-$\cI_C = (\cI_D:\cI_{C'})$,  and by local duality (?) that 
-$$
-\omega_{C'} = \cHom_{\cO_D}(\cO_C, \omega_D) = 
-\cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))
-=  \frac{(\cI_D:\cI_C)}{\cI_{D}}(d_1+d_2-4).
-$$
+ \begin{proof}[Proof of Theorem~\ref{justification of general linkage}]
+ By hypothesis, 
+$X,Y\subset Z$ are unmixed of dim 1, with $\cI_{Y} = (\cI_Z:\cI_X)$. By Part 1 of Lemma~\ref{double colon}, we have
+$\cI_{X} = (\cI_Z:\cI_Y)$ as well, proving symmetry.
+
+1) This is  the formula of part 3 of Lemma~\ref{double colon}, interpreted in the graded case.
+
+2)  By Proposition~\ref{computation of omega}
+\begin{align*}
+ \omega_{Y} &= \cHom_{\cO_Z}(\cO_X, \omega_Z) = 
+\cHom_{\cO_Z}(\cO_X, \cO_Z(d_1+d_2-4))\\
+&=  \frac{(\cI_Z:\cI_X)}{\cI_{Z}}(d_1+d_2-4).
+\end{align*}
 Thus there is an exact sequence
 $$
-0\to \omega_{C'}(-d_1-d_2+4) \to \cO_D \to \cO_C \to 0,
+0\to \omega_{Y}(-d_1-d_2+4) \to \cO_Z \to \cO_X \to 0,
 $$
 whence
 $$
- \chi(\cO_D(e)) =
- \chi(\omega_{C'}(-d_1-d_2+4+e) +
- \chi(\cO_C(e)).
+ \chi(\cO_Z) =
+ \chi(\omega_{Y}(-d_1-d_2+4) +
+ \chi(\cO_X).
  $$
- Applying the adjunction formula twice, we see that the arithmetic genus of $D$ is
+ Applying the adjunction formula twice, and using Riemann-Roch together with the formula
+ $\deg Z = \deg X + \deg Y$, we see that the arithmetic genus of $Z$ is
  $$
- p_a(D) = \frac{d_1d_2(d_1+d_2-4)}{2}+1,
+ \chi(\sO_Z) = -\frac{(\deg X + \deg Y)(d_1+d_2-4)}{2}.
  $$
- so equating the constant terms in the expression above
- gives
- $$
- - \frac{d_1d_2(d_1+d_2-4)}{2} = 
-1-p_a(C) -
-\chi(\omega_{C'}(-d_1-d_2+4))+1.
+Furthermore, by the Riemann-Roch Theorem, $\chi(\sO_X) = 1-p_a(X)$ while
+\begin{align*}
+\chi(\omega_{Y}(-d_1-d_2+4)) &= 2p_a(Y) -2 + \deg(Y)(-d_1-d_2+4) + 1- p_a(Y)\\
+&= p_a(Y)-1- \deg(Y)(d_1+d_2+4).
+\end{align*}
+Putting this together we get
 $$
-Now 
+-\frac{(\deg X+\deg Y)(d_1+d_2-4)}{2} = 1-p_a(X) + p_a(Y)-1 - \deg(Y)(d_1+d_2+4)
 $$
-\chi(\omega_{C'}(-d_1-d_2+4)) = 2p_a(C') -2 + deg(C')(-d_1-d_2+4) + 1- p_a(C')
-= p_a(C')+1- deg(C')(d_1+d_2+4).
+and thus 
 $$
- \fix{signs!}
-Computing Hilbert polynomials and applying RR gives the genus formula.
-
+p_a(Y) -p_a(X) = \frac{(\deg Y-\deg X)(d_1+d_2-4)}{2}
+$$
+as claimed.
  \end{proof}
 
-We can apply Lemma~\ref{double colon} to the ideals of purely 1-dimensional subschemes of $\PP^{3}$ to get:
-\begin{corollary}
-\begin{enumerate}
-\item Direct linkage is a symmetric relation: if $X,Y$ are purely 1-dimensional subschemes of $\PP^{3}$ and $X$ is directly linked to $Y$ by $Z$, then
-$Y$ is directly linked to $X$ by $Z$. 
-\item $\deg X+\deg Y = \deg Z$
-\item If $Z$ is the complete intersection of surfaces of degrees $d_{1}, d_{2}$, then
 
-\end{enumerate}
-\end{corollary}
+%\fix{Perhaps the ``right'' hypoth is that $S$ is generically Gor and X,Y are purely codim 1, defined by
+%ideal (sheaves) containing nzd's. }
+%
+%\begin{proposition}
+%Let $S$ be a surface in $\PP^3$, and let $X,Y\subset S$ be purely 1-dimensional schemes. The schemes $X$ and $Y$ are directly linked on $S$ if and only if
+%there is a rational function $f$ on $S$ such that the divisor $f$ is $X-Y$. Thus $X$ and $Y$ are evenly linked if and only if 
+%$X~Y$, and they are oddly linked if and only if $-X\sim Y$.
+%\end{proposition}
+%
+%\begin{proof} Suppose first that $X,Y$ are directly linked. After passing to an affine open set we have
+%$(a):I_X = I_Y$ for some nonzerodivisor $a$. Write $K(S)$ for the sheaf of rational functions on $S$, so that
+%when restricted to an affine open set $U$ we have 
+%$$
+%K(S)|_U = \{a/b\mid a,b \in \sO_S(U), b \hbox{a nonzerdivisor}\}.
+%$$  
+%In this context the divisor $-X$ is the divisor associated to the
+%fractional ideal $I^{-1} := \{q\in K(S) \mid qI \subset \sO_S(U)\}$.
+%Write $Z$ for the divisor of $a$. Since $I_X$ contains a nonzerodivisor, $a:I_X = aI_X^{-1}$; that is,
+%$-X+Z = Y$, so indeed $-X$ is linearly equivalent to $Y$. Iterating this argument we see that if $X,Y$ are evenly linked then
+%they are linearly equivalent, and if oddly linked then $-X$ is linearly equivalent to $Y$, as claimed.
+%
+%Conversely, suppose that $X \sim Y$. Passing to an open affine subset, this means that there are regular functions $a,b$
+%such that $bI_X = aI_Y$. Since $I_X$ and $I_Y$ contain nonzerodivisors on $S$, we may multiply and assume $a\in I_Y$.
+%We know from part 1 of Theorem~\ref{double colon} that $(a:(a:I_Y)) = I_Y$, and it follows that 
+%$$
+%I_X = (b/a)(a:(a:I_Y))= b:(a:I_Y)
+%$$
+%as required.
+%\end{proof}
 
-\begin{proof}
- 1) Immedate from part 1) of Lemma~\ref{double colon}.
- 
- 2) Immedate from part 2) of Lemma~\ref{double colon}.
- 
-3) Suppose that $Z$ is the complete intersection of surfaces $f_{1}, f_{2} \in S = k[x_{0},\dots,x_{3}]$ of degrees $d_{1}, d_{2}$. Writing
-$G = (f_{1}, f_{2})$ and $I$ for the homogeneous ideals of $Z$ and $X$ in $\PP^{3}$. Taking the grading into
-account, we have $\omega_{S/G} = S/G[d_{1}+d_{2}-4].$
-
-From the formula  $\omega_{R/I} = (G:I)/G[d_{1}+d_{2}-4$ we see that 
-$$
-H_{Z}(n) = H_{Y}(n) + H_{\omega_{R/I}}(-(d_{1}+d_{2}-4)).
-$$
-
-$$
-H_{\omega_{X}}(n) = H_{Z}(n) - H_{Y}((n+d_{1}+d_{2}-4) ).
-$$
- \fix{this should be $H_{\omega_{X}}(n-???)$, where the shift
-comes from the shift of $\omega_{Z}$. That will make the next couple of formulas correct}
-
-Since the degree of $\omega_{X}$ is $2p_{a}(X) -2$, and the leading coefficient of the 
-Hilbert polynomial of $\omega_{X}(d_{1}+d_{2}-4$ we get 
-$2p_{a}(X) -2 = \deg Z - \deg Y$, and symmetrically 
-$2p_{a}(Y) -2 = \deg Z - \deg X$.
-
-Subtracting the second of these expressions from the first, we get
-$2p_{a}(X)-2p_{a}(Y) = \deg X -\deg Y$
-
- then, writing $S = k[x_{0},\dots, x_{3}]$, we see from the free resolution
-$$
-0\to S(-d_{1}-d_{2}) \to S(-d_{1})\oplus S(-d_{2}) \to S \to S/I_{Z}
-$$
-we see that the Hilbert polynomial of $Z$ is $H_{Z}(n)= d_{1}d_{2}(n + d+e-4)$. Thus so the arithmetic genus of $Z$ is Moreover, the sum of the degrees of $X$ and $Y$ is the degree of $Z$, and
-the sum of the constant terms of the Hilbert polynomial
-\end{proof}
-
-
-
-Although we will concentrate on the case of curves in $P:=\PP^3$, it is worth noting that the relation of even linkage of divisors reduces to
-that of linear equivalence:
-
-\begin{proposition}
-Suppose that $X,Y$ are divisors on a complete intersection scheme $P$ -- for example when $X,Y$ are curves and $P$ is a surface in $\PP^3$ In this case, $X$ and $Y$ are directly linked if and only if $Y = -X +D$ for some principal divisor
-$D$; and thus $X$ and $Y$ are evenly linked if and only if $X$ is linearly equivalent to $Y$.
-\end{proposition}
-\begin{proof}
-Let $f,g$ be nonzerodivisors on $P$.
-We have $(f:I_Y) = (I_Y)^{-1}f$; and since $(f:(f:I_Y)) = I_Y$ by Lemma~\ref{double colon}, we see that $(I^{-1})^{-1} = I$ and thus
-$(g:(f:I_Y)) = ((I_Y)^{-1}f)^{-1}g = (I_Y)\frac{g}{f}$.
-\end{proof}
+%\begin{proposition}
+%Suppose that $X,Y$ are divisors on a complete intersection scheme $P$ -- for example when $X,Y$ are curves and $P$ is a surface in $\PP^3$ In this case, $X$ and $Y$ are directly linked if and only if $Y = -X +D$ for some principal divisor
+%$D$; and thus $X$ and $Y$ are evenly linked if and only if $X$ is linearly equivalent to $Y$.
+%\end{proposition}
+%\begin{proof}
+%Let $f,g$ be nonzerodivisors on $P$.
+%We have $(f:I_Y) = (I_Y)^{-1}f$; and since $(f:(f:I_Y)) = I_Y$ by Lemma~\ref{double colon}, we see that $(I^{-1})^{-1} = I$ and thus
+%$(g:(f:I_Y)) = ((I_Y)^{-1}f)^{-1}g = (I_Y)\frac{g}{f}$.
+%\end{proof}
 
 The main theorem on linkage of curves in $\PP^3$ is due to Hartshorne~\cite{} and Rao ~\cite{}. Recall \fix{put this into the local coho section?} that if $X$ is a locally Cohen-Macaulay scheme in $\PP^n$ then $H^1(\sI_X(i)$ is nonzero for only finitely many values of $i\in \ZZ$, so
 the vector space
@@ -1570,13 +1426,14 @@ $$
 &&&&&&&& 0.
 \end{diagram}
 $$
-By Theorem *****,  $I_X/(f_1,f_2) \cong \omega_{S/I_Y}(-d_1-d_2+4)$, so the mapping cone of the map of complexes above has first homology
+By Proposition~\ref{computation of omega},  $I_X/(f_1,f_2) \cong \omega_{S/I_Y}(-d_1-d_2+4)$, so the mapping cone of the map of complexes above has first homology
 $\omega_Y(-d_1-d_2-4)$. Dropping the two copies of $\sO_{\PP^3}$ and the identity map between them, we get a locally free resolution
 $$
 \begin{diagram}[small]
-0&\rTo&\sO_{\PP^3}(-d_1-d_2)&\rTo&\sE\oplus \sO_{\PP^3}(-d_1)\oplus \sO_{\PP^3}(-d_2)&\rTo&F_1&\rTo& \omega_Y(-d_1-d_2+4)&\rTo&0.
+0&\rTo&\sO_{\PP^3}(-d_1-d_2)&\rTo&\sE\oplus \sO_{\PP^3}(-d_1)\oplus \sO_{\PP^3}(-d_2)&\rTo&F_1
 \end{diagram}
 $$
+of $\omega_Y(-d_1-d_2+4)$.
 
 Let $R := \oplus_{d\in \ZZ} H^0(\sO_Y(d))$.
 The natural map $S/I_Y \to R$ has cokernel $\oplus_{d\in \ZZ}H^1\sI_Y(d)= M(Y)$, which has finite length. Thus
@@ -1607,377 +1464,5 @@ state general curves of high genus are minimal
 
 
 
-
-\section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
-
-\fix{I'm inclined to make this a ``cheerful fact''}
-
- Regularity in terms of resolution and in terms of local cohomology. (has the relation of local to global coho been done already?)
-
-We'll need local cohomology, local duality, 
- WMACE
-recall the $2g+1$ theorem from Ch 4. Say that it's ACM+smooth. relate it to regularity as in "geom of syz". Say that the projective
-normality of smooth CI's is really ACM for all CI's. Say that ACM is measured by the length of the free resolution.
-
-
-
-
-\subsection{How syzygies can reflect geometry}
-
-One of the main ways in which syzygies can be seen to reflect the geometry of an embedded  reduced, irreducible curve $C\subset \PP^r$
-(or other variety) is linked to the possibility of factoring the line bundle $\sO_C(1)$ as the tensor product of two bundles with sections. Suppose for example that $\sO_C(1) = \sL_1\otimes \sL_2$. Choose 2 independent global sections
-$\sigma_1, \sigma_2$ of  $H^0(\sL_1)$ and a basis $\tau_1,\dots, \tau_n$ of $H^0(\sL_2)$. Set
-$l_{i,j}= \sigma_i\tensor \tau_j$ and consider the matrix 
-$$
-M = 
-\begin{pmatrix}
- l_{1,1}&l_{1,2}&\dots&l_{1,n}\\
-  l_{2,1}&l_{2,2}&\dots&l_{2,n}
-\end{pmatrix}.
-$$
-We claim that  the $2\times 2$ minors $l_{1,j} l_{2,j'}-l_{1,j'}l_{2,j}$ are in the homogeneous ideal of $I_C$ of $C$ in $\PP^r$. 
-
-\begin{example}
-The most familiar example is that of the twisted cubic. In this case the global sections $x_0\dots x_3$ of $\sO_C(1)$ may be identified with the forms $s^3, s^2t, st^2, t^3 \in k[s,t]$, and if $p\in C \cong \PP^1$ then the multiplication of sections
-in the factorization  $\sO_C(1) = \sO_C(p) \otimes \sO_C(2p)$ 
-$$
-\bordermatrix{
- &s^2&st&t^2\cr
- s& s^3&s^2t&st^2\cr
- t& s^2t&st^2&t^3
-}
-$$
- leads to the familiar matrix
-$$
-\begin{pmatrix}
-x_0&x_1&x_2\\
-x_1&x_2&x_3 
-\end{pmatrix}.
-$$
-We have $I_2(M) = I_C$, and the same idea works for the rational normal curve of any degree.
-
-\end{example}
-
-To see that, in general, $I_C$ contains the ideal $I_2(M)$ generated by the $2\times 2$ minors of $M$, 
-let $K(C)$ be the ring of rational functions on $C$ \fix{have we made this definition somewhere?}. Choosing identifications $\sL_i\otimes K(C) \cong K(C)$ we see that the $\sigma_i$ and the $\tau_j$ commute with each other as elements of $K(C) \otimes_{\sO_X} K(C)$, and thus 
-$$
-\bigl(l_{1,j} l_{2,j'}-l_{1,j'}l_{2,j}\bigr)|_C = \sigma_1\tau_j\sigma_2\tau_j' - \sigma_1\tau_j'\sigma_2\tau_j =0.
-$$
-
-In case $C$ is reduced and irreducible the matrix above has a special property: $K(X)$ is a domain, so no product of a nonzero
-section of $\sL_1$ with a nonzero section of $\sL_2$ can be zero. We can state this without any reference to $C$:
-
-\begin{definition}
-Let $R$ be a commutative ring. A map $M:R^n\to R^m$ is 1-generic if the kernel of the corresponding
- map $R^{n}\otimes R^{m*} \to R$  contains no pure tensor $a\otimes b$. In more concrete terms, a matrix
-$M$ is \emph{1-generic} if there are no invertible matrices $A,B$ such that  $AMB$ has some entry equal to 0.
-\end{definition}
-
-By the material in Chapter~\ref{scrolls}, the ideal $I_2(M)$ of a 1-generic matrix of linear forms is the homogeneous ideal of a rational normal 
-scroll
-of codimension $n-1$ and degree $n$. 
-
-In the next section we will show that it has a free resolution of a special form called the 
-Eagon-Northcott complex that is a subcomplex of the minimal free resolution of $I_C$. The presence of such a variety containing $C$ or
-a subcomplex of this special form in the minimal free resolution of $C$ is thus necessary for the 
-factorization of the line bundle $\sO_C(1)$ as above, and it is sometimes sufficient, as well.
-
-\section{The Eagon-Northcott Complex of a $2\times n$ matrix of linear forms}
-
-The Eagon-Northcott complex is a complex of free modules associated to any matrix over any commutative ring. The most familiar special case is the Koszul complex, which one may think of as the Eagon-Northcott complex of a $1\times n$ matrix, and  even in the general case the Eagon-Northcott complex is in a sense built out of the Koszul complexes. A full treatment of the Eagon-Northcott complex and a whole family of related constructions can be found in 
-\cite[Appendix ***]{E}, and, from a more conceptual and general point of view, in \cite{Weyman}. Here we will only
-make use of the case of a matrix such as the one above, we will present a simplified account in that case only. Here is the result we need:
-
-\begin{theorem}\label{Eagon-Northcott}
- Let $S = k[x_0,\dots, x_r]$ be a polynomial ring,  and let $M: F\to G$ be a homomorphism with
- $F = S^n(-1), G= S^2$. If $M$ is 1-generic, then the minimal free resolution of $S/I_2(M)$ has the form:
-\begin{align*}
-EN(M) := 
-S \lTo{\bigwedge^2 M} 
- \bigwedge^2 F&
- \lTo^{\delta_{2}}
- S^{2*}\otimes \bigwedge^3 F  \lTo^{\delta_{3}}
-  (\Sym^2S^{2})^*\otimes\bigwedge^4F  \\
- &\lTo^{\delta_{4}}\cdots\lTo^{\delta_{n-1}} 
-(\Sym^{n-2}S^{2})^*\otimes\bigwedge^nF 
- \lTo 0.
-\end{align*}
-\end{theorem}
-
-From Chapter **** we know also that the ideal of minors defines a rational normal scroll.
-
-\begin{proof} We first show that $r\geq n$; more precisely, we show that the span of the entries of $M$ has dimension $\geq n+1$. As noted above, to say that the $2\times n$ matrix of linear forms $M$ is 1-generic means that
-the kernel of the corresponding map $ \phi: k^2\otimes k^n \to S_1$ contains no pure tensors. In the projective
-space $\PP^{2n-1} = \PP(k^2\otimes k^n)$ the pure tensors form a variety isomorphic to $\PP^1\times \PP^{n-1}$, and thus of dimension $n$. Consequently the kernel of $\phi$ can have dimension at most $n-1$, whence the image of $\phi$ 
-in $S_1 = k^{r+1}$ has dimension at least $2n-(n-1) = n+1$. 
-
-We begin the discussion of $EN(M)$ by defining the maps $\delta_i$ and and proving that the given sequence is indeed a complex---that is, consecutive maps compose to 0. For simplicity of notation, we choose a generator of $\wedge^2 S^2$
- and identify it with $S$, which gives a sense to the map labeled $\bigwedge^2M$.
- 
-  Although it is not hard to do this directly, the dual maps
- $$
- \partial_i: \Sym^{i-2} G \otimes \bigwedge^i F^* \rTo \Sym^{i-1} G \otimes \bigwedge^{i+1} F^*
- $$
- have a more familar-looking description, so we define these instead. Indeed, the map $M$ corresponds to an
- element $\mu\in G\otimes F^*$. We may think of $ \Sym^{i-2} G \otimes \bigwedge^i  F^*$
- as a (bigraded) component of the exterior algebra over $ \Sym G$ of 
- $$
-  \Sym G \otimes \bigwedge_S  F^*= \bigwedge_{ \Sym G} (\Sym G \otimes  F^*).
- $$
-We define $\partial_i$ to be  multiplication by $\mu$ in the sense of this exterior algebra. Since $\mu$ has degree 1
-in this sense, its square is 0. 
-
-To show that $(\bigwedge^2 M)\circ \delta_2$ is zero, it is simplest to choose a matrix representing $M$.
-Direct computation using only the usual expansion of a determinant
-along a row shows that, up to sign,
-pure basis vector $e\otimes f_i\wedge f_j\wedge f_k$ of $G^*\otimes \bigwedge^3 F$
-maps under the composition $(\bigwedge^2) M\circ \delta_2$ to the determinant
-of the $3\times 3$ matrix obtained from $M$ by repeating the row corresponding to $e$ and
-the columns $i,j,k$, which is 0 because of the repeated row.
-
-We next prove the split exactness of a complex of the form $EN(M')$ where $M'$ is surjective, so that we
-may write $F = G\oplus F'$ and the map $M': G\oplus F' \to G$ as projection on the first factor. 
-Of course
-it suffices to prove the split exactness of the dual sequence, $EN(M')^*$:
-\begin{align*}
-EN(M')^* := 
-S \rTo{\bigwedge^2 M'^*} 
- \bigwedge^2 F^*&
- \rTo^{\partial_{2}}
- G\otimes \bigwedge^3 F^*  
- \rTo^{\partial_{3}}
-  \Sym^2G\otimes\bigwedge^4F^*  \\
- &\rTo^{\partial_{4}}\cdots\rTo^{\partial_{n-1}} 
-\Sym^{n-2}G\otimes\bigwedge^nF^* 
- \rTo 0.
-\end{align*}
-In this case the proof
-is an exercise in multilinear algebra. 
-We begin by proving split exactness at the 
-positions $\Sym^{i} G \otimes \bigwedge^{i+2}  F^*$ where $i\geq 1$.
-
-The module
-$ \Sym^{i} G \otimes \bigwedge^{i+2}  F^*$
-decomposes as
-\begin{align*}
-&\Sym^{i} G \otimes \bigwedge^2 G^* \otimes \bigwedge^{i} F'^*\oplus \\
-&\Sym^{i} G \otimes  G^*\otimes \bigwedge^{i+1} F'^* \oplus \\
-&\Sym^{i} G \otimes  \bigwedge^{i+2} F'^* 
-\end{align*}
-Note that under our hypothesis, the element $\mu' \in G\otimes F^* = G\otimes G^* \oplus G\otimes F'^*$
-has the form $(\mu_G, 0)$, where $\mu_G$ represents the identity map $G \to G$. Thus the complex
-$EN(M')^*$ is a direct sum over $i$ of 3-term complexes of the form
-%$$
-%\Sym^{i+1} G \otimes \bigwedge^2 G^* 
-%\lTo^{-\wedge \mu'} 
-%\Sym^{i} G \otimes  G^*
-%\lTo^{-\wedge \mu'} 
-%\Sym^{i-1} G
-%$$
-$$
-\Sym^{i-1} G 
-\rTo^{-\wedge \mu'} 
-\Sym^{i} G \otimes  G^*
-\rTo^{-\wedge \mu'} 
-\Sym^{i+1} G \otimes \bigwedge^2 G^* 
-$$
-tensored with various $\bigwedge^j F'^*$, and it suffices to show that the former are split exact when
-$i\geq 0$. Now $\Sym G$ may be identified with $R:= S[x,y]$, where $x,y$ are a basis of $S^2$, and
-as such the sequences above may be identified with components of the Koszul complex of $x,y$ over $R$,
-%$$
-%R\otimes \wedge^2 G\lTo R\otimes G \lTo R .
-%$$
-$$
-0\to R \rTo R\otimes G \rTo R\otimes \wedge^2 G
-$$
-The only homology of this sequence is $R/(x,y)R$ at the right so if we replace  $R\otimes \wedge^2 G \cong R$ by the ideal $(x,y)R$, this sequence is a split exact sequence of free $S$-modules. This is the desired result.
-
-It remains to treat the beginning of the complex $EN(M')^*$,
-$$
-S \rTo{\bigwedge^2 M'^*} 
- \bigwedge^2 F^*
- \rTo^{-\wedge \mu'}
-G\otimes \bigwedge^3 F^*
-$$
-which, in our case, may be written:
-%$$
-%\wedge^2 F^* = \bigwedge^2 G^* \oplus (G^*\otimes F'^*) \oplus \bigwedge^2 F'*
-%$$
-%Consider the pair of maps
-\begin{align*}
-S \rTo{\bigwedge^2 M'^*} 
- &\bigwedge^2 G^* \ \oplus\ (G^*\otimes F'^*)\ \oplus\ \bigwedge^2 F'^*
- \rTo^{-\wedge \mu'} \\
- &G\otimes \bigwedge^2 G^*\otimes F'^*\ \oplus\ (G\otimes G^*\otimes \bigwedge^2 F'^*)\ \oplus\ G\otimes \bigwedge^3 F'^*
-\end{align*}
-The map $\bigwedge^2 M'$ is the projection to $\bigwedge^2 G$ composed with the chosen isomorphism
-$\bigwedge^2 G \cong S$, and is thus a split monomorphism. To complete the argument, we must show that
- the map marked $-\wedge \mu'$ is a monomorphism on $(G^*\otimes F'^*) \oplus \bigwedge^2 F'^*$.
- But this map is the direct sum of the two maps
-  $$
- (G^* \rTo^{-\wedge \mu'} G\otimes \bigwedge^2 G^*)  \otimes F'^*
- $$
- and
- $$
-(S  \rTo^{\mu'} G\otimes G^*) \otimes \bigwedge^2 F'^*
- $$
- which are evidently split monomorphisms. 
-completing the proof of split exactness of $EN(M')^*$ and thus of $EN(M')$.
-
-
-To go further we use a basic result, proven in a more general form (and with a slightly different statement) in \cite[Theorem ***]{E}. We make the convention
-that the codimension of the empty set is infinity.
-
-\begin{theorem}\label{WMACE}
- Let $S = k[x_0,\dots, x_r]$, and
- $$ 
-\FF:  F_0\lTo^{\phi_1}F_1 \lTo \cdots \lTo F_{n-1}\lTo^{\phi_n} F_n\lTo 0
- $$
-be a finite complex of free $S$-modules. Set
-$$
-X_i = \{p\in \AA^{n+1} \mid  H_i(\FF \otimes \kappa(p)) \neq 0\}
-$$
-The complex $\FF$ is \emph{acyclic} (that is, $H_i(\FF) = 0$ for all $i>0$) if and only if
-$$
-\codim X_i \geq i
-$$
-for all $i>0$. Moreover, $X_{0}\supseteq X_{1}\supseteq \cdots \supseteq X_{n}$
-\qed
-\end{theorem}
-
-For example, Nakayama's Lemma implies that $X_{0}$ is the support of $\coker \phi_{1}$; thus $X_{0}$ is the set defined by the $\rank F_{0}$-sized minors of $\phi_{1}$. Similarly, 
-and that $X_{n}$ is the support of the cokernel of the dual of $\phi_{n}$. 
-
-Also, if $n=1$, the theorem simply says that a map $F_1\to F_0$ is a monomorphism iff it becomes a monomorphism after tensoring with the field of rational functions $K$, which follows from the flatness of
-localization and the fact that $F_1$ is torsion-free, so that
-$F_1 \subset F_1 \otimes K$. 
-
-\begin{fact}
-Theorem~\ref{WMACE} is true in this form over any Cohen-Macaulay ring; for more general
-rings, ``codimension'' must be replaced by ``grade'', as in the given reference.
-The Theorem can be generalized
-to case where the $F_i$ are not free, but are sufficiently ``like'' free modules, too.
-\end{fact}
-
-Conclusion of the proof of Theorem~\ref{Eagon-Northcott}.
-Let $X_{i}\subset \AA^{r+1}$ be the variety defined from the complex $EN(M)$ as in 
-Theorem~\ref{WMACE}. Since $EN(M)$ becomes split exact after inverting any $2\times 2$ minor of $M$
-$X_{i}$ is
-contained in the closed set defined by $I_{2}(M)$, for all $i$. Thus if $I_{2}(M)$ has codimension $n-1$,
-then $EN(M)$ is acyclic. 
-\end {proof}
-
-%
-%
-%
-%\fix{consider moving this to the intro}
-%We will also use a special case of the Auslander-Buchsbaum formula connecting projective dimension and depth:
-%
-%\begin{theorem}\label{Auslander-Buchsbaum}
-%If $R$ is a regular local ring of dimension $d$, and $M$ is a finitely generated $R$-module, then the projective dimension of $M$ is $\leq d$ with equality only if
-%$M$ contains a submodule of finite length. 
-%\end{theorem}
-%
-%\begin{corollary}\label{associated primes}
-%If $R$ is a regular local ring of dimension $d$, and $M$ is a finitely generated $R$-module, then the codimension of an associated prime of $A$ is at most the projective dimension of $A$. 
-%\end{corollary}
-%\begin{proof}[Proof of  Corollary~\ref{associated primes}]
-% Projective dimension can only decrease under localization, and
-% the associated primes $P$ of $A$ are those for which $A_{P}$ contains a submodule
-% of finite length.
-%\end{proof}
-%
-%With this and the multi-linear algebra above we can  prove the basic acyclicity result for an Eagon-Northcott complex:
-%
-%\fix{the Theorem as now stated doesn't need the following. I've copied the short proof
-%of acyclicity into the end of the proof above.}
-%\begin{proposition}\label{acyclicity}
-%Let $S = k[x_0,\dots, x_r]$ be a polynomial ring,  and let $M: F\to G$ be a homomorphism with
-% $F = S^n(-1), G= S^2$.
-% $$
-% S^n \cong F \rTo^M G \cong S^2
-% $$
-% is a (not necessarily homogeneous) map of free $S$-modules.
-% The Eagon-Northcott complex $EN(M)$ is acyclic if and only if $\codim I_2(M) \geq n-1$, in which case the dual complex is also acyclic and
-% the associated primes of $I_2(M)$ are all minimal and of codimension $n-1$.
-% \end{proposition}
-%
-%\begin{proof}[Proof of Proposition~\ref{acyclicity}]
-%Let $X_{i}\subset \AA^{r+1}$ be the variety defined from the complex $EN(M)$ as in 
-%Theorem~\ref{WMACE}. Since $EN(M)$ becomes split exact after inverting any $2\times 2$ minor of $M$
-%$X_{i}$ is
-%contained in the closed set defined by $I_{2}(M)$, for all $i$. Thus if $I_{2}(M)$ has codimension $n-1$,
-%then $EN(M)$ is acyclic. 
-%
-%In this case the projective dimension
-%of $S/I_{2}(M)$ is $n-1$, so all the associated primes of $I_{2}(M)$ have codimension
-%exactly $n-1$.
-%
-%If $EN(M)$ is  acylic then, by Theorem~\ref{WMACE}, the codimension of $X_{n-1}$ is at least $n-1$. Thus to prove that the acyclicity of $EN(M)$ implies  $\codim I_{2}(M) \geq n-1$ (and thus
-%$\codim I_{2}(M))  n-1$, it suffices to show that $X_{n-1} = X_{0}$ as algebraic sets.
-%
-%To see this, note that
-%the ideal of $2\times 2$ minors of $M$. By definition, $X_{n-1}$ 
-%is the set of points $p$ where $\kappa(p)\otimes \delta_{n-1}$ is not an inclusion, 
-%or equivalently, that 
-%that 
-%$$
-%\kappa(p)\otimes F\otimes \Sym^{n-3}G 
-%\cong 
-%\kappa(p)\otimes \bigwedge^{n-1} F^{*} \otimes  \Sym^{n-3}G 
-%\rTo^{\partial_{n-1}}
-%\kappa(p)\otimes \bigwedge^{n} F^{*} \otimes  \Sym^{n-2}G
-%\cong
-%\kappa(p)\otimes \Sym^{n-2}G
-%$$
-%is not a split surjection, and it is easy to see that the composite map takes
-%$a\otimes b$ to $\kappa(p) \otimes M(a)\cdot b$, so the cokernel is the $(n-2)$-nd symmetric power
-%of the cokernel of the map $\kappa(p) \otimes M$. Thus $X_{n}$ is equal to the support
-%of the cokernel of $M$ itself. 
-%
-%By Nakayama's Lemma, $X_{0}$ is the support of $M$; furthermore, the localization of $\coker M$ at $p$ is 0 if and only if
-%one of the 
-%$2\times 2$ minors of $M$ is a unit locally at $p$ so $X_{0}$, so this is defined
-%set-theoretically by $I_{2}(M)$.
-%
-%It now follows from Theorem~\ref{WMACE} that all the $X_{i}$ are equal, so $EN(M)$ is 
-%acyclic if and only if $EN(M)^{*}$ is acyclic. 
-%
-%
-%Since $M$ is 1-generic the entries of of the second row of $M$ are linearly independent, and since the dimension of the span of all the linear forms is at least $n+1$, some element in the first row is outside the span of the the elements in the second. After a permutation of columns we may assume that $l_{1,1}, l_{2,1}, l_{2,2},\dots l_{2,n}$ are linearly independent, and we may take them to be a subset of the variables, say $x_{0},\dots x_{n+1}$
-%
-%We next show by induction on $n$ that  $I_{2}(M)$ is prime. In the case $n=2$ we have $I_{2}(M) =  (x_{0}x_{2}-x_{1}l_{1,2})$ which obviously does not factor. 
-%
-%Now suppose that $n>2$, and let $M'$ be the matrix $M$ with the first column omitted. we know by induction that $I_{2}(M')$ is prime of codimension $n-2$. Since $I:=I_{2}(M)$ does not have the maximal ideal as an associated prime, it is saturated. The ideal $I_{2}(M)+x_{0}$ properly contains $I_{2}(M')$ and thus has codimension $\geq n-1$ in $S/x_{0}$, whence we see that every component of $I_{2}(M)$ meets the open set
-%$x_{0} = 1$. Restricting to this open set
-%\end{proof}
-
-%
-%The first non-trivial example of a finite free resolution is the Koszul complex on 3 variables, which is the minimal $S = k[x,y,z]$-free resolution of the module $S/(x,y,z)$:
-%$$
-%0\to S(-3) \rTo^{
-%\begin{pmatrix}
-%x\\y\\z 
-%\end{pmatrix}}
-% S^3(-2) \rTo^{\begin{pmatrix}
-%0&-z&y\\
-%z&0&-x\\
-%-y&x &0
-%\end{pmatrix}}
-%S^3(-1) \rTo^{
-%\begin{pmatrix}
-%x&y&z
-%\end{pmatrix}}
-%S
-%$$
-%In fact this is the first example that Hilbert presented in his famous paper \cite{}. 																											
-
-\section{Syzygies and the Clifford index}
-Green's Conjecture, Voisin's Theorem, Ein-Lazarsfeld Theorem --- all cheerful facts. proof that low gonality implies long linear part.
-
-\subsection{Low genus canonical embeddings} Schreyer's table (include $g=9$)?
-
-\section{Cheerful facts about Stillman's problem}
-%\section{Low degree}
 
 \input{footer}
