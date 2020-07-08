@@ -1316,6 +1316,7 @@ The extended definition is justified by the fact that it satisfies the same prop
 
 \begin{theorem}\label{justification of general linkage} The relation of direct linkage is symmetric. Moreover, if $X,Y\subset \PP^{3}$ are purely 1-dimensional subschemes and $X$ is linked to $Y$ by the complete intersection $Z$ of surfaces of degrees $d_{1}, d_{2}$, then
 \begin{enumerate}
+\item $Y$ is linked to $X$ by $Z$; that is, linkage is symmetric.
  \item $\deg X+\deg Y = \deg Z = d_{1}d_{2}$.
  \item  The arithmetic genera of $X$ and $Y$ are related by
 $$
@@ -1394,13 +1395,13 @@ $\deg \Proj(R/I) +\deg \Proj(R/(G:I)) = \deg \Proj(R/G)$.
 
  \begin{proof}[Proof of Theorem~\ref{justification of general linkage}
 ] 2) Suppose that $D$ is a complete intersection of surfaces of degrees $d_1,d_2$, and 
-$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. Prove by unmixedness that 
-$\cI_C = (\cI_D:\cI_{C'})$,  and by local duality (?) that 
-$$
-\omega_{C'} = \cHom_{\cO_D}(\cO_C, \omega_D) = 
-\cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))
-=  \frac{(\cI_D:\cI_C)}{\cI_{D}}(d_1+d_2-4).
-$$
+$C\subset D$ is unmixed of dim 1. Define $C'$ by $\cI_{C'} = (\cI_D:\cI_C)$. 
+By Lemma~\ref{double colon},
+\begin{align*}
+ \omega_{C'} &= \cHom_{\cO_D}(\cO_C, \omega_D) 
+ = \cHom_{\cO_D}(\cO_C, \cO_D(d_1+d_2-4))\\
+&=  \frac{(\cI_D:\cI_C)}{\cI_{D}}(d_1+d_2-4).
+\end{align*}
 Thus there is an exact sequence
 $$
 0\to \omega_{C'}(-d_1-d_2+4) \to \cO_D \to \cO_C \to 0,
@@ -1408,78 +1409,39 @@ $$
 whence
 $$
  \chi(\cO_D(e)) =
- \chi(\omega_{C'}(-d_1-d_2+4+e) +
+ \chi(\omega_{C'}(-d_1-d_2+4+e)) +
  \chi(\cO_C(e)).
  $$
  Applying the adjunction formula twice, we see that the arithmetic genus of $D$ is
  $$
- p_a(D) = \frac{d_1d_2(d_1+d_2-4)}{2}+1,
+ p_a(D) = \frac{d_1d_2(d_1+d_2-4)}{2}+1.
  $$
- so equating the constant terms in the expression above
+ Equating the constant terms in the expression above
  gives
  $$
- - \frac{d_1d_2(d_1+d_2-4)}{2} = 
-1-p_a(C) -
-\chi(\omega_{C'}(-d_1-d_2+4))+1.
+(*)\qquad 1 - \bigl(\frac{d_1d_2(d_1+d_2-4)}{2} +1\bigr) = 
+1-p_a(C) +
+\chi(\omega_{C'}(-d_1-d_2+4)).
 $$
 Now 
+\begin{align*}
+ \chi(\omega_{C'}(-d_1-d_2+4)) &= 2p_a(C') -2 + deg(C')(-d_1-d_2+4) + 1- p_a(C)\\
+&= p_a(C')-1- deg(C')(d_1+d_2-4).
+\end{align*}
+Substituting this into (*) and using the fact that $\deg C + \deg C' = \deg D = d_{1}d_{2}$
+we get 
 $$
-\chi(\omega_{C'}(-d_1-d_2+4)) = 2p_a(C') -2 + deg(C')(-d_1-d_2+4) + 1- p_a(C')
-= p_a(C')+1- deg(C')(d_1+d_2+4).
+(\deg C' - \frac{\deg C+\deg C'}{2})(d_{1}+d_{2}-4)= p_{a}(C')-p_{a}(C);
 $$
- \fix{signs!}
-Computing Hilbert polynomials and applying RR gives the genus formula.
+that is, 
+$$
+(\deg C' - \deg C)\frac{d_{1}+d_{2}-4}{2} = p_{a}(C')-p_{a}(C)
+$$
+as required.
 
  \end{proof}
 
-We can apply Lemma~\ref{double colon} to the ideals of purely 1-dimensional subschemes of $\PP^{3}$ to get:
-\begin{corollary}
-\begin{enumerate}
-\item Direct linkage is a symmetric relation: if $X,Y$ are purely 1-dimensional subschemes of $\PP^{3}$ and $X$ is directly linked to $Y$ by $Z$, then
-$Y$ is directly linked to $X$ by $Z$. 
-\item $\deg X+\deg Y = \deg Z$
-\item If $Z$ is the complete intersection of surfaces of degrees $d_{1}, d_{2}$, then
 
-\end{enumerate}
-\end{corollary}
-
-\begin{proof}
- 1) Immedate from part 1) of Lemma~\ref{double colon}.
- 
- 2) Immedate from part 2) of Lemma~\ref{double colon}.
- 
-3) Suppose that $Z$ is the complete intersection of surfaces $f_{1}, f_{2} \in S = k[x_{0},\dots,x_{3}]$ of degrees $d_{1}, d_{2}$. Writing
-$G = (f_{1}, f_{2})$ and $I$ for the homogeneous ideals of $Z$ and $X$ in $\PP^{3}$. Taking the grading into
-account, we have $\omega_{S/G} = S/G[d_{1}+d_{2}-4].$
-
-From the formula  $\omega_{R/I} = (G:I)/G[d_{1}+d_{2}-4$ we see that 
-$$
-H_{Z}(n) = H_{Y}(n) + H_{\omega_{R/I}}(-(d_{1}+d_{2}-4)).
-$$
-
-$$
-H_{\omega_{X}}(n) = H_{Z}(n) - H_{Y}((n+d_{1}+d_{2}-4) ).
-$$
- \fix{this should be $H_{\omega_{X}}(n-???)$, where the shift
-comes from the shift of $\omega_{Z}$. That will make the next couple of formulas correct}
-
-Since the degree of $\omega_{X}$ is $2p_{a}(X) -2$, and the leading coefficient of the 
-Hilbert polynomial of $\omega_{X}(d_{1}+d_{2}-4$ we get 
-$2p_{a}(X) -2 = \deg Z - \deg Y$, and symmetrically 
-$2p_{a}(Y) -2 = \deg Z - \deg X$.
-
-Subtracting the second of these expressions from the first, we get
-$2p_{a}(X)-2p_{a}(Y) = \deg X -\deg Y$
-
- then, writing $S = k[x_{0},\dots, x_{3}]$, we see from the free resolution
-$$
-0\to S(-d_{1}-d_{2}) \to S(-d_{1})\oplus S(-d_{2}) \to S \to S/I_{Z}
-$$
-we see that the Hilbert polynomial of $Z$ is $H_{Z}(n)= d_{1}d_{2}(n + d+e-4)$. Thus so the arithmetic genus of $Z$ is Moreover, the sum of the degrees of $X$ and $Y$ is the degree of $Z$, and
-the sum of the constant terms of the Hilbert polynomial
-\end{proof}
-
-\fix{ This will become a theorem!} 
 \begin{fact} We say that curves $C,C'\subset \PP^{3}$ are ``connected by a linkage'' if $C\cup C'$
 is a complete intersection.
  The Hartshorne-Rao Theorem \cite{} asserts that 
@@ -1488,20 +1450,23 @@ $C$ and $C'$ can be connected by an even length sequence of linkages if and only
 
 
 
-Construction of curves with given Rao module: Bourbaki's theorem.
 %\end{proof}
 
-\begin{exercise} (Schwartau) Linkage addition. \fix{Put this somewhere later.}
- 
-\end{exercise}
 
 
 TODO:
-prove: linked curves have dual Rao modules; state converse.
-state minimal linkage, all curves derived.
-state general curves of high genus are minimal
+\begin{itemize}
+ \item prove: linked curves have dual Rao modules; state converse.
+\item Construction of curves with given Rao module: Bourbaki's theorem.
+\item state minimal linkage, all curves derived.
+\item state general curves of high genus are minimal
+\end{itemize}
 
 
+\begin{exercise} (Schwartau, Thesis) Let $C,C'$ be unmixed 1-dimensional subschemes of 
+$\PP^{3}$. Choose hypersurfaces $F = 0$ containing $C$ and $F'=0$ containing $C'$
+ 
+\end{exercise}
 
 
 \section{Castelnuovo's theorem: $2g+1$ is projectively normal.}
