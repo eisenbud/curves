@@ -1,0 +1,1548 @@
+              \input{header}
+
+\chapter{Duality and Linkage}
+\label{DualityChapter}
+
+
+%$$
+%\vbox{\offinterlineskip %\baselineskip=15pt
+%\halign{\strut\hfil# \ \vrule\quad&# \ &# \ &# \ &# \ &# \ &# \ 
+%&# \ &# \ &# \ &# \ &# \ 
+%\cr
+%degree&\cr
+%\noalign {\hrule}
+%0&1&--&--&--&--&--&--\cr
+%1&--&17&46&45&4&--&--\cr
+%2&--&--&--&--&25&18&4\cr
+%\noalign{\bigskip}
+%\omit&\multispan{8}{\bf Conjectural shape of $F_\bullet$}\cr
+%\noalign{\smallskip}
+%}}
+%$$
+%
+%
+%
+%
+%\centerline{\scriptsize
+%\begin{tabular}{r|ccc} 
+%$j\backslash i$&0&1&2\\ 
+%\hline 
+%0&1&$-$&$-$\\ 
+%1&$-$&3&2\\ 
+%\end{tabular}}
+%
+%
+%$$
+%\begin{matrix} 
+%j\backslash i&\vline&0   &  1    & \cdots & n    \cr\hline
+%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+%       0&\vline&\beta_{0,0}&\beta_{1,1}&\cdots&\beta_{n,n}\cr
+%       1&\vline&\beta_{0,1}&\beta_{1,2}&\cdots&\beta_{n,n+1}\cr
+%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+%\end{matrix}
+%$$         
+%
+%
+\def\length{{\rm length}}
+\section{Introduction} 
+In this Chapter we will study  invariants associated to a free resolution, or syzygies, of the homogeneous coordinate ring of a curve in projective space, with an emphasis on their relation to the varieties (or schemes) containing the curve. We have two cases in mind:
+
+For curves in $\PP^{3}$ we ask about the relationship of a curve to the 1-dimensional complete intersections containing it---this is the theory of \emph{linkage}. The theory leads quickly away from smooth curves to other purely 1-dimensional subschemes of $\PP^{3}$, and to the canonical (or dualizing) sheaves of these schemes, so we will spend some time on the general theory of dualizing sheaves.
+
+Once a curve is embedded in projective space, questions about the curve are also questions in commutative algebra. From the work of Emmy Noether in the 1920s through the 1950s commutative algebra focused on the theory of ideals in Noetherian rings. But with the work of Auslander, Buchsbaum and Serre homological techniques became important. This means, roughly, focusing on modules over these rings (representation theory) and on complexes of modules, especially free resolutions. The groundwork for this extension had of course been laid by Cayley, Hilbert, Macaulay, Gr\"obner\dots, but always in the context of polynomial rings. 
+
+\section{Modules and sheaves: local and global cohomology}
+
+When we study projective varieties both graded modules and the sheaves associated to them play a role. As Serre explained in \cite{FAC}, the category of coherent sheaves is the category of finitely generated graded modules \emph{modulo} the subcategory of graded modules of finite length. One expression of this is the relationship between local and global cohomology, which we will explain in this section. For the sake of simplicity, we will stick with coherent sheaves on projective space.
+
+Let $S= k[x_{0}, \dots, x_{n}]$, the homogeneous coordinate ring of $\PP^{n}$, and write. Recall that the cohomology of the sheaf $\cM$ associated to a graded $S$-module $M$ is the cohomology of the Cech complex:
+$$
+\cC(M): 0\to \bigoplus_{0\leq i \leq n}^{n} M_{x_{i}} \to \bigoplus_{0\leq i<j\leq n} M_{x_{i}x_{j}} \to \cdots
+$$
+where $M_{m}$ denotes the localization of $M$ at the powers of $m$, corresponding to the restriction of the sheaf to the open set where $m \neq 0$. The same formula works for a module 
+over any finitely generated graded $k$-algebra $R$ and the corresponding sheaf on $\Proj R$.
+The homology of this complex at the term
+$$
+\bigoplus_{0\leq j_{0}<j_{1}<\cdots<j_{i}\leq n} M_{x_{j_{0}}x_{j_{1}}\cdots x_{j_{i}}}
+$$
+is 
+$$
+H^{i}_{*}(\cM):= \bigoplus_{d\in \ZZ} H^{i}(\cM(d)),
+$$
+the sum of the $i$-th cohomology spaces of all twists of $\cM$.
+
+It is easy to see that we can add $M$ itself to the left of this complex, making an augmented complex
+$$
+\cC'(M): 0\to M \to \bigoplus_{0\leq i \leq n}^{n} M_{x_{i}} \to \bigoplus_{0\leq i<j\leq n} M_{x_{i}x_{j}} \to \cdots
+$$
+We define the homology of this complex to be the \emph{local cohomology} $H_{\gm}(M)$ of $M$ with respect to the ideal $\gm := (x_{0},\dots,x_{n})$. It follows immediately that for $i\geq 1$ we have
+$H^{i}_{*}(\cM) = H^{i+1}_{\gm}(M)$, and this holds degree by degree: the local cohomology module inherits a grading from $M$ and the fact that the $x_{i}$ are homogeneous and its homogeneous component of degree $d$ is
+$H^{i}(\cM(d))$. Thus the modules $H_{\gm}^{i}$ have geometric meaning for $i\geq 2$. 
+
+We can easily elucidate the meaning for $i=0,1$ as well: First, the elements of $M$ that map to 0 in $M_{x_{j}}$ are the elements annihilated by some power of $x_{j}$ so $H^{0}_{\gm}(M)$ is the set of elements annihilated by some power of every $x_{j}$, or equivalently annihilated by some power of the maximal ideal. This is precisely the set of elements that go to 0 under the natural map
+$M\to H^{0}_{*}(\cM)$.  In particuar, if
+$M$ is the homogeneous coordinate ring $R = S/I$ of an algebraic set $X$, then $I$ is the saturated ideal of $X$ if and only if $H^{0}_{\gm}(R) = 0$.
+
+We can interpret $H^{0}_{\gm}(M)$ in module-theoretic terms too: Write 
+$(0_{M}:\gm^{e})$ for the elements of $M$ annihilated by $\gm^{e}$, and 
+$H^{0}_{\gm}(M) =(0_{M}:\gm^{\infty})$ for the union of all the $(0_{M}:\gm^{e})$. Since $M$ is Noetherian, we have
+$H^{0}_{\gm}(M) =(0_{M}:\gm^{e})$ for some $e$.  Since M is graded, this can be interpreted as the maximal submodule of $M$ of finite length. 
+
+The discussion above shows that the sequence
+$$
+0 \to H^{0}_{\gm} (M) \to M\to H^{0}_{*}(\cM)
+$$
+is exact. But from the definitions it follows at once that we can extend this to an exact sequence
+$$
+0 \to H^{0}_{\gm} (M) \to M\to H^{0}_{*}(\cM) \to H^{1}_{\gm} (M) \to 0.
+$$
+
+The module $H^{1}_{\gm}(M)$ also has an important interpretation: Consider again the case $M = R = S/I$, corresponding to a projective scheme $X$, and suppose for simplicity that 
+$n\geq 2$, so that $H^{1}(\cO_{\PP^{n}}(d)) = 0$ for all $d$. In this case the long exact sequence in cohomology associated to 
+$$
+0\to \cI_{X} \to \cO_{\PP^{n}} \to \cO_{X}\to 0,
+$$
+begins
+$$
+0\to H^{0}_{*}(\cI_{X}) \to H^{0}_{*}(\cO_{\PP^{n}}) \to H^{0}_{*}(\cO_{X})\to H^{1}_{*}(\cI_{X}) \to 0.
+$$
+Since the image of $H^{0}_{*}(\cO_{\PP^{n}}) \to H^{0}_{*}(\cO_{X})$ is  the same as
+the image of $S/I \to H^{0}_{*}(\cO_{X})$ (both are equal to $S_{X}$), 
+this shows that $H^{1}_{\gm}(S/I) = H^{1}_{*}(\cI_{X})$. This module will play an important role in the treatment of linkage, below.
+
+\begin{exercise}
+ Explain what is different from the above in the case $X\subset \PP^{1}$.
+\end{exercise}
+
+\section{Homological commutative algebra} 
+
+\fix{make remark at the end about the graded case -- or at the beginning?}
+
+In this section we review some of the basic facts from homological commutative ring theory. We work
+with local rings, but every statement can be transposed to the setting of a standard graded algebra, graded modules, and homogeneous ideals, where by a \emph{standard graded algebra} we mean a positively graded algebra $R$ over a field $k$ such that $R_{0} = k$ and $R$ is generated as an algebra by $R_{1}$. The analogue of the maximal ideal of a local ring is then the maximal homogeneous ideal (necessarily generated by $R_{1}$. We will occasionally remark on this case, but generally leave the translation to the reader.
+
+All rings in this chapter will be assumed Noetherian. To indicate that $R$ is a local ring with maximal ideal $\gm$ and residue field $R/\gm = k$, we sometimes  say: ``Let $(R,\gm,k)$ be a local ring.'') We denote by $\dim R$ the \emph{Krull dimension} of $R$; that is, the maximum length of a chain of prime ideals in $R$.
+
+\subsection{Regular local rings and syzygies}
+Let $(R,\gm,k)$ be a local ring. By the Principal Ideal Theorem \cite[]{E}, the maximal ideal $\gm$ cannot be generated by  $<\dim R$ elements.
+
+\begin{definition}
+ We say that $R$ is \emph{regular} if $\gm$ can be generated by $\dim R$ elements.
+\end{definition}
+
+This deceptively simple property was first identified as important by Krull, and later recognized by Zariski as the appropriate algebraic expression of nonsingularity: A point $p$ on a scheme $X$ is called nonsingular if and only if the local ring $R = \sO_{X,p}$ is \emph{regular}. This is justified by the fact that if $R$ is the local ring of a point $p$ on a variety over an algebraically closed field, then the cotangent space to $p$ is naturally identified with the 
+$k$-vector space $\gm/\gm^{2}$, whose dimension is, by Nakayama's Lemma, the minimal number of generators of $\gm$. 
+
+The analogue of ``regular'' in the case of a standard graded algebra $R$ is that $R$ is isomorphic to the 
+polynomial ring on a basis of $R_{1}$. Indeed, the localization of $R$ at the maximal homogeneous ideal is regular in the local sense if and only if this condition is satisfied.
+
+For the regularity of $\sO_{X,p}$ to be a reasonable algebraic analogue of non-singularity, it should of course imply
+that $X$ is reduced and irreducible at $p$; that is, a regular local ring should be a domain. This was proven by Krull, before the work of Zariski:
+
+\begin{proposition}
+ If $R$ is regular local ring is an integral domain; that is, 0 is a prime ideal.
+\end{proposition}
+\begin{proof}
+ We do induction on the dimension. If $\dim R = 0$ then by definition $\gm$ is generated by 0 elements, so $R = k$,
+ a field. If $\dim R>0$ then by the prime avoidance theorem \cite[]{E} there is an element $x$ not contained in trhe union of $\gm^{2}$ and the minimal primes of $R$. By the Principal Ideal Theorem, $R/(x)$ has dimension $\dim R -1$ and the maximal ideal $\gm/(x)$ has $\dim R-1$ generators, so $R/(x)$ is again regular.
+ 
+ By induction, $(x)$ is a prime ideal of $R$ that is not a minimal prime. If $Q$ is a minimal prime contained in $(x)$,
+ then $q\in Q$ implies $q = q'x$ for some $q'\in R$, and since $Q$ is prime, we have $q'\in Q$. Thus
+ $Q = Qx$, and it follows from Nakayama's Lemma that $Q=0$, so $R$ is a domain.
+\end{proof}
+
+This result has a consequence that leads to an important definition:
+
+\begin{corollary}
+ Let $R$ be a regular local ring of dimension $d$. If $x_{1}, \dots, x_{d}$  generate $\gm$, then 
+ $x_{i+1}$ is a nonzerodivisor modulo $(x_{1}, \dots, x_{i})$ for every $i = 1,\dots, n$
+\end{corollary}
+\begin{proof}
+ Obvious, since $R/(x_{1},\dots, x_{i})$ is again regular, and thus a domain, and $x_{i+1}\notin (x_{1},\dots,x_{i})$.
+\end{proof}
+
+We say that a sequence of elements in the maximal ideal of $R$ that satisfies the condition of the Corollary is a \emph{regular sequence}. It is convenient to extend
+the definition to modules:
+
+\begin{definition}
+ Let $R$ be a commutative ring, and let $M$ be an $R$-module. A sequence of
+ elements $x_{1}, \dots, x_{n}\in R$ is called a \emph{regular sequence on $M$}, or an
+ \emph{$M$-sequence}, if
+ $x_{i}$ is a nonzerodivisor on $M/(x_{1}, \dots x_{i-1})M$  for all $i= 1,\dots, n$, and 
+ $(x_{1}, \dots, x_{n})M \neq M$.
+\end{definition}
+
+Note that if $(R,\gm,k)$ is a local ring, $(x_{1},\dots,x_{n})\subset \gm$ and $M$ is finitely generated, then he last condition is auttomatic from Nakayama's Lemma.
+
+ Recall
+that if $M$ is a finitely generated $R$-module, then an \emph{$R$-free resolution} of $M$ is a sequence of free modules and maps
+$$
+\FF:\qquad F_{0} \lTo^{d_{1}} F_{1}\lTo^{d_{2}} F_{2}\cdots,
+$$
+an \emph{augmentation} map $F_{0} \rOnto^{d_{0}} M$ such that the kernel of $d_{i}$ is equal to the image of $d_{i+1}$ for every $i$. We say that the resolution is \emph{finite of length $n$} if $F_{n+1}= 0$ but $F_{n}\neq 0$.The resolution is called \emph{minimal} if the $d_{i}(F_{i}) \subset \gm F_{i-1}$ for all $i$; it follows from Nakayama's Lemma that this is the case if and only if the rank of $F_{i}$ is equal to the minimal
+number of generates of $\ker d_{i-1}$ for all $i$. 
+
+The minimal resolution of a module is a direct summand of any resolution; and it follows that any two minimal resolutions of a module are isomorphic~\cite[Theorem ***]{E}. 
+
+\begin{example} The Koszul complex of a sequence $x_{1}, \dots, x_{n}$: 
+Consider first a single element $x = x_{1}\in R$. We define the Koszul complex on $x$, denoted $\KK(x;R)$, to be the complex
+$$
+\KK(x; R): \quad R \lTo^{x} R \lTo 0.
+$$
+This complex is a minimal free resolution of $R/(x)$ if and only if $x$ is a nonzerodivisor contained in the maximal ideal of $R$. Observe that this is also the condition for the one element sequence $x$ to be a regular sequence.
+
+Next consider 
+a pair of elements $x_{1},x_{2}\in R$. The Koszul complex
+on $x_{1},x_{2}$ is the $R$-free complex
+$$
+\KK(x_{1}, x_{2}; R): \quad R \lTo^{
+\phi_{1}= \begin{pmatrix}
+x_{1}&x_{2} 
+\end{pmatrix}
+} R^{2}\lTo ^{
+\phi_{2}=\begin{pmatrix}
+x_{2}\\-x_{1} 
+\end{pmatrix}
+}
+R\lTo 0.
+$$
+It is obvious that $\coker \phi_{1} = R/(x_{1}, x_{2})$. Also $\ker \phi_{2}$ is the annihilator of the ideal $(x,y)$, and it follows from the theory of associated primes that this is 0 if and only if the ideal $(x_{1}, x_{2})$ contains a nonzerodivisor. For simplicity, let us assume that $x_{1}$ is a nonzerodivisor itself, although this is not actually necessary. The kernel of $\phi_{1}$ obviously consists of the elements $(y_{2},-y_{1})\in R^{2}$ such that $y_{2}x_{1} = y_{1}x_{2}$. Since we have assumed that $x_{1}$ is a nonzerodivisor,
+the element $y_{2}$ is uniquely determined by $y_{1}$ such that $y_{1}x_{2} \in (x_{1})$, usually written 
+$y_{1}\in ((x_{1}):x_{2})$. Thus, given that $x_{1}$ is a nonzerodivisor,
+the kernel of $\phi_{1} $ is equal to the image of $\phi_{2}$ if and only if $x_{2}$ is a nonzerodivisor mod $x_{1}$; that is if and only if $x_{1},x_{2}$ is a regular sequence. 
+
+Note that the right-hand term $R^{1}$ of $\KK(x_{1}, x_{2}; R)$ is somehow naturally indexed by the pair of elements $x_{1},x_{2}$; rather pedantically, we could write it as $\wedge^{2}(R^{2})$. This has the advantage that $\phi_{2}$ can be described as the result of extending $\phi_{1}$ to be a degree $-1$ derivation of the exterior algebra: if we denote the basis  elements of $R^{2}$ as $e_{1}, e_{2}$ so that $\phi_{1}(e_{i}) = x_{i}$, then
+$\phi_{2}(e_{1}\wedge e_{2}) = \phi_{1}(e_{1})e_{2} - e_{1} \phi_{1}(e_{2})$. 
+Here the negative sign comes because we have commuted the derivation, of degree $-1$, with an element of
+odd degree, $e_{1}$. This leads us to rewrite the Koszul complex in the suggestive form:
+$$
+\KK(x_{1}, x_{2}; R): \quad \bigwedge^{0}R^{2} \lTo^{
+\phi_{1}= \begin{pmatrix}
+x_{1}&x_{2} 
+\end{pmatrix}
+} \bigwedge^{1}R^{2}\lTo ^{
+\phi_{2}=\begin{pmatrix}
+x_{2}\\-x_{1} 
+\end{pmatrix}
+}
+\bigwedge^{2}R^{2}\lTo 0.
+$$
+
+In general the Koszul complex of a sequence of elements
+$\KK(x_{1}, \dots, x_{n}; R)$ is defined to be the exterior algebra of $R^{n}= \oplus_{i=1}^{n} Re_{i}$, with first differential
+$$
+\bigwedge^{0}R^{n} = R \lTo ^{
+\phi_{1 = }\begin{pmatrix}
+ x_{1}&\cdots&x_{n} 
+\end{pmatrix}
+}
+R^{n}=\bigwedge^{1}(R^{n}) 
+$$
+and the other differentials defined to extend $\phi_{1}$ to be a derivation of degree $-1$, so that 
+$$
+\phi_{m}(e_{i_1}\wedge \cdots \wedge e_{i_{m}})
+= \sum_{j= 1}^{m} (-1)^{j-1}x_{i_{j}} e_{i_{1}}\wedge\cdots \wedge \widehat{e_{i_{j}}}\wedge \cdots \wedge e_{i_{m}}).
+$$
+It is easy to check that $\phi_{m-1}\phi_{m} = 0$ for all $m\geq 1$, so $\KK(x_{1}, \dots, x_{n}; R)$ is a complex.
+
+There is a surprisingly simple necessary and sufficient condition for 
+$\KK(x_{1}, \dots, x_{n};R)$
+to be a minimal free resolution of $\coker \phi_{1} = R/(x_{1}, \dots, x_{n})$ \cite[]{E}:
+
+\begin{theorem} If $(R,\gm)$ is a local ring, then
+ the Koszul complex $\KK(x_{1}, \dots, x_{n};R)$ is a minimal free resolution (of $R/(x_{1}, \dots, x_{n})$) if and only if 
+$x_{1},\dots x_{n}$ is a regular sequence in $R$.\qed
+\end{theorem}
+This result also holds in the graded polynomial ring case, if we assume that the $x_{i}$ are all of
+strictly positive degree. For a proof, see \cite[Theorem 17.6]{E}.
+\end{example}
+
+
+Here is the homological characterization of regularity:
+
+%\begin{theorem}(Auslander, Buchsbaum, Serre \cite{}
+% A local ring $R$ is regular if and only if the following equivalent statements hold:
+% 
+% every finitely generated $R$-module has an $R$-free resolution of finite length; and indeed of length $\leq \dim R$.
+%\end{theorem}
+
+\begin{theorem}[Auslander, Buchsbaum, Serre \cite{}]\label{regularity characterized}\label{ABS}
+The following conditions on a $d$-dimensional local Noetherian ring $R$ with residue field $k$ are equivalent:
+\begin{enumerate}
+ \item $R$ is regular.
+\item Every finitely generated $R$-module has a finite free resolution.
+\item Every finitely generated $R$-module has a  free resolution of length at most $d$.
+\item A minimal set of generators $x_{1},\dots, x_{d}$ of $\gm$ is a regular sequence; equivialently,
+the Koszul complex $\KK(x_{1},\dots, x_{d};R)$ is the minimal  $R$-free resolution of  $k$.
+\item $\Ext_R^{i}(k,M) = 0$ for all $i>d$ and all finitely generated modules $M$.
+\item $\Ext_R^{d+1}(k,k) = 0$.
+\end{enumerate}
+\end{theorem}
+
+Perhaps the most interesting part of this is the implication 1) $\to$ 3), a vast extension of Hilbert's Syzygy Theorem.
+Given Theorem ***, and basic facts about the functor Tor, it is surprisingly easy to prove:
+
+\begin{proof} [Proof that 1) $\to$ 3)] Suppose that $(R,\gm,k)$ is a regular local ring $M$ be a finitely generated
+ $R$-module. Let $\FF$ be a minimal free resolution of $M$, so that the differentials of the complex of vector
+ spaces $k\otimes_{R}\FF$ are all 0. It follows that the length of $\FF$ is the maximal $i$ such that
+ $$
+ H_{i}(k\otimes_{R}\FF) = \Tor_{i}^{R}(k,M) = 0.
+ $$
+ However, we can compute $\Tor_{i}^{R}(k,M)$ using a resolution of $k$. By Corollary\ref{} and 
+ Theorem~\ref{},  the Koszul complex of a minimal sequence of generators of $\gm$  is the minimal free resolution of $k$, and it has length $d$, so $\Tor_{i}^{R}(k,M) = 0$ for $i>d$ as required.
+\end{proof}
+
+ The homological characterization of regularity enabled the proof of long-standing conjectures:
+\begin{theorem} \cite{AB} If $R$ is a regular local ring then:
+\begin{itemize}
+ \item Every localization of $R$ at a prime ideal is again a regular local ring
+  \item  $R$ is a unique factorization  domain
+\end{itemize}
+ \end{theorem}
+ 
+ \subsection{Projective dimension}
+The first new invariant that we can read from the minimal $S$-free resolution of a module $M$ is its length; that is, the number of nonzero maps, which is finite by the Syzygy Theorem. This is called the \emph{projective dimension} of $M$ as an $S$-module, written $pd_{S}M$. An older name, in some ways more suitable, was \emph{homological codimension}; this is justified by the following results:
+
+\begin{proposition}\label{pd lower bound}
+If $M$ is a graded $S$-module then $\pd(M)$ is at least the codimension of the support of $M$.
+\end{proposition}
+
+In case $\pd(M)$ is equal to the codimension of the support of $M$, we say that $M$ is a
+Cohen-Macaulay $S$-module, or equivalently that the sheaf $\widetilde M$ is 
+\emph{arithmetically Cohen-Macaulay}. When $M = S_{X}$, the homogeneous coordinate ring of a projective scheme $X$, we say that $X$ is itself is arithmetically Cohen-Macaulay. From the examples above we see that plane curves, and also the twisted cubic, are Cohen-Macaulay.
+
+A famous result of Auslander and Buchsbaum clarifies the meaning of projective dimension. We define the 
+\emph{depth} of $M$ to be the maximum length $\ell$ of a \emph{regular sequence on $M$}; that is, a sequence $G_{1},\dots,G_{\ell}$ of homogeneous forms of strictly positive degree such that 
+\begin{align*}
+G_{1} &\hbox{ is a nonzerodivisor on } M;\\
+G_{2} &\hbox{ is a nonzerodivisor on } M/G_{1}M;\\
+\vdots&\phantom{\hbox{ is a nonzerodivisor on } }\vdots\\
+G_{\ell} &\hbox{ is a nonzerodivisor on } M/(G_{1},\dots,G_{\ell-1})M.
+\end{align*}
+
+\begin{theorem}
+If $M$ is a finitely generated graded module over the polynomial ring $S := \CC[x_{0},\dots,x_{n}]$, and $M$ has depth $\ell$, then the projective dimension of $M$ is $n+1-\ell$.
+\end{theorem}
+
+
+Suppose again that $M$ is a finitely generated graded module. Every associated prime of $M$ must then be homogeneous, and, since the set of zerodivisors on $M$ is the union of all the associated primes,  there is form $G_{1}$ of positive degree that is a nonzerodivisor on $M$ if and only if the maximal ideal $\gm$ is not an associated prime of $M$, or equivalently $M$ contains no element annihilated by $\gm$ \fix{this uses prime avoidance too; probably should have a reference}. Since $H^{1}_{gm}$ is the submodule of all elements of $M$ annihilated by a power of $\gm$, we see that
+the projective dimension of $M$ is $< n+1$ if and only $H^{0}_{\gm}(M) = 0$, or equivalently
+$M$ is a submodule of $H^{0}_{*}(\widetilde M)$.
+
+Though this is not obvious from the definition, all maximal regular sequences on $M$ have the same length, and if the depth of $M$ is $\ell$ then a sequence of general linear forms of length $\ell$ is a regular sequence. This makes the depth easier to compute. Even better, the depth has an interpretation in terms of  cohomology:
+
+\begin{theorem}\label{lc char of depth}
+Let $M$ be a finitely generated graded $S$-module. The depth of $M$ is the smallest integer $i$ such that $H^{i}_{\gm}(M) \neq 0$.
+\end{theorem}
+ 
+ 
+\begin{exercise}
+ Prove Theorem~\ref{lc char of depth} by induction on the length of a maximal regular sequence.
+\end{exercise}
+We can easily translate this into global cohomology in the case of a module of twisted global sections:
+
+\begin{theorem} Suppose that $X\subset \PP^{n}$ is a  subscheme without 0-dimensional (isolated or embedded) components. The module $M = \oplus_{t\in \ZZ}H^{0}(\cO_{X}(t))$
+is finitely generated, and $\depth M$ is the smallest strictly positive integer $\ell$ such that 
+$H^{\ell+1}(\cO_{X}(t)) \neq 0$  for some $t$.
+\end{theorem}
+
+
+
+ \subsection{Cohen-Macaulay rings}
+
+ It is quite possible for a local ring $(R,\gm, k)$ of dimension $d$ to contain a regular sequence of length $d$
+ without being regular; an easy example is the 2-dimensional local ring
+ $$
+ R = k[[x,y, z]]/(y^{4}-x^{3}z) \cong k[[s^{4}, s^{3}t, t^{4}]]
+ $$
+In fact, we claim that $z,x$ is such a regular sequence. Since the ring $R$ is 2-dimensional, and the maximal ideal requires 3 generators $x,y,z$, the ring $R$ is not regular. 
+
+\begin{definition}
+A local ring $(R,\gm,k)$ of dimension $d$ is said to be \emph{Cohen-Macaulay}  if $\gm$ contains a regular sequence of length $d$.
+\end{definition}
+ Note that every 0-dimensional (that is, Artinian) local ring is automatically Cohen-Macaulay.
+ 
+The Cohen-Macaulay condition is made easier to check by the following important homological interpretation:
+
+\begin{theorem}\label{depth}
+Let $(R,\gm, k)$ be a local ring, and let $I\subset \gm$ be an ideal. 
+Let $M$ be a finitely generated 
+ $R$-module. Every maximal $M$-sequence in $I$ has the same length, called the \emph{depth of $I$ on $R$}, and this number is the smallest integer $i$ such that
+ $\Ext^{i}_{R}(R/I, M)\neq 0$. Moreover, if $x_{1}, \dots, x_{i}$ is a maximal $M$-sequence
+ in $I$ then $\Hom_{R}(R/I, M/(x_{1}, \dots, x_{i})= \Ext^{i}_{R}(R/I, M)$ is independent of the maximal regular sequence.
+\end{theorem}
+ 
+ 
+\begin{proof} Suppose that $x_{1}, \dots, x_{i}\in \gm$ is a maximal regular sequence
+on $M$. We will show by induction on $i$ that $\Ext^{i}_{R}(R/I, M) = \Hom(R/I,  M/(x_{1}, \dots, x_{i}) \neq 0$ and
+that $\Ext^{j}_{R}(R/I,M) = 0$ for $j<i$.
+
+First suppose $i=0$; that is, every element of $I$ is
+a zero-divisor on $M$. This means that $I$ is contained in the union of the finitely
+many associated primes of $M$. By the Prime Avoidance Lemma \cite[****]{E} I is contained in a single associated prime of $M$, and thus $I$ annihilates a nonzero  element $m\in M$
+of $M$, so that $\Hom(R/I,M)$ contains a nonzero homomorphism sending the class of 1 to $m$.
+
+Next suppose that $i>0$. Since $x_{2}, \dots, x_{i}$ is a maximal regular sequence on $M/(x_{1})M$ we see by induction. that $\Ext_R^{i-1}(R/I, M/x_{1}M) \neq 0$ and $\Ext^{j}_{R}(R/I,M/x_{1}M) = 0$ for $j<i-1$. From the short exact sequence
+$$
+0\to M\rTo^{x_{1}}M \rTo M/x_{1}M \to 0
+$$
+we get a long exact sequence in $\Ext_R$ containing the terms
+\begin{align*}
+ &\Ext_R^{j}(R/I,M) \rTo^{0} \Ext_R^{j}(R/I,M) \rTo \Ext_R^{j}(R/I,M/x_{1}M) \rTo\\ 
+ &\Ext_R^{j+1}(R/I,M)\rTo^{0} \Ext_R^{j+1}(R/I,M) \rTo \cdots,
+\end{align*}
+where the maps marked 0 vanish because $x_{1}$ annihilates $R/I$; that is, we have 
+short exact sequences
+ $$
+0\to \Ext_R^{j}(R/I,M) \rTo\Ext_R^{j}(R/I,M/x_{1}M) \rTo \Ext_R^{j+1}(R/I,M)\to 0.
+ $$
+By induction, the middle term of this sequence vanishes for $j<i-1$, so 
+$\Ext_R^{j}(R/I,M) = 0$ for $j<i$ and 
+$$
+\Ext_R^{i}(R/I,M) \cong \Ext_R^{i-1}(R/I,M/x_{1}M) \cong \Hom(R/I, M/(x_{1}, \dots x_{i}))\neq 0
+$$
+as required.
+\end{proof}
+
+\begin{exercise}
+ Use Theorem~\ref{depth} to check that the ring
+ $$
+ R = k[[s^{4}, s^{3}t, st^{3}, t^{4}]]
+ $$
+is \emph{not} Cohen-Macaulay.
+\end{exercise}
+
+The Cohen-Macaulay property has a homological interpretation that we shall use:
+\fix{should the Auslander-Buchsbaum formula go here?}
+
+\begin{theorem} \label{lower bound for pd}
+ Let $(R,\gm,k)$ be a local ring, and suppose that $S\to R$ is a map of local  rings such that $S$ is a regular local ring and $R$ is a finitely generated $S$-module. The length of a minimal resolution of $R$ as an $S$ module
+ is at least $\dim S - \dim R$; and it is equal to this value if and only if the 
+ ring $R$ is Cohen-Macaulay.
+ \end{theorem}
+  
+  
+  By Proposition~\ref{pd lower bound}, if $C\subset \PP^{n}$ is 1-dimensional, then the projective dimension of $S_{C}$ is at least $n-1$. But we can be much more precise. Recall that a curve $C\subset \PP^{n}$ is said to be \emph{projectively normal} if the homogeneous coordinate ring of $C$ is integrally closed (which implies, in particular, that $C$ is smooth).
+
+\begin{theorem}
+ Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme. The projective dimension of the homogeneous coordinate ring $S_{C}$ of $C$  is
+$$
+ pd_{S}S_{C} = 
+\begin{cases}
+n-1 &\hbox{if $H^{1}(\sI_{C}(t)) = 0$ for all $t\in \ZZ$}\\
+n &\hbox{otherwise}.
+\end{cases}.
+$$
+Thus in the first case $S_{C}$ is Cohen-Macaulay. In particular, if $C$ is a smooth curve, the $pd_{S}(S_{C}) = n-1$ if and only if $C$ is projectively normal. \fix{we used Serre's Criterion. Ref?}
+\end{theorem}
+
+Here is a version that gives a measure of how far $S_C$ is  from being Cohen-Macaulay:
+
+\begin{theorem}
+Let $C\subset \PP^{n}$ be a purely 1-dimensional subscheme, and let  
+$$
+\FF: F_{0}\lTo^{d_{1}} F_{1}\lTo^{d_{2}} F_{2}\lTo \cdots \lTo F_{n-1}\lTo {d_{n}}F_{n}\lTo F_{n+1} \lTo 0
+$$
+be the minimal $S$-free resolution of the homogeneous coordinate ring of $C$. We have $F_{n+1}=0$, and 
+$$
+\oplus_{t\in \ZZ} (H^{1}\sI_{C}(t)) = \Hom_{\CC}(\Ext^{n}(S_{C}, S(-n-1)),\CC)
+$$ 
+which is sometimes called the \emph{Rao module} of $C$. Thus, up to a shift in grading,
+the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n}^{*}: F_{n-1}^{*}\to F_{n}$. This is a graded module of finite length.
+\end{theorem}
+
+
+\fix{Having introduced local coho, this is pretty much done.}
+
+
+\begin{theorem}
+ Let $C\subset \PP^{n}$ be a  curve (or more generally a purely 1-dimensional subscheme). The homogeneous coordinate ring $S_{C}= S/I_{C})$ of $C$ is Cohen-Macaulay if and only if
+ $H^{1}(\cI_{C}(d)) = 0 $ for all $d$.
+\end{theorem}
+
+\begin{proof}
+ Except in the trivial case $n=1$ we have $H^{1}(\cO_{\PP^{n}} (d)$ for all $d$, and since 
+$C$ is supposed purely 1-dimensional we have $H^{0}(\cO_{C}(d) = 0$ for $d<0$, so from the
+exact sequence 
+$$
+0\to \cI_{c}\to \cO_{\PP^{n}} \to \cO_{C}\to 0
+$$
+we deduce that $H^{1}(\cO_{C}(d)= 0$ for all $d<0$ in any case.
+
+
+By Theorem~\ref{lower bound for pd}, the projective dimension of $S_{C}$ is at least $\dim S -\dim S_{c}= n-1$.
+
+ Let $\gm$ be the maximal homogeneous ideal $(x_{0},\dots, x_{n})$ of 
+ the homogeneous coordinate ring $S$ of $\PP^{n}$.
+ By the Auslander-Buchsbaum formula \fix{this should be first, and we should give the graded version too(x} \ref{AB} the projective dimension
+ of $S_{C}$ is $n+1$ (the dimension of  $S$ minus the depth of $\gm S_{C}$, that is, the length of a maximal regular sequence in $S_{C}$, which can be taken to be homogeneous. 
+ 
+ If a finitely generated graded $S$-module $M$ has depth $>0$ (that is, $\gm$ contains a homogeneous nonzerdivisor on $M$) then clearly no nonzero element of $M$ is annihilated by $\gm$. The converse of this statement is a consequence of the theory of primary decomposition. Further,
+ writing $\tilde M$ for the associated coherent sheaf on $\PP^{n}$, we have a map
+ $M \to \oplus_{d\in \ZZ}H^{0}(\tilde M(d))$ whose kernel is precisely the set of elements annihilated by
+ some power of $\gm$.
+ 
+ If $J$ is the homogeneous ideal of any scheme, then by definition $J$ is saturated; that is, no element is annihilated by $\gm$, or equivalently $\gm$ is not an associated prime ideal. Thus $S/I_{C}$ has projective dimension $\leq n = \dim S - 1$.
+To simplify the notation, if $\cF$ is a coherent sheaf, then we write $H_{*}^{i}(\cF)$ for $\bigoplus_{i}H^{i}(\cF(i))$. 
+
+Suppose now that $f\in S_{C}$ is a nonzerodivisor of degree $d$ and let $H$ be the hypersurface in $\PP^{n}$ that it defines. By Theorem *** we must decide whether $S_{C}/fS_{C}$ contains a non-zerodivisor, that is, whether 
+$S_{C}/fS_{C}$ is saturated, or, equivalently, whether the map
+$$
+\alpha: S_{C}/fS_{C} \to H_{*}^{0}(\widetilde{S_{C}/fS_{C}})  = H_{*}^{0}(\cO_{H\cap C}). 
+$$
+is an injection.
+
+
+The diagram below has exact rows and columns, 
+\begin{diagram}[small]
+&& 0&&0& \\
+&&\dTo&&\dTo\\
+0&\rTo& S_{C}&\rTo^{f}&S_{C}(d)& \rTo &S_{C}/(f)(d)&\rTo&0\\
+&& \dTo&& \dTo&& \dTo^{\alpha}\\
+0&\rTo&H_{*}^{0}(\cO_{C})&\rTo^{f}&H_{*}^{0}(\cO_{C}(d)) &\rTo& H_{*}^{0}(\cO_{H\cap C}(d))&\rTo& 0\\
+&& \dTo&& \dTo&& \dTo\\
+0&\rTo&H_{*}^{1}(\cI_{C})&\rTo^{f}&H_{*}^{1}(\cI_{C}(d)) &\rTo& H_{*}^{1}(\cI_{H\cap C}(d))\\
+&& \dTo&& \dTo\\
+&&0&&0
+\end{diagram}
+and it follows from a diagram chase (the ``snake lemma'') that the kernel of $\alpha$ is the same as the kernel of 
+$$
+H_{*}^{1}(\cI_{C}) \rTo^{f} H_{*}^{1}(\cI_{C}(d)).
+$$
+ By Serre's vanishing theorem, $H_{*}^{1}(\cI_{C})$ is zero in high degree, and since multiplication by $f$ raises the degree, its kernel is 0 if and only if $H_{*}^{1}(\cI_{C})$ is zero, completing the proof.
+\end{proof}
+
+\subsection{Gorenstein rings and duality}
+Intermediate between the class of Cohen-Macaulay rings and the class of regular rings is the class of Gorenstein rings. Roughly speaking, they are the rings for which duality is the simplest. As we shall see, all complete intersections are Gorenstein, a fact that will be central to 
+our study of linkage, below.
+
+\begin{definition}
+A local ring $(R,\gm,k)$ of dimension $d$  is said to be \emph{Gorenstein} if it is Cohen-Macaulay and 
+$\Ext_R^{d}(k, R) =k$. A (not necessarily) local ring is Gorenstein if all its localizations
+are Gorenstein.
+\end{definition}
+
+If $(R,\gm,k)$ is regular then the resolution of $k$ is the Koszul complex of any set of $d$ generators of $\gm$, and we see directly that
+$\Ext_R^{d}(k, R) =k$, so $R$ is Gorenstein.
+
+\begin{proposition}
+ If $(R,\gm,k)$ is Cohen-Macaulay, and $x_{1}, \dots x_{s} \in R$ is a regular sequence, then $R$ is Gorenstein if and only if $R/(x_{1}, \dots x_{s})$ is Gorenstein.
+\end{proposition}
+ 
+\begin{proof}
+Since every regular sequence in $R$ is part of a maximal regular sequence, it suffices to prove the result when $s = d$, the dimension of $R$ so that $\overline R = R/(x_{1}, \dots x_{d})$ is Artinian. Since $R$ is Cohen-Macaulay, the smallest $i$ such that 
+$\Ext_{R}^{i}(k, R) \neq 0$ is $d$, so by Lemma~\ref{Ext and nzd}, we see that 
+$$
+\Ext_{R}^{d}(k, R) = \Ext_{R}^{0}(k, \overline R) = Hom_{\overline R}(k,\overline R)
+$$
+proving the Proposition.
+\end{proof}
+\begin{lemma}\label{Ext and nzd}
+ If $(R,\gm,k)$ is a local ring, and $x\in \gm$ is a nonzerodivisor on $N$ that annihilates $M$, and $i$ is the smallest index such that $ \Ext_R^{i}(M, N) \neq 0$, then
+ $$
+ \Ext_R^{i}(M, N) = \Ext_{R}^{i-1}(M, N/xN).
+ $$
+for all $i$. 
+ \end{lemma}
+\begin{proof}
+The element $x$ annihilates all the $Ext^{j}_{R}(M,N)$ because it annihilates $M$. 
+The short exact sequence $0\to N\rTo^{x}N \rTo N/xN \to 0$ gives rise to a long exact sequence containing the terms
+and
+$$
+0 =  Ext_{R}^{i-1}(M,N) \rTo Ext_{R}^{i-1}(M,N/xN) \rTo Ext_{R}^{i}(M,N) \rTo^{0} \cdots.
+$$
+\end{proof}
+
+The algebraic version of the canonical module of a scheme is usually called the \emph{dualizing module}:
+\begin{definition}
+ Let $(R, \gm, k)$ be a local Cohen-Macaulay ring of dimension $d$. A dualizing module for $R$ is a Cohen-Macaulay
+ $R$ module with $\dim M = d$ such that $\Ext^{d}_{R}(M,k)\cong k$.
+\end{definition}
+
+\begin{proposition}
+ Let $R$ be a local Cohen-Macaulay ring. Any two canonical modules for $R$ are isomorphic. Moreover,
+ if $R = S/I$, with $S$ regular, then $\Ext_{S}^{\codim R}(R,S)$ is a canonical module for $R$.
+\end{proposition}
+
+\begin{proof}
+ ******
+\end{proof}
+
+We shall see that $(R,\gm,k)$ is Gorenstein if and only if it is Cohen-Macaulay and 
+$R$ itself is a dualizing module. We begin with the 0-dimensional case, where we can identify the dualizing module with the injective hull of the residue field. Recall that $E$ can be characterized as a module $E$ containing a copy of $k$ such that 
+ $k$ is \emph{essential} in $E$; that is, every nonzero submodule of $E$ meets $k$; and
+$E$ maximal with this property in the sense that if $E\subsetneq E'$, then $k$ is not essential
+in $E$. Such a module always exists, by Zorn's lemma, and it is not difficult to show that it it unique up to isomorphism. Except for rings of dimension 0, it is never finitely generated.
+
+\begin{theorem}\label{duality for Gor}
+If $(R,\gm,k)$ is a local ring of dimension $0$, and $E$ is the injective hull of $k$, then 
+$(-)^{\vee} := \Hom_{R}(-,E)$ is a perfect duality on modules of finite length. That is,
+ $(-)^{\vee}$ is a contravariant equivalence of categories. Moreover, for any module $M$ of finite length we have
+\begin{enumerate}
+\item $\length\ M^{\vee} = \length\ M$; in particular, $E$ is a module of finite length $= \length\ R$.
+\item The natural map $\nu_{M}: M\to M^{\vee\vee}$ is an isomorphism.
+\item The ring $R$ is Gorenstein if and only if $R$ has a unique minimal nonzero ideal.
+\item The ring $R$ is Gorenstein if and only if $R\cong E$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+First, since $E$ is injective the functor $Hom_{R}(-,E)$ is exact. Since $k$ is essential in $E$, 
+the largest submodule of $E$ annihilated by $\gm$ must be $k$ itself.
+
+We  prove both (1) and (2) by induction on the length of $M$. If $\length M = 1$, then $M = k$.
+The previous remark shows that  
+$k^{\vee} = k$, so $k^{\vee\vee}= k$, proving (1). Choosing a generator $\phi$ of
+$k^{\vee}$ and a generator $\alpha$ of $k$, we see that 
+$\nu_{k}$ takes $\alpha$ to the map sending $\phi$ to $\phi(\alpha) \neq 0$. Since $k$ is a simple module, $\nu_{k}: k\to k$ is a monomorphism, and thus an isomorphism, as requireed.
+
+  Now suppose by induction that (1) and (2) are true for all modules $M'$ of length at most $j$, and that $M$ is a module of length $j+1$.
+  
+Any minimal nonzero submodule of $M$ is isomorphic to $k$, so we may choose an exact sequence
+$0\to k\to M\to M'\to 0$. Applying $(-)^{\vee}$ we get an exact sequence
+$0\to M'^{\vee}\to M^{\vee }\to k^{\vee} \to 0$, proving (1) for $M$, and a diagram
+$$
+\begin{diagram}[small]
+ 0&\rTo& k&\rTo& M&\rTo& M'&\rTo &0\\
+ &&\dTo^{\nu_{k}}&&\dTo^{\nu_{M}} &&\dTo^{\nu_{M'}}\\
+ 0&\rTo& k^{\vee\vee}&\rTo& M^{\vee\vee}&\rTo& M'^{\vee\vee}&\rTo& 0\\
+\end{diagram}
+$$
+with exact rows, proving (2) for $M$, and completing the induction.
+
+To prove (3) we note that if $R$  has a unique minimal ideal $I \cong k$ if and only if
+$\Hom_{R}(k,R) = k$. Since any 0-dimensional ring is Cohen-Macaulay, this is equivalent to the Gorenstein property. 
+
+Finally we prove (4): Since $E$ has unique miminal ideal in any case, we see that
+$R\cong E$ implies that $R$ is Gorenstein. Conversely, suppose that $I\cong k$ is the
+unique minimal nonzero ideal of $R$. The unique map
+$I\hookleftarrow E$ extends to a map $\phi: R\to E$. If $\ker \phi$ were nonzero it would contain $I$, so $\phi$ is a monomorphism. Moreover,
+$\length R = \length R^{\vee} = E$, so $\phi$ is surjective as well.
+\end{proof}
+
+\begin{fact}
+Conditions (2) and (4) of Theorem~\ref{duality for Gor} have extensions to the higher dimensional case, though we will not need to use them:
+
+\begin{theorem}\label{Gorenstein characterized}
+ Suppose that $(R, \gm, k)$ is a $d$-dimensional local Noetherian ring $R$. the following conditions are equivalent:
+\begin{enumerate}
+\item $R$ is Gorenstein.
+\item $R$ has finite injective dimension (equivalently, injective dimension $d$) as an $R$-module.
+\item $R$ is a Cohen-Macaulay ring and the functor $\Hom_{R}(-,R)$ is a perfect duality on the category of maximal Cohen-Macaulay modules.
+  \end{enumerate}  
+  \qed
+\end{theorem}
+\end{fact}
+
+Note that the equivalence of 1) and s) in Theorem~\ref{Gorenstein characterized} implies that the localization of a Gorenstein ring is Gorenstein, something not obvious from the definition.
+
+
+%The following proof is incomplete
+%\begin{proof} 
+%Suppose first that $d=0$ and $R$ is Gorenstein, so that $\Hom_{R}(k,R) = k$ ---that is, $R$ has a unique minimal submodule $N$, necessarily $\cong k$.
+%
+%Let $E$ be the $R$-injective hull of $k$. The inclusion $N\subset R$ induces an inclusion $R\subset E$. Since
+%$\Hom_{R}(-, E)$ is an exact functor, and $\Hom_{R}(k, E)\cong k$, it follows by induction on the length of a finitely generated module $M$ that the length of $M$ is equal to the length of $\Hom_{R}(M, E)$.  Thus
+%$E = \Hom_{R}(R,E)$ has the same length as $R$, so $R$ and $E$ coincide. Thus $\Ext^{i}_{R}(M,R)$ vanishes for all $i>0$ and all $R$-modules $M$. This shows that 1) implies 2) and 3) in this case.s
+%
+%Next suppose that $d=0$ and $\Ext^{1}_{R}(k,R) = 0$. So 2) implies 3) in this case.
+%
+%To show that 3) implies 1), let $N$ be the largest submodule of $R$ that is annihilated by $\gm$, so that $N \cong k^{s}$ for some $s$. We must show that $s = 1$. 
+%The vanishing of $\Ext^{1}_{R}(R/N,R)$ shows that the map we get a short exact sequence
+%$$
+%\Hom_{R}(R,R) \to \Hom_{R}(N, R) \cong N = k^{s}
+%$$
+%is surjective. But this map factors through $R\to R/\gm = k$, so $s=1$, so $R$ is Gorenstein.
+%
+%Now we do induction on $d$,  and we may suppose $d>0$. Suppose first that  there is a nonzerodivisor $x\in \gm$.
+%
+%\fix{ the following para is almost right; the resolution over R/x is the mapping cone, ... -- the conditions 2,3 refer to Exts over different rings} From the exact sequences $(*)$ of Lemma~\ref{Ext and nzd} we see that each of the three conditions of the
+%Theorem for $R/(x)$ is equivalent to the corresponding condition for $R$. By induction, the three conditions are
+%equivalent for $R/(x)$, so they are equivalent for $R$.
+%
+%If $R$ is Gorenstein then it is Cohen-Macaulay by definition, and since $d>0$, $\gm$ automatically contains a nonzerodivisor. Thus, to conclude the proof, it suffices to show that $\Ext_{R}^{d+1}(k,R) = 0$ implies that $R$ contains a nonzerodivisor.
+%
+%In the contrary case, the prime ideal $\gm$ is an associated prime of 0; this means that there is a submodule $N$ of $R$ isomorphic to $k$.
+%\end{proof}
+%
+%$S = S_{0} \oplus S_{1}\oplus\cdots$ be a local or a positively graded ring with $S_{0}$ a field,
+% and let $M$ be a finitely generated graded $S$-module. An  \emph{$S$-free resolution} of $M$ is a sequence of graded free $R$ modules $F_{i}$ and homogeneous degree 0 maps $d_{i}$ of the form
+%$$
+%\FF:\qquad F_{0}:=\oplus_{j}R(-j)^{\beta_{0,j}} \lTo^{d_{1}} F_{1}:=\oplus_{j}R(-j)^{\beta_{0,j}}\lTo^{d_{2}} F_{2}\cdots,
+%$$
+%where $R(-j)$ denotes the rank one free $R$-module with generator in degree $j$ (so that 
+%$R(-j)_{k} = R_{k-j}$), 
+%and an \emph{augmentation} map $F_{0} \rOnto^{d_{0}} M$ such that the kernel of $d_{i}$ is equal to the image of $d_{i+1}$ for every $i$. 
+%
+%The resolution $\FF$ is \emph{minimal} if every entry of matrices representing the $d_{i}$ (for $i>0$ is of strictly positive degree. A minimal free resolution of $M$ can be constructed inductively by first choosing a minimal set of homogeneous generators of $M$, determining the map $d_{0}$, then choosing a minimal set of generators of $\ker d_{0}$, determining a map
+%$F_{1} \rOnto \ker d_{0} \subset F_{0}$, and so on. The image of $F_{i}$ in $F_{i-1}$ is called the $i$-th syzygy module of $M$. A syzygy of a set of elements 
+%$e_{1}, \dots, e_{s}$ of an $R$-module is a linear relation over $R$; that is, a sequence of elements
+%$r_{1},\dots, r_{s}$ such that $\sum_{i}r_{i}e_{i} = 0$. The set of all syzygies is thus a submodule of the free module on $s$ generators. Thus the minimal free resolution of $M$ is a way of
+%packaging a minimal set of  generators of the module of syzygies of the generators of $M$; then szygyies of the generators of the syzygy module; etc.
+
+
+
+
+\section {Dualizing sheaves} 
+
+\fix{Put the linkage computation of the dualizing sheaf in here explicitly!}
+%%in the text below we used \HH instead of H for cohomology. This is fixed with a macro:
+\def\HH{{H}}
+
+Other than  the structure sheaf, the most important line bundle on a smooth variety   $X$ over $\CC$ is the top exterior power of the complex cotangent bundle, usually called the canonical line bundle or canonical sheaf $\omega_{X}$. 
+
+In the case of curves  we have many times used it's key property, that if  $\cF$  is a line bundle on the smooth curve  $C$, then $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
+$$
+\Hom_{C}(\sF, \omega_{C})
+\cong 
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+The reward for writing the formula this way is that, in this form, 
+it holds for any coherent sheaf $\cF$:
+
+\begin{proposition} Let $C$ be a smooth curve.
+There are natural isomorphisms
+$$
+\eta_{\sF}: \Hom(\sF,\omega_{C}) =  
+\to 
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+for any coherent sheaf $\cF$ on $C$.
+\end{proposition}
+
+\begin{proof}
+ Let $\cF'$ be the torsion subsheaf  of $\cF$, a sheaf of finite support. And let
+ $\cF'' = \cF/\cF'$.
+ Since
+$\cF'$ is locally free, the sequence is locally split (in fact it is globally split too, but we don't need this.)
+
+Since $\omega_{C}$ is a line bundle, 
+$$
+\sHom_{\PP^1}(\sF, \omega_{C}) = 
+\sHom_{\PP^1}(\sF', \omega_{C}) \oplus \sHom_{\PP^1}(\sF'', \omega_{C})  = 
+\sHom_{\PP^1}(\sF', \omega_{C}) 
+$$
+and 
+$\HH^{1}(\cF) = \HH^{1}(\cF'')
+$
+because $\HH^{1}(\cF') = 0$, so the duality formula for arbitrary coherent sheaves follows from the case of line bundles.
+\end{proof}
+
+An equivalent formulation can be made using a \emph{residue isomorphism} $\eta: H^{1}\omega \to k$. When $C$ is smooth over $\CC$, then regarding elements of 
+$\HH^{1}(\omega_{C})$ as rational differential forms modulo linear equivalence,
+we may take $\eta$ to be the classical ``sum of the residues'' map of complex analysis.
+Of course, given the natural isomorphisms $\eta_{\sF}$ above, we can take
+$$
+\eta := \eta_{\omega_{C}}(1_{\omega_{C}}.
+$$ Conversely,an isomorphism $\eta$, 
+determines, for every $\sF$ a map
+$$
+\eta_{\sF}:\Hom_{C}(\sF, \omega_{C})
+\to
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+sending a homomorphism
+$\alpha \in \Hom_{C}(\sF, \omega_{C}) $
+to $\eta \circ \HH^{1}(\alpha)$. In particular, we see that $\eta$ itself corresponds to the 
+identity map of $\omega_{C}$  
+
+%Another manifestation of these phenomena is a
+%special case of the Serre duality theorem on $\PP^{r}$, which asserts that  there is an isomorphism $\eta: H^{r}(\omega_{\PP^{r}}) \cong k$, where $\omega_{\PP^{r}} = \cO_{\PP^{r}}(-r-1)$, the top exterior power of the cotangent bundle. Again, there is
+%a natural map
+%$$
+%H^{0}(\cF^{-1}\otimes \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), k)
+%$$
+%Of course $\cF^{-1}\otimes \omega_{\PP^{r}}$ may be rewritten as
+%$\Hom(\cF, \omega_{\PP^{r}})$, and in the form
+%$$
+%\Hom(\cF, \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), H^{r}(\omega_{\PP^{r}})) 
+%\rTo^{\eta \circ -} \Hom(H^{r}(\cF), k)
+%$$
+%the map is, as before, an isomorphism for every coherent sheaf $\cF$.
+%
+
+Grothendieck extended these ideas to all pure-dimensional projective schemes and beyond. Here is the basic definition:
+
+\begin{definition}
+If $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
+functional $\eta:\HH^{r}(\omega) \to k$ is \emph{dualizing} if the map
+$$
+f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
+\to
+\Hom_{k}(\HH^{r}(\cF), k).
+$$
+defined as above is an isomorphism for every coherent sheaf $\sF$.
+\end{definition}
+
+\begin{proposition} Any two dualizing pairs $(\omega_{X}, \eta)$ and $(\omega'_{X}, \eta')$, on a scheme $X$ are canonically isomorphic.
+\end{proposition}
+
+\begin{proof}
+We will show that there is a unique isomorphism $g: \omega\to \omega'$ making the diagram
+$$
+\begin{diagram}
+ H^{1}(\omega)&\rTo^{g}&H^{1}(\omega')\\
+ &\rdTo_{\eta}&\dTo_{\eta'}\\
+ &&k
+\end{diagram}
+$$
+commute. 
+
+ The duality property of $\omega'$ yields
+$$
+\Hom_{X}(\omega, \omega')  = \Hom(\HH^{1}(\omega), k).
+$$
+Let $g: \omega \to \omega'$ be the map corresponding under this isomorphism to $\eta'$. It follows from the relation of $\eta'$ to the duality isomorphism, that 
+$\eta'g = \eta$. Similarly, we get a map $g':\omega'\to \omega$ such that
+$\eta g = \eta'$, and it also follows that $\eta gg' = f_{\eta}(gg') =  \eta$, so that
+$gg' = 1_{\omega'}$. Similarly, $g'g = 1_{\omega}$, and we are done.
+\end{proof}
+ 
+We often abuse the terminology, and say simply that $\omega$ is a \emph{dualizing sheaf} or a \emph {canonical sheaf} on $X$. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X})) = k$, then
+$\HH^{r}(\omega) \cong k$, whence $\eta$ is, in any case, unique up to a nonzero scalar. 
+
+Of course it is far from obvious that such a dualizing sheaf will exist on an arbitrary pure-dimensional scheme, and in general there is no such sheaf! However, dualizing sheaves do exist on any pure-dimensional scheme that is embeddable in a smooth scheme, and thus, in particular, they exist on any projective scheme.
+
+On a smooth projective variety, Serre duality shows that we can choose the dualizing sheaf to be the top exterior power of the sheaf of differential forms, as already explained. To understand how dualizing sheaves are constructed in general, we must abandon the idea that the the canonical sheaf of $X$ must ``come from'' differential forms on $X$. For example, consider the ring $R = k[x,y,z]/x^{2}$ and the scheme $X = \Proj R$, a double line in $\PP^{2}$. Writing $d: \sO_{X}\to \Omega_{\sO_{X}/k}$ for the universal derivation, we have $0 = d(x^{2}) = 2xd(x)$ so (at least in characteristic $\neq 2$), $dx = 0$. Thus 
+\def\red{{\rm red}}
+$$
+\Omega_{\sO_{X}/k} = \Omega_{\sO_{X_{\red}}/k} = \omega_{X_{\red}};
+$$ 
+that is, the differentials do not ``see'' the nilpotent part of the structure sheaf at all. Furthermore, 
+$
+h^{0}(\sO_{X}(1)) = 3
+$
+(as would be the case with a smooth conic in the plane)
+while 
+$
+h^{1}(\Omega_{X} (-1)) = h^{1}(\Omega_{X_{red}} (-1)) = h^{1}\sO_{\PP^{1}}(-3) = 2
+$
+so Serre duality would fail if we took $\omega_{X} = \Omega_{X}$ as we would do for smooth curves.
+
+In general, a dualizing sheaf on a scheme $X$ can be constructed by comparing $X$ with a 
+variety $Y$ that already has a dualizing sheaf, such as $Y=\PP^{r}$. To understand the motivation behind the construction, 
+consider first the situation where $\iota: X\subset Y$ is a closed immersion of smooth varieties, and suppose thta $X$ has dimension $d$ and codimension $c$ in $Y$.
+In this case the conormal bundle of $X$ in $Y$ is by definition the sheaf
+$\cI/\cI^{2}$, where $\cI$ is the ideal sheaf of $X$ in $Y$. If $p\in X$ then because $X$ is smooth, the kernel of the map of local rings $\cO_{Y,p} \rTo^{\iota^{*}} \cO_{X,p}$ is generated by a subset of a set of minimal generators of the maximal ideal $\gm_{Y,p}\subset \cO_{Y,p}$, and is thus a complete intersection. It follows that the left-most term of the right exact sequence
+$$
+\cI/\cI^{2} \to \iota^{*}(\Omega_{Y}) \to\Omega_{X} \to 0
+$$
+is a vector bundle on $X$ whose rank is  $c = \rank \Omega_{Y} -\rank \Omega_{X}$, so the sequence is exact on the left as well. All the terms are vector bundles on $X$, and thus the sequence
+is locally split. It follows that 
+$$
+\omega_X = \wedge^{d}\Omega_{X} = \wedge^{c+d} \iota^{*}(\Omega_{Y})\otimes \wedge^{c}(\cI/\cI^{2})^{\vee} = \sHom(\wedge^{c}(\cI/\cI^{2}), \omega_{Y}).
+$$ 
+
+The next step is to recognize that this expression for $\omega_X$ can be interpreted as saying, always in the case $X\subset Y$ is smooth of
+codimension $c$, that
+$$
+\omega_{X} = \sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}).
+$$
+To motivate this formula, consider just the simple case where $X$ is a complete intersection of hypersurfaces
+of degrees $d_{i}$ in $Y = \PP^{n}$. In this case the Koszul complex
+$$
+0\to \wedge^{c} (\oplus_{i}\cO(-d_{i})) \rTo^{\phi_{c}} \cdots \to \oplus_{i}\cO(-d_{i}) \rTo^{\phi_{1}}\cO_{Y,p} \to\cO_{X,p} \to 0.
+$$
+Thus $\sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}) = \sHom(\coker \phi_{c}^{\vee}, \omega_{Y})$
+and $\coker \phi_{c}^{\vee}$ may be canonically identified with $\wedge^{c}(\cI/\cI^{2})$.
+
+This computation suggests the bold idea that the dualizing module of a closed subscheme
+$X\subset Y$ of pure codimension $c$ can be computed by the formula
+$$
+\omega_{X} : = \sExt_{Y}^{c}(\cO_{X}, \omega_{Y}),
+$$
+or, still more generally, that given any finite morphism $\pi: X\to Y$ we have
+$$
+\omega_{X} : = \sExt_{Y}^{c}(\cO_{X}, \omega_{Y}),
+$$
+Where we can give the sheaf on the right the unique structure of a sheaf on $X$
+such that $\pi_{*}\sExt_{Y}^{c}(\cO_{X}, \omega_{Y}) = \sExt_{Y}^{c}(\pi_{*}\cO_{X}, \omega_{Y})$, as explained below in the case $c=0$.
+
+The truth of this assertion implies a web of theorems proving that the sheaf 
+$\sExt_{Y}^{c}(\cO_{X}, \pi^{*}\omega_{Y})$ is independent of $\pi$; and moreover that such sheaves satisfy some form of Serre duality. For all this, see the book
+\ref{Altman-Kleiman}.
+
+We now explain the construction above in the one case we will need for studying the linkage of curves in $\PP^{3}$.
+
+
+\begin{theorem}\label{construction of omega}
+Let $\pi: X \to Y$ is a finite morphism of a purely $1$-dimensional schemes, and suppose that
+$\omega_{Y}, \eta_{y}$ is a dualizing pair on $Y$. 
+Let $\omega := \sHom(\pi_{*}\cO_{X}, \omega_{Y})$ regarded as a sheaf on $X$. There are
+natural isomorphisms 
+$$
+\eta_{\sF}: \Hom_{X}(\sF, \omega) \to \Hom(H^{1}(\sF), k),
+$$
+and thus $\omega$, together with $\eta = \eta_{\omega}(1_{\omega})$ is a dualizing pair for $X$.
+\end{theorem}
+
+Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$; in this form, at least when $X$ is smooth, it is the Riemann-Hurwitz formula \fix{did we decide on this name?} Another is the inclusion of $X$ into another curve, perhaps a complete intersection curve, and this is the one we need for linkage:
+
+\begin{corollary}\label{dualizing formula}
+ Let $X\subset Y\subset \PP^{n}$ be closed, purely 1-dimensional schemes. If  $\omega_{Y} = \sO_{Y}(d)$ for some integer $d$, then 
+ $$
+ \omega_{X} = \frac{\sI_{Y}:\sI_{X}}{\sI_{Y}}(d).
+ $$
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{construction of omega} we have 
+$$
+\omega_{X} = \sHom(\sO_{X}, \omega_{Y}) = \sHom(\sO_{X}, \sO_{Y})(d).
+$$
+Clearly any  section of $\sI_{Y}:\sI_{X}$ on on open set $U$ gives rise by multiplication to a
+map   
+$\sO_{X}(U) \to \sO_{Y}(U)$, and the sections of  $\sI_{Y}$ give the zero map,
+so there a natural mapping $\frac{\sI_{Y}:\sI_{X}}{\sI_{Y}} \to \sHom(\sO_{X}, \sO_{Y})$,
+and locally this is an isomorphism because every map from $\sO_{X}$ is determined by the image of the global section 1.
+\end{proof}
+
+
+\begin{proof}[Proof of Theorem~\ref{construction of omega}]
+The sheaf  
+$\omega:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
+which is, a priori a sheaf on $Y$, has the structure of a sheaf on $X$
+specified by the property that
+$$
+\pi_{*}(\omega) = \sHom(\pi_{*}\cO_{X}, \omega_{Y}).
+$$
+as a sheaf on $Y$.
+
+To see that there is such a sheaf, take an open affine cover $\{U_{i}\}$ of $Y$ and pull it back to an open affine cover $\{V_{i} = \pi^{-1}(U_{i})\}$ of $X$. Because $\pi$ is finite, the restriction of 
+$\pi_{*} \cO_{X}$ to $U_{i}$ is naturally isomorphic to $\sO_{V_{i}}$, regarded as an $\sO_{U_{i}}$-module, and thus the restriction of
+$\sHom(\pi_{*}\cO_{X}, \omega_{Y})$ to $U_{i}$ is 
+$Hom_{U_{i}}(\cO_{V_{i}}, \omega_{Y}|_{U_{i}})$,
+which is naturally a module over $\cO_{V_{i}}$. This gives $\omega_{X}:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
+the structure of a sheaf on $X$, and it is obvious from the construction that this has the desired pushforward. 
+
+Because $\pi$ is finite we have
+\begin{align*}
+ \Hom(\HH^{1}(\omega),k) &= \Hom(H^{1}(\pi_{*}\omega), k)\\ 
+&= \Hom(\HH^{1}(\sHom(\pi_{*}\cO_{X}, \omega_{Y})),k)\\
+&\cong \Hom(\cHom(\pi_{*}\cO_{X},\omega_{Y}), \omega_{Y})
+\end{align*}
+by the dualizing property of $\omega_{Y}$. 
+
+%We may use the structure map $\cO_{Y} \to \pi_{*}\cO_{X}$ to deduce
+%a map  
+%$$
+%\HH^{1}(\omega) = 
+%\HH^{1}(\pi_{*}\sHom(\cO_{X}, \omega_{Y})
+%\to
+%\HH^{1}(\sHom(\cO_{Y}, \omega_{Y})
+%= \HH^{1}\omega_{Y})
+%$$
+%and thus any residue map $\eta_{Y}: \HH^{1}(\omega_{Y}) \to k$
+%gives rise, by composition, to a residue map 
+%$\eta: \HH^{1}(\omega)\to k$.
+
+It now suffices to show that there exist natural isomorphisms $\Hom_{X}(\sF, \omega) \cong \Hom_{k}(H^{1}(\sF), k)$.  Because $\pi$ is finite, the cohomology of a sheaf on $X$ is the same as the cohomology of its pushforward. In view of the construction of $\omega$, and the fact that $\omega_{Y}$ is a dualizing sheaf for $Y$, it suffices to show that there is a natural isomorphism
+$$
+\phi: \pi_{*}\sHom_{X}(\sF,\sHom_{Y}(\sO_{X}, \omega_{Y})) \to \sHom_{Y}(\pi_{*}\sF, \omega_{Y}).
+$$
+Passing to an affine open set $U_{i}\subset Y$ and its preimage $V_{i}\subset X$
+as in the definition of $\omega$,  the left hand side becomes
+$$
+\Hom_{V_{i}}(\sF|_{V_{i}}, \Hom_{U_{i}}(\cO_{X}|V_{i}, \omega_{Y}|_{U_{i}}))
+$$
+where $\cO_{X}|V_{i}$ is considered a $U_{i}$-modules via the structure
+map $\cO_{U_{i}} \to \cO_{V_{i}}$.  Note that $\sF|_{V_{i}} = \pi_{*}\sF|_{U_{i}}$. We define
+$\phi$ to be the map sending an element $a$ in the left hand side to 
+$$
+\phi(a) \in \sHom_{U_{i}}(\pi_{*}\sF|_{U_{i}}, \omega_{Y}|_{U_{i}})\qquad \phi(a): t \mapsto a(t)(1).
+$$
+It is easy to check that this is a natural
+isomorphism. 
+\end{proof}
+
+\begin{fact}[Dualizing sheaves in higher dimension]  There are two important extensions of Theorem~\ref{construction of omega}:
+
+First, the proof given for curves above actually works for a purely $r$-dimensional projective scheme $X$ over $k$ if we replace the occurrences of  $\HH^{1}$ by $\HH^{r}$, and shows that every such scheme has a dualizing sheaf $\omega$. However, the isomorphisms
+$$
+\HH^{i} (\sHom(\sF, \omega)) \cong \Hom_{k}(\HH^{r-i}(\sF), k) 
+$$
+hold for all coherent $\sF$ \emph{ if and only if} $X$ is Cohen-Macaulay. In our situation
+this condition means that, if $\pi: X\to \PP^{r}$ is a finite map, then $\pi_{*}\cO_{X}$
+is locally free.
+\end{fact}
+
+ 
+
+\begin{exercise}[Adjunction formula] Prove directly that if $\omega_{Y}$ is a dualizing sheaf on a surface $Y$ and $X$ is a Cartier divisor on $Y$, then
+$\omega := \cO_{X}\otimes_{Y}\omega_{Y}(X))$ is a dualizing sheaf for $X$.  
+Use this to show by induction that if 
+$$
+X = \bigcap_{i=1}^{c}H_{1}\cap \cdots \cap H_{n}
+$$ 
+is a complete intersection
+in $\PP^{r}$ of hypersurfaces of degrees $\deg H_{i} = d_{i}$,  then
+$$
+\omega_{X} = (\cO_{X}(\sum_{i=1}^{c} d_{i}) - r-1.
+$$
+\end{exercise}
+
+%%The classical adjunction formula gives the canonical line bundle on a curve $C$ on a smooth surface $X$ in terms of the canonical bundle $\omega_{X}$ of $X$ as 
+%%$$
+%%\omega_{C} = \omega_{X}(C) |_{C},
+%%$$
+%%and thus, even more familiarly, gives the genus of $C$ as an intersection number,
+%%$2\g(C)-2 = (K_{X}+C).C$. 
+%%
+%%We can reinterpret this formula homologically by noting that there is a short exact sequence
+%%$$
+%%0\to \sO_{X}(-C) \to \sO_{X}\to \sO_{C}\to 0.
+%%$$
+%%giving a long exact sequence in $\sExt_{\sO_{X}}(-, \omega_{X})$. Taking into account
+%%that $\sExt_{\sO_{X}}(\sO_{X}, \omega_{X}) =0$ because $\sO_{X}$ is locally free, we get the
+%%exact sequence
+%%$$
+%%\to \sHom_{\sO_{X}}(\sO_{X}, \omega_{X}) \to \sHom_{\sO_{X}}(\sO_{X}(-C), \omega_{X})
+%%\to \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) \to 0,
+%%$$ 
+%%proving that
+%% $\sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}) = \omega_{X}(C)|_{C}$, 
+%% and thus showing in this case that 
+%% $$
+%% \omega_{C} = \sExt^{1}_{\sO_{X}}(\sO_{C}, \omega_{X}).
+%% $$
+%%
+%% It turns out that the ``1'' in the $\sExt^{1}_{\sO_{X}}$ in this formula is just the codimension of $C$ in $X$, and that the result holds in great generality:
+% 
+%\begin{theorem}\label{canonical is ext}
+%Let $C\subset X$ be a purely 1-dimensional subscheme of $\PP^{n}$. The canonical sheaf of $C$ is 
+%$$
+%\omega_{C} \cong \sExt^{n-1}_{\sO_{\PP^{n}}}(\sO_{C}, \omega_{\PP^{n}}) = 
+%\sExt^{n-1}_{\sO_{\PP^{n}}}(\sO_{C}, \sO_{\PP^{n}})(-n-1).
+%$$
+%which is the sheafification of the graded module $\Ext^{n-1}(S_{C},S)(-n-1)$.
+%\end{theorem}
+%
+%For an abstract definition of the canonical bundle as a ``dualizing sheaf'' see \cite{AltmanKleiman}. For a smooth variety over $\CC$ the definition is satisfied by the the top exterior power of the cotangent bundle, and for $\PP^{n}$ this is $\sO(-n-1)$. 
+%\section{Noether's Theorem}\label{sec:canonical curves} 
+%
+%\fix{we need to do this in a setting where we know the statement of Riemann-Roch. How general is that? Not much harm in retreating to the case of irreducible curves or even smooth ones, and adding a ``fact'' for the general case.}
+
+Here is a special case that will be important to us:
+\begin{proposition}\label{computation of omega}
+ Suppose that 
+$C \subset \PP^{n}$ is a purely 1-dimensional scheme. If $(f_{1}, \dots, f_{n-1}) \subset I_{C}$ is a regular sequence of forms of degrees $d_{1}\dots,d_{r}$ defining the scheme $X\supset C$, then 
+$$
+\omega_{C}\cong \widetilde{(\cI_{X}:\cI_{C})}(q),
+$$
+where $q = (\sum_{i=1}^{n-1} d_{i}) -r-1.$
+\end{proposition}
+ \fix{both the prop and the proof should be done for affine cones, then localized.}
+\begin{proof}
+ By Theorem~\ref{} we know that $\omega_{X} = \cO_{X}(q)$. Further, the map
+ $C\to X$ is finite, so 
+ $$
+ \omega_{C} = Hom(\cO_{C}, \omega_{X}) = \Hom(\cO_{C}, \cO_{X})(q).
+ $$
+ But $\Hom(\cO_{C}, \cO_{X}) = (\cI_{X}:\cI_{C})$, completing the proof.
+\end{proof}
+
+As we remarked at the beginning of this Chapter, all canonically embedded smooth curves have the same Hilbert functions. We shall now show that they are all arithmetically Cohen-Macaulay.
+We follow the treatment in \cite{Schreyer}, and treats a more general situation than that of the 
+images of smooth curves under the canonical embeddings.
+
+We define a \emph{canonical curve} in $\PP^{g-1}$ to be a purely one-dimensional, nondegenerate closed subscheme  such that
+$$
+ h^{0}(\sO_{C}) = 1, h^{0}(\sO_{C}(1) = g, \hbox{ and } \omega_{C} = \sO_{C}(1).
+$$
+
+We say that $C$ has a \emph{simple} $g-3$-dimensional $g-2$ secant if $C$ contains $g-2$ reduced points spanning a $(g-3)$ dimensional
+plane in $\PP^{g-1}$ that meets $C$ only in the $g-2$s points.
+
+\begin{theorem}[Max Noether]
+A canonical curve in $\PP^{g-1}$ has degree $2g-2$ and arithmetic genus $g$. If the curve has a simple
+$g-3$-dimensional $g-2$ secant, then it is arithmetically Cohen-Macaulay; that is,
+$\h^{1}\sI_{C/\PP^{g-1}}(m) = 0$ for all $m\in \ZZ$.
+\end{theorem}
+ 
+Note that for a canonically embedded irreducible curve, the hypothesis of having a simple $g-3$-dimensional $g-2$ secant plane $\Lambda$ is the same as having a base-point free pencil of degree $g-2$; this is the linear series 
+cut out by the hyperplanes containing $\Lambda$.
+
+ Note that these hypotheses imply that $C$ is connected and Gorenstein.
+ 
+\begin{proof}
+We begin by showing that $\sO(-m)$ has no global sections for $m>0$.
+If $D$ is a divisor equivalent to $n$ times the hyperplane section, we have an exact sequence
+$$
+0\to \HH^{0}(\sO_{C}(-n)) \to \HH^{0}(\sO_{C}) \to \HH^{0}(\sO_{D}) \to \cdots.
+$$
+By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
+restrict non-trivially to $\sO_{D}$, and $\HH^{0}(\sO_{C}(-n)) = 0$ as claimed.
+
+Using the Riemann-Roch Theorem we can now compute the Hilbert function $\chi_{C}(m)$:
+We have 
+$$
+\chi_{C}(0) = h^{0}(\sO_{C}) - h^{1}(\sO_{C}) = h^{0}(\sO_{C}) - h^{0}(\omega_{C}) = 1-g.
+$$
+On the other hand 
+$$
+\chi_{C}(0) = h^{0}(\sO_{C}(1)) - h^{1}(\sO_{C}(1)) = h^{0}(\sO_{C}(1_{}) - h^{0}(\sO_{C}) = g-1.
+$$
+Since $\chi_{C}(m)$ is a polynomial of degree1 in $m$, we deduce
+$\chi_{C}(m) = (2g-2)m -g+1$, whence we see that the degree of $C$ is $2g-2$ and $\p(C) = g$ as claimed.
+
+To show that
+$C$ is arithmetically Cohen-Macaulay we use the sequence
+$$
+\cdots \to \HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
+\to \HH^{1}(\sI_{C}(m))\to \HH^{1}(\sO_{\PP^{n}}(m)) \to\cdots .
+$$
+Since $\HH^{0}(\sO_{\PP^{n}}(m)) = 0$, it
+is enough to show that the natural map 
+$$
+\HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
+$$
+ is surjective for all $m\in \ZZ$. For $m=0,1$ this is immediate from the hypothesis.
+
+For $m <0$ we must show $\HH^{0}(\sO_{C}(m))=0.$ 
+If $D$ is a divisor equivalent to $-m$ times the hyperplane section, we have an exact sequence
+$$
+0\to \HH^{0}(\sO_{C}(m)) 
+\to \HH^{0}(\sO_{C}) 
+\to \HH^{0}(\sO_{D}) \to \cdots.
+$$
+By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
+restrict non-trivially to $\sO_{D}$, so the kernel, $\HH^{0}(\sO_{C}(m))$, is 0 as claimed. 
+
+To prove surjectivity for $m\geq 2$ we use the remaining hypothesis, the existence of
+a simple $g-3$-dimensional $g-2$ secant plane $\Lambda$  and an idea sometimes called the \emph{base-point-free pencil trick}. Let $p_{0},\dots p_{g-3}$ be the points in which $\Lambda$ meets $C$.  Since the
+$p_{i}$ are linearly independent by hypothesis, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
+$x_{i}(p_{j} \neq 0$ if and only if $i = j$. It follows that the sections
+$x_{i}^{m}$ of $\sO_{C}(m)$ span $\HH^{0}(\sO_{C}(m)|_{\{p_{0}, \dots, p_{g-3}\}}$. Let 
+$V\subset \HH^{0}(\sO_{C}(1))$ be the two-dimensional subspace of linear forms vanishing on
+$\Lambda$, and thus on the $p_{i}$. 
+
+For $m\geq 2$ there are maps of vector spaces
+$$
+\wedge^{2} V\otimes \HH^{0}(\sO_{C}(m-2)) \to V\otimes \HH^{0}(\sO_{C}(m-1)) 
+\to \HH^{0}(\sO_{C}(m))
+$$
+where the right hand map is multiplication and the left hand map sends
+$s_{1}\wedge s_{2}\otimes \sigma$ to $s_{1}\sigma-s_{2}\sigma$ for any local section $\sigma$.
+The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never vanish simultaneously except on the $p_{i}$, and has image  consisting of sections that vanish on the points $p_{i}$
+
+\end{proof}
+
+\begin{theorem} \label{canonical of Gor}
+ $R$ is Gorenstein if and only if $R$ is Cohen-Macaulay and $\omega_{R} \cong R$ (up to twist in the graded case)
+\end{theorem}
+\begin{proof}
+ 
+\end{proof}
+
+\section{Linkage of curves in $\PP^3$.}
+%Rao module, Hartshorne-Rao theorem. Resolution of the rational quartic.
+
+Linkage, an equivalence relation on curves in $\PP^3$, was first studied extensively by Halphen in **** and taken up in the 1940's by Ap\'ery and Gaeta. The subject was modernized and generalized by Peskine and Szpiro in~\cite{PeskineSzpiro}. Hartshorne~\cite{} and his student
+Rao~\cite{} decisive breakthroughs, showing that a simple invariant classifies curves up to linkage; and Lazarsfeld and Rao~\cite{} explained how to describe a given linkage class. A thorough exposition of the subject in the general case can be found in the book of Migliore~\cite{Mig}. Note that the linkage relation is often called by its French name, \emph{liaison}.
+
+
+We have already used the relation of \emph{ linkage} in Chapter 8 \fix{make ref refs}. There, and in the classical literature, we used the notion in the case where the union of two (reduced) curves in $\PP^{3}$ without common components is a complete intersection, such as in the case of  a twisted cubic and one of its secant linea, which together form the complete intersection of two quadrics. In this setting it is obvious that the relation is symmetric, and that the degrees of the two curves add up to the degree of the complete intersection. We showed in \ref{***} that the (arithmetic) genera of the two curves is related by the formula~\ref{***}. 
+
+It is possible to extend the definition to a more general case, where the two curves may not be reduced or irreducible, and may have common components, and to higher dimensions. The extended definition is justified by the fact that it satisfies the same properties related to symmetry, degree and genus as in the special case, and allows interesting new aspects to emerge see Example~\ref{minimal elements}. \fix{We should have an example where there is not a reduced minimal element.}
+
+
+\begin{definition}
+If $X$ and $Y$ are subschemes of pure codimension $c$ in a Gorenstein scheme $P$ then $X$ and $Y$ are \emph{directly linked} if there exists a complete intersection $Z \supset X\bigcup Y$ such that $I_{X} = I_{Z}:I_{Y}$. In this case we say that $X$ is directly linked to $Y$ by $Z$. 
+
+More generally, we say that $X$ and $Y$ are \emph{evenly} (respectively oddly) linked if they are
+connected by an even (respectively odd) number of direct linkages.\end{definition}
+
+In the case of divisors on a reasonably nice surface, even linkage is linear equivalence. We do just the case we need:
+
+
+%%
+
+\begin{theorem}\label{justification of general linkage} The relation of direct linkage is symmetric. Moreover, if $X,Y\subset \PP^{3}$ are purely 1-dimensional subschemes and $X$ is linked to $Y$ by the complete intersection $Z$ of surfaces of degrees $d_{1}, d_{2}$, then
+\begin{enumerate}
+\item $Y$ is linked to $X$ by $Z$; that is, linkage is symmetric.
+ \item $\deg X+\deg Y = \deg Z = d_{1}d_{2}$.
+ \item  The arithmetic genera of $X$ and $Y$ are related by
+$$
+p_{a}(Y) - p_{a}(X) =\frac{(d_{1}+d_{2}-4)}{2} (\deg Y - \deg X)
+$$
+ %h - g = (e-d)\frac{s+t-4}{2}
+\end{enumerate}
+ \end{theorem}
+ 
+ The proofs involve several important results from commutative algebra:
+ 
+\begin{theorem} \label{double colon}
+\begin{enumerate}
+\item For any ideals $G,I$ in a commutative Noetherian ring $R$, the associated primes of  $J = G:I$ are  are among the associated primes of $G$. Moreover, if $G$ is unmixed (that is, all primary components have the same dimension) then  
+the associated primes of $J$ are precisely the associated primes of $G$ whose primary components do not contain $I$.
+Moreover, the associated primes of $G:(G:I)$ are the primary components of $G$ whose associated primes contain $I$.
+
+\item  If $R$ is Gorenstein, $G$ is a complete intersection in $R$, and $I\subset R$ is an ideal containing $G$, then $G:(G:I)$ is the 
+intersection of the primary components of $I$ that have the same codimension as $I$. 
+
+\item Under these hypotheses, the sum of the multiplicities of $R/I$ and $R/(G:I)$ is the multiplicity of $R/G$.
+
+\item 
+$
+\omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G.
+$\\
+\end{enumerate}
+\end{theorem}
+
+In case $R = k[x_{0},\dots,x_{n}]$ and both $I$ and $G$ are graded, with $G = (f_{1}, \dots f_{c})$ the intersection of forms of degree
+$d_{1}+\cdots + d_{c}$, then $\omega_{R/G} = R/G(\sum d_{i} -n-1)$ as graded modules so, \emph{as graded modules},
+$$
+\omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G(\sum d_{i} -n-1).
+$$
+
+Before applying this result to the proof of Theorem~\ref{justification of general linkage} we give an application in a simpler case, where
+the relation of even linkage reduces to
+that of linear equivalence:
+
+
+
+\begin{proposition}
+Let $S$ be a surface in $\PP^3$, and let $X,Y\subset S$ be purely 1-dimensional schemes. The schemes $X$ and $Y$ are directly linked on $S$ if and only if
+there is a rational function $f$ on $S$ such that the divisor $f$ is $X-Y$. Thus $X$ and $Y$ are evenly linked if and only if 
+$X~Y$, and they are oddly linked if and only if $-X\sim Y$.
+\end{proposition}
+
+\begin{proof} Suppose first that $X,Y$ are directly linked. After passing to an affine open set we have
+$(a):I_X = I_Y$ for some nonzerodivisor $a$. Write $K(S)$ for the sheaf of rational functions on $S$, so that
+when restricted to an affine open set $U$ we have 
+$$
+K(S)|_U = \{a/b\mid a,b \in \sO_S(U), b \hbox{a nonzerdivisor}\}.
+$$  
+In this context the divisor $-X$ is the divisor associated to the
+fractional ideal $I^{-1} := \{q\in K(S) \mid qI \subset \sO_S(U)\}$.
+Write $Z$ for the divisor of $a$. Since $I_X$ contains a nonzerodivisor, $a:I_X = aI_X^{-1}$; that is,
+$-X+Z = Y$, so indeed $-X$ is linearly equivalent to $Y$. Iterating this argument we see that if $X,Y$ are evenly linked then
+they are linearly equivalent, and if oddly linked then $-X$ is linearly equivalent to $Y$, as claimed.
+
+Conversely, suppose that $X \sim Y$. Passing to an open affine subset, this means that there are regular functions $a,b$
+such that $bI_X = aI_Y$. Since $I_X$ and $I_Y$ contain nonzerodivisors on $S$, we may multiply and assume $a\in I_Y$.
+We know from **** that $(a:(a:I_Y)) = I_Y$, and it follows that 
+$$
+I_X = (b/a)(a:(a:I_Y))= b:(a:I_Y)
+$$
+as required.
+\end{proof}
+
+We remark that the same result holds, with the same proof for pure codimension 1 subschemes of a Gorenstein scheme.
+
+
+\begin{proof}[Proof of Theorem~\ref{double colon}]
+ 1) If $G = \bigcap Q_{i}$ is an irredundant primary decomposition of $G$ then
+$G:I = \bigcap_i (Q_{i}:I)$. If $I \subseteq Q_i$, then $Q_{i}:I = R$, and this term can be omitted. If $P_i$ is the associated prime of $Q_i$
+and $I \not\subseteq Q_i$ then $ Q_i \subset Q_i:I\subset P_i$ (since $P_i$ is the set of zerdivisors mod $Q_i$), 
+so $\sqrt {Q_i:I} = P_i$. Furthermore, if $xy\in Q_i:I$ and $x\notin P_i$, then $x$ is a nonzerodivisor mod $Q_i$, so from
+$xyI\subset Q_i$ we deduce $yI\subset Q_i$; that is, $y\in Q_i:I$. This shows that $Q_i:I$ is $P_i$-primary. 
+Finally, if $I\not\subseteq P_i$, then $I$ contains a nonzerodivisor mod $Q_i$, so $Q_i:I = Q_i$.
+
+This proves that $G:I$ has a primary decomposition whose terms are primary to the associated primes of the primary
+components of $G$ that do not contain $I$, so the associated primes of $G:I$ are among these. If some $(Q_i:I)$ were contained
+in the intersection of the others, then we would have $P_i^n \subset \cap_{j\neq i}P_j$, and $P_i$ would be contained in one
+of the $P_j$ with $j\neq i$, and this is impossible if all the $P_i$ have the same codimension.
+ 
+ 2) Since $G$ is a complete intersection, it is unmixed, and it follows from part 1 that $G:I$ and $G:(G:I)$ are unmixed too. Further,
+ the primary components of $G:I$ have the form $Q_i:I$, where the $Q_i$ are the primary components of $G$ that
+ do not contain $I$. Now $Q_i$ contains $Q_i:I$ if and only if $Q_i=Q_i:I$, and this happens if and only if
+  $I\not\subseteq P_i$,  the associated prime of $Q_i$. Since $G$ is unmixed and $G\subseteq I$, this proves that the associated primes of 
+  $G:(G:I)$ are exactly the associated primes of $G$ that are also associated primes of $I$.
+  
+ Now suppose that if $P$ is a minimal prime of $G$ and $Q \subset I \subset P$, where $Q$ is the $P$-primary
+  component of $G$. Since $P$ is minimal over $I$, it is an associated prime. Write $Q'$ for the $P$-primary component
+  of $I$. By the argument above, the $P$-primary component of $G:(G:I)$ is $Q:(Q:Q')$, and we must show that this is the
+  same as $Q'$.
+  
+  Since both $Q'$ and $Q:(Q:Q')$ are $P$-primary, it suffices to prove this after localizing at $P$, so we may assume
+  that $R$ is a local ring, with $\dim R/Q = \dim R/Q' = 0$. Since $R/Q$ is a localization of $R/G$ it is again a complete
+  intersection, and thus Gorenstein (more generally, it is true that the localization of any Gorenstein ring is Gorenstein, but
+  we do not need this.)
+  Furthermore, $Q:Q' = \Hom(R/Q', R/Q)$, and similarly $Q:(Q:Q') = \Hom(\Hom(R/Q', R/Q), R/Q) = R/Q'$ by duality.
+  
+3) Since 
+\begin{align*}
+ \length (R/G) &= \length(R/(G:I))+\length((G:I)/G)\\
+ &= \length(R/(G:I) +\length R/I,
+\end{align*}
+we see from the associativity formula for multiplicity that when $I$ has the same codimension as $G$, then the multiplicity of $I$ plus that of $G:I$ is the multiplicity of $G$. In the graded case, this means that
+$\deg \Proj(R/I) +\deg \Proj(R/(G:I)) = \deg \Proj(R/G)$.
+
+4)See Proposition~\ref{computation of omega}.
+\end{proof}
+
+ \begin{proof}[Proof of Theorem~\ref{justification of general linkage}]
+ By hypothesis, 
+$X,Y\subset Z$ are unmixed of dim 1, with $\cI_{Y} = (\cI_Z:\cI_X)$. By Part 1 of Lemma~\ref{double colon}, we have
+$\cI_{X} = (\cI_Z:\cI_Y)$ as well, proving symmetry.
+
+1) This is  the formula of part 3 of Lemma~\ref{double colon}, interpreted in the graded case.
+
+2)  By Proposition~\ref{computation of omega}
+\begin{align*}
+ \omega_{Y} &= \cHom_{\cO_Z}(\cO_X, \omega_Z) = 
+\cHom_{\cO_Z}(\cO_X, \cO_Z(d_1+d_2-4))\\
+&=  \frac{(\cI_Z:\cI_X)}{\cI_{Z}}(d_1+d_2-4).
+\end{align*}
+Thus there is an exact sequence
+$$
+0\to \omega_{Y}(-d_1-d_2+4) \to \cO_Z \to \cO_X \to 0,
+$$
+whence
+$$
+ \chi(\cO_Z) =
+ \chi(\omega_{Y}(-d_1-d_2+4) +
+ \chi(\cO_X).
+ $$
+ Applying the adjunction formula twice, and using the Riemann-Roch Theorem, together with the formula
+ $\deg Z = \deg X + \deg Y$, we see that the arithmetic genus of $Z$ is
+ $$
+ \chi(\sO_Z) = -\frac{(\deg X + \deg Y)(d_1+d_2-4)}{2}.
+ $$
+Furthermore, by the Riemann-Roch Theorem, $\chi(\sO_X) = 1-p_a(X)$ while
+\begin{align*}
+\chi(\omega_{Y}(-d_1-d_2+4)) &= 2p_a(Y) -2 + \deg(Y)(-d_1-d_2+4) + 1- p_a(Y)\\
+&= p_a(Y)-1- \deg(Y)(d_1+d_2+4).
+\end{align*}
+Putting this together we get
+$$
+-\frac{(\deg X+\deg Y)(d_1+d_2-4)}{2} = 1-p_a(X) + p_a(Y)-1 - \deg(Y)(d_1+d_2+4)
+$$
+and thus 
+$$
+p_a(Y) -p_a(X) = \frac{(\deg Y-\deg X)(d_1+d_2-4)}{2}
+$$
+as claimed.
+ \end{proof}
+
+
+%\fix{Perhaps the ``right'' hypoth is that $S$ is generically Gor and X,Y are purely codim 1, defined by
+%ideal (sheaves) containing nzd's. }
+%
+%\begin{proposition}
+%Let $S$ be a surface in $\PP^3$, and let $X,Y\subset S$ be purely 1-dimensional schemes. The schemes $X$ and $Y$ are directly linked on $S$ if and only if
+%there is a rational function $f$ on $S$ such that the divisor $f$ is $X-Y$. Thus $X$ and $Y$ are evenly linked if and only if 
+%$X~Y$, and they are oddly linked if and only if $-X\sim Y$.
+%\end{proposition}
+%
+%\begin{proof} Suppose first that $X,Y$ are directly linked. After passing to an affine open set we have
+%$(a):I_X = I_Y$ for some nonzerodivisor $a$. Write $K(S)$ for the sheaf of rational functions on $S$, so that
+%when restricted to an affine open set $U$ we have 
+%$$
+%K(S)|_U = \{a/b\mid a,b \in \sO_S(U), b \hbox{a nonzerdivisor}\}.
+%$$  
+%In this context the divisor $-X$ is the divisor associated to the
+%fractional ideal $I^{-1} := \{q\in K(S) \mid qI \subset \sO_S(U)\}$.
+%Write $Z$ for the divisor of $a$. Since $I_X$ contains a nonzerodivisor, $a:I_X = aI_X^{-1}$; that is,
+%$-X+Z = Y$, so indeed $-X$ is linearly equivalent to $Y$. Iterating this argument we see that if $X,Y$ are evenly linked then
+%they are linearly equivalent, and if oddly linked then $-X$ is linearly equivalent to $Y$, as claimed.
+%
+%Conversely, suppose that $X \sim Y$. Passing to an open affine subset, this means that there are regular functions $a,b$
+%such that $bI_X = aI_Y$. Since $I_X$ and $I_Y$ contain nonzerodivisors on $S$, we may multiply and assume $a\in I_Y$.
+%We know from part 1 of Theorem~\ref{double colon} that $(a:(a:I_Y)) = I_Y$, and it follows that 
+%$$
+%I_X = (b/a)(a:(a:I_Y))= b:(a:I_Y)
+%$$
+%as required.
+%\end{proof}
+
+%\begin{proposition}
+%Suppose that $X,Y$ are divisors on a complete intersection scheme $P$ -- for example when $X,Y$ are curves and $P$ is a surface in $\PP^3$ In this case, $X$ and $Y$ are directly linked if and only if $Y = -X +D$ for some principal divisor
+%$D$; and thus $X$ and $Y$ are evenly linked if and only if $X$ is linearly equivalent to $Y$.
+%\end{proposition}
+%\begin{proof}
+%Let $f,g$ be nonzerodivisors on $P$.
+%We have $(f:I_Y) = (I_Y)^{-1}f$; and since $(f:(f:I_Y)) = I_Y$ by Lemma~\ref{double colon}, we see that $(I^{-1})^{-1} = I$ and thus
+%$(g:(f:I_Y)) = ((I_Y)^{-1}f)^{-1}g = (I_Y)\frac{g}{f}$.
+%\end{proof}
+
+The main theorem on linkage of curves in $\PP^3$ is due to Hartshorne~\cite{} and Rao ~\cite{}. Recall \fix{put this into the local coho section?} that if $X$ is a locally Cohen-Macaulay scheme in $\PP^n$ then $H^1(\sI_X(i)$ is nonzero for only finitely many values of $i\in \ZZ$, so
+the vector space
+$$
+M(X) := H^1_*(\sI_X) := \oplus_{d\in \ZZ}H^1(\sI_X(d),
+$$
+which is a graded module over the homogeneous coordinate ring of $\PP^n$, has finite length (equivalently, finite dimension as a 
+vector space over the ground field.)
+
+\begin{theorem}[Hartshorne-Rao\cite{}]\label{Hartshorne-Rao}
+Write $S$ for the homogeneous coordinate ring
+of $\PP^3$, and suppose that $X,Y\subset \PP^3$ are subschemes of pure dimension 1. If $X,Y$ are directly linked by a complete
+intersection of surfaces of degree $d_1,d_2$ then, as graded $S$-modules,
+$$
+M(Y)\cong M(X)^\vee(-d_1-d_2+4).
+$$
+Moreover, $X,Y$ are evenly linked if and only if 
+$$
+M(Y) \cong M(X)(t)
+$$
+ for some integer $t$. 
+ 
+ Every graded module of finite length is isomorphic, up to a shift in grading,
+to the module $H^1_*(\sI_X)$ for some smooth curve $X$.
+\end{theorem}
+Note that the module $M(X)$ appears in the exact sequence in cohomology coming from the surjection $\sO_{\PP^3} \to \sO_X$:
+$$
+0\to H^0_*(\sI_X) \to H^0_*(\sO_{\PP^3}) \to H^0_*(\sO_X) \to H^1_*(\sI_X) \to 0
+$$
+Thus $M(X) = H^1_*(\sI_X) = 0$ if and only if the linear series cut by hyperplanes of degree $d$ is complete for all $d$, that is,
+$X$ is arithmetically Cohen-Macaulay.
+
+Before discussing the proof of Theorem~\ref{Hartshorne-Rao}, we examine the case $M(X) = 0$, which was first elucidated by Gaeta. 
+
+\begin{theorem}[Gaeta \cite{}]\label{Gaeta}
+If $X$ is a curve in $\PP^3$  then $X$ is in the (even and odd) linkage class of a complete intersection if and only if the homogeneous
+coordinate ring of $X$ is Cohen-Macaulay. Moreover, if $I_X$ can be generated by $n$ elements, then $X$ is linked to
+a complete intersection in $n-2$ steps.
+\end{theorem}
+
+We first prove that even and odd linkage are the same in this case, and that any two complete intersection curves
+are evenly linked:
+
+\begin{lemma}
+If $f,g$ and $f,h$ are regular sequences, then $(f,g)$ and $(f,h)$ are directly linked. Moreover, 
+any  two complete intersections are both evenly and oddly linked.
+\end{lemma}
+\begin{proof}
+Since $f,g$ and $f,h$ are regular sequences, so is $f,gh$. We claim that
+$$
+(f,h) = (f,gh):(f,g).
+$$
+Indeed if $ag = bf+cgh\in (f,gh)$ then $(a-ch)g = bf$ so $a-ch \in (f)$, whence $a\in (f,h)$.
+
+It follows that if $m,n$ are independent linear forms, neither a divisor of $f$ or $g$, then each consecutive pair
+in the sequence of complete intersections
+$$
+(f,g), (fm,g), (fm,gn), (m,gn),(m,n)
+$$
+are directly linked, so $(f,g)$ is evenly linked to $(m,n)$. The sequence 
+$$
+(f,g),(f,mg), (f,mng), (f,g)
+$$
+shows that $(f,g)$ is also oddly linked to itself, completing the proof.
+\end{proof}
+\fix{can these things be done with geometric links?}
+
+Before proving Theorem~\ref{Gaeta} we need one more result from commutative algebra:
+
+\begin{theorem}[Hilbert-Burch\cite{}]
+Let $A$ be a homogeneous $(n+1)\times n$ matrix of forms in $S := k[x_{0},\dots, x_{n}]$ and
+Let  $I: = I_{n}(A)$ be the ideal generated by the $n\times n$ minors of $A$.
+\begin{enumerate}
+ 
+\item If $I \neq S$ then $\codim I \leq 2$.
+ \item If $I$ has codimension 2, then
+$S/I$ is Cohen-Macaulay. Moreover, if $\Delta_{i}$ is the determinant of the matrix obtained
+from $A$ by omitting the $i$-th column, then 
+$$
+0\rTo S^{n} \rTo^{A} S^{n+1}\rTo^{\scriptsize
+\begin{pmatrix}
+ \Delta_{0}& -\Delta_{1}&\dots&\pm \Delta_{n}
+\end{pmatrix}}
+S
+$$
+is a resolution of $S/I$, and its dual is a resolution of $\omega_{S/I}$.
+\item Furthermore, every graded Cohen-Macaulay factor ring of $S$ of codimension 2
+arises in this way.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+If we augment $A$ to an $(n+1)\times(n+1)$ matrix by repeating the $i$-th column, the determinant is zero.
+The product of the row of signed minors 
+$$\begin{pmatrix}
+ \Delta_{0}& -\Delta_{1}&\dots&\pm \Delta_{n}
+\end{pmatrix}
+$$ 
+with the $i$-th row of $A$ is the Cauchy expansion of this determinant. Thus the give sequence of maps
+forms a complex. The fact that it is a resolution, and that its dual is a resolution, follows from a general result on finite free complexes,
+\cite[Theorem *****]{E}. This shows that $S/I = S/(\Delta_{0}, \dots \Delta_{n})$ is Cohen-Macaulay.
+
+Now suppose that $S/I$ is a homogeneous factor ring of $S$ that is Cohen-Macaulay and of codimension 2.
+By Theorem~\ref{AB}, The minimal free resolution of $S/I$ as an $S$-module has the form 
+$$
+0\rTo S^{m} \rTo^{A} S^{n} \rTo^{B} S
+$$
+where $n$ is the minimal number of generators of $I$. Tensoring with the quotient field of $S$, we
+get a complex of vector spaces that is exact, so $n = m+1$, and we see that $A$ is a homogeneous
+$(n+1)\times n$ matrix. Again by \cite[Theorem *****]{E}, the ideal of $n\times n$ minors of $A$ has
+codimension 2, and the dual of the resolution is a resolution of $\omega_{I}$. Write $I'$ for the ideal
+of minors of $A$; by part 2, the ring $S/I'$ is also Cohen-Macaulay of codimension 2.
+\end{proof}
+
+\begin{theorem} [Buchsbaum-Eisenbud\cite{}]
+\end{theorem}
+
+We next prove Hartshorne's half of the Hartshorne-Rao Theorem:
+
+\begin{theorem} [Hartshorne \cite{}]
+If $X,Y\subset \PP^3$ are closed, purely 1-dimensional subschemes that are directly linked 
+through the complete intersection $Z$, which is given by forms $f_1, f_2$ of degrees $d_1,d_2$ respectively
+then
+$$
+M(X)^\vee \cong M(Y)(d_1+d_2-4)
+$$
+where $M(X)^\vee$ denotes the vector space dual of $M(X)$ equipped with the natural module structure.
+ \end{theorem}
+
+\begin{proof}
+Let $S$ be the homogeneous coordinate ring of $\PP^3$. The ring $S/I_X$ may not be Cohen-Macaulay,
+but because it is purely 1-dimensional,  $X = \Proj S/I_X$ is locally Cohen-Macaulay of codimension 2, and thus its
+second syzygy sheafifies to a vector bundle $\sE$ on $\PP^3$, and we see that 
+$$
+M(X) = \oplus_{d \in \ZZ} H^1(\sI_X(d)) \cong \oplus_{d \in \ZZ} H^2(\sE(d)).
+$$
+
+The natural surjection $S/(f_1,f_2) \to S/I_X$ lifts to a map of free resolutions, and sheafifying we get a diagram with exact rows
+and right-hand column:
+$$ 
+\begin{diagram}[small]
+0&\rTo &\sE &\rTo &F_1& \rTo& \sO_{\PP^3}&\rTo &\sO_X &\rTo &0\\
+&&\uTo&&\uTo&&\uTo^1&&\uTo\\
+0&\rTo&\sO_{\PP^3}(-d_1-d_2) &\rTo &\sO_{\PP^3}(-d_1)\oplus \sO_{\PP^3}(-d_2)& \rTo& \sO_{\PP^3}&\rTo &\sO_Z &\rTo &0\\
+&&&&&&&&\uTo\\
+&&&&&&&&\sI_X/(f_1,f_2)\\
+&&&&&&&& \uTo\\
+&&&&&&&& 0.
+\end{diagram}
+$$
+By Proposition~\ref{computation of omega},  $I_X/(f_1,f_2) \cong \omega_{S/I_Y}(-d_1-d_2+4)$, so the mapping cone of the map of complexes above has first homology
+$\omega_Y(-d_1-d_2-4)$. Dropping the two copies of $\sO_{\PP^3}$ and the identity map between them, we get a locally free resolution
+$$
+\begin{diagram}[small]
+0&\rTo&\sO_{\PP^3}(-d_1-d_2)&\rTo&\sE\oplus \sO_{\PP^3}(-d_1)\oplus \sO_{\PP^3}(-d_2)&\rTo&F_1
+\end{diagram}
+$$
+of $\omega_Y(-d_1-d_2+4)$.
+
+Let $R := \oplus_{d\in \ZZ} H^0(\sO_Y(d))$.
+The natural map $S/I_Y \to R$ has cokernel $\oplus_{d\in \ZZ}H^1\sI_Y(d)= M(Y)$, which has finite length. Thus
+$\omega_{S/I_Y} = \Ext_S^2(S/I_Y, \omega_S) = \Ext_S^2(R, \omega_S)$.
+Moreover $R$ is Cohen-Macaulay, so also $\Ext_S^2(\omega_{S/I_Y}, \omega_S) = R$. Dualizing the resolution above 
+ and sheafifying, we get an exact sequence of sheaves
+$$
+0\to F_1^* \to \sE^*\oplus \sO_{\PP^3}(d_1)\oplus \sO_{\PP^3}(d_2) \to \sO_{\PP^3}(d_1+d_2) \to R(d_1+d_2) \to 0.
+$$
+It follows that the image of $\sE^*\oplus \sO_{\PP^3}(d_1)\oplus \sO_{\PP^3}(d_2) $ in $\sO_{\PP^3}(d_1+d_2)$
+is $\sI_Y(d_1+d_2)$. By Serre duality, 
+$M(X) = \oplus_{d\in \ZZ} H^2(\sE(d)) = \bigl(\oplus_{d\in \ZZ} H^1(\sE^*(-d-4))\bigr)^\vee$, the dual over the ground field. From the above sequence we see that 
+$$
+M(X)^\vee \cong \oplus_{d\in \ZZ} H^1(\sE^*(-d-4))\oplus_{d\in \ZZ}  = M(Y).
+$$ 
+Thus $M(X)^\vee = M(Y)(d_1+d_2-4)$ as required.
+ \end{proof}
+Construction of curves with given Rao module: Bourbaki's theorem.
+
+\begin{exercise} (Schwartau) Linkage addition.
+ 
+\end{exercise}
+
+
+TODO:
+state minimal linkage, all curves derived by basic double link plus deformations (Lazarsfeld-Rao)
+state general curves of high genus are minimal
+
+
+
+
+\input{footer}
