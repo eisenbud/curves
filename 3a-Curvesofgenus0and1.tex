@@ -23,7 +23,7 @@ Would it be more confusing or less to use the same letter for a polynomial vanis
 
 rational curves as projections of rational normal curves. Rational quartic in $\PP^3$ as curve of type 1,3 on quadric do dimension count. Branch points can be chosen. $g^3_4$ is sum of $g^1_1$ and a $g^1_3$. Cheerful fact: Set theor comp int problem.. Maximal rank for forms of degree d. Open questions: Hilbert functions? generators of the ideal? mention "secant conjecture"?
 
-\subsubsection{Rational normal curves}
+\subsection{Rational normal curves}
 
 The first thing to observe about curves of genus 0 is that \emph{there is only one}: any curve $C$ of genus 0 is isomorphic to $\PP^1$. This follows immediately from the statement (\ref{degree 2g+1 embedding}) that any line bundle of degree $2g+1$ or greater on a curve of genus $g$ is very ample: if $p \in C$ is any point, by Riemann-Roch we have $h^0(\cO_C(p)) = 2$, and so the linear series $|\cO_C(p)|$ gives an ``embedding" of $C$ in $\PP^1$. Note that this works only because we are working over an algebraically closed field $K$: without that assumption, $C$ may not have any $K$-rational points at all, and indeed the classification of curves of genus 0 over non-algebraically closed fields is a subject that goes back to Gauss.
 
@@ -36,13 +36,14 @@ $$
 L(D) \; = \; \left\{ \frac{g(z)}{(z-z_1)(z-z_2)\cdots(z-z_d)} \mid \deg(g) \leq d \right\}
 $$
 
-The image $C \subset \PP^d$ of $\PP^1$ under the map $\phi_d : \PP^1 \to \PP^d$ associated to the complete linear series $|\cO_{\PP^1}(d)|$ is called the \emph{rational normal curve} of degree $d$. In case $d=2$, this is simply a plane conic (as we'll see, it is the zero locus of a single quadratic polynomial on $\PP^2$); in case $d=3$ it's called the \emph{twisted cubic}.
+The map $\phi_d : \PP^1 \to \PP^d$ associated to the complete linear series $|\cO_{\PP^1}(d)|$ is called the $d$th \emph{Veronese map} on $\PP^1$; the 
+image $C \subset \PP^d$ of $\PP^1$ under this map  is called the \emph{rational normal curve} of degree $d$. In case $d=2$, this is simply a plane conic (as we'll see, it is the zero locus of a single quadratic polynomial on $\PP^2$); in case $d=3$ it's called the \emph{twisted cubic}.
 
 It's easy to write down the equations that define a rational normal curve. First, in coordinates, we can realize the map $\phi_d$ as
 $$
 \phi_d : z \mapsto [1, z, z^2,\dots,z^d],
 $$
-from which we see that $C$ lies in the zero locus of the homogeneous quadratic polynomial $W_iW_j - W_kW_l$ for every $i+j=k+l$. As a convenient way to package these, we can realize their span as the span of the $2\times 2$ minors of the matrix
+from which we see that $C$ lies in the zero locus of the homogeneous quadratic polynomial $Q_{ijkl}(W) = W_iW_j - W_kW_l$ for every $i+j=k+l$. As a convenient way to package these, we can realize their span as the span of the $2\times 2$ minors of the matrix
 $$
 M \; = \; \begin{pmatrix}
 W_0 & W_1 & \dots & W_{d-1} \\
@@ -58,7 +59,11 @@ This map is surjective (every monomial of degree $2d$ on $\PP^1$ is a product of
 $$
 \binom{d+2}{2} - (2d+1) \; = \; \binom{d}{2},
 $$
-which is exactly the dimension of the span of the minors of $M$. It's also easy to see that $C$ is exactly the zero locus of these quadratic polynomials and in fact they generate the homogeneous ideal of the curve $C \subset \PP^d$.
+which is exactly the dimension of the span of the minors of $M$. 
+
+We can also see readily that $C$ \emph{is exactly the zero locus of these polynomials}. Explicitly, suppose that $p = [W_0,\dots,W_d] \in \PP^d$ is any point, and all the polynomials $Q_{ijkl}$ above vanish at $p$. If $W_0 = 0$, then from the vanishing of $Q_{1322}$ we see that $W_1 = 0$, and similarly we have $W_2 = \dots = W_{d-1}=0$; this the point $p = [0,\dots,0,1]$, which is a point on the rational normal curve. On the other hand, if $W_0 \neq 0$, set $\lambda = W_1/W_0$; we see in turn that $W_2/W_1 = \dots = W_d/W_{d-1} = \lambda$; thus $p = [1, \lambda, \dots,\lambda^d]$, again a point of the rational normal curve.
+
+It's also true, though less easily shown, that in fact the polynomials $Q_{ijkl}$  generate the homogeneous ideal of the curve $C \subset \PP^d$.
 
 There is one other property of rational normal curves we should mention. In general, we say that a smooth curve $C \subset \PP^d$ is \emph{projectively normal} if the restriction map
 $$
@@ -68,15 +73,30 @@ is surjective for every $m$. By the same logic as above (every monomial of degre
 
 Projective normality is a significant geometric property of a curve. We'll see it in many settings, in particular the discussion of \emph{liaison} in Chapter~\ref{**}.
 
+\subsubsection{Other characterizations of rational normal curves}
 
-The rational normal curve of degree $d$ can also be characterized as the unique irreducible, nondegenerate curve of minimal degree $d$ in $\PP^d$. To see this, suppose that $C \subset \PP^d$ is any irreducible, nondegenerate curve. If $p_1,p_2,\dots,p_{d}$ are any $d-1$ points of $C$, they lie in a hyperplane which meets $C$ in at least those points, whence $\deg(C) \geq d$; and if we have equality then the projection $\pi_\Lambda : C \to \PP^1$ from the plane $\Lambda = \overline{p_1,p_2,\dots,p_{d-1}}$ has degree 1, from which we see that $C \cong \PP^1$.  Note that by degree considerations, \emph{any $m \leq d+1$ points on a rational normal curve $C \subset \PP^d$ are linearly independent}---in case $m=d+1$, Bezout tells us that the points cannot lie in a hyperplane, and the case $m < d+1$ follows. More generally, by the same argument \emph{any subscheme $\Gamma \subset C$ of degree $m \leq d+1$ spans an $(m-1)$-plane in $\PP^d$}.
-
-(Having established that the smallest possible degree of an irreducible, nondegenerate curve in $\PP^d$ is $d$, it's natural to ask what is the minimal degree of an irreducible, nondegenerate variety $X \subset \PP^d$ of dimension $k$. We'll see the answer ($\deg(X) \geq d-k+1$) and describe varieties of minimal degree in Section~\ref{**}.)
-
-MCF: the rational normal curve $C \subset \PP^d$ can also be characterized as the unique \emph{homogeneous} curve in $\PP^d$: that is, such that the automorphisms of $\PP^d$ carrying $C$ to itself act transitively on $C$.
+Rational normal curves are special in many senses (except, of course, the literal one), several of which characterize the rational normal curve among all irreducible, nondegenerate curves in projective space. Before going on, we'll mention some of these here.
 
 
-\subsubsection{Other rational curves}
+The first, and most significant, is that  rational normal curve of degree $d$ can also be characterized as the unique irreducible, nondegenerate curve of \emph{minimal degree} $d$ in $\PP^d$. To see this, suppose that $C \subset \PP^d$ is any irreducible, nondegenerate curve. If $p_1,p_2,\dots,p_{d}$ are any $d$ points of $C$, they lie in a hyperplane which meets $C$ in at least those points, whence $\deg(C) \geq d$; and if we have equality then the projection $\pi_\Lambda : C \to \PP^1$ from the plane $\Lambda = \overline{p_1,p_2,\dots,p_{d-1}}$ has degree 1, from which we see that $C \cong \PP^1$.
+
+In fact, the same logic yields another highly significant fact about rational normal curves: \emph{any $m \leq d+1$ points on a rational normal curve $C \subset \PP^d$ are linearly independent}. This follows readily: in case $m=d+1$, Bezout tells us that the points cannot lie in a hyperplane. Alternatively, if the points are the images of points $\lambda_1,\dots,\lambda_{d+1} \in \PP^1$, this is tantamount to the nonvanishing of the Vandermonde determinant
+$$
+\begin{vmatrix}
+1 & \lambda_1 & \lambda_1^2 & \dots & \lambda_1^d \\
+1 & \lambda_2 & \lambda_2^2 & \dots & \lambda_2^d \\
+\vdots & & & & \vdots \\
+1 & \lambda_{d+1} & \lambda_{d+1}^2 & \dots & \lambda_{d+1}^d \\
+\end{vmatrix}.
+$$
+The case $m < d+1$ follows. More generally, by the same argument \emph{any zero-dimensional subscheme $\Gamma \subset C$ of degree $m \leq d+1$ spans an $(m-1)$-plane in $\PP^d$}. Indeed, the rational normal curve is the unique curve with this property, as we'll see in Chapter~\ref{InflectionsChapter}.
+
+(One sidelight: having established that the smallest possible degree of an irreducible, nondegenerate curve in $\PP^d$ is $d$, it's natural to ask what is the minimal degree of an irreducible, nondegenerate variety $X \subset \PP^d$ of dimension $k$. We'll see the answer ($\deg(X) \geq d-k+1$) and describe varieties of minimal degree in Section~\ref{**}.)
+
+Finally, we remark that the rational normal curve $C \subset \PP^d$ can also be characterized among irreducible, nondegenerate curves as the unique \emph{homogeneous} curve in $\PP^d$: that is, such that the automorphisms of $\PP^d$ carrying $C$ to itself act transitively on $C$. This is also not too hard to prove, but it requires the fact that a curve of genus $g \geq 2$ has only finitely many automorphisms, which we'll establish in Chapter~\ref{InflectionsChapter}.
+
+
+\subsection{Other rational curves}
 
 What about other rational curves in projective space? Since any linear series $\cD$ of degree $d$ on $\PP^1$ is a subseries of the complete series $|\cO_{\PP^1}(d)|$, we see that \emph{any rational curve $C \subset \PP^r$ of degree $d$ is a projection of a rational normal curve in $\PP^d$}. Slightly more generally, any map $\phi : \PP^1 \to \PP^r$ of degree $d$ is given as
 $$
@@ -84,7 +104,7 @@ z \; \mapsto \; [f_0(z), \dots, f_r(z)]
 $$
 for some $(r+1)$-tuple of polynomials $f_\alpha$ of degree $d$ on $\PP^1$, which is to say it's the composition of the embedding $\phi_d : \PP^1 \to \PP^d$ of $\PP^1$ as a rational normal curve with a linear projection $\pi : \PP^d \to \PP^r$. 
 
-Given how easy it is to describe rational curves in projective space in this way, it is in some ways surprising how many open questions there are about such curves: for example, it is not known what are the possible Hilbert functions of such curves; and even the Hilbert function of a general such curve was found only recently (it's now a special case of the \emph{maximal rank conjecture}; see~\ref{**}).  To give a sense of what we can say about such curves, we'll consider one of the first and simplest cases: smooth rational curves of degree $4$ in $\PP^3$.
+Given how easy it is to describe rational curves in projective space in this way, it is in some ways surprising how many open questions there are about such curves. We'll talk more about some of these questions in the following section; for now, we'll try to give a sense of what we can say about such curves by considering one of the first and simplest cases: smooth rational curves of degree $4$ in $\PP^3$.
 
 So: let $C \subset \PP^3$ be a smooth, nondegenerate curve of degree 4 and genus 0 in $\PP^3$. To describe the geometry of $C$, the first thing to determine is what surfaces it lies on---that is, what degree polynomials on $\PP^3$ vanish on $C$. To start with, we can ask: does $C$ lie on a quadric surface? To answer this, we consider again the restriction map
 $$
@@ -112,8 +132,6 @@ The dimensions of these two vector spaces being 20 and 13 respectively, we see t
 
 Finally, we have to show that the quadric containing the curve $C$ cannot be a cone over a conic plane curve. The key question here is whether or not $C$ contains the vertex $p$ of the cone: if not, the same adjunction-based calculation shows that $C$ must have genus 1; while a parity argument (how many times does $C$ meet a line of the ruling of $Q$?) shows that if a curve $C \subset Q$ of even degree contains $p$ it must be singular there.
 
-Before moving on, we should remark that this one example of a non-linearly normal rational curve in projective space is misleading in that we can give such a complete description. For general $d$ and $r$, we have no idea what may be the Hilbert function of a rational curve of degree $d$ in $\PP^r$, let alone what its resolution might look like.
-
 
 \begin{exercise}
 Find all possible Hilbert functions of smooth rational quintic  curves $C \subset \PP^3$. (There are only two, depending on whether or not $C$ lies on a quadric, so this isn't so bad.)
@@ -126,6 +144,21 @@ Every $g^3_4$ on $\PP^1$ is uniquely expressible as a sum of the $g_1^1$ and a $
 \begin{exercise}
 There is a 1-parameter family of rational quartic curves in $\PP^3$ up to projective equivalence. (Finding the invariants is a nice problem, which we should talk about.)
 \end{exercise}
+
+\subsubsection{Further problems (open and otherwise) concerning rational curves in projective space}
+
+To begin with, we should remark that this one example of a non-linearly normal rational curve in projective space is misleading in that we can give such a complete description. For general $d$ and $r$, we have no idea what may be the Hilbert function of a rational curve of degree $d$ in $\PP^r$. Indeed, even in the limited case of $r=3$, our knowledge gives out around $d=9$.
+
+We can, however, say some things about a \emph{general} rational curve $C \subset \PP^r$ of given degree $d$. To make sense of this, let $C_0 \subset \PP^d$ be a rational normal curve of degree $d$. As we've said, any rational curve of degree $d$ in $\PP^r$ is the projection $\pi_\Lambda(C_0)$ of $C_0$ from a $(d-r-1)$-plane $\Lambda \subset \PP^d$. If we let $\GG = \GG(d-r-1, d)$ be the Grassmannian of $(d-r-1)$-planes in $\PP^d$, and we let $U \subset \GG$ be the open subset of planes disjoint from the secant variety of $C_0$, we have a family of rational curves in $\PP^r$ parametrized by $U$ and including every smooth rational curve $C \subset \PP^r$ of degree $d$. Thus in particular we can talk about a \emph{general rational curve} of degree $d$ and genus $g$ in $\PP^r$, and ask about its geometry.
+
+This is, in fact, still largely uncharted waters. Consider, for example, one of the most basic questions we might ask: what is the Hilbert function of a general rational curve $C \subset \PP^r$ of degree $d$? As in the example, this is tantamount to looking at the restriction map
+$$
+\rho_m : H^0(\cO_{\PP^r}(m) \to H^0(\cO_C(m)) = H^0(\cO_{\PP^1}(md)).
+$$
+Equivalently, we're asking: if $V$ is a general  $(r+1)$-dimensional vector space of homogeneous polynomials of degree $d$, what is the dimension of the space of polynomials spanned by $m$-fold products of polynomials in $V$? We might naively guess that the answer is, ``as large as possible," meaning that the rank of $\rho_m$ is $\binom{m+r}{r}$ when that number is less than $md+1$, and equal to $md+1$ when it's greater---in other words, the map $\rho_m$ is either injective or surjective for each $m$.
+
+This, it turns out, is true, but it is only relatively recently known: the case $g=0$, as here, was done by Ballico in **** (??), and the analogous statement for curves of arbitrary genus, which we'll describe in Chapter~\ref{Brill-Noether}, was proved in 2019 by Eric Larson.
+
 
 
 \section{Curves of genus 1}
