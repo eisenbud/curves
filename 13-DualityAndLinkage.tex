@@ -1056,6 +1056,8 @@ The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never van
 
 \section{Linkage of curves in $\PP^3$.}
 
+Throughout this section, the word \emph{curve} will refer to a purely 1-dimensional projective scheme.
+
 Recall that two curves in $\PP^3$ without common components are \emph{directly linked} if their union is a complete intersection. In this section we will study the generalization of this notion, and the equivalence relation it generates, to the case of arbitrary purely 1-dimensional subschemes of $\PP^3$. A simple example is the linkage of a twisted cubic and one of its secant lines, which together form the complete intersection of two quadrics.
 
 We have already used the relation of \emph{ linkage} in Chapter 8 \fix{make ref refs} in the case of reduced curves without common components. In this setting it is obvious that the relation is symmetric, and that the degrees of the two curves add up to the degree of the complete intersection. We showed in \ref{***} that the (arithmetic) genera of the two curves is related by the formula~\ref{***}. 
@@ -1114,63 +1116,6 @@ $$
 \omega_{R/I} = \Hom(R/I, \omega_{R/G})\cong (G:I)/G(\sum d_{i} -n-1).
 $$
 
-%<<<<<<< HEAD
-%Before applying this result to the proof of Theorem~\ref{justification of general linkage} we give an application in a simpler case, where
-%the relation of even linkage reduces to
-%that of linear equivalence:
-%
-%
-%
-%\begin{proposition}
-%Let $S$ be a surface in $\PP^3$, and let $X,Y\subset S$ be purely 1-dimensional schemes. The schemes $X$ and $Y$ are directly linked on $S$ if and only if
-%there is a rational function $f$ on $S$ such that the divisor $f$ is $X-Y$. Thus $X$ and $Y$ are evenly linked if and only if 
-%$X~Y$, and they are oddly linked if and only if $-X\sim Y$.
-%\end{proposition}
-%
-%\begin{proof} Suppose first that $X,Y$ are directly linked. After passing to an affine open set we have
-%$(a):I_X = I_Y$ for some nonzerodivisor $a$. Write $K(S)$ for the sheaf of rational functions on $S$, so that
-%when restricted to an affine open set $U$ we have 
-%$$
-%K(S)|_U = \{a/b\mid a,b \in \sO_S(U), b \hbox{a nonzerdivisor}\}.
-%$$  
-%In this context the divisor $-X$ is the divisor associated to the
-%fractional ideal $I^{-1} := \{q\in K(S) \mid qI \subset \sO_S(U)\}$.
-%Write $Z$ for the divisor of $a$. Since $I_X$ contains a nonzerodivisor, $a:I_X = aI_X^{-1}$; that is,
-%$-X+Z = Y$, so indeed $-X$ is linearly equivalent to $Y$. Iterating this argument we see that if $X,Y$ are evenly linked then
-%they are linearly equivalent, and if oddly linked then $-X$ is linearly equivalent to $Y$, as claimed.
-%
-%Conversely, suppose that $X \sim Y$. Passing to an open affine subset, this means that there are regular functions $g,h$
-%such that $gI_X = hI_Y$. Since $I_X$ and $I_Y$ contain nonzerodivisors on $S$, we may multiply and assume $h\in I_Y$.
-%We know from **** that $(h:(h:I_Y)) = I_Y$, and it follows that 
-%$$
-%I_X = (g/h)(h:(h:I_Y))= g:(h:I_Y)
-%$$
-%as required.
-%\end{proof}
-%
-%Here is a useful algebraic version: \fix{rewrite!}
-%\begin{corollary}[Basic Double Links]\label{basic link}
-%Let $I$ be an unmixed ideal of codimension 2 in a Gorenstein local ring $S$, and let $f,g \in A$ be a regular
-%sequence with $f\in I.$ If $f,h\in I$ is also a regular sequence, then $J = (f)+gI$. If $h\in J$ is a nonzerodivisor modulo $f$,  Then
-%$$
-%f+gI = (f,g):(f,h):I
-%$$
-%so $f+gI$ is unmixed and linked in two steps to $I$. Thus $ M(f+gI) \cong M(I)$. In the graded case, 
-%$M(f+gI) = M(I)(-\deg g)$.
-%\end{corollary}
-%
-%\begin{proof}
-%Set $J = f+gI$. For any unmixed codimension 2 ideal $K$ containing $f,h$ we
-%have $(f) + g((f,h):K) = (f,gh):K$. Since $I$ is unmixed, $(f,h):(f,h):I = I$ so
-%$$
-%(f,g):((f,h):I) = (f) + (gh/h)((f,h):((f,h):I)) = (f) +gI,
-%$$
-%proving the first assertion
-%\end{proof}
-%We remark that the same result holds, with the same proof for pure codimension 1 subschemes of a Gorenstein scheme.
-%
-%=======
-%>>>>>>> 2bb8627a7523200d88c98416f49556c06df87223
 
 \begin{proof}[Proof of Theorem~\ref{double colon}]
  1) If $G = \bigcap Q_{i}$ is an irredundant primary decomposition of $G$ then
@@ -1723,17 +1668,25 @@ $S/I'$ is Cohen-Macaulay, and $I'$ has $n-1$ generators, so we are done by induc
 \end{proof}
 
 \subsection{The structure of a linkage class}
-The structure present within a given (even) linkage class was illuminated in the work of Lazarsfeld and Rao, which proved a version of a conjecture of Harris; we close this chapter by sketching the main results:
+The structure present within a given (even) linkage class was illuminated in the work of Lazarsfeld and Rao\cite{Laz-Rao}, which proved a version of a conjecture of Harris; we close this chapter by sketching a result of their paper. But first, an elementary result:
 
-\begin{theorem}
+\begin{proposition} 
 Let $M$ be a graded $S$-module of finite length. The set of $t\in\ZZ$ such that there is a curve in $\PP^3$ with Rao module
 $M(t)$ is bounded below. 
-\end{theorem}
+\end{proposition}
+
 We say that a curve $X$ is \emph{minimal} in its Linkage class if, for all curves $Y$ in the linkage class of $X$ we have
 $M(Y) = M(X)(t)$ with $t\geq 0$.
-\begin{proof}[Sketch of Proof] 
-\fix{???}
+
+\begin{proof} 
+If suffices to show that if $M = M(C)$ for some curve $C\subset \PP^3$ then $\max\{n\mid M_n \neq 0\} \geq 0$. Let
+$S_C$ be the homogeneous coordinate ring of $C$, and let $\tilde S_C = \oplus_n H^0(\sO_C(n))$. Since
+$(S_C)_n = 0$ for $n<0$, we see that $M(C) = \tilde S_C/S_C$ agrees with $\tilde S_C$ in negative degrees. But
+$\depth \tilde S_C\geq 2$, so $\dim (\tilde S_C)_n\geq \dim (\tilde S_C)_{n-1}$ for all $n<0$, and since $M_n=0$ for $n$ sufficiently
+large, the conclusion follows.
 \end{proof}
+
+Much sharper bounds are known; see for example \cite{Perrin-Martin-Deschamps 1990}.\fix{after Migliore 1.28}
 
 \begin{theorem}[Structure of Linkage]\label{Lazarsfeld-Rao}
 Any two minimal curves in an even linkage class are connected by a deformation.
@@ -1753,23 +1706,57 @@ for the degree of a linked curve in Theorem~\ref{justification of general linkag
 any curve of degree 2 must be minimal in its linkage class, and can only be linked to another 
 minimal curve in its class by the complete intersection of two quadrics.
 
-Consider the ideal
+Consider the double line $C$ with ideal 
 $$
-I= (x_{0}, x_{1})^{2}+ (x_{0}F_{0}(x_{2},x_{3})+x_{1}F_{1}(x_{2},x_{3})).
+I_{C}= (x_{0}^{2},\ x_0x_1,\ x_{1}^{2},\ x_{0}F_{0}(x_{2},x_{3})+x_{1}F_{1}(x_{2},x_{3}), )
 $$
-where $F_{0}, F_{1}$ are forms
-of degree $d>1$ with no common factor. It is not hard to show that 
-$I$ is unmixed of codimension 2, and is thus the ideal of a purely 1-dimensional subscheme $C$ of
-$\PP^{3}$. Since the radical of $I$ is $(x_{0}, x_{1})$, the curve $C$ is supported on the line
-$x_{0}=x_{1} = 0$. One can check that  the degree of $C$ is 2, so $C$ is minimal in its linkage class.
-One can also show that the arithmetic genus is $-d$, and
-$C$ has Rao module $S/(x_{0}, x_{1}, F_{0}, F_{1})$. \fix{proof?} Since a reduced curve of degree 2
-can have arithmetic genus only 0 or 1, all the minimal curves in the linkage class of $C$ are
-double lines and the ideal generated by $F_{0}, F_{1}$ determines and is determined by the linkage class.
+supported on the line $C_{\red}$ with ideal $(x_{0}, x_{1})$, where $F_{0}, F_{1}$ are relatively prime forms
+of degree $d\geq 1$. It is not hard to show that this is a curve of degree 2 with arithmetic genus $-d$.
+The free resolution of the homogeneous coordinate ring $S_C$ over $S = k[x_0,\dots,x_3]$ is
+\begin{align*}
+ S&\lTo^{
+\begin{pmatrix}
+x_0^2&x_0x_1&x_1^2&x_0F+x_1G
+\end{pmatrix}
+}
+S^3(-2)\oplus S(-d-1)
+\\ \\
+&
+\lTo^{
+\begin{pmatrix}
+0&-F&x_1&0\\
+F&-G&-x_0&x_1\\
+G&0&0&-x_0\\
+-x_1&x_0&0&0
+\end{pmatrix}
+}
+S^2(-d-2)\oplus S^2(-3)
+\lTo^{
+\begin{pmatrix}
+ x_0\\
+ x_1\\
+ F\\
+ G
+ \end{pmatrix}
+}
+S(-d-3)
+\end{align*}
+To prove this \fix{****}
+From the resolution we
+see that 
+$$
+M(C) = \Ext^3(S_C, S(-4))^\vee = S(d-1)/JS(d-1),
+$$
+where $J = (x_0,x_1,F,G)$. Since $S/(x_{0}, x_{1}, F_{0}, F_{1})$ has socle in degree $2d-2$, we see that 
+$$
+M(C) = M(C)^\vee = S(d-1)/JS(d-1).
+$$
+as well.
 \end{example}
 
 \begin{theorem}
-If $X$ is a general curve embedded in $\PP^3$ by a general linear series, and the genus of $X$ is ****, then $X$ is minimal in its linkage class.
+If $X$ is a general curve of genus $\geq 16$ embedded in $\PP^3$ by a complete linear series,
+then $X$ is minimal in its linkage class.\fix{does Larsen's thm need complete? general lb?}
 \end{theorem}
 
 
