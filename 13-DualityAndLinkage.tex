@@ -1445,7 +1445,7 @@ are colinear. Since $Q$ is a quadric, this is the same as saying that $Q\cap L_{
 \end{example}
 
 For double lines not lying on an irreducibly quadric, see Example~\ref{double lines of higher genus}
-\subsection{Construction of curves with given Hartshorne-Rao module}
+\subsection{Construction of curves with given \\Hartshorne-Rao module}
 
 Some of the main remaining results about linkage of curves in $\PP^3$ depend on careful general position arguments, and we merely
 sketch them. In the following $S = k[x_0,x_1,x_2,x_3]$.
@@ -1724,7 +1724,7 @@ the laplace expansions express the regular sequence $\Delta_1, \Delta_2$ in term
 $S/I'$ is Cohen-Macaulay, and $I'$ has $n-1$ generators, so we are done by induction.
 \end{proof}
 
-\subsection{The structure of a linkage class}
+\subsection{The structure of an even linkage class}
 The structure present within a given (even) linkage class was illuminated in the work of Lazarsfeld and Rao\cite{Laz-Rao}, which proved a version of a conjecture of Harris; we close this chapter by sketching a result of their paper. But first, an elementary result:
 
 \begin{proposition} 
@@ -1732,8 +1732,8 @@ Let $M$ be a graded $S$-module of finite length. The set of $t\in\ZZ$ such that 
 $M(t)$ is bounded below. 
 \end{proposition}
 
-We say that a curve $X$ is \emph{minimal} in its Linkage class if, for all curves $Y$ in the linkage class of $X$ we have
-$M(Y) = M(X)(t)$ with $t\geq 0$.
+We say that a curve $X$ is \emph{minimal} in its even linkage class if, for all curves $Y$ in the even linkage class of $X$ we have
+$M(Y) \cong M(X)(t)$ with $t\geq 0$.
 
 \begin{proof} 
 If suffices to show that if $M = M(C)$ for some curve $C\subset \PP^3$ then $\max\{n\mid M_n \neq 0\} \geq 0$. Let
@@ -1743,7 +1743,7 @@ $\depth \tilde S_C\geq 2$, so $\dim (\tilde S_C)_n\geq \dim (\tilde S_C)_{n-1}$ 
 large, the conclusion follows.
 \end{proof}
 
-Much sharper bounds are known; see for example \cite{Perrin-Martin-Deschamps 1990}.\fix{after Migliore 1.28}
+Much sharper bounds are known; see for example \cite{Perrin-Martin-Deschamps 1990}.
 
 \begin{theorem}[Structure of Linkage]\label{Lazarsfeld-Rao}
 Any two minimal curves in an even linkage class are connected by a deformation.
@@ -1769,7 +1769,8 @@ I_{C}= (x_{0}^{2},\ x_0x_1,\ x_{1}^{2},\ x_{0}F_{0}(x_{2},x_{3})+x_{1}F_{1}(x_{2
 $$
 supported on the line $C_{\red}$ with ideal $(x_{0}, x_{1})$, where $F_{0}, F_{1}$ are relatively prime forms
 of degree $d\geq 1$. It is not hard to show that this is a curve of degree 2 with arithmetic genus $-d$.
-The free resolution of the homogeneous coordinate ring $S_C$ over $S = k[x_0,\dots,x_3]$ is
+
+We first claim that the free resolution of the homogeneous coordinate ring $S_C$ over $S = k[x_0,\dots,x_3]$ is
 \begin{align*}
  S&\lTo^{
 \begin{pmatrix}
@@ -1798,7 +1799,11 @@ S^2(-d-2)\oplus S^2(-3)
 }
 S(-d-3)
 \end{align*}
-To prove this \fix{****}
+To prove that this is a resolution we use Theorem~\ref{WMACE}. It is easy to check that this sequence of maps forms a finite free complex.
+ The only non-obvious fact needed to apply the Theorem 
+is that the $3\times 3$ minors of the middle
+matrix generate an ideal of codimension $\geq 2$, and in fact it clearly contains $(x_0^3, x_1^3)$.
+
 From the resolution we
 see that 
 $$
@@ -1811,11 +1816,30 @@ $$
 as well.
 \end{example}
 
+In earlier chapters we analyzed various families of curves in $\PP^3$ by linking the curves to simpler curves. One of the main
+results of Lazarsfeld and Rao verified a conjecture of Joe Harris that this won't work for general curves of high genus.
+Using the Maximal Rank theorem of Eric Larson~\cite{Larson}, we can improve the bound a little:
 
-\fix{add story about proof of unirationality of moduli}
 \begin{theorem}
-If $X$ is a general curve of genus $\geq 16$ embedded in $\PP^3$ by a complete linear series,
-then $X$ is minimal in its linkage class.\fix{does Larsen's thm need complete? general lb?}
+If $C$ is a general smooth projective curve of large genus, or if $C$ has genus $\geq 10$ and is embedded in $\PP^3$ by a general linear series,
+then $C$ is minimal in its linkage class, and thus any Curve in the even linkage class of $C$ is of at least as high genus and degree as $C$.
 \end{theorem}
 
+The first version is proven in \cite{Lazarsfeld-Rao}. We prove the version with a general line bundle:
+\begin{proof}
+What Lazarsfeld and Rao actually prove is that if $e(C) := \max\{e \mid H^1(\sO_C(e)) \neq 0\}$, and $C$ lies on no surface o degree $\leq e+3$, then $C$ is minimal in its even linkage class (if $C$ lies on no surface of degree $\leq e+4$, then $C$ is (up to automorphisms of 
+$\PP^3$) the only curve $C'$ with Rao module $M(C') = M(C)$ is $C$ itself.
+
+Now suppose that $C$ is a general curve of genus $g$, embedded in $\PP^3$ as a nondegenerate curve,
+by a general line bundle of degree $d$.
+ By Petri's Theorem~\ref{},
+the line bundle $\sO_C(2)$ is nonspecial \fix{insert pf}, so $e(C) =1$. By the maximal rank theorem \cite{Larson},
+$C$ lies on no surface of degree $e+3 = 4$ if and only if 
+$$
+4d-g+1 = H^0(\sO_C(4)) \geq H^0 (\sO_{\PP^3}(4) = 35.
+$$ 
+By the Brill-Noether Theorem~\ref{},  $d\geq\lceil (3/4)g\rceil+3$.
+For $g = 10$ we have $d\geq 11$, so $4d-g+1 = 35$.
+and for $g>10$ the difference $(4d-g+1)-35$ only grows.
+\end{proof}
 \input{footer}

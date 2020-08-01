@@ -82,3 +82,24 @@ dim singularLocus(R/(sing3+F2))
 dim (sing3+F2)
 radical(sing3+F2)
 
+--------
+--double lines
+restart
+S = ZZ/101[a,b,c,d]
+delta = 4
+f = c^delta
+g = d^delta
+R = S^1/(I = ideal(a^2,a*b, b^2, a*f+b*g))
+J = ideal(a^2,b^2):I 
+betti (G = res J)
+betti (F = res R)
+genus (S/J)
+genus (S/ideal(a^2,b^2, a*f+b*g))
+F.dd
+F_4
+Ext^3(R,S^{-4})
+Ext^4(Ext^3(R,S^{-4}), S^{-4})
+Ext^3(S^1/J, S^{-4})
+
+koszul(3, vars S)
+koszul(2, vars S)
