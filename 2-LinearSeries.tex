@@ -500,20 +500,50 @@ that is, the points $q_i$ are base points of the linear series $D$.
 
 One key observation is that, according to this analysis, \emph{no special linear series on a hyperelliptic curve can be very ample}; the map associated to any special series factors through the degree 2 map $C \to \PP^1$. This is in marked contrast to the case of non-hyperelliptic curves, for which the embeddings of minimal degree in projective space are given by special linear series. 
 
-%Also, since any special linear series is a subseries of the canonical series, it must likewise factor through the degree 2 map $C \to \PP^1$; thus in particular \emph{any very ample linear series on $C$ must be non-special}. Finally, since the linear series $\cO_C(1)$ is special on any plane curve, a smooth plane curve cannot be hyperelliptic; thus the  degree of any projective embedding $C \hookrightarrow \PP^r$ of a hyperelliptic curve $C$ is at least $g+3$. In fact, we will see in Chapter~\ref{5} that any hyperelliptic curve can indeed be embedded as a curve of degree $g+3$ in projective space, and we'll describe the geometry of the image curve in Chapter~\ref{7}. Moreover, we'll also see that this is maximal among all curves; that is, any nonhyperelliptic curve admits an embedding of degree $<g+3$. 
-%
-%\fix{this uses the genus formula for smooth plane curves. Do we assume this, should we give a quick proof, or should we just find another way to see that a smooth plane curve is nonhyperelliptic?}
-%
+
+\section{Moduli problems}
+
+We'll conclude this introductory chapter with a discussion of one of the central constructions of algebraic geometry in the present context: the notion of a \emph{moduli}, or \emph{parameter space}.
+
+It is a fundamental aspect of algebraic geometry that the objects we deal with often vary in families, and can often be parametrized by a ``universal" such family. This notion of objects varying with parameters underlies many of the constructions and theorems we'll be discussing in this book, and so it seems like a good idea to establish the basic facts about moduli spaces in general, and the particulars of the ones we'll be dealing with here. 
+
+\subsection{What is a moduli problem?}
+
+Briefly, a \emph{moduli problem} consists of two things: a class of objects, or isomorphism classes of objects; and a notion of what it means to have a \emph{family} of these objects parametrized by a given scheme $B$. To make this relatively explicit, the four main examples of moduli problems we'll be discussing here are:
+
+\begin{enumerate}
+\item  smooth curves: objects are isomorphism classes  of smooth, projective curves $C$ of a given genus $g$; by a family we'll mean a flat, smooth, projective morphism $\cX \to B$.
+
+\item the Hilbert scheme: objects are smooth, projective curves $C \subset \PP^r$ of degree $d$ and genus $g$; a family over $B$ will be a subscheme $\cX \subset B \times \PP^r$, smooth, projective and flat over $B$, whose fibers are curves of degree $d$ and genus $g$
+
+\item effective divisors on a given curve: objects are effective divisors of a given degree $d$ on a given smooth, projective curve $C$; families over $B$ will be subschemes $\cD \subset B \times C$ flat over $B$ with fibers of degree $d$
+
+\item line bundles on a given curve: objects are line bundles of a given degree $d$ on a given curve $C$; by a family of such line bundles over a scheme $B$ we'll mean a line bundle on the product $B \times C$ whose restriction to each fiber over $B$ has degree $d$, modulo tensor product with line bundles pulled back from $B$.
+\end{enumerate}
+
+Given a moduli problem, our goal will be to describe a corresponding \emph{moduli space}. By this we mean a scheme $M$ whose points are in natural one-to-one correspondence with the objects in our moduli problem; or, to put it differently, we want to realize the set of objects in our moduli problem as the underlying set of a scheme $M$.
+
+The issue here, as it so often is,  is the word ``natural." If we're working over $\CC$, for example, all positive dimensional varieties have the same cardinality ($\aleph_1$), so saying that we have a bijection between the points of a variety $M$ and the set of isomorphism classes of curves isn't much of a characterization of $M$. Rather, we need some basic condition on the bijection, for which the word ``natural" is a stand-in. 
+
+In the pre-Grothendieckian world of varieties, it was easy to express this condition, though the result (as we'll see) was not always satisfactory. Given a family of the objects in our moduli problem over a variety $B$, we get a map from the underlying set of $B$ to the underlying set of $M$; and the requirement was simply that this map of sets defined a regular morphism of varieties.
+
+In the post-Grothendieckian world of schemes, however, this doesn't work: a morphism of schemes is not determined by the associated map of sets. The solution to this is to recast the condition above in functorial terms. We observe first that a moduli problem defines a functor $\cM$ from the category of schemes to the category of sets: we can associate to every scheme $B$ the set of families of objects parametrized by $B$; a morphism $B' \to B$ of schemes gives rise, via pullback, to a set map $\cM(B) \to \cM(B')$. By a \emph{fine moduli space} for the moduli problem, then, we'll mean a scheme $M$ that represents this functor, meaning that we have an isomorphism of functors
+$$
+\cM \to {\rm Mor}(\bullet, M)
+$$
+In other words, for every scheme $B$ we have a bijection between families of our objects over $B$ and maps from $B$ to $M$. In particular, applying this to $B = \Spec \CC$, we have a bijection between the set of objects and the closed points of $M$; and for any family over an arbitrary scheme $B$, the map from $B(\CC)$ to $M(\CC)$ sending each closed point  $b \in B$ to the point in $M(\CC)$ corresponding to the fiber over $b$ is the underlying set map of a morphism $B \to M$ of schemes.
+
+Note that by Yoneda's Lemma, this condition uniquely determines the space $M$---if one exists. In fact, it doesn't always; for the four examples above, a fine moduli space exists for three of them, but for the moduli problem of smooth curves it doesn't. We'll defer the discussion of why this is, and what we can do about it, until Chapter~\ref{Moduli chapter}, when we'll talk in more detail about this problem.
+
+Looking ahead, we'll discuss the third and fourth example in Chapter~\ref{}, where we'll describe the moduli spaces for effective divisors of given degree $d$ on a given curve $C$ (the symmetric powers of the curve) and for line bundles of a given degree on $C$ (the \emph{Jacobian}, or \emph{Picard variety}, of $C$). These, as we'll see, are smooth, irreducible projective varieties of dimensions $d$ and $g$ respectively.
+
+We'll take up the moduli space $M_g$ of smooth curves in Chapter~\ref{Moduli chapter}, where we'll see that this space (or rather the closest approximation to it we can cook up) is irreducible of dimension $3g-3$ for $g \geq 2$, though not smooth or projective.
+
+Finally, the Hilbert scheme will be described (to the extent that we can!) in Chapter~\ref{HilbertSchemesChapter}; this will turn out to be much wilder and more varied in its behavior than any of the above.
 
 
-% 1) special linear series are mult $g^1_2$+basepoints. 2) Given an embedding, there's a union of lines. If the embedding is complete, we get a matrix...that defines the union of lines. Scrolls in all dimensions as unions of spans of divisors.
-% 
-% 
-%\subsection{General embeddings of degree
-%genus$+3$} 
-%
-%It's a divisor on a quadric in $\PP^{3}$ of type $(2,g+1)$
-%
+%The definition is straightforward: by a family of smooth, projective curves $C$ of a given genus $g$ over a given base variety $B$, we mean a flat morphism
+%$\cC \to B$ whose fibers are smooth, projective curves $C$ of genus $g$
 
 
 \input footer.tex
