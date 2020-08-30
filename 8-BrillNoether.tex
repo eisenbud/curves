@@ -178,19 +178,70 @@ The general position lemma was originally asserted by Castelnuovo. In more moder
 
 \subsubsection{Uniform position} We start by introducing the \emph{monodromy group} of a generically finite cover. To set this up, let $f : Y \to X$ be a dominant rational map between irreducible varieties of the same dimension over $\CC$. There is then an open subset $U \subset X$ such that the restriction of $f$ to the preimage $V = f^{-1}(U)$ is a covering space in the classical topology; we'll denote by $d$ the number of sheets.
 
-Now choose a base point $p_0 \in U \subset X$, and label the preimage $f^{-1}(p_0)$ as $\{q_1,\dots,q_d$. If $\gamma$ is any loop in $U$ with base point $p_0$, for any $i = 1, \dots, d$ there is a unique lifting of $\gamma$ to an arc $\tilde \gamma_i$ in $V$ with initial point $\tilde \gamma_i(0) = q_i$ and end point $\tilde \gamma_i(1) = q_j$ for some $j \in \{1,2,\dots,d\}$; in this way, we can associate to $\gamma$ a permutation of $\{1,2,\dots,d\}$. 
-Since the permutation depends only on the class of $\gamma$ in $\pi_1(U,p_0)$, we get a homomorphism
+Now choose a base point $p_0 \in U \subset X$, and label the preimage $\Gamma = f^{-1}(p_0)$ as $\{q_1,\dots,q_d$. If $\gamma$ is any loop in $U$ with base point $p_0$, for any $i = 1, \dots, d$ there is a unique lifting of $\gamma$ to an arc $\tilde \gamma_i$ in $V$ with initial point $\tilde \gamma_i(0) = q_i$ and end point $\tilde \gamma_i(1) = q_j$ for some $j \in \{1,2,\dots,d\}$; in this way, we can associate to $\gamma$ a permutation of $\{1,2,\dots,d\}$. 
+Since the permutation depends only on the class of $\gamma$ in $\pi_1(U,p_0)$, we get a homomorphism to the symmetric group
 $$
-\pi_1(U,p_0)  \to \{1,2,\dots, d}.
+\pi_1(U,p_0)  \to {\rm Perm}(\Gamma) \cong S_d.
 $$
-The image $M$ of this map is called the \emph{monodromy group} of the map $f$; it is well-defined as a subgroup of the symmetric group $S_d$ up to conjugation (the choice of labelling of the points of the fiber).
+The image $M$ of this map is called the \emph{monodromy group} of the map $f$; it is well-defined as a subgroup of  $S_d$ up to conjugation (the choice of labelling of the points of $\Gamma$). Note that it is independent of the choice of open set $U$: if $U' \subset U$ is a Zariski open subset, the map $\pi_1(U', p_0) \to \pi_1(U,p_0)$ will be surjective, and so the image of $\pi_1(U', p_0)$ in $S_d$ is again $M$.
+
+There is another characterization of the monodromy group $M$ that will not be used here but that is worth knowing. In the situation described above, the pullback map $f^*$ expresses the function field $K(Y)$ as a finite algebraic extension of $K(X)$; the degree $d$ is the degree of this extension, and $M$ is equal to the Galois group of the Galois normalization of $K(Y)$ over $K(X)$. (For a proof of this equality, see \cite{}.)
+
+One note: we have assumed here that both $X$ and $Y$ are irreducible. In fact, we need only have assumed that $X$ is irreducible; we can apply the same construction in case $Y$ is reducible (note that any irreducible components of $Y$ that fail to dominate $X$ simply won't appear in the construction). In this setting, we see that \emph{$Y$ is irreducible if and only if the monodromy group $M \subset S_d$ is transitive}.
 
 
+There are two basic lemmas we can use to describe the monodromy group.
 
+\begin{lemma}\label{transitivity lemma}
+Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$; let $U \subset X$ and $V = f^{-1}(U) \subset Y$ be open sets as above. For any $k = 1,2,\dots,d$, let $V_k^*$ be the complement of the large diagonal in the $k$th fiber power of $V \to U$; that is,
+$$
+V_k^* = \{ (x; y_1,\dots, y_k) \in U \times V^k \mid f(y_i) = x \text{ and } y_i \neq y_j \; \forall i \neq j\}.
+$$
+Then $V_k^*$ is irreducible if and only if $M$ is $k$ times transitive.
+\end{lemma}
+
+
+\begin{lemma}\label{transposition lemma}
+Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$; let $U \subset X$ and $V = f^{-1}(U) \subset Y$ be open sets as above. If for some point $p \in X$ the fiber $f^{-1}(p)$ consists of $d-2$ reduced points and one point of multiplicity 2, then $M$ contains a transposition.
+\end{lemma}
+
+Let's now introduce the specific cover to which we'll apply these lemmas. Let $C \subset \PP^r$ be a smooth irreducible, nondegenerate curve of degree $d$, let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$, and let
+$$
+Y = \{ (H, p) \in {\PP^r}^* \times C \mid p \in H \}
+$$
+Here we can take $U$ to be simply the complement of the dual $C^* \subset {\PP^r}^*$, that is, the locus of hyperplanes transverse to $C$. Our claim is
+
+\begin{proposition}\label{monodromy of hyperplane section}
+In the situation above, he monodromy group of the cover $Y \to X$ is the full symmetric group; that is, $M = S_d$
+\end{proposition}
+
+\begin{proof}
+There are two components in this proof: we show first that $M$ is twice transitive, and then that it contains a transposition. Given this, $M$ will contain all transpositions, and hence equal $S_d$.
+
+For the double transitivity, we introduce a related cover: set
+$$
+\Phi = \{ (H, p, q) \in {\PP^r}^* \times C \times C \mid p + q \subset H \}
+$$
+(Here $p+q$ is the divisor $p+q$ on $C$, viewed as a subscheme of $C$.) the projection $\pi_{2,3} : \Phi \to C \times C$ is a $\PP^{r-2}$-bundle, and so irreducible; applying Lemma~\ref{transitivity lemma}, we deduce that $M$ is twice transitive.
+
+Finally, for the existence of a transposition in $M$, we have to use the hypothesis of characteristic zero to say that \emph{not every point of $C$ is a flex}. Given this, let $p \in C$ be a non-flex point, and let $H \subset \PP^r$ be a general hyperplane containing the tangent line $T_pC$. Under these hypotheses, the fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
+\end{proof}
+
+Finally, as a consequence of Proposition~\ref{monodromy of hyperplane section} (and Lemma~\ref{transitivity lemma}) we can deduce the
 
 \begin{lemma}[uniform position lemma]
-With $C \subset \PP^r$ and $\Gamma = C \cap H$ as above, any two subsets $\Gamma', \Gamma'' \subset \Gamma$ of the same cardinality have the same Hilbert function, i.e., impose the same number of conditions on $\cO_{\PP^{r-1}}(m)$ for all $m$.
+With $C \subset \PP^r$ and $\Gamma = C \cap H$ as above, any two subsets $\Gamma', \Gamma'' \subset \Gamma$ of the same cardinality $k$ have the same Hilbert function, i.e., impose the same number of conditions on $\cO_{\PP^{r-1}}(m)$ for all $m$.
 \end{lemma}
+
+\begin{proof}
+In this situation, we restrict to the open set $U = {\PP^r}^* \setminus C^*$ of hyperplanes transverse to $C$, and introduce the fiber power
+$$
+V_k^* = \{ (x; y_1,\dots, y_k) \in U \times V^k \mid f(y_i) = x \text{ and } y_i \neq y_j \; \forall i \neq j\}.
+$$
+as above; $V_k^*$ parametrizes subsets $\Gamma$ of cardinality $k$ in hyperplane sections $H \cap C$ of $C$. Applying Lemma~\ref{transitivity lemma}, we see that $V_k^*$ is irreducible of dimension $r$. 
+
+Now, the Hilbert function $h_\Gamma(m)$ is lower semicontinuous, so it achieves its maximum on a Zariski open subset of $V_k^*$. Since $V_k^*$ is irreducible, the complement of this open will have dimension strictly less than $r$;  a general hyperplane $H \in {\PP^r}^*$ will lie outside this image, meaning that $h_\Gamma(m)$ is the same for all $\Gamma \subset C \cap H$ of cardinality $k$.
+\end{proof}
 
 \
 
