@@ -599,10 +599,13 @@ $$
  h^{0}(\sO_{C}) = 1,\ h^{0}(\sO_{C}(1) = g, \hbox{ and } \omega_{C} = \sO_{C}(1).
 $$
 
+Note that the first of these hypotheses implies that $C$ is connected, and the last shows that
+$C$ is (locally) Gorenstein.
+
 The first of these conditions is always satisfied when $C$ is reduced and connected. The last two conditions imply that $C$ is locally Gorenstein, and that $C$ is embedded in $\PP^{g-1}$ by $g$ independent sections of the dualizing, line bundle.
 
 We say that a canonical curve $C$ has a \emph{simple}  $g-2$ secant if $C$ contains $g-2$ smooth points spanning a $(g-3)$ dimensional
-plane in $\PP^{g-1}$ that meets $C$ only in the $g-2$ points. This hypothesis is always satisfied if $C$ is irreducible. More generally:
+plane $\Lambda$ in $\PP^{g-1}$ that meets $C$ only in the $g-2$ points; equivalently, the hyperplanes containing $\Lambda$ then intersect the curve in an additional base-point-free pencil. In characteristic 0, such secant planes always exist for reduced, irreducible curves. More generally:
 
 \begin{lemma}
  If $C\subset \PP^n$ is a reduced, irreducible, nondegenerate curve, and $m\leq n-2$, then the linear span $L := \overline{p_1,\dots, p_m}$
@@ -620,34 +623,30 @@ The plane $L$ is contained in a hyperplane $H$, and since the points are general
 \begin{theorem}[Max Noether]\label{canonical curves are ACM}
 A canonical curve in $\PP^{g-1}$ has degree $2g-2$ and arithmetic genus $g$. If the curve has a simple
 $g-2$ secant, then it is arithmetically Cohen-Macaulay; that is,
-$\HH^{1}\sI_{C/\PP^{g-1}}(m) = 0$ for all $m\in \ZZ$.
+$\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m\in \ZZ$.
 \end{theorem}
  
 
-Note that for a canonically embedded irreducible curve, the hypothesis of having a simple $g-3$-dimensional $g-2$ secant plane $\Lambda$ is the same as having a base-point free pencil of degree $g-2$; this is the linear series 
-cut out by the hyperplanes containing $\Lambda$.
+For a canonically embedded irreducible curve the simple $g-3$-dimensional $g-2$ secant planes $\Lambda$  correspond to base-point-free pencils of degree $g = 2g-2 -(g-2)$: Given $\Lambda$, the linear series of hyperplanes containing $\Lambda$ intersects $C$ in $\Lambda$ plus the fibers of this pencil. \fix{I worry about the converse; why shouldn't the base locus of $K-g^{1}_{g}$ have a multiple point, or even contain a singular point?} Conversely, given such a pencil, the plane is the span of the complement of a general  member $P$ of the pencil in  $C\cap \overline P$, where $\overline P$ is the hyperplane that is the linear span of $P$.
+  
+\begin{proof} The Hilbert polynomial $\chi_{C}(t) = h^{0}\sO(t)-\h^{1}\sO(t)$ of $C$ has degree equal to
+$\dim C = 1$, so it is determined by two values.
 
- Note that these hypotheses imply that $C$ is connected and Gorenstein.
- 
-\begin{proof}
 We begin by showing that $\sO(-m)$ has no global sections for $m>0$.
-If $D$ is a divisor equivalent to $n$ times the hyperplane section, we have an exact sequence
+If $D$ is a divisor equivalent to $m$ times the hyperplane section, we have an exact sequence
 $$
-0\to \HH^{0}(\sO_{C}(-n)) \to \HH^{0}(\sO_{C}) \to \HH^{0}(\sO_{D}) \to \cdots.
+0\to \HH^{0}(\sO_{C}(-m)) \to \HH^{0}(\sO_{C}) \to \HH^{0}(\sO_{D}) \to \cdots.
 $$
 By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
-restrict non-trivially to $\sO_{D}$, and $\HH^{0}(\sO_{C}(-n)) = 0$ as claimed.
+restrict non-trivially to $\sO_{D}$, and $\HH^{0}(\sO_{C}(-m)) = 0$ as claimed.
 
 Using the Riemann-Roch Theorem we can now compute the Hilbert function $\chi_{C}(m)$:
 We have 
-$$
-\chi_{C}(0) = h^{0}(\sO_{C}) - h^{1}(\sO_{C}) = h^{0}(\sO_{C}) - h^{0}(\omega_{C}) = 1-g.
-$$
-On the other hand 
-$$
-\chi_{C}(0) = h^{0}(\sO_{C}(1)) - h^{1}(\sO_{C}(1)) = h^{0}(\sO_{C}(1_{}) - h^{0}(\sO_{C}) = g-1.
-$$
-Since $\chi_{C}(m)$ is a polynomial of degree1 in $m$, we deduce
+\begin{align*}
+ \chi_{C}(0) &= h^{0}(\sO_{C}) - h^{1}(\sO_{C}) = h^{0}(\sO_{C}) - h^{0}(\omega_{C}) = 1-g.\\
+\chi_{C}(1) &= h^{0}(\sO_{C}(1)) - h^{1}(\sO_{C}(1)^{*}\otimes \omega_{C}) = h^{0}(\omega_{C}) - h^{0}(\sO_{C}) = g-1.
+\end{align*}
+and we deduce
 $\chi_{C}(m) = (2g-2)m -g+1$, whence we see that the degree of $C$ is $2g-2$ and $\p(C) = g$ as claimed.
 
 To show that
@@ -692,12 +691,53 @@ The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never van
 
 \end{proof}
 
-\begin{corollary}
-If $C\subset \PP^{g-1}$ is a canonical curve with a simple $g-3$-secant  
+\begin{corollary}\label{canonical hilbert function}
+If $C\subset \PP^{g-1}$ is a canonical curve with a simple $g-3$-secant, then the Hilbert function of the homogeneous coordinate ring $S_{C}$ of  $C$ depends only on $g$, and is given by:
+$$
+\dim({S_{C}})_{d} = h^{0}(\cO_{C}(d) = 
+\begin{cases}
+ 0 &\mbox {if } d<0\\
+ 1 & \mbox {if }  d=0\\
+ g & \mbox {if }  d=1\\
+ (2n-1)g+1 & \mbox {if }  d>1\\
+\end{cases}
+$$
 \end{corollary}
-Theorem~\ref{canonical curves are ACM} implies, in particular, that the homogeneous coordinate ring of $C$ can be identified with $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$. It follows from the Riemann-Roch theoall canonically embedded smooth curves of given genus have the same Hilbert functions. 
+\begin{proof}
+By Theorem~\ref{canonical curves are ACM} implies, in particular, that the homogeneous coordinate ring of $C$ can be identified with $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$.  
+\end{proof}
 
 \section{Syzygies and the Clifford index}
+
+Corollary~\ref{canonical hilbert function} implies that the dimension of the vector space of forms of degree $d$
+vanishing on a canonical curve is independent of the curve; for example, for $d=2$ we get
+$
+\dim ({I_{C}})_{2} = {g-2\choose 2}
+$
+The next question one might ask is whether or not these quadric generate the ideal $I_{C}$. For example,
+when $C$ is trigonal, with a $g^{1}_{3}$ defined by a line bundle $\sL$, the complementary linear series,
+defined by $\omega_{C}\otimes \sL^{-1}$ has $g-2$ sections, and we see from Theorem ****
+that $C$ lies on the ${g-2\choose 2}$ quadrics defined by the minors of a $2\times g-2$, 1-generic matrix of linear forms. The exactness of the Eagon-Northcott complex associated to this matrix shows that there are no relations of degree 0 on these minors -- that is, they are linearly independent over the ground field. It follows that they generate the vector space of all quadrics containing $C$. But by **** the locus defined by
+the ideal of minors is a rational normal scroll of dimension 2, and thus the minors cannot generate $I_{C}$.
+
+Furthermore, if $g = 6$ and $C$ is isomorphic to a plane quintic curve, then the canonical series of the plane quintic is $5-3 = 2$ times the hyperplane series, and it follows that the canonical image of $C$ lies on the Veronese surface in $\PP^{5}$. Using Theorem *** again, we see that the Veronese is contained in (in fact, equal to) the intersection of the quadrics defined by the $2\times 2$ minors of a generic symmetric matrix, coming from the 
+multiplication map 
+$$
+\HH^{0}(\sO_{\PP^{1}}(1))\otimes \HH^{0}(\sO_{\PP^{1}}(1)) \to \HH^{0}(\sO_{\PP^{1}}(2)) = \HH^{0}(\sO_{\PP^{5}}(1))
+$$
+and there are $6 = {g-2\choose 2}$ independent quadrics in this ideal. Again in this case, they cannot generate the ideal of the curve.
+
+One might fear that this is the beginning of some long series of examples, but in fact it is not: 
+
+\begin{theorem} [Petrie]
+The ideal of a canonical curve is generated by the $\g-2\choose 2$ quadrics it contains unless the curve is either trigonal or isomorphic to a plane quintic.
+\end{theorem}
+
+For a modern treatment of Petri's Theorem in this level of generality see \cite{Schreyer}; for a different treatment see \cite{***}\fix{
+ E. Arbarello and E. Sernesi, Petri's approach to the study of the ideal associated to a special divisor,
+Inventiones Math. 49 (1978), 99-119}, and for
+
+The two exceptions
 
 For a "modern" treatment of Petri's thm, recommended by Michael Kemeny:
  E. Arbarello and E. Sernesi, Petri’s approach to the study of the ideal associated to a special divisor,
