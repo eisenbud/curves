@@ -1,6 +1,6 @@
 \input{header}
 
-\chapter{Appendix: Homological algebra and duality}\label{CA appendix}
+\chapter{Appendix: Homological commutative algebra}\label{CA appendix}
 
 \section{Introduction: Homological commutative algebra} 
 
@@ -85,12 +85,9 @@ $\hat S = k[[x_{0}..x_{n}]]$, and thus is never finitely generated over $R$. But
 \begin{theorem}[Local duality]\label{local duality}
 Let $S = k[x_{0}..x_{n}]$ be a standard graded polynomial ring over $k$. If $M$ is a finitely generated graded $S$-module, then
 $$
-H^{i}_{\gm} M = \Hom_{gr,k}(\Ext_{S}^{n+1-i}(M,S), k).
+H^{i}_{\gm} M = \Hom_{gr,k}(\Ext_{S}^{n+1-i}(M,S(-n-1), k).
 $$
 \end{theorem}
-\begin{exercise}
- Explain what is different from the above in the case $X\subset \PP^{1}$.
-\end{exercise}
 
 
 \section{Regular local rings and syzygies}
@@ -219,7 +216,7 @@ There is a surprisingly simple necessary and sufficient condition for
 $\KK(x_{1}, \dots, x_{n};R)$
 to be a minimal free resolution of $\coker \phi_{1} = R/(x_{1}, \dots, x_{n})$ \cite[]{E}:
 
-\begin{theorem} If $(R,\gm)$ is a local ring, then
+\begin{theorem} If $(R,\gm)$ is a local ring, and $x_{1}, \dots x_{n} \in R$, then
  the Koszul complex $\KK(x_{1}, \dots, x_{n};R)$ is a minimal free resolution (of $R/(x_{1}, \dots, x_{n})$) if and only if 
 $x_{1},\dots x_{n}$ is a regular sequence in $R$.\qed
 \end{theorem}
@@ -312,11 +309,14 @@ Let $M$ be a finitely generated graded $S$-module. The depth of $M$ is the small
 We can easily translate this into global cohomology in the case of a module of twisted global sections:
 
 \begin{theorem}\label{Auslander-Buchsbaum} Suppose that $X\subset \PP^{n}$ is a  subscheme without 0-dimensional (isolated or embedded) components. The module $M = \oplus_{t\in \ZZ}H^{0}(\cO_{X}(t))$
-is finitely generated, and $\depth M$ is the smallest strictly positive integer $\ell$ such that 
-$H^{\ell+1}(\cO_{X}(t)) \neq 0$  for some $t$. The homogeneous coordinate ring of $X$ is equal to $M$ if
+is finitely generated, and $\depth M$ is the smallest integer $\ell\geq 2$ such that 
+$H^{\ell-1}(\cO_{X}(t)) \neq 0$  for some $t$. The homogeneous coordinate ring of $X$ is equal to $M$ if
 $\oplus_{t\in \ZZ}H^{1}(\cI_{X}(t)) = 0$ and has depth exactly 1 otherwise.
 \end{theorem}
-
+\begin{proof}
+For the first statement, note that $H^{\ell}_{\gm}M = \oplus_{t}H^{\ell-1}(\cO_{X}(t))$. For the second statement
+use the exact sequence
+\end{proof}
 
 
  \section{Cohen-Macaulay rings}
@@ -340,7 +340,7 @@ Let $(R,\gm, k)$ be a local ring, and let $I\subset \gm$ be an ideal.
 Let $M$ be a finitely generated 
  $R$-module. Every maximal $M$-sequence in $I$ has the same length, called the \emph{depth of $I$ on $R$}, and this number is the smallest integer $i$ such that
  $\Ext^{i}_{R}(R/I, M)\neq 0$. Moreover, if $x_{1}, \dots, x_{i}$ is a maximal $M$-sequence
- in $I$ then $\Hom_{R}(R/I, M/(x_{1}, \dots, x_{i})= \Ext^{i}_{R}(R/I, M)$ is independent of the maximal regular sequence.
+ in $I$ then $\Hom_{R}(R/I, M/(x_{1}, \dots, x_{i}))= \Ext^{i}_{R}(R/I, M)$ is independent of the maximal regular sequence.
 \end{theorem}
  
  
@@ -384,7 +384,6 @@ is \emph{not} Cohen-Macaulay.
 \end{exercise}
 
 The Cohen-Macaulay property has a homological interpretation that we shall use:
-\fix{should the Auslander-Buchsbaum formula go here?}
 
 \begin{theorem} \label{lower bound for pd}
  Let $(R,\gm,k)$ be a local ring, and suppose that $S\to R$ is a map of local  rings such that $S$ is a regular local ring and $R$ is a finitely generated $S$-module. The length of a minimal resolution of $R$ as an $S$ module
@@ -427,18 +426,18 @@ the Rao module of $C$ is the vector space dual of the cokernel of the dual $d_{n
 
 
 \begin{theorem}
- Let $C\subset \PP^{n}$ be a  curve (or more generally a purely 1-dimensional subscheme). The homogeneous coordinate ring $S_{C}= S/I_{C})$ of $C$ is Cohen-Macaulay if and only if
+ Let $C\subset \PP^{n}$ be a  curve (or more generally a purely 1-dimensional subscheme). The homogeneous coordinate ring $S_{C}= S/I_{C}$ of $C$ is Cohen-Macaulay if and only if
  $H^{1}(\cI_{C}(d)) = 0 $ for all $d$.
 \end{theorem}
 
 \begin{proof}
- Except in the trivial case $n=1$ we have $H^{1}(\cO_{\PP^{n}} (d)$ for all $d$, and since 
-$C$ is supposed purely 1-dimensional we have $H^{0}(\cO_{C}(d) = 0$ for $d<0$, so from the
+ Except in the trivial case $n=1$ we have $H^{1}(\cO_{\PP^{n}} (d))$ for all $d$, and since 
+$C$ is supposed purely 1-dimensional we have $H^{0}(\cO_{C}(d) )= 0$ for $d<0$, so from the
 exact sequence 
 $$
 0\to \cI_{c}\to \cO_{\PP^{n}} \to \cO_{C}\to 0
 $$
-we deduce that $H^{1}(\cO_{C}(d)= 0$ for all $d<0$ in any case.
+we deduce that $H^{1}(\cO_{C}(d))= 0$ for all $d<0$ in any case.
 
 
 By Theorem~\ref{lower bound for pd}, the projective dimension of $S_{C}$ is at least $\dim S -\dim S_{c}= n-1$.
@@ -684,14 +683,173 @@ $$
 The rows of the betti table thus correspond to \emph{linear strands} of the resolution---sequences of the free summands where the maps between them are represented by matrices of linear forms. We shall soon see some examples and the length of the linear strands plays a central role in Green's conjecture. For the sake of simplicity we usually replace some 0 entries with $-$.
 
 \noindent We sometimes speak of the \emph{Betti table of a variety $X\subset \PP^{n}$}, by which we will mean the Betti table of the minimal free resolution
-of the homogeneous coordinate ring $S_{X}$ of $X$, as a module over the homogeneous coordinate ring of $\PP^{n}.$ A couple of examples will help absorb this notation, and suggest some of what one can read from it:
+of the homogeneous coordinate ring $S_{X}$ of $X$, as a module over the homogeneous coordinate ring of $\PP^{n}.$ 
 
+Two simple ideas sometimes help with the computation of Betti tables. First of all:
+
+\begin{proposition}\label{reduction modulo a nzd}
+Let $R$ be a local or standard graded polynomial ring, and let 
+$M$ be an $R$-module with minimal $R$-free resolution $\FF$.
+If $f\in R$ is a nonzerodivisor on both $R$ and $M$, then the minimal $\overline R:=R/(f)$-free resolution of
+$M/fM = \overline R \otimes_{R}M$ is $\overline R \otimes_{R}\FF$, and the Hilbert function of $M/fM$ is
+the first difference of that of $M$:  
+$$
+H_{M/fM}(t) = H_{M}(t) - H_{M}(t-1).
+$$
+\end{proposition}
+\begin{proof}
+ The homology of $\overline R \otimes_{R}\FF$ is $\Tor^{R}(\overline R,M)$, which can also be computed as the homology of the tensor product of $M$ with the $R$-free resolution of $R/(f)$. Since $f$ is a nonzerodivisor on $R$, this is
+$$
+0\to R(-1)\rTo^{f} R \rTo R/(f) \to 0.
+$$
+It follows that the homology of $\overline R \otimes_{R}\FF$ is the same as the homology of
+$$
+(0\to R(-1)\rTo^{f} R)\otimes_{R}M  = 0\to M(-1)\rTo^{f} M.
+$$
+Since $f$ is a nonzerodivisor on $M$, we see that $H_{i}( \overline R \otimes_{R}\FF) = 0$ for $i>0$, showing that $\overline R \otimes_{R}\FF$
+is a free resolution of $M/(f)M$. The minimality is obvious. The formula for the Hilbert functions follows from the same exact sequences.
+\end{proof}
+
+The second idea is related to the step-by-step construction of a minimal resolution.
+\begin{proposition}\label{zero implications}
+If $\beta_{i,j}$ are the graded Betti numbers of an $S$-module, and $\beta_{i,j} = 0$ for all $j\leq j_{0}$ then
+$\beta_{i+1, j+1} = 0$ for all $j\leq j_{0}$ as well.
+\end{proposition}
+
+Note that $\beta_{i,j}$ and $\beta_{i+1,j+1}$ are consecutive elements of the same row of the Betti
+table, so the Proposition says that a zero entry in the $i$-position of all the rows of the table at and above
+a certain spot implies that all successive entries
+of those rows are zero as well.
+
+\begin{proof}
+The table represents the summands of a minimal free resolution, and minimality means that the maps in the resolution are represented by matrices whose entries have strictly positive degree. Thus if
+$F_{i}$ has no summand isomorphic to $S(-j)$ for $j\leq j_{0}$ it follows that there can be no summand
+of $F_{i+1}$ isomorphis to $S(-j-1)$ for the same range of $j$.
+\end{proof}
+
+The third idea is connected to Hilbert's original application of the Syzygy Theorem the computation of the Hilbert function of a module as a (finite!) alternating sum of the Hilbert functions of the (easy to compute) Hilbert functions of the free modules in the resolution. If the graded Betti numbers of $M$ are $\{\beta_{i,j}\}$, then clearly
+\begin{align*}
+ H_{M}(t) &= \sum_{i}(-1)^{i}\sum_{j}\beta_{i,j}H_{S(-j-i)}\\
+ &= \sum_{i}(-1)^{i}\sum_{j}\beta_{i,j}{n-j+t\choose n}
+\end{align*}
+Reversing the order of summation, we note that $H_{M}(t)$ can be computed from the Betti table as the 
+alternating sum, with appropriate binomial coefficients, of the $t$-th anti-diagonal of the Betti table. 
+
+Reversing the flow of information, suppose that the Hilbert function $H_{M}(t)$ of a finitely generated
+graded module $M$ is known. To simplify the notation, set $m_{t} := H_{M}(t)$. Since the Hilbert function of the residue field $k$ has values $(1,0,0,\dots)$, and the $S$-free resolution of $k$ is the
+Koszul complex $\KK$, with Betti table
+$$
+\begin{matrix}
+j \backslash i     &0&1&2\\ \hline
+%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
+\text{0 }\vline &1&n+1&{n+1\choose 2}&\dots\\
+\text{1 }\vline &-&-&-&\dots\\
+\end{matrix},
+$$
+we can produce a (generally not finitely generated) module 
+$$
+M' := \bigoplus_{-N}^{\infty}k(-t)^{m_{t}}
+$$
+with the same Hilbert function, and resolution a corresponding direct sum of shifted Koszul complexes. 
+A priori this tells us nothing about the Betti table of $M$. However,
+there is a flat deformation $\sM$ over $k[z]$ of the module $M$ to the trivial module 
+$\oplus_{t}k(-t)^{m_{t}}$
+obtained by pulling back $M$ along the map
+$$
+k[x_{0}\dots,x_{n}] \to k[x_{0},\dots,x_{n}]: \quad x_{i} \mapsto zx_{i}
+$$
+and taking the flat limit at $z=0$. 
+The Betti table of the fiber of $\sM$ over $z=0$ is thus
+\begin{align*}
+B_{0} =  \begin{matrix}
+j \backslash i     &0&1&2\\ \hline
+%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
+\text{\kern 5pt t-1}\vline &\cdots&\cdots&\cdots&\cdots\\
+\text{ \kern 7pt t }\vline &m_{t}&m_{t}(n+1)&m_{t}{n+1\choose 2}&\dots\\
+\text{t+1}\vline &\cdots&\cdots&\cdots&\cdots\\
+\end{matrix}
+\end{align*}
+Such a flat deformation corresponds to a deformation of resolutions, as well, and one may deduce:
+
+\begin{proposition}\cite{Peeva}\label{cancellation}
+With notation as above, the Betti table $B$ of $M$ is obtained from the array $B_{0}$ by successively cancelling pairs of terms along the anti-diagonals; that is $B$ is derived from $B_{0}$ by repeated moves of the form
+\begin{align*}
+\begin{matrix}
+j \backslash i     &j-1&j&j+1\\ \hline
+%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
+\text{\kern 19pt}\vline &\cdots&\cdots&\cdots&\cdots\\
+\text{ \kern 7pt t }\vline &\dots&\dots&b&\dots\\
+\text{t+1}\vline &\dots&c&\dots&\dots\\
+\text{\kern 19pt}\vline &\cdots&\cdots&\cdots&\cdots\\
+\end{matrix}
+\quad \mapsto\quad
+\begin{matrix}
+j \backslash i     &j-1&j&j+1\\ \hline
+%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
+\text{\kern 19pt}\vline &\cdots&\cdots&\cdots&\cdots\\
+\text{ \kern 7pt t }\vline &\dots&\dots&b-1&\dots\\
+\text{t+1}\vline &\dots&c-1&\dots&\dots\\
+\text{\kern 19pt}\vline &\cdots&\cdots&\cdots&\cdots\\
+\end{matrix}
+\end{align*}
+\end{proposition}
+
+ A couple of examples will help absorb these ideas.
+
+%\begin{example}[A point in $\PP^3$]
+%Any point in $\PP^3$ is the intersection of 3 hyperplanes, so it has Betti table:
+%\begin{small}
+%$$
+%\begin{matrix}
+%j \backslash i &0&1&2&3\\ \hline
+%\text{0 }\vline &1&3&3&1\\
+%\text{1 }\vline &-&-&-&-\\
+%\end{matrix}
+%$$
+%\end{small}
+%Note that the matrices of the differentials in the resolution---the Koszul complex on 3 linear forms---are all linear; again, this is reflect in the fact that all the 
+%nonzero entries of the table are on one horizontal line.
+%\end{example}
 
 \begin{example}\label{3 points in P2}
-As a first example, let $X$ be a set of three non-colinear points in $\PP^2$, and let $\ell_1, \ell_2,\ell_3$ be the equations of the three
-lines joining them in pairs. It is not hard to see that the ideal $I$ of the points is generated by the three products $\ell_i\ell_j$ with $i\neq j$. Since $ \ell_i(\ell_j\ell_k) = \ell_j(\ell_k\ell_i) = \ell_k(\ell_i\ell_j)$
-there are two linear syzygies among these equations, and it is not hard to see that the resolution of the homogeneous coordinate ring of the points
-is
+As a first example, let $X = \{(1,0,0), (0,1,0), (0,0,1)$, a set of three non-collinear points in $\PP^2$. Since $X$ does not lie in a line, the Hilbert function of $S_{X}$ begins $1,3$. Since $S_{X}$ is reduced, the Hilbert function is non-decreasing and since $\deg X = 3$ it must continue $1,3,3,3,\dots$. The linear form 
+$\ell :=x_{0}+x_{1}+x_{2}$ does not vanish on any of the points, so it is a nonzerodivisor on $S_{X}$. By Proposition~\ref{reduction modulo a nzd}, the Betti table of $X$ is the same as that of 
+$S_{X}/(\ell)$, regarded as a module over $\overline S := k[x_{0}, x_{1}]$. The Hilbert function of $S_{X}/(\ell)$ is the first difference 
+$$
+1-0,\ 3-1,\ 3-3,\dots = 1,2,0,\dots
+$$
+of the Hilbert function of $S_{X}$. Thus the Betti table of $S_{X}$ is the same as that of the square of the maximal ideal in $\overline S$. By Proposition~\ref{cancellation} if must be obtained from the table
+\begin{small}
+$$
+\begin{matrix}
+j \backslash i &0&1&2&3\\ \hline
+\text{0 }\vline &1&2&1\\
+\text{1 }\vline &2&4&2&-\\
+\end{matrix}
+$$
+\end{small}
+by successive cancellations along anti-diagonals. Since $I_{X}$ does not contain a linear form, we see from Proposition~\ref{zero implications} that the first row
+must become $1,0,0$ after cancellation, and thus the second row becomes
+$0,3,2$; that is, the Betti table of $X$ is
+\begin{small}
+$$
+\begin{matrix}
+j \backslash i     &0&1&2\\ \hline
+%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
+\text{0 }\vline &1&-&-\\
+\text{1 }\vline &-&3&2\\
+\text{2 }\vline &-&-&-\\
+\end{matrix}
+$$
+\end{small}
+The fact that the 3 and the 2 are on the same line is reflects the fact that the 2 syzygies of the ideal $(x,y)^{2}$ are linear; this is a linear strand of the resolution. 
+
+To check this, we observe that $I_{X}$ indeed contains the three quadrics $x_{0}x_{1}, x_{0}x_{2}, x_{1}x_{2}$.
+Since $ \ell_i(\ell_j\ell_k) = \ell_j(\ell_k\ell_i) = \ell_k(\ell_i\ell_j)$ we also see the
+ two linear syzygies among these forms. 
+ 
+ Since we already know the Betti table, we see that the resolution
+ of $S_{X}$ must be
 $$
 0\lTo S/I\lTo S
 \lTo^{\begin{pmatrix}
@@ -706,19 +864,7 @@ $$
  S(-2)^2
  \lTo 0
 $$
-The Betti table of the 3 points is thus
-\begin{small}
-$$
-\begin{matrix}
-j \backslash i     &0&1&2\\ \hline
-%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
-\text{0 }\vline &1&-&-\\
-\text{1 }\vline &-&3&2\\
-\text{2 }\vline &-&-&-\\
-\end{matrix}
-$$
-\end{small}
-The fact that the 3 and the 2 are on the same line is reflects the fact that the 2 syzygies on the ideal are linear; this is a linear strand of the resolution. Note that the
+Note that the
 ideal $I$ can be written as the ideal of $2\times 2$ minors of the matrix
 $$
  {\begin{pmatrix}
@@ -730,24 +876,9 @@ $$
 The resolution above is thus a special case of the Eagon-Northcott complex, described more generally in Chapter~\ref{14- canonical curves}
 \end{example}
 
-\begin{example}[A point in $\PP^3$]
-Any point in $\PP^3$ is the intersection of 3 hyperplanes, so it has Betti table:
-\begin{small}
-$$
-\begin{matrix}
-j \backslash i &0&1&2&3\\ \hline
-\text{0 }\vline &1&3&3&1\\
-\text{1 }\vline &-&-&-&-\\
-\end{matrix}
-$$
-\end{small}
-Note that the matrices of the differentials in the resolution---the Koszul complex on 3 linear forms---are all linear; again, this is reflect in the fact that all the 
-nonzero entries of the table are on one horizontal line.
-\end{example}
-
 \begin{example}
  Next, consider the twisted cubic curve $C\subset \PP^{3}$, the image of $\PP^{1}$ under the linear series
- $(s^{3}, s^{2}t, st^{2}, t^{3}\subset H^{0}(\sO_{\PP^{1}}(3))$. Write $S = k[x_{0},\dots,x_{3}]$ for the homogeneous coordinate ring of $\PP^{3}$ and $S_{C} = S/I_{C}$ for the homogeneous coordinate ring of $C$.
+ $(s^{3}, s^{2}t, st^{2}, t^{3})\subset H^{0}(\sO_{\PP^{1}}(3))$. Write $S = k[x_{0},\dots,x_{3}]$ for the homogeneous coordinate ring of $\PP^{3}$ and $S_{C} = S/I_{C}$ for the homogeneous coordinate ring of $C$.
 
 As we saw in Chapter ****, the ideal of forms vanishing on the twisted cubic is generated by three quadrics
 $q_{1}, q_{2}, q_{3}$ that are the $2\times 2$ minors of the
@@ -769,26 +900,8 @@ $$
 
 Thus the Betti table of the twisted cubic is the same as that of the 3 non-collinear points in $\PP^{2}.$
 
-To understand this from another point of view, note that since $I_{C}$ is a prime ideal, $x_{3}$ (or any variable) is a nonzerodivisor on $S_{C}$. The following result shows that the minimal free resolution of $C$ has the same Betti table as the minimal free resolution of $S_{C}/(x_{3}) = S/(I_{c}+(x_{3})$:
+To understand this from another point of view, note that since $I_{C}$ is a prime ideal, $x_{3}$ (or any variable) is a nonzerodivisor on $S_{C}$. Proposition~\ref{reduction modulo a nzd} shows that the minimal free resolution of $C$ has the same Betti table as the minimal free resolution of $S_{C}/(x_{3}) = S/(I_{c}+(x_{3})$:
 
-\begin{proposition}\label{reduction modulo a nzd}
-Let $R$ be a local or standard graded polynomial ring, and let 
-$M$ be an $R$-module with minimal $R$-free resolution $\FF$.
-If $f\in R$ is a nonzerodivisor on both $R$ and $M$, then the minimal $\overline R:=R/(f)$-free resolution of
-$M/fM = \overline R \otimes_{R}M$ is $\overline R \otimes_{R}\FF$.
-\end{proposition}
-\begin{proof}
- The homology of $\overline R \otimes_{R}\FF$ is $\Tor^{R}(\overline R,M)$, which can also be computed as the homology of the tensor product of $M$ with the $R$-free resolution of $R/(f)$. Since $f$ is a nonzerodivisor on $R$, this is
-$$
-0\to R\rTo^{f} R \rTo R/(f) \to 0.
-$$
-It follows that the homology of $\overline R \otimes_{R}\FF$ is the same as the homology of
-$$
-(0\to R\rTo^{f} R)\otimes_{R}M  = 0\to M\rTo^{f} M.
-$$
-Since $f$ is a nonzerodivisor on $M$, we see that $H_{i}( \overline R \otimes_{R}\FF) = 0$ for $i>0$, showing that $\overline R \otimes_{R}\FF$
-is a free resolution of $M/(f)M$. The minimality is obvious.
-\end{proof}
 
 However, this is not quite all that needs to be said: certainly $I_{C}+(x_{3})$ is an ideal defining the hyperplane section $x_{3}= 0$ of $C$, but to conclude from  Proposition~\ref{reduction modulo a nzd} that the Betti table of $C$ is the same as that of the hyperplane section, we need to know that $I_{C}+(x_{3})$ is saturated.
 
@@ -797,7 +910,7 @@ By the Auslander-Buchsbaum formula, the depth of $S_{C}$ is 2---that is, $S_{C}$
 
 \begin{exercise}
  Let $C$ be the nonsingular rational quartic $\PP^{3}$, the image of $\PP^{1}$ under the linear series
- $(s^{4}, s^{3}t, st^{3}, t^{4}\subset H^{0}(\sO_{\PP^{1}}(3))$. Show that the general hyperplane section of $C$  is the intersection of two quadrics, while the ideal of $C$ has just one quadric generator. Conclude that
+ $(s^{4}, s^{3}t, st^{3}, t^{4})\subset H^{0}(\sO_{\PP^{1}}(3))$. Show that the general hyperplane section of $C$  is the intersection of two quadrics, while the ideal of $C$ has just one quadric generator. Conclude that
   that the Betti table of $C$ is not the same as the Betti table of the hyperplane section, and thus that
   $S_{C}$ is not Cohen-Macaulay. (in fact, the Betti table of $S_{C}$ is
 \begin{small}
@@ -806,144 +919,148 @@ $$
 j \backslash i &0&1&2&3\\ \hline
 \text{0 }\vline &1&-&-&-\\
 \text{1 }\vline &-&1&-&-\\
-\text{1 }\vline &-&3&4&1\\
+\text{2 }\vline &-&3&4&1\\
 \end{matrix}
 $$
-from which we see that the projective dimension of $S_{C}$ is 3, so by the Auslander-Buchsbaum theorem the depth is only 1.
 \end{small}
-
+ which we see that the projective dimension of $S_{C}$ is 3, so by the Auslander-Buchsbaum theorem the depth is only 1.)
 \end{exercise}
 
+%\begin{example}\label{canonical in P3}
+%For example, the minimal free resolution of the homogeneous coordinate ring $S_{C}$ of a canonical curve $C$ of genus 4 in $\PP^{3}$ whose ideal is generated by a quadric $q$ and a cubic $f$, as a module over the homogeneous coordinate ring $S = \CC[x_{0},\dots,x_{3}]$ of $\PP^{3}$, is the Koszul complex
+%\small
+%$$
+%S \lTo^{
+%\begin{pmatrix}
+%  q& f
+%\end{pmatrix}}
+%S(-2) \oplus S(-3) \lTo^{
+%\begin{pmatrix}
+%f\\-q 
+%\end{pmatrix}
+%}
+%S(-5)\lTo 0.
+%$$
+%\normalsize
+%since
+%$q$ and $f$ are relatively prime, and thus form a regular sequence
+%Thus it has  Betti table:
+%
+%\setcounter{MaxMatrixCols}{13}
+%\begin{small}
+%$$
+%\begin{matrix}
+%j \backslash i     &0&1&2\\ \hline
+%%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
+%\text{0 }\vline &1&-&-\\
+%\text{1 }\vline &-&1&-\\
+%\text{2 }\vline &-&1&-\\
+%\text{3 }\vline &-&-&1\\
+%\end{matrix}
+%$$
+%\end{small}
+%\end{example}
 
+\begin{example}
+ Consider a set $X$ of 7 points in linearly general position $\PP^3$. 
+Castelnuovo's Theorem~\ref{castelnuovo} shows that any 6 points in linearly general position lie on a unique twisted cubic, so the first distinction one might make among sets of 7 points is whether the 7th point lies on the twisted cubic too.
 
-\begin{example}\label{canonical in P3}
-For example, the minimal free resolution of the homogeneous coordinate ring $S_{C}$ of a canonical curve $C$ of genus 4 in $\PP^{3}$ whose ideal is generated by a quadric $q$ and a cubic $f$, as a module over the homogeneous coordinate ring $S = \CC[x_{0},\dots,x_{3}]$ of $\PP^{3}$, is the Koszul complex
-\small
+As we saw in \ref{****}, any set of $2n+1$ points in linearly general position in $\PP^{n}$ imposes $2n+1$ conditions on quadrics, so in any case $I_{X}$ requires exactly 3 quadratic minimal generators, $q_{1},q_{2},q_{3}$ and the Hilbert function of $S_{X}$ begins $1,4,7,?$. Since $S_{X}$ is reduced, the Hilbert function is non-decreasing, and since the eventual value must be $\deg X = 7$, the function must be
+$1,4,7,7,\dots$, and the ideal contains $20-7 = 13$ cubics. From this information we can work out the whole Betti table, as follows. 
+
+First, by Proposition~\ref{reduction moduo nzd} the Betti table of $R := S_{X}/(x_{3})$ is the same as that of $S_{X}$. Write $R = \overline S/I$, where $\overline S = k[x_{0},x_{1},x_{2}]$. The Hilbert function of $R$ is determined by the exact sequence
 $$
-S \lTo^{
-\begin{pmatrix}
-  q& f
-\end{pmatrix}}
-S(-2) \oplus S(-3) \lTo^{
-\begin{pmatrix}
-f\\-q 
-\end{pmatrix}
-}
-S(-5)\lTo 0.
+0\rTo S_{X}(-1)\rTo^{x_{3}} S_{X} \rTo R \rTo 0
 $$
-\normalsize
-since
-$q$ and $f$ are relatively prime, and thus form a regular sequence
-Thus it has  Betti table:
-
-\setcounter{MaxMatrixCols}{13}
+as the first difference function of that of $S_{X}$, namely
+$$
+1 -0, 4-1, 7-4, 7-7,\dots = 1,3,3,0,\dots;
+$$
+that is, $I$ is generated (not minimally) by the 3 quadrics and a total of 10 cubics. By Propositions~\ref{reduction modulo a nzd} and \ref{cancellation}, the Betti table of $X$ must be obtained by successive cancellations
+from the table
 \begin{small}
 $$
 \begin{matrix}
-j \backslash i     &0&1&2\\ \hline
-%\text{total:}&1&55&359&1211&2602&3824&3954&2889&1466&493&99&9 \\
-\text{0 }\vline &1&-&-\\
-\text{1 }\vline &-&1&-\\
-\text{2 }\vline &-&1&-\\
-\text{3 }\vline &-&-&1\\
+j \backslash i &0&1&2&3\\ \hline
+\text{0 }\vline &1&3&3&1\\
+\text{1 }\vline &3&9&9&3\\
+\text{2 }\vline &3&9&9&3\\
+\text{3 }\vline &-&-&-&-\\
 \end{matrix}
 $$
 \end{small}
+Moreover, since $X$ is not contained in a hyperplane, the zero-th row, after cancellation, must become
+\begin{small}
+ $
+\begin{matrix}
+\text{0 }\vline &1&0&0&0\\
+\end{matrix},
+$
+\end{small}
+so we can begin by making this cancellation. We also know that $I_{X}$ has exactly 3 quadratic generators, necessitating another cancellation, and we see that the actual Betti table of $X$ must be obtained by
+cancelling from
+\begin{small}
+$$
+\begin{matrix}
+j \backslash i &0&1&2&3\\ \hline
+\text{0 }\vline &1&0&0&0\\
+\text{1 }\vline &0&3&8&3\\
+\text{2 }\vline &0&9&9&3\\
+\text{3 }\vline &-&-&-&-\\
+\end{matrix}
+$$
+\end{small}
+
+
+Now three general quadrics define a complete intersection of 8 points, and it follows that in the case of 7 general points $q_{1},q_{2},q_{3}$ form a complete intersection with resolution the Koszul complex, having Betti table:
+\begin{small}
+$$
+\begin{matrix}
+j \backslash i &0&1&2&3\\ \hline
+\text{0 }\vline &1&-&-&-\\
+\text{1 }\vline &-&3&-&-\\
+\text{2 }\vline &-&-&3&-\\
+\text{3 }\vline &-&-&-&1\\
+\end{matrix}.
+$$
+\end{small}
+In this case there are no linear relations among $q_{1},q_{2},q_{3}$, so the 8 and 3 in row 1 of this table must 
+cancel completely, giving
+\begin{small}
+$$
+\begin{matrix}
+j \backslash i &0&1&2&3\\ \hline
+\text{0 }\vline &1&0&0&0\\
+\text{1 }\vline &0&3&0&0\\
+\text{2 }\vline &0&1&6&3\\
+\text{3 }\vline &-&-&-&-\\
+\end{matrix}
+$$
+\end{small}
+Since no further cancellation is possible, this must be the Betti table of a  set $X$ of 7 general points.
+
+On the other hand, if the points lie on a twisted cubic, then $q_{1}, q_{2}, q_{3}$ generate the ideal of the twisted cubid, and as we  see from the Betti table in Example~\ref{}, these have 2 linear relations, which are themselves independent. It follows that row 1 of the Betti table of $X$ must cancel to become 
+\begin{small}
+ $
+\begin{matrix}
+\text{0 }\vline &1&0&0&0\\
+\end{matrix}.
+$
+\end{small}
+Thus the Betti table of $X$ in this case is
+\begin{small}
+$$
+\begin{matrix}
+j \backslash i &0&1&2&3\\ \hline
+\text{0 }\vline &1&0&0&0\\
+\text{1 }\vline &0&3&2&0\\
+\text{2 }\vline &0&7&9&3\\
+\text{3 }\vline &-&-&-&-\\
+\end{matrix}
+$$
+\end{small}
+
 \end{example}
-
-\begin{example}
-  consider a set $X$ of 7 points in linearly general position $\PP^3$. 
-Castelnuovo's Theorem~\ref{castelnuovo} shows that any 6 points in linearly general position lie on a unique twisted cubic, so the first distinction one might make among sets of 7 points is whether the 7th point lies on the twisted cubic too.
-
-As we saw in \ref{****}, any set of $2n+1$ points in linearly general position in $\PP^{n}$ imposes $2n+1$ conditions on quadrics, so in any case $I_{X}$ requires exactly 3 quadratic minimal generators. Three general quadrics define a complete intersection of 8 points, and it follows that in the case of 7 general points the three quadrics form a complete intersection, with no linear relations; but $X$ lies on a twisted cubic, then the three quadrics containing $X$ must be the three quadrics containing the twisted cubic, and the two linear relations on these three quadrics are among the syzygies of $X$, too.
-\end{example}
-
-From now on in this section, we let $S = \CC[x_{0},\dots, x_{n}]$ be the homogeneous coordinate ring of $\PP^{n}$, and we consider only free resolutions of finitely generated graded $S$-modules. In this case something quite special happens \cite[****]{E}:
-
-\begin{theorem}[Hilbert's Syzygy Theorem]\label{hst}
-The minimal $S$-free resolution $\FF$ of any finitely generated graded $S$-module $M$ is finite: in fact, $F_{i}=0$ for all $i>n+1$.
-\end{theorem}
-
-\begin{fact}
- There are in fact finite resolutions for all $S$-modules; however there is generally no reasonable notion of a  minimal resolution outside the positively graded or finitely generated local cases. See \cite{???}.
-\end{fact}
-
- In particular since we know the Hilbert function of $S$, and thus of $S(-j)$,
-$$
-H_{S(-j)}(m) = 
-\begin{cases}
- {n+m-j \choose n} & \hbox{for $m\geq j$}
-  \\ 
- 0 & \hbox{for $m<j$}
-\end{cases}
-$$
-we can compute the Hilbert function for a finitely generated graded $S$-module $M$ from its graded Betti numbers 
-$$
-H_{M}(m) = \sum_{i,j} (-1)^{i}\beta_{i,j}{n+m-j\choose n}.
-$$
-\begin{example} [The homogeneous coordinate ring of a plane curve] 
-For the simplest non-trivial example, if $C$ is a plane curve with equation $F(x_{0},x_{1}x_{2})$ of 
-degree $d$, then the minimal free resolution of the homogeneous coordinate ring $S_{C}$ has the form
-$$
-\FF: S\lTo^{F}S(-d)\lTo 0
-$$
-Thus the only nonzero graded Betti numbers of $S_{C}$ as an $S$-module are
- $\beta_{0,0} = \beta_{1,d} = 1$, so
-$$
- H_{S_{C}}(m) = {2+m\choose 2} - {2-d+m\choose 2}
- $$
- which has the value  $dm + 1+(2-d)(2-d-1)/2 = dtm+ (d-1)(d-2)/2 +1$. Since the degree is the leading coefficient and the arithmetic genus \fix{where is this defined?} is the constant term minus 1, we get
-$\deg C = d,\ p_{a}(C) = (d-1)(d-2)/2$ as we should expect.  Note that this method of computation is not sensitive at all to whether the curve is smooth and irreducible; it works for any divisor in $\PP^{2}$.
-\end{example}
-
-\begin{exercise} 
-\begin{enumerate}
- \item Show that any curve in $\PP^{3}$ whose homogeneous coordinate ring has the
- form given in Example ~\ref{canonical in P3} has degree 6 and (arithmetic) genus 4.
- 
-\item In Section **** we computed the genus of a smooth complete intersection curve inductively, by using the adjunction formula for curves on a smooth surface along with Bertini's Theorem.
-Show that the same formula gives the arithmetic genus of an arbitrary 1-dimensional complete intersection $C$ hypersurfaces 
-$X_{i} := \{F_{i} = 0\}$ of degrees $d_{i}$,
-using the fact that the minimal free resolution of the homogeneous coordinate ring 
-$S/(F_{1}, \dots, F_{n-1})$ of $C$  is the Koszul complex (see \cite{???}):
-%\scriptsize
-\small
-$$
- S \lTo \oplus_{1\leq i<n}S(-d_{j}) \lTo  \oplus_{1\leq j<k<n}S(-d_{j}-d_{k}) \cdots S(-\sum_{1\leq j<n}d_{j})\lTo 0.
- $$
-\normalsize
-\end{enumerate}
-\end{exercise}
-
-Computing the Hilbert function was the application for which Hilbert proved the Syzygy Theorem; but if that were the only use of free resolutions, we would not be introducing them here. A more interesting feature that the Betti table of the homogeneous coordinate ring (or homogeneous ideal) of a variety $X$ reflects is the presence of a variety $Y$ containing 
-$X$ and having low degree syzygies. 
-
-Here is a  simple example:
-
-We have seen in Chapter~\ref{Scrolls}, the homogeneous ideal $I$ of the twisted cubic curve in $\PP^{3}$ is generated by the three $2\times 2$ minors of the matrix
-$$
-M = \begin{pmatrix}
- x_{0}&x_{1}&x_{2}\\
-  x_{1}&x_{2}&x_{3}
-\end{pmatrix}
-$$
-We shall soon compute the Betti tables of all rational normal scrolls. In particular, we shall see that the Betti table of the twisted cubic has the form:
-
-\centerline{\small
-\begin{tabular}{r|ccc} 
-$j\backslash i$&0&1&2\\ 
-\hline 
-0&1&$-$&$-$\\ 
-1&$-$&3&2\\ 
-\end{tabular}}
-\noindent
-where the dashes indicate that the corresponding $\beta_{i,j}$ is zero. In plain language, the table indicates  that  the ideal $I$ of the curve is minimally generated by 3 elements of degree 2, and that there are two linear relations on the 3 (that is, generators of total degree $2+1=3$, and that these freely generate the module of  syzygies of $I$ (the two relations are in fact just the columns of the transpose of the matrix $M$).
-
-The homogeneous ideal $J$ of any set of points $\Gamma$ that lies on the twisted cubic contains $I$. Supposing that $\Gamma$ does not lie on a plane, the ideal $J$ contains no linear forms. The 2 linear relations on the generators of $I$ must be consequences of relations on the generators of $J$. But since the relations on $I$ are linear, they are of the lowest possible degree of any relations on $J$, so there must be at least 2 linear relations on the quadratic generators of $J$. Here is the way this can be used:
-\begin{fact}
- A lemma of Castelnuovo \fix{exercise in Ch 8; is it really Castelnuovo?} shows  that every set of 6 points in linearly general position
-in $\PP^{3}$ lies on a twisted cubic;  a set of points $\Gamma\subset \PP^{3}$ in linearly general position of cardinality $n\geq 7$ lies on a twisted cubic curve if and only if
-the Betti table of $\Gamma$ is termwise $\geq$ that of the twisted cubic.\end{fact}
 
 \section{What Makes a Complex Exact}
 
@@ -977,328 +1094,5 @@ $M_P$ over $S_P$, a regular ring of dimension $c$.Thus the kernel of $(\phi_{c-1
 and $({\bf F}_{\geq c})_P$ is a free resolution of this module, and thus split exact. Taking $P = 0$ gives the condition on ranks in
 item 1), while the condition on codimension follows because the cokernel of each $(\phi_i)_P$ is projective for $i\geq c$. For a detailed treatment and the opposite implications, we refer to \cite{book}.
 
-\section {Dualizing sheaves} 
 
-\fix{Put the linkage computation of the dualizing sheaf in here explicitly!}
-%%in the text below we used \HH instead of H for cohomology. This is fixed with a macro:
-\def\HH{{H}}
-
-Other than  the structure sheaf, the most important line bundle on a smooth variety   $X$ over $\CC$ is the top exterior power of the complex cotangent bundle, usually called the canonical line bundle or canonical sheaf $\omega_{X}$. 
-
-In the case of curves  we have many times used it's key property, that if  $\cF$  is a line bundle on the smooth curve  $C$, then $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
-$$
-\Hom_{C}(\sF, \omega_{C})
-\cong 
-\Hom_{k}(\HH^{1}(\cF), k).
-$$
-The reward for writing the formula this way is that, in this form, 
-it holds for any coherent sheaf $\cF$:
-
-\begin{proposition} Let $C$ be a smooth curve.
-There are natural isomorphisms
-$$
-\eta_{\sF}: \Hom(\sF,\omega_{C}) =  
-\to 
-\Hom_{k}(\HH^{1}(\cF), k).
-$$
-for any coherent sheaf $\cF$ on $C$.
-\end{proposition}
-
-\begin{proof}
- Let $\cF'$ be the torsion subsheaf  of $\cF$, a sheaf of finite support. And let
- $\cF'' = \cF/\cF'$.
- Since
-$\cF'$ is locally free, the sequence is locally split (in fact it is globally split too, but we don't need this.)
-
-Since $\omega_{C}$ is a line bundle, 
-$$
-\sHom_{\PP^1}(\sF, \omega_{C}) = 
-\sHom_{\PP^1}(\sF', \omega_{C}) \oplus \sHom_{\PP^1}(\sF'', \omega_{C})  = 
-\sHom_{\PP^1}(\sF', \omega_{C}) 
-$$
-and 
-$\HH^{1}(\cF) = \HH^{1}(\cF'')
-$
-because $\HH^{1}(\cF') = 0$, so the duality formula for arbitrary coherent sheaves follows from the case of line bundles.
-\end{proof}
-
-An equivalent formulation can be made using a \emph{residue isomorphism} $\eta: H^{1}\omega \to k$. When $C$ is smooth over $\CC$, then regarding elements of 
-$\HH^{1}(\omega_{C})$ as rational differential forms modulo linear equivalence,
-we may take $\eta$ to be the classical ``sum of the residues'' map of complex analysis.
-Of course, given the natural isomorphisms $\eta_{\sF}$ above, we can take
-$$
-\eta := \eta_{\omega_{C}}(1_{\omega_{C}}.
-$$ Conversely,an isomorphism $\eta$, 
-determines, for every $\sF$ a map
-$$
-\eta_{\sF}:\Hom_{C}(\sF, \omega_{C})
-\to
-\Hom_{k}(\HH^{1}(\cF), k).
-$$
-sending a homomorphism
-$\alpha \in \Hom_{C}(\sF, \omega_{C}) $
-to $\eta \circ \HH^{1}(\alpha)$. In particular, we see that $\eta$ itself corresponds to the 
-identity map of $\omega_{C}$  
-
-%Another manifestation of these phenomena is a
-%special case of the Serre duality theorem on $\PP^{r}$, which asserts that  there is an isomorphism $\eta: H^{r}(\omega_{\PP^{r}}) \cong k$, where $\omega_{\PP^{r}} = \cO_{\PP^{r}}(-r-1)$, the top exterior power of the cotangent bundle. Again, there is
-%a natural map
-%$$
-%H^{0}(\cF^{-1}\otimes \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), k)
-%$$
-%Of course $\cF^{-1}\otimes \omega_{\PP^{r}}$ may be rewritten as
-%$\Hom(\cF, \omega_{\PP^{r}})$, and in the form
-%$$
-%\Hom(\cF, \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), H^{r}(\omega_{\PP^{r}})) 
-%\rTo^{\eta \circ -} \Hom(H^{r}(\cF), k)
-%$$
-%the map is, as before, an isomorphism for every coherent sheaf $\cF$.
-%
-
-Grothendieck extended these ideas to all pure-dimensional projective schemes and beyond. Here is the basic definition:
-
-\begin{definition}
-If $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
-functional $\eta:\HH^{r}(\omega) \to k$ is \emph{dualizing} if the map
-$$
-f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
-\to
-\Hom_{k}(\HH^{r}(\cF), k).
-$$
-defined as above is an isomorphism for every coherent sheaf $\sF$.
-\end{definition}
-
-\begin{proposition} Any two dualizing pairs $(\omega_{X}, \eta)$ and $(\omega'_{X}, \eta')$, on a scheme $X$ are canonically isomorphic.
-\end{proposition}
-
-\begin{proof}
-We will show that there is a unique isomorphism $g: \omega\to \omega'$ making the diagram
-$$
-\begin{diagram}
- H^{1}(\omega)&\rTo^{g}&H^{1}(\omega')\\
- &\rdTo_{\eta}&\dTo_{\eta'}\\
- &&k
-\end{diagram}
-$$
-commute. 
-
- The duality property of $\omega'$ yields
-$$
-\Hom_{X}(\omega, \omega')  = \Hom(\HH^{1}(\omega), k).
-$$
-Let $g: \omega \to \omega'$ be the map corresponding under this isomorphism to $\eta'$. It follows from the relation of $\eta'$ to the duality isomorphism, that 
-$\eta'g = \eta$. Similarly, we get a map $g':\omega'\to \omega$ such that
-$\eta g = \eta'$, and it also follows that $\eta gg' = f_{\eta}(gg') =  \eta$, so that
-$gg' = 1_{\omega'}$. Similarly, $g'g = 1_{\omega}$, and we are done.
-\end{proof}
- 
-We often abuse the terminology, and say simply that $\omega$ is a \emph{dualizing sheaf} or a \emph {canonical sheaf} on $X$. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X})) = k$, then
-$\HH^{r}(\omega) \cong k$, whence $\eta$ is, in any case, unique up to a nonzero scalar. 
-
-Of course it is far from obvious that such a dualizing sheaf will exist on an arbitrary pure-dimensional scheme, and in general there is no such sheaf! However, dualizing sheaves do exist on any pure-dimensional scheme that is embeddable in a smooth scheme, and thus, in particular, they exist on any projective scheme.
-
-On a smooth projective variety, Serre duality shows that we can choose the dualizing sheaf to be the top exterior power of the sheaf of differential forms, as already explained. To understand how dualizing sheaves are constructed in general, we must abandon the idea that the the canonical sheaf of $X$ must ``come from'' differential forms on $X$. For example, consider the ring $R = k[x,y,z]/x^{2}$ and the scheme $X = \Proj R$, a double line in $\PP^{2}$. Writing $d: \sO_{X}\to \Omega_{\sO_{X}/k}$ for the universal derivation, we have $0 = d(x^{2}) = 2xd(x)$ so (at least in characteristic $\neq 2$), $dx = 0$. Thus 
-\def\red{{\rm red}}
-$$
-\Omega_{\sO_{X}/k} = \Omega_{\sO_{X_{\red}}/k} = \omega_{X_{\red}};
-$$ 
-that is, the differentials do not ``see'' the nilpotent part of the structure sheaf at all. Furthermore, 
-$
-h^{0}(\sO_{X}(1)) = 3
-$
-(as would be the case with a smooth conic in the plane)
-while 
-$
-h^{1}(\Omega_{X} (-1)) = h^{1}(\Omega_{X_{red}} (-1)) = h^{1}\sO_{\PP^{1}}(-3) = 2
-$
-so Serre duality would fail if we took $\omega_{X} = \Omega_{X}$ as we would do for smooth curves.
-
-In general, a dualizing sheaf on a scheme $X$ can be constructed by comparing $X$ with a 
-variety $Y$ that already has a dualizing sheaf, such as $Y=\PP^{r}$. To understand the motivation behind the construction, 
-consider first the situation where $\iota: X\subset Y$ is a closed immersion of smooth varieties, and suppose thta $X$ has dimension $d$ and codimension $c$ in $Y$.
-In this case the conormal bundle of $X$ in $Y$ is by definition the sheaf
-$\cI/\cI^{2}$, where $\cI$ is the ideal sheaf of $X$ in $Y$. If $p\in X$ then because $X$ is smooth, the kernel of the map of local rings $\cO_{Y,p} \rTo^{\iota^{*}} \cO_{X,p}$ is generated by a subset of a set of minimal generators of the maximal ideal $\gm_{Y,p}\subset \cO_{Y,p}$, and is thus a complete intersection. It follows that the left-most term of the right exact sequence
-$$
-\cI/\cI^{2} \to \iota^{*}(\Omega_{Y}) \to\Omega_{X} \to 0
-$$
-is a vector bundle on $X$ whose rank is  $c = \rank \Omega_{Y} -\rank \Omega_{X}$, so the sequence is exact on the left as well. All the terms are vector bundles on $X$, and thus the sequence
-is locally split. It follows that 
-$$
-\omega_X = \wedge^{d}\Omega_{X} = \wedge^{c+d} \iota^{*}(\Omega_{Y})\otimes \wedge^{c}(\cI/\cI^{2})^{\vee} = \sHom(\wedge^{c}(\cI/\cI^{2}), \omega_{Y}).
-$$ 
-
-The next step is to recognize that this expression for $\omega_X$ can be interpreted as saying, always in the case $X\subset Y$ is smooth of
-codimension $c$, that
-$$
-\omega_{X} = \sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}).
-$$
-To motivate this formula, consider just the simple case where $X$ is a complete intersection of hypersurfaces
-of degrees $d_{i}$ in $Y = \PP^{n}$. In this case the Koszul complex
-$$
-0\to \wedge^{c} (\oplus_{i}\cO(-d_{i})) \rTo^{\phi_{c}} \cdots \to \oplus_{i}\cO(-d_{i}) \rTo^{\phi_{1}}\cO_{Y,p} \to\cO_{X,p} \to 0.
-$$
-Thus $\sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}) = \sHom(\coker \phi_{c}^{\vee}, \omega_{Y})$
-and $\coker \phi_{c}^{\vee}$ may be canonically identified with $\wedge^{c}(\cI/\cI^{2})$.
-
-This computation suggests the bold idea that the dualizing module of a closed subscheme
-$X\subset Y$ of pure codimension $c$ can be computed by the formula
-$$
-\omega_{X} : = \sExt_{Y}^{c}(\cO_{X}, \omega_{Y}),
-$$
-or, still more generally, that given any finite morphism $\pi: X\to Y$ we have
-$$
-\omega_{X} : = \sExt_{Y}^{c}(\cO_{X}, \omega_{Y}),
-$$
-Where we can give the sheaf on the right the unique structure of a sheaf on $X$
-such that $\pi_{*}\sExt_{Y}^{c}(\cO_{X}, \omega_{Y}) = \sExt_{Y}^{c}(\pi_{*}\cO_{X}, \omega_{Y})$, as explained below in the case $c=0$.
-
-The truth of this assertion implies a web of theorems proving that the sheaf 
-$\sExt_{Y}^{c}(\cO_{X}, \pi^{*}\omega_{Y})$ is independent of $\pi$; and moreover that such sheaves satisfy some form of Serre duality. For all this, see the book
-\ref{Altman-Kleiman}.
-
-We now explain the construction above in the one case we will need for studying the linkage of curves in $\PP^{3}$.
-
-
-\begin{theorem}\label{construction of omega}
-Let $\pi: X \to Y$ is a finite morphism of a purely $1$-dimensional schemes, and suppose that
-$\omega_{Y}, \eta_{y}$ is a dualizing pair on $Y$. 
-Let $\omega := \sHom(\pi_{*}\cO_{X}, \omega_{Y})$ regarded as a sheaf on $X$. There are
-natural isomorphisms 
-$$
-\eta_{\sF}: \Hom_{X}(\sF, \omega) \to \Hom(H^{1}(\sF), k),
-$$
-and thus $\omega$, together with $\eta = \eta_{\omega}(1_{\omega})$ is a dualizing pair for $X$.
-\end{theorem}
-
-Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$; in this form, at least when $X$ is smooth, it is the Riemann-Hurwitz formula \fix{did we decide on this name?} Another is the inclusion of $X$ into another curve, perhaps a complete intersection curve, and this is the one we need for linkage:
-
-\begin{corollary}\label{dualizing formula}
- Let $X\subset Y\subset \PP^{n}$ be closed, purely 1-dimensional schemes. If  $\omega_{Y} = \sO_{Y}(d)$ for some integer $d$, then 
- $$
- \omega_{X} = \frac{\sI_{Y}:\sI_{X}}{\sI_{Y}}(d).
- $$
-\end{corollary}
-
-\begin{proof}
-By Theorem~\ref{construction of omega} we have 
-$$
-\omega_{X} = \sHom(\sO_{X}, \omega_{Y}) = \sHom(\sO_{X}, \sO_{Y})(d).
-$$
-Clearly any  section of $\sI_{Y}:\sI_{X}$ on on open set $U$ gives rise by multiplication to a
-map   
-$\sO_{X}(U) \to \sO_{Y}(U)$, and the sections of  $\sI_{Y}$ give the zero map,
-so there a natural mapping $\frac{\sI_{Y}:\sI_{X}}{\sI_{Y}} \to \sHom(\sO_{X}, \sO_{Y})$,
-and locally this is an isomorphism because every map from $\sO_{X}$ is determined by the image of the global section 1.
-\end{proof}
-
-
-\begin{proof}[Proof of Theorem~\ref{construction of omega}]
-The sheaf  
-$\omega:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
-which is, a priori a sheaf on $Y$, has the structure of a sheaf on $X$
-specified by the property that
-$$
-\pi_{*}(\omega) = \sHom(\pi_{*}\cO_{X}, \omega_{Y}).
-$$
-as a sheaf on $Y$.
-
-To see that there is such a sheaf, take an open affine cover $\{U_{i}\}$ of $Y$ and pull it back to an open affine cover $\{V_{i} = \pi^{-1}(U_{i})\}$ of $X$. Because $\pi$ is finite, the restriction of 
-$\pi_{*} \cO_{X}$ to $U_{i}$ is naturally isomorphic to $\sO_{V_{i}}$, regarded as an $\sO_{U_{i}}$-module, and thus the restriction of
-$\sHom(\pi_{*}\cO_{X}, \omega_{Y})$ to $U_{i}$ is 
-$Hom_{U_{i}}(\cO_{V_{i}}, \omega_{Y}|_{U_{i}})$,
-which is naturally a module over $\cO_{V_{i}}$. This gives $\omega_{X}:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
-the structure of a sheaf on $X$, and it is obvious from the construction that this has the desired pushforward. 
-
-Because $\pi$ is finite we have
-\begin{align*}
- \Hom(\HH^{1}(\omega),k) &= \Hom(H^{1}(\pi_{*}\omega), k)\\ 
-&= \Hom(\HH^{1}(\sHom(\pi_{*}\cO_{X}, \omega_{Y})),k)\\
-&\cong \Hom(\cHom(\pi_{*}\cO_{X},\omega_{Y}), \omega_{Y})
-\end{align*}
-by the dualizing property of $\omega_{Y}$. 
-
-%We may use the structure map $\cO_{Y} \to \pi_{*}\cO_{X}$ to deduce
-%a map  
-%$$
-%\HH^{1}(\omega) = 
-%\HH^{1}(\pi_{*}\sHom(\cO_{X}, \omega_{Y})
-%\to
-%\HH^{1}(\sHom(\cO_{Y}, \omega_{Y})
-%= \HH^{1}\omega_{Y})
-%$$
-%and thus any residue map $\eta_{Y}: \HH^{1}(\omega_{Y}) \to k$
-%gives rise, by composition, to a residue map 
-%$\eta: \HH^{1}(\omega)\to k$.
-
-It now suffices to show that there exist natural isomorphisms $\Hom_{X}(\sF, \omega) \cong \Hom_{k}(H^{1}(\sF), k)$.  Because $\pi$ is finite, the cohomology of a sheaf on $X$ is the same as the cohomology of its pushforward. In view of the construction of $\omega$, and the fact that $\omega_{Y}$ is a dualizing sheaf for $Y$, it suffices to show that there is a natural isomorphism
-$$
-\phi: \pi_{*}\sHom_{X}(\sF,\sHom_{Y}(\sO_{X}, \omega_{Y})) \to \sHom_{Y}(\pi_{*}\sF, \omega_{Y}).
-$$
-Passing to an affine open set $U_{i}\subset Y$ and its preimage $V_{i}\subset X$
-as in the definition of $\omega$,  the left hand side becomes
-$$
-\Hom_{V_{i}}(\sF|_{V_{i}}, \Hom_{U_{i}}(\cO_{X}|V_{i}, \omega_{Y}|_{U_{i}}))
-$$
-where $\cO_{X}|V_{i}$ is considered a $U_{i}$-modules via the structure
-map $\cO_{U_{i}} \to \cO_{V_{i}}$.  Note that $\sF|_{V_{i}} = \pi_{*}\sF|_{U_{i}}$. We define
-$\phi$ to be the map sending an element $a$ in the left hand side to 
-$$
-\phi(a) \in \sHom_{U_{i}}(\pi_{*}\sF|_{U_{i}}, \omega_{Y}|_{U_{i}})\qquad \phi(a): t \mapsto a(t)(1).
-$$
-It is easy to check that this is a natural
-isomorphism. 
-\end{proof}
-
-\begin{fact}[Dualizing sheaves in higher dimension]  There are two important extensions of Theorem~\ref{construction of omega}:
-
-First, the proof given for curves above actually works for a purely $r$-dimensional projective scheme $X$ over $k$ if we replace the occurrences of  $\HH^{1}$ by $\HH^{r}$, and shows that every such scheme has a dualizing sheaf $\omega$. However, the isomorphisms
-$$
-\HH^{i} (\sHom(\sF, \omega)) \cong \Hom_{k}(\HH^{r-i}(\sF), k) 
-$$
-hold for all coherent $\sF$ \emph{ if and only if} $X$ is Cohen-Macaulay. In our situation
-this condition means that, if $\pi: X\to \PP^{r}$ is a finite map, then $\pi_{*}\cO_{X}$
-is locally free.
-\end{fact}
-
- 
-
-\begin{example}[Adjunction formula] \label{canonical of CI}Prove directly that if $\omega_{Y}$ is a dualizing sheaf on a surface $Y$ and $X$ is a Cartier divisor on $Y$, then
-$\omega := \cO_{X}\otimes_{Y}\omega_{Y}(X))$ is a dualizing sheaf for $X$.  
-Use this to show by induction that if 
-$$
-X = \bigcap_{i=1}^{c}H_{1}\cap \cdots \cap H_{n}
-$$ 
-is a complete intersection
-in $\PP^{r}$ of hypersurfaces of degrees $\deg H_{i} = d_{i}$,  then
-$$
-\omega_{X} = (\cO_{X}(\sum_{i=1}^{c} d_{i}) - r-1.
-$$
-\end{example}
-
-Here is a special case that will be important to us:
-\begin{proposition}\label{computation of omega}
- Suppose that 
-$C \subset \PP^{n}$ is a purely 1-dimensional scheme. If $(f_{1}, \dots, f_{n-1}) \subset I_{C}$ is a regular sequence of forms of degrees $d_{1}\dots,d_{r}$ defining the scheme $X\supset C$, then 
-$$
-\omega_{C}\cong \widetilde{(\cI_{X}:\cI_{C})}(q),
-$$
-where $q = (\sum_{i=1}^{n-1} d_{i}) -r-1.$
-\end{proposition}
- \fix{both the prop and the proof should be done for affine cones, then localized.}
-\begin{proof}
- By Theorem~\ref{} we know that $\omega_{X} = \cO_{X}(q)$. Further, the map
- $C\to X$ is finite, so 
- $$
- \omega_{C} = Hom(\cO_{C}, \omega_{X}) = \Hom(\cO_{C}, \cO_{X})(q).
- $$
- But $\Hom(\cO_{C}, \cO_{X}) = (\cI_{X}:\cI_{C})$, completing the proof.
-\end{proof}
-
-
-\begin{theorem} \label{canonical of Gor}
- $R$ is Gorenstein if and only if $R$ is Cohen-Macaulay and $\omega_{R} \cong R$ (up to twist in the graded case)
-\end{theorem}
-\begin{proof}
- 
-\end{proof}
 \input{footer}
