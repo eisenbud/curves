@@ -17,6 +17,8 @@ Describe the Deligne-Mumford compactification; mention alternatives?
 
 It is hard to specify an abstract curve. It is much easier if the curve $C$ comes to us with some additional structure, such as a map to projective space; if the map is a birational embedding, we can specify the curve just by specifying a set of polynomial equations cutting it out. 
 
+There are two special cases of this: we can look at pairs $(C,f)$ where $f : C \to \PP^1$ is a branched cover of degree $d$, which yields various flavors of the \emph{Hurwitz spaces}; and we can look at pairs $(C,f)$ where $f : C \to \PP^2$ is a birational embedding of $C$ as a plane curve of degree $d$, yielding the \emph{Severi varieties}. Both of these spaces are more readily described and better-behaved than the moduli space $M_g$ of abstract curves, or the Hilbert scheme $\cH$ of curves in higher-dimensional space; for this reason they are useful in proving theorems about $M_g$ and $\cH$.
+
 \subsection{Hurwitz spaces}
 
 Fix integers $d \geq 2$ and $g \geq 0$. By the \emph{small Hurwitz space} $\cH^\circ_{d,g}$ we will mean a space parametrizing simply branched covers $f : C \to \PP^1$ of degree $d$, with $C$ a smooth projective curve of genus $g$. Here ``simply branched" means that every fiber  either is reduced---that is, consists of $d$ reduced points---or consists of one double point and $d-2$ reduced points. If a map $f : C \to \PP^1$ is simply branched, in particular, the branch divisor $B \subset \PP^1$ of the map will consist of $b = 2d+2g-2$ distinct points in $\PP^1$
@@ -96,6 +98,33 @@ The Hilbert schemes---schemes $\cH_{d,g,r}$ parametrizing curves of given degree
 
 \section{Unirationality}
 
-Can you write down a general curve of genus $g$?
+The Brill-Noether theorem, in all its many forms, deals with a simple question: what linear series $g^r_d$ does a curve $C$ of genus $g$ possess? Of course, the answer depends on $C$, but we know from general principles that it's constant on an open subset of $M_g$; so it's natural to ask what the answer is on that open set. That is the subject of the Brill-Noether theorem: what linear series exist on a general curve $C$ of genus $g$? This raises, naturally, a question we'll take up next.
+
+\subsection{Can we write down a general curve of genus $g$?}
+
+Let's do this one genus at a time. For curves of genus 2, the family of curves given by
+$$
+y^2 = x^6 + a_5x^5 + \dots + a_1x + a_0
+$$
+includes every curve of genus $2$; in other words, the induced (rational) map $\AA^6 \to M_2$ is dominant, so that  a general choice of the coefficients $a_i$ will yield a general curve.
+
+For genus 3, we can consider the family
+$$
+\sum_{i+j+k = 4} a_{i,j,k}x^i y^jz^k = 0
+$$
+of all plane quartic curves; again, the rational map $\AA^{15} \to M_3$ is dominant, so a general choice of the $a_{i,j,k}$ yields a general curve. The same approach works in genera $4$ and $5$; in each case a general canonical curve is a complete intersection, so that if we take the coefficients of its defining polynomials to be general scalars we have a general curve.
+
+This breaks down when we get to genus 6, where a canonical curve is not a complete intersection. But it's close enough: a general canonical curve of genus 6 is the intersection of a smooth del Pezzo surface $S \subset \PP^5$ with a quadric hypersurface $Q$; since all smooth del Pezzo surfaces in $\PP^5$ are isomorphic, we can just fix one such surface $S$ and let $Q$ be a general quadric.
+
+What we are doing in each of these cases is exhibiting a family of curves of the relevant genus over a rational base that dominates $M_g$. Thus, to say that we can write down a general curve of genus $g$ is tantamount to saying that \emph{the moduli space $M_g$ is unirational}
+
+It gets harder as the genus increases. Let's do one more case, genus 7, which already calls for a different approach. Here we want to argue that, by Brill-Noether theory, a general curve of genus $7$ can be realized as (the normalization of) a plane septic curve with 8 nodes $p_1,\dots,p_8 \in \PP^2$. Equivalently, if we let $S = Bl_{p_1,\dots,p_8}(\PP^2)$ be the blow-up, and let $l$ and $e_1,\dots,e_8$ be the classes of the pullback of a line and of the eight exceptional divisors respectively, a divisor of class $7l - 2 \sum e_i$ on $S$. Thus the curves on $S$ form a linear series, parametrized by a projective space $\PP^{11}$.
+
+The problem is, there are many such surfaces $S$; we don't have a single linear system that includes the general curve of genus 7. The good news is, that's OK because the surfaces $S$ themselves form a rationally parametrized family. Explicitly, if we look at the set $\Phi$ of pairs $(S, C)$ with $S = Bl_{p_1,\dots,p_8}(\PP^2)$  the blow-up of $\PP^2$ at eight points and $C \subset S$ a curve of class $7l - 2 \sum e_i$ on $S$, then $\Phi$ is a $\PP^{11}$-bundle over $(\PP^2)^8$, and so is again a rational variety; choosing a rational parametrization of $\Phi$ we get a family of curves of genus $7$ parametrized by $\PP^{27}$ and dominating $M_7$. As before, then, a general point in $\PP^{27}$ yields a general curve of genus 7.
+
+Things continued in this vein up through genus 10, but then this approach fails as well: if we represent a general curve of genus 11 as a plane curve with nodes, the nodes are no longer general points of $\PP^2$, and the same argument doesn't work. Ad hoc (and much more difficult) arguments were given in general 11, 12 13 and 14, but that's where progress apparently stalled.
+
+The reason why became apparent in 1982, when it was shown that for $g$ odd and $>23$, \emph{the moduli space $M_g$ is of general type}; in particular, it can't be unirational. Thus the answer to our naive question---can we write down a general curve of genus $g$---is ``no" for large g!
+
 
 \input{footer}
