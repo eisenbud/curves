@@ -53,3 +53,8 @@ i46 : time for n from 4 to 10 do <<(n, minimalBetti(I =  ell(n,n+3,5)))<<flush<<
          0: 1  .   .   .   .   .   .   .  .  .  .
          1: . 42 212 513 720 590 252  42  .  .  .
          2: .  .   .   .   2  36 105 112 54 12  1
+
+viewHelp Points
+i =randomPoints(6,11)
+degree i
+minimalBetti i

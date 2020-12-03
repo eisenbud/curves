@@ -1,4 +1,6 @@
 \input{header}
+
+
 \chapter{Appendix: Syzygies and Geometry}\label{syzygy chapter}
 
 \section{Betti tables}
@@ -9,15 +11,17 @@ $S = k[R_1]$, and thus $R$ is Noetherian. Throughout this section, $S$ will deno
 A module over any ring can be specified by its generators and relations. But Hilbert saw that there was something to be gained by studying the relation on the relations, and the relations on those, and so on---in short, the syzygies of the module.
 In the case of a graded module $M$ over a graded ring $R$, we may take a minimal free resolution
 $$
-0\lTo M \lTo F_0 \lTo^d F_1\lTo^d\cdots
+0\lTo M \lTo F_0 \lTo^{d_{1}} F_1\lTo^{d_{2}}\cdots
 $$
-that is graded, with differential $d$ of degree 0. Recall that $R(-a)$ denotes a rank one free graded module generated in degree $a$ (so that $R(-a)_0 = R_a$ and more generally $R(a)_{b} = R_{a+b}$). We may identify each $F_i$ with a direct sum of the form 
-$\bigoplus_j R(-a_j)^{\gb_{i,j}}$. 
+that is graded, with differential $d$ of degree 0. The $i$-th syzygy module of M is by definition the 
+cokernel of $d_{i+1}$. Recall that $R(-a)$ denotes a rank one free graded module generated in degree $a$ (so that $R(-a)_0 = R_a$ and more generally $R(a)_{b} = R_{a+b}$). We may identify each $F_i$ with a direct sum of the form 
+$\bigoplus_j R(-a_j)^{\gb_{i,j}}$
+in such a way that the homomorphisms $d_{i}$ are homogeneous of degree 0. 
 Theorem~\ref{uniqueness} holds in this case as well, so that 
 the numbers $\beta_{i,j}$ depend only on the module $M$, as is also obvious from the formula $\Tor_i(M,k) = \bigoplus_j k(-a_j)^{\gb_{i,j}}$.
 We sometimes refer to $\beta_{i,j}$ informally as the \emph{number of $i$-th syzygies of degree $j$}; more properly, it is the number of minimal generators of degree $j$ required by the module of $i$-th syzygies of $M$.
 
-For convenience, the graded Betti numbers are usually displayed in a compact \emph{Betti table}, with the nonzero $\beta_{i,j}$ appearing in the $i$-th column and the $(j-i)$-th row: \footnote{The reason for the initially non-intuitive choice $j-i$ instead of $j$ is that, for the resolution $\FF$ to be minimal, it is necessary that if $\beta_{i,j}\neq 0$, then some $\beta_{i-1,k}\neq 0$ for some $k<j$. Thus shift by $-j$ makes the diagram more compact.) This useful convention seems to go back to Bayer and Stillman and their work on the program Macaulay in the 1980s. In those days of small displays, efficiency was even more important than now.}
+For convenience, the graded Betti numbers are usually displayed in a compact \emph{Betti table}, with the nonzero $\beta_{i,j}$ appearing in the $i$-th column and the $(j-i)$-th row: \footnote{The reason for the initially non-intuitive choice $j-i$ instead of $j$ is that, for the resolution $\FF$ to be minimal, it is necessary that if $\beta_{i,j}\neq 0$, then some $\beta_{i-1,k}\neq 0$ for some $k<j$. Thus shift by $-j$ makes the diagram more compact.) This useful convention goes back to the development of the program Macaulay by Dave Bayer and Mike Stillman  in the 1980s. In those days of small displays, efficiency was even more important than now.}
 %\setcounter{MaxMatrixCols}{13}
 %\begin{small}
 %$$
@@ -45,11 +49,12 @@ j \backslash i     &0&1&2\\ \hline
 \end{matrix}
 $$
 \end{small}
-The rows of the betti table thus correspond to \emph{linear strands} of the resolution---sequences of the free summands where the maps between them are represented by matrices of linear forms. We shall soon see some examples and the length of the linear strands plays a central role in Green's conjecture. For the sake of simplicity we usually replace some 0 entries with $-$.
-
-\noindent We sometimes speak of the \emph{Betti table of a module $M$}, by which we mean the Betti table of the minimal free resolution
+\noindent For the sake of simplicity we usually replace some 0 entries with $-$.
+We sometimes speak of the \emph{Betti table of a module $M$}, by which we mean the Betti table of the minimal free resolution
 of $M$. Similarly, when we speak of the Betti table of a variety $X\subset \PP^{n}$, we mean the Betti table of the minimal free resolution
 of the homogeneous coordinate ring $S_{X}$ of $X$, as a module over the homogeneous coordinate ring of $\PP^{n}.$ 
+
+The rows of the betti table correspond to \emph{linear strands} of the resolution---sequences of the free summands where the maps between them are represented by matrices of linear forms. The length of the linear strands plays a central role in Green's conjecture. 
 
 
 \section{Which tables are Betti tables of minimal resolutions?}\label{which tables}
@@ -58,12 +63,12 @@ constructed by successively choosing minimal sets of generators for the kernel o
 computed map leads to this:
 
 \begin{proposition}\label{zero implications}
-Supoose that $\beta_{i,j}$ are the graded Betti numbers of an $S$-module. If $\beta_{i_{0},i_{0}+j} = 0$ for all $j\leq j_{0}$ then for all $i\geq i_{0}$ we have
-$\beta_{i, i+j} = 0$ for all $j\leq j_{0}$ as illustrated in Figure ~\ref{17.2.1}.
+Supoose that $\beta_{i,j}$ are the graded Betti numbers of an $S$-module. If $\beta_{i_{0},i_{0}+j} = 0$ for all $j\leq j_{0}$  then
+$\beta_{i, i+j} = 0$ for all $i\geq i_{0},\ j\leq j_{0}$ as illustrated in Figure ~\ref{17.2.1}.
 \end{proposition}
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=90mm]{illust-17.2.1.jpg}
+\includegraphics[width=90mm]{illust-17-2-1.pdf}
 \caption{The zeros shown imply that all entries in region A are also 0.\label{17.2.1}}
 \end{figure}
 Note that $\beta_{i,j}$ and $\beta_{i+1,j+1}$ are consecutive elements of the same row of the Betti
@@ -77,7 +82,7 @@ $F_{i}$ has no summand isomorphic to $S(-j)$ for $j\leq j_{0}$ it follows that t
 of $F_{i+1}$ isomorphis to $S(-j-1)$ for the same range of $j$.
 \end{proof}
 
- Hilbert's original application of the Syzygy Theorem the computation of the Hilbert function of a module as a (finite!) alternating sum of the Hilbert functions of the (easy to compute) Hilbert functions of the free modules in the resolution. If the graded Betti numbers of $M$ are $\{\beta_{i,j}\}$, then clearly
+ Hilbert's original application of the Syzygy Theorem was to compute the Hilbert function of a module as a (finite!) alternating sum of the (easy to compute) Hilbert functions of the free modules in the resolution. If the graded Betti numbers of $M$ are $\{\beta_{i,j}\}$, then clearly
 \begin{align*}
  H_{M}(t) &= \sum_{i}(-1)^{i}\sum_{j}\beta_{i,j}H_{S(-j-i)}\\
  &= \sum_{i}(-1)^{i}\sum_{j}\beta_{i,j}{n-j+t\choose n}
@@ -85,8 +90,8 @@ of $F_{i+1}$ isomorphis to $S(-j-1)$ for the same range of $j$.
 Reversing the order of summation, we note that $H_{M}(t)$ can be computed from the Betti table as the 
 alternating sum, with appropriate binomial coefficients, of the $t$-th anti-diagonal of the Betti table. 
 
-Reversing the flow of information, suppose that the Hilbert function $H_{M}(t)$ of a finitely generated
-graded module $M$ is known. To simplify the notation, set $m_{t} := H_{M}(t)$. Since the Hilbert function of the residue field $k$ has values $(1,0,0,\dots)$, and the $S$-free resolution of $k$ is the
+Suppose now that the Hilbert function $H_{M}(t)$ of a finitely generated
+graded module $M$ is known, and that we are interested in understanding its Betti table. To simplify the notation, set $m_{t} := H_{M}(t)$. Since the Hilbert function of the residue field $k$ has values $(1,0,0,\dots)$, and the $S$-free resolution of $k$ is the
 Koszul complex $\KK$, with Betti table
 $$
 \begin{matrix}
@@ -489,7 +494,7 @@ The restriction on the tables that can occur as Betti tables of resolutions give
  \end{corollary}
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=90mm]{illust-17.4.1.jpg}
+\includegraphics[width=90mm]{illust-17-4-1.pdf}
 \caption{In the resolution of a Cohen-Macaulay module, the zeros shown imply that the entries in region B are zero. \label{17.4.1}}
 \end{figure}
 
