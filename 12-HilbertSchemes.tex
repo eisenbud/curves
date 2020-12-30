@@ -157,35 +157,45 @@ For that reason, we'll henceforth focus exclusively on the restricted Hilbert sc
 
 \section{Linkage} \label{SLinkage}
 
-As the second proof of Proposition~\ref{hilb of twisted cubics} suggests, when the union of two curves $C$ and $D$ forms a complete intersection we can use this fact to relate the geometry of their respective Hilbert schemes. This is a technique we'll use repeatedly. One thing we need in order to apply it is a formula relating the genera of the curves $C$ and $D$, which we'll derive in this section in a special case. This is one aspect of the general theory of \emph{liaison}, or \emph{linkage}, of curves in $\PP^3$; we'll discuss this theory in detail, and generalize the formula, in Chapter~\ref{DualityChapter}.
+As the second proof of Proposition~\ref{hilb of twisted cubics} suggests, when the union of two curves $C$ and $D$ forms a complete intersection we can use this fact to relate the geometry of their respective Hilbert schemes. This is a technique we'll use repeatedly. One thing we need in order to apply it is a formula relating the genera of the curves $C$ and $D$. This is one aspect of the general theory of \emph{liaison}, or \emph{linkage}, of curves in $\PP^3$.
+\begin{theorem}
+ Let $C\subset \PP^3$ be s purely 1-dimensionsional subscheme of degrees $c$, and let $F,G$ be forms of degrees $f,g$ vanishing on  $C$ defining surfaces with no common component. If $D$ is the subscheme defined by $\cI_D = (F,G):\cI_C$ then $D$ is purely one-dimensional and
+ $\cI_C = (F,G):\cI_D$. Furthermore $c+d = fg$ and 
+ \begin{equation}\label{linked genus formula}
+p_a(C) - p_a(D) = \frac{f+g-4}{2}(c-d);
+\end{equation}
+\end{theorem}
+In words, the difference between the genera of $C$ and $D$ is proportional to the difference in their degrees, with constant of proportionality $(s+t-4)/2$.
 
-In our present situation, we assume $C$ and $D \subset \PP^3$ are smooth curves of degrees $d$ and $e$ and genera $g$ and $h$ respectively, with no common components. We assume also that the union $C \cup D$ is a complete intersection $S \cap T$ of surfaces of degrees $s$ and $t$, with $S$ smooth. In this situation, B\'ezout's Theorem tells us that $d+e = st$; we want a formula relating the genera $g$ and $h$ of $C$ and $D$.
+We shall now give a proof by intersection theory in a case sufficient for our needs in this chapter, and postpone the homological general proof to  Chapter~\ref{DualityChapter}.
+We now assume that $C$ and $D \subset \PP^3$ are smooth curves with no common components. Let $S := V(F)$ and $T = F(G)$ and that $C \cup D = S\cap T$ is a complete intersection, with $S$ smooth. In this situation, B\'ezout's Theorem tells us that $c+d = fg$; we want a formula relating the genera $g$ and $h$ of $C$ and $D$.
 
-To do this, we work in the Chow ring of $S$. (This is why we assume $S$ is smooth, although the treatment in Section~\ref{linkage definition} will show that this hypothesis is unnecessary.) We know that the canonical bundle $K_S = \cO_S(s-4)$, so that by adjunction 
+\fix{please read carefully for $c,d,s,t,f,g,h$!}
+To do this, we work in the Chow ring of $S$. By adjunction, the canonical divisor class of $S$ is $K_S = (S - 4H)|_S$, where $H$ denotes the hyperplane class on $S$, so that by adjunction 
 $$
 2g-2 = (C\cdot C) + (K_S\cdot C) = C\cdot C + (s-4)d, 
 $$
 or in other words,
 $$
-(C \cdot C) = 2g-2 - (s-4)d.
+(C \cdot C) = 2p_a(C)-2 - (f-4)d.
 $$
-Next, since $C \cup D$ is a complete intersection of $S$ with a surface of degree $t$, we have $C + D\sim tH$, where $H$ denotes the hyperplane class on $S$; thus we have
+Next, since $C \cup D$ is a complete intersection of $S$ with a surface of degree $t$, we have $C + D\sim tH$. Thus we have
 $$
-(C \cdot D) = (C \cdot (tH - C)) = td - (C \cdot C) = td - 2g + 2 + (s-4)d
+(C \cdot D) = (C \cdot (tH - C)) = td - (C \cdot C) = td - 2p_a(C) + 2 + (s-4)d
 $$
 and similarly
 $$
-(D \cdot D) = (D \cdot (tH - C)) = te - td + 2g - 2 - (s-4)d.
+(D \cdot D) = (D \cdot (tH - C)) = td - tc + 2p_a(C) - 2 - (s-4)d.
 $$
 Finally, we can apply the adjunction formula to $D$ to arrive at
 $$
-2h - 2 = (D \cdot D) + (K_S \cdot D) = (s-4)e  + te - td + 2g - 2 - (s-4)d.
+2p_a(D) - 2 = (D \cdot D) + (K_S \cdot D) = (s-4)d  + td - tc + 2p_a(C) - 2 - (f-4)c.
 $$
 Collecting terms, we can write this in the convenient form
 \begin{equation}\label{linked genus formula}
 h - g = \frac{s+t-4}{2}(e-d);
 \end{equation}
-in words, \emph{the difference between the genera of $C$ and $D$ is proportional to the difference in their degrees, with constant of proportionality $(s+t-4)/2$}. 
+ 
 
 We will see this formula used repeatedly in this chapter, and as we indicated it will be discussed as part of the larger theory of liaison for space curves in Chapter~\ref{LinkageChapter}. For now, you should just take a moment and reassure yourself that the right hand side of~(\ref{linked genus formula}) is indeed an integer!
 
@@ -480,7 +490,7 @@ But the calculation immediately above suggests it should be $(r+1)d - (r-3)(g-1)
 
 \chapter{Hilbert Schemes II: Counterexamples} 
 
-In the preceding chapter, we described a number of examples of Hilbert schemes, and observed some patterns in their behavior: in each case the restricted Hilbert scheme $\cH^\circ$ parametrizing smooth, irreducible and nondegenerate curves was irreducible of the ``expected dimension" $h(g,r,d) :=  4g-3 + (r+1)(d-g+1) - 1$. In fact, Theorem~\ref{principal component} tells us that these patterns persist, \emph{at least for those components of $\cH^\circ$ dominating the moduli space $M_g$}.
+In the preceding chapter, we described a number of examples of Hilbert schemes, and observed some patterns in their behavior: in each case the restricted Hilbert scheme $\cH^\circ$ parametrizing smooth, irreducible and nondegenerate curves was irreducible of the ``expected dimension" $h(g,r,d) :=  4g-3 + (r+1)(d-g+1) - 1$. In fact, Theorem~\ref{principal component} tells us that these patterns persist, for those components of $\cH^\circ$ dominating the moduli space $M_g$.
 
 But what about other components of the Hilbert scheme---components with $\rho(g,r,d) < 0$, or for that matter components with $\rho(g,r,d) \geq 0$ that simply don't dominate $M_g$? In fact, none of the patterns we've observed so far hold in general, and the first thing we'll do in this chapter is to give some examples, culminating with Mumford's celebrated example of a component of the restricted Hilbert scheme that is everywhere non-reduced. \fix{Nearly everything in the previous ch is set-theoretic. The Mumford example would be more exciting if we had said something there about the components being reduced. We should put that in (at least with the tangent space computation)}
 
@@ -577,10 +587,8 @@ Let $\Sigma_1$ and $\Sigma_2 \subset \cH^\circ_{9m-9}(\PP^3)$ be the loci of cur
 
 We have seen, in the last two sections, examples of Hilbert schemes of smooth curves that are reducible or of greater than the expected dimension. In this section, we'll see an example of yet another phenomenon: a component of the Hilbert scheme that is everywhere nonreduced. 
 
-\fix{ as far as the reader knows at this point, every component could be non-reduced! We need to do something about this earlier. All the arguments above are (apparently) set-theoretic.}
-
 The example, discovered by David Mumford \cite{****}, is the  Hilbert scheme
-$\cH^\circ = \cH^\circ_{14m-23}$ parametrizing smooth, irreducible curves $C$ of degree 14 and genus 24 in $\PP^3$. As we shall see, there are three irreducible components. 
+$\cH^\circ = \cH^\circ_{14m-23}$ parametrizing smooth, irreducible curves $C$ of degree 14 and genus 24 in $\PP^3$. We shall examine three irreducible components. 
 
 We will begin as above by analyzing the possible degrees of generators of the ideal of $C$. By applying the genus formula for plane curves and curves on quadrics we see that $C$ cannot lie in a plane or on a quadric. By B\'ezout's Theorem, $C$ cannot lie on both a cubic and a quartic hypersurface, though we shall see that both possibilities are realized.
 
@@ -596,13 +604,13 @@ However, when $m= 3$ we have
 $$
 h^0(\cO_C(3)) = 42-24+1+h^0(K_C(-3)).
 $$
-Since $d-g+1 = 14-24+1$ is negative, $C$ is embedded in $\PP^3$ by a special linear series, and it follows from Chapter~\ref{} \fix{give precise ref} that $C$ is not hyperelliptic. The special line bundle $K_C(-3)$ has degree $46-42 = 4$ so,
+Since $d-g+1 = 14-24+1$ is negative, $C$ is embedded in $\PP^3$ by a special linear series, and it follows from Section~\ref{hyperelliptic special} that $C$ is not hyperelliptic. The special line bundle $K_C(-3)$ has degree $46-42 = 4$ so,
 by Clifford's Theorem in the non-hyperelliptic case, $h^0(K_C(-3)) \leq 2$. Thus $h^0(\cO_C(3)) = 19, 20$ or 21.
 
  The following ``postulation table''
-collects the dimensions of the source and target of  $\rho_m$ for $m = 3\dots 6$. \fix{the following table should have a number, \ref{postulation table}}
-\begin{center}\label{postulation table}
-\begin{tabular}{ c | c | c }
+collects the dimensions of the source and target of  $\rho_m$ for $m = 3\dots 6$. 
+\begin{table}
+\begin{center}\begin{tabular}{ c | c | c }
  $m$ & $h^0(\cO_C(m))$ & $h^0(\cO_{\PP^3}(m))$ \\
  \hline
  3 & 19, 20 or 21 & 20 \\
@@ -611,6 +619,8 @@ collects the dimensions of the source and target of  $\rho_m$ for $m = 3\dots 6$
  6 & 61 & 84
 \end{tabular}
 \end{center}
+\caption{Postulation table\label{postulation table}}
+\end{table}
 
 \subsection{Case 1: $C$ does not lie on a cubic surface}
 
@@ -619,7 +629,7 @@ The locus $\cH_1 \subset \cH^\circ$ parameterizing curves not lying on a cubic s
 \end{proposition} 
  
 \begin{proof}
-Let $C$ be curve in $\cH_1$. Table \ref{postulation table} shows that $C$ lies on at least two linearly independent quartic surfaces $S$ and $S'$; and since $C$ does not lie on any surface of smaller degree, neither can be reducible. It follows that the intersection $S \cap S'$ must consist of the union of the curve $C$ and a curve $D$ of degree 2. The linkage formula~(\ref{linked genus formula}) \fix{I think we need $S$ smooth to apply this, unless we make a forward reference} says that
+Let $C$ be curve in $\cH_1$. Table \ref{postulation table} shows that $C$ lies on at least two linearly independent quartic surfaces $S$ and $S'$; and since $C$ does not lie on any surface of smaller degree, neither can be reducible. It follows that the intersection $S \cap S'$ must consist of the union of the curve $C$ and a curve $D$ of degree 2. The linkage formula~(\ref{linked genus formula}) says that
 $$
 g(C) - g(D) = (14 - 2)\frac{4+4-4}{2} = 24,
 $$
