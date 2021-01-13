@@ -264,7 +264,7 @@ Let $C = Q \cap Q' \subset \PP^3$ be a smooth curve of degree 4 and genus 1. Ide
 
 The  argument  here---where we constructed a universal family $\cC \to B$ of curves of given type, and then invoked the universal property of the Hilbert scheme to get a map $B \to \cH$ is typical in analyses of Hilbert schemes. Here here are two slightly more general cases:
 
-\begin{exercise}
+\begin{exercise}\label{complete intersection open}
 Let $m \geq n >0$ be two positive integers. Show that the locus $U_{n,m} \subset \cH^\circ$ of curves $C \subset \PP^3$ that are smooth complete intersections of surfaces of degrees $n$ and $m$ is an open subset of the Hilbert scheme.
 \end{exercise}
 
@@ -870,13 +870,31 @@ Putting this all together, we conclude that $h^0(\cN_{C/\PP^3}) = 56$; so the co
 
 \subsubsection{Case 2b: $D$ is the disjoint union of two conics}
 
-\begin{proposition}
-The locus $\cH_{2b} \subset \cH^\circ$ parameterizing curves $C$ residual to the disjoint union of two conics in the complete intersection of a sextic and a smooth cubic surface is an irreducible component of  $\cH^\circ$. It has dimension 56, but is non-reduced: its tangent space at
+\begin{proposition}\label{mumford component}
+The locus $\cH_{2b} \subset \cH^\circ$ parametrizing curves $C$ residual to the disjoint union of two conics in the complete intersection of a sextic and a smooth cubic surface is an irreducible component of  $\cH^\circ$. It has dimension 56, but is non-reduced: its tangent space at
 a generic point has dimension 57.
 \end{proposition} 
 
 \begin{proof}
-The analysis this case follows the same path as the preceding until the very last step. Let $\cH$ now be the locus in the Hilbert scheme $\cH_{4m+2}$ corresponding to disjoint unions of two conics, and consider the correspondence
+
+The analysis this case follows the same path as the preceding until the very last step, where the residual curve $D$ is the disjoint union of two conic curves rather than the disjoint union of a line and a twisted cubic. What difference does this make? Both the disjoint union of two conic curves and the disjoint union of a line and a twisted cubic are curves of degree 4 and arithmetic genus $-1$, so they both have Hilbert polynomial $p(m) = 4m+2$. The difference is that they do not have the same Hilbert function, according to the following proposition:
+
+\begin{proposition}\label{quartic curve postulation}
+Let $E$ be the  disjoint union of two conic curves in $\PP^3$ and $E'$ the disjoint union of a line and a twisted cubic. Let $h(m)$ and $h'(m)$ be their respective Hilbert functions, and $p(m) = 4m+2$ their common Hilbert polynomial.
+\begin{enumerate}
+\item For all $m \geq 3$, we have $h(m) = h'(m) = p(m) = 4m+2$; but
+\item $h_m(2) = 9$, while $h'_m(2) = 10$ (in other words, $E$ lies on a unique quadric surface, while $E'$ is not contained in any quadric surface).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+We'll start with the second part. To exhibit a  quadric containing the union of two given disjoint conics, we can just take the union of the planes of the conics. To see that this is unique, observe that any quadric surface containing both conics must intersect the plane $H$ of either conic in that conic  plus the two points of intersection of $H$ with the other conic, and so must contain $H$. By contrast, if $C$ is a twisted cubic and $Q$ a quadric surface containing it, $Q$ will contain no curves disjoint from $C$.
+
+As for the first part,
+\end{proof}
+
+
+To return to the proof of Proposition~\ref{mumford component}, let $\cH$ now be the locus in the Hilbert scheme $\cH_{-1,3,4}$ corresponding to disjoint unions of two conics, and consider the correspondence
 $$
 \Phi = \{(C,D,S,T) \in \cH_{2a} \times \cH \times \PP^{19} \times \PP^{83} \mid S \cap T = C \cup D \}.
 $$
@@ -900,12 +918,11 @@ h^1(\cO_C(3)) = h^0(K_C(-3)) = h^0(\cO_C(2)(-E_Q-E_{Q'})
 $$
 and using again the completeness of the linear series cut out on C by quadrics, we see that so \emph{$h^1(\cO_C(3))$ is the dimension of the space of quadratic polynomials vanishing on $E_Q$ and $E_{Q'}$}; again, since $12 > 2\cdot 2$, this is the same as the space of quadrics containing the two curves $Q$ and $Q'$. 
 
-Here is where the stories diverge: whereas there is no quadric containing the disjoint union of a line and a twisted cubic, there is indeed a unique quadric containing the union of two given disjoint conics, namely, the union of the planes of the conics. (To see that this is unique, observe that any quadric containing $Q$ and $Q'$ must intersect the plane $\overline Q$ in $Q$ plus the two points of $Q' \cap \overline Q$ and so must contain $\overline Q$.)  
-Thus $h^1(\cO_C(3))=1$ so  $h^0(\cO_C(3)) = 20$ and correspondingly $h^0(\cN_{C/\PP^3}) = 57$.\end{proof}
+Here is where the stories diverge: we saw in Proposition~\ref{quartic curve postulation} that whereas there is no quadric containing the disjoint union of a line and a twisted cubic, there is indeed a unique quadric containing the union of two given disjoint conics, namely, the union of the planes of the conics.  
+Thus $h^1(\cO_C(3))=1$ so  $h^0(\cO_C(3)) = 20$ and correspondingly $h^0(\cN_{C/\PP^3}) = 57$.
+\end{proof}
 
 \subsubsection{What's going on here?}
-
-\fix{point to the difference in postulation between line union cubic vs conic union conic. Do this from an algebra point of view (sum of the ideals) as well as geometric. explain that this is the central point of the argument.}
 
 What accounts for the different behaviors of curves in cases 2a and 2b? Here is one explanation:
 
@@ -928,7 +945,7 @@ One note: it may seem that the phenomenon described in this last example---a com
 
 \subsection{Brill-Noether in low codimension}
 
-If we ignore the finer points of the Brill-Noether theorem and focus just on the statement about the dimension and irreducibility of the variety of linear series on a curve, we can express it in a simple form: according to Theorem~\ref{principal component} \emph{Any component of the Hilbert scheme $\cH^\circ$ of curves of degree $d$ and genus $g$ that dominates the moduli space $M_g$ has the expected dimension 
+If we ignore the finer points of the Brill-Noether theorem and focus just on the statement about the dimension and irreducibility of the variety of linear series on a curve, we can express it in a simple form: according to Theorem~\ref{principal component} \emph{Any component of the restricted Hilbert scheme $\cH^\circ$ of curves of degree $d$ and genus $g$ that dominates the moduli space $M_g$ has the expected dimension 
 $$
 h(g,r,d) = 4g-3 + (r+1)(d-g+1) - 1 = (r+1)d - (r-3)(g-1)
 $$
@@ -974,7 +991,7 @@ One might suppose that the most special curves, from the point of view of questi
 \end{enumerate}
 \end{exercise}
 
-Can we do better?  Well, in $\PP^3$ we can consider the locus of smooth complete intersections of two surfaces of degree $m$. This will yield a component of the Hilbert scheme (see the next exercise), parametrizing curves of degree $d = m^2$, and genus $g$ given by the relation
+Can we do better?  Well, in $\PP^3$ we can consider the locus of smooth complete intersections of two surfaces of degree $m$. As we saw in Exercise~\ref{complete intersection open}, these comprise an open subset $\cH^\circ_{ci}$ of the Hilbert scheme of curves of degree $d = m^2$, and genus $g$ given by the relation
 $$
 2g-2 = \deg K_C = m^2(2m-4),
 $$
@@ -983,16 +1000,13 @@ $$
 g \sim m^3.
 $$
 
-\fix{done in. ex 1.3.5}
-\begin{exercise}
-Using upper-semicontinuity of cohomology, prove that a deformation of a complete intersection curve $C \subset \PP^r$ is again a complete intersection; that is, complete intersection curves are dense in an irreducible component of the Hilbert scheme.
-\end{exercise} 
-
-The dimension of this component of the Hilbert scheme is easy to compute, since it is parameterized \fix{if we've proved this we could say isomorphic to; otherwise this is just set-theoretic} an open subset of the Grassmannian $G(2, \binom{m+3}{3})$, and so has dimension
+Moreover, the dimension of this component of the Hilbert scheme is easy to compute, since as we saw in Exercise~\ref{first complete intersection exercise} that it is isomorphic to an open subset of the Grassmannian $G(2, \binom{m+3}{3})$, and so has dimension
 $$
 2(\binom{m+3}{3} - 2) \; \sim \; \frac{m^3}{3}
 $$
-In other words, we have a sequence of components of the restricted Hilbert scheme $\cH^\circ_{g,r,d}$ whose images in $M_g$ have dimension tending asymptotically to $g/3$. \fix{maybe say something about why the isomorphism relation is of lower order this should be done for the other examples, too.}
+Finally, we observe that if $C \subset \PP^r$ is a complete intersection curve of genus $g >1$, the canonical bundle $K_C$ is a positive power of $\cO_C(1)$, and by the Noether-Lasker theorem $C$ is linearly normal. In particular, for a given abstract curve $C$ there are only finitely many embeddings of $C$ in projective space $\PP^r$ as a complete intersection, up to $PGL_{r+1}$; in other words, the fibers of $\cH^\circ_{ci}$ over $M_g$ have dimension $\dim(PGL_{r+1}) = r^2 + 2r$. 
+
+Thus, we have a sequence of components of the restricted Hilbert scheme $\cH^\circ$ whose images in $M_g$ have dimension tending asymptotically to $g/3$.
 
 The following exercise  suggests why we chose complete intersections of surfaces of the same degree.
 
@@ -1000,7 +1014,17 @@ The following exercise  suggests why we chose complete intersections of surfaces
 Consider the locus of curves $C \subset \PP^3$ that are complete intersections of a quadric surface and a surface of degree $m$. Show that these comprise components of the restricted Hilbert scheme, and that their images in moduli have dimension asymptotically approaching $g$ as $m \to \infty$.
 \end{exercise}
 
-More generally, we can consider complete intersections of $r-1$ hypersurfaces of degree $m$ in $\PP^r$; in a similar fashion we can calculate that their images in $M_g$ have dimension asympotically approaching $2g/r!$ as $m \to \infty$.
+More generally, we can consider complete intersections of $r-1$ hypersurfaces of degree $m$ in $\PP^r$; in a similar fashion we can calculate that their images in $M_g$ have dimension asympotically approaching $2g/r!$ as $m \to \infty$, as we ask you to verify in the following exercise.
+
+\begin{exercise}
+Consider the locus $\cH^\circ_{ci}$, in the Hilbert scheme $\cH^\circ$, of smooth, irreducible, nondegenerate curves $C \subset \PP^r$ that are complete intersections of $r-1$ hypersurfaces of degree $m$. 
+\begin{enumerate}
+\item Show that $\cH^\circ_{ci}$ is open in $\cH^\circ$;
+\item Calculate the dimension of $\cH^\circ_{ci}$ (and observe that it is irreducible); and
+\item Show that the dimension of the image of $\cH^\circ_{ci}$ in $M_g$ is asymptotically $2g/r!$ as $m \to \infty$
+\end{enumerate}
+\end{exercise}
+
 
 The question is, can we do better? For example, if we fix $r$, can we find a sequence of components $\cH_n$ of  restricted Hilbert schemes  $\cH^\circ_{g_n,r,d_n}$ of curves in $\PP^r$ such that
 $$
