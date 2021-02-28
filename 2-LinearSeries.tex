@@ -11,24 +11,32 @@
 
 \section{Divisors, line bundles and linear systems}
 
+The basic objects of study in this book are smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. 
+%Dropping any of these hypotheses leads us to many fascinating questions, some of which we'll discuss in \ref{****}; but before we can get into those we have to start with the basic case.
 
-The basic objects of study in this book are smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. Dropping any of these hypotheses leads us to many fascinating questions, some of which we'll discuss in \ref{****}; but before we can get into those we have to start with the basic case.
-
-And before we can deal with even that, we have to say what we mean by an ``algebraic curve." There are two common meanings for that phrase, the 19th century and the 20th century (there may in the fullness of time be a 21st century viewpoint, but it has not yet emerged). 
+%And before we can deal with even that, we have to say what we mean by an ``algebraic curve." There are two common meanings for that phrase, the 19th century and the 20th century (there may in the fullness of time be a 21st century viewpoint, but it has not yet emerged). 
 
 In the 19th century, what mathematicians meant by the term ``algebraic curve," or ``algebraic variety" in general, was simply the zero locus of a collection of homogeneous polynomials in $\PP^n$. The 20th century, by contrast, introduced a new notion: that of an \emph{abstract variety} and later an \emph{abstract scheme}: a set with the additional structure of a topology and a sheaf of regular functions, locally isomorphic to the zero locus of polynomials, and independent of any particular choice of embedding in projective space.
 
-There is a natural analogy with the development of group theory: in the 19th century, a group was a subset of $GL_n$ closed under matrix multiplication and inversion. The 20th century saw the introduction of the abstract group, again a set with additional structure and defined without regard to a particular embedding in $GL_n$. While the two notions are largely equivalent---in particular, the introduction of the notion of abstract group did not in itself prove any new theorems---the change in viewpoint represented a huge shift in how we thought about groups.
+%There is a natural analogy with the development of group theory: in the 19th century, a group was a subset of $GL_n$ closed under matrix multiplication and inversion. The 20th century saw the introduction of the abstract group, again a set with additional structure and defined without regard to a particular embedding in $GL_n$. While the two notions are largely equivalent---in particular, the introduction of the notion of abstract group did not in itself prove any new theorems---the change in viewpoint represented a huge shift in how we thought about groups.
 
-In particular, it placed a spotlight on the bridge between the two viewpoints; that is, the subject of representation theory: the problem of how a given abstract group can be embedded in (or more generally, mapped to) a matrix group.
+%In particular, it placed a spotlight on the bridge between the two viewpoints; that is, the subject of representation theory: the problem of how a given abstract group can be embedded in (or more generally, mapped to) a matrix group.
 
-In the same way, the introduction of the notion of abstract curve transformed the way we study algebraic curves, and in particular it put our focus on the problem: given a curve $C$, to describe all the ways in which $C$ can be embedded in (or more generally, mapped to) projective space. In this, a central role is played by the notion of a \emph{linear system}, or \emph{linear series} (we will use the two terms interchangeably) on a curve. In this book, accordingly, we start by introducing this fundamental notion.
+%In the same way, t
+The introduction of the notion of abstract curve transformed the way we study algebraic curves, and put a spotlight on the problem: given a curve $C$, to describe all the ways in which $C$ can be embedded in (or more generally, mapped to) a projective space $\PP^n$. It turns out that such an embedding can be specified by giving
+the set of \emph{divisors} in which the hyperplanes of $\PP^n$ intersect $C$---a linear series.
 
-In the remainder of this chapter, we'll introduce the basic notation and terminology of linear series on curves; then we'll summarize the main results---the Riemann-Roch theorem, and Serre duality---that govern their behavior. In the following chapter, we'll describe three more advanced theorems on linear series: Clifford's theorem, the Brill-Noether theorem and Castelnuovo's bound; then, in Chapter~\ref{personalities chapter}, we'll see how it all plays out for curves of low genus ($\leq 6$). We would encourage the reader to look ahead to Chapter~\ref{personalities chapter} to see examples of how we use the set-up to describe curves in practice.
+%In the remainder of this chapter, we'll introduce the basic notation and terminology of linear series on curves; then we'll summarize the main results---the 
 
-\subsection{The history of linear series in four pages}\label{linear series 1}
+%Riemann-Roch theorem, and Serre duality---that govern their behavior. In the following chapter, we'll describe three more advanced theorems on linear series: Clifford's theorem, the Brill-Noether theorem and Castelnuovo's bound; then, in Chapter~\ref{personalities chapter}, we'll see how it all plays out for curves of low genus ($\leq 6$). We would encourage the reader to look ahead to Chapter~\ref{personalities chapter} to see examples of how we use the set-up to describe curves in practice.
 
-One of the basic facts about projective varieties is that \emph{any regular function on a connected projective curve $C$ is constant} (such a function gives a regular map $C \to \AA^1$; since the image is again a projective variety, it can only be a point).  In order to have nonconstant functions, accordingly, we have to look at rational functions. But the field of all rational functions is too large for most purposes, and so from a very early stage geometers looked at rational functions with \emph{bounded singularities}: they specified a finite collection of points $p_1,\dots,p_n \in C$, a corresponding collection of integers $m_i$, and considered the space of all rational functions $f$ on $C$, regular on $C \setminus \{p_1,\dots,p_n\}$  and satisfying
+\subsection{The history of linear series}\label{linear series 1}
+
+A \emph{divisor}, or \emph{Weil divisor} on a scheme $X$ is an integral linear combination of codimension 1 subvarieties. 
+
+One of the basic facts about projective varieties is that \emph{any regular function on a connected projective curve $C$ is constant} (such a function gives a regular map $C \to \AA^1$; since the image is again a projective variety, it can only be a point).  In order to have nonconstant functions we have to look at rational functions. In particular, we consider rational functions with \emph{bounded singularities}
+
+: they specified a finite collection of points $p_1,\dots,p_n \in C$, a corresponding collection of integers $m_i$, and considered the space of all rational functions $f$ on $C$, regular on $C \setminus \{p_1,\dots,p_n\}$  and satisfying
 
 \begin{equation}\label{divisor condition}
 \ord_{p_i}(f) \geq -m_i.
