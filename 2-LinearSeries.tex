@@ -13,22 +13,36 @@
 
 The basic objects of study in this book are smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. 
 
-The most primitive objects of algebraic geometry are affine algebraic sets---subsets of $\RR^{n}$ or $\CC^{n}$ defined by the vanishing of polynomial functions---and the maps between them. But already in the first half of the 19th century geometers realized that there was a great advantage in working with varieties in complex projective space, treating affine varieties as projective varieties minus the intersection with the plane at infinity and real varieties as the fixed points of the complex involution. One sees this in the simplest examples: the ellipses, hyperbolas and parabolas in the real affine plane are all the same in the complex projective plane; the difference is only in how they intersect the line at infinity.
+The most primitive objects of algebraic geometry are affine algebraic sets---subsets of $\RR^{n}$ or $\CC^{n}$ defined by the vanishing of polynomial functions---and the maps between them. But already in the first half of the 19th century geometers realized that there was a great advantage in working with varieties in complex projective space, treating affine varieties as projective varieties minus the intersection with the plane at infinity and real varieties as the fixed points of the complex involution. One sees this in the simplest examples: the ellipses, hyperbolas and parabolas in the real affine plane are all the same in the complex projective plane; the difference is only in how they intersect the line at infinity. A difficulty with the projective point of view is that on a connected projective variety there are no non-constant functions at all (reason: a function on a projective variety is a map to the affine line; since the image of a projective variety is again projective, the image would be a single point.) 
 
-A difficulty with the projective point of view is that on a connected projective variety there are no non-constant functions at all (such a function would be a map to the affine line; since the image of a projective variety is again projective, the image must be a single point.) 
-In addition, starting with Riemann in the 1860s and culminating in the scheme theory of Grothendieck in the 1950s, a new view of algebraic varieties took hold, independent of any embedding. Now an algebraic variety is is a topological space with a sheaf of locally
-defined polynomial functions. Maps between varieties can be described by their graphs, which are again varieties. 
-
-Many interesting aspects of geometry have to do not with abstract varieties, but with varieties embedded in projective space. The theory of \emph{linear series} is a convenient way of describing maps to projective space,  the collection of all linear series on a variety reflects some of the best understood invariants. 
+Starting with Riemann in the 1860s and culminating in the scheme theory of Grothendieck in the 1950s, algebraic varieties were treated in a way independent of any embedding: An algebraic variety is is a topological space with a sheaf of locally
+defined polynomial functions. Many interesting aspects of geometry have to do not with single abstract varieties, but with maps between them, and in particular with embeddings in projective spaces. In general, maps between varieties can be described by their graphs, which are again varieties.  But for the special case of maps to projective spaces, the theory of \emph{linear series} is usuall a more convenient description. The collection of all linear series on a variety reflects some of its best understood invariants. 
 
 Though we assume that the reader has been exposed to this theory in some form before, perhaps from Chapter IV of Hartshorne's {\it Algebraic Geometry}, we will review the elements  in the form we will use.
 
-%In the 19th century, what mathematicians meant by the term ``algebraic curve," or ``algebraic variety" in general, was simply the zero locus of a collection of homogeneous polynomials in $\PP^n$. The 20th century, by contrast, introduced a new notion: that of an \emph{abstract variety} and later an \emph{abstract scheme}: a set with the additional structure of a topology and a sheaf of regular functions, locally isomorphic to the zero locus of polynomials, and independent of any particular choice of embedding in projective space.
+\subsection{Linear series, line bundles, and invertible sheaves}\label{linear series 1}
 
-%The introduction of the notion of abstract curve transformed the way we study algebraic curves, and put a spotlight on the problem: given a smooth curve $C$, to describe all the ways in which $C$ can be embedded in (or more generally, mapped to) a projective space $\PP^n$. It turns out that such an embedding can be specified by giving
-%the set of \emph{divisors} in which the hyperplanes of $\PP^n$ intersect $C$---a linear series.
+There is a very useful correspondence between three classes of objects:
+\begin{enumerate}
+\item A map of a variety $X$ to a projective space $\PP^n $
+\item A line bundle or invertible sheaf on $X$ with a family of $n+1$ global sections $s_i$ such that, for every $x\in X$ there is an index $i$ such that $s_i$ does not vanish at $x$.
+\item
+\end{enumerate}
 
-\subsection{Basics of linear series}\label{linear series 1}
+From a naive point of view, the projective space of dimension $n$ over a field $k$, written  $\PP^n_k$, is the set of nonzero $n+1$-tuples $(x_0,\dots, x_n)$of elements of $k$ modulo multiplication by scalars. A set of equivalent $n+1$-tuples thus correspond to the nonzero points of 1-dimensional subspace of an $n+1$-dimensional vector space $V$ over $k$, so
+ $\PP^{n} = \PP(V)$ may be thought of as the space of 1-dimensional subspaces of $V$. The lines contained in a subspace  $V'$ of codimension 1 in $V$ form a \emph{hyperplane} in $\PP(V)$; the hyperplane is the vanishing locus of any \emph{linear form} on $\PP^n$ that corresponds to a nonzero linear function on $V$ vanishing on $V'$. Each point of $\PP(V)$ is the intersection of $n$ such hyperplanes. We make $\PP^n$ into an algebraic variety by identifying the complement of the hyperplane $x_i=0$ with the $n$-dimensional affine space with coordinates $x_0/x_i,\dots x_{i-1}/x_i, x_{i+1}/x_i,\dots,x_n/x_i$. 
+ 
+Note that each point of $\PP(V)$ is the intersection of $n$ hyperplanes. 
+Given an embedding $\phi: C \to PP(V)$ then the hyperplanes that don't contain $\phi(C)$ intersect $C\cong phi(C)$ in a family of finite sets of points (counting with multiplicities), indexed by the linear forms on $\PP^n$, called a \emph{linear series} on $C$. Moreover, the linear series determines the embedding: if $p\in C$ then $\phi(p)$ is the intersection of all the hyperplanes in $\PP^n$ corresponding to sets in the linear series that contain $p$.
+ 
+These notions can be extended in a very useful way to all varieties and to maps to projective space. A hyperplane in $\PP^n$ is defined, as above, by a linear function on $V$, which we think of as giving a 1-dimensional quotient of $V$. On any of the open sets $U_i := \{x \mid x_i \neq 0\} \subset \PP^n$ we may choose the single element $(0,\dots,0,1,0\dots 0)$ with
+nonzero only in the $i$-th place as a basis for the quotients, so that on this open set we may think of the quotients as maps to a fixed 1-dimensional space; that is, the bundle is isomorphic to 
+$U_i \times k$ with its projection to $U_i$. This gives the family of all 1-quotients the structure of a rank 1 algebraic vector bundle, that is, a \emph{line bundle}, while the elements of $V^*$ correspond to global sections of this bundle.
+
+The sheaf of all algebraic local sections of this bundle, when restricted to one of the $U_i$, is thus the space of algebraic functions $U_i \to k$ the affine coordinate ring of $U_i$; thus the sheaf is locally isomorphic to $\cO_{\PP^n}$, and we say that it is an \emph{invertible sheaf} on $\PP^n$. Given the sheaf, we may reconstruct the bundle by associating to each point the values of sections at that point. We thus think of the bundle and the sheaf as essentially equivalent concepts.
+
+Given a
+ 
 
 %A \emph{divisor}, or \emph{Weil divisor} on a scheme $X$ is an integral linear combination of codimension 1 subvarieties. 
 
