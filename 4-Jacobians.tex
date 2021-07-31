@@ -2,15 +2,53 @@
 
 \chapter{Jacobians}\label{new Jacobians chapter}
 
+%
+%Up to now, we have been treating line bundles on a curve $C$ individually. This makes sense, given that in genus 0 there is only one line bundle of a given degree, and on a curve of genus 1 all line bundles of a given degree are congruent under the automorphism group of the curve.
+%
+%It is a fundamental fact, however, that in general the set of line bundles/linear equivalence classes of divisors of a given degree $d$ on $C$ is naturally parametrized by the points of a variety, called the \emph{Picard variety} and denoted ${\rm Pic}^d(C)$. Many of the deeper results about linear systems on $C$ are expressed in terms of the geometry of this variety, and indeed the simple fact of its existence is the key to proving many theorems about linear systems on curves (see for example Theorem~\ref{g+3 theorem}
+%below).
+%
+%In this chapter, we will describe the construction of these varieties, and their relationship with the spaces parametrizing effective divisors of a given degree $d$ on $C$. We then exhibit some of the consequences of these constructions.
+%
+%One thing to point out before we get started is that the whole subject of Jacobians and Picard varieties has a truly unusual history. As we said, the main import of the theory for modern algebraic geometers is that the line bundles of a given degree $d$ on a given curve $C$ are parametrized by a $g$-dimensional variety. But that is not at all how the theory arose in the first place: rather, as we'll indicate, Jacobians initially grew out of a desire to describe certain integrals of algebraic functions called \emph{abelian integrals}. 
 
-Up to now, we have been treating line bundles on a curve $C$ individually. This makes sense, given that in genus 0 there is only one line bundle of a given degree, and on a curve of genus 1 all line bundles of a given degree are congruent under the automorphism group of the curve.
 
-It is a fundamental fact, however, that in general the set of line bundles/linear equivalence classes of divisors of a given degree $d$ on $C$ is naturally parametrized by the points of a variety, called the \emph{Picard variety} and denoted ${\rm Pic}^d(C)$. Many of the deeper results about linear systems on $C$ are expressed in terms of the geometry of this variety, and indeed the simple fact of its existence is the key to proving many theorems about linear systems on curves (see for example Theorem~\ref{g+3 theorem}
-below).
+As we've said, the essential construction in studying a curve $C$ is the association to a given divisor of degree $d$ of a line bundle of that degree---in other words, the map
+$$
+\mu : \big\{ \text{effective divisors of degree } d \big\} \rTo \big\{ \text{line bundles of degree } d \big\}.
+$$
 
-In this chapter, we will describe the construction of these varieties, and their relationship with the spaces parametrizing effective divisors of a given degree $d$ on $C$. We then exhibit some of the consequences of these constructions.
+A priori, this is a map of sets. But it is a crucial fact that both sets may naturally be given the structure of an algebraic variety, in such a way that the map between them is in fact a regular map, and the geometry of this map in many ways governs the geometry of the curve.
 
-One thing to point out before we get started is that the whole subject of Jacobians and Picard varieties has a truly unusual history. As we said, the main import of the theory for modern algebraic geometers is that the line bundles of a given degree $d$ on a given curve $C$ are parametrized by a $g$-dimensional variety. But that is not at all how the theory arose in the first place: rather, as we'll indicate, Jacobians initially grew out of a desire to describe certain integrals of algebraic functions called \emph{abelian integrals}. 
+In this chapter, we'll describe first how we may give these two sets the structure of algebraic varieties. This is completely straightforward in the case of the set of divisors, which are parametrized by the \emph{symmetric products} $C^{(d)}$ of the curve $C$, defined to be the quotient of the Cartesian product $C^d$ by the symmetric group $S_d$, and we'll do this first. The parametrization of the set of line bundles on $C$ of a given degree by the points of an algebraic variety $\pic^d(C)$, by contrast, is a major undertaking, one that historically brought complex analysis and algebraic geometry together and was crucial in the development of the subject of algebraic curves. We'll describe the original construction of the varieties $\pic^d(C)$ by complex analysis in Section~\ref{} below, and also describe briefly the more modern constructions.
+
+The fact that line bundles of a given degree of a curve $C$ are parametrized by the points of a variety $\pic^d(C)$ has huge consequences. Just applying dimension theory to $\pic^d(C)$, for example, gives us a proof of the fact that every curve can be embedded in projective space as a curve of degree $g+3$, as we'll see in Theorem~\ref{g+3 theorem} below.
+
+\section{Symmetric products}
+
+Our first goal is to find a space parametrizing effective divisors on $C$. This is readily available: since an effective divisor of degree $d$ on $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C^{(d)}$ of $C$, defined to be the quotient of the ordinary product $C^d$ by the action of the symmetric group $\Sigma_d$ on $d$ letters. 
+
+We should say a few words here about the construction of the symmetric product in general. This is completely elementary and general: given any variety $X$, we can form the ordinary Cartesian product $X^d$, and take the quotient of $X^d$ by the action of the symmetric group permuting the factors of $X^d$. The resulting variety $X^d/S_d$ is called the $d$th \emph{symmetric power}, or \emph{symmetric product}, of $X$, and denoted $X_d$ or $X^{(d)}$. (For some reason, it seems to be $X_d$ for $X$ a curve, and $X^{(d)}$ for $X$ any higher-dimensional variety.)
+
+The symmetric power $X^{(d)}$ of an $r$-dimensional variety $X$ is a variety of dimension $rd$; it's affine if $X$ is affine and projective if $X$ is projective. (The quotient of an affine (resp., projective) variety by a finite group is again affine (resp., projective.) But there is one aspect of the symmetric powers that is special to the case of curves: for $X$ any variety of dimension $\geq 2$, the symmetric powers $X^{(d)}$ are singular for all $d \geq 2$, while if $X$ is a smooth curve then the symmetric powers $X^{(d)}$ are all smooth as well. This can be notationally messy to prove (see for example~\cite{***} (ACGH)). If we're willing to invoke the classical, or analytic, topology, however, it's not hard to see: in the case of $X = \PP^1$, the fundamental theorem of algebra says that the symmetric power $(\PP^1)^{(d)}$ is simply the projective space $\PP^d$ associated to the vector space of homogeneous polynomials of degree $d$ on $\PP^1$; and in the analytic topology every curve looks locally like $\PP^1$.
+
+%
+%\fix{insert the discussion 3264 showing that the symmetric power is smooth; note that this fails in higher dimension.} 
+%
+
+\begin{exercise}[The universal divisor of degree $d$]
+Let $C$ be a smooth projective curve, and $C^{(d)}$ its $d$th symmetric power. Show that the locus
+$$
+\cD := \{ (D, p) \in C^{(d)} \times C \mid p \in D \}
+$$
+is a closed subvariety of the product $C^{(d)} \times C$, whose fiber over any point $D \in C^{(d)}$ is simply the divisor $D \subset C$
+\end{exercise}
+
+This is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique map $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$. Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$.
+
+\begin{exercise}
+Show by contrast that for $X$ a variety of dimension $r \geq 2$, the symmetric power $X^{(d)}$ is \emph{not} the Hilbert scheme of subschemes of dimension 0 and degree $d$ on $X$.
+\end{exercise}
 
 \section{Jacobians}
 
@@ -30,7 +68,7 @@ When they tried to extend this to similar-looking integrals like
 $$
 \int_{t_0}^t \frac{dx}{\sqrt{x^3+1}},
 $$
-however, they were stymied. The reason gradually emerged: the problem is that the Riemann surface associated to the equation $y^2 = x^3+1$ is not $\PP^1$, but rather a curve of genus 1. In particular  the integral depended on a choice of path; that is, it was defined only modulo a lattice $\ZZ^2 \subset \CC$. This meant, among other things, that the inverse function would be a doubly periodic meromorphic function on $\CC$, and not an elementary function. This led to the introduction of a host of new special functions, such as the Weierstrass $\sP$-function.
+however, they were stymied. The reason gradually emerged: the problem is that the Riemann surface associated to the equation $y^2 = x^3+1$ is not $\PP^1$, but rather a curve of genus 1, and so has nontrivial homology group $H_1(C, \ZZ) \cong \ZZ^2$. In particular  the integral depended on a choice of path; that is, it was defined only modulo a lattice $\ZZ^2 \subset \CC$. This meant, among other things, that the inverse function would be a doubly periodic meromorphic function on $\CC$, and not an elementary function. This led to the introduction of a host of new special functions, such as the Weierstrass $\sP$-function.
 
 The next step was to try to extend this theory to path integrals of holomorphic differentials on curves of arbitrary genus. One problem is that the dependence of the integral on the choice of path is much worse; the set of homology classes of paths between two points $p_0, p \in C$ is identified with $H_1(C,\ZZ) \cong \ZZ^{2g}$ rather than $\ZZ^2$. The solution to this is to consider the integral of \emph{all} holomorphic differentials on $C$ simultaneously, rather than one at a time.
 
@@ -64,13 +102,13 @@ $$
 $$
 This is an example of what is called an \emph{Abel-Jacobi map}.
 
-To fully utilize this, we want to extend it from points  to divisors on $C$, and to do this we need to find a space parametrizing effective divisors on $C$. This is readily available: since an effective divisor of degree $d$ on $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C_d$ of $C$, defined to be the quotient of the ordinary product $C^d$ by the action of the symmetric group $\Sigma_d$ on $d$ letters. This is a smooth, $d$-dimensional projective variety; for a description, see for example Section 10.3.1 of~\ref{3264}.
-
-\fix{insert the discussion 3264 showing that the symmetric power is smooth; note that this fails in higher dimension.} 
+%To fully utilize this, we want to extend it from points  to divisors on $C$, and to do this we need to find a space parametrizing effective divisors on $C$. This is readily available: since an effective divisor of degree $d$ on $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C_d$ of $C$, defined to be the quotient of the ordinary product $C^d$ by the action of the symmetric group $\Sigma_d$ on $d$ letters. This is a smooth, $d$-dimensional projective variety; for a description, see for example Section 10.3.1 of~\ref{3264}.
+%
+%\fix{insert the discussion 3264 showing that the symmetric power is smooth; note that this fails in higher dimension.} 
 
 Having chosen a base point $q \in C$ as above, we get for each $d$ a map
 $$
-\mu_d \; : \; C_d \; \to \; J(C),
+\mu_d \; : \; C^{(d)} \; \to \; J(C),
 $$
 defined by
 $$
@@ -83,7 +121,7 @@ There is a lot to say about these maps; in the following sections, we'll see a d
 The connection between the discussion above and the geometry of linear series is made by \emph{Abel's theorem}:
 
 \begin{theorem}
-Two divisors $D, D' \in C_d$ on $C$ are linearly equivalent if and only if $\mu(D) = \mu(D')$; in other words, the fibers of $\mu_d$ are the complete linear systems of degree $d$ on $C$.
+Two divisors $D, D' \in C^{(d)}$ on $C$ are linearly equivalent if and only if $\mu(D) = \mu(D')$; in other words, the fibers of $\mu_d$ are the complete linear systems of degree $d$ on $C$.
 \end{theorem}
 
 One direction of Abel's theorem---the ``only if" part---is relatively elementary, and that is what we will prove here. (This was in fact the only part proved by Abel; the converse, which is substantially more subtle, was proved by Clebsch. See \cite{} [GH] for a proof.)
@@ -94,7 +132,7 @@ Taking linear combinations of $\sigma$ and $\sigma'$, we get a pencil $\{D_\lamb
 $$
 D_\lambda \; = \; V(\lambda_0\sigma + \lambda_1\sigma'),
 $$
-and this corresponds to a regular map $\alpha : \PP^1 \to C_d$. 
+and this corresponds to a regular map $\alpha : \PP^1 \to C^{(d)}$. 
 
 Consider now the composition
 $$
@@ -106,7 +144,7 @@ Now, $J(C)$ is the quotient of a complex vector space $V = H^0(K_C)^*$ by a disc
 \subsection{Characterization and properties of the Jacobian}
 
 \subsection{Applications to linear series}
-Many of the statements about the Abel-Jacobi map made above follow immediately from Abel's theorem. For example, if  $D = p_1+\dots+p_d\in C_d$ is a general point and $d \leq g$, the points $p_i \in C$ are general and so impose independent conditions on $H^0(K_C)$; thus $h^0(K_C(-D)) = g-d$ and by Riemann-Roch $h^0(\cO_C(D)) = 1$. In other words, the fiber of $\mu_d$ containing $D$ consists just of the single point $D$, and so the map $\mu_d$ is birational onto its image. Similarly, if $d \geq g$, we will have $h^0(K_C(-D)) = 0$ and hence $h^0(\cO_C(D)) = d-g+1$; it follows that the fiber of $\mu_d$ through $D$ has dimension $d-g$, and hence that $\mu_d$ is surjective. In particular, when $d=g$ the map $C_g \to J(C)$ is a birational isomorphism; indeed, it was by using this isomorphism that Weil first gave an algebraic construction of $J(C)$.
+Many of the statements about the Abel-Jacobi map made above follow immediately from Abel's theorem. For example, if  $D = p_1+\dots+p_d\in C^{(d)}$ is a general point and $d \leq g$, the points $p_i \in C$ are general and so impose independent conditions on $H^0(K_C)$; thus $h^0(K_C(-D)) = g-d$ and by Riemann-Roch $h^0(\cO_C(D)) = 1$. In other words, the fiber of $\mu_d$ containing $D$ consists just of the single point $D$, and so the map $\mu_d$ is birational onto its image. Similarly, if $d \geq g$, we will have $h^0(K_C(-D)) = 0$ and hence $h^0(\cO_C(D)) = d-g+1$; it follows that the fiber of $\mu_d$ through $D$ has dimension $d-g$, and hence that $\mu_d$ is surjective. In particular, when $d=g$ the map $C_g \to J(C)$ is a birational isomorphism; indeed, it was by using this isomorphism that Weil first gave an algebraic construction of $J(C)$.
 
 To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
 
@@ -114,7 +152,7 @@ To illustrate some of the power of Abel's theorem, we will use it to prove a bas
 Let $C$ be a smooth projective curve of genus $g$, and $D \in C_{g+3}$ a general divisor of degree $g+3$ on $C$. Then $D$ is very ample; in particular, every curve of genus $g$ may be embedded in projective space as a curve of degree $g+3$.
 \end{theorem}
 
-This is, of course, a substantial improvement over our earlier result (\ref{****}) that every curve of genus $g$ may be embedded in projective space as a curve of degree $2g+1$. It is also sharp: hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$. Nonetheless, we will see in Chapter~\ref{****} that we can improve on this: ``most" curves of genus $g$ can in fact be embedded in projective space as curves of degree $d = \lceil 3g/4 \rceil + 3$.
+This is, of course, a substantial improvement over our earlier result (\ref{****}) that every curve of genus $g$ may be embedded in projective space as a curve of degree $2g+1$. It is also sharp: hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. Nonetheless, we will see in Chapter~\ref{****} that we can improve on this: ``most" curves of genus $g$ can in fact be embedded in projective space as curves of degree $d = \lceil 3g/4 \rceil + 3$.
 
 \begin{proof}
 As we observed above, since $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
@@ -226,7 +264,7 @@ Note that among the subvarieties $W^r_d$ are the images $W^0_d$ of the Abel-Jaco
 
 Two other constructions come up in this setting. For one, the subsets $W^r_d \subset \Pic^d(C)$ can be given the structure of a scheme, in a natural way. One way to characterize this scheme structure is to say that the scheme $W^r_d$ represents the functor of families of line bundles $L \in \Pic^d(C)$ on $C$ with  $h^0(L) \geq r+1$.
 
-In the other construction, we can actually parametrize the set of linear series $g^r_d$ on $C$: that is, there is a scheme \fix{probably this should be Roman} $\cG^r_d(C)$ parametrizing pairs $(L, V)$ with $L \in \Pic^d(C)$ and $V \subset H^0(L)$ a subspace of dimension $r+1$. Again, the scheme structure may be characterized by saying that $\cG^r_d(C)$ represents the functor of families of linear series on $C$. Note that the natural map $\cG^r_d \to W^r_d$ is an isomorphism over the dense open subset $W^r_d \setminus W^{r+1}_d$, and more generally its fiber over a point of $W^s_d \setminus W^{s+1}_d$ is a copy of  the Grassmannian $\GG(r, s)$. 
+In the other construction, we can actually parametrize the set of linear series $g^r_d$ on $C$: that is, there is a scheme  $G^r_d(C)$ parametrizing pairs $(L, V)$ with $L \in \Pic^d(C)$ and $V \subset H^0(L)$ a subspace of dimension $r+1$. Again, the scheme structure may be characterized by saying that $G^r_d(C)$ represents the functor of families of linear series on $C$. Note that the natural map $G^r_d \to W^r_d$ is an isomorphism over the dense open subset $W^r_d \setminus W^{r+1}_d$, and more generally its fiber over a point of $W^s_d \setminus W^{s+1}_d$ is a copy of  the Grassmannian $\GG(r, s)$. 
 
 
 
@@ -352,6 +390,24 @@ Now we can  invoke the fact that the dual of the dual of a variety $X \subset \P
 \end{proof}
 
 The Torelli theorem for curves was the first instance of a class of theorems, called \emph{Torelli theorems}, to the effect that certain classes of varieties are determined to some degree by their Hodge structure; there are, for example, Torelli theorems of varying strength for K3 surfaces, cubic threefolds and fourfolds and hypersurfaces in $\PP^n$.
+
+\section{Additional topics}
+
+A couple of topics that would naturally go here, if we have the inclination and space.
+
+\subsection{Theta characteristics}
+
+Basically: introduce the notion of theta-characteristic (= square root of the canonical bundle), and prove the invariance of $h^0(\cL)$ mod 2. Describe the configuration of theta-characteristics on a given curve $C$ as a principal homogeneous space for the group $J(C)[2] \cong (\ZZ/2)^{2g}$ of torsion of order 2 in the Jacobian.
+
+Example: bitangents to a plane quartic; distinguished triples of bitangents
+
+\subsection{Intermediate Jacobians and the irrationality of cubic threefolds}
+
+First, describe the intermediate Jacobians $J(X)$ of higher-dimensional varieties $X$ by analogy with the case of curves; introduce the Abel-Jacobi maps from parameter spaces of cycles on $X$ to $J(X)$.
+
+Application: show that the intermediate Jacobian of a cubic threefold is not the Jacobian of a curve by calculating the degree of the Gauss map on the theta-divisor and showing it's not 70 (which by the calculation above it would be if $J(X)$ were a Jacobian). Deduce irrationality of $X$.
+
+I know this is a bit of a stretch for the current volume, but I'd really like to include it if at all possible: the proof in Clemens-Griffiths is a mess, and this is much simpler
 
 \input footer.tex
 
