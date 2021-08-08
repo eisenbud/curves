@@ -7,44 +7,42 @@
 
 
 
-\section{Divisors, line bundles and linear systems}
-
-The basic objects of study in this book are smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. 
 
 The most primitive objects of algebraic geometry are affine algebraic sets---subsets of $\RR^{n}$ or $\CC^{n}$ defined by the vanishing of polynomial functions---and the maps between them. But already in the first half of the 19th century geometers realized that there was a great advantage in working with varieties in complex projective space, treating affine varieties as projective varieties minus the intersection with the plane at infinity and real varieties as the fixed points of the complex involution. One sees this in the simplest examples: the ellipses, hyperbolas and parabolas in the real affine plane are all the same in the complex projective plane; the difference is only in how they intersect the line at infinity. A difficulty with the projective point of view is that on a connected projective variety there are no non-constant functions at all (reason: a function on a projective variety is a map to the affine line; since the image of a projective variety is again projective, the image would be a single point.) 
 
 Starting with Riemann in the 1860s and culminating in the scheme theory of Grothendieck in the 1950s, algebraic varieties were treated in a way independent of any embedding: An algebraic variety is is a topological space with a sheaf of locally
-defined polynomial functions. Many interesting aspects of geometry have to do not with single abstract varieties, but with maps between them, and in particular with embeddings in projective spaces. In general, maps between varieties can be described by their graphs, which are again varieties.  But for the special case of maps to projective spaces, the theory of \emph{linear series} is usuall a more convenient description. The collection of all linear series on a variety reflects some of its best understood invariants. 
+defined polynomial functions. Many interesting aspects of geometry have to do not with single abstract varieties, but with maps between them, and in particular with embeddings in projective spaces. In general, maps between varieties can be described by their graphs, which are again varieties.  But for the special case of maps to projective spaces, the theory of \emph{linear series} is usually a more convenient description. The collection of all linear series on a variety reflects some of its best understood invariants. 
 
 Though we assume that the reader has been exposed to this theory in some form before, perhaps from Chapter IV of Hartshorne's {\it Algebraic Geometry}, we will review the elements  in the form we will use. For simplicity we always work over the complex numbers, though the ideas are far more general. 
 
-\section{The basic objects we'll be dealing with}
+The basic objects of study in this book are smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. 
 
-The basic objects of study in this text can be viewed in two distinct but equivalent ways: as \emph{compact Riemann surfaces}, or compact complex manifolds of dimension 1; and as \emph{smooth projective algebraic curves over $\CC$}. (Here, when we use the term projective variety, we mean a variety isomorphic to a closed subset of projective space, not a variety with a specified embedding in $\PP^n$.) There are advantages to each point of view---the complex analytic point of view is more concrete, and requires relatively minimal amount of preliminaries; the algebraic point of view, of course, is substantially broader. In any event, we should take a page or two here to describe the equivalence.
+\section{Algebraic Curves and Riemann Surfaces}
 
-In one direction, it's pretty easy: if $C \subset \PP^n$ is a smooth, projective curve over $\CC$, then it is a submanifold of complex projective space, and so a Riemann surface. The one remark to make here is that we can also associate a compact Riemann surface to a possibly singular curve in projective space, by the process of \emph{resolution of singularities}. This can be done algebraically by \emph{normalization}, or more concretely by blowing up the singular points of the curve; in the complex analytic setting, the Weierstrass preparation theorem says that if $p$ is any point of a 1-dimensional analytic variety, there is the neighborhood $U$ of $p$ such that the punctured neighborhood $U \setminus p$ is isomorphic to a disjoint union of punctured discs, and we can arrive at a complex manifold simply by completing this to the corresponding disjoint union of discs.
-In any event,   this is a useful tool, in that we're going to be dealing with maps of abstract smooth projective curves $C$ to projective space in general, whose images $C_0$ may be singular; assuming only that the map $C \to C_0$ is birational, the curve $C$ may be recovered from $C_0$ by resolving singularities. 
+These objects can be viewed in two distinct but equivalent ways: as \emph{compact Riemann surfaces}, or compact complex manifolds of dimension 1; and as \emph{smooth projective algebraic curves over $\CC$}. (Here, when we use the term projective variety, we mean a variety isomorphic to a closed subset of projective space, not a variety with a specified embedding in $\PP^n$.) There are advantages to each point of view---the complex analytic point of view is more concrete, and requires relatively minimal amount of preliminaries; the algebraic point of view is substantially broader. 
 
+First, if $C \subset \PP^n$ is a smooth, projective curve over $\CC$, then it is a submanifold of complex projective space, and so a Riemann surface. 
 \fix{discuss geometric genus vs. arithmetic genus here?}
 
-The other direction---going from a compact Riemann surface $C$ to a smooth projective curve over $\CC$, or equivalently embedding $C$ as a complex submanifold of $\PP^n$, after which Chow's theorem says that it is in fact a projective variety---may be harder, depending on what theorems about Riemann surfaces we assume. If we assume nothing, even just showing that a compact Riemann surface admits a nonconstant meromorphic function is a serious task. (This is to be expected: in all dimensions $r \geq 2$, it's not even true that any compact complex manifold of dimension $r$ possesses any nonconstant meromorphic functions!) On the other hand, if we assume  two basic results---the Riemann-Roch formula, and Serre duality---then (as we'll see later in this chapter, in Corollary~\ref{degree 2g+1 embedding}), it's not hard at all to prove the existence of an embedding of any compact Riemann surface in projective space.
+The other direction---going from a compact Riemann surface $C$ to a smooth projective curve over $\CC$, or equivalently embedding $C$ as a complex submanifold of $\PP^n$, after which Chow's theorem says that it is in fact a projective variety---is much deeper. The first, and hardest step is to show that a compact Riemann surface admits a nonconstant meromorphic function $f:C \to \CC$, and the corresponding statement is not true in higher dimensions. The function $f$ can be viewed as
+a rational map $f': C\to \PP^{1}$. The next step is to see that the field $K(C)$ of all meromorphic functions
+on $\CC$ is a finite extension of the field of rational functions on $\PP^{1}$; the sheaf of regular functions on $C$ is then the integral closure of the sheaf of regular functions on $\PP^{1}$ in $K(C)$.
 
-\fix{the para above is slighly misleading: the proofs of the existence of functions do NOT go by way of RR and duality, as far as I know.}
+Though equivalent for curves defined over $\CC$, these approaches have a very different flavors. For example,
+given a map  $f: C\to C'$ from a smooth curve $C$ to a possibly singular curve $C'$ that is generically one-to-one, we can reconstruct $C$.
+From the algebraic point of view this can be done by \emph{normalization}, or more concretely by blowing up the singular points of $C'$. From the analytic point of view, we can use the Weierstrass preparation theorem, which implies that there is the neighborhood $U$ of any point $p\in C'$ such that the punctured neighborhood $U \setminus p$ is isomorphic to a disjoint union of punctured discs; and $C$ is obtby completing this to the corresponding disjoint union of discs.
 
-\fix{I don't know if this is the right place, but somewhere we should remark the theorem that if $C$ is any smooth projective curve and $\Gamma \subset C$ any finite subset---even just a single point---then $C \setminus \Gamma$ is affine}
+\section{Divisors and maps to projective space}
 
+Maps of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems and invertible sheaves. Given $f: C\to \PP^{n}$, the preimages of hyperplanes not containing the image of $C$ will be finite sets of points on $C$, possibly with multiplicities in the case of a hyperplane tangent to the image, or passing through a singular point of the image. Such a set of points with multiplicities is called a \emph{divisor} on $C$. In the case of a map from a singular curve, or a more general scheme, a divisor is simply a purely codimension 1 subscheme. However the divisors coming as the pullbacks of hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function as well.
 
+The need for the word ``local'' scattered through the previous paragraph has two sources. First, on a projective variety there are no globally defined non-constant functions! (From the complex analytic point of view this can be derived from the 
+``maximum modulus principle'' for analytic functions: any function on a compact set must take on a maximum value at some point p, but the maximum principle says that the maximum modulus will occur on the boundary of a disk centered at $p$ on any chart where the function is defined, and this implies that the function is constant \fix{huh?}
 
-\section{Divisors, line bundles and linear systems}
+If we are given the family of divisors on $C$ that are the preimages of the hyperplane intersections, we can reconstruct the map $f$ set-theoretically: we take a point $p\in C$ to the point of projective space that is the intersection of those
+hyperplanes whose preimages contain $p$. To extend this idea to the definition of a map of schemes, we introduce invertible sheaves.
 
-There are several important and closely related notions: Divisors, line bundles, invertible sheaves, linear systems. These structures arise most naturally from maps of a variety to a projective space, and that is how we shall generally encounter them, so we introduce them from that point of view. We begin with the structure of the projective space itself.
-
-\subsection{$\PP^n$ as a set} Following the book of Hartshorne \cite[Sections *** and ***]{} and thus the convention of Grothendieck, we define the projective space $\PP^n$ as a set to be the collection of $(n+1)$-tuples of complex numbers, modulo the equivalence relation
-$(a_0,\dots,a_n) \sim (ca_0,\dots, ca_n)$ for any nonzero scalar $c$. The salient feature of $\PP^n$ from this point of view is the set of hyperplanes that it contains, each defined by the vanishing of some linear form
-$x(a_0,\dots,a_n) = \sum_i x_ia_i$. 
-
-Given a morphism $\phi: X\to \overline X \subset \PP^n$ from a variety $X$ to $\PP^n$ we may pull back this family of hyperplanes and get a family of codimension 1 subvarieties of $X$ defined by the vanishing of the compositions $\phi^*(x) := x\circ \phi$ of $\phi$ with linear forms. These subvarieties determine the map $\phi$, since $\phi(p)$ is the point that is the intersection of all the hyperplanes $x=0$ such that
-$\phi^*(x)$ vanishes at $p$. In general, a subvariety of codimension 1 in $X$ is called a \emph{divisor} on $X$; the ones defined from a map $\phi: X\to \PP^n$ are special, in that they are defined locally by a single function, and are called \emph{Cartier divisors}.
+\section{Invertible sheaves}
 
 \subsection{$\PP^n$ as a scheme}If $V$ is an $(n+1)$-dimensional vector space, we define projective space 
 $\PP(V) \cong \PP^n$ \emph{as a scheme} to be $\Proj Sym V$, where $V$ is an $n+1$-dimensional vector space
@@ -309,6 +307,8 @@ $$
 h^0(D) = d - g + 1.
 $$
 \end{corollary}
+
+\fix{I don't know if this is the right place, but somewhere we should remark the theorem that if $C$ is any smooth projective curve and $\Gamma \subset C$ any finite subset---even just a single point---then $C \setminus \Gamma$ is affine}
 
 As a consequence of this, we can apply Proposition~\ref{very ample} to conclude the
 
