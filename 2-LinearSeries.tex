@@ -1,46 +1,37 @@
 \input{header.tex}
 
 \chapter{Linear Series}
-\begin{center}
-\emph{Another damned thick book! Always scribble, scribble, scribble! Eh, Mr. Gibbon?} --- \scriptsize{Prince William Henry, upon receiving the second  volume of The History of the Decline and Fall of the Roman Empire from the author.}
-\end{center}
-
-
-
-
-The most primitive objects of algebraic geometry are affine algebraic sets---subsets of $\RR^{n}$ or $\CC^{n}$ defined by the vanishing of polynomial functions---and the maps between them. But already in the first half of the 19th century geometers realized that there was a great advantage in working with varieties in complex projective space, treating affine varieties as projective varieties minus the intersection with the plane at infinity and real varieties as the fixed points of the complex involution. One sees this in the simplest examples: the ellipses, hyperbolas and parabolas in the real affine plane are all the same in the complex projective plane; the difference is only in how they intersect the line at infinity. A difficulty with the projective point of view is that on a connected projective variety there are no non-constant functions at all (reason: a function on a projective variety is a map to the affine line; since the image of a projective variety is again projective, the image would be a single point.) 
-
-Starting with Riemann in the 1860s and culminating in the scheme theory of Grothendieck in the 1950s, algebraic varieties were treated in a way independent of any embedding: An algebraic variety is is a topological space with a sheaf of locally
-defined polynomial functions. Many interesting aspects of geometry have to do not with single abstract varieties, but with maps between them, and in particular with embeddings in projective spaces. In general, maps between varieties can be described by their graphs, which are again varieties.  But for the special case of maps to projective spaces, the theory of \emph{linear series} is usually a more convenient description. The collection of all linear series on a variety reflects some of its best understood invariants. 
-
-Though we assume that the reader has been exposed to this theory in some form before, perhaps from Chapter IV of Hartshorne's {\it Algebraic Geometry}, we will review the elements  in the form we will use. For simplicity we always work over the complex numbers, though the ideas are far more general. 
-
-The basic objects of study in this book are smooth, connected projective algebraic curves over an algebraically closed field $K$ of characteristic 0. 
-
-\section{Algebraic Curves and Riemann Surfaces}
-
-These objects can be viewed in two distinct but equivalent ways: as \emph{compact Riemann surfaces}, or compact complex manifolds of dimension 1; and as \emph{smooth projective algebraic curves over $\CC$}. (Here, when we use the term projective variety, we mean a variety isomorphic to a closed subset of projective space, not a variety with a specified embedding in $\PP^n$.) There are advantages to each point of view---the complex analytic point of view is more concrete, and requires relatively minimal amount of preliminaries; the algebraic point of view is substantially broader. 
-
-First, if $C \subset \PP^n$ is a smooth, projective curve over $\CC$, then it is a submanifold of complex projective space, and so a Riemann surface. 
-\fix{discuss geometric genus vs. arithmetic genus here?}
-
-The other direction---going from a compact Riemann surface $C$ to a smooth projective curve over $\CC$, or equivalently embedding $C$ as a complex submanifold of $\PP^n$, after which Chow's theorem says that it is in fact a projective variety---is much deeper. The first, and hardest step is to show that a compact Riemann surface admits a nonconstant meromorphic function $f:C \to \CC$, and the corresponding statement is not true in higher dimensions. The function $f$ can be viewed as
-a rational map $f': C\to \PP^{1}$. The next step is to see that the field $K(C)$ of all meromorphic functions
-on $\CC$ is a finite extension of the field of rational functions on $\PP^{1}$; the sheaf of regular functions on $C$ is then the integral closure of the sheaf of regular functions on $\PP^{1}$ in $K(C)$.
-
-Though equivalent for curves defined over $\CC$, these approaches have a very different flavors. For example,
-given a map  $f: C\to C'$ from a smooth curve $C$ to a possibly singular curve $C'$ that is generically one-to-one, we can reconstruct $C$.
-From the algebraic point of view this can be done by \emph{normalization}, or more concretely by blowing up the singular points of $C'$. From the analytic point of view, we can use the Weierstrass preparation theorem, which implies that there is the neighborhood $U$ of any point $p\in C'$ such that the punctured neighborhood $U \setminus p$ is isomorphic to a disjoint union of punctured discs; and $C$ is obtby completing this to the corresponding disjoint union of discs.
 
 \section{Divisors and maps to projective space}
 
 Maps of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems and invertible sheaves. Given $f: C\to \PP^{n}$, the preimages of hyperplanes not containing the image of $C$ will be finite sets of points on $C$, possibly with multiplicities in the case of a hyperplane tangent to the image, or passing through a singular point of the image. Such a set of points with multiplicities is called a \emph{divisor} on $C$. In the case of a map from a singular curve, or a more general scheme, a divisor is simply a purely codimension 1 subscheme. However the divisors coming as the pullbacks of hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function as well.
 
 The need for the word ``local'' scattered through the previous paragraph has two sources. First, on a projective variety there are no globally defined non-constant functions! (From the complex analytic point of view this can be derived from the 
-``maximum modulus principle'' for analytic functions: any function on a compact set must take on a maximum value at some point p, but the maximum principle says that the maximum modulus will occur on the boundary of a disk centered at $p$ on any chart where the function is defined, and this implies that the function is constant \fix{huh?}
+``maximum modulus principle'' for analytic functions: any function on a compact set must take on a maximum value at some point p, but the maximum principle says that the maximum modulus will occur on the boundary of a disk centered at $p$ on any chart where the function is defined, and this implies that the function is constant \fix{huh?}.
+)
 
-If we are given the family of divisors on $C$ that are the preimages of the hyperplane intersections, we can reconstruct the map $f$ set-theoretically: we take a point $p\in C$ to the point of projective space that is the intersection of those
-hyperplanes whose preimages contain $p$. To extend this idea to the definition of a map of schemes, we introduce invertible sheaves.
+If we are given the family of divisors on $C$ that are the preimages of the hyperplane intersections under $f$, we can reconstruct the map $f$ set-theoretically: we take a point $p\in C$ to the point of projective space that is the intersection of those
+hyperplanes whose preimages contain $p$. The relation of two such divisors is simple to describe: If the hyperplane
+$D\subset \PP^n$ is defined by the linear form $\delta$ and the hyperplane $E\subset \PP^n$ is defined by the linear form $\epsilon$, then
+there is a natural sense in which $D-E$ is defined by the rational function $\lambda= \delta/\epsilon$. If neither $D$ nor $E$ contain $C$ then the pullback of $\lambda$ is a well-defined, nonzero rational function on $C$, and the difference of their
+pullbacks $d = f^{-1}D$ and $e= f^{-1} \E$ on $C$ is defined by the pullback  $f^*(\lambda) := \lambda \circ f$.  
+
+Given a point $p\in C$, suppose that $e$ does not contain $p$, so that $\epsilon$ takes some value $t\neq 0$ at $p$.The
+linear form $\delta/t$ defines the same hyperplane as $\delta$. Thus, to find the image of a point $p\in C$, it is enough to know which rational function $\delta/\epsilon$ vanish at $f(p)$ for a fixed $\epsilon$ that does not vanish at $f(p)$ and varying $\delta$ 
+
+The complement of $E$ is an affine space $\AA^n$, and its preimage in $C$ is thus an affine subset of $C$. The rational
+functions $\delta/\epsilon$, as $\delta$ varies, are regular (that is, polynomial) functions on $\AA^n$, and pull back to polynomial
+functions on $C' := C\setminus e$. Since the linear forms on $\PP^n$ are a finite-dimensional space they generate an ideal $M$ of $\sO_{C'}$.
+
+Because we have assumed that $C$ is a smooth curve, each local ring $\sO_{C,p}$ is a discrete valuation ring: that is, 
+the maximal ideal of $\sO_{C,p}$ is generated by a single element $\pi_p$ and every element of the fraction field of 
+$\sO_{C,p}$ has the form $u\pi^k$ where $u\in \sO_{C,p}$ is a unit and $k\in \ZZ$. Thus
+$M\sO_{C,p} = (\pi^k)$, where $k$ is the smallest integer such some linear form vanishes at $f(p)$ to order $k>0$.
+In particular, the  hyperplanes $D: \delta=0$ that vanish at $p$ are the ones where the pulled-back rational function
+$f^*(\delta/\epsilon)$ lies in the ideal
+In particular, 
+Every ideal in every ideal in $C'$ is \emph{locally principal} in the sense that for every point $p$ in
+$C'$ the $\sO_{C,p}$-module $M\cdot \sO_{C,p}$ is generated by a single element. 
 
 \section{Invertible sheaves}
 
