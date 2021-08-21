@@ -4,24 +4,83 @@
 
 \section{Divisors and maps to projective space}
 
-Maps of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems and invertible sheaves. Given $f: C\to \PP^{n}$, the preimages of hyperplanes not containing the image of $C$ will be finite sets of points on $C$, possibly with multiplicities in the case of a hyperplane tangent to the image, or passing through a singular point of the image. Such a set of points with multiplicities is called a \emph{divisor} on $C$. In the case of a map from a singular curve, or a more general scheme, a divisor is simply a purely codimension 1 subscheme. However the divisors coming as the pullbacks of hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function as well.
+Maps of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems and invertible sheaves. Given $f: C\to \PP^{n}$, the preimages of hyperplanes not containing the image of $C$ will be finite sets of points on $C$, possibly with multiplicities in the case of a hyperplane tangent to the image, or passing through a singular point of the image. Such a set of points with multiplicities is called a \emph{divisor} on $C$. In the case of a map from a singular curve, or a more general scheme, a divisor (sometimes called a Weil divisor) is simply a purely codimension 1 subscheme. However the divisors coming as the pullbacks of hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function as well.
 
 The need for the word ``local'' scattered through the previous paragraph has two sources. First, on a projective variety there are no globally defined non-constant functions! (From the complex analytic point of view this can be derived from the 
-``maximum modulus principle'' for analytic functions: any function on a compact set must take on a maximum value at some point p, but the maximum principle says that the maximum modulus will occur on the boundary of a disk centered at $p$ on any chart where the function is defined, and this implies that the function is constant \fix{huh?}.
-)
+``maximum modulus principle'' for analytic functions: any nonconstant analytic function on a compact variety must take on a maximum value at a finite set of points, but the maximum principle says that when restricted to a disk around any such point, the maximum modulus will occur on the boundary of the disk.
 
-If we are given the family of divisors on $C$ that are the preimages of the hyperplane intersections under $f$, we can reconstruct the map $f$ set-theoretically: we take a point $p\in C$ to the point of projective space that is the intersection of those
-hyperplanes whose preimages contain $p$. The relation of two such divisors is simple to describe: If the hyperplane
-$D\subset \PP^n$ is defined by the linear form $\delta$ and the hyperplane $E\subset \PP^n$ is defined by the linear form $\epsilon$, then
-there is a natural sense in which $D-E$ is defined by the rational function $\lambda= \delta/\epsilon$. If neither $D$ nor $E$ contain $C$ then the pullback of $\lambda$ is a well-defined, nonzero rational function on $C$, and the difference of their
-pullbacks $d = f^{-1}D$ and $e= f^{-1} \E$ on $C$ is defined by the pullback  $f^*(\lambda) := \lambda \circ f$.  
+If we are given the family of divisors on $C$ that are the preimages of the intersections of hyperplanes with  $f(C)$, we can reconstruct the map $f$ set-theoretically: we take a point $p\in C$ to the point of projective space that is the intersection of those
+hyperplanes whose preimages contain $p$. The relation of two divisors in such a family is simple to describe: If the hyperplane
+$D\subset \PP^n$ is defined by the linear form $\delta$ and the hyperplane $E\subset \PP^n$ is defined by the linear form $\epsilon$, then $1/\epsilon$ has a simple pole along $E$---we may say that it ``vanishes along $E$'' to degree $-1$.
+In this sense, $D-E$ is defined by the rational function $\lambda= \delta/\epsilon$. If neither $D$ nor $E$ contain $C$ then the pullback of $\lambda$ is a well-defined, nonzero rational function on $C$, and the difference of their
+pullbacks $d = f^{-1}D$ and $e= f^{-1} E$ on $C$ is defined by the pullback  $f^*(\lambda) := \lambda \circ f$. Thus the divisors arising from a given map to $\PP^{n}$ differ by the divisors of zeros minus poles of rational functions on $C$. 
 
-Given a point $p\in C$, suppose that $e$ does not contain $p$, so that $\epsilon$ takes some value $t\neq 0$ at $p$.The
-linear form $\delta/t$ defines the same hyperplane as $\delta$. Thus, to find the image of a point $p\in C$, it is enough to know which rational function $\delta/\epsilon$ vanish at $f(p)$ for a fixed $\epsilon$ that does not vanish at $f(p)$ and varying $\delta$ 
+\subsection{Maps from linear series}
+We want not only to understand given maps to $\PP^{n}$, but to be able to produce such maps from data on $C$ alone. For this we use the notion of linear series. 
+
+Recall first that a \emph{coherent sheaf} $\sF$ on a scheme $X$ may be defined by
+giving 
+\begin{itemize}
+ \item An open affine cover $\{U_{i}\}$ of $X$; 
+ \item For each $i$, a finitely generated $\sO_{X}(U_{i})$-module $F_{i}$;
+ \item For each $i,j$, an isomorphism $\sigma_{i,j}: F_{i}\mid_{U_{i}\cap U_{j}} \to F_{j}\mid_{U_{i}\cap U_{j}}$;
+ \end{itemize}
+satisfying the natural compatibility condition $\sigma_{j,k}\sigma_{i,j} = \sigma_{i,k}$.
+
+The coherent sheaf $\sF$ is said to be an \emph{invertible sheaf} if there is an open cover as above with the additional property
+that $F_{i} \cong \sO_X(U_{i})$, the free module on one generator. The term \emph{invertible} is justified by the 
+fact that if $\sF, \sG$ are invertible sheaves then so are $\sF\otimes_{X}\sG$ and  $\Hom_{X}(\sF, \sG)$, as one sees immediately by
+restricting to the open sets where $\sF$ and $\sG$ are isomorphic to $\sO_{X}$. Moreover the natural isomorphisms
+$$
+\sF(U) \otimes_{X} \Hom(\sF(U), \sO_{X}(U)) \to \sO_{X}(U)\quad s \otimes f \mapsto f(s)
+$$ 
+patch together to define a global isomorphism 
+$$
+\sF \otimes_{X} \Hom(\sF, \sO_{X}) \to \sO_{X}
+$$
+justifying the definition of an inverse,
+$\sF^{-1} := \Hom(\sF, \sO_{X})$.
+Thus the invertible sheaves on $X$ form a group under $\otimes_{X}$, called the 
+\emph{Picard group of $X$}, denoted $\Pic(X)$.
+
+\begin{example}
+For example $\Pic(\PP^{n} = \ZZ$, generated by the invertible sheaf $\sO_{\PP^{n}}(1)$.
+\fix{explain $\sO(1)$ in terms of the def above}
+\end{example}
+
+\begin{definition}
+ A \emph{linear series} on a scheme $X$ is a pair $(\sL, V)$ where $\sL$ is an invertible sheaf and
+ $V$ is a vector space of global sections of $\sL$.
+\end{definition}
+
+\begin{example} The linear series coming from a map to projective space:
+\fix{Turn the mish-mosh below into a clean example.}
+\end{example}
+
+The projective space $\PP^{n} = {\rm Proj} (k[x_{0}, \dots, x_{n}])$ is covered by the affine spaces 
+$$
+\AA^{n} \cong U_{i} := \PP^{n}\setminus \{x_{i} = 0\}
+$$
+and the coordinate ring of $U_{i}$ is $A_{i} := \CC[x_{0}/x_{i}, \dots, x_{n}/x_{i}]$. The linear forms $x_{i}$ are not functions
+on $\PP^{n}$ because points in $\PP^{n}$ do not have well-defined coordinates; rather, for each $U_{i}$ we may regard 
+the $x_{i}$ as
+generators of an $A_{i}$-module $M_{i} = \sum_{j} A_{i}x_{j}$ satisfying the  relations
+$$
+x_{i} = (x_{i}/x_{j}) x_{j}
+$$
+that hold in $\CC(x_{0}, \dots, x_{n})$
+Note that 
+$$ 
+\frac{1}{x_{i}}M_{j} = \frac{1}{x_{j}}M_{i} 
+$$
+as subsets of $\CC(x_{0}, \dots, x_{n})$
+and thus the restrictions of $M_{i}$ and $M_{j}$ to the open set $U_{i}\cap U_{j}$ are equal. 
+
 
 The complement of $E$ is an affine space $\AA^n$, and its preimage in $C$ is thus an affine subset of $C$. The rational
 functions $\delta/\epsilon$, as $\delta$ varies, are regular (that is, polynomial) functions on $\AA^n$, and pull back to polynomial
-functions on $C' := C\setminus e$. Since the linear forms on $\PP^n$ are a finite-dimensional space they generate an ideal $M$ of $\sO_{C'}$.
+functions on $C' := C\setminus e$. 
+%Since the linear forms on $\PP^n$ are a finite-dimensional space they generate an ideal $M$ of $\sO_{C'}$.
 
 Because we have assumed that $C$ is a smooth curve, each local ring $\sO_{C,p}$ is a discrete valuation ring: that is, 
 the maximal ideal of $\sO_{C,p}$ is generated by a single element $\pi_p$ and every element of the fraction field of 
