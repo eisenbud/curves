@@ -1,23 +1,36 @@
 \input{header.tex}
 
-\chapter{Linear Series}
+\chapter{Linear Systems}
 
-\section{Divisors and maps to projective space}
+Morphisms of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems and invertible sheaves. 
 
-Maps of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems and invertible sheaves. Given $f: C\to \PP^{n}$, the preimages of hyperplanes not containing the image of $C$ will be finite sets of points on $C$, possibly with multiplicities in the case of a hyperplane tangent to the image, or passing through a singular point of the image. Such a set of points with multiplicities is called a \emph{divisor} on $C$. In the case of a map from a singular curve, or a more general scheme, a divisor (sometimes called a Weil divisor) is simply a purely codimension 1 subscheme. However the divisors coming as the pullbacks of hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function as well.
+\section{Maps to projective space, and families of Cartier divisors}
 
-The need for the word ``local'' scattered through the previous paragraph has two sources. First, on a projective variety there are no globally defined non-constant functions! (From the complex analytic point of view this can be derived from the 
-``maximum modulus principle'' for analytic functions: any nonconstant analytic function on a compact variety must take on a maximum value at a finite set of points, but the maximum principle says that when restricted to a disk around any such point, the maximum modulus will occur on the boundary of the disk.
+Given $f: C\to \PP^{n}$, the preimages of hyperplanes not containing the image of $C$ will be finite sets of points on $C$, possibly with multiplicities in the case of a hyperplane tangent to the image, or passing through a singular point of the image. Such a set of points with non-negative multiplicities is called an \emph{effective divisor} on $C$. In the case of a map from a singular curve, or a more general scheme, an effective divisor (sometimes called an effective Weil divisor) is simply a purely codimension 1 subscheme; a \emph{divisor} is an formal linear combination of effective divisors, with integer coefficients. The divisors coming as the pullbacks of hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function as well; that is, it is an  \emph{effective Cartier divisor} (On a smooth curve every effective divisor is locally defined by a single equation, so this is not an issue for us.) A \emph{Cartier divisor} more generally is a formal integral linear combination of effective Cartier divisors.
+
+The need for the word ``local'' scattered through the previous paragraph has two sources. First, if $X$ is a projective variety then the only algebraic functions $X\to \CC$ are constant functions; this is because the image of a projective variety
+is again projective, and the only projective subvarieties of the affine variety $\CC$ are points. 
+%(From the complex analytic point of view this is a consequence of the 
+%``maximum modulus principle'': any nonconstant analytic function on a compact variety must take on a maximum value at a finite set of points, but the maximum principle says that when restricted to a disk around any such point, the maximum modulus will occur on the boundary of the disk.)
 
 If we are given the family of divisors on $C$ that are the preimages of the intersections of hyperplanes with  $f(C)$, we can reconstruct the map $f$ set-theoretically: we take a point $p\in C$ to the point of projective space that is the intersection of those
 hyperplanes whose preimages contain $p$. The relation of two divisors in such a family is simple to describe: If the hyperplane
 $D\subset \PP^n$ is defined by the linear form $\delta$ and the hyperplane $E\subset \PP^n$ is defined by the linear form $\epsilon$, then $1/\epsilon$ has a simple pole along $E$---we may say that it ``vanishes along $E$'' to degree $-1$.
+
 In this sense, $D-E$ is defined by the rational function $\lambda= \delta/\epsilon$. If neither $D$ nor $E$ contain $C$ then the pullback of $\lambda$ is a well-defined, nonzero rational function on $C$, and the difference of their
 pullbacks $d = f^{-1}D$ and $e= f^{-1} E$ on $C$ is defined by the pullback  $f^*(\lambda) := \lambda \circ f$. Thus the divisors arising from a given map to $\PP^{n}$ differ by the divisors of zeros minus poles of rational functions on $C$. 
 
-\subsection{Maps from linear systems}
-We want not only to understand given maps to $\PP^{n}$, but to be able to produce such maps from data on $C$ alone. For this we use the notion of linear system (sometimes called linear series). 
+\section{Morphisms and linear systems}
+Of course we want to understand morphisms more than set-theoretically, and we want to be able to produce such maps from data on $C$. For this we use the notion of linear system (sometimes called linear series): 
 
+\begin{definition}
+ A \emph{linear system} on a scheme $X$ is a pair $(\sL, V)$ where $\sL$ is an invertible sheaf and
+ $V$ is a vector space of global sections of $\sL$.
+\end{definition}
+
+We will spend the next pages unpacking this notion.
+
+\subsection{Invertible sheaves}
 Recall first that a \emph{coherent sheaf} $\sF$ on a scheme $X$ may be defined by
 giving 
 \begin{itemize}
@@ -25,7 +38,12 @@ giving
  \item For each $i$, a finitely generated $\sO_{X}(U_{i})$-module $F_{i}$;
  \item For each $i,j$, an isomorphism $\sigma_{i,j}: F_{i}\mid_{U_{i}\cap U_{j}} \to F_{j}\mid_{U_{i}\cap U_{j}}$;
  \end{itemize}
-satisfying the natural compatibility condition $\sigma_{j,k}\sigma_{i,j} = \sigma_{i,k}$.
+satisfying the natural compatibility condition $\sigma_{j,k}\sigma_{i,j} = \sigma_{i,k}$. 
+A \emph{global section} of $\sF$ is an element $t_{i}\in F_{i}$ such that 
+$\sigma_{i,j} t_{i} = t_{j}$. Such a section may be realized as the image of the constant function 1 under
+a homomorphism of sheaves $\sO_{X} \to \sF$. By Theorem \cite[Thm ***]{H} the space $H^{0}(\sF)$  of global sections is
+a finite-dimensional vector space. For example, $H^{0}(\sO_{X}) = \CC$ because the only globally defined
+functions on $X$ are the constant functions.
 
 The coherent sheaf $\sF$ is said to be an \emph{invertible sheaf} if there is an open cover as above with the additional property
 that $F_{i} \cong \sO_X(U_{i})$, the free module on one generator. The term \emph{invertible} is justified by the 
@@ -39,21 +57,80 @@ $$
 \sF \otimes_{X} \Hom(\sF, \sO_{X}) \to \sO_{X}
 $$
 justifying the definition of an inverse,
-$\sF^{-1} := \Hom(\sF, \sO_{X})$.
+$\sF^{-1} := \Hom(\sF, \sO_{X})$. 
 Thus the invertible sheaves on $X$ form a group under $\otimes_{X}$, called the 
-\emph{Picard group of $X$}, denoted $\Pic(X)$.
+\emph{Picard group of $X$}, denoted $\Pic(X)$. 
 
-\begin{example}
-For example $\Pic(\PP^{n} = \ZZ$, generated by the invertible sheaf $\sO_{\PP^{n}}(1)$.
-\fix{explain $\sO(1)$ in terms of the def above}
+If $D\subset X$ is an effective Cartier divisor, then we define $\sO_{X}(-D)$ to be the ideal sheaf of $D$. It is an invertible
+sheaf because, by definition, $D$ is locally defined by the vanishing of a (locally defined) nonzerodivisor in $\sO_{X}$.
+We write $\sO_{X}(D)$ for its inverse.
+
+\begin{example} [Invertible sheaves on $\PP^{n}$] If $H\subset \PP^{n}$ is a hyperplane defined by the vanishing of a linear form $\ell = \ell(x_{0}, \dots x_{n})$ then the ideal sheaf $\sO_{\PP^{n}}(-1) := \sI_{H/\PP^{n}}\subset \sO_{\PP^{n}}$ is generated on the open affine set 
+$U_{i}:= \{x_{i}\neq 0\} \cong \AA^{n}$
+by $\ell/x_{i}$, and is thus an invertible sheaf. 
+Moreover, if $H'$ is the hyperplane defined by another linear form $\ell'$, then 
+$$
+\frac{\ell'}{\ell}\cdot\sI_{H/\PP^{n}} = \sI_{H'/\PP^{n}} 
+$$
+so the sheaves $\sI_{H/\PP^{n}}$ and $\sI_{H'/\PP^{n}} $ are isomorphic, justifying the name $\sO_{\PP^{n}}(-1)$.
+
+More generally, the $p$-th tensor power of $\sO_{\PP^{n}}(-1)$ is called $\sO_{\PP^{n}}(-d)$; it is isomorphic to the
+ideal sheaf of any hypersurface of degree $d$. Because polynomials satisfy the unique factorization property,
+every effective divisor $D\subset \PP^{n}$ is a hypersurface of some degree $d$, so
+$\sO_{\PP^{n}}(-D) \cong \sO_{\PP^{n}}(-d)$. Note that if $d>0$ then $H^{0}(\sO_{\PP^{n}}(-D)) = 0$, since it may be realized
+as the sheaf of locally defined functions vanishing on $D$, and there are no such
+globally defined functions except 0.
+
+We take $\sO_{\PP^{n}}(d)$ to be the inverse of $\sO_{\PP^{n}}(-d)$. If $D$ is the hypersurface defined by 
+a form $F$ of degree $d$, then $\sO_{\PP^{n}}(-D)$ is generated on $U_{i}$ by $F/(x_{i}^{d})$, so
+$\sO_{\PP^{n}}(D)$ is generated on $U_{i}$ by $x_{i}^{d}/F$
+Starting from the inclusion 
+$
+\sO_{\PP^{n}}(-D) \subset \sO_{\PP^{n}}
+$
+and taking inverses, we see that 
+$
+\sO_{\PP^{n}} \subset \sO_{\PP^{n}}(D)
+$
+and the global section $1\in H^0(\sO_{\PP^{n}})\subset H^0(\sO_{\PP^{n}}(D))$, restricted to
+$U_{i}$, is $F/(x_{0}^{d})$ times the local generator of $\sO_{\PP^{n}}(D)$ and thus vanishes on $D$.
+ Because every
+rational function on $\PP^{n}$ has degree 0, and any two global sections differ by a rational
+function, it follows that every global section of $\sO_{\PP^{n}}(d)$ vanishes on a divisor of degree $d$. Thus
+we may identify $H^{0}(\sO_{\PP^{n}}(d))$ with the ${n+d\choose n}$-dimensional vector space of forms of degree $d$ on $\PP^{n}$.
 \end{example}
 
-\begin{definition}
- A \emph{linear system} on a scheme $X$ is a pair $(\sL, V)$ where $\sL$ is an invertible sheaf and
- $V$ is a vector space of global sections of $\sL$.
-\end{definition}
+\subsection{The map to projective space coming from a linear system} For any $\CC$-vector space $V$ of dimension $n+1$ with basis $x_{0}, \dots, x_{n}$, we write $\Sym(V) \cong \CC[x_{0},\dots, x_{n}]$ for the symmetric algebra on $V$, and
+$\PP(V)\cong \PP^{n}_{\CC}$ to be the projective space ${\rm Proj}(Sym_{V})$, which is naturally isomorphic to the
+space of lines in $V^{*}$. 
 
-\begin{example} The linear system coming from a map to projective space:
+If $\sigma\in H^{0}(\sL)$ is a global section of an invertible sheaf on $X$ then we say that $\sigma$ vanishes at a point $p\in X$ if, on an  open subset $U$ containing $p$ such that $\sL\mid_{U} \cong \sO_{U}$ the section
+$\sigma$ corresponds to a function on $U$ that vanishes at $p$; this is independent of the identifications and choice of $U$. 
+
+Given a linear system $\sV:=(\sL, V)$ on a scheme $X$, where
+$\sL$ is an invertible sheaf on $X$ and $V = \langle\sigma_{0}, \dots \sigma_{n}\rangle$ is a vector space of global sections, we write
+$W\subset X$ for the open subscheme where not all sections $\sigma_{i}$ vanish; that is, 
+$$
+W = X\setminus \bigcap_{i= 0}^{n}\{\sigma_{i} = 0\}.
+$$
+For any point $q\in W$ we  may choose an open neighborhood $W'\subset W$ of $q$, and an identification 
+$$
+t: \sL\mid_{W'} \rTo^{\cong} \sO_{W'}
+$$
+and define $\phi_{\sV}: W' \to \PP(V)$ by 
+$$
+W'\ni p \mapsto \bigl(t(\sigma_{0}(p)),\dots, t(\sigma_{n}(p))\bigr) \in \PP(V).
+$$
+This map is obviously a morphism on $W'$. A change of neighborhoods $W'$ or of identifications $t$ would simply multiply
+each value $t(\sigma_{i}(p))$ by a unit, and thus define the same morphism. It follows that the morphisms
+defined on different $W'$ agree on overlaps, and thus define a morphism $W' \to \PP(V)$.
+
+\subsection{The linear system coming from a map to projective space}
+
+Conversely, suppose that we are given a morphism $\phi: X\to \PP^{n}$. With notation as in Example~\ref{linear systems on Pn} we
+
+
+\begin{example}. :
 \fix{Turn the mish-mosh below into a clean example.}
 \end{example}
 
@@ -92,132 +169,106 @@ In particular,
 Every ideal in every ideal in $C'$ is \emph{locally principal} in the sense that for every point $p$ in
 $C'$ the $\sO_{C,p}$-module $M\cdot \sO_{C,p}$ is generated by a single element. 
 
-\section{Invertible sheaves}
-
-\subsection{$\PP^n$ as a scheme}If $V$ is an $(n+1)$-dimensional vector space, we define projective space 
-$\PP(V) \cong \PP^n$ \emph{as a scheme} to be $\Proj Sym V$, where $V$ is an $n+1$-dimensional vector space
-and $\Sym V \cong \CC[x_0,\dots x_n]$. This makes $V$ into the space of linear forms on $\PP(V)$, and equips $\PP(V)$ with a \emph{tautological line bundle} $L$ that is a quotient of the trivial vector bundle
-$V\times \PP(V)$; the map $V\times \PP(V) \to L$ induces an isomorphism of spaces of global sections,
-$V \cong H^0(L)$. For any $x\in V$ the bundle $L$ is trivial over the open set 
-$$
-U_x :=  \{p \mid p(x) \neq 0\} \cong \AA^n
-$$
-and the affine coordinate ring of $U$ is generated by the rational functions $x_i/x$.
-
-Given a morphism of schemes $\phi: X\to \overline X \subset \PP^n$ we may pull back the line bundle $L$  to a line bundle $\phi^*L$ and it global sections to global sections on $X$. Again, the morphism is determined by this data: the functions $x_i/x$ defined on $U_x$ pull back to the functions defining the map
-$\phi^{-1}(U_x) \to U_x \cong \AA^n$.
-
-\subsection{Invertible sheaves}
-For our purposes it is useful to work not only with the global sections, but also with locally defined sections of  bundles---that is, with their sheaves of sections. We define the \emph{invertible sheaf} $\cO_{\PP(V)}(1)$ to be the sheaf of sections of the tautological line bundle $L$; more generally, an invertible sheaf is a sheaf that is locally
-isomorphic to the \emph{structure sheaf} of locally defined functions $\cO_{\PP(V)}$. The space $V$ reappears as the space of global sections of $\cO_{\PP(V)}(1)$.
-
- In our context, the notions of invertible sheaf and line bundle are equivalent: one goes from line bundle to invertible sheaf by taking local sections, and from an invertible sheaf $\cF$ to a line bundle $E$ by taking the fiber of 
- $E$ at a point $p$, defined as the space of sections of $\cF$ defined near $p$ modulo the ones vanishing at $p$. We will use the terms interchangeably. \fix{really? could we settle on one?}
- 
-
-
-
-
-
-\subsection{Linear series, line bundles, and invertible sheaves}\label{linear series 1}
-
-There is a very useful correspondence between three classes of objects:
-\begin{enumerate}
-\item A map of a variety $X$ to a projective space $\PP^n $
-\item A line bundle or invertible sheaf on $X$ with a family of $n+1$ global sections $s_i$ such that, for every $x\in X$ there is an index $i$ such that $s_i$ does not vanish at $x$.
-\item
-\end{enumerate}
-
-From a naive point of view, the projective space of dimension $n$ over a field $k$, written  $\PP^n_k$, is the set of nonzero $n+1$-tuples $(x_0,\dots, x_n)$of elements of $k$ modulo multiplication by scalars. A set of equivalent $n+1$-tuples thus correspond to the nonzero points of 1-dimensional subspace of an $n+1$-dimensional vector space $V$ over $k$, so
- $\PP^{n} = \PP(V)$ may be thought of as the space of 1-dimensional subspaces of $V$. The lines contained in a subspace  $V'$ of codimension 1 in $V$ form a \emph{hyperplane} in $\PP(V)$; the hyperplane is the vanishing locus of any \emph{linear form} on $\PP^n$ that corresponds to a nonzero linear function on $V$ vanishing on $V'$. Each point of $\PP(V)$ is the intersection of $n$ such hyperplanes. We make $\PP^n$ into an algebraic variety by identifying the complement of the hyperplane $x_i=0$ with the $n$-dimensional affine space with coordinates $x_0/x_i,\dots x_{i-1}/x_i, x_{i+1}/x_i,\dots,x_n/x_i$. 
- 
-Note that each point of $\PP(V)$ is the intersection of $n$ hyperplanes. 
-Given an embedding $\phi: C \to PP(V)$ then the hyperplanes that don't contain $\phi(C)$ intersect $C\cong phi(C)$ in a family of finite sets of points (counting with multiplicities), indexed by the linear forms on $\PP^n$, called a \emph{linear series} on $C$. Moreover, the linear series determines the embedding: if $p\in C$ then $\phi(p)$ is the intersection of all the hyperplanes in $\PP^n$ corresponding to sets in the linear series that contain $p$.
- 
-These notions can be extended in a very useful way to all varieties and to maps to projective space. A hyperplane in $\PP^n$ is defined, as above, by a linear function on $V$, which we think of as giving a 1-dimensional quotient of $V$. On any of the open sets $U_i := \{x \mid x_i \neq 0\} \subset \PP^n$ we may choose the single element $(0,\dots,0,1,0\dots 0)$ with
-nonzero only in the $i$-th place as a basis for the quotients, so that on this open set we may think of the quotients as maps to a fixed 1-dimensional space; that is, the bundle is isomorphic to 
-$U_i \times k$ with its projection to $U_i$. This gives the family of all 1-quotients the structure of a rank 1 algebraic vector bundle, that is, a \emph{line bundle}, while the elements of $V^*$ correspond to global sections of this bundle.
-
-The sheaf of all algebraic local sections of this bundle, when restricted to one of the $U_i$, is thus the space of algebraic functions $U_i \to k$ the affine coordinate ring of $U_i$; thus the sheaf is locally isomorphic to $\cO_{\PP^n}$, and we say that it is an \emph{invertible sheaf} on $\PP^n$. Given the sheaf, we may reconstruct the bundle by associating to each point the values of sections at that point. We thus think of the bundle and the sheaf as essentially equivalent concepts.
-
-Given a
- 
-
-\fix{This comes from an earlier attempt -- more elementary, maybe better...}
-%A \emph{divisor}, or \emph{Weil divisor} on a scheme $X$ is an integral linear combination of codimension 1 subvarieties. 
-
-If $\phi: X\to \PP^{n}$ is morphism from a variety $X$ to projective space then, because any point on the image of $X$ is the intersection of the hyperplanes that contain it, the embedding can be uniquely specified by giving the collection of preimages, in $X$ of such intersections. Typically, these are codimension 1
-subschemes of $X$ locally defined by 1 equation, the pull back of the defining linear form of the hyperplane. Such a subscheme is called a (Cartier) divisor. Informally, a linear series on $X$ is such a collection of divisors.
-
-We will be primarily interested in the case where $X$ is a smooth curve; in that setting, any codimension 1 subscheme $D$ is defined by a single equation, and may be regarded as is a collection of points $p_{i}$ with  positive multiplicities
-$m_{i}$; we write $D = \sum_{i}m_{i}p_{i}$.
-
-We formalize these notions using invertible sheaves:
-An \emph{effective Cartier divisor} on an algebraic variety $X$ is a subscheme $D$ whose ideal sheaf $\cI_{D} = \cI_{D/X}\subset \cO_{X}$ is locally generated by a single nonzerodivisor, that is, a locally free subsheaf of rank 1 in $\cO_{X}$. (We will use the terms 
-\emph{invertible sheaf}, \emph{locally free sheaf of rank 1}, and \emph{line bundle} interchangeably.)
-
-
-We denote the ideal sheaf of a Cartier divisor $D$ by
-$\cO_{X}(-D) \subset \cO_{X}$. The dual, $\cO_{X}(D) := \Hom_{X}(\cO_{X}(-D), \cO_{X})$
-is also a locally free sheaf, and the dual of the inclusion map is a section, $s:\cO_{X} \to \cO_{X}(D)$, vanishing exactly on $D$. 
-
-More generally, a not-necessarily effective Cartier divisor can be associated to any
-invertible sheaf and 
-
-If $f$ is a rational function on $C$, we associate to $f$ its divisor $(f)$ of zeroes and poles: that is,
-$$
-(f) \; := \; \sum_{p \in C} \ord_p(f)\cdot p.
-$$
-
-\fix{I guess each proposition in this section should have a Hartshorne reference; or 
-maybe a Fulton and a Hartshorne reference}
-
-\begin{proposition}
-The divisor of a rational function has degree 0; that is, a rational function has the same number of zeroes and poles, counting multiplicity. Moreover, the vector space $\cL(D)$ of rational functions satisfying
-\begin{equation}\label{divisor condition}
-\ord_{p_i}(f) \geq -m_i.
-\end{equation}
- is finite-dimensional.
-\end{proposition}
-
-The dimension of $\cL(D)$ is denoted $\ell(D)$
-An effective divisor can be viewed as a subscheme of the curve $C$---the subscheme defined by the ideal $\prod \cI_{p_i}^{m_i}$, or in other words the unique subscheme with support $\{p_i\}$ and multiplicity $m_i$ at $p_i$.
-
-If $f$ is a rational function with divisor $(f) = E$ then  multiplication by $f$ induces an isomorphism $\cL(D) \to \cL(D+E)$. We call divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ is the divisor of a rational function; the group of equivalence classes of divisors is called the \emph{Picard group} $\Pic(C)$ of $C$. Since the degree of the divisor $(f)$ of a rational function $f$ on $C$ is 0, linearly equivalent divisors have the same degree.
-
-As we headed into the 20th century, some further tweaking was called for in order to avoid the awkwardness of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a \emph{coherent sheaf} $\cO_C(D)$, defined by
-$$
-\cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \quad \forall p_i \in U \}.
-$$
-This is a locally free sheaf of rank 1, also called an \emph{invertible sheaf} or a \emph{line bundle}. Two divisors are linearly equivalent iff the associated sheaves are isomorphic, so that the Picard group $\Pic(C)$ can be thought of simply as the group of line bundles on $C$. In this setting, the vector space $\cL(D)$ is simply the space of global sections $H^0(\cO_C(D))$ and accordingly the notation $\ell(D)$ was replaced by $h^0(\cO_C(D))$ or, for brevity, $h^0(D)$. 
-
-What this formalism is good for is describing maps of a curve to projective space. To start with the classical approach, suppose $f : C \to \PP^r$ is a map. We can choose a hyperplane $H \cong \PP^{r-1} \subset \PP^r$ with complement $\PP^r \setminus H \cong \AA^r$; the map 
-$$
-C \setminus f^{-1}(H) \to \AA^r
-$$
-is then given simply by an $r$-tuple $(f_1,\dots,f_r)$ of regular functions on $C \setminus f^{-1}(H)$. Moreover, if we consider $f^{-1}(H)$ as a divisor $D$ on $C$, we can think of the functions $f$ as elements of $\cL(D)$.
-
-All this requires a choice of hyperplane $H$, as well as an identification of the complement $\PP^r \setminus H$ with $\AA^r$---an unnecessary evil. We can do better using the language of line bundles: if we let $\cL = f^*\cO_{\PP^r}(1) = \cO_C(D)$ be the pullback to $C$ of the line bundle on $\PP^r$ associated to the divisor $H$, we can think of the $f_i$ as sections of $\cL$, so that associated to the map $f : C \to \PP^r$ we have a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ (including the constant function 1). Conversely, if we are given a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ without common zeroes, we can choose a basis $\sigma_0,\dots,\sigma_r$ for $V$; we then get a map 
-
-\begin{align*}
-C &\to \PP^r \\
-p &\mapsto [\sigma_0(p),\dots,\sigma_r(p)].
-\end{align*}
-The point is,  the values $\sigma_i(p)$ are elements of a one-dimensional vector space---the fiber of $\cL$ at $p$---so that the vector $[\sigma_0(p),\dots,\sigma_r(p)]$ is well-defined up to scalars.
-
-If we were even more choice-averse and wanted to describe the map $f$ associated to a pair $(\cL, V)$ without choosing coordinates on $\PP^r$, we could describe $f$ as the map
-
-\begin{align*}
-C &\to \PP(V^*) \\
-p &\mapsto H_p
-\end{align*}
-where $H_p = \{\sigma \in V \mid \sigma(p) = 0\}$ is the hyperplane in $V$ of sections $\sigma \in V$ vanishing at $p$.
-
-All of this leads us to the fundamental
-
-\begin{definition}
-A \emph{linear system} of degree $d$ and dimension $r$ on a curve $C$ is a pair $(\cL, V)$ with $\cL \in \Pic(C)$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ an $(r+1)$-dimensional vector space of sections of $\cL$.
-\end{definition}
+%
+%\subsection{Linear series, line bundles, and invertible sheaves}\label{linear series 1}
+%
+%There is a very useful correspondence between three classes of objects:
+%\begin{enumerate}
+%\item A map of a variety $X$ to a projective space $\PP^n $
+%\item A line bundle or invertible sheaf on $X$ with a family of $n+1$ global sections $s_i$ such that, for every $x\in X$ there is an index $i$ such that $s_i$ does not vanish at $x$.
+%\item
+%\end{enumerate}
+%
+%From a naive point of view, the projective space of dimension $n$ over a field $k$, written  $\PP^n_k$, is the set of nonzero $n+1$-tuples $(x_0,\dots, x_n)$of elements of $k$ modulo multiplication by scalars. A set of equivalent $n+1$-tuples thus correspond to the nonzero points of 1-dimensional subspace of an $n+1$-dimensional vector space $V$ over $k$, so
+% $\PP^{n} = \PP(V)$ may be thought of as the space of 1-dimensional subspaces of $V$. The lines contained in a subspace  $V'$ of codimension 1 in $V$ form a \emph{hyperplane} in $\PP(V)$; the hyperplane is the vanishing locus of any \emph{linear form} on $\PP^n$ that corresponds to a nonzero linear function on $V$ vanishing on $V'$. Each point of $\PP(V)$ is the intersection of $n$ such hyperplanes. We make $\PP^n$ into an algebraic variety by identifying the complement of the hyperplane $x_i=0$ with the $n$-dimensional affine space with coordinates $x_0/x_i,\dots x_{i-1}/x_i, x_{i+1}/x_i,\dots,x_n/x_i$. 
+% 
+%Note that each point of $\PP(V)$ is the intersection of $n$ hyperplanes. 
+%Given an embedding $\phi: C \to PP(V)$ then the hyperplanes that don't contain $\phi(C)$ intersect $C\cong phi(C)$ in a family of finite sets of points (counting with multiplicities), indexed by the linear forms on $\PP^n$, called a \emph{linear series} on $C$. Moreover, the linear series determines the embedding: if $p\in C$ then $\phi(p)$ is the intersection of all the hyperplanes in $\PP^n$ corresponding to sets in the linear series that contain $p$.
+% 
+%These notions can be extended in a very useful way to all varieties and to maps to projective space. A hyperplane in $\PP^n$ is defined, as above, by a linear function on $V$, which we think of as giving a 1-dimensional quotient of $V$. On any of the open sets $U_i := \{x \mid x_i \neq 0\} \subset \PP^n$ we may choose the single element $(0,\dots,0,1,0\dots 0)$ with
+%nonzero only in the $i$-th place as a basis for the quotients, so that on this open set we may think of the quotients as maps to a fixed 1-dimensional space; that is, the bundle is isomorphic to 
+%$U_i \times k$ with its projection to $U_i$. This gives the family of all 1-quotients the structure of a rank 1 algebraic vector bundle, that is, a \emph{line bundle}, while the elements of $V^*$ correspond to global sections of this bundle.
+%
+%The sheaf of all algebraic local sections of this bundle, when restricted to one of the $U_i$, is thus the space of algebraic functions $U_i \to k$ the affine coordinate ring of $U_i$; thus the sheaf is locally isomorphic to $\cO_{\PP^n}$, and we say that it is an \emph{invertible sheaf} on $\PP^n$. Given the sheaf, we may reconstruct the bundle by associating to each point the values of sections at that point. We thus think of the bundle and the sheaf as essentially equivalent concepts.
+%
+%Given a
+% 
+%
+%\fix{This comes from an earlier attempt -- more elementary, maybe better...}
+%%A \emph{divisor}, or \emph{Weil divisor} on a scheme $X$ is an integral linear combination of codimension 1 subvarieties. 
+%
+%If $\phi: X\to \PP^{n}$ is morphism from a variety $X$ to projective space then, because any point on the image of $X$ is the intersection of the hyperplanes that contain it, the embedding can be uniquely specified by giving the collection of preimages, in $X$ of such intersections. Typically, these are codimension 1
+%subschemes of $X$ locally defined by 1 equation, the pull back of the defining linear form of the hyperplane. Such a subscheme is called a (Cartier) divisor. Informally, a linear series on $X$ is such a collection of divisors.
+%
+%We will be primarily interested in the case where $X$ is a smooth curve; in that setting, any codimension 1 subscheme $D$ is defined by a single equation, and may be regarded as is a collection of points $p_{i}$ with  positive multiplicities
+%$m_{i}$; we write $D = \sum_{i}m_{i}p_{i}$.
+%
+%We formalize these notions using invertible sheaves:
+%An \emph{effective Cartier divisor} on an algebraic variety $X$ is a subscheme $D$ whose ideal sheaf $\cI_{D} = \cI_{D/X}\subset \cO_{X}$ is locally generated by a single nonzerodivisor, that is, a locally free subsheaf of rank 1 in $\cO_{X}$. (We will use the terms 
+%\emph{invertible sheaf}, \emph{locally free sheaf of rank 1}, and \emph{line bundle} interchangeably.)
+%
+%
+%We denote the ideal sheaf of a Cartier divisor $D$ by
+%$\cO_{X}(-D) \subset \cO_{X}$. The dual, $\cO_{X}(D) := \Hom_{X}(\cO_{X}(-D), \cO_{X})$
+%is also a locally free sheaf, and the dual of the inclusion map is a section, $s:\cO_{X} \to \cO_{X}(D)$, vanishing exactly on $D$. 
+%
+%More generally, a not-necessarily effective Cartier divisor can be associated to any
+%invertible sheaf and 
+%
+%If $f$ is a rational function on $C$, we associate to $f$ its divisor $(f)$ of zeroes and poles: that is,
+%$$
+%(f) \; := \; \sum_{p \in C} \ord_p(f)\cdot p.
+%$$
+%
+%\fix{I guess each proposition in this section should have a Hartshorne reference; or 
+%maybe a Fulton and a Hartshorne reference}
+%
+%\begin{proposition}
+%The divisor of a rational function has degree 0; that is, a rational function has the same number of zeroes and poles, counting multiplicity. Moreover, the vector space $\cL(D)$ of rational functions satisfying
+%\begin{equation}\label{divisor condition}
+%\ord_{p_i}(f) \geq -m_i.
+%\end{equation}
+% is finite-dimensional.
+%\end{proposition}
+%
+%The dimension of $\cL(D)$ is denoted $\ell(D)$
+%An effective divisor can be viewed as a subscheme of the curve $C$---the subscheme defined by the ideal $\prod \cI_{p_i}^{m_i}$, or in other words the unique subscheme with support $\{p_i\}$ and multiplicity $m_i$ at $p_i$.
+%
+%If $f$ is a rational function with divisor $(f) = E$ then  multiplication by $f$ induces an isomorphism $\cL(D) \to \cL(D+E)$. We call divisors $D$ and $D'$ \emph{linearly equivalent} if their difference $E = D - D'$ is the divisor of a rational function; the group of equivalence classes of divisors is called the \emph{Picard group} $\Pic(C)$ of $C$. Since the degree of the divisor $(f)$ of a rational function $f$ on $C$ is 0, linearly equivalent divisors have the same degree.
+%
+%As we headed into the 20th century, some further tweaking was called for in order to avoid the awkwardness of equivalence relations. To any divisor $D = \sum m_ip_i$ on $C$, geometers associated a \emph{coherent sheaf} $\cO_C(D)$, defined by
+%$$
+%\cO_C(D)(U) = \{ f \in K(U) \mid \ord_{p_i}(f) \geq -m_i \quad \forall p_i \in U \}.
+%$$
+%This is a locally free sheaf of rank 1, also called an \emph{invertible sheaf} or a \emph{line bundle}. Two divisors are linearly equivalent iff the associated sheaves are isomorphic, so that the Picard group $\Pic(C)$ can be thought of simply as the group of line bundles on $C$. In this setting, the vector space $\cL(D)$ is simply the space of global sections $H^0(\cO_C(D))$ and accordingly the notation $\ell(D)$ was replaced by $h^0(\cO_C(D))$ or, for brevity, $h^0(D)$. 
+%
+%What this formalism is good for is describing maps of a curve to projective space. To start with the classical approach, suppose $f : C \to \PP^r$ is a map. We can choose a hyperplane $H \cong \PP^{r-1} \subset \PP^r$ with complement $\PP^r \setminus H \cong \AA^r$; the map 
+%$$
+%C \setminus f^{-1}(H) \to \AA^r
+%$$
+%is then given simply by an $r$-tuple $(f_1,\dots,f_r)$ of regular functions on $C \setminus f^{-1}(H)$. Moreover, if we consider $f^{-1}(H)$ as a divisor $D$ on $C$, we can think of the functions $f$ as elements of $\cL(D)$.
+%
+%All this requires a choice of hyperplane $H$, as well as an identification of the complement $\PP^r \setminus H$ with $\AA^r$---an unnecessary evil. We can do better using the language of line bundles: if we let $\cL = f^*\cO_{\PP^r}(1) = \cO_C(D)$ be the pullback to $C$ of the line bundle on $\PP^r$ associated to the divisor $H$, we can think of the $f_i$ as sections of $\cL$, so that associated to the map $f : C \to \PP^r$ we have a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ (including the constant function 1). Conversely, if we are given a line bundle $\cL$ on $C$ and an $(r+1)$-dimensional vector space $V \subset H^0(\cL)$ of global sections of $\cL$ without common zeroes, we can choose a basis $\sigma_0,\dots,\sigma_r$ for $V$; we then get a map 
+%
+%\begin{align*}
+%C &\to \PP^r \\
+%p &\mapsto [\sigma_0(p),\dots,\sigma_r(p)].
+%\end{align*}
+%The point is,  the values $\sigma_i(p)$ are elements of a one-dimensional vector space---the fiber of $\cL$ at $p$---so that the vector $[\sigma_0(p),\dots,\sigma_r(p)]$ is well-defined up to scalars.
+%
+%If we were even more choice-averse and wanted to describe the map $f$ associated to a pair $(\cL, V)$ without choosing coordinates on $\PP^r$, we could describe $f$ as the map
+%
+%\begin{align*}
+%C &\to \PP(V^*) \\
+%p &\mapsto H_p
+%\end{align*}
+%where $H_p = \{\sigma \in V \mid \sigma(p) = 0\}$ is the hyperplane in $V$ of sections $\sigma \in V$ vanishing at $p$.
+%
+%All of this leads us to the fundamental
+%
+%\begin{definition}
+%A \emph{linear system} of degree $d$ and dimension $r$ on a curve $C$ is a pair $(\cL, V)$ with $\cL \in \Pic(C)$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ an $(r+1)$-dimensional vector space of sections of $\cL$.
+%\end{definition}
 
 By way of language, a one-dimensional linear system is called a \emph{pencil}; a two-dimensional linear system is a \emph{net}, and (less commonly) a three-dimensional linear system is called a \emph{web}.
 
@@ -284,7 +335,7 @@ In the circumstances above, the automorphism $\phi$ is induced by an automorphis
 For example, consider the image of $\PP^1$ in $\PP^n$ under the map given by the complete linear system $|\cO_{\PP^1}(n)|$; this is called the \emph{rational normal curve}. Since there is a unique line bundle of each degree $n$ on $C$, and the curve is linearly normal, we see that \emph{every automorphism of a rational normal curve $C \subset \PP^n$  is projective}.
 
 
-\subsection{The canonical divisor class/line bundle}
+\subsection{The most interesting linear system}
 
 There is one divisor class/line bundle on an arbitrary curve $C$ that plays a particularly important role in the geometry of $C$: the \emph{canonical} divisor class $K_C$. This is the class of the divisor $(\eta)$ of any rational 1-form $\eta$ on $C$; that is,
 $$
