@@ -259,52 +259,59 @@ of such a form is usually denoted $K_C$. The importance of the canonical sheaf i
 
 \section{Genus, Riemann-Roch and Serre Duality}
 
+We will henceforward assume that the reader is acquainted with sheaf cohomology (at least sufficiently to write
+$H^i(X; \sF)$ or (our preferred form) $H^i(\F)$ without blushing). If $D$ is a divisor on a scheme $X$ we will often
+abbreviate $H^i(\sO_X(D))$ to $H^i(D)$, and *** h^i***
+
 \subsection{The genus of a curve}
 
-Any discussion of the geometry of smooth projective curves has to start with the notion of the \emph{genus} of a curve, the sole topological invariant. The most natural and intuitive definition is topological: if $C \subset \PP^r$ is a smooth curve, we can think of it as a submanifold of the complex projective space $\PP^r(\CC)$ with the classical topology; as such, it is a compact, oriented surface, and so its topological type is described by its genus---informally, the ``number of holes."
+Any discussion of the geometry of smooth projective curves has to start with the notion of the \emph{genus} of a curve, the sole topological invariant. The most natural and intuitive definition is topological: if $C \subset \PP^r$ is a smooth curve, we can think of it as a submanifold of the complex projective space $\PP^r(\CC)$ with the classical topology; as such, it is a compact, oriented surface, and so its topological type is described by its topological genus---informally, the ``number of holes."
 
 \includegraphics[scale = 1]{RiemannSurface}
 **** Riemann Surface of genus 3, from Wikimedia ****
 
-This is not a fully satisfactory definition for a couple reasons: for one thing, it doesn't a priori apply to curves over fields other than $\CC$; and in any case it's not clear how we can relate this invariant to the algebra of the curve. There is a fix, however. To start with, we can relate the topological genus of a curve directly to its topological Euler characteristic: we have
+Of course this definition does not apply to curves over fields other than $\CC$, and doesn't relate the genus to the algebra of the curve. However, we can relate the topological genus of a curve directly to its topological Euler characteristic: we have
 $$
 g(C) = 1 - \frac{\chi_{top}(C)}{2}.
 $$
-At the same time, by the Hopf index theorem, the topological Euler characteristic is the degree of the tangent sheaf, which is the dual of the canonical bundle; thus
+At the same time, by the Hopf index theorem, the topological Euler characteristic is the degree of the tangent sheaf, which, because $C$ is 1-dimensional as a complex manifold, is the dual of the canonical sheaf; thus
 $$
 g(C) = \frac{\deg(K_C)}{2} + 1,
 $$
-which we can adopt as the definition of $g(C)$.
+which we adopt as the definition of $g(C)$.
 
-This may seem an awkward characterization of the genus, and it is; but there are various other characterizations, whose equivalence with the topological requires some more machinery to establish. We will give some here, and then use the tools established in the following section to prove equivalence.
+Other characterizations of the genus require more machinery to establish. We will give some here, and use  tools from the following section to prove equivalence.
 
 \begin{enumerate}
 
-\item\label{genus 1forms} Another characterization of the genus of $C$ is simple to state, though the proof that it's equivalent to the preceding ones is non-trivial (it will be a special case of the \emph{Riemann-Roch formula}, described in the following section): the genus of a curve $C$ is simply the dimension of the vector space of regular 1-forms on $C$.
+\item\label{genus 1forms} $g(C)$ is the dimension of the vector space of regular 1-forms (that is, global sections of the
+cotangent sheaf) on $C$.
 
-\item The genus of a curve $C$ may also be characterized in terms of the Euler characteristic $\chi(\cO_C) = h^0(\cO_C) - h^1(\cO_C)$ of the structure sheaf $\cO_C$: since $h^0(\cO_C) = 1$, we have
+\item The Euler characteristic of the structure sheaf of $C$ is $\chi(\cO_C) = h^0(\cO_C) - h^1(\cO_C)$. Since $h^0(\cO_C) = 1$, 
 $$
-g = 1 - \chi(\cO_C).
+g(C) = 1 - \chi(\cO_C).
 $$
 
-\item\label{genus Hilbert} Finally, if $C \subset \PP^r$ is embedded in projective space as a curve of degree $d$, its Hilbert polynomial will be
+\item\label{genus Hilbert} If $C \subset \PP^r$ is embedded as a curve of degree $d$, with homogeneous coordinate ring
+$S_C$, then the function $d \mapsto \dim_\CC (S_C)_d$ is equal to a polynomial function $p_C(m)$ for large $d$. We have:
 $$
-p_C(m) = dm - g + 1,
+p_C(m) =  dm - g + 1,
 $$
-which can also be used as a characterization of the genus: $g = 1 - p_C(0)$.
-
+so $g(C) = 1 - p_C(0)$. 
 \end{enumerate}
 
-There are two basic facts from which the equivalence of these various characterizations of the genus follow: the \emph{Riemann-Roch formula}, and \emph{Kodaira-Serre duality}; we'll discuss these now.
+\subsection{The Riemann-Roch Theorem}
 
-\subsection{The Riemann-Roch formula}
+To prove that the formula's for the genus given above are correct, we use the \trr and Serre duality (sometimes called Kodaira-Serre duality, since Kodaira was responsible for the analytic version.)
 
-The classical Riemann-Roch formula is simple to state: if $C$ is a smooth, connected projective curve of genus $g$, and $D$ a divisor of degree $d$ on $C$, it says that
+\begin{theorem}[Riemann-Roch Theorem]\label{RR}
+ If $C$ is a smooth, connected projective curve of genus $g$, and $D$ a divisor of degree $d$ on $C$, it says that
 $$
 h^0(D) = d - g + 1 + h^0(K_C - D).
 $$
+\end{theorem}
 
-There are a number of general consequences. To start with, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Another example: since $h^0(D) = 0$ for any divisor $D$ of negative degree, we have the
+For example, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Also, since $h^0(D) = 0$ for any divisor $D$ of negative degree, we have:
 
 \begin{corollary}\label{nonspecial RR}
 For any divisor of degree $d \geq 2g-1$, we have
@@ -313,15 +320,25 @@ h^0(D) = d - g + 1.
 $$
 \end{corollary}
 
-\fix{I don't know if this is the right place, but somewhere we should remark the theorem that if $C$ is any smooth projective curve and $\Gamma \subset C$ any finite subset---even just a single point---then $C \setminus \Gamma$ is affine}
-
-As a consequence of this, we can apply Proposition~\ref{very ample} to conclude the
+Using this, we can apply Proposition~\ref{very ample} to characterize the linear series that give embeddings:
 
 \begin{corollary}\label{degree 2g+1 embedding}
 Let $D$ be a divisor of degree $d$ on a smooth, connected projective curve of genus $g$. If $d \geq 2g$, the complete linear series $|D|$ is base point free; and if $d \geq 2g+1$ the associated map $\phi_D : C \to \PP^{d-g}$ is an embedding.
 \end{corollary}
 
-We also use Riemann-Roch in the simple case of Corollary~\ref{nonspecial RR} to determine the Hilbert polynomial of a projective curve. To do this, let $C \subset \PP^r$ be a smooth curve of degree $d$ and genus $g$, and consider the exact sequence of sheaves
+Since the complement of a hyperplane in projective space is an affine space, we get an affine embedding result too:
+
+\begin{corollary}
+ If $C$ is any smooth, connected projective curve and $\emptyset \neq \Gamma \subset C$ a finite subset then $C \setminus \Gamma$ is affine.
+\end{corollary}
+\begin{proof}
+Let $D$ be the divisor defined by $\Gamma$ By Corollary~\ref{degree 2g+1 embedding} a high multiple of $D$ is very ample,
+and gives an embedding $\phi: C\to \PP^n$ such that the preimage of the intersection of $C$ with some hyperplane $H$
+is a multiple of $D$. It follows that $C\setminus \Gamma$ is embedded in $\PP^n\setminus H$.
+\end{proof}
+
+
+We can  use \TRR in the simple case of Corollary~\ref{nonspecial RR} to determine the Hilbert polynomial of a projective curve. To do this, let $C \subset \PP^r$ be a smooth curve of degree $d$ and genus $g$, and consider the exact sequence of sheaves
 $$
 0 \rTo \cI_{C/\PP^r}(m) \rTo \cO_{\PP^r}(m) \rTo \cO_C(m) \rTo 0
 $$
@@ -335,8 +352,21 @@ h_C(m) = \rank(\rho_m);
 $$
  since $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, this is equal to $h^0(\cO_C(m))$, which by Riemann Roch equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}) above.
  
- Note that the Riemann-Roch formula does not give us a formula for the dimension $h^0(D)$ of a complete linear series $|D|$ on a curve $C$ in terms of the degree of $D$ and the genus of $C$, on account of the ``error term" $h^0(K_C - D)$. Given the formula, though, it's natural to identify the classes of divisors $D$ for which $h^0(K_C - D)>0$; these are called \emph{special divisors}, or \emph{special divisor classes}. Classically, the dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$: the idea was that a divisor of degree $d$ had, at a minimum, $d-g+1$ sections and $h^1(D)$ represented the number of ``extra " sections. (Interestingly, even though the introduction of cohomology was still almost a century away, the ranks of cohomology groups $h^1$ had classical names, often involving the term superabundance---a premonition of the Riemann-Roch theorem in general.
+ Note that the Riemann-Roch formula does not give us a formula for the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such divisors $D$ are called \emph{special divisors}, or \emph{special divisor classes}. 
+ 
+ 
+\begin{fact}
+ Classically, the dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$: the idea was that a divisor of degree $d$ had, at a minimum, $d-g+1$ sections and $h^1(D)$ represented the number of ``extra " sections. Even though the introduction of cohomology was still almost a century away, the ranks of cohomology groups $h^1$ had classical names, often involving the term superabundance---a premonition of the Riemann-Roch theorem in general.
+\end{fact}
+ 
+\begin{fact}
+If $k$ is a field that is not algebraically closed there may be genus 0 curves that are not isomorphic to $\PP^1$. However, they must be``forms'' of $\PP^1$ in the sense that they become isomorphic to $\PP^1$ after extension of scalars to 
+the algebraic closure $\overline k$ of $k$. The unique example with $k = \RR$ is the conic $x^2+y^2+z^2 = 0$. Indeed, any form of $\PP^1$ over any field $k$ can all be embedded in $\PP_{k}^2$ (by using the anti-canonical linear system.
 
+The curve $\PP_k^1$ itself may be described as the scheme of left ideals of $k$-vector-space dimension 1 in the ring of
+$2\times 2$ matrices over $k$ (such an ideal can be embedded in the matrix ring as a linear combination of the 2 columns in an appropriate sense). More generally, any scheme that is a form of $\PP^1$ over $k$
+may be described as the scheme of 1-dimensional left ideals in a central simple ($=$ Azumaya) algebra over $k$---though as a set this scheme has no $k$-rational points unless the algebra is the algebra of $2\times 2$ matrices!
+\end{fact}
 \subsection{Serre duality}
 
 In general, if $\cF$ and $\cG$ are coherent sheaves on a scheme $X$, we have for every $i$ and $j$ a cup product map
@@ -344,24 +374,30 @@ $$
 H^i(\cF) \otimes H^j(\cG) \to H^{i+j}(\cF \otimes \cG).
 $$
 
-Suppose now that $C$ is a smooth, projective curve, and that $D$ is any divisor on $C$. Serre duality says first of all that
-$$
+Suppose now that $C$ is a smooth, projective curve, and that $D$ is any divisor on $C$. 
+
+\begin{theorem}[Serre Duality]\label{sd} Let $C$ be a smooth connected projective curves with canonical divisor $K$. We have
+ $$
 h^1(K) = 1
 $$
-and then that the cup product map
+and the cup product map
 $$
 H^1(D) \otimes H^0(K-D) \to H^1(K)
 $$
-is a perfect pairing; that is, we have a natural isomorphism
+is a perfect pairing; that is, it induces a natural isomorphism
 $$
 H^1(D) = H^0(K-D)^*.
 $$
+\end{theorem}
 
 \subsection{A partial proof}
 
-Proving either the Riemann-Roch formula, in the form given above, or Serre duality, requires a fair amount of work. As it happens, though, if we combine them we arrive at the statement
+Combining \TRR and Serre Duality we get:
+\begin{corollary}
+ If $C$ is a smooth, connected projective curve and $D$ is a divisor on $C$ then
+\end{corollary}
 $$
-h^0(D) - h^1(D) = d-g+1
+\chi(\sO_C(C)) := h^0(D) - h^1(D) = d-g+1
 $$
 or in other words, for any invertible sheaf $\cL$ of degree $d$ on $C$,
 $$
