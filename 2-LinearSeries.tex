@@ -177,18 +177,22 @@ the hyperplane $\{x_k = 0\}\subset \PP^r$. This completes the explanation and pr
 
 
 \subsection{More about linear systems}
+
 Let $\sV = (\sL, V)$ be a linear sysytem on $X$.  The linear system is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$. If $\cL \cong \cO_C(D))$, we also write it as $|D|$. 
-The \emph{dimension of $\sV$} is $\dim V -1$ . If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, a linear system of dimension 1 is called a \emph{pencil}, a linear system of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear system is called a \emph{web}.
+The \emph{dimension of $\sV$} is $\dim V -1$ . If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, a linear system of dimension 1 is called a \emph{pencil}, a linear system of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear system is called a \emph{web}. 
+
+A linear system $\sV = (\sL, V)$ is called \emph{basepoint free} if it defines a morphism to $\PP(V)$, or equivalently if the
+the sections in $V$ generate $\sL$ locally at each point of $X$. It is called \emph{very ample}  if it is basepoint-free and defines an embedding. If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear system $|D|$ is versy ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$.
 
 
-Via the correspondence of Theorem~\ref{maps and linear systems}, the statements about the geometry of a map $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear systems. We will see this in many instances throughout this book. Here is a first example:
+Via the correspondence of Theorem~\ref{maps and linear systems}, the statements about the geometry of a map $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear systems. We will see this in many instances throughout this book. It will be most convenient to formulate this in terms of the vector space $H^{0}(\sL)$ of global sections of $\sL$, and we write $h^{0}(\sL)$ for the dimension of this vector space. Here is a first example:
 
 \begin{proposition}\label{very ample}\cite[Thm. IV.3.1]{H}
 Let $\cL$ be an invertible sheaf on a smooth curve $C$. The complete linear system $|\cL|$ is base-point-free iff
 $$
 h^0(\cL(-p)) = h^0(\cL) - 1 \quad \forall p \in C;
 $$
-and in this case the associated map $\phi_\cL$ is an embedding iff
+and in this case the associated map $\phi_\cL$ is an embedding (so $|\cL|$ is very ample, iff
 $$
 h^0(\cL(-p-q)) = h^0(\cL) - 2 \quad \forall p, q \in C.
 $$
@@ -252,33 +256,71 @@ If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of
 
 \subsection{The most interesting linear system}
 
-The most important invertible sheaf on a smooth curve $C$ is the sheaf of global sections of the cotangent bundle of $C$, called the canonical sheaf $\omega_C$ of $C$ (for canonical sheaves more generally, see Chapter~\ref{dualizing sheaf}). A section of 
-$\omega_C$ is thus a globally defined differential form (also called a 1-form) on $C$, and the divisor class
-of such a form is usually denoted $K_C$. The importance of the canonical sheaf is made clear by the results of the next section.
+The most important invertible sheaf on a smooth variety $X$ is the sheaf of global sections of the top exterior power of the  the cotangent bundle of $X$, called the canonical sheaf $\omega_X$ of $X$ (for canonical sheaves more generally, see Chapter~\ref{dualizing sheaf}). A section of 
+$\omega_X$ is thus a globally defined differential form (also called a 1-form) on $X$, and the divisor class
+of such a form is usually denoted $K_C$. The importance of the canonical sheaf in the theory of curves is made clear by the results of the next section.
 
+\begin{theorem}
+ The canonical sheaf on $\PP^{1}$ is $\sO_{\PP^{1}}(-2)$; more generally, the canonical sheaf on $\PP^{r}$ is $\sO_{\PP^{n}}(-r-1)$. 
+\end{theorem}
+
+This follows by taking highest exterior powers from the fact that the sheaf of differentials on $\PP^{n}$ is the kernel of the natural surjection
+$\sO_{\PP^{r}}^{r+1} \to \sO_{\PP^{r}}(1)$; see ****.
+
+Computations of the canonical sheaf on a variety usually involve comparing the variety to another variety where the canonical sheaf is already known. The most useful result of this type is  the \emph{adjunction formula}:
+
+\begin{proposition}\label{adjunction}
+ Let $X$ be a variety that is a Cartier divisor on a variety $Y$. If the canonical divisor of $S$ is $K_{Y}$, then
+ $K_{X}$ is the restriction to $X$ of the divisor $K_{Y}+X$.
+\end{proposition}
+This is a special case of \cite[****]{H}.
+\begin{proof}
+ There is an exact sequence of sheaves
+ $$
+0\to  \sI_{X/Y}\mid_{X} \to \Omega_{Y}\mid _{X} \to \Omega_{X} \to 0
+ $$
+ where $\Omega_{X}$ is the sheaf of differential forms on $X$ (see \cite[Theorem ***]{E}), and
+$ \sI_{X/Y}\mid_{X} = \sO_{Y}(-X)\mid_{X} = \sO_{X}(-X)$. The proposition follows by taking top exterior powers.
+\end{proof}
+
+\begin{corollary}\label{canonical of plane curve}
+If $C\subset \PP^{2}$ is a smooth plane curve of degree $d$, then $\omega_{C} = \sO_{C}(d-3)$; more generally, if
+$X\subset \PP^{r}$ is a complete intersection of hypersurfaces of degrees $d_{1},\dots, d_{c}$ then
+$\omega_{X} = \sO_{X}(\sum_{i}d_{i }-r-1).$
+\end{corollary}
+
+\begin{fact}
+A famous result asserted by Franchetta and proved by **** is that the canonical sheaf (and its powers) are the \emph{only} sheaves that can be chosen uniformly among all, or even almost all, smooth curves. For a more precise statement, see ****.
+\end{fact}
 
 \section{Genus, Riemann-Roch and Serre Duality}
 
-We will henceforward assume that the reader is acquainted with sheaf cohomology (at least sufficiently to write
-$H^i(X; \sF)$ or (our preferred form) $H^i(\F)$ without blushing). If $D$ is a divisor on a scheme $X$ we will often
-abbreviate $H^i(\sO_X(D))$ to $H^i(D)$, and *** h^i***
+We will henceforward assume that the reader is acquainted with sheaf cohomology, at least sufficiently to write
+$H^i(X; \s(F)$ or  $H^i(\sF)$ (our preferred form) without blushing. If $D$ is a divisor on a scheme $X$ we will often
+abbreviate $H^i(\sO_X(D))$ to $H^i(D)$, and we write $h^i(\sF)$ or $h^{i}(D)$ for $\dim_{\CC}H^i(\sF)$ or $\dim_{\CC}H^i(D)$. Because $h^{i}(\sF)$, for $i>0$, often appears as a kind of ``error term'' in formulas when one would like to compute
+$H^{0}(\sF)$, vanishing theorems have an important place in all of algebraic and analytic geometry. We will use the simplest of these often:
+
+\begin{theorem}(Serre Vanishing Theorem)\label{Serre vanishing}
+If $\sF$ is a coherent sheaf on $\PP^{n}$ then $H^{i}(\sF(d))= 0$ for all $i>0$ and $d\gg 0$.
+\end{theorem}
 
 \subsection{The genus of a curve}
 
-Any discussion of the geometry of smooth projective curves has to start with the notion of the \emph{genus} of a curve, the sole topological invariant. The most natural and intuitive definition is topological: if $C \subset \PP^r$ is a smooth curve, we can think of it as a submanifold of the complex projective space $\PP^r(\CC)$ with the classical topology; as such, it is a compact, oriented surface, and so its topological type is described by its topological genus---informally, the ``number of holes."
+The sole topological invariant of a smooth projective curve $C$ is its genus. We can think of $C$ as a submanifold of the complex projective space $\PP^r(\CC)$ with the classical topology; as such, it is a compact, oriented surface, and its genus is the rank of its first integral homology, $H^{1}(C; \ZZ)$---informally, the ``number of holes'':
 
 \includegraphics[scale = 1]{RiemannSurface}
 **** Riemann Surface of genus 3, from Wikimedia ****
 
-Of course this definition does not apply to curves over fields other than $\CC$, and doesn't relate the genus to the algebra of the curve. However, we can relate the topological genus of a curve directly to its topological Euler characteristic: we have
+Of course this definition does not apply to curves over fields other than $\CC$, and doesn't relate the genus to the algebra of the curve. However, we can relate the topological genus of a curve directly to its topological Euler characteristic
+$
+\chi_{top}(C) = 2-2g.
+$
+By the Hopf index theorem, the topological Euler characteristic is the degree of the tangent sheaf, or equivalently, minus the degree of the cotangent sheaf $\omega_{C}$; that is, $\deg K_{C} = 2g-2$, and thus
+
 $$
-g(C) = 1 - \frac{\chi_{top}(C)}{2}.
+g(C) = \frac{\deg(K_C)}{2} + 1.
 $$
-At the same time, by the Hopf index theorem, the topological Euler characteristic is the degree of the tangent sheaf, which, because $C$ is 1-dimensional as a complex manifold, is the dual of the canonical sheaf; thus
-$$
-g(C) = \frac{\deg(K_C)}{2} + 1,
-$$
-which we adopt as the definition of $g(C)$.
+(This formula serves to define the genus of a smooth projective curve over any field).
 
 Other characterizations of the genus require more machinery to establish. We will give some here, and use  tools from the following section to prove equivalence.
 
@@ -287,12 +329,16 @@ Other characterizations of the genus require more machinery to establish. We wil
 \item\label{genus 1forms} $g(C)$ is the dimension of the vector space of regular 1-forms (that is, global sections of the
 cotangent sheaf) on $C$.
 
-\item The Euler characteristic of the structure sheaf of $C$ is $\chi(\cO_C) = h^0(\cO_C) - h^1(\cO_C)$. Since $h^0(\cO_C) = 1$, 
+\item The (Zariski) Euler characteristic of the structure sheaf of $C$ is $\chi(\cO_C) = h^0(\cO_C) - h^1(\cO_C)$. Since $h^0(\cO_C) = 1$, 
 $$
 g(C) = 1 - \chi(\cO_C).
 $$
 
-\item\label{genus Hilbert} If $C \subset \PP^r$ is embedded as a curve of degree $d$, with homogeneous coordinate ring
+Recall that if $X\subset \PP^{r} = \PP(V)$ is any projective scheme, the \emph{homogeneous coordinate ring} of $X$
+is the ring $S/I(X)$ where $S = \Sym V \cong \CC[x_{0}, \dots, x_{r}]$ and $I(V)\subset S$ is the ideal of homogeneous
+forms that vanish on $X$.
+
+\item\label{genus Hilbert} Suppose that $C \subset \PP^r = \PP(V)$ is a smooth curve of degree $d$  with homogeneous coordinate ring
 $S_C$, then the function $d \mapsto \dim_\CC (S_C)_d$ is equal to a polynomial function $p_C(m)$ for large $d$. We have:
 $$
 p_C(m) =  dm - g + 1,
@@ -302,16 +348,16 @@ so $g(C) = 1 - p_C(0)$.
 
 \subsection{The Riemann-Roch Theorem}
 
-To prove that the formula's for the genus given above are correct, we use the \trr and Serre duality (sometimes called Kodaira-Serre duality, since Kodaira was responsible for the analytic version.)
+To prove that these formulas for the genus are correct, we use \trr and Serre duality (sometimes called Kodaira-Serre duality, since Kodaira was responsible for the analytic version.)
 
 \begin{theorem}[Riemann-Roch Theorem]\label{RR}
- If $C$ is a smooth, connected projective curve of genus $g$, and $D$ a divisor of degree $d$ on $C$, it says that
+ If $C$ is a smooth, connected projective curve of genus $g$, and $D$ a divisor of degree $d$ on $C$ then
 $$
 h^0(D) = d - g + 1 + h^0(K_C - D).
 $$
 \end{theorem}
 
-For example, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Also, since $h^0(D) = 0$ for any divisor $D$ of negative degree, we have:
+For example, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Also, since $h^0(D) = 0$ for any divisor $D$ of negative degree, the formula gives the dimension of $h^{0}(D)$ when $\deg D$ is large:
 
 \begin{corollary}\label{nonspecial RR}
 For any divisor of degree $d \geq 2g-1$, we have
@@ -320,10 +366,11 @@ h^0(D) = d - g + 1.
 $$
 \end{corollary}
 
-Using this, we can apply Proposition~\ref{very ample} to characterize the linear series that give embeddings:
+Using this, we can apply Proposition~\ref{very ample} to show that all high degree divisors come from embeddings:
 
 \begin{corollary}\label{degree 2g+1 embedding}
-Let $D$ be a divisor of degree $d$ on a smooth, connected projective curve of genus $g$. If $d \geq 2g$, the complete linear series $|D|$ is base point free; and if $d \geq 2g+1$ the associated map $\phi_D : C \to \PP^{d-g}$ is an embedding.
+Let $D$ be a divisor of degree $d$ on a smooth, connected projective curve of genus $g$. If $d \geq 2g$, the complete linear series $|D|$ is base point free; and if $d \geq 2g+1$ the associated map $\phi_D : C \to \PP^{d-g}$ is an embedding, so that
+$D$ is the preimage of the intersection of $C$ with a hyperplane in $ \PP^{d-g}$.
 \end{corollary}
 
 Since the complement of a hyperplane in projective space is an affine space, we get an affine embedding result too:
@@ -346,17 +393,18 @@ and the corresponding exact sequence
 $$
  H^0(\cO_{\PP^r}(m)) \rTo^{\rho_m} H^0(\cO_C(m)) \rTo H^1(\cI_{C/\PP^r}(m)) \rTo 0.
 $$
+
 The \emph{Hilbert function} $h_C$ of $C$  is defined by
 $$
-h_C(m) = \rank(\rho_m);
+h_C(m) = \dim_{\CC} (S_{C})_{m} = \rank(\rho_m).
 $$
- since $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, this is equal to $h^0(\cO_C(m))$, which by Riemann Roch equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}) above.
+By Theorem~\ref{Serre vanishing} we have $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, so $h_{C}(m) = h^0(\cO_C(m))$, for large $m$, which, by \trr, equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}).
  
- Note that the Riemann-Roch formula does not give us a formula for the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such divisors $D$ are called \emph{special divisors}, or \emph{special divisor classes}. 
+The Riemann-Roch formula does \emph{not} give us a formula for the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such divisors $D$ are called \emph{special divisors}, or \emph{special divisor classes}. The existence or non-existence of divisors $D$ with given $h^{0}(D)$ and $h^{1}(D)$ often serves to distinguish one curve from another, and will be an important part of our study.
  
  
 \begin{fact}
- Classically, the dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$: the idea was that a divisor of degree $d$ had, at a minimum, $d-g+1$ sections and $h^1(D)$ represented the number of ``extra " sections. Even though the introduction of cohomology was still almost a century away, the ranks of cohomology groups $h^1$ had classical names, often involving the term superabundance---a premonition of the Riemann-Roch theorem in general.
+ Classically, the dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$: the idea was that a divisor of degree $d$ had, at a minimum, $d-g+1$ sections and $h^1(D)$ represented the number of ``extra" sections. Even though the introduction of cohomology was still almost a century away, the ranks of cohomology groups $h^1$ had classical names, often involving the term superabundance---a premonition of the Riemann-Roch theorem in general.
 \end{fact}
  
 \begin{fact}
@@ -373,8 +421,6 @@ In general, if $\cF$ and $\cG$ are coherent sheaves on a scheme $X$, we have for
 $$
 H^i(\cF) \otimes H^j(\cG) \to H^{i+j}(\cF \otimes \cG).
 $$
-
-Suppose now that $C$ is a smooth, projective curve, and that $D$ is any divisor on $C$. 
 
 \begin{theorem}[Serre Duality]\label{sd} Let $C$ be a smooth connected projective curves with canonical divisor $K$. We have
  $$
@@ -412,29 +458,44 @@ It follows that $\chi(\cL(-p)) = \chi(\cL) - 1$, so that Riemann-Roch for $\cL$ 
 
 \section{The canonical map}
 
-Given the central role played by the canonical divisor class, it is natural to look at the geometry of the map $\phi_K : C \to \PP^{g-1}$ associated to the complete canonical series $|K|$. To do this, we first have to single out a special class of curves:
+Given the central role played by the canonical divisor class, it is natural to look at the geometry of the map $\phi_K : C \to \PP^{g-1}$ associated to the complete canonical series $|K|$.  By the Riemann-Roch theorem, 
+$h^{0}(K) = g(C)$, so $|K|$ cannot define a non-constant map unless $g(C)\geq 2$, and cannot define an embedding unless $g(C)\geq 3$.
 
 \begin{definition}
-A curve $C$ of genus $g \geq 2$ is said to be \emph{hyperelliptic} if there exists a map $f : C \to \PP^1$ of degree 2; equivalently, if there exists a invertible sheaf $\cL$ on $C$ of degree 2 with $h^0(\cL) = 2$.
-\end{definition}
+A curve $C$ of genus $g \geq 2$ is said to be \emph{hyperelliptic} if there exists a map $f: C \to \PP^1$ of degree 2. \end{definition}
 
-The basic theorem about the canonical map is then
+%equivalently, if there exists a invertible sheaf $\cL$ on $C$ of degree 2 with $h^0(\cL) = 2$.
+
+For any non-hyperelliptic curve the canonical map is an embedding:
 
 \begin{proposition}
-Let $C$ be a smooth, projective curve of genus $g\geq 2$. The canonical map $\phi_K : C \to \PP^{g-1}$ is an embedding if and only if $C$ is not hyperelliptic.
+The canonical map $\phi_K : C \to \PP^{g-1}$ is an embedding if and only if $C$ is not hyperelliptic.
 \end{proposition}
 
 \begin{proof}
-This is just a direct application of Proposition~\ref{very ample} to the Riemann-Roch formula. To see that $\phi_K$ is an embedding, we have to show that for any pair of points $p, q \in C$ we have
+By Corollary~\ref{degree 2g+1 embedding} we have to show that for any pair of points $p, q \in C$ we have
 $$
 h^0(K_C(-p-q)) = h^0(K_C)-2 = g-2.
 $$
-Applying Riemann-Roch, we see that this is the case if and only if $h^0(\cO_C(p+q)) = 1$ for any $p,q \in C$, which is the case if and only if $C$ is not hyperelliptic.
+Applying \trr we see that this would fail if and only if $h^0(\cO_C(p+q)) \geq 2$ for some $p,q \in C$, and by Lemma~\ref{deg 2 map} $|p+q|$ would define a degree 2 map to $\PP^{1}$. 
 \end{proof}
 
+\begin{lemma}\label{deg 2 map}
+Let $C$ be a smooth, projective curve of genus $g\geq 2$. Any invertible sheaf of degree 2 on $C$ defines a morphism to $\PP^{1}$. In particular, if $g(C) = 2$ then the canonical series $|K_{C}|$ defines a 2 to 1 map to $\PP^{1}$.
+\end{lemma}
+
+\begin{proof}
+ If this happens,
+we claim that $\cO_C(p+q)$ is basepoint free, so that $C$ is hyperelliptic. To finish the proof, by Corollary~\ref{degree 2g+1 embedding} it suffices to show that
+ an invertible sheaf $\sL$ of degree 1 on $C$ must have $h^{0}(\sL)\leq 1$.
+ 
+Suppose that $\sigma_{0}, \sigma_{1}$ were two linearly independent sections of $\sL$. Each $\sigma_{i}$ vanishes at a unique point $p_{i}$. If $p_{0}= p_{1}$ then a linear combination of $\sigma_{0}, \sigma_{1}$ would be a section vanishing to order $\geq 2$, which is impossible, so $\sL$ is basepoint free, and defines a degree 1 morphism $C\to \PP^{1}$. Such a morphism must be an isomorphism (because $\PP^{1}$ is normal), contradicting $g(C) \geq 2$.
+\end{proof}
+
+\fix{the following argument is only set-theoretic. Admit this or make it precise}
 Note that if $C$ is hyperelliptic, the map $\phi_K$ factors through the degree 2 map $\pi : C \to \PP^1$: if $\{p,q\} \subset C$ is a fiber of this map, we have $h^0(\cO_C(p+q)) = 2$ and hence $\phi_K(p) = \phi_K(q)$. The image of the map $\phi_K$ is a nondegenerate curve of degree $g-1$ in $\PP^{g-1}$, which we will see is a \emph{rational normal curve}. This observation implies in particular that if $C$ is hyperelliptic of genus $g \geq 2$, then the invertible sheaf $\cL$ of degree 2 with $h^0(\cL) = 2$ is in fact unique.
 
-Hyperelliptic curves are very special, at least when $g \geq 3$ (in case $g=2$ the canonical map itself is a degree 2 map $C \to \PP^1$; all curves of genus 2 are hyperelliptic): in the family of all curves, as we'll see, they comprise a closed subvariety. In particular, the behavior of linear series and maps on a hyperelliptic curve is very different from that of series on a general curve; when we discuss the geometry of curves of low genus in the Chapter~\ref{}, we will exclude  the hyperelliptic case, and deal with this case in a separate chapter.
+Among curves with $g \geq 3$ the hyperelliptic curves are very special: in the family of all curves, as we'll see, they comprise a closed subvariety. Also, the behavior of linear series and maps on a hyperelliptic curve is very different from that of series on a general curve; when we discuss the geometry of curves of low genus in the Chapter~\ref{}, we will exclude  the hyperelliptic case, and deal with this case in a separate chapter.
 
 For non-hyperelliptic curves, however, the geometry of the canonical map, and its image, the canonical curve, are the keys to understanding the curve. We'll see this in detail in many cases in the following chapter; for now, we mention one highly useful result along these lines.
 
@@ -446,7 +507,7 @@ For non-hyperelliptic curves, however, the geometry of the canonical map, and it
 
 \subsection{The geometric Riemann-Roch theorem}
 
-Let's state this first in a relatively simple case: let $C$ be a nonhyperelliptic curve, embedded in $\PP^{g-1}$ by its canonical series and let $D = p_1+\dots + p_d$ be a divisor consisting of $d$ distinct points; let $\overline D$ be the span of the points $p_i \in C \subset \PP^{g-1}$. Since the hyperplanes in $\PP^{g-1}$ containing $\{p_1,\dots,p_d\}$ correspond (up to scalars) to sections of $K_C$ vanishing at the points $p_1$, we see that
+Let's state this first in a relatively simple case: let $C$ be a nonhyperelliptic curve, embedded in $\PP^{g-1}$ by its canonical series and let $D = p_1+\dots + p_d$ be a divisor consisting of $d$ distinct points; let $\overline D$ be the span of the points $p_i \in C \subset \PP^{g-1}$. Since the hyperplanes in $\PP^{g-1}$ containing $\{p_1,\dots,p_d\}$ correspond (up to scalars) to sections of $K_C$ vanishing at all the points $p_i$, we see that
 $$
 h^0(K_C-D) = g - 1 - \dim \overline D.
 $$
@@ -456,13 +517,13 @@ r(D) = d - 1 - \dim \overline D;
 $$
 or in other words, \emph{the dimension of the linear series $|D|$ in which the divisor $D$ moves is equal to the number of linear relations on the points $p_i$ on the canonical curve}. Thus, for example, if $D = p_1+p_2+p_3$, we see that $D$ moves in a pencil if and only if the points $p_i$ are collinear.
 
-We can extend this statement to the case of arbitrary effectived divisors $D$ (and even hyperelliptic curves) if we define our terms correctly. To do this, suppose $f : C \to \PP^d$ is any map, and $D \subset C$ any divisor. We define the \emph{span} of the divisor $D$ under the map $f$ to be the intersection
+We can extend this statement to the case of arbitrary effective divisors $D$ (and even hyperelliptic curves) if we define our terms correctly. To do this, suppose $f : C \to \PP^d$ is any map, and $D \subset C$ any divisor. We define the \emph{span} of  $f(D)$ to be the intersection
 $$
 \overline{f(D)} = \bigcap_{H \mid f^{-1}(H)\supset D} H 
 $$
-of all hyperplanes in $\PP^d$ whose inverse image in $C$ contains $D$. In these terms, we can state the \emph{geometric Riemann-Roch} as
+of all hyperplanes in $\PP^d$ whose preimage in $C$ contains $D$. 
 
-\begin{theorem}
+\begin{theorem}[Geometric Riemann-Roch Theorem]\label{geometric RR}
 If $C$ is any curve of genus $g \geq 2$,  $\phi : C \to \PP^{g-1}$ its canonical map and $D \subset C$ any effective divisor of degree $d$, then
 $$
 r(D) = d - 1 - \dim \overline{\phi(D)}.
