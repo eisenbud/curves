@@ -257,19 +257,40 @@ If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of
 \subsection{The most interesting linear system}
 
 The most important invertible sheaf on a smooth variety $X$ is the sheaf of global sections of the top exterior power of the  the cotangent bundle of $X$, called the canonical sheaf $\omega_X$ of $X$ (for canonical sheaves more generally, see Chapter~\ref{dualizing sheaf}). A section of 
-$\omega_X$ is thus a globally defined differential form (also called a 1-form) on $X$, and the divisor class
-of such a form is usually denoted $K_C$. The importance of the canonical sheaf in the theory of curves is made clear by the results of the next section.
-
+$\omega_X$ is thus a differential form of degree equal to the dimension of $X$, and the divisor class
+of such a form is usually denoted $K_C$. 
 \begin{theorem}
- The canonical sheaf on $\PP^{1}$ is $\sO_{\PP^{1}}(-2)$; more generally, the canonical sheaf on $\PP^{r}$ is $\sO_{\PP^{n}}(-r-1)$. 
+ The canonical sheaf of $\PP^{r}$ is $\sO_{\PP^{n}}(-r-1)$. 
 \end{theorem}
+\begin{proof}
+Let $x_{0}, \dots, x_{r}$ be the projective coordinates on $\PP^{r}$ and let  $U = \PP^{r}\setminus H$ be the affine open set where $x_{0} \neq 0$. Thus $U \cong \AA^{r}$ with coordinates $z_{1 := }x_{1}/x_{0}, \dots, z_{r}:=x_{r}/x_{0}$. The space of $r$-dimensional differential forms on $U$ is spanned by $d(x_{1}/x_{0})\wedge\cdots\wedge d(x_{r}/x_{0})$, which is regular everywhere in $U$. In view of the formula
+$$
+d\frac{x_{i}}{x_{0}} = \frac{x_{0}dx_{i}-x_{i}dx_{0}}{x_{0}^{2}}
+$$
+we get
+$$
+d(x_{1}/x_{0})\wedge\cdots\wedge d(x_{r}/x_{0}) = \frac{dx_{1}\wedge\cdots\wedge dx_{r}}{x_{0}^{r}}-
+\sum_{i=1}^{r} x_{i} \frac{ dx_{1}\wedge\cdots \wedge \widehat{d_{x_{i}}}\wedge \cdots \wedge dx_{r}}{x_{0}^{r+1}}
+$$
+which has a pole of order $r+1$ along the locus $H$ defined by $x_{0}$. Thus the divisor of this differential form
+is $-(r+1)H$, and this is the canonical class.
+\end{proof}
 
-This follows by taking highest exterior powers from the fact that the sheaf of differentials on $\PP^{n}$ is the kernel of the natural surjection
-$\sO_{\PP^{r}}^{r+1} \to \sO_{\PP^{r}}(1)$; see ****.
+\begin{fact}
+A different derivation: there is a short exact sequence of sheaves of differentials, called the Euler sequence:
+$$
+0\to \Omega_{\PP^{r}} \to \sO_{\PP^{r}}^{r+1} (-1) \to \sO_{\PP^{r}} \to 0.
+$$. 
+Taking exterior powers, we see that
+$$
+\bigwedge^{r}\Omega_{\PP^{r}} \otimes \bigwedge^{1}\sO_{\PP^{r}} = \bigwedge^{r+1} (\sO_{\PP^{r}}^{r+1} (-1)) = \sO_{\PP^{r}}(-r-1).
+$$
+\end{fact}
 
-Computations of the canonical sheaf on a variety usually involve comparing the variety to another variety where the canonical sheaf is already known. The most useful result of this type is  the \emph{adjunction formula}:
+Computations of the canonical sheaf on a variety usually involve comparing the variety to another variety, such as projective space, where the canonical sheaf is already known. The most useful results of this type are  the \emph{adjunction formula}
+and the \emph{Hurwitz' Theorem}.
 
-\begin{proposition}\label{adjunction}
+\begin{proposition}\label{adjunction}(Adjunction Formula)
  Let $X$ be a variety that is a Cartier divisor on a variety $Y$. If the canonical divisor of $S$ is $K_{Y}$, then
  $K_{X}$ is the restriction to $X$ of the divisor $K_{Y}+X$.
 \end{proposition}
@@ -289,6 +310,53 @@ $X\subset \PP^{r}$ is a complete intersection of hypersurfaces of degrees $d_{1}
 $\omega_{X} = \sO_{X}(\sum_{i}d_{i }-r-1).$
 \end{corollary}
 
+ Given a (nonconstant) map $f : C \to X$ of smooth projective curves, the Riemann-Hurwitz formula computes the canonical sheaf  $C$ in terms of that of  $X$ and the local geometry $f$. To do this we define the
+\emph{ramification index} of $f$ at $p$,  denoted $\ram(f,p)$, by the formula of divisors
+$$
+ f^{-1}(f(p)) = \sum_{p\in C \mid f(p)=q} (\ram(f,p)+1)\cdot p
+ $$
+In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $X$ around $f(p)$, we can write the map as $z \mapsto w = z^m$ for some integer $m > 0$, and $\ram(f,p) = m-1$.
+
+It follows from complex analysis (or the separability of field extensions in characteristic 0) that there are only finitely many
+points on $C$ where $\ram(f,p) \neq 0$ (this would be false in characteristic $>0$ in the case where the
+induced extension of fraction fields was inseparable.) Thus we may define the \emph{ramification divisor} of $f$ to be the divisor
+ $$
+ R = \sum_{p \in C} \ram(f,p)\cdot p \; \in \;  \Div(C).
+ $$
+ and the \emph{branch divisor} to be
+ $$
+ B = \sum_{q \in X} \Big(\sum_{p \in f^{-1}(q)} \ram(f,p) \Big)\cdot q \; \in \; \Div(X).
+ $$
+ Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$. 
+
+ 
+\begin{theorem}(Hurwitz' Theorem) \cite[****]{H} \label{Hurwitz}
+If $f:C\to X$ is a non-constant map of smooth curves, with ramification divisor $R$, then 
+$$
+\omega_{C} = f^{*}\omega_{X}(-R).
+$$
+\end{theorem}
+ 
+ 
+\begin{proof}
+Choose a rational 1-form $\omega$ on $X$, and $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (Since we have the freedom to multiply by any rational function on $X$ we can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) 
+
+Since the zeroes of $\omega$ lie outside the branch divisor $B$, for every zero of $\omega$ of multiplicity $m$ we have exactly $d$ zeroes of $\eta$, each with multiplicity $m$; and likewise for the poles of $\omega$. Meanwhile, at every point of $B$, the form $\omega$ is regular and nonzero. At a point $p$ where (locally) $f$ has the form $z \mapsto w = z^{e}$
+and $\omega = dw,\ \eta dz$ we have $\eta = z^{e-1}dz$; that is $\eta$ has a zero of multiplicity $\ram(f,p)$ at  $p$.
+Thus the divisor $K_{C}$ of $\eta$ is
+$K_{C} = df^{*}(K_{X})+R$.
+\end{proof}
+
+\begin{example}
+ Let $V$ be the vector space of homogeneous polynomials of degree $d$ in two variables; that is, $V = H^0(\cO_{\PP^1}(d))$. In the projectivization $\PP(V^{*}) \cong \PP^d$, let $\Delta$ be the locus of polynomials with a repeated factor. Since $\Delta$ is defined by the vanishing of the discriminant, it is a hypersurface. What is its degree?
+ 
+ To answer this, let $W^{*}\subset V^{*}$ be a general 2-dimensional linear subspace---that is, a general pencil of forms of degree $d$ on $\PP^1$. The linear system $\sW = (\sO_{\PP^{d}}, W^{*})$ defines a map $\phi_{\sW} : \PP^{1} \to \PP(W) \cong \PP^{1}$ and the fiber over the point of $\PP(W)$ corresponding to a form $f$ of degree $d$ is the divisor $f = 0\subset \PP^{1}$. Thus the locus of polynomials in $W$ with a multiple root is the branch locus of $\phi_{\sW}$, where we count an $m$-fold root $m-1$ times.
+ By Hurwitz formula, the degree of the branch locus $B$ of a degree $d$ map from $\PP^{1}$ to $\PP^{1}$ is
+ $$
+ \deg B = \deg \omega_{\PP^{1}} - d\deg \omega_{\PP^{1}} = 2d-2.
+ $$
+ \end{example}
+ 
 \begin{fact}
 A famous result asserted by Franchetta and proved by **** is that the canonical sheaf (and its powers) are the \emph{only} sheaves that can be chosen uniformly among all, or even almost all, smooth curves. For a more precise statement, see ****.
 \end{fact}
@@ -530,214 +598,40 @@ r(D) = d - 1 - \dim \overline{\phi(D)}.
 $$
 \end{theorem}
 
- \section{The Riemann-Hurwitz formula}
+ \fix{I moved the hyperelliptic section to be with the curves of genus 2}
  
- The Riemann-Hurwitz formula does a simple thing: given a (nonconstant) map $f : C \to X$ of smooth projective curves, it relates the genera of $C$ and $X$ via the geometry of the map. The proof is likewise simple.
- 
- To set it up, we first introduce the notion of \emph{ramification} of such a map. Suppose $p \in C$ is any point, with $q = f(p) \in X$ its image in $X$. In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $X$ around $q$, we can write the map simply as $z \mapsto w = z^m$ for some integer $m > 0$; the integer $m-1$ is then called the \emph{ramification index} of $f$ at $p$, and denoted $\ram(f,p)$. To characterize this without invoking local coordinates, we can say that for any point $q \in X$ we have
- $$
- f^{-1}(q) = \sum_{p\in C \mid f(p)=q} (\ram(f,p)+1)\cdot p
- $$
- as subschemes (or, equivalently, divisors) on $C$. The \emph{ramification divisor} of $f$ is defined to be the divisor
- $$
- R = \sum_{p \in C} \ram(f,p)\cdot p \; \in \;  \Div(C);
- $$
- the \emph{branch divisor} is the corresponding divisor
- $$
- B = \sum_{q \in X} \Big(\sum_{p \in f^{-1}(q)} \ram(f,p) \Big)\cdot q \; \in \; \Div(X).
- $$
- Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$. Note also that just to define the divisor $R$ requires we know that \emph{not every point of $C$ is a ramification point}; that is, $\ram(f,p) = 0$ at a general point $p \in C$, which may be false in characteristic $p > 0$; thus the argument sketched here requires the hypothesis of characteristic 0.
- 
- To relate the genera of $X$ and $C$ in this situation, start by choosing any rational 1-form $\omega$ on $X$; let $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (We can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) We know that $\deg(\omega) = 2g(B) - 2$ and $\deg(\eta) = 2g(C) - 2$; we will relate these two by describing the zeroes and poles of $\eta$ in terms of those of $\omega$.
- 
- First of all, since the zeroes of $\omega$ lie outside the branch divisor $B$, for every zero of $\omega$ of multiplicity $m$ we have exactly $d$ zeroes of $\eta$, each with multiplicity $m$; and likewise for the poles of $\omega$. Meanwhile, at every point of $B$ the form $\omega$ is regular and nonzero; and by the description of the map $f$ in terms of local coordinates we see that $\eta$ will have a zero of multiplicity $\ram(f,p)$ at every point $p \in R$. In sum, then, we have
- $$
- \deg((\eta)) = d\cdot \deg((\omega)) + \sum_{p \in C} \ram(f,p) \cdot p,
- $$
- or in other words,
- $$
- 2g(C) - 2 = d(2g(X)-2) + \deg R;
-  $$
-  this is the Riemann-Hurwitz formula. Note that if the target curve $X \cong \PP^1$ has genus 0, the formula reads
-  $$
-  g(C) = -d  + 1+ \frac{\deg R}{2}
-  $$
- or equivalently
- $$
- \deg R = \deg B  = 2d + 2g(C) - 2.
- $$
- 
- \subsection{An application}
- 
- Let $V$ be the vector space of homogeneous polynomials of degree $d$ in two variables; that is, $V = H^0(\cO_{\PP^1}(d))$. In the projectivization $\PP V \cong \PP^d$, let $\Delta$ be the locus of polynomials with a repeated factor. It's not hard to see that $\Delta$ in a hypersurface; we ask, what is its degree?
- 
- To answer this, let $L \subset \PP V$ be a general line---that is, a general pencil of divisors of degree $d$ on $\PP^1$. The linear system $L$ defines a map $\phi_L : \PP^1 \to \PP^1$ of degree $d$, and the locus $L \cap \Delta$ is exactly the branch divisor $B$.
- It follows then that
- $$
- \deg(\Delta) = \deg(L \cap \Delta) = \deg B = 2d-2,
- $$
- answering our question. Note that since $L$ is general, both $L\cap \Delta$ and $B$ are reduced divisors, so we can interpret the above simply as an equality of cardinality of sets; but if we keep track of multiplicities the argument goes through for an arbitrary $L \not\subset \Delta \subset \PP^d$.
- 
- \section{Hyperelliptic Curves}
- 
- 
- This will be a somewhat anomalous section, in keeping with its subject matter. In the world of curves, hyperelliptic curves are outliers: they behave differently from other curves, and the techniques used to analyze them are correspondingly different from how we approach more general curves. As you'll see in following chapters, many theorems about curves contain the hypothesis ``non-hyperelliptic," with the corresponding result for hyperelliptic curves arrived at directly by ad hoc methods.
- 
- In this section, we'll lay out the basic facts about hyperelliptic curves. There will be a further discussion of them in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings; but the analysis here will cover most of the questions we'll be asking about curves in general in the next four chapters. 
- 
- It should also be said that this section does not have to be read in sequence; if you're curious to see some of the questions we ask about curves in general (and some of the answers, and the techniques for arriving at them), you can skip ahead to the following two chapters and return to this section whenever you feel like it.
- 
- \subsection{The equation of a hyperelliptic curve}
- 
-  By definition, a hyperelliptic curve $C$ is one admitting a degree two map $\pi : C \to \PP^1$. The local geometry of such a map is pretty simple: at all but finitely many points $p \in C$ the map $\pi$ is a local isomorphism (``local" here in the complex analytic/classical or \'etale topology, not the Zariski topology!); at any other point $p \in C$, the map is given in terms of local coordinates on $C$ and $\PP^1$ simply by $z \mapsto z^2$. In particular, both the ramification divisor and the branch divisor are reduced, meaning by the Riemann-Hurwitz formula there will be exactly $2g+2$ branch points $q_1,\dots,q_{2g+2} \in \PP^1$.
-  
-  In fact, we claim that \emph{there is a unique smooth projective curve $C$ expressible as a 2-sheeted cover of $\PP^1$ branched over a given collection of points $p_1,\dots,p_{2g+2} \in \PP^1$}. \fix{proof to be filled in. Why not make this assertion a theorem?}
-  
-  Given this, it's not hard to write down the equation of this curve: if the coordinate of the point $p_i \in \PP^1$ is $\lambda_i$, it is the smooth projective model of the affine curve 
-  $$
-C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambda_i) \big\}.
-$$ 
-Note that we're choosing a coordinate $x$ on $\PP^1$ with the point $x = \infty$ at infinity not among the $q_i$, so that the pre-image of $\infty \in \PP^1$ is two points $r, s \in C$. Concretely, we see that as $x \to \infty$, the ratio $y^2/x^{2g+2} \to 1$, so that 
-$$
-\lim_{x \to \infty} \; \frac{y}{x^{g+1}} \; = \; \pm 1;
-$$
-  the two possible values of this limit correspond to the two points $r,s \in C$.
-  
-  It's worth pointing out that $C$ is \emph{not} simply the closure of the affine curve $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$: as you can see from a direct examination of the equation, each of these closures will be singular at the (unique) point at infinity.
-  
-  \begin{exercise}
-  In the case $g=1$, show that the closure $\overline{C^\circ}$ of $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$ consists of the union of $C^\circ$ with one additional point, with that point a tacnode of $\overline{C^\circ}$ in either case.
-  \end{exercise}
-  
-  In fact, it's possible to give explicitly a projective model of the curve $C$: if we divide the points $q_1,\dots,q_{2g+2} \in \PP^1$ into two sets of $g+1$---say, for example, $q_1,\dots,q_{g+1}$ and $q_{g+2}, \dots, q_{2g+2}$---then we can describe the smooth projective curve $C$ as the closure in $\PP^1 \times \PP^1$ of the  locus
-  $$
-  \big\{ (x,y) \in \AA^2 \; \mid \; y^2\prod_{i=1}^{g+1} (x - \lambda_i) = \prod_{i=g+2}^{2g+2} (x - \lambda_i) \big\};
-  $$
-  in projective coordinates, this is
-   $$
-  C \; = \; \big\{ (X,Y) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
-  $$
-  (No local analysis is needed to see that $C \subset \PP^1 \times \PP^1$ is smooth: it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the genus formula tells us that such a curve has arithmetic genus $g$.)
-  
-%  \
-%  
-%  \
-%  
-%  \
-%  
-%  \
-% 
-% We start by establishing some basic facts about hyperelliptic curves. Many of these follow from general theorems like Riemann-Roch; but since they can be established by direct examination we will carry that out here.
-%
-%Suppose $C$ is a smooth, projective hyperelliptic curve of genus $g \geq 2$. By definition, $C$ admits a degree 2 map $\pi : C \to \PP^1$; and as we've observed (\ref{**}) this map is unique.
-%
-%By Riemann-Hurwitz, \fix{attibution?} the map $\pi : C \to \PP^1$ will have $2g+2$ distinct simple branch points, say $\lambda_1,\dots,\lambda_{2g-2} \in \PP^1$. An open subsect $C^\circ$ of $C$ can then be realized as the smooth projective completion of the affine curve given as
-%$$
-%C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambda_i) \big\}.
-%$$ 
-%\fix{if two of the $\lambda_i$ coinncide, then the curve develops a singular point. Much of what we will do carries over to the singular case.} \fix{say the smooth model has 2 points at $\infty$.} Note that if we simply take the closure of this locus in $\PP^2$, the resulting curve will be highly singular at the point $[1,0,0]$, as can be seen either  directly by making an appropriate change of variables, or by invoking the genus formula for plane curves: if the closure were smooth, it would have genus $\binom{2g+1}{2}$. We can, however, complete the curve simply in $\PP^1 \times \PP^1$, for example by setting \fix{this is a rabbit from a hat. Consider either saying that by the previous section, if there's an emb in P3 then its on P1 x P1 as a divisor of type
-%2,g+1; and then "finding" this embedding as below; or moving this page to the early place where hyperelliptic curves are first mentioned.}
-%$$
-%y' = \frac{y}{\prod_{i=1}^{g+1} (x - \lambda_i)};
-%$$
-%we can then write the equation of a still smaller open subset of $C$ as
-%$$
-%{y'}^2 \cdot \prod_{i=1}^{g+1} (x - \lambda_i) \; = \; \prod_{i=g+2}^{2g+2} (x - \lambda_i).
-%$$
-%If we now take the closure of this locus in $\PP^1 \times \PP^1$, we get a curve of type $(2,g+1)$ on $\PP^1 \times \PP^1$; this curve is smooth, as can be seen again either directly in coordinates or by invoking the genus formula for curves on $\PP^1 \times \PP^1$. In other words,
-%$$
-%C \; = \; V\Big(Y_0^2\cdot \prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) - Y_1^2 \cdot \prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \Big)
-%$$
-
-  
-  \subsection{Differentials on a hyperelliptic curve}
-
-Next, let's describe the space of regular differentials on $C$. For this, it's convenient to work with the affine model $C^\circ = V(f) \subset \AA^2$, where
-$$
-f(x,y) = y^2 - \prod_{i=1}^{2g-2} (x - \lambda_i).
-$$
-Again, we'll denote the two points at infinity---that is, the two points of $C \setminus C^\circ$---as $r$ and $s$; for convenience, we'll denote the divisor $q+r$ by $D$.
-
-To start, consider the simple differential $dx$ on $C$. (Technically, we should write this as $\pi^*dx$, since we mean the pullback to $C$ of the differential $dx$ on $\PP^1$, but for simplicity of notation we'll suppress the $\pi^*$.)  This is clearly regular on $C^\circ$, with zeros at the ramification points $q_i = (\lambda_i, 0)$. But it does not extend to a regular differential on all of $C$: it will have double poles at $r$ and $s$.  This can be seen directly: the differential $dx$ extends to a rational differential on $\PP^1$, and in terms of the local coordinate $w = 1/x$ around the point $x = \infty$ on $\PP^1$, we have
-$$
-dx = d\left(\frac{1}{w}\right) = \frac{-dw}{w^2}
-$$
-so $dx$ has a double pole at the point at $\infty$; since the map $\pi$ is a local isomorphism near $r$ and $s$ the pullback of $dx$ to $C$ likewise has double poles at the points $r$ and $s$.
-
-
-We could also see that $dx$ must have poles by degree considerations: as we said, $dx$ has $2g+2$ zeros and no poles in $C^\circ$, while the degree of $K_C$ is $2g-2$, meaning that there must be  a total of four poles at the points $r$ and $s$. In any event, we have an expression for the canonical divisor class on $C$: denoting by $R = q_1 + \dots + q_{2g+2}$ the sum of the ramifications points of $\pi$, we have
-$$
-K_C \sim (dx) \sim R - 2D;
-$$
-this is a case of the Riemann-Hurwitz formula above.
-
-So, given that $dx$ has poles at $r$ and $s$, how do we find regular differentials on $C$? One thing to do would be simply to divide by $x^2$ (or any quadratic polynomial in $x$) to kill the poles. But that just introduces new poles in the finite part $C^\circ$ of $C$. Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $q_i$.  A natural choice is simply the reciprocal of the partial derivative $f_y = \partial f/ \partial y = 2y$, which vanishes exactly at the points $r_i$, and has correspondingly a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$, and exchanges the points $p,q$). In other words, the differential
-$$
-\omega = \frac{dx}{f_y}
-$$
-is regular, with divisor
-$$
-(\omega) = (g-1)r + (g-1)s = (g-1)D.
-$$
-The remaining regular differentials on $C$ are now easy to find: Since $x$ has only a simple pole
-at the two points at infinity we can  multiply $\omega$ by any $x^k$ with $k = 0, 1, \dots, g-1$. Since this gives us $g$ independent differentials, these  form a basis for $H^0(K_C)$.
-
-\subsection{The canonical map of a hyperelliptic curve}\label{hyperelliptic special}
-
-Given that a basis for $H^0(K_C)$ is given by 
-$$
-H^0(K_C) = \langle \omega, x\omega,\dots,x^{g-1}\omega \rangle,
-$$
-we see that the canonical map $\phi : C \to \PP^{g-1}$ is given by $[1,x,\dots,x^{g-1}]$. In other words, the canonical map $\phi$ is simply the composition of the map $\pi : C \to \PP^1$ with the Veronese embedding $\PP^1 \hookrightarrow \PP^{g-1}$ of $\PP^1$ into $\PP^{g-1}$ as a rational normal curve of degree $g-1$.
-
-Note that as a consequence of this fact, we see that \emph{a hyperelliptic curve $C$ has a \emph{unique} linear series $g^1_2$ of degree 2 and dimension 1}, that is, a unique map of degree 2 to $\PP^1$. 
-Finally, we can give an explicit description of special linear series on a hyperelliptic curve: if $D = \sum p_i$ is any effective divisor on $C$, we can pair up points $p_i$ that are conjugate under the involution $\iota$ exchanging sheets of the degree 2 map $C \to \PP^1$; each conjugate pair is a divisor of the unique $g^1_2$ on $C$, and so we can write
-$$
-D \sim r\cdot g^1_2 + q_1 + \dots + q_{d-2r},
-$$
-where no two of the points $q_i$ are conjugate under $\iota$. Now the geometric form of the Riemann-Roch formula tells us that the dimension $r(D)$ of the complete linear series $|D|$ is exactly $r$, so that in fact 
-$$
-|D| = |r\cdot g^1_2| + + q_1 + \dots + q_{d-2r};
-$$
-that is, the points $q_i$ are base points of the linear series $D$.
-
-One key observation is that, according to this analysis, \emph{no special linear series on a hyperelliptic curve can be very ample}; the map associated to any special series factors through the degree 2 map $C \to \PP^1$. This is in marked contrast to the case of non-hyperelliptic curves, for which the embeddings of minimal degree in projective space are given by special linear series. 
-
 
 \section{Moduli problems}
 
-We'll conclude this introductory chapter with a discussion of one of the central constructions of algebraic geometry in the present context: the notion of a \emph{moduli}, or \emph{parameter space}.
-
-It is a fundamental aspect of algebraic geometry that the objects we deal with often vary in families, and can often be parametrized by a ``universal" such family. This notion of objects varying with parameters underlies many of the constructions and theorems we'll be discussing in this book, and so it seems like a good idea to establish the basic facts about moduli spaces in general, and the particulars of the ones we'll be dealing with here. 
+It is a fundamental aspect of algebraic geometry that the objects we deal with often vary in families, and can often be parametrized by a ``universal" such family. For example, the family of plane curves of degree $d$ may be thought of as the projective
+space $\PP(H^{0} \sO_{\PP^{2}}(d))$, and similarly with hypersurfaces in any projective space. This notion of objects varying with parameters underlies many of the constructions and theorems we will discuss. 
 
 \subsection{What is a moduli problem?}
 
 Briefly, a \emph{moduli problem} consists of two things: a class of objects, or isomorphism classes of objects; and a notion of what it means to have a \emph{family} of these objects parametrized by a given scheme $B$. To make this relatively explicit, the four main examples of moduli problems we'll be discussing here are:
 
 \begin{enumerate}
-\item  smooth curves: objects are isomorphism classes  of smooth, projective curves $C$ of a given genus $g$; by a family we'll mean a flat, smooth, projective morphism $\cX \to B$.
+\item  smooth curves: objects are isomorphism classes  of smooth, projective curves $C$ of a given genus $g$. A family over $B$ is a subscheme $\cX \subset B \times \PP^r$, smooth, over $B$, whose fibers are curves of genus $g$.
 
-\item the Hilbert scheme: objects are smooth, projective curves $C \subset \PP^r$ of degree $d$ and genus $g$; a family over $B$ will be a subscheme $\cX \subset B \times \PP^r$, smooth, projective and flat over $B$, whose fibers are curves of degree $d$ and genus $g$
+\item the Hilbert scheme: objects are subchemes of $ \PP^r$ with a given Hilbert polynomials. A family  is a subscheme $\cX \subset B \times \PP^r$, with $cX$ flat over $B$, whose fibers have the given Hilbert polynomial. We will be interested in the case of Hilbert polynomial $p(m) = dm-g+1$ and the open subscheme corresponding to smooth projective curves $C \subset \PP^r$ of degree $d$ and genus $g$.
 
-\item effective divisors on a given curve: objects are effective divisors of a given degree $d$ on a given smooth, projective curve $C$; families over $B$ will be subschemes $\cD \subset B \times C$ flat over $B$ with fibers of degree $d$
+\item effective divisors on a given curve: objects are effective divisors of a given degree $d$ on a given smooth, projective curve $C$. A family over $B$ will be a subscheme $\cD \subset B \times C$ flat over $B$, with fibers of degree $d$
 
-\item invertible sheaves on a given curve: objects are invertible sheaves of a given degree $d$ on a given curve $C$; by a family of such invertible sheavess over a scheme $B$ we'll mean a invertible sheaf on the product $B \times C$ whose restriction to each fiber over $B$ has degree $d$, modulo tensor product with invertible sheaves pulled back from $B$.
+\item invertible sheaves on a given curve $C$: objects are invertible sheaves of a given degree $d$ on $C$. A family over $B$ is an invertible sheaf on the product $B \times C$ whose restriction to each fiber over $B$ has degree $d$. We identify two such sheaves if they differ by tensor product with an invertible sheaf pulled back from $B$.
 \end{enumerate}
 
-Given a moduli problem, our goal will be to describe a corresponding \emph{moduli space}. By this we mean a scheme $M$ whose points are in natural one-to-one correspondence with the objects in our moduli problem; or, to put it differently, we want to realize the set of objects in our moduli problem as the underlying set of a scheme $M$.
+Given a moduli problem, our goal will be to describe a corresponding \emph{moduli space}. By this we mean a scheme $M$ whose points are in \emph{natural} one-to-one correspondence with the objects in our moduli problem. This will realize the objects of the moduli problem as the points of the underlying set of the scheme $M$.
 
-The issue here, as it so often is,  is the word ``natural." If we're working over $\CC$, for example, all positive dimensional varieties have the same cardinality ($\aleph_1$), so saying that we have a bijection between the points of a variety $M$ and the set of isomorphism classes of curves isn't much of a characterization of $M$. Rather, we need some basic condition on the bijection, for which the word ``natural" is a stand-in. 
+If the moduli space in question and the base of the family are varieties, then the crucial condition that the correspondence be \emph{natural} is simple to express: that given a family of the objects in our moduli problem over a variety $B$, the map from underlying set of $B$ to the underlying set of $M$ taking each fiber
+to the corresponding point of $M$ should be a morphism of varieties.  But in the world of schemes the set-theoretic mapping does not determine the map of schemes (think, for example, of the maps from $\Spec(\CC[x]/x^{2})$ into the plane with the closed point mapping to the origin. The situation is even worse when the moduli space itself is not a variety.)
 
-In the pre-Grothendieckian world of varieties, it was easy to express this condition, though the result (as we'll see) was not always satisfactory. Given a family of the objects in our moduli problem over a variety $B$, we get a map from the underlying set of $B$ to the underlying set of $M$; and the requirement was simply that this map of sets defined a regular morphism of varieties.
-
-In the post-Grothendieckian world of schemes, however, this doesn't work: a morphism of schemes is not determined by the associated map of sets. \fix{let's give a better reason: more examples exist; and you can do infinitesimal computations}
-The solution to this is to recast the condition above in functorial terms. We observe first that a moduli problem defines a functor $\cM$ from the category of schemes to the category of sets: we can associate to every scheme $B$ the set of families of objects parametrized by $B$; a morphism $B' \to B$ of schemes gives rise, via pullback, \fix{define?} to a set map $\cM(B) \to \cM(B')$. By a \emph{fine moduli space} for the moduli problem, then, we'll mean a scheme $M$ that represents this functor, meaning that we have an isomorphism of functors
+To deal with the general case, we recast the naturality condition in functorial terms. We observe first that a moduli problem defines a functor $\cM$ from the category of schemes to the category of sets: the value of the functor at a scheme $B$ is the set of families of objects parametrized by $B$; a morphism $B' \to B$ of schemes gives rise, via pullback, to a set map $\cM(B) \to \cM(B')$. We define a \emph{fine moduli space} for the moduli problem to be a scheme $M$ that represents this functor, in the sense that there is an isomorphism of functors
 $$
 \cM \to {\rm Mor}(\bullet, M)
 $$
 In other words, for every scheme $B$ we have a bijection between families of our objects over $B$ and maps from $B$ to $M$. In particular, applying this to $B = \Spec \CC$, we have a bijection between the set of objects and the closed points of $M$; and for any family over an arbitrary scheme $B$, the map from $B(\CC)$ to $M(\CC)$ sending each closed point  $b \in B$ to the point in $M(\CC)$ corresponding to the fiber over $b$ is the underlying set map of a morphism $B \to M$ of schemes.
 
-Note that by Yoneda's Lemma, this condition uniquely determines the space $M$---if one exists. In fact, it doesn't always; for the four examples above, a fine moduli space exists for three of them, but for the moduli problem of smooth curves it doesn't. We'll defer the discussion of why this is, and what we can do about it, until Chapter~\ref{Moduli chapter}, when we'll talk in more detail about this problem.
+If a fine moduli space for a given problem exists at all, then Yoneda's Lemma shows that it is unique up to a unique isomorphsm. This is a real problem: there is no fine moduli space for the first and most important of the examples above---the isomorphism classes of smooth curves---though there is for the others. We'll defer the discussion of why this is, and what we can do about it, until Chapter~\ref{Moduli chapter}.
 
 Looking ahead, we'll discuss the third and fourth example in Chapter~\ref{}, where we'll describe the moduli spaces for effective divisors of given degree $d$ on a given curve $C$ (the symmetric powers of the curve) and for invertible sheaves of a given degree on $C$ (the \emph{Jacobian} and \emph{Picard variety} of $C$). These, as we'll see, are smooth, irreducible projective varieties of dimensions $d$ and $g$ respectively.
 
