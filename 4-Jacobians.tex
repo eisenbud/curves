@@ -5,7 +5,7 @@
 %
 %Up to now, we have been treating line bundles on a curve $C$ individually. This makes sense, given that in genus 0 there is only one line bundle of a given degree, and on a curve of genus 1 all line bundles of a given degree are congruent under the automorphism group of the curve.
 %
-%It is a fundamental fact, however, that in general the set of line bundles/linear equivalence classes of divisors of a given degree $d$ on $C$ is naturally parametrized by the points of a variety, called the \emph{Picard variety} and denoted ${\rm Pic}^d(C)$. Many of the deeper results about linear systems on $C$ are expressed in terms of the geometry of this variety, and indeed the simple fact of its existence is the key to proving many theorems about linear systems on curves (see for example Theorem~\ref{g+3 theorem}
+%It is a fundamental fact that in general the set of line bundles/linear equivalence classes of divisors of a given degree $d$ on $C$ is naturally parametrized by the points of a variety, called the \emph{Picard variety} and denoted ${\rm Pic}^d(C)$. Many of the deeper results about linear systems on $C$ are expressed in terms of the geometry of this variety, and indeed the simple fact of its existence is the key to proving many theorems about linear systems on curves (see for example Theorem~\ref{g+3 theorem}
 %below).
 %
 %In this chapter, we will describe the construction of these varieties, and their relationship with the spaces parametrizing effective divisors of a given degree $d$ on $C$. We then exhibit some of the consequences of these constructions.
@@ -18,21 +18,51 @@ $$
 \mu : \big\{ \text{effective divisors of degree } d \big\} \rTo \big\{ \text{invertible sheaves of degree } d \big\}.
 $$
 
-A priori, this is a map of sets. But it is a crucial fact that both sets may naturally be given the structure of an algebraic variety, in such a way that the map between them is in fact a regular map, and the geometry of this map in many ways governs the geometry of the curve.
+A priori, this is a map of sets. But it is a fundamental fact that both sets may naturally be given the structure of an algebraic variety, in such a way that the map between them is regular. The geometry of this map governs the geometry of the curve
+in many ways.
 
-In this chapter, we'll describe first how we may give these two sets the structure of algebraic varieties. This is straightforward in the case of the set of divisors, which are parametrized by the \emph{symmetric products} $C^{(d)}$ of the curve $C$, defined to be the quotient of the Cartesian product $C^d$ by the symmetric group $S_d$. By contrast, the parametrization of the set of invertible sheaves on $C$ of a given degree by the points of an algebraic variety $\pic^d(C)$ is a major undertaking, one that historically brought complex analysis and algebraic geometry together. We'll describe the original construction of the varieties $\pic^d(C)$ by complex analysis in Section~\ref{} below, and touch briefly on the algebraic constructions.
+One part is easy: the divisors on a smooth curve are parametrized by the \emph{symmetric powers} $C^{(d)}$ of the curve $C$, described in Section~\ref{symmetric section}. By contrast, the parametrization of the set of invertible sheaves on $C$ of a given degree by the points of an algebraic variety $\pic^d(C)$ is a major undertaking, one that historically brought complex analysis and algebraic geometry together. We'll describe the original construction of the varieties $\pic^d(C)$ by complex analysis in Section~\ref{picard section} below, and touch briefly on the algebraic constructions.
 
 The fact that invertible sheaves of a given degree of a curve $C$ are parametrized by the points of a variety $\pic^d(C)$ has many consequences.  For example, applying dimension theory to $\pic^d(C)$, we will show in Theorem~\ref{g+3 theorem} that every curve can be embedded in projective space as a curve of degree $g+3$.
 
-\section{Symmetric products}
+\section{Symmetric products}\label{symmetric section}
 
-If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see \cite[Theorem ***]{E}.) Since the map $X\to X/G$ is finite, $\dim X/G = \dim X$. The construction localizes, and thus passes to more general schemes as well. (The situation is more complicated for infinite groups, where geometric invariant theory comes into play.) 
+If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see for example \cite[Theorem ***]{E}), something that often fails when $G$ is infinite. Since the map $X\to X/G$ is finite, $\dim X/G = \dim X$. The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes as well. \fix{how general? Need a covering by invariant open affine subsets.}
 
-In particular, for any variety $X$, we can form the ordinary Cartesian product $X^d$, and take the quotient of $X^d$ by the action of the symmetric group permuting the factors of $X^d$. The resulting variety $X^d/S_d$ is called the $d$th \emph{symmetric power}, or \emph{symmetric product}, of $X$, which we denote by  $X^{(d)}$. 
+In particular, for any variety $X$, we define the $d$-th symmetric power of $X$ to be the quotient of the Cartesian product $X^d$ of $d$ copies of $X$ by the action of the group of all permutations of the factors. The resulting variety $X^d/S_d$ is called the \emph{$d$-th symmetric power}, or \emph{$d$-th symmetric product}, of $X$, denoted  $X^{(d)}$. 
+
+For example, if $X=\AA^{1}$ then $X^{d} = \AA^{d}$, and the ring of invariants of the symmetric group acting on
+$\cO_{\AA^{d}} = k[x_{1}, \dots, x_{d}]$ by permuting the variables is generated by the $d$ elementary symmetric functions. (\cite{****}), which generate a polynomial subring. Since the symmetric functions appear are the coefficients of
+a polynomial of degree $d$, we may identify the scheme $X^{d}$ with $\AA^{d}$. The same argument works for
+$\PP^{1}$, and shows that 
+$$
+(\PP^{1})^{(d)}\cong \PP^{d}
+$$ where the identification maps a $d$-tuple of points to the
+homogeneous form of degree $d$ vanishing on it, which is unique up to scalars.
 
 Since an effective divisor of degree $d$ on a curve $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C^{(d)}$ .
-There is one aspect of the symmetric powers that is special to the case of curves:  if $X$ is a smooth curve then the symmetric powers $X^{(d)}$ are all smooth as well. (By contrast, if $\dim X \geq 2$ then the symmetric powers $X^{(d)}$ are singular for all $d \geq 2$.) For example, identifying a divisor of degree $d$ on $\PP^1$   with the degree $d$ form vanishing there, we see that $\PP^1)^{(d)}$ may be identified with the projective space of forms
-$\PP^d$. The general case follows because locally analytically the action of the symmetric group on $C^d$ is the same as in the case $C=\PP^1$.
+There is one aspect of the symmetric powers that is special to the case of curves:  if $X$ is a smooth curve then the symmetric powers $X^{(d)}$ are all smooth as well. The general case follows from the case of $\AA^{1}$  because locally analytically the action of the symmetric group on $C^d$ is the same as for $\AA^1$. \fix{true, but we need to know for this that only the points with larger stabilizer matter}
+
+By contrast, if $\dim X \geq 2$ then the symmetric powers $X^{(d)}$ are singular for all $d \geq 2$.
+
+\begin{exercise}
+\begin{enumerate}
+ \item We say that a group $G$ acts freely on $X$ if $gx = gy$ only when $g =1$ or $x=y$. Show that
+ if $G$ is a finite group acting freely on a smooth affine variety $X$ then the quotient $X/G$ is smooth.
+\item Let $X = (\AA^{2})^{2}$ and let $G = \ZZ/2$ act on $X$ by permuting the two copies of $\AA^{2}$; algebraically,
+$(\AA^{2})^{2} = \Spec S$, with $S = k[x_{1},x_{2}, y_{1}, y_{2}$ and the nontrivial element $\sigma\in G$ acts by
+$sigma(x_{i}) = y_{i}$. 
+\item. Show that $G$ acts freely on the complement of the diagonal, but fixes the diagonal pointwise.
+\item Show that the algebra $S^{G}$ contains the 5 elements
+$$ 
+f_{1} = x_{1}+y_{1}, f_{2} = x_{2}+y_{2}, g_{1} = x_{1}y_{1}, g_{2} = x_{2}y_{2}, h = x_{1}y_{2}+x_{2}y_{1},
+$$
+which satisfy the equation $f_{1}f_{2} = g_{1}+g_{2}+h$, and this defines a normal 4-dimensional variety, singular
+along the  codimension 2 subset $f_{1} = f_{2} = 0$, which is the image of the diagonal subset of the 
+cartesian product $(\AA^{2})^{2}$.
+\end{enumerate}
+\end{exercise}
+
 
 \begin{exercise}[The universal divisor of degree $d$]
 Let $C$ be a smooth projective curve, and $C^{(d)}$ its $d$th symmetric power. Show that the locus
@@ -42,22 +72,18 @@ $$
 is a closed subvariety of the product $C^{(d)} \times C$, whose fiber over any point $D \in C^{(d)}$ is the divisor $D \subset C$
 \end{exercise}
 
-\fix{We haven't spoken of Hilbert schemes yet; and I'm not sure how the innocent reader is supposed to prove the following ``fact'' or the next exercise.}
-The variety $\cD$ is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique map $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$. Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$.
+The variety $\cD$ is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique map $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$. Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$. These statements are not generally true for higher-dimensional varieties; see Chapter~\ref{hilbert scheme chapter} and especially Exercise~\ref{symmetric power vs Hilbert scheme}
 
-\begin{exercise}
-Show by contrast that for $X$ a variety of dimension $r \geq 2$, the symmetric power $X^{(d)}$ is \emph{not} the Hilbert scheme of subschemes of dimension 0 and degree $d$ on $X$.
-\end{exercise}
 
 \section{Jacobians}
 
-To construct $\Pic^d(C)$ we start with $d=0$, and identify $\Pic^0(C)$ with  the \emph{Jacobian} $J(C)$ of $C$ using \emph{abelian integrals} and the classical topology.. This produces a complex manifold rather than an algebraic variety, but has the virtue of being relatively concrete. The Jacobian $J(C)$ is in fact a projective variety, and may be constructed purely algebraically---so that, for example, if the curve $C$ is defined over a given field $K$ then $J(C)$ will be defined over $K$ as well. The search for such a construction was one of the driving forces of algebraic geometry in the first half of the 20th century, giving rise to the notion of abstract algebraic varieties. See for example \cite{??s} [Kleiman must have something for this].
+To construct $\Pic^d(C)$ we start with $d=0$, and identify $\Pic^0(C)$ with  the \emph{Jacobian} $J(C)$ of $C$ using \emph{abelian integrals} and the classical topology. This produces a complex manifold rather than an algebraic variety, but has the virtue of being relatively concrete. \fix{I think we should make the following into a formal theorem-- in the characterization section --- which maybe doesn't exist yet?} The Jacobian $J(C)$ is in fact a projective variety, and may be constructed purely algebraically---so that, for example, if the curve $C$ is defined over a given field $K$ then $J(C)$ will be defined over $K$ as well. The search for such a construction was one of the driving forces of algebraic geometry in the first half of the 20th century, giving rise to the notion of abstract algebraic varieties. See for example \cite{??s} [Kleiman must have something for this].
 
-The goal of the 19th century mathematicians who first described abelian integrals was simply to make sense of integrals of algebraic functions. Very briefly: in the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
+The goal of the 19th century mathematicians who first described abelian integrals was simply to make sense of integrals of algebraic functions. In the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
 $$
 \int_{t_0}^t \frac{dx}{\sqrt{x^2+1}}.
 $$
-Such integrals can be thought of as path integrals of meromorphic differentials on the Riemann surface associated to the equation $y^2 = x^2+1$. This surface is isomorphic to $\PP^1$, meaning that $x$ and $y$ could be expressed as rational functions of a single variable $z$; making the corresponding change of variables transformed the integral into one of the form
+Such integrals can be thought of as path integrals of meromorphic differentials on the Riemann surface associated to the equation $y^2 = x^2+1$. This surface is isomorphic to $\PP^1$, meaning that $x$ and $y$ can be expressed as rational functions of a single variable $z$; making the corresponding change of variables transformed the integral into one of the form
 $$
 \int_{s_0}^s R(z)dz,
 $$
@@ -67,17 +93,20 @@ When they tried to extend this to similar-looking integrals like
 $$
 \int_{t_0}^t \frac{dx}{\sqrt{x^3+1}},
 $$
-however, they were stymied. The reason gradually emerged: the problem is that the Riemann surface associated to the equation $y^2 = x^3+1$ is not $\PP^1$, but rather a curve of genus 1, and so has nontrivial homology group $H_1(C, \ZZ) \cong \ZZ^2$. In particular  the integral depended on a choice of path; that is, it was defined only modulo a lattice $\ZZ^2 \subset \CC$. This meant, among other things, that the inverse function would be a doubly periodic meromorphic function on $\CC$, and not an elementary function. This led to the introduction of a host of new special functions, such as the Weierstrass $\sP$-function.
+which arises when one studies the length of an arc of an elipse and was thus called an elliptic integral, they were stymied. The reason gradually emerged: the problem is that the Riemann surface associated to the equation $y^2 = x^3+1$ is not $\PP^1$, but rather a curve of genus 1, and so has nontrivial homology group $H_1(C, \ZZ) \cong \ZZ^2$. In particular, if one expresses the integral as a path integral, then the value depends on a choice of path; it was defined, in this case only modulo a lattice $\ZZ^2 \subset \CC$. This implies that the inverse function is be a doubly periodic meromorphic function on $\CC$, and not an elementary function. Many new special functions, such as the Weierstrass $\sP$-function were studied as a result. The name ``elliptic curve'' arose from these considerations too.
 
-The next step was to try to extend this theory to path integrals of holomorphic differentials on curves of arbitrary genus. One problem is that the dependence of the integral on the choice of path is much worse; the set of homology classes of paths between two points $p_0, p \in C$ is identified with $H_1(C,\ZZ) \cong \ZZ^{2g}$ rather than $\ZZ^2$. The solution to this is to consider the integral of \emph{all} holomorphic differentials on $C$ simultaneously, rather than one at a time.
+Once this case was understood, the next step was to extend the theory to path integrals of holomorphic differentials on curves of arbitrary genus. One problem is that the dependence of the integral on the choice of path is much worse; the set of homology classes of paths between two points $p_0, p \in C$ is identified with $H_1(C,\ZZ) \cong \ZZ^{2g}$ rather than $\ZZ^2$. The Jacobian arises when one considers the integrals of \emph{all} holomorphic differentials on $C$ simultaneously. 
 
 %\fix{insert abstract characterization of the Jacobian; say its defined over any field, and depends on a choice of base point; and that we're just constructing the complex points of the underlying variety.}
-\fix{DE revised to here 10/24/21}
-To express the resulting construction in relatively modern terms, let $C$ be a smooth projective curve of genus $g$ over $\CC$, and consider the space $V = H^0(K_C)^*$ of linear functions on the space of holomorphic differentials $H^0(K_C)$. Integration over a closed loop in $C$ defines a linear function on 1-forms, so that we have a map
+\fix{DE revised to here 10/24/21 and again, better, on 12/11/21}
+To express the resulting construction in relatively modern terms, let $C$ be a smooth projective curve of genus $g$ over $\CC$, and recall that the sheaf of differential forms on $C$ is called $\omega_{C}$. We can also consider the 
+sheaf of holomorphic differential forms $\omega_{C}^{\rm{an}}$, but it turns out that every meromorphic differential form is in fact algebraic, 
+ for example \cite{****}, so we will identify the two sheaves, but consider $C$ as a complex manifold.
+
+We consider the space $V = H^0(\omega_C)^*$ of linear functions on the space of differentials $H^0(\omega_C)$.  Integration over a closed loop in $C$ defines a linear function on 1-forms, so that we have a map
 $$
-\iota: H_1(C,\ZZ) \; \to \;  H^0(K_C)^* \cong H^1(\sO_C).
+\iota: \ZZ^{2g} = H_1(C,\ZZ) \; \to \;  H^0(\omega_C)^* \cong H^1(\sO_C) = \CC^{2g}.
 $$
-The dimension of $H^0(K_C)^*$ as a real vector space is $2g$, the same as the rank of the free abelian group $H_1(C,\ZZ)$. 
 Using  Hodge theory\footnote{By Hodge theory 
 $$
 H^1(C, \CC) \cong H^1(C, \cO_C) \oplus \overline{H^1(C, \cO_C)}
@@ -91,21 +120,24 @@ $H_1(C,\CC) = \CC\otimes_\ZZ H_1(C,\ZZ)$, so any basis of $H_1(C,\ZZ)$ maps to a
  of the image of this basis under $\iota$, then it the same relation would hold after complex
  conjugation and thus hold on the image of the basis in $H_1(C,\CC)$, a contradiction. 
 }
-one can show that $\iota$ is injective and the complex analytic structure on $H^0(K_C)^*$ gives a complex analytic structure on the quotient, which is a torus of real dimension $2g$.  We call this quotient, with its structure as a $g$-dimensional complex manifold, the Jacobian of $C$, denoted
+one can show that $\iota$ induces an injective map of vector spaces 
+$$
+\CC \otimes H_1(C,\ZZ) = H_1(C,\CC) \to H^0(\omega_C)^*
+$$
+\fix{injectivity on the free group isn't enough}. The complex structure on $H^0(\omega_C)^*$ yields a complex analytic structure on the quotient $\CC^{2g}/(\iota(ZZ^{2g})$, which is thus a torus of real dimension $2g$.  We call this quotient, with its structure as a $g$-dimensional complex manifold, the Jacobian of $C$, denoted
 $$
 J(C) \; = \; V/\Lambda.
 $$
-In fact $J(C)$ is the complex variety associated to an algebraic variety---that is, an \emph{abelian variety}---and can be defined over any ground field---though for any of the applications we have in mind here we don't need to know this refinement. The point of this construction is that for any pair of points $p, q \in C$, the expression $\int_q^p$ describes a linear functional on $H^0(K_C)$, defined up to functionals obtained by integration over closed loops, and thus a point of $J(C)$. Thus, for example, if we fix the point $q$, we get a holomorphic map
+The point of this construction is that for any pair of points $p, q \in C$, the expression $\int_q^p$ describes a linear functional on $H^0(\omega_C)$, defined up to functionals obtained by integration over closed loops, and thus a point of $J(C)$. Thus, for example, if we choose a ``base point''  $q\in C$, we get a holomorphic map
 $$
-\mu \; : \; C \; \to \; J(C).
+\mu \; : \; C \; \to \; J(C); \quad p\mapsto int_{q}^{p}
 $$
-This is an example of what is called an \emph{Abel-Jacobi map}.
 
 %To fully utilize this, we want to extend it from points  to divisors on $C$, and to do this we need to find a space parametrizing effective divisors on $C$. This is readily available: since an effective divisor of degree $d$ on $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C_d$ of $C$, defined to be the quotient of the ordinary product $C^d$ by the action of the symmetric group $\Sigma_d$ on $d$ letters. This is a smooth, $d$-dimensional projective variety; for a description, see for example Section 10.3.1 of~\ref{3264}.
 %
 %\fix{insert the discussion 3264 showing that the symmetric power is smooth; note that this fails in higher dimension.} 
 
-Having chosen a base point $q \in C$ as above, we get for each $d$ a map
+Having chosen a base point $q \in C$ as above, we get for each $d$ the \emph{Abel-Jacobi} map
 $$
 \mu_d \; : \; C^{(d)} \; \to \; J(C),
 $$
@@ -113,17 +145,14 @@ defined by
 $$
 \mu_d(p_1 + \dots + p_d) \; = \; \sum \int_q^{p_i}.
 $$
-These are similarly called  Abel-Jacobi maps; when there is no ambiguity about $d$, we will denote them simply by $\mu$.
-
-There is a lot to say about these maps; in the following sections, we'll see a description of their differentials, and show that they are birational onto their images for $d \leq g$ and surjective for $d \geq g$. (These statements in case $d=g$ form the celebrated \emph{Jacobi inversion theorem}.) But before we get into these, we should say what all this has to do with our main concern, the geometry of linear series on curves.
-
+When there is no ambiguity about $d$, we will denote them simply by $\mu$.
 The connection between the discussion above and the geometry of linear series is made by \emph{Abel's theorem}:
 
 \begin{theorem}
 Two divisors $D, D' \in C^{(d)}$ on $C$ are linearly equivalent if and only if $\mu(D) = \mu(D')$; in other words, the fibers of $\mu_d$ are the complete linear systems of degree $d$ on $C$.
 \end{theorem}
 
-One direction of Abel's theorem---the ``only if" part---is relatively elementary, and that is what we will prove here. (This was in fact the only part proved by Abel; the converse, which is substantially more subtle, was proved by Clebsch. See \cite{} [GH] for a proof.)
+\cite{} [GH] for a complete proof; we will just prove the ``only if" part. This was in fact the only part proved by Abel; the converse, which is substantially more subtle, was proved by Clebsch.
 
 \begin{proof}[Proof of ``only if'']
 Suppose that $D$ and $D'$ are linearly equivalent; that is, $\cO_C(D) \cong \cO_C(D')$. Call this invertible sheaf $\cL$, and suppose that $D$ and $D'$ are the zero divisors of sections $\sigma, \sigma' \in H^0(\cL)$.
@@ -131,59 +160,84 @@ Taking linear combinations of $\sigma$ and $\sigma'$, we get a pencil $\{D_\lamb
 $$
 D_\lambda \; = \; V(\lambda_0\sigma + \lambda_1\sigma'),
 $$
-and this corresponds to a regular map $\alpha : \PP^1 \to C^{(d)}$. 
+and this corresponds to a regular map $\alpha : \PP^1 \to C^{(d)}$. \fix{is this supposed to be obvious to our readers?}
 
 Consider now the composition
 $$
 \phi = \mu \circ \alpha \; : \; \PP^1 \; \to \; J(C).
 $$
-Now, $J(C)$ is the quotient of a complex vector space $V = H^0(K_C)^*$ by a discrete lattice. If $z$ is any linear functional on $V$, then, the differential $dz$  on $V$ descends to a global holomorphic 1-form on the quotient $J(C)$, so that the regular one-forms on $J(C)$ generate the cotangent space to $J(C)$ at every point. But for any 1-form $\omega$ on $J(C)$, the pullback $\phi^*\omega$ is a global holomorphic 1-form on $\PP^1$, and hence identically zero. It follows that the differential $d\phi$ vanishes identically, and hence (since we are in characteristic 0) that $\phi$ is constant; thus $\mu(D) = \mu(D')$.
+Now, $J(C)$ is the quotient of the complex vector space $V = H^0(\omega_C)^*$ by a discrete lattice. If $z$ is any linear functional on $V$, then, the differential $dz$  on $V$ descends to a global holomorphic 1-form on the quotient $J(C)$, so that the regular one-forms on $J(C)$ generate the cotangent space to $J(C)$ at every point. But for any 1-form $\omega$ on $J(C)$, the pullback $\phi^*\omega$ is a global holomorphic 1-form on $\PP^1$, and hence identically zero. It follows that the differential $d\phi$ vanishes identically, and hence (since we are in characteristic 0) that $\phi$ is constant; thus $\mu(D) = \mu(D')$.
 \end{proof}
 
-\subsection{Characterization and properties of the Jacobian}
+Abel's Theorem goes surprisingly far to describe the Jacobian. The first statement of the following Corollary suggests how to describe the structure of the Jacobian algebraically, and was used by Andre Weil in the first such construction.
+
+\begin{corollary}
+If $C$ is a smooth curve of genus $g$ then the Abel-Jacobi map $\mu_{g}: C^{(d)} \to J(C)$ is a surjective birational map.
+More generally, $\mu_{d}$ is generically injective for $d\leq g$ and is surjective for $d\geq g$.
+\end{corollary}
+
+\begin{proof}
+For $d\leq g = dim H^{0}(\omega_{C})$,  the divisor $D$ that is the sum of $d$ general points $p_{1}, \dots,  p_{d} \in C$ will impose independent vanishing conditions on the sections of $\omega_{C}$, and thus
+$$
+h^{1}\cO_{C}(D) = h^0(\omega_C(-D)) = g-d,
+$$
+by Serre duality. Using this, the Riemann-Roch formula gives $h^{0}\cO_{C}(D) = 1$, so the fiber of 
+$\mu_{d}$ consists of a single point, proving injectivity. In particular when $g=d$, the image of $\mu_{d}$ has
+dimension $g$, and since $C^{(g)}$ is compact, the image is closed, so it must be equal to $J(C)$.
+
+Similarly, if $d \geq g$, we will have $h^0(\omega_C(-D)) = 0$ and hence $h^0(\cO_C(D)) = d-g+1$. Since this is the affine
+dimension, the linear series $|D|$ has dimension $d-g = \dim C^{(d)} - \dim J(C)$, and again it follows that
+$\mu_{d}$ is surjective.
+\end{proof}
 
 \subsection{Applications to linear series}
-Many of the statements about the Abel-Jacobi map made above follow immediately from Abel's theorem. For example, if  $D = p_1+\dots+p_d\in C^{(d)}$ is a general point and $d \leq g$, the points $p_i \in C$ are general and so impose independent conditions on $H^0(K_C)$; thus $h^0(K_C(-D)) = g-d$ and by Riemann-Roch $h^0(\cO_C(D)) = 1$. In other words, the fiber of $\mu_d$ containing $D$ consists just of the single point $D$, and so the map $\mu_d$ is birational onto its image. Similarly, if $d \geq g$, we will have $h^0(K_C(-D)) = 0$ and hence $h^0(\cO_C(D)) = d-g+1$; it follows that the fiber of $\mu_d$ through $D$ has dimension $d-g$, and hence that $\mu_d$ is surjective. In particular, when $d=g$ the map $C_g \to J(C)$ is a birational isomorphism; indeed, it was by using this isomorphism that Weil first gave an algebraic construction of $J(C)$.
 
 To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
 
 \begin{theorem}\label{g+3 theorem}
-Let $C$ be a smooth projective curve of genus $g$, and $D \in C_{g+3}$ a general divisor of degree $g+3$ on $C$. Then $D$ is very ample; in particular, every curve of genus $g$ may be embedded in projective space as a curve of degree $g+3$.
+Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general divisor of degree $g+3$ on $C$, then 
+$D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
 \end{theorem}
 
-This is, of course, a substantial improvement over our earlier result (\ref{****}) that every curve of genus $g$ may be embedded in projective space as a curve of degree $2g+1$. It is also sharp: hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. Nonetheless, we will see in Chapter~\ref{****} that we can improve on this: ``most" curves of genus $g$ can in fact be embedded in projective space as curves of degree $d = \lceil 3g/4 \rceil + 3$.
+We proved in Theorem~\ref{very ample} that \emph{every divisor} of degree $\geq 2g+1$ is very ample; the difference here is that we are taking a \emph{general} divisor. This result is sharp in the sense that hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. However, if we consider only general divisors on general curves, we can do still better: ``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$.
 
 \begin{proof}
-As we observed above, since $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
+If $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
 \begin{enumerate}
 \item for any point $p \in C$, we have $h^0(\cO_C(D-p)) = 3$ (that is, $|D|$ has no base points, and so defines a regular map $\phi_D : C \to \PP^3$); and
 \item for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
 \end{enumerate}
 The second of these assertions immediately implies the first, and this is what we will prove.
 
-To do this, suppose on the contrary that for some pair of points $p, q \in C$ we have $h^0(\cO_C(D-p-q)) \geq 3$. It follows from Riemann-Roch that $h^0(K_C(-D + p + q)) \geq 1$; that is, $K_C -D + p + q$ is linearly equivalent to an effective divisor $E = r_1 + \dots + r_{g-3}$ of degree $g-3$.
+Now let $D$ be arbitrary. Tos say that $h^0(\cO_C(D-p-q)) \geq 3$ is equivalent, by the Riemann-Roch theorem, to the condition $h^0(\omega_C(-D + p + q)) \geq 1$; fixing a divisor 
+$K_{C}\in |\omega_{C}|$, this is the condition that there exists  
+an effective divisor $E$ of degree $g-3$ linearly equivalent to a divisor in $K_C - D + p + q|$. 
 
-Now consider the map
+Now consider the map 
 $$
-\nu : C_{g-3} \times C_2 \; \to \; J(C)
+\nu : C^{(g-3)} \times C^{(2)} \; \to \; J(C)
 $$
 given by
 $$
-\nu : (E,F) \; \mapsto \; \mu(K_C) + \mu(E) - \mu(F),
+\nu : (E,F) \; \mapsto \; \mu_{2g-2}(K_C) - \mu_{g-3}(E) + \mu_{2}(F), 
 $$
-where the $+$ and $-$ on the right refer to the group law on $J(C)$. By what we have just said, and Abel's theorem, our divisor $D$ will fail to be very ample only if there exist effective divisors $F = p+q$ and $E = r_1+\dots+r_{g-3}$ such that $D \sim K_C +E-F$, that is, if
-$\mu(D) \in {\rm Im}(\nu)$. But the source $C_{g-3} \times C_2$ of $\nu$ has dimension $g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image $\mu(D)$ of a general point $D \in C_{g+3}$ will be a general point of $J(C)$ and so will not lie in ${\rm Im}(\nu)$. It follows that $D$ is very ample, and gives an embedding of $C$ in $\PP^3$ as a curve of degree $g+3$.
+\fix{I changed the signs; check!}
+where the $+$ and $-$ on the right refer to the group law on $J(C)$. 
+
+By what we have just said, and Abel's theorem, the divisor $D$ fails to be very ample only if
+$\mu(D) \in {\rm Im}(\nu)$. But the source $C^{(g-3)} \times C^{(2)}$ of $\nu$ has dimension $g-3+2 = g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image of a general divisor $D \in C^{(g-3)}$ is a general point of $J(C)$ and thus will not lie in ${\rm Im}(\nu)$. 
 \end{proof}
 
 Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!
 
 
-****A minor issue, but one that's bothering me: we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. Should this bother us?\fix{will be taken care of by the Characterization section.}****
+\fix{we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. we also need to know that the group law is algebraic.We need to have a formal statement of the existence as an algebraic group. Will be taken care of by the Characterization section, yet to be written.}
 
+\fix{DE rev to here 12/11/21}
 
-\section{Picard varieties}
+\section{Picard varieties}\label{picard section}
 
-Possible contents for this section: definition and notation for $\Pic^d(C)$; the fact (cheerful or otherwise) that $\Pic^d(C)$ represents the functor of families of invertible sheaves of degree $d$ on $C$ (does it, by the way? I'm worried because invertible sheaves do have automorphisms). Explicit correspondence between first order deformations of a given invertible sheaf $L$ on $C$ and tangent vectors to $\Pic^d(C)$ at $L$ (that is, elements of $H^0(K_C)^* = H^1(\cO_C)$ via transition functions for $L$.
+Possible contents for this section: definition and notation for $\Pic^d(C)$; the fact (cheerful or otherwise) that $\Pic^d(C)$ represents the functor of families of invertible sheaves of degree $d$ on $C$ (does it, by the way? I'm worried because invertible sheaves do have automorphisms). Explicit correspondence between first order deformations of a given invertible sheaf $L$ on $C$ and tangent vectors to $\Pic^d(C)$ at $L$ (that is, elements of $H^0(\omega_C)^* = H^1(\cO_C)$ via transition functions for $L$.
 
 \def\cW{{\mathcal W}}
 
@@ -206,13 +260,13 @@ To start, suppose $D = p_1 + \dots + p_d$ is a divisor consisting of $d$ distinc
 $$
 T_D(C_d) = \bigoplus T_{p_i}(C).
 $$
-On the other hand, the tangent space to $J(C)$ at the image point $\mu(D)$ is simply the vector space $H^0(K_C)^*$ of which $J(C)$ is a quotient (as it is at every point!). The differential $d\mu_D$ is thus a linear map
+On the other hand, the tangent space to $J(C)$ at the image point $\mu(D)$ is simply the vector space $H^0(\omega_C)^*$ of which $J(C)$ is a quotient (as it is at every point!). The differential $d\mu_D$ is thus a linear map
 $$
-\bigoplus T_{p_i}(C) \rTo H^0(K_C)^*,
+\bigoplus T_{p_i}(C) \rTo H^0(\omega_C)^*,
 $$
 and the transpose of this a linear map
 $$
-H^0(K_C) \rTo \bigoplus T^*_{p_i}(C).
+H^0(\omega_C) \rTo \bigoplus T^*_{p_i}(C).
 $$
 This last map is easy to describe: since the map $\mu$ is given by 
 $$
@@ -220,21 +274,21 @@ $$
 $$
 we can simply differentiate under the integral sign to conclude that \emph{the codifferential $d_\mu^*$ is the map}
 \begin{align*}
-H^0(K_C) &\to \bigoplus T^*_{p_i}(C) \\
+H^0(\omega_C) &\to \bigoplus T^*_{p_i}(C) \\
 \omega &\mapsto (\omega(p_1), \dots, \omega(p_d).
 \end{align*}
 
 There is a natural extension of this to the case of non-reduced divisors $D$, that is, divisors with repeated points. We need here a description of the tangent space to $C_d$ at the point $D$, and to this end we have the
 
 \begin{proposition}\label{symmetric product tangent space}
-The tangent and cotangent spaces to $C_d$ at the point corresponding to an arbitrary divisor $D = \sum a_ip_i$ are naturally identified with $H^0(\cO_C(D)/\cO_C)$ and $H^0(K_C/K_C(-D))$ respectively.
+The tangent and cotangent spaces to $C_d$ at the point corresponding to an arbitrary divisor $D = \sum a_ip_i$ are naturally identified with $H^0(\cO_C(D)/\cO_C)$ and $H^0(\omega_C/\omega_C(-D))$ respectively.
 \end{proposition}
 
-Note that we have a natural pairing between the spaces $H^0(\cO_C(D)/\cO_C)$ and $H^0(K_C/K_C(-D))$, given by sending $(f, \omega)$ to $\sum_i Res_{p_i}(f\omega)$. Note also that the term ``natural" has a precise meaning here: if we let 
+Note that we have a natural pairing between the spaces $H^0(\cO_C(D)/\cO_C)$ and $H^0(\omega_C/\omega_C(-D))$, given by sending $(f, \omega)$ to $\sum_i Res_{p_i}(f\omega)$. Note also that the term ``natural" has a precise meaning here: if we let 
 $$
 \cD = \{ (D, p) \in C_d \times C \; \mid \; p \in D \}
 $$
-be the universal effective divisor of degree $d$ on $C$, the proposition says that the cotangent sheaf $T^*_{C_d}$ is the direct image $\alpha_*(\beta^*K_C/\beta^*K_C(-\cD))$, where $\alpha$ and $\beta$ are the projections of $C_d \times C$ onto the two factors.
+be the universal effective divisor of degree $d$ on $C$, the proposition says that the cotangent sheaf $T^*_{C_d}$ is the direct image $\alpha_*(\beta^*\omega_C/\beta^*\omega_C(-\cD))$, where $\alpha$ and $\beta$ are the projections of $C_d \times C$ onto the two factors.
 
 \fix{give a real proof --- better than ACGH's}
 
@@ -245,7 +299,7 @@ In any event, given Proposition~\ref{symmetric product tangent space}, we can ex
 \begin{proposition}\label{differential of Abel-Jacobi}
 The codifferential $d\mu^*$ of the Abel-Jacobi map is simply the natural restriction map
 $$
-H^0(K_C) \rTo H^0(K_C/K_C(-D)).
+H^0(\omega_C) \rTo H^0(\omega_C/\omega_C(-D)).
 $$
 \end{proposition}
 
@@ -327,7 +381,7 @@ Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, th
 \item if $\rho = 0$ then the variety $\cW^r_d$ is irreducible;
 \item if $L$ is any invertible sheaf on $C$, the map
 $$
-H^0(L) \otimes H^0(K_CL^{-1}) \rTo H^0(K_C)
+H^0(L) \otimes H^0(\omega_CL^{-1}) \rTo H^0(\omega_C)
 $$
 is injective;
 \item if $|D|$ is a general $g^r_d$ on $C$, then
@@ -350,19 +404,19 @@ A curve $C$ is determined by the pair $(J(C), \Theta)$.
 \begin{proof}
 In fact, there are many ways of reconstructing a curve from its Jacobian; this one is  due to Andreotti, and makes essential use of our description of the differential of the Abel-Jacobi map. 
 
-A key  fact is that the Jacobian $J(C) = H^0(K_C)^*/H_1(C,\ZZ)$ is a torus, and so has trivial tangent bundle, with fiber $H^0(K_C)^*$ at every point. What this means is that if $X \subset J(C)$ is a smooth, $k$-dimensional subvariety, we have a \emph{Gauss map}
+A key  fact is that the Jacobian $J(C) = H^0(\omega_C)^*/H_1(C,\ZZ)$ is a torus, and so has trivial tangent bundle, with fiber $H^0(\omega_C)^*$ at every point. What this means is that if $X \subset J(C)$ is a smooth, $k$-dimensional subvariety, we have a \emph{Gauss map}
 $$
-\cG : X \to G(k, g) = G(k, H^0(K_C)^*),
+\cG : X \to G(k, g) = G(k, H^0(\omega_C)^*),
 $$
-sending a point $x \in X$ to its tangent plane $T_xX \subset T_xJ(C) = H^0(K_C)^*$; more generally, if $X$ is singular then $\cG$ will be a rational map. In particular, if $X = \Theta = W_{g-1}$, we get a rational map
+sending a point $x \in X$ to its tangent plane $T_xX \subset T_xJ(C) = H^0(\omega_C)^*$; more generally, if $X$ is singular then $\cG$ will be a rational map. In particular, if $X = \Theta = W_{g-1}$, we get a rational map
 $$
-W_{g-1} \rTo \PP^{g-1} = \PP(H^0(K_C))
+W_{g-1} \rTo \PP^{g-1} = \PP(H^0(\omega_C))
 $$
 between two $g-1$-dimensional varieties, and it is the geometry of this map from which we can recover the curve $C$.
 
 To start with, let's identify an open subset of $W_{g-1}$ where the Gauss map is defined. This is not hard: a point $L \in W_{g-1} \setminus W^1_{g-1}$ is the image of a unique point $D \in C_{g-1}$ under the map $\mu$, and moreover we've seen that the differential $d\mu$ is injective at $D$; it follows that $L$ is a smooth point of $W_{g-1}$. 
 
-Moreover, we've identified the tangent space to $W_{g-1}$ at $L = \mu(D)$: as we saw, the differential $d\mu : T_D(C_{g-1}) \to T_L(J) = H^0(K_C)^*$ is just the transpose of the evaluation map $H^0(K_C) \to H^0(K_C(-D))$, and it follows that the tangent space to $W_{g-1}$ at the point $L$ is the hyperplane in $H^0(K_C)^*$ dual to the unique differential vanishing on $D$. To put it another way: if we think of $C$ as canonically embedded in $\PP(H^0(K_C)^*)$, then by geometric Riemann-Roch the divisor $D$ will span a hyperplane in $\PP(H^0(K_C)^*)$, and the Gauss map $\cG$ sends $L$ to the point in the dual projective space $\PP(H^0(K_C))$ corresponding to that hyperplane.
+Moreover, we've identified the tangent space to $W_{g-1}$ at $L = \mu(D)$: as we saw, the differential $d\mu : T_D(C_{g-1}) \to T_L(J) = H^0(\omega_C)^*$ is just the transpose of the evaluation map $H^0(\omega_C) \to H^0(\omega_C(-D))$, and it follows that the tangent space to $W_{g-1}$ at the point $L$ is the hyperplane in $H^0(\omega_C)^*$ dual to the unique differential vanishing on $D$. To put it another way: if we think of $C$ as canonically embedded in $\PP(H^0(\omega_C)^*)$, then by geometric Riemann-Roch the divisor $D$ will span a hyperplane in $\PP(H^0(\omega_C)^*)$, and the Gauss map $\cG$ sends $L$ to the point in the dual projective space $\PP(H^0(\omega_C))$ corresponding to that hyperplane.
 
 \begin{fact}
 We have shown that the open subset $W_{g-1} \setminus W^1_{g-1}$ is contained in the smooth locus of $W_{g-1}$. In fact, they are equal; that is, $W^1_{g-1}$ is exactly the singular locus of $W_{g-1}$. This is a special case of the beautiful \emph{Riemann singularity theorem}, which says that for any point $L \in W_{g-1}$, the multiplicity $\mult_L(W_{g-1}) = h^0(L)$. For a proof of the Riemann singularity theorem, see for example [GH]. 
@@ -372,17 +426,17 @@ We have shown that the open subset $W_{g-1} \setminus W^1_{g-1}$ is contained in
 
 We are now in a position to describe the Gauss map
 $$
-\cG : W_{g-1} \rTo  \PP(H^0(K_C))
+\cG : W_{g-1} \rTo  \PP(H^0(\omega_C))
 $$
-explicitly in terms of the geometry of the canonical curve $C \subset \PP(H^0(K_C)^*)$. To start, let $p \in \PP(H^0(K_C))$ be a general point, dual to a general hyperplane $H \subset \PP(H^0(K_C)^*)$. The hyperplane $H$ will intersect the canonical curve $C$ transversely in $2g-2$ points $p_1,\dots,p_{2g-2}$; these points will be in linear general position (in particular, any $g-1$ of them will be linearly independent and so span $H$). It follows that the fiber of $\cG$ over the point $H$ will consist of the invertible sheaves $L = \cO_C(p_{\alpha_1} + \dots + p_{\alpha_{g-1}})$, where $p_{\alpha_1}, \dots, p_{\alpha_{g-1}}$ is any subset of $g-1$ of the points $p_i$; in particular, we see that the degree of the map $\cG$ is
+explicitly in terms of the geometry of the canonical curve $C \subset \PP(H^0(\omega_C)^*)$. To start, let $p \in \PP(H^0(\omega_C))$ be a general point, dual to a general hyperplane $H \subset \PP(H^0(\omega_C)^*)$. The hyperplane $H$ will intersect the canonical curve $C$ transversely in $2g-2$ points $p_1,\dots,p_{2g-2}$; these points will be in linear general position (in particular, any $g-1$ of them will be linearly independent and so span $H$). It follows that the fiber of $\cG$ over the point $H$ will consist of the invertible sheaves $L = \cO_C(p_{\alpha_1} + \dots + p_{\alpha_{g-1}})$, where $p_{\alpha_1}, \dots, p_{\alpha_{g-1}}$ is any subset of $g-1$ of the points $p_i$; in particular, we see that the degree of the map $\cG$ is
 $$
 \deg (\cG) = \binom{2g-2}{g-1}.
 $$
 
-The next question is, where does this analysis fail---in other words, for which hyperplanes $H \subset \PP H^0(K_C)^*$ does the fiber of $\cG$ not consist of $\binom{2g-2}{g-1}$ points, or equivalently,
+The next question is, where does this analysis fail---in other words, for which hyperplanes $H \subset \PP H^0(\omega_C)^*$ does the fiber of $\cG$ not consist of $\binom{2g-2}{g-1}$ points, or equivalently,
 what is the branch divisor of the map $\cG$? The answer is, the analysis above fails in two cases: when the points $p_1,\dots, p_{2g-2}$ are not in linear general position---specifically, when some $g-1$ of the points $p_i$ fail to be linearly independent; and when the hyperplane $H$ is not transverse to $C$, so that the hyperplane section $H \cap C$ consists of fewer than $2g-2$ distinct points.
 
-The first of these occurs in codimension 2 in $\PP H^0(K_C)$, and so does not contribute any components to the branch divisor of $\cG$. It follows that the branch divisor of the map $\cG$ is exactly the locus of hyperplanes $H \subset H^0(K_C)^*$ tangent to the canonical curve $C$; in other words, \emph{the branch divisor of $\cG$ is the hypersurface in $\PP H^0(K_C)$ dual to the canonical curve $C \subset \PP H^0(K_C)^*$}.
+The first of these occurs in codimension 2 in $\PP H^0(\omega_C)$, and so does not contribute any components to the branch divisor of $\cG$. It follows that the branch divisor of the map $\cG$ is exactly the locus of hyperplanes $H \subset H^0(\omega_C)^*$ tangent to the canonical curve $C$; in other words, \emph{the branch divisor of $\cG$ is the hypersurface in $\PP H^0(\omega_C)$ dual to the canonical curve $C \subset \PP H^0(\omega_C)^*$}.
 
 Now we can  invoke the fact that the dual of the dual of a variety $X \subset \PP^n$ is $X$ itself (see for example [3264] or something by Kleiman). We thus have a way of recovering the curve $C$ from the data of the pair $(J, W_{g-1})$: simply put, \emph{the curve $C$ is the dual of the branch divisor of the Gauss map on $W_{g-1}$}, and the Torelli theorem is proved.
 
