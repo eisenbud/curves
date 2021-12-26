@@ -15,21 +15,41 @@ On the other hand, it is true that every curve can be birationally embedded in $
 
 Plane curves, in other words, occupied a central role in the development of the theory of algebraic curves; and there are still many aspects of the geometry of a curve that are best approached in this way. In this chapter, we'll describe some of the tools used to study plane curves.
 
-To describe our approach at the outset: we will start, in Section~\ref{smooth plane curves}, with the case of smooth plane curves. As noted, this covers only a small fraction of all curves, but it will allow us to establish our basic constructions in a relatively simple setting. Then, in Section~\ref{nodal plane curves}, we'll extend this analysis to nodal plane curves; this is a significant expansion by virtue of Theorem~\ref{****}, which says that every smooth projective curve is the normalization of a nodal plane curve. Finally, in Section~\ref{arbitrary plane curve} we'll describe the most general form of this analysis, applicable to any reduced  and irreducible plane curve.
+\section{Our goal}
 
-\section{Smooth plane curves}\label{smooth plane curves}
+There are many, many questions we can ask about the geometry of plane curves, and we'll touch on several of these in what follows. But we'll focus for the most part on one basic problem, which we'll now describe.
 
-Let's start by posing two ``keynote" problems, which we'll solve in this section for smooth plane curves. In both, we'll be given the equation $F(X,Y,Z)$ of a smooth plane curve $C$; in the second, we'll be given in addition a divisor $D = \sum m_ip_i$ on $C$. We ask:
+We've been dealing since the opening chapters of this book with a basic construction: given a smooth projective curve $C$, and a divisor $D =  \sum m_ip_i$ on $C$, we define the complete linear system $|D|$ to be the family of all effective divisors $E$ on $C$ with $E \sim D$. A question we have not yet addressed  is a simple but fundamental one: if we are given the equations of $C$ as embedded in some projective space, and the coordinates of the points $p_i$, can we explicitly and algorithmically determine the complete linear series $|D|$?
+
+The answer is ``yes," and the way we do it is by working with plane models of our curves: that is, we realize a given curve $C$ as the normalization of a plane curve $C_0 \subset \PP^2$ (for example, by a general projection of $C$ to $\PP^2$), and working in the plane. 
+
+Let's start by posing two ``keynote" problems. In both, we'll be given the equation $F(X,Y,Z)$ of a smooth plane curve $C_0$, with normalization $C$; in the second, we'll be given in addition a divisor $D = \sum m_ip_i$ on $C$. We ask:
 \begin{enumerate}
 \item Find all regular differentials/sections of $K_C$; that is, write down a basis for $H^0(K_C)$; and
 \item Describe the complete linear system $|D|$; that is, find all effective divisors $E$ on $C$ with $E \sim D$.
 \end{enumerate}
 
-Note that this subsumes questions like, are two given divisors $D$ and $E$ linearly equivalent? And, is a given divisor $D$ linearly equivalent to an effective divisor? As we said above, in this section we'll solve these problems for a smooth plane curve; in the following section we'll do it for (the normalization of) a plane curve with nodes; this will allow us to answer these questions algorithmically for an arbitrary smooth curve.
+Note that this subsumes questions like, are two given divisors $D$ and $E$ linearly equivalent? And, is a given divisor $D$ linearly equivalent to an effective divisor? 
 
- So: let's say $C \subset \PP^2$ is the plane curve given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce affine coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\tilde C = C \cap U$ is given as the zero locus $V(f) \subset U$. Finally, just for simplicity, we'll assume that $C$ is transverse to the line $L = V(Z)$ at infinity, meeting it at $d$ points $p_1,\dots,p_d$, none of which is the point $[0,1,0]$ (equivalently, $\tilde C$ has no vertical asymptotes).
+Our plan is to solve these problems in three stages of increasing generality. To start with, in the following section we'll solve these problems in case $C = C_0$ is a smooth plane curve. (As we've observed, this is a very limited form of our general problem; the vast majority of curves cannot be realized as smooth plane curves.) In Section~\ref{nodal plane curves} we'll do it for (the normalization of) a plane curve with nodes. This is a significant expansion by virtue of Theorem~\ref{****}, which says that every smooth projective curve is the normalization of a nodal plane curve. 
+
+Finally, in Section~\ref{arbitrary plane curves} we'll describe how to answer these questions algorithmically for an arbitrary smooth curve.
+This last extension is significant for practical reasons: many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Theorem~\ref{****} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is almost always easier to work with the original plane model, as given. 
+
+
+\section{Smooth plane curves}\label{smooth plane curves}
+
+For this section, we'll we'll take $C \subset \PP^2$ to be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce affine coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\tilde C = C \cap U$ is given as the zero locus $V(f) \subset U$. 
+
+Finally, just for simplicity, we'll make a couple assumptions about the relation of $C$ to the coordinates in $\PP^2$:
+\begin{enumerate}
+\item We'll assume that the point $[0,1,0]$ (that is, the point at infinity in the vertical direction) does not lie on $C$; in other words, the projection $C \to \PP^1$ given by $[X,Y,Z] \mapsto [X,Z]$ (or $(x,y) \mapsto x$ in affine coordinates)  has degree $d$; and
+\item We'll assume that the line at infinity $Z = 0$ intersects $C$ transversely in $d$ distinct points $p_1, dots, p_d$; by way of notation, we'll denote by $H$ the divisor $H = p_1+ \dots +p_d$ of intersection of $C$ with the line at infinity.
+\end{enumerate}
+
+These conditions are clearly satisfied for a general choice of coordinate system, so they're not restrictive; nor are they necessary: in Exercise~\ref{****} we'll see how to do everything in the absence of these assumptions, albeit with slightly more complicated notation.
  
- We start by drastically scaling back our ambitions: instead of asking for a basis of $H^0(K)$, let's just see if we can write down a single rational 1-form on $C$. This is manageable: we can just take a regular 1-form on $\AA^2$, such as $dx$, and restrict/pull back to $C$. In fact, this will be regular on the open subset $\tilde C$, but a change of coordinate calculation shows that it will have double poles at the points $p_1,\dots,p_d$ of $C \cap L$.
+Enough talk! Let's see how to solve the damn problem. We start by drastically scaling back our ambitions: instead of asking for a basis of $H^0(K)$, let's just see if we can write down a single rational 1-form on $C$. This is manageable: we can just take a regular 1-form on $\AA^2$, such as $dx$, and restrict/pull back to $C$. In fact, this will be regular on the open subset $\tilde C$, but a change of coordinate calculation shows that it will have double poles at the points $p_1,\dots,p_d$ of $C \cap L$.
  
  How do we get rid of the poles of $dx$? The natural thing to do would be simply to divide $dx$ by a polynomial $h(x,y)$ of degree 2 or more, but there's a problem: $h(x,y)$ will vanish at points of $C \cap U$, potentially creating poles of the quotient $dx/h$. There is a solution to this: \emph{choose a polynomial $h$ that vanishes only at those points of $C \cap U$ where $dx$ already has a zero}; hopefully, the zeroes of $h$ will just cancel the zeroes of $dx$ rather than creating new poles.
  
@@ -299,7 +319,7 @@ Let $C_0$ be a plane quartic curve with two nodes $q_1, q_2$; let $\nu : C \to C
 By the genus formula, $C$ has genus 1. Using the construction above, describe the group law on $C$ with $o$ as origin.
 \end{exercise}
 
-\section{Arbitrary plane curves}
+\section{Arbitrary plane curves}\label{arbitrary plane curves}
 
 Well, not exactly arbitrary: in this section, we'll deal with a plane curve $C_0$ that is assumed to be reduced and irreducible, with normalization $\nu : C \to C_0$. 
 
