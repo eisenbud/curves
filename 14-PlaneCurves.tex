@@ -13,11 +13,11 @@ The case of plane curves makes a striking contrast: a curve $C \subset \PP^2$ is
 
 On the other hand, it is true that every curve can be birationally embedded in $\PP^2$: we can embed $C$ as a curve $\tilde C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $\tilde C$ birationally onto its image. This is indeed how 19th century geometers typically described a curve, in the days before abstract varieties: as the normalization of a plane curve. (The points on the normalization were realized as valuations on the function field of $C$, essentially taking advantage of the fact that for smooth curves birational and biregular isomorphism are the same thing.) Much of the analysis of the geometry of the curve---for example, the description of the linear systems on the curve---was carried out in this setting.
 
-Plane curves, in other words, occupied a central role in the development of the theory of algebraic curves; and there are still many aspects of the geometry of a curve that are best approached in this way. In this chapter, we'll describe some of the tools used to study plane curves.
+Plane curves, in other words, occupied a central role in the development of the theory of algebraic curves; and there are still many aspects of the geometry of a curve that are best approached in this way. In this chapter, we'll describe some of the tools used to study  curves via their plane models.
 
 \section{Our goal}
 
-There are many, many questions we can ask about the geometry of plane curves, and we'll touch on several of these in what follows. But we'll focus for the most part on one basic problem, which we'll now describe.
+There are many, many questions we can ask about the geometry of plane curves, and we'll touch on several of these in what follows. But in this chapter we'll focus for the most part on one basic problem, which we'll now describe.
 
 We've been dealing since the opening chapters of this book with a basic construction: given a smooth projective curve $C$, and a divisor $D =  \sum m_ip_i$ on $C$, we define the complete linear system $|D|$ to be the family of all effective divisors $E$ on $C$ with $E \sim D$. A question we have not yet addressed  is a simple but fundamental one: if we are given the equations of $C$ as embedded in some projective space, and the coordinates of the points $p_i$, can we explicitly and algorithmically determine the complete linear series $|D|$?
 
@@ -31,20 +31,20 @@ Let's start by posing two ``keynote" problems. In both, we'll be given the equat
 
 Note that this subsumes questions like, are two given divisors $D$ and $E$ linearly equivalent? And, is a given divisor $D$ linearly equivalent to an effective divisor? 
 
-Our plan is to solve these problems in three stages of increasing generality. To start with, in the following section we'll solve these problems in case $C = C_0$ is a smooth plane curve. (As we've observed, this is a very limited form of our general problem; the vast majority of curves cannot be realized as smooth plane curves.) In Section~\ref{nodal plane curves} we'll do it for (the normalization of) a plane curve with nodes. This is a significant expansion by virtue of Theorem~\ref{****}, which says that every smooth projective curve is the normalization of a nodal plane curve. 
+Our plan is to solve these problems in three stages of increasing generality. To start with, in the following section we'll solve these problems in case $C = C_0$ is a smooth plane curve. (As we've observed, this is a very limited form of our general problem---the vast majority of curves cannot be realized as smooth plane curves---but it will serve to establish our basic approach.) In Section~\ref{nodal plane curves} we'll do it for (the normalization of) a plane curve with nodes. This is a significant expansion by virtue of Theorem~\ref{****}, which says that every smooth projective curve is the normalization of a nodal plane curve. 
 
-Finally, in Section~\ref{arbitrary plane curves} we'll describe how to answer these questions algorithmically for an arbitrary smooth curve.
+Finally, in Section~\ref{arbitrary plane curves} we'll describe how to answer these questions algorithmically for the normalization of an arbitrary plane curve.
 This last extension is significant for practical reasons: many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Theorem~\ref{****} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is almost always easier to work with the original plane model, as given. 
 
 
 \section{Smooth plane curves}\label{smooth plane curves}
 
-For this section, we'll we'll take $C \subset \PP^2$ to be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce affine coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\tilde C = C \cap U$ is given as the zero locus $V(f) \subset U$. 
+For this section, we'll we'll take $C \subset \PP^2$ to be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce affine coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\tilde C = C \cap U$ is given as the zero locus $V(f) \subset  \AA^2$. 
 
 Finally, just for simplicity, we'll make a couple assumptions about the relation of $C$ to the coordinates in $\PP^2$:
 \begin{enumerate}
 \item We'll assume that the point $[0,1,0]$ (that is, the point at infinity in the vertical direction) does not lie on $C$; in other words, the projection $C \to \PP^1$ given by $[X,Y,Z] \mapsto [X,Z]$ (or $(x,y) \mapsto x$ in affine coordinates)  has degree $d$; and
-\item We'll assume that the line $L$ at infinity given by $Z = 0$ intersects $C$ transversely in $d$ distinct points $p_1, dots, p_d$; by way of notation, we'll denote by $H$ the divisor $H = p_1+ \dots +p_d$ of intersection of $C$ with $L$.
+\item We'll assume that the line $L$ at infinity given by $Z = 0$ intersects $C$ transversely in $d$ distinct points $p_1, \dots, p_d$; by way of notation, we'll denote by $H$ the divisor $H = p_1+ \dots +p_d$ of intersection of $C$ with $L$.
 \end{enumerate}
 
 These conditions are clearly satisfied for a general choice of coordinate system, so they're not restrictive. Nor are they necessary: in Exercise~\ref{****} we'll see how to do everything in the absence of these assumptions, albeit with slightly more complicated notation.
@@ -129,7 +129,7 @@ of two effective divisors on $C$. Next, let $G(X,Y,Z)$ be a polynomial in the pl
 $$
 (G) = E + A
 $$
-as divisors on $C$. Now, let $H$ be another polynomial of the same degree $m$ as $G$, vanishing on $A + F$ but again not vanishing identically on $C$. Let $D'$ be the divisor cut on $C$ by $H$ residual to $A+F$; that is, write
+as divisors on $C$. Now, let $H$ be another polynomial of the same degree $m$ as $G$, vanishing on $A + F$ but again not vanishing identically on $C$. (Since $m$ is already chosen, there may not exist any such polynomial, which is as it should be: the original divisor $D$ need not be linearly equivalent to any effective divisor.) Let $D'$ be the divisor cut on $C$ by $H$ residual to $A+F$; that is, write
 $$
 (H) = A + F + D'.
 $$
@@ -163,7 +163,8 @@ The set-up, in any event, is as follows: we have a nodal plane curve $C_0 \subse
 \item given a divisor $D$ on $C$, to  determine $|D|$; that is, find all effective divisors linearly equivalent to $D$.
 \end{enumerate}
 
-As before, we'll choose homogeneous coordinates  $[X,Y,Z]$ on $\PP^2$ so that the curve $C_0$ intersects the line $L = V(Z)$ at infinity transversely at points $p_1,\dots,p_d$ other than $[0,1,0]$; in addition, we can assume that all the nodes of $C_0$ lie in the affine plane $U = \PP^2 \setminus L$, and that neither branch of $C_0$ at a node has vertical tangent. (As before, these conditions are not logically necessary; they serve only to keep the notation reasonably simple, and in any case are satisfied by a general choice of coordinates.) Let the nodes of $C_0$ be $q_1,\dots,q_\delta$, with $r_i, s_i \in C$ lying over $q_i$; we'll denote by $\Delta$ the divisor $\sum r_i + \sum s_i$ on $C$.
+As before, we'll choose homogeneous coordinates  $[X,Y,Z]$ on $\PP^2$ so that the curve $C_0$ intersects the line $L = V(Z)$ at infinity transversely at points $p_1,\dots,p_d$ other than $[0,1,0]$ (meaning in particular that all the nodes of $C_0$ lie in the affine plane $U = \PP^2 \setminus L$).
+In addition, we can assume that  neither branch of $C_0$ at a node has vertical tangent. (As before, these conditions are not logically necessary; they serve only to keep the notation reasonably simple, and in any case are satisfied by a general choice of coordinates.) Let the nodes of $C_0$ be $q_1,\dots,q_\delta$, with $r_i, s_i \in C$ lying over $q_i$; we'll denote by $\Delta$ the divisor $\sum r_i + \sum s_i$ on $C$.
 
 Let $F(X,Y,Z)$ be the homogeneous polynomial of degree $d$ defining the curve $C_0$, and let $f(x,y) = F(x,y,1)$ be the defining equation of the affine part $C_0 \cap U$ of $C_0$. We start by considering the rational differential $\nu^*(dx)$ on $C$. In the smooth case, we saw that this differential was regular and nonzero in the finite plane, but had poles of order 2 at the point of $C \cap L$; this followed from the equation
 $$
@@ -175,7 +176,7 @@ $$
 $$
 will be regular except for simple poles at the points $r_i$ and $s_i$.
 
-So, how do we get rid of these poles? There is one simple way: we require that $g$ vanishes at the points $q_i$. We say in this case that $g$ (and the curve defined by $g$) \emph{satisfies the adjoint conditions}. In any event, we see that
+So, how do we get rid of these poles? There is one simple way: we require that $g$ vanishes at the points $q_i$. We say in this case that $g$ (and the curve defined by $g$) \emph{satisfies the adjoint conditions}. (In the following section, we'll describe the adjoint conditions associated to an arbitrary singularity.) In any event, we see that
 $$
  \left\{ \nu^* \frac{g(x,y)dx}{\partial f/\partial y} \mid \deg g \leq d-3 \text{ and } g(q_i) = 0 \; \forall i \right\} \subset H^0(K_C).
 $$
@@ -218,7 +219,7 @@ In fact we can, by a process analogous to what we did in the smooth case. We'll 
 $$
 (\nu^*G) = E + \Delta + A,
 $$
-as before. Once more, just for simplicity, let's assume that the support of $A$ is disjoint from the support of $\Delta$; this means just that the curve $V(G)$ is smooth at the points $q_i$ and is not tangent to either of the branches of $C_0$ there.
+as before. Once more, just for simplicity, let's assume that the support of $A$ is disjoint from the support of $\Delta$; this means just that the curve $V(G)$ is smooth at the points $q_i$ and is not tangent to either of the branches of $C_0$ there (this can certainly be done if we take $m$ large).
 
 Next, we find polynomials $H$ of the same degree $m$, vanishing at $A+F$ and at the points $q_i$ but not on all of $C_0$. Let $D'$ be the divisor cut on $C$ by $H$ residual to $E + \Delta + A$; that is, we write
 $$
