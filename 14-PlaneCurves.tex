@@ -7,7 +7,7 @@
 
 \
 
-As anyone who has read the last chapter knows, describing curves in projective space $\PP^3$  is difficult: the ideal of such a curve typically has three or more generators, which in turn have to satisfy certain syzygies; in consequence, even basic facts about them---for example, the dimension of the family of all curves of given degree and genus---remain very unclear.
+As anyone who has read the last chapter knows, describing curves in projective space $\PP^3$  is difficult: the ideal of such a curve typically has three or more generators, which in turn have to satisfy certain syzygies; in consequence, even basic facts about them---for example, the dimension of the family of all curves of given degree and genus---remain very unclear. And of course, as you might expect we know even less about curves in $\PP^n$ for $n > 3$.
 
 The case of plane curves makes a striking contrast: a curve $C \subset \PP^2$ is necessarily the zero locus of a single homogeneous polynomial, and conversely any homogeneous polynomial $F(X,Y,Z)$ defines a plane curve. There is a downside, however: while any smooth projective curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
 
@@ -278,7 +278,7 @@ The lemma follows by applying the Leray spectral sequence, which relates the coh
 
 \subsection{Existence of good projections}\label{projection section}
 
-In this section, we want to verify the assertion made above that every smooth curve is birational to a nodal plane curve. In characteristic 0, this is straightforward, and we will give the argument here.
+In this section, we want to verify the assertion made above that every smooth curve $C$ is birational to a nodal plane curve $C_0 \subset \PP^2$; we'll do this by first embedding $C$ in $\PP^3$, and then arguing that the projection $\pi_p : C \to \PP^2$ from a general point $p \in \PP^3$ is birational onto its image $C_0$ and that $C_0$ has only nodes as singularities. This is certainly plausible, but in fact a proof relies on an application of the uniform position lemma of Section~\ref{****}.
 
 \begin{proposition}\label{nodal projection}
 If $C \subset \PP^n$ is a smooth curve in projective space, and $\Lambda \cong \PP^{n-3} \subset \PP^n$ a general $(n-3)$-plane, then the projection $\pi_\Lambda : C \to \PP^2$ is birational onto its image, which will be a nodal curve.
@@ -287,15 +287,21 @@ If $C \subset \PP^n$ is a smooth curve in projective space, and $\Lambda \cong \
 \begin{proof}
 To start with, we can reduce to the case $n=3$: a general $(n-4)$-plane $\Gamma \subset \PP^n$ will be disjoint from the secant variety to $C$, so that the projection $\pi_\Gamma : C \to \PP^3$ will embed $C$ as a smooth curve in $\PP^3$; since the composition of $\pi_\Gamma$ with projection from a general point in $\PP^3$ is the projection $\pi_\Lambda : C \to \PP^2$ from a general $(n-3)$-plane, we need only prove the proposition for the projection of a smooth space curve $C \subset \PP^3$ from a general point.
 
-Now, when we project $C \subset \PP^3$ from a general point, we do expect to introduce singularities: a general $p \in \PP^3$ will lie on a finite number of secant lines, which will correspond to singular points of the image $C_0$. (Note that since a general $p$ cannot lie on infinitely many secants, the projection will be birational onto its image; thus we just have to make sure the singularities introduced are just nodes. This requires that we verify three things: that if $p \in \PP^3$ is a general point, then
+Now, when we project $C \subset \PP^3$ from a general point, we do expect to introduce singularities: we know that the family of secant lines to $C$ is two-dimensional, and we expect a finite number of them will contain a general point $p \in \PP^3$. Indeed, we see from this naive dimension count that $p$ can lie on at most a finite number of secant lines, proving that the map $\pi_p$ is birational onto its image.
+
+We now just have to make sure the singularities introduced are just nodes, and here is where we need to invoke the uniform position lemma. For example, suppose we want to prove that the map $\pi_p$ is never three-to-one. This amounts to saying that a general point $p \in \PP^3$ does not lie on any \emph{trisecant line}; equivalently, that the family of trisecant lines to $C$ has dimension at most one. Moreover, since the variety of secant lines is irreducible of dimension 2, this follows from the simple assertion that \emph{not every secant line to $C \subset \PP^3$ is a trisecant}.
+
+At this point we'd encourage you to try to give an elementary argument for this seemingly obvious assertion. Whether you succeed or not, it does follow immediately from the uniform position lemma: this says that if $H \subset \PP^3$ is a general plane, then the points of intersection $p_1,\dots,p_d \in C \cap H$ are in linear general position in $H$; that is, no three are collinear. The line joining any two is thus a secant line to $C$ but not a trisecant line, which suffices to prove our assertion.
+
+To complete the proof of Proposition~\ref{nodal projection} requires that we verify three things: that if $p \in \PP^3$ is a general point, then
 \begin{enumerate}
-\item $p$ does not lie on any tangent line to $C$;
-\item $p$ does not lie on any trisecant line; and
+\item $p$ does not lie on any trisecant line; 
+\item $p$ does not lie on any tangent line to $C$; and
 \item for each of the secant lines $\overline{q,r}$ to $C$ containing $p$, the tangent lines $\TT_qC$ and $\TT_rC$ are skew.
 \end{enumerate}
 These three conditions ensure that the image $C_0 = \pi_p(C)$ does not have any cusps, triple points or tacnodes, respectively.
 
-The first is immediate: there is only a 1-dimensional family of tangent lines to $C$, which sweep out a surface in $\PP^3$; a general $p \in \PP^3$ will not lie on that surface. Similarly, we claim that there is at most a 1-dimensional family of trisecant lines to $C$; this follows from the Castelnuovo Lemma (\ref{}), which says that a general plane in $\PP^3$ cannot contain a trisecant line to $C$. Finally, it can't be the case that for a general pair of points $q, r \in C$ we have $\TT_qC \cap \TT_rC \neq \emptyset$; otherwise the projection $\pi_{\TT_qC} : C \to \PP^1$ would have derivative everywhere 0, but be nonconstant. Thus the space of what were classically called \emph{stationary secants}---secant lines $\overline{p,q}$ with $\TT_pC \cap \TT_qC \neq \emptyset$---is at most 1-dimensional, and a general $p \in \PP^3$ will not lie on one.
+We have just given an argument for the first assertion. The second is immediate: there is only a 1-dimensional family of tangent lines to $C$, which sweep out a surface in $\PP^3$; a general $p \in \PP^3$ will not lie on that surface.  Finally, it can't be the case that for a general pair of points $q, r \in C$ we have $\TT_qC \cap \TT_rC \neq \emptyset$; otherwise the projection $\pi_{\TT_qC} : C \to \PP^1$ would have derivative everywhere 0, but be nonconstant. Thus the space of what were classically called \emph{stationary secants}---secant lines $\overline{p,q}$ with $\TT_pC \cap \TT_qC \neq \emptyset$---is at most 1-dimensional, and a general $p \in \PP^3$ will not lie on one.
 \end{proof}
 
 Note that the the second and third cases in this argument rely on the hypothesis of characteristic 0. Indeed, in characteristic $p > 0$ it may not be the case that a general projection of a smooth curve to $\PP^2$ is nodal---but it's still true that every curve is the normalization of a nodal plane curve: we have the slightly weaker
