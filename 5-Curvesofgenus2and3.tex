@@ -5,19 +5,21 @@
 \section{Hyperelliptic Curves}
  
  
- This will be a somewhat anomalous section, in keeping with its subject matter. In the world of curves, hyperelliptic curves are outliers: they behave differently from other curves, and the techniques used to analyze them are correspondingly different from how we approach more general curves. As you'll see in following chapters, many theorems about curves contain the hypothesis ``non-hyperelliptic," with the corresponding result for hyperelliptic curves arrived at directly by ad hoc methods.
+In the world of curves, hyperelliptic curves are outliers: they behave differently from other curves, and the techniques used to analyze them are different from the techniques used for more general curves. Many theorems about curves contain the hypothesis ``non-hyperelliptic," with the corresponding result for hyperelliptic curves arrived at directly by ad hoc methods. Because the methods of this section will not be used in other cases, it could be skipped in first reading
  
- In this section, we'll lay out the basic facts about hyperelliptic curves. There will be a further discussion of them in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings; but the analysis here will cover most of the questions we'll be asking about curves in general in the next four chapters. 
- 
- It should also be said that this section does not have to be read in sequence; if you're curious to see some of the questions we ask about curves in general (and some of the answers, and the techniques for arriving at them), you can skip ahead to the following two chapters and return to this section whenever you feel like it.
- 
+There will be a further discussion of hyperelliptic curves in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings; the analysis here will cover most of the questions we'll be asking about curves in general in the next four chapters. 
+  
  \subsection{The equation of a hyperelliptic curve}
  
-  By definition, a hyperelliptic curve $C$ is one admitting a degree two map $\pi : C \to \PP^1$. The local geometry of such a map is pretty simple: at all but finitely many points $p \in C$ the map $\pi$ is a local isomorphism (``local" here in the complex analytic/classical or \'etale topology, not the Zariski topology!); at any other point $p \in C$, the map is given in terms of local coordinates on $C$ and $\PP^1$ simply by $z \mapsto z^2$. In particular, both the ramification divisor and the branch divisor are reduced, meaning by the Riemann-Hurwitz formula there will be exactly $2g+2$ branch points $q_1,\dots,q_{2g+2} \in \PP^1$.
+By definition, a hyperelliptic curve $C$ is one admitting a degree two map $\pi : C \to \PP^1$. Because the degree is only 2, each point in $\PP^1$ has either two distinct preimages, or one point of simple ramification. there can be no higher ramification, so at all but finitely many points $p \in C$ the map $\pi$ is a local isomorphism (``local" here in the complex analytic/classical or \'etale topology, not the Zariski topology!); at any other point $p \in C$, the map is given in terms of local analytic coordinates on $C$ and $\PP^1$ simply by $z \mapsto z^2$. In particular, both the ramification divisor and the branch divisor \fix{where are these defined?} are reduced. Thus by the Riemann-Hurwitz formula there are exactly $2g+2$ branch points $q_1,\dots,q_{2g+2} \in \PP^1$. These points determine the curve:
   
-  In fact, we claim that \emph{there is a unique smooth projective curve $C$ expressible as a 2-sheeted cover of $\PP^1$ branched over a given collection of points $p_1,\dots,p_{2g+2} \in \PP^1$}. \fix{proof to be filled in. Why not make this assertion a theorem?}
-  
-  Given this, it's not hard to write down the equation of this curve: if the coordinate of the point $p_i \in \PP^1$ is $\lambda_i$, it is the smooth projective model of the affine curve 
+ 
+\begin{theorem}\label{hyperelliptic existence}
+There is a unique smooth projective hyperelliptic curve $C$ expressible as a 2-sheeted cover of $\PP^1$ branched over any set of $2g+2$ distinct points.
+\end{theorem}
+
+We can easily construct such a curve, postponing for a moment the uniqueness:
+If the coordinate of the point $p_i \in \PP^1$ is $\lambda_i$, it is the smooth projective model of the affine curve 
   $$
 C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambda_i) \big\}.
 $$ 
@@ -29,11 +31,54 @@ $$
   
   It's worth pointing out that $C$ is \emph{not} simply the closure of the affine curve $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$: as you can see from a direct examination of the equation, each of these closures will be singular at the (unique) point at infinity.
   
-  \begin{exercise}
+   
+
+
+\begin{proof} [Completion of the proof of Theorem~\ref{hyperelliptic existence}]
+The proof (in characteristic 0) of uniqueness follows from elementary algebraic topology:
+
+First, a punctured 2-disk has fundamental group $\ZZ$ and the unique $n$-sheeted covering is again a punctured
+disk; regarding these disks as neighborhoods of the origin in $\CC^2$, the covering map
+can be taken to be $x \mapsto x^n$. This map can of course be extended (by the same formula) to a map
+analytic also at the origin, with ramification index (by definition) $n-1$.
+
+Now suppose that $\Gamma = \{p_1, \dots, p_{d}\}$ is the desired branch divisor.
+Globally, if $\gamma_i$ is a small loop around $p_i$ then the abelianization of the fundamental group $\pi$ of the $d$-times punctured sphere
+$$
+S' := \PP^1\setminus \Gamma
+$$
+is its
+first homology group, 
+$$
+H := H_1(S', \ZZ) = \frac{\oplus \ZZ\cdot \gamma_i}{\ZZ\cdot\sum_i [\gamma_i]}
+$$
+\fix{Insert ``lollipop picture''}. Since $\ZZ/2$ is abelian, a degree 2 unramified covering of $S'$ corresponds to a map $H\to \ZZ/2$, and this map must send $2\gamma_i$ to 0 for $i=1\dots d$.  There is such a map 
+if and only if $d$ is even, and in this case the map is unique. 
+
+Summarizing: there is, a unique degree $2$ topological covering  $C'\to \PP^1\setminus \Gamma$
+by a  surface $C'$ that extends to a ramified covering of $\rho: C\to\PP^1$, simply ramified over the points of
+$\Gamma$, as long as the number of ramification points  is even. 
+
+A triangulation of $\PP^1$ with 
+$V$ vertices including the points of $\Gamma$, $E$ edges, and $F$ triangles must have 
+$$
+V-E+F = \chi_{\rm top}(S^2) = 2.
+$$
+ It lifts to a triangulation of $C$ with $2V-d$ vertices, $2E$ edges, and $2F$ faces, so 
+$$
+ \chi_{\rm top}(C) = 2V-d-2E+2F = 4-d,
+$$
+so if $d = 2g+2$ then $\chi_{\rm top}(C) = 2-2g$, so $C$ is  a surface of genus $g$.
+
+Though given as a topological surface, the map $\rho$ is a local homeomorphism at every point not in the preimage of $\Gamma$, so $C$ inherits a unique complex structure from the requirement that $\rho$ be holomorphic; thus $C$ is actually a smooth algebraic curve of genus $g$. \fix{we had better say topological and algebraic genus are the same in the intro.}
+\end{proof}
+
+
+ \begin{exercise}
   In the case $g=1$, show that the closure $\overline{C^\circ}$ of $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$ consists of the union of $C^\circ$ with one additional point, with that point a tacnode of $\overline{C^\circ}$ in either case.
   \end{exercise}
   
-  In fact, it's possible to give explicitly a projective model of the curve $C$: if we divide the points $q_1,\dots,q_{2g+2} \in \PP^1$ into two sets of $g+1$---say, for example, $q_1,\dots,q_{g+1}$ and $q_{g+2}, \dots, q_{2g+2}$---then we can describe the smooth projective curve $C$ as the closure in $\PP^1 \times \PP^1$ of the  locus
+It is also possible to give a projective model of the hyperelliptic curve $C$ with given branch divisor: if we divide the points $q_1,\dots,q_{2g+2} \in \PP^1$ into two sets of $g+1$---say, for example, $q_1,\dots,q_{g+1}$ and $q_{g+2}, \dots, q_{2g+2}$---then $C$ is the closure in $\PP^1 \times \PP^1$ of the  locus
   $$
   \big\{ (x,y) \in \AA^2 \; \mid \; y^2\prod_{i=1}^{g+1} (x - \lambda_i) = \prod_{i=g+2}^{2g+2} (x - \lambda_i) \big\};
   $$
@@ -42,7 +87,7 @@ $$
   C \; = \; \big\{ (X,Y) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
   $$
   (No local analysis is needed to see that $C \subset \PP^1 \times \PP^1$ is smooth: it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the genus formula tells us that such a curve has arithmetic genus $g$.)
-  
+
 %  \
 %  
 %  \
@@ -202,14 +247,17 @@ Show that for any pair of lines $L, L'$ of the appropriate ruling of $Q$, the th
 
 \section{Curves of genus 3}
 
-This will be, perhaps somewhat counter-intuitively, the shortest of the sections in this chapter. The reason is simple: for a non-hyperelliptic curve of genus 3, the canonical model is virtually the only one we will deal with. For curves $C$ of other genera, different representations of $C$---as a branched cover of $\PP^1$, as the normalization of a plane curve $C_0 \subset \PP^2$, as embedded in $\PP^3$ and higher-dimensional projective spaces---display different aspects of the geometry of the curve; and it's correspondingly valuable to understand all these different models of $C$ and their relation to one another. For a non-hyperelliptic curve of genus 3, by contrast, the canonical embedding is  the only one we deal with; virtually all the aspects of the geometry of $C$ are best seen in this model.
-
-So: let $C$ be a smooth projective curve of genus 3. The is an immediate bifurcation into two cases, hyperelliptic and non-hyperelliptic curves; we will discuss hyperelliptic curves of any genus in Section~\ref{**}, and so for the following we'll assume $C$ is nonhyperellitic. By our general theorem~\ref{**}, this means that the canonical map $\phi_K : C \to \PP^2$ embeds $C$ as a smooth plane quartic curve; and conversely, by adjunction any smooth plane of degree 4 has genus 3 and is canonical (that is, $\cO_C(1) \cong K_C$).
+If $C$ be a smooth projective curve of genus 3. The is an immediate bifurcation into two cases, hyperelliptic and non-hyperelliptic curves; we will discuss hyperelliptic curves of any genus in Section~\ref{**}, and so for the following we'll assume $C$ is nonhyperellitic. By our general theorem~\ref{**}, this means that the canonical map $\phi_K : C \to \PP^2$ embeds $C$ as a smooth plane quartic curve; and conversely, by adjunction any smooth plane of degree 4 has genus 3 and is canonical (that is, $\cO_C(1) \cong K_C$). \fix{maybe a reference to the plane curve chapter
+for differentials etc?}
 
 Note that this gives us a way to determine the dimension of the moduli space $M_3$ of smooth curves of genus $3$: if $\PP^{14}$ is the space of all plane quartic curves, and $U \subset \PP^{14}$ the open subset corresponding to smooth curves, we have a dominant map $U \to M_3$ whose fibers are isomorphic to the 8-dimensional affine group $PGL_3$. (Actually, the fiber over a point $[C] \in M_3$ is isomorphic to the quotient of $PGL_3$ by the automorphism group of $C$; but since $Aut(C)$ is finite this is still 8-dimensional.) We conclude, therefore, that
 $$
 \dim M_3 = 14 - 8 = 6.
 $$
+
+%\fix{the following remark seems a little silly, and anyway after saying plane quartic, we DO describe some other models, though with little enthusiasm}
+%
+%For a non-hyperelliptic curve of genus 3 virtually all the aspects of the geometry of $C$ are best seen in the canonical model.  By contrast, for curves $C$ of other genera, different representations of $C$---as a branched cover of $\PP^1$, as the normalization of a plane curve $C_0 \subset \PP^2$, as embedded in $\PP^3$ and higher-dimensional projective spaces---display different aspects of the geometry of the curve. 
 
 What about other linear series on $C$, and the corresponding models of $C$? To start with, by hypothesis $C$ has no $g^1_2$s; that is, it is not expressible as a 2-sheeted cover of $\PP^1$. On the other hand, it is expressible as a 3-sheeted cover: if $L \in \pic^3(C)$ is a line bundle of degree 3, by Riemann-Roch we have
 $$
@@ -219,7 +267,7 @@ h^0(L) =
 1 &\text{otherwise.}
 \end{cases}
 $$
-There are thus a 1-dimensional family of representations of $C$ as a 3-sheeted cover of $\PP^1$. In fact, these are plainly visible from the canonical model: the degree 3 map $\phi_{K-p} : C \to \PP^1$ is just the composition of the canonical embedding $\phi_K : C \to \PP^2$ with the projection from the point $p$.
+There is thus a 1-dimensional family of representations of $C$ as a 3-sheeted cover of $\PP^1$. In fact, these are plainly visible from the canonical model: the degree 3 map $\phi_{K-p} : C \to \PP^1$ is just the composition of the canonical embedding $\phi_K : C \to \PP^2$ with the projection from the point $p$. 
 
 There are of course other representations of $C$ as the normalization of a plane curve. By Riemann-Roch, $C$ will have no $g^2_3$s and the canonical series is the only $g^2_4$, but there are plenty of models as plane quintic curves: by Proposition~\ref{**}, if $L$ is any line bundle of degree 5, the linear series $|L|$ will be a base-point-free $g^2_5$ as long as $L$ is not of the form $K+p$, so that $\phi_L$ maps $C$ birationally onto a plane quintic curve $C_0 \subset \PP^2$. But these can also be described geometrically in terms of the canonical model: any such line bundle $L$ is of the form $2K-p-q-r$ for some trio of  points $p, q, r \in C$ that are not colinear in the canonical model, and we see correspondingly that $C_0$ is obtained from the canonical model of $C$ by applying a Cremona transform with respect to the points $p, q$ and $r$. 
 
