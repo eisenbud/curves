@@ -264,6 +264,88 @@ Thus Abel's theorem, which was born out of an effort to evaluate calculus integr
 \fix{DE rev to here 1/8/22}
 
 \section{Picard varieties}\label{picard section}
+
+The modern treatment of the Picard variety, due to Grothendieck and his school, defines the Picard variety as the solution to a universal problem. 
+If $B$ is any scheme, then a \emph{family of invertible sheaves on $X$ over $B$} is an invertible sheaf on $X\times B$, flat over $B$.
+We often minimize the impact of $B$ on this definition by saying that two invertible sheaves on $X$ over $B$ are equivalent
+if they differ by an invertible sheaf pulled back from $B$, and we write $Pic(X/B)$ for the quotient abelian group:
+$$
+Pic(X/B) := \frac{\{
+\hbox{Invertible sheaves on $X\times B$, flat over $B$}\}}
+{\{\hbox{Invertible sheaves pulled back from $B$}\}}.
+$$
+Note that $Pic(X/B)$ is a contravariant functor of $B$: if $B'\to B$ is a morphism, then we can pull invertible sheaves on $B$ back to $B'$,
+and pull invertible sheaves on $X\times B$ back to $X\times B'$, and this induces a homomorphism of abelian groups
+$Pic(X/B) \to Pic(X/B')$. The Picard scheme of $X$, if it exists, is the scheme that represents this functor:
+
+\def\Mor{{\rm Morphisms}}
+\begin{definition}
+If X is a projective scheme over $\CC$ then $\Pic_{X/\CC}$ is a scheme with a natural isomorphism $\Mor(B, \Pic_{X/\CC}) \cong Pic(X/B)$.
+\end{definition}
+
+\begin{theorem}
+ If $X$ is a projective variety, then $\Pic_{X/\CC}$ exists.
+\end{theorem} 
+We will sketch the proof of this result below; for detailed references and variations, see \cite{Kleiman-Pic}.
+
+In particular, the identity morphism on $\Pic_{X/\CC}$ corresponds to a family of invertible sheaves $\cP$ on $X\times \Pic_{X/\CC}$ called the \emph{Poincar\'e} sheaf,
+defined up to the pullback of an invertible sheaf from $\Pic_{X/\CC}$. 
+
+By the Yoneda lemma, the naturality of the isomorphism 
+$\Mor(B, \Pic_{X/\CC}) \cong Pic(X/B)$
+means that
+the family of invertible sheaves on $X \times B$ correponding to a given morphism $\phi: B \to \Pic_{X/\CC})$, is, up to the pullback of an invertible sheaf on $B$ the pullback of $\cP$ along the map
+$X \times \phi: X\times B \to X \times \Pic_{X/\CC}$; this is the \emph{universal property} of the Poincar\'e sheaf. If $\cL$ is any invertible sheaf on 
+$X$, then $\cL$ may be regarded as a family of sheaves over a closed point $p$, so there is a unique morphism $p \to \Pic_{X/\CC}$ such that
+ $\cL$ is the pullback of $\cP$ under the induced map $X = X \times p \to X \times \Pic_{X/\CC}$; more colloquially, the closed points of $\Pic_{X/\CC}$
+ are the invertible sheaves on $X$.
+
+If $X$ is a smooth curve, then each invertible sheaf has a degree; and since the degree is constant in any family of invertible sheaves over
+a connected base, $\Pic_{X/\CC}$ is a disjoint union of spaces $\Pic_{d, X/\CC}$, and the restriction of $\cP$ to $X\times \Pic_{d, X/\CC}$
+is a family of invertible sheaves of degree $d$ in the sense that for every point $p\in \Pic_{d, X/\CC}$ the restriction of $\cP$ to $X = X\times p$ is
+a sheaf of degree $d$.
+
+The tangent space to a $k$-scheme $X$ at a closed point $p: \Spec k \to X$ is the set of extensions of $p$ to maps $p': T:=\Spec k[\epsilon]/\epsilon^2 \to X$.
+Given the functorial description of $\Pic_{X/\CC}$ it is easy to describe the tangent spaces. 
+
+\begin{theorem}
+If $X$ is a smooth curve, then $\Pic_{X/\CC}$ is smooth and the tangent space to $\Pic_{X/\CC}$ at any closed point is isomorphic to $H^1(\cO_X)$.
+\end{theorem}
+
+\begin{proof} Since we are working over an algebraically closed field, it is enough to check the criterion of formal smoothness \cite{Stacks project 37.11}: given an affine scheme
+$B$ and a subscheme $B'$ such that $cI_(B'/B)^2 = 0$, we must show that any map $B'\to X$ extends to a map $B\to X$.
+But a map $B'\to X$ corresponds to an invertible sheaf on $X \times B'$, and similarly for $B$, so we must show that every
+invertible sheaf on $X\times B'$ extends to an invertible sheaf on $X \times B$. We will use the identification of the group of invertible sheaves  on a space
+with the first cohomology of the multiplicative group of invertible functions on the space.
+
+Note that  $cI_(B'/B)$ is supported on $B'$, and Let $N$ be the pullback of $cI_(B'/B)$ to $X \times B'$. From the exact sequence
+$$
+0N \to \cO_{X\times B} \to \cO_X \times B' \to 0
+$$
+we deduce an exact sequence of multiplicative groups 
+$$
+1 \to (1+N)\to \cO_{X\times B}^* \to \cO_{X\times B'}^* \to 1.
+$$
+Since $cI_(B'/B)^2=0$, the sheaf of multiplicative groups, $(1+N)$ is isomorphic to the sheaf of additive groups $N$, and we get a long
+exact sequence in cohomology
+$$
+H^0 \cO_{X\times B}^* \to H^0 \cO_{X\times B'}^* \to H^1 \cO_X \to H^1(\cO_{X\times T}^*) \to H^1(\cO_{X^*\times B'}^*) \to H^2(N) 
+$$
+Since $B$ is affine and $X$ is 1-dimensional,  $H^2(N) = 0$, proving that we can extend invertible sheaves. 
+
+The tangent space to a scheme $Y$ at a closed point $p: \Spec k \to Y$ is the set of extensions of $p$ to a morphism $\Spec k[\epsilon]/\epsilon^2 \to Y$.
+From the exact sequence above we see that the set of extensions is $H^1(\cO_X)$.
+\end{proof}
+
+
+In parallel with the functor $B \mapsto Pic(X/B)$ we define the functor of relative Cartier divisors: 
+$$
+Div(X/B) := \frac{\{
+\hbox{Cartier divisors $X\times B$, flat over $B$}\}}
+{\{\hbox{Invertible sheaves pulled back from $B$}\}}.
+$$
+
+
 \fix{the rest of this chapter is more like an outline than a chapter. Joe, we could go over the material you want to
 put in together, and I could try to write it, or you could write it.}
 
