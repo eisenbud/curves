@@ -257,9 +257,11 @@ Given how easy it is to describe rational curves in projective space in this way
 
 \subsubsection{Rational quartic curves in $\PP^3$}
 
-We will be concerned here with  a smooth, nondegenerate curve $C \subset \PP^3$ of degree 4 and genus 0 in $\PP^3$. To describe the geometry of $C$, the first thing to determine is what surfaces it lies on---that is, what degree polynomials on $\PP^3$ vanish on $C$. This will serve as a template for our analyses of space curves in general, so rather than state the end result in advance, we will treat this as an exploration.
+We will be concerned here with  a smooth, nondegenerate curve $C \subset \PP^3$ of degree 4 and genus 0 in $\PP^3$. 
+%To describe the geometry of $C$, the first thing to determine is what surfaces it lies on---that is, what degree polynomials on $\PP^3$ vanish on $C$. 
+This will serve as a template for our analyses of space curves in general, so rather than state the end result in advance, we will treat this as an exploration.
 
-To describe the geometry of $C$, the first thing to determine is what surfaces $C$ lies on.
+To describe the geometry of $C$, the first thing to determine is what surfaces $C$ lies on---that is, what degree polynomials on $\PP^3$ vanish on $C$
 To start with, we can ask: does $C$ lie on a quadric surface? To answer this, we consider again the restriction map
 $$
 H^0(\cO_{\PP^3}(2)) \; \to \; H^0(\cO_{C}(2)) = H^0(\cO_{\PP^1}(8)).
@@ -268,10 +270,42 @@ Here the vector space on the left---homogeneous quadratic polynomials on $\PP^3$
 
 Since $C$ is irreducible and nondegenerate, it can't lie on a union of planes, so the quadric $Q$ must either be smooth or a cone over a conic curve. We'll see in a moment that the latter case can't occur, so let's assume for now that $Q$ is smooth. 
 
-Now, having found that $C$ lies on a quadric surface $Q$, we should pause and review what we know about curves on a quadric. To start, 
+Now, having found that $C$ lies on a quadric surface $Q$, we should pause and review what we know about curves on a smooth quadric $Q$. To start, an elementary fact is that $Q \cong \PP^1 \times \PP^1$; in fact, $Q$ is the image of the Segre map $\sigma : \PP^1 \times \PP^1 \to \PP^3$. Under this map, the fibers of the two projections $\PP^1 \times \PP^1 \to \PP^1$ are sent to lines in $\PP^3$; thus $Q$ has two rulings by lines, with each point lying on a unique line of each ruling.
 
+Next, we observe that if $L$ and $M \subset Q$ are lines chosen from the two rulings, the complement $Q \setminus (L \cup M) \cong \AA^2$. It follows that 
+$$
+\Pic (Q) = \ZZ \cdot L \oplus \ZZ\cdot M;
+$$
+concretely, this says that 
+every curve $C$ in $\PP^1 \times \PP^1$ is given as the zero locus of a bihomogeneous polynomial of some bidegree $(a,b)$; such a curve is called a \emph{curve of type $(a,b)$} on $Q$. (A convenient bit of notation in this setting is to write the line bundle $\cO_Q(C)$ as $\cO_Q(a,b)$; similarly, if $X \subset Q$ we'll write the restriction to $X$ of the invertible sheaf $\cO_Q(a,b)$ as $\cO_X(a,b)$).
+Note that since such a curve is linearly equivalent to a sum of $a$ lines of one ruling and $b$ lines of the other, it will have degree $a+b$ in $\PP^3$. 
 
-The natural follow-up question is, what is the class of $C$ in the Picard group of $Q$? We know that $Q \cong \PP^1 \times \PP^1$, with the fibers of the two projections appearing as lines of the two rulings of $Q$. Lines $L$ and $M$ of the two rulings generate the Picard group \cite[***]{H}, so that we must have $C \sim aL + bM$ for some $a, b$ (in other words, in terms of the isomorphism $Q \cong \PP^1 \times \PP^1$, $C$ is the zero locus of a bihomogeneous polynomial of bidegree $(a,b)$), and we ask what $a$ and $b$ are. The choices are limited: since $C$ is a quartic curve, we must have $a+b = 4$. Adjunction \cite[***]{H} tells us which must be the case: the genus formula for curves on $Q$ tells us that the genus of a smooth curve of class $(a,b)$ on $Q$ has genus $(a-1)(b-1)$, whence the class of our curve $C$ must be $(1,3)$ (for a suitable ordering of the two rulings).
+More generally, if $C$ and $C' \subset \PP^1 \times \PP^1$ are curves of type $(a,b)$ and $(a',b')$, their intersection number is given by $ab' + a'b$; the formula $\deg(C) = a+b$ is obtained by taking the intersection number with the class $H = L + M$ of the plane section $H$ of $Q$.
+
+Next, we note that the canonical bundle $K_Q$ of the surface $Q$ is $K_Q \cong \cO_Q(-2)$. This can be seen either via the isomorphism $Q \cong \PP^1 \times \PP^1$, or by the adjunction formula applied to $Q \subset \PP^3$: since $K_{\PP^3} \cong \cO_{\PP^3}(-4)$, we have
+$$
+K_Q = \left(K_{\PP^3} \otimes \cO_{\PP^3}(Q) \right) |_Q = \cO_Q(-2);
+$$
+in other words, $K_Q = \cO_Q(-2,-2)$.
+
+Now, if $C \subset Q$ is a smooth curve of type $(a,b)$ on $Q$, we may apply the adjunction formula to $C \subset Q$ to describe the canonical divisor class of $C$: we have
+$$
+K_C = \left(K_{Q} \otimes \cO_{Q}(C) \right) |_C = \cO_C(a-2,b-2).
+$$
+In particular, we can take degrees to arrive at the genus formula
+$$
+2g(C) - 2 = \deg(K_C) = a(b-2) + (a-2)b;
+$$
+in other words, we have
+$$
+g(C) = (a-1)(b-1).
+$$
+
+Let's return now to the analysis of our smooth rational quartic curve $C \subset \PP^3$. Having seen that $C$ must lie on a quadric surface $Q$, and having at least aserted that $Q$ is smooth, the natural follow-up question is, what is the class of $C$ in the Picard group of $Q$? The formulas for the degree and genus of a curve of type $(a,b)$ on $Q$ give us the answer: we have
+$$
+ a+b = 4 \quad \text{and} \quad (a-1)(b-1) = 0
+$$
+whence the class of our curve $C$ must be $(1,3)$ (for a suitable ordering of the two rulings).
 
 It follows in particular that \emph{$Q$ is the unique quadric containing $C$}. One way to see this is that since $C$ has class $(1,3)$ it meets the lines of the first ruling three times; if $Q'$ is any quadric containing $C$, then, it must contain all these lines and hence must equal $Q$. Equivalently, we may consider the exact sequence
 $$
@@ -285,10 +319,17 @@ H^0(\cO_{\PP^3}(3)) \; \to \; H^0(\cO_{C}(3)) = H^0(\cO_{\PP^1}(12)).
 $$
 The dimensions of these two vector spaces being 20 and 13 respectively, we see that $C$ must lie on at least 7 cubics; four of these are simply products of $Q$ with linear forms, and so we see that $C$ must lie on at least three cubics modulo those containing $Q$. Indeed, these are easy to spot: if $L$ and $L'$ are any two lines of the first ruling, the divisor $C + L + L'$ has class $(3,3)$ on $Q$ and hence is the intersection of $Q$ with a cubic surface. As $L+L'$ varies in a two-dimensional linear series, we get three cubics containing $C$ modulo those containing $Q$. Conversely, any cubic containing $C$ (but not containing $Q$) will intersect $Q$ in the union of $C$ with a curve of type $(2,0)$ on $Q$, which is to say the sum of two lines of the first ruling, so these are all the cubics containing $C$.
 
-\fix{at least state that these are the generators. And state the set-theoretic
-intersection problem.}
+\begin{exercise}
+We have seen that $C$ lies on a quadric surface $Q$, and on three cubic surfaces linearly independent modulo the ideal of $Q$.
+\begin{enumerate}
+\item Show that $C$ is the set-theoretic intersection of these surfaces.
+\item Show that the corresponding quadratic and cubic polynomials on $\PP^3$ generate the homogeneous ideal of $C$
+\end{enumerate}
+\end{exercise}
 
-Finally, we have to show that the quadric containing the curve $C$ cannot be a cone over a conic plane curve. The key question here is whether or not $C$ contains the vertex $p$ of the cone: if not, the same adjunction-based calculation shows that $C$ must have genus 1; while a parity argument (how many times does $C$ meet a line of the ruling of $Q$?) shows that if a curve $C \subset Q$ of even degree contains $p$ it must be singular there.\fix{this is pretty fast, compared to the level in the rest of the Ch. let's fill it in.}
+Finally, we have to show that the quadric $Q$ containing the curve $C$ cannot be a cone over a conic plane curve. There are a number of ways of doing this. One might be to introduce the desingularization $\tilde Q$ of $Q$, describe its Picard group (with its intersection pairing) and the canonical class $K_{\tilde Q}$, and carry out an analysis along the lines above. But this chapter's long enough already; so we'll take a 
+
+The key question here is whether or not $C$ contains the vertex $p$ of the cone: if not, the same adjunction-based calculation shows that $C$ must have genus 1; while a parity argument (how many times does $C$ meet a line of the ruling of $Q$?) shows that if a curve $C \subset Q$ of even degree contains $p$ it must be singular there.\fix{this is pretty fast, compared to the level in the rest of the Ch. let's fill it in.}
 
 
 \begin{exercise}
