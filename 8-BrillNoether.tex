@@ -99,7 +99,7 @@ g = r(K_C) + 1 \geq r(\cL) + r(K_C\otimes \cL^{-1}) + 1 \geq 2r(\cL) +g - d;
 $$
 hence $r(\cL) \leq d/2$.
 
-The proof of the second half of Clifford rests on a basic fact about the geometry of hyperplane sections of a curve in projective space; we'll defer it until we've established that fact.
+The proof of the second half of Clifford rests on a basic fact about the geometry of hyperplane sections of a curve in projective space (Proposition~\ref{monodromy of hyperplane section}); we'll defer it until we've established that fact.
 \end{proof}
 
 Combining Clifford with Riemann-Roch, we arrive at the answer to our initial question
@@ -116,20 +116,22 @@ $$
 \end{theorem}
 
 \begin{exercise}
-Prove a slightly stronger version of Theorem~\ref{arbitrary linear series}: that under the hypotheses of Theorem~\ref{arbitrary linear series} there exists a \emph{complete} linear series of degree $d$ and dimension $r$.
+Prove a slightly stronger version of Theorem~\ref{arbitrary linear series} in the range $d \leq g-1$: that under the hypotheses of Theorem~\ref{arbitrary linear series} there exists a \emph{complete} linear series of degree $d$ and dimension $r$ for any $r \leq d/2$.
 \end{exercise}
 
 \subsection{Castelnuovo's theorem}
 
 Theorem~\ref{arbitrary linear series} gives a complete and sharp answer to the question originally posed: for which $d,r$ and $g$ does there exists a triple $(C,\cL,V)$ with $C$ a curve of genus $g$, $\cL$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ of dimension $r+1$. 
 
-But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least a birational embedding.  With this restriction, the question is tantamount to the
+But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least a birational embedding. 
+
+Now, we'll see that the maximal dimension of a birationally very ample linear series of degree $d$ on a curve of genus $g$ is a decreasing function of $g$; so with this restriction, the question is tantamount to the
 
 \begin{question}
 What is the largest possible genus of an irreducible, nondegenerate curve $C \subset \PP^r$ of degree $d$?
 \end{question}
 
-The answer to this question is indeed quite different from the inequality provided by Theorem~\ref{arbitrary linear series}. It is the content of \emph{Castelnuovo's theorem}, which gives a sharp answer to this question. We'll sketch the derivation of the inequality here; we'll prove that it is in fact sharp and describe in detail  the curves that achieve it in Chapter~\ref{}.
+The answer to this question is indeed quite different from the inequality provided by Theorem~\ref{arbitrary linear series}. It is the content of \emph{Castelnuovo's theorem}, which gives a sharp answer to the question. We'll sketch the derivation of the inequality here; we'll prove that it is in fact sharp and describe in detail  the curves that achieve it in Chapter~\ref{}.
 
 To start, Castelnuovo's bound follows from a very straightforward approach: if $C$ is a curve of degree $d$ and genus $g$ in $\PP^r$, the idea is to prove successive lower bounds for the dimensions $h^0(\cO_C(m))$ of multiples of the $g^r_d$ cut on $C$ by hyperplanes. For large values of $m$, of course, the line bundle $\cO_C(m)$ is non-special, and so a lower bound on the dimension of its space of sections translates, via Riemann-Roch, into an upper bound on the genus $g$.
 
@@ -166,15 +168,22 @@ We need, in other words, a lower bound on the Hilbert function of a general hype
 \begin{lemma}[general position lemma]\label{general position lemma}
 If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linear general position in $H \cong \PP^{r-1}$, meaning no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
 \end{lemma}
-Thus, for example, if $C \subset \PP^3$ is a space curve, no three points of $\Gamma = H \cap C$ will be collinear.
+
+Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ will be collinear. Even this case is surprisingly tricky to prove (and it's false in characteristic $p$!); the following exercise sketches a proof.
 
 \begin{exercise}
-Prove directly that a general plane section of an irreducible, nondegenerate space curve does not contain three collinear points. (Hint: estimate the dimension of the family of trisecant lines to the curve.)
+Let $C \subset \PP^3$ be an irreducible, nondegenerate space curve. Assuming characteristic 0,
+\begin{enumerate}
+\item Show that if $p, q \in C$ are general, then the tangent lines $\TT_pC$ and $\TT_qC \subset \PP^3$ do not intersect.
+\item Using this, show that for general $p, q \in C$ the line $\overline{p,q}$ is not a trisecant; that is, it does not intersect $C$ a third time.
+\item Using the irreducibility of the variety of chords to $C$, show that $C$ can have at most a 1-parameter family of trisecant lines; and finally
+\item Deduce that a general plane $H \subset \PP^3$ does not contain three colinear points of $C$.
+\end{enumerate}
 \end{exercise}
 
-The general position lemma was originally asserted by Castelnuovo. In more modern treatments, it is usually deduced as a special case of the more general \emph{uniform position lemma}; we'll take a few pages out and describe this derivation.
+The general position lemma was originally asserted by Castelnuovo. In modern language, it can be deduced as a special case of the more general \emph{uniform position lemma}; since this is a useful (and beautiful) theorem in its own right we'll take a few pages out and describe this derivation.
 
-\subsubsection{Uniform position} We start by introducing the \emph{monodromy group} of a generically finite cover. To set this up, let $f : Y \to X$ be a dominant rational map between irreducible varieties of the same dimension over $\CC$. There is then an open subset $U \subset X$ such that the restriction of $f$ to the preimage $V = f^{-1}(U)$ is a covering space in the classical topology; we'll denote by $d$ the number of sheets.
+\subsubsection{Uniform position} We start by introducing the \emph{monodromy group} of a generically finite cover. To set this up, let $f : Y \to X$ be a dominant map between irreducible varieties of the same dimension over $\CC$. There is then an open subset $U \subset X$ such that the restriction of $f$ to the preimage $V = f^{-1}(U)$ is a covering space in the classical topology; we'll denote by $d$ the number of sheets. Note that by restricting to a smaller open set $U$, we can assume that both $U$ and $V$ are smooth.
 
 Now choose a base point $p_0 \in U \subset X$, and label the preimage $\Gamma = f^{-1}(p_0)$ as $\{q_1,\dots,q_d\}$. If $\gamma$ is any loop in $U$ with base point $p_0$, for any $i = 1, \dots, d$ there is a unique lifting of $\gamma$ to an arc $\tilde \gamma_i$ in $V$ with initial point $\tilde \gamma_i(0) = q_i$ and end point $\tilde \gamma_i(1) = q_j$ for some $j \in \{1,2,\dots,d\}$; in this way, we can associate to $\gamma$ a permutation of $\{1,2,\dots,d\}$. 
 Since the permutation depends only on the class of $\gamma$ in $\pi_1(U,p_0)$, we get a homomorphism to the symmetric group
@@ -202,7 +211,7 @@ Then $V_k^*$ is irreducible if and only if $M$ is $k$ times transitive.
 
 
 \begin{lemma}\label{transposition lemma}
-Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$; let $U \subset X$ and $V = f^{-1}(U) \subset Y$ be open sets as above. If for some point $p \in X$ the fiber $f^{-1}(p)$ consists of $d-2$ reduced points and one point of multiplicity 2, then $M$ contains a transposition.
+Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$. If for some smooth point $p \in X$ the fiber $f^{-1}(p)$ consists of $d-2$ reduced points $p_1,\dots, p_{d-2}$ and one point $q$ of multiplicity 2, and $q$ is a smooth point of $Y$, then $M$ contains a transposition.
 \end{lemma}
 
 Let's now introduce the specific cover to which we'll apply these lemmas. Let $C \subset \PP^r$ be a smooth irreducible, nondegenerate curve of degree $d$, let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$, and let
@@ -212,7 +221,7 @@ $$
 Here we can take $U$ to be simply the complement of the dual $C^* \subset {\PP^r}^*$, that is, the locus of hyperplanes transverse to $C$. Our claim is
 
 \begin{proposition}\label{monodromy of hyperplane section}
-In the situation above, he monodromy group of the cover $Y \to X$ is the full symmetric group; that is, $M = S_d$
+In the situation above, the monodromy group of the cover $Y \to X$ is the full symmetric group; that is, $M = S_d$
 \end{proposition}
 
 \begin{proof}
@@ -242,6 +251,22 @@ as above; $V_k^*$ parametrizes subsets $\Gamma$ of cardinality $k$ in hyperplane
 
 Now, the Hilbert function $h_\Gamma(m)$ is lower semicontinuous, so it achieves its maximum on a Zariski open subset of $V_k^*$. Since $V_k^*$ is irreducible, the complement of this open will have dimension strictly less than $r$;  a general hyperplane $H \in {\PP^r}^*$ will lie outside this image, meaning that $h_\Gamma(m)$ is the same for all $\Gamma \subset C \cap H$ of cardinality $k$.
 \end{proof}
+
+As an immediate consequence of Proposition~\ref{monodromy of hyperplane section}, we can complete the proof of Clifford's theorem as stated above. Recall that Clifford's theorem was deduced from the general inequality 
+$$
+\dim(\cD + \cE) \geq \dim \cD + \dim \cE.
+$$
+for any pair of nonempty linear series on a curve $C$; applying this to a linear series $\cD = |D|$ and the residual series $\cE = |K-D|$ we arrived at Clifford's inequality $r(D) \leq d/2$.
+
+The rest of Clifford's theorem describes when we can have equality in Clifford's inequality. Now, in that case, we have
+$$
+r(D) + r(K-D) = g-1;
+$$
+which means that \emph{every canonical divisor is expressible as a sum of a divisor in $|D|$ and a divisor in $|K-D|$}. In other words, assuming the curve $C$ is non-hyperelliptic, a general hyperplane section $H \cap C$ of the canonical curve contains a subset of $d$ points whose sum is linearly equivalent to $D$. But by the monodromy statement above, this means \emph{every} subset of $d$ points in $H \cap C$ is linearly equivalent to $D$. But this is clearly false: for example, for any $d+1$ points $p_1,\dots,p_{d+1} \in H \cap C$ we would have
+$$
+p_1 + \dots + p_d \sim D \sim p_1,\dots, p_{d-1} + p_{d+1},
+$$
+meaning $p_d \sim p_{d+1}$. Thus $C$ must be hyperelliptic, and the remainder of Clifford's theorem follows.
 
 \
 
