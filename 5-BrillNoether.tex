@@ -169,7 +169,7 @@ Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy g
 Now, let $A \subset X$ be a small neighborhood of $p$ in the classical topology. The preimage $f^{-1}(A)$ will have $d-1$ connected components, one containing each of the points $p_1,\dots,p_{d-2}$ and $q$; let
  $B \subset f^{-1}(A) \subset Y$ be the connected component of $f^{-1}(A)$ containing the point $q$.
 
-Let $p' \in A \cap U$. Two of the $d$ points of $f^{-1}(p')$ will lie in the component $B$ of $f^{-1}(A)$ containing $q$; call these $q'$ and $q''$. Since $B \cap V$ is connected (it's the complement of a proper subvariety of the neighborhood $B$ of the smooth point $q \in Y$), we can draw a real arc $\gamma : [0,1] \to B \cap V$ joining $q'$ to $q''$; by construction, the permutation of $f^{-1}(p')$ associated to the loop $f \circ \gamma$ will exchange $q'$ and $q''$ and fix each of the remaining $d-2$ points of $f^{-1}(p')$.
+Let $p' \in A \cap U$. Two of the $d$ points of $f^{-1}(p')$ will lie in the component $B$ of $f^{-1}(A)$ containing $q$; call these $q'$ and $q''$. Since $B \cap V$ is connected (it's the complement of a proper subvariety in the neighborhood $B$ of the smooth point $q \in Y$), we can draw a real arc $\gamma : [0,1] \to B \cap V$ joining $q'$ to $q''$; by construction, the permutation of $f^{-1}(p')$ associated to the loop $f \circ \gamma$ will exchange $q'$ and $q''$ and fix each of the remaining $d-2$ points of $f^{-1}(p')$.
 \end{proof}
 
 Let's now introduce the specific cover to which we'll apply these lemmas. Let $C \subset \PP^r$ be a smooth irreducible, nondegenerate curve of degree $d$, let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$, and let
@@ -247,7 +247,7 @@ Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mn+1} \in \Gamma$ be any
 This is easy: simply group the $mn$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $n$; each set $\Gamma_k$ will span a hyperplane $H_k \subset \PP^n$, and we can take $X = H_1 \cup \dots \cup H_m$. 
 \end{proof}
 
-This may seem like a crude argument, but the bound derived is sharp: any collection of point $\Gamma \subset \PP^n$ lying on a rational normal curve $D \subset \PP^n$ has exactly this Hilbert function.
+This may seem like a crude argument, but the bound derived is sharp: any collection of point $\Gamma \subset \PP^n$ lying on a rational normal curve $D \subset \PP^n$ is necessarily in linear general position, and has exactly this Hilbert function.
 
 At this point, all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$, so that we can write
 $$
@@ -314,7 +314,7 @@ Show that with $C$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will 
 \end{exercise}
 
 \section{Brill-Noether theory}
-\fix{This needs to be amalgamate with the discussion in the Jacobians chapter--here or there}
+
 \subsection{Basic questions addressed by Brill-Noether theory}
 
 In the last section, we restricted our attention to the linear series most of interest to us: those corresponding to embeddings of our curve in projective space (or at any rate birational embeddings) and their limits. But there is one other respect in which Castelnuovo theory fails to address a basic concern: the curves with linear systems achieving Castelnuovo's bound are, like hyperelliptic curves, very special. (In fact, we'll see in Section~\ref{**} that in general they are even rarer than hyperelliptic curves.) That is, if we were to pick a curve $C$ of genus $g$ ``at random" (we'll make this notion more precise when we describe the moduli space of curves in Chapter~\ref{**}), we would still have no idea what linear systems existed on $C$ or how they behaved.
@@ -322,13 +322,14 @@ In the last section, we restricted our attention to the linear series most of in
 Brill-Noether theory addresses exactly this issue: it asks, ``what linear series exist on a \emph{general} curve of a given genus?" To start with, we'll give the crudest form of the theorem:
 
 \begin{theorem}\label{basic BN}
-Fix non-negative integers $g, r$ and $d$. It is the case that a general curve of genus $g$ possesses a linear series of degree $d$ and dimension $r$ if and only if
+Fix non-negative integers $g, r$ and $d$, and let $C$ be a general curve of genus $g$. If we denote by $W^r_d(C) \subset \Pic^d(C)$ the locus of invertible sheaves $\cL$ with $h^0(\cL) \geq r+1$, then
 $$
-\rho(g,r,d) := g - (r+1)(g-d+r) \geq 0.
+\dim W^r_d(C) = \rho(g,r,d) := g - (r+1)(g-d+r).
 $$
+In particular, it is the case that a general curve of genus $g$ possesses a linear series of degree $d$ and dimension $r$ if and only if $\rho(g,r,d) \geq 0$.
 \end{theorem}
 
-In the following sections, we'll see why we might naively expect this to be the case, and we'll also describe some of the many refinements and strengthenings of the theorem (we will be able to give better versions in later chapters, after we have, for example, introduced the schemes parametrizing linear systems on a given curve). A proof of the existence half of the theorem (the ``if" part of the statement) may be found in \cite{3264}; and we will give in the concluding chapter of this book a relatively simple proof of the nonexistence part (the ``only if"). In the meantime, we'll mention here the special case $r=1$:
+In the following sections, we'll see why we might naively expect this to be the case, and we'll also list some of the myriad refinements and strengthenings of the theorem.  A proof of the existence half of the theorem (the ``if" part of the statement) may be found in \cite{3264};  we will give in Chapter~\ref{InflectionsChapter} of this book a relatively simple proof of the nonexistence part (the ``only if"). In the meantime, we'll mention here the special case $r=1$:
 
 \begin{corollary}
 If $C$ is any curve of genus $g$, then $C$ admits a rational function of degree $d$ for some positive $d \leq \lceil \frac{g+2}{2}\rceil$.
@@ -338,7 +339,7 @@ Thus, for example, any curve of genus 2 is hyperelliptic, any curve of genus 3 o
 
 \subsection{Heuristic argument leading to the statement of Brill-Noether}
 
-The Brill-Noether theorem, as we'll see, is a far-reaching description of the linear series to be found on a general curve. It starts, though, with a relatively simple dimension count---one that was first carried out almost a century and a half ago.
+The Brill-Noether theorem, broadly construed, is a far-reaching description of the linear series to be found on a general curve. It starts, though, with a relatively simple dimension count---one that was first carried out almost a century and a half ago.
 
 To set this up, let $C$ be a smooth projective curve of genus $g$, and $D = p_1 + \dots + p_d$ a divisor on $C$. We'll assume here the points $p_i$ are distinct; the same argument (albeit with much more complicated notation) can be carried out in general.
 
@@ -370,11 +371,9 @@ d - r(g-d+r) \; \geq \; r,
 $$
 which is exactly the Brill-Noether statement.
 
-As we indicated, Theorem~\ref{basic BN} represents only the most bare-bones version of Brill-Noether. The full statement describes as well the space parametrizing linear series $g^r_d$ on a general curve $C$---it says that it has dimension $\rho(g,r,d)$, is smooth and irreducible when $\rho > 0$---and also the geometry of $C$ as mapped to projective space by a general such $g^r_d$. The problem is, all these versions involve the existence of a parameter space for linear series on a given curve (which we'll see how to construct in Chapter~\ref{Jacobians chapter}), as well as the existence of a moduli space $M_g$ parameterizing abstract curves of genus $g$ (which we'll discuss further in Chapter~\ref{}). For this reason, we will have to defer the full statement of Brill-Noether to that chapter. In the meantime, though, we'll see in the next chapter how the theory plays out in the case of curves of low genus.
+\subsection{Refinements of the Brill-Noether theorem}
 
-\section{The full Brill-Noether theorem}
-
-The existence of the varieties $W^r_d(C)$ parametrizing linear series on an arbitrary curve $C$ allows us to strengthen Clifford's theorem to Martens' theorem. If we ask about linear series on a \emph{general} curve, similarly, it allows us to give a much more detailed version of the Brill-Noether theorem: instead of  saying when there exists a $g^r_d$ on a general curve $C$, we can give the dimension of the variety $W^r_d(C)$ parametrizing such linear series, and we can also talk about the geometry of a general linear series on $C$. We collect the basic facts into the 
+As we indicated, Theorem~\ref{basic BN} represents only the most bare-bones version of Brill-Noether. The full statement  adds more information both about the geometry of the scheme $W^r_d(C)$ and about the linear series parametrized by $W^r_d(C)$.  We collect the basic facts into the 
 
 \begin{theorem}[Brill-Noether theorem, omnibus version]
 Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, then
