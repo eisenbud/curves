@@ -317,12 +317,12 @@ Show that with $C$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will 
 
 \subsection{Basic questions addressed by Brill-Noether theory}
 
-In the last section, we restricted our attention to the linear series most of interest to us: those corresponding to embeddings of our curve in projective space (or at any rate birational embeddings) and their limits. But there is one other respect in which Castelnuovo theory fails to address a basic concern: the curves with linear systems achieving Castelnuovo's bound are, like hyperelliptic curves, very special. (In fact, we'll see in Section~\ref{**} that in general they are even rarer than hyperelliptic curves.) That is, if we were to pick a curve $C$ of genus $g$ ``at random" (we'll make this notion more precise when we describe the moduli space of curves in Chapter~\ref{**}), we would still have no idea what linear systems existed on $C$ or how they behaved.
+In the last section, we restricted our attention to the linear series most of interest to us: those corresponding to embeddings of our curve in projective space (or at any rate birational embeddings) and their limits. But there is one other respect in which Castelnuovo theory fails to address a basic concern: the curves with linear systems achieving Castelnuovo's bound are, like hyperelliptic curves, very special. (In fact, we'll see in Section~\ref{**} that in general they are even rarer than hyperelliptic curves.) That is, if we were to pick a curve $C$ of genus $g$ ``at random," we would still have no idea what linear systems existed on $C$ or how they behaved.
 
-Brill-Noether theory addresses exactly this issue: it asks, ``what linear series exist on a \emph{general} curve of a given genus?" To start with, we'll give the crudest form of the theorem:
+Brill-Noether theory addresses exactly this issue: it asks, ``what linear series exist on a \emph{general} curve of a given genus?" When it comes to non-special linear series, of course, Riemann-Roch answers the question simply and completely, so we'll restrict our attention to special linear series (i.e., with $r > d - g$). That said, we'll start with the crudest form of the theorem:
 
 \begin{theorem}\label{basic BN}
-Fix non-negative integers $g, r$ and $d$, and let $C$ be a general curve of genus $g$. If we denote by $W^r_d(C) \subset \Pic^d(C)$ the locus of invertible sheaves $\cL$ with $h^0(\cL) \geq r+1$, then
+Fix non-negative integers $g, r$ and $d$ with $d \leq g+r$, and let $C$ be a general curve of genus $g$. If we denote by $W^r_d(C) \subset \Pic^d(C)$ the locus of invertible sheaves $\cL$ with $h^0(\cL) \geq r+1$, then
 $$
 \dim W^r_d(C) = \rho(g,r,d) := g - (r+1)(g-d+r).
 $$
@@ -339,7 +339,7 @@ Thus, for example, any curve of genus 2 is hyperelliptic, any curve of genus 3 o
 
 \subsection{Heuristic argument leading to the statement of Brill-Noether}
 
-The Brill-Noether theorem, broadly construed, is a far-reaching description of the linear series to be found on a general curve. It starts, though, with a relatively simple dimension count---one that was first carried out almost a century and a half ago.
+The Brill-Noether theorem, broadly construed as in Theorem~\ref{BN omnibus}, is a far-reaching description of the linear series to be found on a general curve. It starts, though, with a relatively simple dimension count---one that was first carried out almost a century and a half ago.
 
 To set this up, let $C$ be a smooth projective curve of genus $g$, and $D = p_1 + \dots + p_d$ a divisor on $C$. We'll assume here the points $p_i$ are distinct; the same argument (albeit with much more complicated notation) can be carried out in general.
 
@@ -375,27 +375,65 @@ which is exactly the Brill-Noether statement.
 
 As we indicated, Theorem~\ref{basic BN} represents only the most bare-bones version of Brill-Noether. The full statement  adds more information both about the geometry of the scheme $W^r_d(C)$ and about the linear series parametrized by $W^r_d(C)$.  We collect the basic facts into the 
 
-\begin{theorem}[Brill-Noether theorem, omnibus version]
+\begin{theorem}[Brill-Noether theorem, omnibus version]\label{BN omnibus}
 Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, then
 \begin{enumerate}
 \item $\dim(W^r_d(C)) = \rho$;
-\item the singular locus of $W^r_d(C)$ is exactly $W^{r+1}_d(C)$;
-\item if $\rho > 0$ then $W^r_d(C)$ is irreducible;
-\item if $\rho = 0$ then the variety $\cW^r_d$ is irreducible;
-\item if $L$ is any invertible sheaf on $C$, the map
+\item\label{sing wrd} the singular locus of $W^r_d(C)$ is exactly $W^{r+1}_d(C)$;
+\item\label{irr wrd} if $\rho > 0$ then $W^r_d(C)$ is irreducible;
+\item\label{rho=0} if $\rho = 0$ then $W^r_d$ consists of a finite set of  points of cardinality
 $$
-H^0(L) \otimes H^0(\omega_CL^{-1}) \rTo H^0(\omega_C)
+\#W^r_d = g! \prod_{\alpha=0}^r \frac{\alpha!}{(g-d+r+\alpha)!};
+$$
+\item\label{Petri} if $L$ is any invertible sheaf on $C$, the map
+$$
+\mu : H^0(L) \otimes H^0(\omega_CL^{-1}) \rTo H^0(\omega_C)
 $$
 is injective;
-\item if $|D|$ is a general $g^r_d$ on $C$, then
+\item\label{general va} if $|D|$ is a general $g^r_d$ on $C$, then
 \begin{enumerate}
-\item if $r \geq 3$ then $D$ is very ample; that is, the map $\phi_D : C \to \PP^2$   embeds $C$ in $\PP^r$;
+\item if $r \geq 3$ then $D$ is very ample; that is, the map $\phi_D : C \to \PP^r$   embeds $C$ in $\PP^r$;
 \item if $r=2$ the map $\phi_D : C \to \PP^2$ gives a birational embedding of $C$ as a nodal plane curve; and 
 \item if $r=1$, the map $\phi_D : C \to \PP^2$ expresses $C$ as a simply branched cover of $\PP^1$.
 \end{enumerate}
+
+\item\label{maximal rank} If $L \in W^r_d(C)$ is a general point (or any point, if $\rho = 0$), then for each $m > 0$ the multiplication map
+$$
+\rho_m : \Sym^m H^0(L) \to H^0(L^m)
+$$
+has maximal rank; that is, it is either injective or surjective.
 \end{enumerate}
 \end{theorem}
 
+A few remarks are in order here:
+\begin{enumerate}
 
+\item As a special case of Part~\ref{rho=0}, we see that the number of $g^1_{k+1}$s on a general curve of genus $g = 2k$ is the $k$th Catalan number 
+$$
+c_k = \frac{2k!}{k!(k+1)!}.
+$$
+We have already seen this in the first three cases: in genus 2, it says the canonical series $|K|$ is the unique $g^1_2$ on a curve of genus 2; in genus 4, it says that there are exactly two $g^1_3$s on a general curve of genus 4 (note that this is true only for a general curve: we've seen that there are curves of genus 4 with only one $g^1_3$); and in genus 6 it says that a general curve of genus 6 has 5 $g^1_4$s, as we've seen in Chapter~\ref{genus 4, 5 and 6 chapter}.  In genus 8, it says that a general curve of genus 8 has 14 $g^1_5$s, and this is new, in the sense that we don't know of any way of seeing this directly from the geometry of a general curve of genus 8.
+
+\item Part\ref{Petri} implies Part\ref{sing wrd}. In fact, a fairly elementary argument shows that at a point $L \in W^r_d(C) \setminus W^{r+1}_d(C)$, the tangent space to $W^r_d$ at the point $L$ is the annihilator of the image of $\mu$; given that $\mu$ is injective, we can compare dimensions and deduce that $W^r_d$ is smooth at $L$.
+
+\item Part~\ref{maximal rank} is the celebrated \emph{maximal rank theorem} of Eric Larson. It answers in general a question that has come up multiple times so far in this book: every time we've asked what hypersurfaces contain a curve $C \subset \PP^r$ embedded by a linear system $|L|$, we've looked at the maps $\rho_m$. Each time, we knew the dimensions of the spaces $\Sym^m H^0(L)$ and $H^0(L^m)$, and the question was the rank of $\rho_m$; now we know the answer for a general linear system of any degree and dimension. In sum, \emph{the maximal rank theorem tells us the Hilbert function of a general curve $C \subset \PP^r$ embedded by a general linear system}.
+
+\item There is a natural extension of the maximal rank theorem of Part~\ref{maximal rank}. Specifically, if $C \subset \PP^r$ is a general curve embedded by a general linear series, the maximal rank theorem tells us the dimension of the $m$th graded piece of the ideal of $C$, for any $m$: this is just the dimension of the kernel of $\rho_m$. But it doesn't tell us what a minimal set of generators fo the homogeneous ideal of $C$ might look like. For example, if $m_0$ is the smallest $m$ for which $I(C)_m \neq 0$, or numerically the smallest $m$ such that $\binom{m+r}{r} > md-g+1$, we can ask: is the homogeneous ideal $I(C)$ generated by $I(C)_{m_0}$?
+
+To answer this question---given that we know the dimensions of $I(C)_m$ for every $m$---we simply need to know the ranks of the multiplication maps
+$$
+\sigma_m : I(C)_m \otimes H^0(\cO_{\PP^r}(1)) \to I(C)_{m+1}
+$$
+for each $m$. In particular, we may conjecture that \emph{the maps $\sigma$ have maximal rank}; if this is proved, then we will indeed know the degrees of a minimal set of generators for the homogeneous ideal $I(C)$.
+
+\item There is another object worth mentioning: for any curve $C$, there exists a scheme $G^r_d(C)$ parametrizing linear series of degree $d$ and dimension $r$; that is, in set-theoretic terms,
+$$
+G^r_d = \left\{ (L, V) \mid L \in Pic^d(C), \text{ and } V \subset H^0(L) \text{ with } \dim V = r+1 \right\}.
+$$
+
+(This requires a little more technical machinery to construct, which is why we haven't introduced it.) $G^r_d(C)$ maps to $W^r_d(C)$; the map is a birational isomorphism, being an isomorphism over the open subset $W^r_d(C) \setminus W^{r+1}_d(C)$ and having positive-dimensional fibers over $W^{r+1}_d(C)$. In fact, another version of Part~\ref{sing wrd} is the statement that \emph{for a general curve $C$, the scheme $G^r_d(C)$ is smooth for any $d$ and $r$}.
+
+\item Parts~\ref{general va} and~\ref{maximal rank} describe the geometry of a general curve $C$ as embedded in projective space by a general linear series. But we should add that there are many more questions remaining in this regard. One is the question of secant planes: for example, a naive dimension count would suggest that an irreducible, nondegenerate curve $C \subset \PP^3$ will have a finite number of 4-secant lines, but no 5-secant lines. Is this true for a general curve embedded in $\PP^3$ by a general linear series?
+\end{enumerate}
 
 \input footer.tex
