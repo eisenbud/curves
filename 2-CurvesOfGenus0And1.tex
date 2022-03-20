@@ -129,16 +129,19 @@ $$
 1 & \lambda_2 & \lambda_2^2 & \dots & \lambda_2^d \\
 \vdots & & & & \vdots \\
 1 & \lambda_{d+1} & \lambda_{d+1}^2 & \dots & \lambda_{d+1}^d \\
-\end{vmatrix}.
+\end{vmatrix}
+= \prod_{1 \leq i < j \leq d+1} (\lambda_j - \lambda_i)
 $$
 
-Note that Proposition~\ref{independence on rnc} applies not just to distinct points on a rational normal curve $C \subset \PP^d$, but to any subscheme of $C$. At the opposite extreme, it says that for any point $p \in C$, the scheme of degree $d+1$ supported at $p$ (in other words, the divisor $(d+1)p$) will span $\PP^d$. This in fact gives another characterization of rational normal curves, which we'll now describe.
+Note that Proposition~\ref{independence on rnc} applies not just to distinct points on a rational normal curve $C \subset \PP^d$, but to any subscheme of $C$. At the opposite extreme, it says that for any point $p \in C$, the scheme of degree $d+1$ supported at $p$ (in other words, the divisor $(d+1)p$, viewed as a subscheme of $C$) will span $\PP^d$. This in fact gives another characterization of rational normal curves, which we'll now describe.
 
 Very briefly: if $C \subset \PP^r$ is any smooth, irreducible and nondegenerate curve, we'll say that a point $p \in C$ is an \emph{inflection point} if the subscheme of $C$ of degree $r+1$ supported at $p$  fails to span $\PP^r$; in classical language, if there is a hyperplane $H \subset \PP^r$ that has contact of order $\geq r+1$ with $C$ at $p$. For example, in case $r=2$ this means $p$ is a flex point of $C$. We will develop a theory of inflection for smooth curves in Chapter~\ref{InflectionsChapter}; for now, we  mention one consequence of our analysis there:
 
-\begin{proposition}
+\begin{proposition}\label{rnc unique uninflected}
 The rational normal curve $C \subset \PP^d$ is the unique smooth, irreducible, nondegenerate curve in $\PP^d$ with no inflection points.
 \end{proposition}
+
+This will be proved in Section~\ref{Plucker formula}.
 
 \subsubsection{Rational normal curves are projectively normal}
 
@@ -192,7 +195,7 @@ $$
 
 In fact, this gives us another characterization of rational normal curves as extremal: rational normal curves lie on more quadric hypersurfaces than any other irreducible, nondegenerate curve in $\PP^d$.
 
-\begin{proposition}
+\begin{proposition}\label{rnc on most quadrics}
 If $C \subset \PP^d$ is any irreducible, nondegenerate curve, then
 $$
 h^0(\cI_{C/\PP^d}(2)) \leq  \binom{d}{2};
@@ -201,7 +204,7 @@ and if equality holds then $C$ is a rational normal curve
 \end{proposition}
 
 \begin{proof}
-Consider the restriction of the quadrics containing $C$ to a general hyperplane $H \cong \PP^{d-1} \subset \PP^d$, and let $\Gamma = H \cap C$. We have exact sequence:
+Consider the restriction of the quadrics containing $C$ to a general hyperplane $H \cong \PP^{d-1} \subset \PP^d$, and let $\Gamma = H \cap C$. We have an exact sequence:
 $$
 0 \to \cI_{C/\PP^d}(1) \to \cI_{C/\PP^d}(2) \to \cI_{\Gamma/\PP^{d-1}}(2) \to 0.
 $$ 
@@ -212,8 +215,22 @@ $$
 establishing the desired inequality.
 \end{proof}
 
+From the projective normality of the rational normal curve, we know the Hilbert function of a rational normal curve $C \subset \PP^d$, and hence the dimensions of the graded pieces of its homogeneous ideal: we have
+$$
+h^0(\cI_{C/\PP^d}(m)) =  \binom{d+m}{m} - (md+1)
+$$
+
 \begin{exercise}
-Establish the analogous statement for hypersurfaces of any degree $d$; that is, no irreducible, nondegenerate curve in $\PP^r$ lies on more hypersurfaces of degree $d$ than the rational normal curve.
+Establish the analog of Proposition~\ref{rnc on most quadrics} for hypersurfaces of any degree $m$, that is to say no irreducible, nondegenerate curve in $\PP^r$ lies on more hypersurfaces of degree $m$ than the rational normal curve.
+To do this, let $C\subset \PP^d$ be any irreducible nondegenerate curve, and use the exact sequences
+$$
+0 \to \cI_{C/\PP^d}(l-1) \to \cI_{C/\PP^d}(l) \to \cI_{\Gamma/\PP^{d-1}}(l) \to 0.
+$$ 
+with $2 \leq l \leq m$ to show that
+$$
+h^0(\cI_{C/\PP^d}(m)) \leq  \binom{d+m}{m} - (md+1)
+$$
+with equality only if $C$ is a rational normal curve.
 \end{exercise}
 
 \begin{exercise}
@@ -233,7 +250,11 @@ The rational normal curve $C \subset \PP^r$ can also be characterized among irre
 \begin{exercise}
 Let $\PP^1 \hookrightarrow C \subset \PP^3$ be a twisted cubic. Show that the normal bundle $\cN_{C/\PP^3}$ (defined to be the quotient of the restriction $T_{\PP^3}|_C$ to $C$ of the tangent bundle  of $\PP^3$  by the tangent bundle $T_C$) is 
 $$
-\cN_{C/\PP^3} \cong \cO_{\PP^1}(5) \oplus  \cO_{\PP^1}(5)
+\cN_{C/\PP^3} \cong \cO_{\PP^1}(5) \oplus  \cO_{\PP^1}(5).
+$$
+Hint: for any point $p \in C$, let $L_p \subset \cN_{C/\PP^3}$ be the sub-line bundle of $\cN_{C/\PP^3}$ whose fiber over any point $q \neq p \in C$ is the one-dimensional subspace of $(\cN_{C/\PP^3})_q$ spanned by the line $\overline{p,q}$. (This of course only defines a sub-line bundle of $\cN_{C/\PP^3}$ over $C \setminus \{p\}$, but there is a unique extension to a sub-line bundle of $\cN_{C/\PP^3}$ over all of $C$.) Show that for $p \neq p'$ we have
+$$
+\cN_{C/\PP^3} = L_p \oplus L_{p'}.
 $$
 \end{exercise}
 
