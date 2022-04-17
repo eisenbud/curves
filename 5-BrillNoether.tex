@@ -48,25 +48,29 @@
 
 \chapter{What linear series exist?}\label{Brill-Noether}
 
-\section{What linear series exist?}
-
 In the last few chapters, we have alternated between setting up a general description of linear series on curves, and showing how this plays out in examples. It's time to return to the general theory, and the next question to ask, naturally, is ``What linear systems exist?"
+
+\section{Clifford's theorem}
+
 
 There are various ways to interpret this question. Let's start by taking the question in its crudest form: for which $g, r$ and $d$ does there exist a curve $C$ of genus $g$ and a linear system $(\cL,V)$ on $C$ of degree $d$ and dimension $r$? In this form, the answer is given for line bundles of large degree $d \geq 2g-1$ by the Riemann-Roch theorem: on any curve, there exists a linear series of degree $d > 2g-2$ and dimension $r$ iff $r \leq d-g$. As for line bundles of degree $d \leq 2g-2$, we have:
 
 \begin{theorem}[Clifford's Theorem]\label{Clifford}
-Suppose that $C$ is a smooth projective curve of genus $g\geq 2$. If $D$ is a divisor on $C$ with $\deg D \leq 2g-2$, then $r(D) := h^0(D) - 1 \leq d/2$. Moreover, if equality holds then either $D\sim 0$ or $D\sim K$ or
- $C$ is hyperelliptic, and $D$ is a multiple of the unique divisor of degree 2 that moves in a pencil.
+Suppose that $C$ is a smooth projective curve of genus $g\geq 2$. If $D$ is a divisor on $C$ of degree $d \leq 2g-2$, then $r(D) := h^0(D) - 1 \leq d/2$. Moreover, if equality holds then either $D\sim 0$, $D\sim K$ or
+ $C$ is hyperelliptic and $D$ is a multiple of the unique divisor of degree 2 that moves in a pencil.
 \end{theorem}
 
-\begin{proof} We prove the inequality, and  postpone the case of equality to give a slick characteristic 0 proof using  uniform position (Corollary****). Note that the result is true in any characteristic; see for example \cite[Theorem ****]{Hartshorne}.
+\begin{proof} We prove the inequality, and  postpone the case of equality to give a slick characteristic 0 proof using  uniform position (Corollary~\ref{Clifford equality}). Note that the result is true in any characteristic; see for example \cite[Theorem ****]{Hartshorne}.
 
-When $r(K-D)\leq 1$, the inequality in Clifford's Theorem is immediate from the Riemann-Roch Theorem
-$r(D)-r(K-D) = \deg D - g +1$. On the other hand, when $r(K-D) \geq 1$ we note that
+When $r(K-D)\leq 1$, the inequality in Clifford's Theorem is immediate from the Riemann-Roch formula. On the other hand, when $r(K-D) \geq 1$ we note that
 $$
- r(D)+r(K-D) \leq r(K) = g-1.
+ r(D)+r(K-D) \leq r(K) \leq g-1.
 $$
-Adding these formulas gives $2r(D)\leq d$ as required.
+Adding this and the Riemann-Roch formula
+$$
+r(D)-r(K-D) = d - g +1
+$$
+yields $2r(D)\leq d$ as required.
 
 \end{proof}
 
@@ -87,7 +91,7 @@ $$
 Prove a slightly stronger version of Theorem~\ref{arbitrary linear series} in the range $d \leq g-1$: that under the hypotheses of Theorem~\ref{arbitrary linear series} there exists a \emph{complete} linear series of degree $d$ and dimension $r$ for any $r \leq d/2$.
 \end{exercise}
 
-\subsection{Castelnuovo's theorem}
+\section{Castelnuovo's theorem}
 
 Theorem~\ref{arbitrary linear series} gives a complete and sharp answer to the question originally posed: for which $d,r$ and $g$ does there exists a triple $(C,\cL,V)$ with $C$ a curve of genus $g$, $\cL$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ of dimension $r+1$. 
 
@@ -99,9 +103,11 @@ Now, we'll see that the maximal dimension of a birationally very ample linear se
 What is the largest possible genus of an irreducible, nondegenerate curve $C \subset \PP^r$ of degree $d$?
 \end{question}
 
-A sharp bound, answering  this question, is given by a theorem of Castelnuovo, and is quite different from the inequality in Theorem~\ref{arbitrary linear series}.  We'll sketch the derivation of the inequality here; we'll prove that it is in fact sharp and describe in detail  the curves that achieve it in Chapter~\ref{}. \fix{*if* we keep the scrolls chaper}
+A sharp bound, answering  this question, is given by a theorem of Castelnuovo, and is quite different from the inequality in Theorem~\ref{arbitrary linear series}.  We'll sketch the derivation of the inequality here; we'll prove that it is in fact sharp and describe in detail  the curves that achieve it in Chapter~\ref{}. \fix{*if* we keep the scrolls chapter}
 
-The proof of Castelnuovo's bound if $C$ is a curve of degree $d$ and genus $g$ in $\PP^r$, the idea is to prove successive lower bounds for the dimensions $h^0(\cO_C(m))$ of multiples of the $g^r_d$ cut on $C$ by hyperplanes. For large values of $m$ the line bundle $\cO_C(m)$ is non-special, and so a lower bound on the dimension of its space of sections translates, via Riemann-Roch, into an upper bound on the genus $g$.
+The proof of Castelnuovo's bound is simple but elegant. Briefly, if $C$ is a curve of degree $d$ and genus $g$ in $\PP^r$, the idea is to prove successive lower bounds for the dimensions $h^0(\cO_C(m))$ of multiples of the $g^r_d$ cut on $C$ by hyperplanes. For large values of $m$ the line bundle $\cO_C(m)$ is non-special, and so a lower bound on the dimension of its space of sections translates, via Riemann-Roch, into an upper bound on the genus $g$.
+
+To start with, we have to introduce some language:
 
 \begin{definition}
 Let $\cL$ be any line bundle on a smooth projective variety $X$, and $D = \{p_1,\dots,p_d\}$ a collection of points of $X$. By the \emph{number of conditions imposed by $D$ on sections of $\cL$} we  mean  the difference
@@ -113,6 +119,7 @@ $$
 \dim(V) - \dim \left(V \cap H^0(\cL\otimes \cI_{D/X}) \right).
 $$
 \end{definition}
+
 Thus, for example, if $X = \PP^r$, the number of conditions imposed by $D$ on $H^0(\cO_{\PP^r}(m))$ is the value $h_D(m)$ of the Hilbert function of $D$.
 Note that the number of conditions imposed by $D$ on a linear system $V$ is necessarily less than or equal to the degree $d$ of $D$; if it is equal we say that $D$ \emph{imposes independent conditions on $V$}.
 
@@ -124,20 +131,21 @@ We have:
 \begin{align*}
 h^0(\cO_C(m)) - h^0(\cO_C(m-1)) & \geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_C(m))$} \\
 &\geq \text{\# of conditions imposed by $\Gamma$ on $V_m$} \\
-&\geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$}.
+&\geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$} \\
+&\geq h_\Gamma(m).
 \end{align*}
 Thus the dimension $h^0(\cO_C(m))$ is bounded below by the sum
 $$
 h^0(\cO_C(m)) \geq \sum_{k=0}^m h_\Gamma(k).
 $$
 
-To apply this we need a lower bound on the Hilbert function of a general hyperplane section $\Gamma$ of our curve $C$. This is turn requires that we have some knowledge of the geometry of $\Gamma$:
+To apply this we need a lower bound on the Hilbert function of a general hyperplane section $\Gamma$ of our curve $C$. This is turn requires that we have some knowledge of the geometry of $\Gamma$. The key statement is the general position lemma:
 
 \begin{lemma}[general position lemma]\label{general position lemma}
 If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
 \end{lemma}
 
-Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are: collinear \fix{here with 2 ells; below with one. TeX seems to prefer 2, but 1 would be more logical}. Even this case is surprisingly tricky to prove (and it's false in characteristic $p$!); the following exercise sketches a proof.
+Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are collinear \fix{here with 2 ells; below with one. TeX seems to prefer 2, but 1 would be more logical}. Even this case is surprisingly tricky to prove (and it's false in characteristic $p$!); the following exercise sketches a proof.
 
 \begin{exercise}
 Let $C \subset \PP^3$ be an irreducible, nondegenerate space curve. Assuming characteristic 0,
@@ -152,8 +160,12 @@ Let $C \subset \PP^3$ be an irreducible, nondegenerate space curve. Assuming cha
 The general position lemma was originally asserted by Castelnuovo. In modern language, it can be deduced as a special case of the more general \emph{uniform position lemma}; since this is a useful (and beautiful) theorem in its own right we'll take a few pages out and 
 derive it. \fix{I changed this from ``describe the derivation}. 
 
-\subsubsection{Uniform position} We start by introducing the \emph{monodromy group} of a generically finite cover. Let $f : Y \to X$ be a dominant map between varieties of the same dimension over $\CC$, and suppose that $X$ is irreducible. There is then an open subset $U \subset X$ such that $U$ and 
-its preimage $V = f^{-1}(U)$ are smooth, and the restriction of $f$ to $V$ is a covering space in the classical topology; we'll denote by $d$ the number of sheets. 
+\subsection{Uniform position} 
+
+\subsubsection{The monodromy group}
+
+We start by introducing the \emph{monodromy group} of a generically finite cover. Let $f : Y \to X$ be a dominant map between varieties of the same dimension over $\CC$, and suppose that $X$ is irreducible. There is then an open subset $U \subset X$ such that $U$ and 
+its preimage $V = f^{-1}(U)$ are smooth, and the restriction of $f$ to $V$ is a covering space in the classical topology; we'll denote by $d$ the number of sheets (in case $Y$ is irreducible, this is the degree of the field extension $K(Y)/K(X)$). 
 
 Choose a base point $p_0 \in U \subset X$, and suppose $\Gamma := f^{-1}(p_0)  = \{q_1,\dots,q_d\}$. If $\gamma$ is any loop in $U$ with base point $p_0$, for any $i = 1, \dots, d$ there is a unique lifting of $\gamma$ to an arc $\tilde \gamma_i$ in $V$ with initial point $\tilde \gamma_i(0) = q_i$ and end point $\tilde \gamma_i(1) = q_j$ for some $j \in \{1,2,\dots,d\}$; in this way, we can associate to $\gamma$ a permutation of $\{1,2,\dots,d\}$. 
 Since the set $\Gamma$ is discreet, the permutation depends only on the class of $\gamma$ in $\pi_1(U,p_0)$ so we have defined a homomorphism to the symmetric group:
@@ -162,13 +174,13 @@ $$
 $$
 The image $M$ of this map is called the \emph{monodromy group} of the map $f$. It depends on the labeling of the points of $\Gamma$, but is well-defined  up to conjugation. Moreover, it is independent of the choice of open set $U$: if $U' \subset U$ is a Zariski open subset, the map $\pi_1(U', p_0) \to \pi_1(U,p_0)$ is surjective,  so the image of $\pi_1(U', p_0)$ in $S_d$ is the same.
 
+One note: we do not assume here that $Y$ is irreducible. Note that any irreducible components of $Y$ that fail to dominate $X$ simply won't appear in the construction---they'll be eliminated when we pass to the open subset $U \subset X$. As for components of $Y$ that dominate $X$, we observe that \emph{$Y$ will have a unique irreducible component dominating $X$ if and only if the monodromy group $M$ is a transitive subgroup of $S_d$}. (Since $V$ is assumed smooth, it is irreducible if and only if it is connected, that is, if and only if $M$ is transitive.)
+
 \begin{fact}
-There is another characterization of the monodromy group $M$ that will not be used here but that is worth knowing. In the situation described above, the pullback map $f^*$ expresses the function field $K(Y)$ as a finite algebraic extension of $K(X)$; the degree $d$ is the degree of this extension, and $M$ is equal to the Galois group of the Galois normalization of $K(Y)$ over $K(X)$. (For a proof of this equality, see \cite{Harris}.)
+There is another characterization of the monodromy group $M$ that will not be used here but that is worth knowing. In the situation described above, if we assume that $Y$ is irreducible the pullback map $f^*$ expresses the function field $K(Y)$ as a finite algebraic extension of $K(X)$; the degree $d$ is the degree of this extension, and $M$ is equal to the Galois group of the Galois normalization of $K(Y)$ over $K(X)$. (For a proof of this equality, see \cite{Harris}.)
 \end{fact}
 
-One note: we have assumed here that both $X$ and $Y$ are irreducible. In fact, we need only have assumed that $X$ is irreducible; we can apply the same construction in case $Y$ is reducible (note that any irreducible components of $Y$ that fail to dominate $X$ simply won't appear in the construction). 
-
-Since $V$ is assumed smooth, it is connected, or path-connected, if and only if it is irreducible, and if $Y$ is equidimensional then this is the case if and only if $Y$ is irreducible. In this case we see that \emph{$Y$ is irreducible if and only if the monodromy group $M \subset S_d$ is transitive}. We can extend this result in a useful way as follows:
+There are two basic theorems relating the geometry of $Y \to X$ to the monodromy group $M$. For the first, we observed above that $Y$ has a unique irreducible component dominating $X$ if and only $M$ is transitive. We can extend this result in a useful way as follows:
 
 \begin{lemma}\label{transitivity lemma}
 Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$; let $U \subset X$ and $V = f^{-1}(U) \subset Y$ be open sets as above. For any $k = 1,2,\dots,d$, let $V_k^*$ be the complement of the large diagonal in the $k$th fiber power of $V \to U$; that is,
@@ -178,9 +190,11 @@ $$
 Then $V_k^*$ is irreducible if and only if $M$ is $k$ times transitive. \qed
 \end{lemma}
 
+As for the second theorem relating the monodromy group $M$ to the geometry of $Y$, it may seem arbitrary at first, but it will be extremely useful in what follows. 
+
 \begin{lemma}\label{transposition lemma}
 Let $f : Y \to X$ be a generically finite cover of degree $d$ over an irreducible variety $X$, with  monodromy group $M \subset S_d$.  
-If, that for some smooth point $p \in X$ the fiber $f^{-1}(p)\subset V$ consists of $d-2$ reduced points $p_1,\dots, p_{d-2}$ and one point $q$ of multiplicity 2, where $q$ is also a smooth point of $Y$, then $M$ contains a transposition.
+If,  for some smooth point $p \in X$ the fiber $f^{-1}(p)\subset V$ consists of $d-2$ reduced points $p_1,\dots, p_{d-2}$ and one point $q$ of multiplicity 2, where $q$ is also a smooth point of $Y$, then $M$ contains a transposition.
 \end{lemma}
 
 \begin{proof} To begin with, let $U \subset X$ be a Zariski open subset of the smooth locus in $X$, as in the definition of the monodromy group, so that  $V := f^{-1}(U)$ is also smooth and the restriction $f|_V : V \to U$ expresses $V$ as a $d$-sheeted covering space of $U$, with $U,V$ smooth and $p\in X$
@@ -191,7 +205,9 @@ Now, let $A \subset X$ be a small neighborhood of $p$ in the classical topology.
 Let $p' \in A \cap U$. Two of the $d$ points of $f^{-1}(p')$ will lie in the component $B$ of $f^{-1}(A)$ containing $q$; call these $q'$ and $q''$. Since $B \cap V$ is connected (it's the complement of a proper subvariety in the neighborhood $B$ of the smooth point $q \in Y$), we can draw a real arc $\gamma : [0,1] \to B \cap V$ joining $q'$ to $q''$; by construction, the permutation of $f^{-1}(p')$ associated to the loop $f \circ \gamma$ will exchange $q'$ and $q''$ and fix each of the remaining $d-2$ points of $f^{-1}(p')$.
 \end{proof}
 
-To apply these lemmas, let $C \subset \PP^r$ be a smooth irreducible, nondegenerate curve of degree $d$, let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$, and let
+\subsubsection{Application to hyperplane sections of curves}
+
+To apply Lemmas~\ref{transitivity lemma} and~\ref{transposition lemma}, let $C \subset \PP^r$ be a smooth irreducible, nondegenerate curve of degree $d$, let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$, and let
 $$
 Y = \{ (H, p) \in {\PP^r}^* \times C \mid p \in H \}
 $$
@@ -209,7 +225,7 @@ The monodromy group of the general hyperplane section of an irreducible curve $C
 in $\PP^r_\CC$ is the full symmetric group; in particular the varieties $Y^k$ are irreducible.
 \end{theorem}
 
-Informally, this Theorem says that two subsets of the same cardinality in the general hyperplane section of $C$
+Informally, this theorem says that two subsets of the same cardinality in the general hyperplane section of $C$
 are indistinguishable from the point of view of any discrete invariant that is constant in
 a connected, smooth family. We shall see examples below.
 
@@ -229,7 +245,7 @@ To prove that $M$ contains a transposition, we will use the characteristic 0 hyp
 the tangent line at a general point of $C$ meets $C$ with multiplicity exactly 2 at $p$ and meets $C$ transversely elsewhere. 
 \fix{The $r= 2, r= 3, r>3$ cases seem to me to have different proofs. In any case, this result is so central we should put in a careful proof.}
 
-Given this, let $p \in C$ be a general point, and let $H \subset \PP^r$ be a general hyperplane containing the tangent line $T_pC$. The fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
+Given this, let $p \in C$ be a general point, and let $H \subset \PP^r$ be a general hyperplane containing the tangent line $T_pC$. Since a general tangent line to $C$ is not bitangent (Exercise~\ref{}), the fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
 \end{proof}
 
 \begin{corollary}[numerical uniform position lemma]
@@ -253,7 +269,7 @@ Recall that if $D$ is a divisor on a curve $C$ we write $r(D) = \dim |D| = h^0(\
 \begin{corollary}\label{Clifford equality plus}
 If $D,E$ are effective divisors on a curve $C$ then
 $$
-r(D)+r(E)\leq r(D+E).
+r(D+E) \geq r(D)+r(E).
 $$
 If the genus of $C$ is $>0$ and $D+E$ is birationally very ample, then the inequality is strict.
 \end{corollary}.
@@ -263,11 +279,11 @@ always an equality for $C = \PP^1$.
 
 \begin{proof}
  The inequality follows in general because the sums of divisors in $|D|$ and divisors in $|E|$ already move in 
- a family of dimension $r(D)+r(E)$.
+ a family of dimension $r(D)+r(E)$; the key point is the strict inequality in case $D+E$ is birationally very ample.
  
 In the case where $D+E$ is birationally very ample then, restricting to an open set,
-we may identify $C$ with its under the complete linear series $|D+E|$. and we see that every (general) hyperplane section $H\cap C$ contains a divisor equivalent to $D$. Since the monodromy of the general hyperplane section
-is the symmetric group, this implies that every subset of $\deg D$ elements in $H\cap C$ is
+we may identify $C$ with its image under the complete linear series $|D+E|$, and we see that a general hyperplane section $H\cap C$ contains a divisor equivalent to $D$. Since the monodromy of the general hyperplane section
+is the symmetric group, this implies that \emph{every} subset of $\deg D$ elements in $H\cap C$ is
 equivalent to $D$. But if $p\in D$ and $q\notin D$, then $D-p+q \equiv D$, whence $q\equiv p$. Thus
 $r(p)\geq 1$, so $C\cong \PP^1.$
 \end{proof}
@@ -288,6 +304,8 @@ which implies that every canonical divisor is expressible as a sum of a divisor 
 By Corollary~\ref{Clifford equality plus}, $K$ is not very ample; so $C$ is hyperelliptic. Moreover the
 divisors equivalent to $D$ are sums of the fibers of the map given by $|K|$.
 \end{proof}
+
+\subsection{Castelnuovo's bound}
 
 We return now to Castelnuovo's analysis.
 
@@ -319,7 +337,7 @@ $$
 \end{exercise} 
 
 \begin{fact}
-Castelnuovo in fact proved a converse to this observation: he showed that if $d \geq 2n+3$, then \emph{any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(m) = \min\{d, mn+1\}$ must lie on a rational normal curve}. This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus.
+Castelnuovo in fact proved a converse to this observation: he showed that if $d \geq 2n+3$, then \emph{any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(m) = \min\{d, mn+1\}$ must lie on a rational normal curve}. This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus; we'll see how it's applied in Chapter~\ref{} (scrolls, if we include it).
 \end{fact}
 
 At this point, all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$, so that we can write
@@ -383,7 +401,7 @@ $$
 
 
 \begin{exercise}
-Show that with $C$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist such curves $C$ with $\cO_C(M-1)$ special).
+Show that with $C$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
 \end{exercise}
 
 
@@ -391,7 +409,17 @@ Show that with $C$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will 
 
 \subsection{Basic questions addressed by Brill-Noether theory}
 
-In the last section, we restricted our attention to the linear series most of interest to us: those corresponding to embeddings of our curve in projective space (or at any rate birational embeddings) and their limits. But there is one other respect in which Castelnuovo theory fails to address a basic concern: the curves with linear systems achieving Castelnuovo's bound are, like hyperelliptic curves, very special. (In fact, we'll see in Section~\ref{**} \fix{what's this?} that in general they are even rarer than hyperelliptic curves.) That is, if we were to pick a curve $C$ of genus $g$ ``at random," we would still have no idea what linear systems existed on $C$ or how they behaved.
+In the last section, we restricted our attention to the linear series most of interest to us: those corresponding to embeddings of our curve in projective space (or at any rate birational embeddings) and their limits. But there is one other respect in which Castelnuovo theory fails to address a basic concern: the curves with linear systems achieving Castelnuovo's bound are, like hyperelliptic curves, very special. (In fact, we'll see in the following exercise that in general they are even rarer than hyperelliptic curves.) 
+
+\begin{exercise}
+We have seen that complete intersections $C = Q \cap S \subset \PP^3$ of a quadric surface $Q$ and a surface $S$ of degree $k$ achieve Castelnuovo's bound $g = \pi(2k, 3)$ on the genus of curves of degree $2k$ in $\PP^3$. In fact, we will see in Chapter~\ref{**} (scrolls, if we include it) that any curve $C \subset \PP^3$ of degree $2k$ and genus $g = \pi(2k, 3) = (k-1)^2$ is of this form.
+\begin{enumerate}
+\item Find the dimension of the subvariety $\Gamma \subset M_g$ consisting of Castelnuovo curves.
+\item Find the dimension of the subvariety $H \subset M_g$ of hyperelliptic curves, and compare this to the result of the first part.
+\end{enumerate}
+\end{exercise}
+
+The bottom line is, even with Castelnuovo's bound, if we were to pick a curve $C$ of genus $g$ ``at random," we would still have no idea what linear systems existed on $C$ or how they behaved.
 
 Brill-Noether theory addresses exactly this issue: it asks, ``what linear series exist on a \emph{general} curve of a given genus?" When it comes to non-special linear series, of course, Riemann-Roch answers the question simply and completely, so we'll restrict our attention to special linear series (that is, with $r > d - g$). 
 Here is a crude version of the result:
@@ -447,12 +475,12 @@ The point is, we can think of $A$ as a matrix valued function in an open set $U 
 $$
 d - r(g-d+r) \; \geq \; r.
 $$
-At the same time, if any divisor of degree $d$ with $h^0(D) \geq r+1$ exists, then there must be at least an $r$-dimensional family of them; This is exactly the statement of the Brill-Noether Theorem.
+At the same time, if any divisor of degree $d$ with $h^0(D) \geq r+1$ exists, then there must be at least an $r$-dimensional family of them; this is exactly the statement of the Brill-Noether Theorem.
 
 
 \subsection{Refinements of the Brill-Noether theorem}
 
-As we indicated, Theorem~\ref{basic BN} is only a crude version of the Brill-Noether Theorem. We now know much more, both about the geometry of the scheme $W^r_d(C)$ and about the linear series parametrized by $W^r_d(C)$:
+As we indicated, Theorem~\ref{basic BN} is only a crude version of the Brill-Noether theorem. We now know much more, both about the geometry of the scheme $W^r_d(C)$ and about the linear series parametrized by $W^r_d(C)$:
 
 \begin{theorem}[Brill-Noether theorem, omnibus version]\label{BN omnibus}
 Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, then
@@ -491,7 +519,7 @@ A few special cases are worth noting:
 $$
 c_k = \frac{2k!}{k!(k+1)!}.
 $$
-We have already seen this in the first three cases: in genus 2, it says the canonical series $|K|$ is the unique $g^1_2$ on a curve of genus 2; in genus 4, it says that there are exactly two $g^1_3$s on a general curve of genus 4 (note that this is true only for a general curve: we've seen that there are curves of genus 4 with only one $g^1_3$); and in genus 6 it says that a general curve of genus 6 has 5 $g^1_4$s, as we will see in Chapter~\ref{genus 4, 5 and 6 chapter}.  In genus 8, it says that a general curve of genus 8 has 14 $g^1_5$s.  We don't know of any way of seeing this directly from the geometry of a general curve of genus 8; and we know even less for larger $k$.
+We have already seen this in the first case: in genus 2, it says the canonical series $|K|$ is the unique $g^1_2$ on a curve of genus 2. In the next chapter, we'll also see how to verify this directly for curves of genus 4---where it says that there are exactly two $g^1_3$s on a general curve of genus 4---and in genus 6, where it says that a general curve of genus 6 has 5 $g^1_4$s.  In genus 8, it says that a general curve of genus 8 has 14 $g^1_5$s, but we don't know of any way of seeing this directly from the geometry of a general curve of genus 8; and we know even less for larger $k$.
 
 \item Part\ref{Petri} implies Part\ref{sing wrd}. In fact, a fairly elementary argument shows that at a point $L \in W^r_d(C) \setminus W^{r+1}_d(C)$, the tangent space to $W^r_d$ at the point $L$ is the annihilator
 in $(H^0(\omega_C))^*$ of the image of $\mu$; given that $\mu$ is injective, we can compare dimensions and deduce that $W^r_d$ is smooth at $L$.
