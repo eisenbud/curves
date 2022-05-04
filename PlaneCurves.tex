@@ -563,6 +563,33 @@ As we saw in that chapter, the actual dimension of the restricted Hilbert scheme
 
 Lemma~\ref{local geometry of Severi} has another important consequence, one which we have already invoked in Chapter~\ref{InflectionsChapter}: the existence of families of curves of genus $g$ specializing to a $g$-nodal rational curve. In fact, such families are already explicit in Lemma~\ref{local geometry of Severi}: if we start with a rational nodal  curve $C_0 \subset \PP^2$---for example, the general projection of a rational normal curve $\PP^1 \hookrightarrow \PP^d$ to $\PP^2$---the Lemma says that we can find a family of nodal curves $C_t$ of geometric genus $g$ specializing to $C_0$, in which the  $\delta = \binom{d-1}{2} - g$ nodes of $C_t$ specialize to a subset of $\delta$ of the nodes of $C_0$. Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired.
 
+To carry this out in detail, let us first state precisely the lemma we seek to establish:
+
+\begin{lemma}
+Let $p_1, \dots, p_g, q_1, \dots, q_g \in \PP^1$ be $2g$ general points, and let $C := \PP^1/p_i \sim q_i$ be the nodal curve of arithmetic genus $g$ obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family $\{ C_t \mid \Delta \}$ of curves, parametrized by the disc $\Delta$, with $C_t$ a smooth projective curve of genus $g$ for all $t \neq 0$ and $C_0 = C$ as above.
+\end{lemma}
+
+\begin{proof}
+Let's start by realizing the curve $C_0$ in projective space. This is straightforward: to begin, choose a degree $d > 2g+2$, and embed $\PP^1$ as a rational normal curve in $\PP^d$ via the Veronese map. Let $L_i = \overline{p_i,q_i} \subset \PP^d$ be the line spanned by $p_i$ and $q_i$, and let $\Lambda \cong \PP^{g-1} \subset \PP^d$ be a general $(g-1)$-plane meeting each of the lines $L_1,\dots,L_g$. Let $\pi_\Lambda : \PP^d \to \PP^{d-g}$ be the projection with center $\Lambda$, and let $C \subset \PP^{d-g}$ be the image of our rational normal curve. We claim to begin with that \emph{the curve $C$ is the curve above obtained by identifying the $g$ pairs of points $p_i, q_i \in \PP^1$}. 
+
+This requires a sequence of verifications: we have to check that
+\begin{enumerate}
+\item $\Lambda$ is disjoint from the rational normal curve, so that the map $\pi_\Lambda$ is regular on $\PP^1$;
+\item $\Lambda$ does not meet any secant or tangent lines to $\PP^1$ other than the $L_i$, so that the map $\pi_\Lambda$ is an isomorphism away from the points $p_i, q_i$; and
+\item for each $i$, the 3-plane $\overline{2p_i + 2q_i}$ spanned by the tangent lines to $\PP^1$ at $p_i$ and $q_i$ meets $\Lambda$ in only one point (the point of intersection of $\Lambda$ with $L_i$), so that the common image point $\pi_\Lambda(p_i) = \pi_\Lambda(q_i) \in C$ is indeed a node of $C$.
+\end{enumerate}
+
+Each of these assertions can be verified by a simple (or at least straightforward) dimension count. Denote by $\Sigma_{d-g}(L_i) \subset \GG(g-1, d)$ the Schubert cycle of $(g-1)$-planes in $\PP^d$ meeting $L_i$. The cycles $\Sigma_{d-g}(L_i)$ have codimension $d-g$ in $\GG(g-1,d)$; since the lines $L_i$ are linearly independent, they intersect properly in a subvariety
+$$
+X := \bigcap_{i=1}^g \Sigma_{d-g}(L_i) \subset \GG(g-1,d)
+$$
+of dimension $g(d-g+1) - g(d-g) = g$. (This makes sense: a $(g-1)$-plane $\Lambda \in X$ is determined by its points of intersection with the $L_i$.) Since $\Lambda$ corresponds to a general point of $X$, we just have to show that the locus of $(g-1)$-planes violating each of the conditions above has strictly smaller dimension; we leave these verifications as Exercise~\ref{} below.
+
+Next, we project again: we take $\Gamma \cong \PP^{d-g-3} \subset \PP^{d-g}$ a general $(d-g-3)$-plane, and consider the projection $\pi_\Gamma : C \to \PP^2$. We claim that this map is regular and birational onto a rational nodal plane curve $C_0$, so that $C_0$ has $\binom{d-1}{2}$ nodes $r_1,\dots,r_{\binom{d-1}{2}}$, of which $r_1,\dots,r_g$ are the images of the nodes of $C$. Again, this requires a series of verifications: we have to show that the locus of planes $\Gamma \cong \PP^{d-g-3} \subset \PP^{d-g}$ for which each part of the statement fails has dimension strictly less than $\dim \GG(d-g-3, d-g) = 3(d-g-2)$; again, we leave this as an exercise.
+
+Finally, given all this, Lemma~\ref{local geometry of Severi} gives us what we seek: it says we can find an arc $\{C_t\}$ in the Severi variety $\overline V_{d,g}$ whose general member has $\binom{d-1}{2} - g$ nodes and whose special member $C_0$ is the curve we've just constructed, with the $\binom{d-1}{2} - g$ nodes of $C_t$ specializing to the nodes $r_{g+1}, \dots r_{\binom{d-1}{2}} \in C_0$.
+\end{proof}
+
 %Throughout this book thus far, we have developed techniques for dealing with smooth, projective curves; to the extent that we have considered singular curves we have studied them by applying the ideas and constructions we've developed to their normalizations. But singular curves have a fascinating geometry in their own right, not only for the singularities themselves but the effect singularities have on associated objects such as the Jacobian. In this chapter, we will undertake a brief survey of the geometry of singular curves and what we can say about linear series on them.
 %
 %To say what classes of curves we'll be dealing with here: for the most part, we will confine ourselves to working with reduced, projective curves. Many of the results we will derive will in fact will be applicable to a larger class of curves, namely those that are \emph{Cohen-Macaulay}; these may well be non-reduced, but cannot have embedded points. In Section~\ref{} below, we'll mention some examples of nonreduced curves to which we can apply our ideas (such as, for example, \emph{ribbons}), and we'll develop these ideas further in the following chapter, where we introduce more algebraic techniques. But for the rest of this chapter, we will take the objects of our study to be reduced, projective curves over $\CC$.
