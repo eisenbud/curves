@@ -526,18 +526,35 @@ is injective, with image the hyperplane $H_p \subset \PP^N$ of plane curves cont
 Thus, if $p$ is the only singularity of $C$, then $\Delta$ is smooth at $C$; and more generally the image of a small analytic neighborhood of $(C,p) \in \Phi$ is smooth, with tangent space the hyperplane $H_p$.
 
 \begin{proof}
-For this, it's easier to work with affine coordinates on both projective spaces. Suppose that the point $p$ is $[0,0,1]$, and let $x = X/Z$ and $y = Y/Z$ be coordinates on the affine plane $Z \neq 0$; and write the polynomial $F$ above as
+For this, it's easier to work with affine coordinates on both projective spaces. Suppose that the point $p$ is $[0,0,1]$, and let $x = X/Z$ and $y = Y/Z$ be coordinates on the affine plane $Z \neq 0$; and write the polynomial $F(x,y,1)$ above as
 $$
 f(x,y) = \sum_{i+j \leq d} a_{i,j} x^iy^j
 $$
 with $a_{d,0}$ normalized to 1. (Thus assumes that the point $[1,0,0] \notin C$; if not, change coordinates.)
 
-Now, let's consider the partial derivatives of $f$ with respect to $x, y$ and $a_{0,0}$, evaluated at the point $(C,p)$. In matrix form, we have
+Now, let's consider $f$ and its two partial derivatives  
 $$
-\begin{pmatrix}
+g(x,y) := \binom{\partial f}{\partial x} = \sum_{i+j \leq d} i a_{i,j} x^{i-1}y^j
+$$
+and
+$$
+h(x,y) := \binom{\partial f}{\partial y} = \sum_{i+j \leq d} j a_{i,j} ix^{i}y^{j-1}.
+$$
+$f, g$ and $h$ are local defining equations for $\Phi$; we consider their partial derivatives with respect to $x, y$ and $a_{0,0}$, evaluated at the point $(C,p)$. In matrix form, we have
 
-\end{pmatrix}
-$$
+\begin{table}[h!]
+  \begin{center}
+     \begin{tabular}{c|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+            & $f$ & $g$ & $h$ \\
+      \hline
+$\frac{\partial}{\partial x}$ & 0 & $a_{2,0}$ & $a_{1,1}$ \\
+$\frac{\partial}{\partial y}$ & 0 & $a_{1,1}$ & $a_{0,2}$ \\
+$\frac{\partial}{\partial a_{0,0}}$ & 1 & 0 & 0 
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Now, the hypothesis that $p$ is a node of $C$ means exactly that the upper right $2 \times 2$ minor of this matrix is nonsingular, which shows that the differential $d\pi$ is injective, and its image is the hyperplane $a_{0,0} = 0$ in $\PP^N$, which is exactly the hyperplane of curves containing $p$.
 \end{proof}
 
 Now, suppose that $C \subset \PP^2$ is a curve with $\delta$ nodes $p_1,\dots,p_\delta$ and no other singularities. The preimage of the point $C \in \PP^N$ is then the $\delta$ points $(C,p_i) \in \Phi$, and according to  Lemma~\ref{tangent space to discriminant} an analytic neighborhood of $C$ in the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets. Moreover, by Lemma~\ref{adjoint independent} above, the tangent spaces to these sheets are linearly independent; in other words, \emph{$\Delta$ has normal crossing singularities at $C$}.
@@ -561,12 +578,12 @@ h(g,r,d) := 4g-3 + (r+1)(d-g+1) - 1.
 $$
 As we saw in that chapter, the actual dimension of the restricted Hilbert scheme may be quite different. But what Corollary~\ref{dim Severi} is saying that in case $r=2$ (as in the case of $r=1$), \emph{the actual dimension is always the expected}.
 
-Lemma~\ref{local geometry of Severi} has another important consequence, one which we have already invoked in Chapter~\ref{InflectionsChapter}: the existence of families of curves of genus $g$ specializing to a $g$-nodal rational curve. In fact, such families are already explicit in Lemma~\ref{local geometry of Severi}: if we start with a rational nodal  curve $C_0 \subset \PP^2$---for example, the general projection of a rational normal curve $\PP^1 \hookrightarrow \PP^d$ to $\PP^2$---the Lemma says that we can find a family of nodal curves $C_t$ of geometric genus $g$ specializing to $C_0$, in which the  $\delta = \binom{d-1}{2} - g$ nodes of $C_t$ specialize to a subset of $\delta$ of the nodes of $C_0$. Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired.
+Lemma~\ref{local geometry of Severi} has another important consequence, one which we have already invoked in Chapter~\ref{InflectionsChapter}: the existence of families of curves of genus $g$ specializing to a $g$-nodal rational curve. In fact, such families are already explicit in Lemma~\ref{local geometry of Severi}: if we start with a rational nodal  curve $C_0 \subset \PP^2$---for example, the general projection of a rational normal curve $\PP^1 \hookrightarrow \PP^d$ to $\PP^2$---the lemma says that we can find a family of nodal curves $C_t$ of geometric genus $g$ specializing to $C_0$, in which the  $\delta = \binom{d-1}{2} - g$ nodes of $C_t$ specialize to a subset of $\delta$ of the nodes of $C_0$. Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired.
 
 To carry this out in detail, let us first state precisely the lemma we seek to establish:
 
 \begin{lemma}
-Let $p_1, \dots, p_g, q_1, \dots, q_g \in \PP^1$ be $2g$ general points, and let $C := \PP^1/p_i \sim q_i$ be the nodal curve of arithmetic genus $g$ obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family $\{ C_t \mid \Delta \}$ of curves, parametrized by the disc $\Delta$, with $C_t$ a smooth projective curve of genus $g$ for all $t \neq 0$ and $C_0 = C$ as above.
+Let $p_1, \dots, p_g, q_1, \dots, q_g \in \PP^1$ be $2g$ general points, and let $C := \PP^1/p_i \sim q_i$ be the nodal curve of arithmetic genus $g$ obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family $\cC \to  \Delta $ of curves, parametrized by the disc $\Delta$, with $C_t$ a smooth projective curve of genus $g$ for all $t \neq 0$ and $C_0 = C$ as above.
 \end{lemma}
 
 \begin{proof}
