@@ -4,18 +4,26 @@
 \label{InflectionsChapter}
 
 
-In this chapter, we will introduce one more aspect of the geometry of linear series on curves, the \emph{inflection points} of a linear system, and use it to give a proof of one implication in the statement Brill-Noether theorem.\fix{I changed from "classical B-N" -- ok?}
+In this chapter, we will introduce one more aspect of the geometry of linear series on curves, the \emph{inflection points} of a linear system, and use it to give a proof of one implication in the statement of the Brill-Noether theorem.\fix{I changed from "classical B-N" -- ok?}
 
-Inflection points are a generalization of flex points of a smooth plane curve to curves in higher-dimensional spaces. Just as a point $p \in C$ on a smooth plane curve $C \subset \PP^2$ is called a \emph{flex point} if there is a line $L \subset \PP^2$ having contact of order 3 or more with $C$ at $p$, a point on a smooth, nondegenerate curve $C \subset \PP^r$ will be called an inflection point if there is a hyperplane $H \subset \PP^r$ having contact of order $r+1$ or more with $C$ at $p$. This notion can be extended to arbitrary linear series on smooth curves (as opposed to very ample ones); we'll see below that (in characteristic 0) every linear series has finitely many inflection points, and how to count them.
+Inflection points are a generalization to curves in higher-dimensional spaces of the notion of flex points of a smooth plane curve. Just as a point $p \in C$ on a smooth plane curve $C \subset \PP^2$ is called a \emph{flex point} if there is a line $L \subset \PP^2$ having contact of order 3 or more with $C$ at $p$, a point on a smooth, nondegenerate curve $C \subset \PP^r$ will be called an \emph{inflection point} if there is a hyperplane $H \subset \PP^r$ having contact of order $r+1$ or more with $C$ at $p$. This notion can be extended to arbitrary linear series on smooth curves (as opposed to very ample ones); we'll see below that (in characteristic 0) every linear series has finitely many inflection points, and how to count them.
 
 
 \section{Inflection points,  Pl\"ucker formulas and Weierstrass points}
 
 \subsection{Definitions}
 
-Let $C$ be a smooth projective curve of genus $g$, and $\cD = (\cL,V)$ a $g^r_d$ on $C$; that is, $\cL \in \Pic^d(C)$ is a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ is an $(r+1)$-dimensional vector space of sections. \fix{maybe not repeat this here?} \fix{should we stick with "invertible sheaf", as we agreed?}
+Let $C$ be a smooth projective curve of genus $g$, and $\cD = (\cL,V)$ a $g^r_d$ on $C$; that is, $\cL \in \Pic^d(C)$ is a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ is an $(r+1)$-dimensional vector space of sections. \fix{maybe not repeat this here?} \fix{should we stick with "invertible sheaf", as we agreed?} 
 
-For any point $p \in C$, we can find a basis $\sigma_0, \dots, \sigma_r$ of $V$ consisting of sections vanishing to different orders at $p$ (Method: Start with any basis $\tau_0, \dots, \tau_r$. If  $\tau_i, \tau_j$ vanish to the same order, then some nonzero linear combination $\tau_i' := a\tau_i+b\tau_j$ must vanish to higher order, and we may replace $\tau_i$ with $\tau_i'$, and repeat; since the order $\ord_p(\sigma)$ of any section at $p$ is bounded above by $d$, this process must terminate). The set
+To define the inflection points of $\cD$ we introduce a basic
+
+\begin{proposition} For any point $p \in C$, we can find a basis $\sigma_0, \dots, \sigma_r$ of $V$ consisting of sections vanishing to different orders at $p$.
+\end{proposition}
+
+\begin{proof} Start with any basis $\tau_0, \dots, \tau_r$. If any two of our basis elements  $\tau_i$ and $\tau_j$ vanish to the same order, then some nonzero linear combination $\tau_i' := a\tau_i+b\tau_j$ must vanish to strictly higher order; since the coefficients $a$ and $b$ are necessarily nonzero we may replace $\tau_i$ with $\tau_i'$. As long as our basis contains elements vanishing to the same order we can repeat this process; since the order $\ord_p(\sigma)$ of any section at $p$ is bounded above by $d$, this process must terminate.
+\end{proof}
+
+The set
 $$
 \{ \ord_p(\sigma) \mid \sigma \neq 0 \in V \}
 $$
@@ -32,22 +40,28 @@ $$
 
 If $\cD$ is very ample, so that it may be viewed at the linear series cut on $C$ by hyperplanes for some embedding $C \subset \PP^r$, then this coincides with the notion above: $p$ is an inflection point if $a_r > r$; that is, if there is a hyperplane $H \subset \PP^r$ having contact of order $r+1$ or more with $C$ at $p$.
 
+Note that the first two terms in the ramification sequence have clear significance: the first, $\alpha_0(\cD, p)$, is nonzero if and only if $p$ is a base point of $\cD$; and $\alpha_0(\cD, p) = 0$ if and only if the map $\phi_\cD$ is an immersion at $p$.
+
 
 \subsection{The Pl\"ucker formula}
 
-With our standing assumption of characteristic 0, not every point of $C$ is an inflection point, and indeed
-the total number of inflection points, properly counted, is determined by $d, g$ and $r$.
+It is a fundamental fact that, in characteristic 0, \emph{a linear series on a smooth projective curve has only finitely many inflection points}. This may seem obvious---try to imagine a plane curve in which every point is a flex!---but it would be false in characteristic $p$: in positive characteristic there exist smooth curves in $\PP^r$ such that every point is an inflection. These are sometimes called ``strange curves'' (see \cite[]{Hartshorne} for an example). 
 
-\begin{proposition}
+Given that not every point of $C$ is an inflection point, it is not completely surprising that
+the total number of inflection points, properly counted, is determined by $d, g$ and $r$. This is the content of the classical \emph{Pl\"ucker formula}
+
+\begin{theorem}
  \begin{equation}\label{Plucker formula}
 \sum_{p \in C} w(\cD, p) \; = \; (r+1)d + r(r+1)(g-1).
 \end{equation}
-\end{proposition}
-A proof of this statement can be found, for example, in~\cite{} (3264?). 
+\end{theorem}
+A proof of this statement can be found, for example, in~\cite{} (3264?). Note that this holds in positive characteristic under the hypothesis that the number of inflection points is finite.
 
-In particular the number of flex points of a given linear series is finite: not every point can be a flex. This may seem obvious---try to imagine a plane curve in which every point is a flex!---but it would be false in characteristic $p$: there exist smooth curves in $\PP^r$ such that every point is an inflection; these are sometimes called ``strange curves'' (see \cite[]{Hartshorne} for an example). 
+The Pl\"ucker formula, while extremely useful (as we'll see in the remainder of this chapter), leaves many questions unanswered: we don't know, for example, what combinations of inflection points are possible. One thing we do know is the behavior of the inflection points for a general linear series; we'll state this here and prove it as a corollary to the proof of the Brill-Noether theorem later in this chapter.
 
-The Pl\"ucker formula, while extremely useful (as we'll see in the remainder of this chapter), leaves many questions unanswered: we don't know, for example, what combinations of inflection points are possible, or what the behavior of the inflection points on a suitably general curve may be.
+\begin{theorem}
+If $C$ is a general curve of genus $g$, $L \in \pic^d(C)$ a general line bundle of degree $d$ with $h^0(L) = r+1$ and $V = H^0(L)$, then every inflection point of the linear series $\cD = (L, V)$ has weight 1 and hence ramification sequence $(0, \dots, 0, 1)$.
+\end{theorem}
 
 As a sample application of the Pl\"ucker formula, we can give a simple proof of Proposition~\ref{rnc unique uninflected}, which says that the rational normal curve is the only curve with no inflection points. 
 
@@ -63,7 +77,7 @@ This immediately implies that $g=0$, so that we must have $(r+1)(d-r) = 0$ and h
 
 As with any extrinsic invariant of a curve in projective space, we can derive an intrinsic invariant of an abstract curve by applying the notion of inflection point to the canonical linear series. 
 
-We define a \emph{Weierstrass point} of a curve $C$ to be an inflection point of the canonical linear series $|K_C|$. This amounts to saying a point $p$ is a Weierstrass point if there exists a  differential form on $C$ vanishing to order $g$ or more at $p$; by the Riemann-Roch Theorem, this is tantamount to the condition that $h^0(\cO_C(gp)) \geq 2$, or in other words to saying that there exists a rational function on $C$, regular away from $p$ and having a pole of order $g$ or less at $p$.
+We define a \emph{Weierstrass point} of a curve $C$ to be an inflection point of the canonical linear series $|K_C|$. This amounts to saying a point $p$ is a Weierstrass point if there exists a  differential form on $C$ vanishing to order $g$ or more at $p$; by the Riemann-Roch theorem, this is tantamount to the condition that $h^0(\cO_C(gp)) \geq 2$, or in other words to saying that there exists a rational function on $C$, regular away from $p$ and having a pole of order $g$ or less at $p$.
 
 We can similarly characterize all the inflection indices of the canonical series at a point. We see from Riemann-Roch that for any $k \geq 0$, there exists a rational function on $C$, regular on $C \setminus \{p\}$ and having a pole of order exactly $k$ at $p$---that is,
 $$
@@ -73,7 +87,7 @@ if and only if
 $$
 h^0(K_C(-kp)) = h^0(K_C((-k+1)p)); 
 $$
-that is, if and only if there does \emph{not} exist a regular differential on $C$ with a zero of order exactly $k-1$ at $p$. To give the classical terminology, we see from the above that there will exist exactly $g$ values of $k$ such that there does \emph{not} exist a rational function on $C$ with a pole of order exactly $k$ at $p$; these are called the \emph{gap values} of the point $p \in C$, and by the above they comprise exactly the vanishing sequence of the canonical series $|K_C|$ at $p$, shifted by 1. Moreover, it is clear that the complement in $\NN$ of the gap values---that is, the set of $k$ such that there \emph{does} exist a rational function on $C$ with a pole of order exactly $k$ at $p$---forms a semigroup, called the \emph{Weierstrass semigroup} of $p \in C$. Finally, the \emph{weight} $w_p$ of a Weierstrass point $p \in C$  is defined to be the weight $w(|K_C|,p)$ of $p$ as an inflection point of the canonical series.
+that is, if and only if there does \emph{not} exist a regular differential on $C$ with a zero of order exactly $k-1$ at $p$. To give the classical terminology, we see from the above that there will exist exactly $g$ values of $k$ such that there does \emph{not} exist a rational function on $C$ with a pole of order exactly $k$ at $p$; these are called the \emph{gap values} of the point $p \in C$, and by the above they comprise exactly the vanishing sequence of the canonical series $|K_C|$ at $p$, shifted by 1. Moreover, it is clear that the complement in $\NN$ of the gap values---that is, the set of $k$ such that there \emph{does} exist a rational function on $C$ with a pole of order exactly $k$ at $p$, regular on $C \setminus \{p\}$---forms a semigroup, called the \emph{Weierstrass semigroup} of $p \in C$. Finally, the \emph{weight} $w_p$ of a Weierstrass point $p \in C$  is defined to be the weight $w(|K_C|,p)$ of $p$ as an inflection point of the canonical series.
 
 From the general theory of ramification above, we see that a general point $p$ on any curve $C$ has gap sequence $(1,2,\dots,g)$, and correspondingly the semigroup $W_p = (0, g+1, g+2, \dots)$. A Weierstrass point is called \emph{normal} if it has weight 1; this is tantamount to saying that the gap sequence is $(1,2,\dots,g-1,g+1)$, or that the semigroup is $(0, g, g+2, g+3, \dots)$. (The full Brill-Noether theorem tells us that a general curve $C$ has only normal Weierstrass points; this will be a consequence of Theorem~\ref{BN with inflection and dimension} below.) Finally, the Pl\"ucker formula tells us  the total weight of the Weierstrass points on a given curve $C$: plugging in, we have
 $$
@@ -97,7 +111,7 @@ As an application of just a rudimentary knowledge of Weierstrass points, we will
 \begin{lemma}
 Let $C$ be a smooth projective curve of genus $g \geq 2$, and $f: C \to C$ an automorphism of $C$.
 \begin{enumerate}
-\item If $f$ has $2g+3$ distinct fixed points, then $f$ is the identity; and
+\item If $f$ has $2g+3$ or more distinct fixed points, then $f$ is the identity; and
 \item If $f$ has $2g+2$ distinct fixed points, then either $f$ is the identity or $C$ is hyperelliptic and $f$ is the hyperelliptic involution.
 \end{enumerate}
 \end{lemma}
@@ -192,13 +206,17 @@ Finally, by the strong form of Clifford's Theorem \ref{***}, equality here impli
 
 In its most basic form, the Brill-Noether theorem asserts for any $d, g$ and $r$ that
 \begin{enumerate}
-\item if $\rho(g,r,d) := g - (r+1)(g-d+r) \geq 0$, then every curve $C$ of genus $g$ possesses as $g^r_d$; and
+\item if $\rho(g,r,d) := g - (r+1)(g-d+r) \geq 0$, then every curve $C$ of genus $g$ possesses a $g^r_d$; and
 \item if $\rho < 0$ then a general curve of genus $g$ does not possess a $g^r_d$.
 \end{enumerate}
 
-The first part, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{}) and Kleiman-Laksov (\cite{}); both proofs relied on an application of the Thom-Porteous formula to a particular map of vector bundles on the Jacobian of $C$. An account of this argument may also be found in Appendix A of \cite{}. 
+The first part, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{}) and Kleiman-Laksov (\cite{}); both proofs relied on an application of the Thom-Porteous formula to a particular map of vector bundles on the Jacobian of $C$. An account of this argument may  be found in Appendix A of \cite{}. 
 
 We will now apply the notion of inflection points, and the Pl\"ucker formula in particular, to deduce the second half of the statement above---the ``nonexistence half." We will then go back and deduce some of the other parts of the  full Brill-Noether statement from the same set-up.\fix{full B-N is your language; I don't think it's standard. I guess it will have been stated by now? so there should be a backward ref.}
+
+Our proof will follow a suggestion of Castelnuovo, by specializing a smooth curve of genus $g$ to a general rational curve with $g$ nodes. To say what we mean by this, let's introduce a basic construction. Suppose first that $C$ is a smooth curve, and $p, q \in C$ two distinct points of $C$. We can identify the two points on $C$ to form a nodal curve $C/p\sim q$ as follows:
+
+
 
 Consider a family of curves $\pi : \cC \to B$, where
 \begin{enumerate}
