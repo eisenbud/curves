@@ -233,7 +233,7 @@ Interestingly, Castelnuovo introduced this construction not to prove the Brill-N
 
 Before we go further: we spoke above of the curve obtained by identifying pairs of points on $\PP^1$; our first task is to say what we mean by this.
 
-\subsubsection{Constructing nodal curves}
+\subsubsection{Step 1: Constructing nodal curves}
 
 Let $C$ be a smooth curve, and $p, q \in C$ two distinct smooth points of $C$. We would like to identify the two points $p$ and $q$ to form a nodal curve $C'$. To start, as a topological space, $C'$ will be simply the quotient of $C$ by the equivalence relation $p \sim q$; we'll denote by $r \in C'$ the point corresponding to the equivalence class $\{p, q\}$. Next, we have to specify the structure sheaf of $C'$, which is likewise straightforward: away from the point $r$, $C'$ will be isomorphic to $C \setminus \{p,q\}$; in other words, for a point $s \neq r \in C'$, we take the local ring $\cO_{s, C_0} = \cO_{s,C}$. As for the local ring $\cO_{r, C_0}$, we set
 $$
@@ -251,7 +251,7 @@ To see that this is indeed a scheme, we can make a construction. First, embed $C
 
 In fact, an extension of this construction may be applied when $C$ is singular, as long as $p$ and $q$ are smooth points of $C$, so that in particular we can identify multiple pairs of smooth point $p_i, q_i \in C$. For example, if $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ are general points, we can form a curve $C_0$ of arithmetic genus $g$ by identifying each pair $p_i, q_i$ in this way; we may call the resulting curve the \emph{general $g$-nodal rational curve}.
 
-\subsubsection{Castelnuovo's specialization}
+\subsubsection{Step 2: Castelnuovo's specialization}
 
 Next, Castelnuovo proposed analyzing a family of smooth curves specializing to a $g$-nodal one; in order to use this construction in a proof of Brill-Noether, we have to prove that such families exist. We'll state the lemma we need here:
 
@@ -266,20 +266,20 @@ Let $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ be distinct points, and $C_0$ the 
 
 This lemma can be proved by deformation theory, as in Hartshorne (\cite{}) and Sernesi (\cite{}) \fix{or so I thought! I was unable to find this statement, or anything implying it, in either book. Do you have a better reference?}. Alternatively, it will follow from the description of the local geometry of Severi varieties, as worked out in Chapter~\ref{PlaneCurvesChapter}, and we'll defer the proof to that chapter.
 
-The analysis proposed by Altman and Kleiman considers the question: given a family $\pi : \cC \to B$, and a family $\{ \cD_b = (L_b, V_b)\}_{b \neq 0 \in B}$ of linear series on the curves $C_b$ with $b \neq 0$, how can we describe the ``limit" of the linear series $\cD_b$ as $b \to 0$? The analysis, which we'll carry out in the next section, leads us ultimately to the  
+%
+%\begin{lemma}\label{BN in family}
+%If $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ are general points and $\cC \to B$ is a family of curves as described in Lemma~\ref{specialization to nodal curve} above, then for general $b \in B$ the fiber $C_b$ does not possess a $g^r_d$ with $\rho < 0$.
+%\end{lemma}
+%
+%From this, we deduce the basic
+%
+%\begin{theorem}\label{bare-bones BN}
+%A general curve $C$ of genus $g$ does not possess a $g^r_d$ with $\rho(g,r,d) < 0$.
+%\end{theorem}
 
+\subsubsection{Step 3: The Altman-Kleiman analysis}
 
-\begin{lemma}\label{BN in family}
-If $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ are general points and $\cC \to B$ is a family of curves as described in Lemma~\ref{specialization to nodal curve} above, then for general $b \in B$ the fiber $C_b$ does not possess a $g^r_d$ with $\rho < 0$.
-\end{lemma}
-
-From this, we deduce the basic
-
-\begin{theorem}\label{bare-bones BN}
-A general curve $C$ of genus $g$ does not possess a $g^r_d$ with $\rho(g,r,d) < 0$.
-\end{theorem}
-
-\subsubsection{The Altman-Kleiman analysis}
+The analysis proposed by Altman and Kleiman considers the question: given a family $\pi : \cC \to B$, and a family $\{ \cD_b = (L_b, V_b)\}_{b \neq 0 \in B}$ of linear series on the curves $C_b$ with $b \neq 0$, how can we describe the ``limit" of the linear series $\cD_b$ as $b \to 0$? 
 
 Suppose now we have a family $\pi : \cC \to B$ and in Lemma~\ref{specialization to nodal curve}, and suppose that the general curve $C_b$ in the family does have a line bundle  of degree $d$ with $r+1$ sections. The first thing to observe is that, possibly after a base change, we can pick out one such line bundle $\cL_b$ for each $b \neq 0$, varying regularly with $b$; or, in other words \emph{there exists a  line bundle $\cL^\circ$ on the complement $\cC^\circ$ of the special fiber such that}
 $$
@@ -313,9 +313,9 @@ for all $b \neq 0 \in B$. \fix{need to give argument for this assertion}
 %
 %\noindent {\bf Step 2: Extending the line bundle $\cL^\circ$ to a sheaf on all of $\cC$}
 
-To , we want to extend $\cL^\circ$ to a sheaf on all of $\cC$. We claim that \emph{there exists a torsion-free sheaf $\cL$ on all of $\cC$ such that $\cL|_{\cC^\circ} \cong \cL^\circ$}.
+Now, we want to extend $\cL^\circ$ to a sheaf on all of $\cC$. The key thing to observe is that we may not be able to extend $\cL^\circ$ to a line bundle on $\cC$. But we do have a positive result along these lines: we claim that \emph{there exists a torsion-free sheaf $\cL$ on all of $\cC$ such that $\cL|_{\cC^\circ} \cong \cL^\circ$}.
 
-To see this, we choose an auxiliary line bundle $\cM$ on $\cC$ with relative degree $e > d + 2g$ (for example, embed $\cC$ is projective space and take $\cM = \cO_{\cC}(m)$ for large $m$); in keeping with our notational conventions, let $\cM^\circ$ be the restriction of $\cM$ to $\cL^\circ$. Consider the line bundle 
+To see this, we choose an auxiliary line bundle $\cM$ on $\cC$ with relative degree $e > d + 2g$ (for example, embed $\cC$ in projective space and take $\cM = \cO_{\cC}(m)$ for large $m$); in keeping with our notational conventions, let $\cM^\circ$ be the restriction of $\cM$ to $\cL^\circ$. Consider the line bundle 
 $$
 \cN^\circ = (\cL^\circ)^* \otimes \cM^\circ.
 $$
@@ -346,7 +346,7 @@ Let $p$ be a  node of a curve $C$. If $\cF$ is a torsion-free sheaf on $C$, then
 
 \begin{proof}
 Consider the endomorphism ring of $\cF$, and note that it is commutative and integral over $\cO_{p/C}$; thus it is either 
-$\cO_{p/C}$ or it's integral closure $\cO_{p/\tilde C}$. In the latter case it is  free over $\cO_{p/\tilde C}\cong \cI_{p/C}$.
+$\cO_{p/C}$ or its integral closure $\cO_{p/\tilde C}$. In the latter case it is  free over $\cO_{p/\tilde C}\cong \cI_{p/C}$.
 In the former case....\fix{complete the argument}
 
 \end{proof}
@@ -359,63 +359,121 @@ In the former case....\fix{complete the argument}
 %\end{exercise}
 %
 
-\noindent {\bf Step 4: Applying the Pl\"ucker formula}
 
-Now, back to our family $\pi : \cC \to B$ of curves. We have assumed that for some $d$ and $r$ with $\rho(g,r,d) < 0$ the general curve $C_b$ has a $g^r_d$, and deduced that the special fiber $C_0$ has a rank 1 torsion-free sheaf $\cL_0$ of degree $d$ with at least $r+1$ sections; we now have to derive from this a contradiction.
+\subsubsection{Step 4: The reduction to Schubert calculus}
 
-To see most clearly where this contradiction comes from, let's start with the simplest case: where $\cL_0$ is indeed locally free. In this case, let $\nu :  C^\nu \cong \PP^1 \to C$ be the normalization of $C$ and let $q_1,\dots, q_g \in \PP^1$ be the points lying over the cusps of $C_0$. We have
-$$
-\nu^*(\cL) \cong \cO_{\PP^1}(d)
-$$  
-and 
-$$
-V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
-$$
-is an $(r+1)$-dimensional space of sections. (If $H^0(\cL_0) > r+1$, just choose any $(r+1)$-dimensional subspace.) 
+The point of the argument thus far has been to reduce a problem involving linear series on a smooth curve---that is, a line bundle of degree $d$ with $r+1$ global sections---to one involving sections of a torsion-free sheaf on a $g$-nodal curve. Why is this an improvement? 
 
-Now, given that any section $\sigma \in V \subset H^0(\cO_{\PP^1}(d))$ is pulled back from the cuspidal curve $C$, we see that \emph{$\sigma$ cannot vanish to order exactly 1 at the point $q_i \in \PP^1$ lying over any of the cusps of $C_0$}. It follows that for each $i$ the ramification index 
-$$
-\alpha_1(V,q_i) \geq 1 
-$$
-and hence in  general $\alpha_1(q_i,V) \geq 1$ for all $i \geq 1$. In particular, the weight of the inflection point $q_i$ for the linear series $V$ satisfies
-$$
-w(V, q_i) \geq r
-$$
-and correspondingly
-$$
-\sum_{i=1}^g w(V, q_i) \geq rg
-$$
-But the Pl\"ucker formula~\ref{} tells us that the total weight of all inflection points for the series $V$ is
-$$
-\sum_{p \in \PP^1} w(V,p) = (r+1)(d-r)
-$$
-and there's our contradiction: by the hypothesis that 
-$$
-\rho(g,r,d) := g - (r+1)(g-d+r) < 0
-$$
-we have $rg > (r+1)(d-r)$.
+The answer is, if we have a linear system on a $g$-nodal curve $C_0$, we can look at its pullback to the normalization $\PP^1$ of $C_0$, where we really do understand the geometry of linear systems much better. To see how this goes, suppose that as above we have a family $\cC \to B$ of curves specializing from a smooth curve of genus $g$ to a $g$-nodal curve $C_0$; suppose that we have a linear series $\cD_b = (\cL_b, V_b)$ of degree $d$ and dimension $r$ on the smooth fibers $C_b$. In addition, suppose for the moment that the family of line bundles $\cL_b$ extends to a line bundle on all of $\cC$. (Of course, once we've done this we'll double back and consider what happens if the limit of $\cL_b$ is torsion-free but not locally free.) What has this reduction bought us?
 
-Finally, the case where $\cL_0$ is not locally free is if anything even easier. Suppose now that the sheaf $\cL$ fails to be locally free at $l$ of the cusps of $C_0$, say $\nu(p_1),\dots,\nu(p_l)$. Again, we can pull $\cL$ back to $\PP^1$; again we have
+Quite a lot, actually. The point is, if $\cL_0$ is a line bundle of degree $d$ on the $g$-nodal curve $C_0$, and $\nu : \PP^1 \to C_0$ the normalization map, the pullback $\nu^*\cL$ is simply the line bundle $\cO_{\PP^1}(d)$; and if $V_0 \subset H^0(\cL_0)$ is an $(r+1)$-dimensional vector space of sections of $\cL_0$, then the pullback $\nu^*(V_0)$ is just an $(r+1)$-dimensional subspace of $H^0(\cO_{\PP^1}(d)$. There are of course a lot of these---if we imagine $\PP^1$ as embedded in $\PP^d$ by the complete linear series $|\cO_{\PP^1}(d)|$, they correspond exactly to linear spaces $\Lambda \cong \PP^{d-r-1} \subset \PP^d$, so that we have a Grassmannian of them. The question is, \emph{when is the $g^r_d$ on $\PP^1$ associated to a linear space $\Lambda \subset \PP^d$ the pullback of a $g^r_d$ on $C_0$}?
+
+The answer is straightforward: in order for a linear series on $\PP^1$ to be the pullback of a linear series on $C_0$, it has to be the case that for each $i = 1,\dots, g$, \emph{every divisor of the linear series containing $p_i$ must also contain $q_i$ and vice versa}. In terms of the geometry of the linear space $\Lambda \subset \PP^d$, this is tantamount to saying that \emph{$\Lambda$ must intersect the secant line $\overline{p_i,q_i}$ to the rational normal curve $\PP^1 \subset \PP^d$ for each $i=1,\dots,g$}.
+
+Do we expect there to exist linear spaces $\Lambda \cong \PP^{d-r-1} \subset \PP^d$ meeting each of $g$ general chords to a rational normal curve? To answer this, we can make a dimension count. To start, the Grassmannian $\GG(d-r-1,d)$ has dimension $(r+1)(d-r)$. Next, for a given line $L \subset \PP^d$, the locus of $(d-r-1)$-planes $\Lambda \subset \PP^d$ meeting $L$ is a Schubert cycle, denoted $\Sigma_r(L)$; it has codimension $r$ in $\GG(d-r-1,d)$. If in fact the Schubert cycles $\Sigma_r(\overline{p_i,q_i})$ associated to $g$ general chords to the rational normal curve in $\PP^d$ intersect properly, or dimensionally transversely, this will be the case only if
 $$
-\nu^*(\cL_0) \cong \cO_{\PP^1}(d);
-$$  
-and again we pull back section of $\cL$ to arrive at a linear system
+rg \leq (r+1)(d-r),
 $$
-V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
+which is exactly the condition $\rho(g,r,d) \geq 0$! We must be on the right track.
+
+While we're at it, let's ask what would happen if the limit $\cL_0$ of the line bundles $\cL_b$ in our family were in fact not locally free at some subset $r_1, \dots, r_\delta$ of the nodes of $C_0$? In this case, let $\tilde C_0$ be the partial normalization of $C_0$ at these nodes, and $\tilde \nu : \tilde C_0 \to C_0$ the partial normalization map, so that $\tilde C_0$ is the ($g-\delta$)-nodal curve obtained by identifying $g-\delta$ pairs of general points on $\PP^1$. The pullback $\tilde \nu^*(\cL_0)$ is then locally free of degree $d-2\delta$ on $\tilde C_0$, so that an $(r+1)$-dimensional space of sections of $\cL_0$ will correspond to a plane $\Lambda \cong \PP^{d-2\delta-r-1} \subset \PP^{d-2\delta}$, meeting each of $g-\delta$ general chords to a rational normal curve in $\PP^{d-2\delta}$. Again, if we knew that the corresponding Schubert cycles intersected properly, the existence of such planes would imply that
 $$
-of degree $d$ and genus $g$ on $\PP^1$. The only difference here is that sections of $V$ all vanish at $p_1,\dots,p_l$, so that we have
+r(g-\delta) \leq \dim\GG(d-2\delta-r-1,d-2\delta) = (r+1)(d-r-2\delta),
 $$
-w(V,p_k) \geq 
-\begin{cases}
-r+1 &\text{ if } k \leq l; \text{ and} \\
-r  &\text{ if } k > l.
-\end{cases}
+which amounts to the inequality $\rho \geq \delta \geq 0$. 
+
+In sum, we have established the 
+
+\begin{theorem}[Altman-Kleiman]
+Assuming that the Schubert cycles $\Sigma_r(\overline{p_i,q_i})$ associated to general chords to a rational normal curve intersect properly, a general curve of genus $g$ will possess no linear series with $\rho < 0$.
+\end{theorem}
+
+In other words, we have reduced the nonexistence half of classical Brill-Noether to an assertion about chords to a rational normal curve!
+
+\
+
+\noindent {\bf Step 5: Applying the Pl\"ucker formula}
+
+Specialization is one the core techniques of algebraic geometry, especially if we're trying to prove a statement about ``general" objects; the goal is exactly to get rid of the hypothesis of generality. In the present context, we want to prove that the Schubert cycles $\Sigma_r(\overline{p_i,q_i})$ associated to general chords to a rational normal curve intersect properly; and the first question we might ask is, is the hypothesis of generality necessary?
+
+The answer, unfortunately, is ``yes:" there do exist collections of chords to a rational normal curve such that the corresponding Schubert cycles fail to intersect properly. A simple but very instructive example would be the case $g=3$, $d=2$ and $r=1$ (corresponding to the assertion that ``a general curve of genus 3 is not hyperelliptic"). Here, we are asking simply if three chords to a plane conic in $\PP^2$ are concurrent. Very clearly, three \emph{general} chords to a conic are not concurrent, but what is concerning is that there do exist triple of chords that are, meaning that the hypothesis of generality is still necessary.
+
+(picture here)
+
+At this point, though, we are saved by a remarkable observation: \emph{three secant lines to a conic may be concurrent, but three tangent lines can never be}! There are many ways to see this, but the one most relevant to our present circumstances is: if the tangent lines to a plane conic $C \subset \PP^2$ met at a point $r \in \PP^2$, then the projection map $\pi_r : C \to \PP^1$ would be a degree 2 map with three or more ramification points, a violation of the Riemann-Hurwitz formula.
+
+This suggests both the statement we should be proving, and how to prove it. We will establish the key
+
+\begin{lemma}
+Let $C \cong \PP^1 \subset \PP^d$ be a rational normal curve, and $p_1,\dots,p_g \in C$ any $g$ points of $\PP^1$. If $L_i = \overline{2p_i}$ is the tangent line to $C$ at $p_i$, then the Schubert cycles $\Sigma_r(L_i)$ intersect properly; in particular, if $rg > (r+1)(d-r)$, then the intersection $\cap \Sigma_r(L_i)$ is empty.
+\end{lemma}
+
+\begin{proof}
+We will just prove the ``in particular" part here; the more general statement will follow, as we'll indicate in Exercise~\ref{} below.
+
+The proof is head-slappingly easy, and indeed is already suggested by the simple example above. Suppose $\Lambda \cong \PP^{d-r-1} \subset \PP^d$ is a linear space meeting each of the tangent lines $L_i$, and consider the linear series cut on $\PP^1$ by hyperplanes containing $\Lambda$. The condition that $\Lambda \cap \overline{2p_i} \neq \emptyset$ means exactly that no hyperplane containing $\Lambda$ can be transverse to $\PP^1$ at $p_i$, or in other words that the linear series $\cD$ cut on $\PP^1$ by hyperplanes containing $\Lambda$ will have ramification sequence at least $(0, 1, 1,\dots,1)$ at $p_i$. Thus the sum of the weights of $\cD$ at the points $p_1,\dots,p_g$ is at least $rg$, and applying the Pl\"ucker formula we arrive at the inequality
 $$
-so that
+rg \leq (r+1)(d-r).
 $$
-\sum_{k=1}^g w(V, p_k) \geq rg + l
-$$
-and our contradiction is even more of a contradiction!
+\end{proof}
+
+
+%
+%Now, back to our family $\pi : \cC \to B$ of curves. We have assumed that for some $d$ and $r$ with $\rho(g,r,d) < 0$ the general curve $C_b$ has a $g^r_d$, and deduced that the special fiber $C_0$ has a rank 1 torsion-free sheaf $\cL_0$ of degree $d$ with at least $r+1$ sections; we now have to derive from this a contradiction.
+%
+%To see most clearly where this contradiction comes from, let's start with the simplest case: where $\cL_0$ is indeed locally free. In this case, let $\nu :  C^\nu \cong \PP^1 \to C$ be the normalization of $C$ and let $q_1,\dots, q_g \in \PP^1$ be the points lying over the cusps of $C_0$. We have
+%$$
+%\nu^*(\cL) \cong \cO_{\PP^1}(d)
+%$$  
+%and 
+%$$
+%V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
+%$$
+%is an $(r+1)$-dimensional space of sections. (If $H^0(\cL_0) > r+1$, just choose any $(r+1)$-dimensional subspace.) 
+%
+%Now, given that any section $\sigma \in V \subset H^0(\cO_{\PP^1}(d))$ is pulled back from the cuspidal curve $C$, we see that \emph{$\sigma$ cannot vanish to order exactly 1 at the point $q_i \in \PP^1$ lying over any of the cusps of $C_0$}. It follows that for each $i$ the ramification index 
+%$$
+%\alpha_1(V,q_i) \geq 1 
+%$$
+%and hence in  general $\alpha_1(q_i,V) \geq 1$ for all $i \geq 1$. In particular, the weight of the inflection point $q_i$ for the linear series $V$ satisfies
+%$$
+%w(V, q_i) \geq r
+%$$
+%and correspondingly
+%$$
+%\sum_{i=1}^g w(V, q_i) \geq rg
+%$$
+%But the Pl\"ucker formula~\ref{} tells us that the total weight of all inflection points for the series $V$ is
+%$$
+%\sum_{p \in \PP^1} w(V,p) = (r+1)(d-r)
+%$$
+%and there's our contradiction: by the hypothesis that 
+%$$
+%\rho(g,r,d) := g - (r+1)(g-d+r) < 0
+%$$
+%we have $rg > (r+1)(d-r)$.
+%
+%Finally, the case where $\cL_0$ is not locally free is if anything even easier. Suppose now that the sheaf $\cL$ fails to be locally free at $l$ of the cusps of $C_0$, say $\nu(p_1),\dots,\nu(p_l)$. Again, we can pull $\cL$ back to $\PP^1$; again we have
+%$$
+%\nu^*(\cL_0) \cong \cO_{\PP^1}(d);
+%$$  
+%and again we pull back section of $\cL$ to arrive at a linear system
+%$$
+%V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
+%$$
+%of degree $d$ and genus $g$ on $\PP^1$. The only difference here is that sections of $V$ all vanish at $p_1,\dots,p_l$, so that we have
+%$$
+%w(V,p_k) \geq 
+%\begin{cases}
+%r+1 &\text{ if } k \leq l; \text{ and} \\
+%r  &\text{ if } k > l.
+%\end{cases}
+%$$
+%so that
+%$$
+%\sum_{k=1}^g w(V, p_k) \geq rg + l
+%$$
+%and our contradiction is even more of a contradiction!
 
 \section{Corollaries and extensions of our proof}
 
