@@ -52,6 +52,10 @@ In characteristic 0,a linear series on a smooth projective curve can have only f
 \end{theorem}
 For a proof, see for example~\cite{} (3264?). 
 
+\begin{exercise}
+Show that in case $r=1$ this is exactly the Riemann-Hurwitz formula for branched covers of $\PP^1$.
+\end{exercise}
+
 The result also holds in positive characteristic under the hypothesis that the number of inflection points is finite. It is hard even to imagine a plane curve in which every point is a flex!---but in positive characteristic there are such ``strange'' curves \cite[]{Hartshorne}.
 
 The Pl\"ucker formula leaves many questions unanswered: we don't know, for example, what combinations of inflection points are possible on the canonical series. \fix{Original statement was stronger -- made me nervous.} One thing we do know is the behavior of the inflection points for a general linear series; we'll state this here and prove it as a corollary to the proof of the Brill-Noether theorem later in this chapter.
@@ -85,20 +89,47 @@ $$
 $$\qed
 \end{corollary}
 
-Since there are only finitely many ramification points of the canonical series, a general point $p$ on any curve $C$ has gap sequence $(1,2,\dots,g)$, and correspondingly its Weierstrass semigroup
-is $W_p = (0, g+1, g+2, \dots)$. A Weierstrass point is called \emph{normal} if it has weight 1; this is tantamount to saying that the gap sequence is $(1,2,\dots,g-1,g+1)$, or that the semigroup is $(0, g, g+2, g+3, \dots)$. (The full Brill-Noether theorem tells us that a general curve $C$ has only normal Weierstrass points; this will be a consequence of Theorem~\ref{BN with inflection and dimension} below.)
+It will follow from the proof of the Brill-Noether theorem below that on a general curve $C$, every Weierstrass point has weight 1; thus there are $g^3-g$ distinct Weierstrass points on $C$
 
-\subsubsection*{The Weierstrass semigroup} By the Riemann-Roch theorem, $p\in C$ is a Weierstrass point if and only if $h^0(\cO_C(gp)) \geq 2$, or in other words to saying that there exists a non-constant rational function on $C$, regular away from $p$ and having a pole of order $g$ or less at $p$. The same argument shows more generally that for any $k \geq 0$, there exists a rational function on $C$, regular on $C \setminus \{p\}$ and having a pole of order exactly $k$ at $p$---that is,
+%Since there are only finitely many ramification points of the canonical series, a general point $p$ on any curve $C$ has gap sequence $(1,2,\dots,g)$, and correspondingly its Weierstrass semigroup
+%is $W_p = (0, g+1, g+2, \dots)$. A Weierstrass point is called \emph{normal} if it has weight 1; this is tantamount to saying that the gap sequence is $(1,2,\dots,g-1,g+1)$, or that the semigroup is $(0, g, g+2, g+3, \dots)$. (The full Brill-Noether theorem tells us that a general curve $C$ has only normal Weierstrass points; this will be a consequence of Theorem~\ref{BN with inflection and dimension} below.)
+
+\subsubsection{The Weierstrass semigroup} 
+
+By definition, a point $p \in C$ on a curve $C$ of genus $g$ is a Weierstrass point iff $h^0(K_C(-gp)) \neq 0$; that is, iff there exists a holomorphic differential on $C$ vanishing to order at least $g$ at $p$. Now, the Riemann-Roch formula tells us that
 $$
-h^0(\cO_C(kp)) > h^0(\cO_C((k-1)p))
+h^0(\cO_C(gp)) = g - g + 1 + h^0(K_C(-gp))
 $$
-if and only if 
+so the condition $h^0(K_C(-gp)) \neq 0$ is equivalent to saying that $h^0(\cO_C(gp)) > 1$; in other words, there exists a nonconstant rational function on $C$, regular on $C \setminus \{p\}$ and having a pole of order at most $g$ at $p$.
+
+This suggests that we look at the set of all possible orders of pole at $p$ of rational functions regular on $C \setminus \{p\}$; that is,
+$$
+W(C,p) := \left\{ \ord_p(f) \mid f \in K(C) \text{ with $f$ regular on } C \setminus \{p\} \right\}.
+$$
+This is clearly a sub-semigroup of the natural numbers $\NN$; it is called the \emph{Weierstrass semigroup} of the point $p$.  
+
+Now, another way to characterize the condition that there exists a rational function on $C$, regular on $C \setminus \{p\}$, with a pole of order exactly $k$ at $p$ is to say that
+$$
+h^0(\cO_C(kp)) = h^0(\cO_C((k-1)p)) + 1.
+$$
+Applying Riemann-Roch to both sides of this equation, we see that it is equivalent to the condition
 $$
 h^0(K_C(-kp)) = h^0(K_C((-k+1)p)).
 $$
-This holds  if and only if there does \emph{not} exist a regular differential on $C$ with a zero of order exactly $k-1$ at $p$. 
+This holds  if and only if there does \emph{not} exist a regular differential on $C$ with a zero of order exactly $k-1$ at $p$. In other words, the complement $\NN \setminus W(C,p)$ is exactly the vanishing sequence of the canonical series at $p$, shifted by 1; in particular, it has cardinality  exactly $g$. This is called the \emph{Weierstrass gap sequence} of the point $p$.
 
-In sum, for each point $p\in C$ there exist exactly $g$ values of $k$ such that there does \emph{not} exist a rational function on $C$ with a pole of order exactly $k$ at $p$; these are called the \emph{gap values} of the point $p \in C$, and by the above they comprise exactly the vanishing sequence of the canonical series $|K_C|$ at $p$, shifted by 1. Note that the set of $k$ such that there \emph{does} exist a rational function on $C$ with a pole of order exactly $k$ at $p$, regular on $C \setminus \{p\}$---forms a subsemigroup of $\NN$, called the \emph{Weierstrass semigroup} of $p \in C$. Its complement in $\NN$ is the set of $g$ gap values.  
+%
+%By the Riemann-Roch theorem, $p\in C$ is a Weierstrass point if and only if $h^0(\cO_C(gp)) \geq 2$, or in other words to saying that there exists a non-constant rational function on $C$, regular away from $p$ and having a pole of order $g$ or less at $p$. The same argument shows more generally that for any $k \geq 0$, there exists a rational function on $C$, regular on $C \setminus \{p\}$ and having a pole of order exactly $k$ at $p$---that is,
+%$$
+%h^0(\cO_C(kp)) > h^0(\cO_C((k-1)p))
+%$$
+%if and only if 
+%$$
+%h^0(K_C(-kp)) = h^0(K_C((-k+1)p)).
+%$$
+%This holds  if and only if there does \emph{not} exist a regular differential on $C$ with a zero of order exactly $k-1$ at $p$. 
+%
+%In sum, for each point $p\in C$ there exist exactly $g$ values of $k$ such that there does \emph{not} exist a rational function on $C$ with a pole of order exactly $k$ at $p$; these are called the \emph{gap values} of the point $p \in C$, and by the above they comprise exactly the vanishing sequence of the canonical series $|K_C|$ at $p$, shifted by 1. Note that the set of $k$ such that there \emph{does} exist a rational function on $C$ with a pole of order exactly $k$ at $p$, regular on $C \setminus \{p\}$---forms a subsemigroup of $\NN$, called the \emph{Weierstrass semigroup} of $p \in C$. Its complement in $\NN$ is the set of $g$ gap values.  
 
 There is still much we don't know about Weierstrass points in general. Most notably, we don't know what semigroups of finite index in $\NN$ occur as Weierstrass semigroups; an example of Buchweitz shows that not all semigroups occur, but there are also positive results, such as the statement ([EH]) that every semigroup of weight $w \leq g/2$ occurs, and its refinement and strengthening by Pflueger (\cite{**}).
 
@@ -366,7 +397,7 @@ The point of the argument thus far has been to reduce a problem involving linear
 
 The answer is, if we have a linear system on a $g$-nodal curve $C_0$, we can look at its pullback to the normalization $\PP^1$ of $C_0$, where we really do understand the geometry of linear systems much better. To see how this goes, suppose that as above we have a family $\cC \to B$ of curves specializing from a smooth curve of genus $g$ to a $g$-nodal curve $C_0$; suppose that we have a linear series $\cD_b = (\cL_b, V_b)$ of degree $d$ and dimension $r$ on the smooth fibers $C_b$. In addition, suppose for the moment that the family of line bundles $\cL_b$ extends to a line bundle on all of $\cC$. (Of course, once we've done this we'll double back and consider what happens if the limit of $\cL_b$ is torsion-free but not locally free.) What has this reduction bought us?
 
-Quite a lot, actually. The point is, if $\cL_0$ is a line bundle of degree $d$ on the $g$-nodal curve $C_0$, and $\nu : \PP^1 \to C_0$ the normalization map, the pullback $\nu^*\cL$ is simply the line bundle $\cO_{\PP^1}(d)$; and if $V_0 \subset H^0(\cL_0)$ is an $(r+1)$-dimensional vector space of sections of $\cL_0$, then the pullback $\nu^*(V_0)$ is just an $(r+1)$-dimensional subspace of $H^0(\cO_{\PP^1}(d)$. There are of course a lot of these---if we imagine $\PP^1$ as embedded in $\PP^d$ by the complete linear series $|\cO_{\PP^1}(d)|$, they correspond exactly to linear spaces $\Lambda \cong \PP^{d-r-1} \subset \PP^d$, so that we have a Grassmannian of them. The question is, \emph{when is the $g^r_d$ on $\PP^1$ associated to a linear space $\Lambda \subset \PP^d$ the pullback of a $g^r_d$ on $C_0$}?
+Quite a lot, actually. The point is, if $\cL_0$ is a line bundle of degree $d$ on the $g$-nodal curve $C_0$, and $\nu : \PP^1 \to C_0$ the normalization map, the pullback $\nu^*\cL$ is simply the line bundle $\cO_{\PP^1}(d)$; and if $V_0 \subset H^0(\cL_0)$ is an $(r+1)$-dimensional vector space of sections of $\cL_0$, then the pullback $\nu^*(V_0)$ is just an $(r+1)$-dimensional subspace of $H^0(\cO_{\PP^1}(d))$. There are of course a lot of these---if we imagine $\PP^1$ as embedded in $\PP^d$ by the complete linear series $|\cO_{\PP^1}(d)|$, they correspond exactly to linear spaces $\Lambda \cong \PP^{d-r-1} \subset \PP^d$, so that we have a Grassmannian of them. The question is, \emph{when is the $g^r_d$ on $\PP^1$ associated to a linear space $\Lambda \subset \PP^d$ the pullback of a $g^r_d$ on $C_0$}?
 
 The answer is straightforward: in order for a linear series on $\PP^1$ to be the pullback of a linear series on $C_0$, it has to be the case that for each $i = 1,\dots, g$, \emph{every divisor of the linear series containing $p_i$ must also contain $q_i$ and vice versa}. In terms of the geometry of the linear space $\Lambda \subset \PP^d$, this is tantamount to saying that \emph{$\Lambda$ must intersect the secant line $\overline{p_i,q_i}$ to the rational normal curve $\PP^1 \subset \PP^d$ for each $i=1,\dots,g$}.
 
@@ -407,6 +438,8 @@ This suggests both the statement we should be proving, and how to prove it. We w
 \begin{lemma}
 Let $C \cong \PP^1 \subset \PP^d$ be a rational normal curve, and $p_1,\dots,p_g \in C$ any $g$ points of $\PP^1$. If $L_i = \overline{2p_i}$ is the tangent line to $C$ at $p_i$, then the Schubert cycles $\Sigma_r(L_i)$ intersect properly; in particular, if $rg > (r+1)(d-r)$, then the intersection $\cap \Sigma_r(L_i)$ is empty.
 \end{lemma}
+
+Note that since tangent lines to a curve are specializations of secant lines, this implies that for $g$ general chords $L_i$ to a rational normal curve, the corresponding Schubert cycles $\Sigma_r(L_i)$ will intersect properly. Thus, once we establish the lemma we will have completed the proof of the nonexistence half of Brill Noether.
 
 \begin{proof}
 We will just prove the ``in particular" part here; the more general statement will follow, as we'll indicate in Exercise~\ref{} below.
