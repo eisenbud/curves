@@ -14,7 +14,7 @@ Plane curves, in other words, occupied a central role in the development of the 
 
 \section{Our goal}
 
-In this chapter we'll focus  on one basic problem:
+In the first part of this chapter we'll focus  on one basic problem:
 given the equations of a smooth curve $C$ embedded in some projective space, and the coordinates of a collection of points $p_i$, how can we explicitly and algorithmically determine the complete linear series 
 $|\sum_i p_i|$? We will do this is by realizing  $C$ as the normalization of a plane curve $C_0 \subset \PP^2$ (for example, by a general projection of $C$ to $\PP^2$), and working in the plane. 
 
@@ -26,41 +26,39 @@ In particular:
 
 Along the way we will see how to test when two given divisors $D$ and $E$ on $C$ are linearly equivalent; and whether a given divisor $D$ linearly equivalent to an effective divisor.
 
-We will pursue these goals in three stages of increasing generality. We'll first achieve these goals in case $C = C_0$ is a smooth plane curve. This is itself of limited interest because most curves cannot be realized as smooth plane curves. In Section~\ref{nodal plane curves} we'll do it for (the normalization of) a plane curve with nodes.  Theorem~\ref{****} says that every smooth projective curve is the normalization of a nodal plane curve, so in principle this covers all smooth curves.
-
-Finally, in Section~\ref{arbitrary plane curves} we'll describe how to achieve our goals for the normalization of an arbitrary plane curve.
-This last extension is significant for practical reasons: many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Theorem~\ref{****} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is almost always easier to work with the original plane model, as given. 
+We will pursue these goals in three stages: first when $C = C_0$ is a smooth plane curve (\S \ref{smooth plane curves}); next for nodal curves (\S~\ref{nodal plane curves}), which in principle this covers all smooth curves; and finally for arbitrary reduced, irreducible plane curves (\S\ref{arbitrary plane curves}): many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Theorem~\ref{****} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is often easier to work with the given plane model. 
 
 \section{Smooth plane curves}\label{smooth plane curves}
 
-For this section, we'll we'll take $C \subset \PP^2$ to be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce affine coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\tilde C = C \cap U$ is given as the zero locus $V(f) \subset  \AA^2$. 
+Let $C \subset \PP^2$  be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\tilde C = C \cap U$ is given as the zero locus $V(f) \subset  \AA^2$. \fix{in the B-N chapter, $\tilde C$ is the
+normalization of $C$.}
 
-By choosing coordinates appropriately, we may assume:
+Since an automorphism of $\PP^2$ can carry any line in the plane to the line at infinity, and any point on that line to the point $(0,1,0)$, we may assume:
 \begin{enumerate}
 \item The point $[0,1,0]$ (that is, the point at infinity in the vertical direction) does not lie on $C$; equivalently,  the projection $C \to \PP^1$ from $(0,1,0)$, which is given by $[X,Y,Z] \mapsto [X,Z]$ (or, in affine coordinates, $(x,y) \mapsto x$)  has degree $d$; and
 \item The line $L$ at infinity given by $Z = 0$ intersects $C$ transversely in $d$ distinct points $p_1, \dots, p_d$; We write $H = p_1+ \dots +p_d$ for the corresponding divisor, the ``hyperplane section at infinity''.
 \end{enumerate}
 
-Since an automorphism of $\PP^2$ can carry any line in the plane to the line at infinity, and any point on that line to the point $(0,1,0)$, these conditions are not restrictive. Nor are they necessary: in Exercise~\ref{****} we'll see how to do everything in the absence of these assumptions, albeit with slightly more complicated notation.
+These conditions are not necessary: in Exercise~\ref{****} we will see how to do  without them.
  
 We start toward our first goal by writing down a single rational 1-form on $C$: just take a regular 1-form on $\AA^2$, such as $dx$, and restrict/pull back to $C$. Though $dx$ is regular on $\tilde C$, writing
 $$
 dx = d\frac{X}{Z} = \frac{X dZ+ Z dX}{Z^2}
 $$
- shows that t will have double poles at the points $p_1,\dots,p_d$ of the divisor $D := C \cap L$.
+ shows that $dx$ has double poles at the points $p_1,\dots,p_d$ of the divisor $D := C \cap L$.
  
 How do we get rid of the poles of $dx$? The extension of $\PP^2$ of a polynomial $h(x,y)$ of degree $d$ on
 $\AA^2$ has a pole of order $d$ along the line $L$ at infinity. Thus if $h$ has degree at least 2 then $dx/h$ will have no poles at infinity. However, $h(x,y)$ will vanish at points of $C \cap U$, and this may create new poles of $dx/h$. Of course if $h$ vanishes only at  points of $C \cap U$ where $dx$ already has a zero, the zeroes of $h$ may cancel the zeroes of $dx$ rather than creating new poles.
  
- Indeed, we may take
+ To insure that this does not happen, we take
  $$
  h(x,y) = \frac{\partial f}{\partial y}(x,y).
  $$
- To see that this works, note that on $\tilde C$,
+ Note that on $\tilde C$,
  $$
  df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy \equiv 0.
  $$
-Becaused $C$ is assumed smooth, the functions $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $\tilde C$. Moreover, the differentials $dx$ and $dy$ have no common zeros on $\tilde C$. It follows that at for all $p \in \tilde C$ we  have
+Because $C$ is smooth, the functions $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $\tilde C$. Moreover, the differentials $dx$ and $dy$ have no common zeros on $\tilde C$. It follows that at for all $p \in \tilde C$ we  have
 $$
 \ord_p(dx) = \ord_p(\frac{\partial f}{\partial y}), 
 $$ 
@@ -122,27 +120,24 @@ Let $C$ be a smooth plane curve of degree $d$. Show that $C$ admits a one-parame
 
 \subsection{Finding complete linear systems on smooth plane curves}
 
-To find all effective divisors linearly equivalent to a given divisor $D$, we express $D$ as the difference 
+Suppose that $D$ is any divisor on a smooth plane curve $C$. We can express $D$ as the difference
+$D= E-F$ of two effective divisors. An effective divisor equivalent to $D$ must be of the form
+$D + (H/G)$, where $G, H$ are forms of the same degree $m$. 
+If we can choose $G$  to vanish on $E$ plus some divisor $A$, and $H$ to vanish on both $F$ and $A$ as well as a further divisor $D'$, then 
+then 
 $$
-D = E - F
+D + (H/G) = E- F - (E+A)+(F+A+D') = D'
 $$
-of two effective divisors on $C$. Choose any homogeneous form $G(X,Y,Z)$  vanishing on the divisor $E$, but not vanishing identically on $C$, and let $A$ be the residual divisor of $G$ on $C$: that is
-$$
-A := (G)- E 
-$$
-as divisors on $C$. Now, let $H$ be another polynomial of the same degree $m$ as $G$, vanishing on $A + F$ but again not vanishing identically on $C$. (Since $m$ is already chosen, there may not exist any such polynomial, which is as it should be: the original divisor $D$ need not be linearly equivalent to any effective divisor.) Let $D'$ be the divisor cut on $C$ by $H$ residual to $A+F$; that is,
-$$
-D' := (H) -(A + F).
-$$
-Now, the divisor of anyt rational function such as $H/G$ is linearly equivalent to 0 by definition, so
-$$
-0 \sim (H) - (G) = D' + F - E.
-$$
-Thus \emph{$D'$ is an effective divisor linearly equivalent to $D$.}
+as required. Thus we start by choosing $m$ large enough so that there is
+a homogeneous form $G(X,Y,Z)$  vanishing on the divisor $E$, but not vanishing identically on $C$, and let $A$ be the residual divisor of $G$ on $C$. We can complete the construction of the effective divisor $D'$  \emph{if} we can find a form $H$ of the same degree $m$ as $G$, vanishing on $A + F$ but again not vanishing identically on $C$. Since $m$ is already chosen, there may not exist any such polynomial; we shall see that in this case there is no effective divisor linearly equivalent to $D$. 
 
-Note that in the simplest nontrivial case $d=3$, we have reproduced the classic description of the group law on a plane cubic curve $C$. If we choose as origin on the curve $C$ a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) effective divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
+\begin{example}
+Suppose that $C$ has degree 3, so that $C$ has genus 1. åIf we choose as origin on the curve $C$ a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) effective divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
+\end{example}
 
-We claim that we find in this way \emph{all} effective divisors $D' \sim D$. To see this, suppose $D'$ is any effective divisor with $D' \sim D$. Carrying out the first step of the process as before, we arrive at a divisor $A$ with 
+We claim that we find in this way \emph{all} effective divisors $D' \sim D$ a special case of the Completeness of the Adjoint series, Proposition~\ref{adjoint completeness}. In particular, this will show that if there is no polynomial $H$ as above, then there are no effective divisors equivalent to $D$.
+
+Indeed, suppose $D'$ is any effective divisor with $D' \sim D$. Carrying out the first step of the process as before, we arrive at a divisor $A$ with 
 $$
 \cO_C(A+F+D') = \cO_C(A+F+D)  = \cO_C(m).
 $$
@@ -158,21 +153,20 @@ Note that if, in the process described, it turns out there is no polynomial $H$ 
 
 As noted, smooth plane curves are very special among all curves. We now want to carry out the analyses above for curves with at most nodes as singularities. These are still special among all plane curves, but as we'll see in Section~\ref{projection section} below, every smooth curve is the normalization of a nodal plane curve.
 
-The set-up, in any event, is as follows: we have a nodal plane curve $C_0 \subset \PP^2$, with normalization $\nu : C \to C_0$; or, equivalently, a smooth projective curve $C$ and a birational embedding of $C$ in $\PP^2$ with image a nodal curve $C_0$. Our goals will be as before: 
+Given a smooth projective curve $C$ and a birational embedding of $C$ in $\PP^2$ with image a nodal curve $C_0$, our goal is:
 \begin{enumerate}
 \item to write out explicitly all global regular 1-forms on $C$; and
 \item given a divisor $D$ on $C$, to  determine $|D|$; that is, find all effective divisors linearly equivalent to $D$.
 \end{enumerate}
 
-As before, we'll choose homogeneous coordinates  $[X,Y,Z]$ on $\PP^2$ so that the curve $C_0$ intersects the line $L = V(Z)$ at infinity transversely at points $p_1,\dots,p_d$ other than $[0,1,0]$. In particular,  all the nodes of $C_0$ will lie in the affine plane $U = \PP^2 \setminus L$).
+As before, we may choose homogeneous coordinates  $[X,Y,Z]$ on $\PP^2$ so that the curve $C_0$ intersects the line $L = V(Z)$ at infinity transversely at points $p_1,\dots,p_d$ other than $[0,1,0]$. In particular,  all the nodes of $C_0$ will lie in the affine plane $U = \PP^2 \setminus L$.
 In addition, we can assume that  neither branch of $C_0$ at a node has vertical tangent. (These conditions serve only to keep the notation reasonably simple, and are satisfied by a general choice of coordinates.) Let the nodes of $C_0$ be $q_1,\dots,q_\delta$, with $r_i, s_i \in C$ lying over $q_i$; we'll denote by $\Delta$ the divisor $\sum r_i + \sum s_i$ on $C$.
 
-\fix{revised to here by de, May 7}
 Let $F(X,Y,Z)$ be the homogeneous polynomial of degree $d$ defining the curve $C_0$, and let $f(x,y) = F(x,y,1)$ be the defining equation of the affine part $C_0 \cap U$ of $C_0$. We start by considering the rational differential $\nu^*(dx)$ on $C$. In the smooth case, we saw that this differential was regular and nonzero in the finite plane, but had poles of order 2 at the point of $C \cap L$; this followed from the equation
 $$
  df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy \equiv 0.
  $$
-and the fact that $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $C_0$. But now $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ \emph{do} have common zeroes; specifically, the pullbacks $\nu^*(\frac{\partial f}{\partial x})$ and $\nu^*(\frac{\partial f}{\partial y})$ have simple zeroes at the points $r_i$ and $s_i$. We conclude, accordingly, that the differential $\nu^*dx$ has double poles at the points $p_i$, and simple poles at the points $r_i$ and $s_i$; proceeding as before, we see that for a polynomial $g(x,y)$ of degree $\leq d-3$, the differential
+and the fact that $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $C_0$. But now $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ \emph{do} have common zeroes; specifically, the pullbacks $\nu^*(\frac{\partial f}{\partial x})$ and $\nu^*(\frac{\partial f}{\partial y})$ have simple zeroes at the points $r_i$ and $s_i$. We conclude, accordingly, that the differential $\nu^*dx$ has double poles at the points $p_i$, and simple poles at the points $r_i$ and $s_i$ \fix{it seems to me that this needs a little more argument}; proceeding as before, we see that for a polynomial $g(x,y)$ of degree $\leq d-3$, the differential
 $$
 \nu^*( \frac{g(x,y)dx}{\partial f/\partial y})
 $$
@@ -208,8 +202,7 @@ The nodes $q_i$ of an irreducible nodal plane curve of degree $d$ impose indepen
 
 We will need this in Section~\ref{severi variety} of this chapter.
 
-In Exercise~\ref{gonality of smooth plane curve}, we saw how to use the description of the canonical series on a smooth plane curve to determine its gonality. Now that we have an analogous description of the canonical series on (the normalization of) a nodal plane curve, we can deduce a similar statement about the gonality of such a curve. Here are the first two cases  
-
+In Exercise~\ref{gonality of smooth plane curve}, we saw how to use the description of the canonical series on a smooth plane curve to determine its gonality. Now that we have an analogous description of the canonical series on (the normalization of) a nodal plane curve, we can deduce a similar statement about the gonality of such a curve. Here are the first two cases: 
 \begin{exercise}
 Let $C_0$ be a plane curve of degree $d$ with one node and no other singularities, and let $C$ be its normalization. Show that $C$ admits a unique map $C \to \PP^1$ of degree $d-2$, but does not admit a map $C \to \PP^1$ of degree $d-3$ or less.
 \end{exercise}
@@ -218,6 +211,7 @@ Let $C_0$ be a plane curve of degree $d$ with one node and no other singularitie
 Let $C_0$ be a plane curve of degree $d$ with two nodes and no other singularities, and let $C$ be its normalization. Show that $C$ admits two maps $C \to \PP^1$ of degree $d-2$, but does not admit a map $C \to \PP^1$ of degree $d-3$ or less.
 \end{exercise}
 
+\fix{this suggests, falsely, I suppose, the generalization to $n$ nodes. That needs a comment---where does it break?}
 
 \subsection{Linear series on a nodal curve}
 
@@ -229,7 +223,7 @@ $$
 $$
 as before. Once more, just for simplicity, let's assume that the support of $A$ is disjoint from the support of $\Delta$; this means just that the curve $V(G)$ is smooth at the points $q_i$ and is not tangent to either of the branches of $C_0$ there (this can certainly be done if we take $m$ large).
 
-Next, we find polynomials $H$ of the same degree $m$, vanishing at $A+F$ and at the points $q_i$ but not on all of $C_0$. Let $D'$ be the divisor cut on $C$ by $H$ residual to $E + \Delta + A$; that is, we write
+Next, we find polynomials $H$ of the same degree $m$, vanishing at $A+F$ and at the points $q_i$ \fix{the vanishing at the $q_i$ is not intuitive. How to make it so?} but not on all of $C_0$. Let $D'$ be the divisor cut on $C$ by $H$ residual to $E + \Delta + A$; that is, we write
 $$
 (\nu^*H) = E + \Delta + A + D'.
 $$
@@ -298,37 +292,37 @@ If $C \subset \PP^n$ is a smooth curve in projective space, and $\Lambda \cong \
 It is logically superfluous, but it will be much easier to visualize what's going on if we first reduce to the case $n=3$. This is straightforward: if $\Gamma \subset \PP^n$ is a general $(n-4)$-plane, then a general $(n-3)$-plane $\Lambda$ containing $\Gamma$ is a general $(n-3)$-plane in $\PP^n$, so we can view the projection $\pi_\Lambda : C \to \PP^2$ as the composition of the projection $\pi_\Gamma : C \to \PP^3$ with the projection $\pi_p$ of the image $\pi_\Gamma(C)$ from a general point $p \in \PP^3$. Moreover, since a general  $(n-4)$-plane $\Gamma \subset \PP^n$ will be disjoint from the secant variety of $C \subset \PP^n$, the projection $\pi_\Gamma : C \to \PP^3$ will be an embedding; thus we can just start with a smooth curve $C \subset \PP^3$ and project from a general point $p \in \PP^3$.
 
 
-Now, when we project $C \subset \PP^3$ from a general point, we do expect to introduce singularities: since the family of secant lines to $C$ is two-dimensional,  we expect a finite number of them will contain a general point $p \in \PP^3$. Indeed, we see from this naive dimension count that $p$ can lie on at most a finite number of secant lines, proving that \emph{the map $\pi_p$ is birational onto its image}. We can say more: since there is only a 1-dimensional family of tangent lines to $C$, a general point $p \in \PP^3$ will not lie on any tangent lines, we see as well that the differential of $\pi_p : C \to \PP^2$ does not vanish; in other words, \emph{the map $\pi_p$ is an immersion}.
+Now, when we project $C \subset \PP^3$ from a general point, we do expect to introduce singularities: since the family of secant lines to $C$ is two-dimensional,  we expect a finite number of them will contain a general point $p \in \PP^3$. Indeed, we see from this naive dimension count \fix{doesn't this depend on char 0?} that $p$ can lie on at most a finite number of secant lines, proving that \emph{the map $\pi_p$ is birational onto its image}. We can say more: since there is only a 1-dimensional family of tangent lines to $C$, a general point $p \in \PP^3$ will not lie on any tangent lines, we see as well that the differential of $\pi_p : C \to \PP^2$ does not vanish; in other words, \emph{the map $\pi_p$ is an immersion}.
 
 We now just have to make sure the singularities introduced are just nodes, and here is where we need to invoke the uniform position lemma. For example, suppose we want to prove that the map $\pi_p$ is never three-to-one. This amounts to saying that a general point $p \in \PP^3$ does not lie on any \emph{trisecant line}; equivalently, that the family of trisecant lines to $C$ has dimension at most one. Moreover, since the variety of secant lines is irreducible of dimension 2, this follows from the simple assertion that \emph{not every secant line to $C \subset \PP^3$ is a trisecant}.
 
-At this point we'd encourage you to try to give an elementary argument for this seemingly obvious assertion. Whether you succeed or not, it does follow immediately from the uniform position lemma: this says that if $H \subset \PP^3$ is a general plane, then the points of intersection $p_1,\dots,p_d \in C \cap H$ are in linear general position in $H$; that is, no three are collinear. The line joining any two is thus a secant line to $C$ but not a trisecant line, which suffices to prove our assertion.
+At this point we'd encourage you to try to give an elementary argument for this seemingly obvious assertion \fix{is this a doable exercise? or...?}. Whether you succeed or not, it does follow immediately from the uniform position lemma: this says that if $H \subset \PP^3$ is a general plane, then the points of intersection $p_1,\dots,p_d \in C \cap H$ are in linear general position in $H$; that is, no three are collinear. The line joining any two is thus a secant line to $C$ but not a trisecant line, which suffices to prove our assertion.
 
 So now we know that the map $pi_p$ is an immersion, and at most two-to-one everywhere; thus the image curve $C_0 \subset \PP^2$ will have at most double points, and an analytic neighborhood of each double point will consist of two smooth branches.
 To complete the proof of Proposition~\ref{nodal projection} we have to show that those two branches have distinct tangent lines; that is, that
 if $q, r \in C$ are any two points collinear with $p$, then the images of the tangent lines ${\mathbb T}_q(C)$ and ${\mathbb T}_r(C)$ in $\PP^2$ are distinct. But if in fact it were the case that  $\pi_p({\mathbb T}_q(C)) = \pi_p({\mathbb T}_r(C))$ then the tangent lines ${\mathbb T}_q(C)$ and ${\mathbb T}_r(C)$ would necessarily intersect.
 
-Classically, a secant line $\overline{q,r}$ was called a \emph{stationary secant} if the tangent lines ${\mathbb T}_q(C)$ and ${\mathbb T}_r(C)$ met; our remaining goal now is to show that \emph{a general point $p \in \PP^3$ does not lie on any stationary secant}. Again, this follows from the assertion that the family of stationary secants has dimension at most 1; and again, since the family of all secant lines is irreducible of dimension 2, it will suffice to show that \emph{not every secant line to $C$ is a stationary secant}.
+Classically, a secant line $\overline{q,r}$ was called a \emph{stationary secant} if the tangent lines ${\mathbb T}_q(C)$ and ${\mathbb T}_r(C)$ met; in these terms, it remains to show that a general point $p \in \PP^3$ does not lie on any stationary secant. Again, this follows from the assertion that the family of stationary secants has dimension at most 1; and again, since the family of all secant lines is irreducible of dimension 2, it will suffice to show that \emph{not every secant line to $C$ is a stationary secant}.
 
-And now we are done, at least in characteristic 0. Simply, it can't be the case that for a general pair of points $q, r \in C$ we have $\TT_qC \cap \TT_rC \neq \emptyset$; otherwise the projection $\pi_{\TT_qC} : C \to \PP^1$ would have derivative everywhere 0, but be nonconstant. Thus the space of  stationary secants is at most 1-dimensional, and a general $p \in \PP^3$ will not lie on one.
+In characteristic 0 we can conclude as follows: It can't be the case that for a general pair of points $q, r \in C$ we have $\TT_qC \cap \TT_rC \neq \emptyset$; otherwise the projection $\pi_{\TT_qC} : C \to \PP^1$ would have derivative everywhere 0, but be nonconstant. Thus the space of  stationary secants is at most 1-dimensional, and a general $p \in \PP^3$ will not lie on one.
 \end{proof}
 
-Note that the the last case in this argument relies on the hypothesis of characteristic 0. Indeed, in characteristic $p > 0$ it may not be the case that a general projection of a smooth curve to $\PP^2$ is nodal---but it's still true that every curve is the normalization of a nodal plane curve: we have the slightly weaker
-
-\begin{proposition}[Proposition~\ref{nodal projection} in characteristic $p$]\label{positive characteristic nodes}
-Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\tilde C = \nu_m(C)$ be image of $C$---then the projection of $\tilde C$ from a general $\PP^{N-3}$ will be nodal.
-\end{proposition}
+In characteristic $p > 0$ it may not be the case that a general projection of a smooth curve to $\PP^2$ is nodal---but it's still true that every curve is the normalization of a nodal plane curve: we have the slightly weaker
 
 \begin{exercise}
-In the setting of Proposition~\ref{positive characteristic nodes}, for a general $\Lambda \cong \PP^{N-3}$ show that
+Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\tilde C = \nu_m(C)$ be image of $C$. Prove:
+
+\begin{proposition}[Proposition~\ref{nodal projection} in characteristic $p$]\label{positive characteristic nodes}
+The projection of $\tilde C$ from a general $\PP^{N-3}$ is a nodal plane curve.
+\end{proposition}
+
+by showing that, for a general $\Lambda \cong \PP^{N-3}$:
 \begin{enumerate}
 \item there do not exist three points $p,q,r \in \tilde C$ such that $p, q, r$ and $\Lambda$ are all contained in a $\PP^{N-2}$; and
 \item there does not exist a pair of points $p, q \in \tilde C$ such that 
 $p, q$ and $\Lambda$ are contained in a $\PP^{N-2}$ and $\TT_p(\tilde C), \TT_q(\tilde C)$ and $\Lambda$ are contained in a $\PP^{N-1}$.
 \end{enumerate}
 \end{exercise}
-
-From this one can deduce Proposition~\ref{positive characteristic nodes}.
 
 \begin{exercise}
 Let $C_0$ be a plane quartic curve with two nodes $q_1, q_2$; let $\nu : C \to C_0$ be its normalization, and let $o \in C$ be any point not lying over a node of $C_0$.
