@@ -3,20 +3,23 @@
 \chapter{Plane Curves}
 \label{PlaneCurvesChapter}
 
+Plane curves occupied a central role in the development of the theory of algebraic curves; and there are still many aspects of the geometry of a curve that are best approached in this way. In this chapter, we'll describe some of the tools used to study  curves via their plane models.
 
-As anyone who has read  Chapter~\ref{HilbertSchemesCounterexamplesChapter} knows, describing curves in projective space $\PP^3$  is difficult: the ideal of such a curve typically has three or more generators, which in turn have to satisfy certain syzygies; in consequence, many basic facts about them---for example, the dimension of the family of all curves of given degree and genus---are unknown. We know even less about curves in $\PP^n$ for $n > 3$.
+As illustrated in Chapter~\ref{HilbertSchemesCounterexamplesChapter} knows, describing curves in projective space $\PP^3$  is difficult: the ideal of such a curve typically has three or more generators, which in turn have to satisfy certain syzygies; in consequence, many basic facts about them---for example, the dimension of the family of all curves of given degree and genus---are unknown. We know even less about curves in $\PP^n$ for $n > 3$.
 
-The case of plane curves makes a striking contrast: a curve $C \subset \PP^2$ is necessarily the zero locus of a single homogeneous polynomial, and conversely any homogeneous polynomial $F(X,Y,Z)$ defines a plane curve. There is a downside, however: while any smooth projective curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
+The case of plane curves makes a striking contrast: a curve $C \subset \PP^2$ is necessarily the zero locus of a single homogeneous polynomial, and conversely any homogeneous polynomial $F(X,Y,Z)$ defines a plane curve. However, this doesn't give us direct access to all curves: although any smooth curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane.
 
-On the other hand, every curve can be mapped birationally into $\PP^2$: we can embed $C$ as a curve $\tilde C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $\tilde C$ birationally onto its image. This is indeed how 19th century geometers typically described a curve, in the days before abstract varieties: as the normalization of a plane curve. The points on the normalization were realized as valuations on the function field of $C$,  taking advantage of the fact that for smooth curves birational and biregular isomorphism are the same thing. Much of the analysis of the geometry of the curve---for example, the description of the linear systems on the curve---was carried out on the plane model.
+\begin{exercise}
+ Show that no curve of genus 2 can be represented as a smooth curve in $\PP^2$.
+\end{exercise}
 
-Plane curves, in other words, occupied a central role in the development of the theory of algebraic curves; and there are still many aspects of the geometry of a curve that are best approached in this way. In this chapter, we'll describe some of the tools used to study  curves via their plane models.
+On the other hand, we shall show in Section~\ref{projection section} that every curve can be mapped birationally into $\PP^2$: we can embed $C$ as a curve $\tilde C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $\tilde C$ birationally onto its image. This is indeed how 19th century geometers typically described a curve, in the days before abstract varieties: as the normalization of a plane curve. The points on the normalization were realized as valuations on the function field of $C$ \fix{this point of view is not 19th c.: I think it's due to Chevalley, mid 20th c},  taking advantage of the fact that for smooth curves birational and biregular isomorphism are the same thing. Much of the analysis of the geometry of the curve---for example, the description of the linear systems on the curve---was carried out on the plane model.\fix{the last is true -- work of Brill-Noether and others.}
 
-\section{Our goal}
 
-In the first part of this chapter we'll focus  on one basic problem:
-given the equations of a smooth curve $C$ embedded in some projective space, and the coordinates of a collection of points $p_i$, how can we explicitly and algorithmically determine the complete linear series 
-$|\sum_i p_i|$? We will do this is by realizing  $C$ as the normalization of a plane curve $C_0 \subset \PP^2$ (for example, by a general projection of $C$ to $\PP^2$), and working in the plane. 
+\section{Using plane models to compute linear series}
+
+Given the equations of a smooth curve $C$ embedded in some projective space, and the coordinates of a collection of points $p_i$,  we can project it birationally to a (possibly singular) plane curve $C_0$, and use this ``plane model'' to explicitly and algorithmically determine the complete the linear series 
+$|\sum_i p_i|$. 
 
 In particular:
 \begin{enumerate}
@@ -138,13 +141,21 @@ We claim that we find in this way \emph{all} effective divisors $D' \sim D$ a sp
 
 Indeed, suppose $D'$ is any effective divisor with $D' \sim D$. Carrying out the first step of the process as before, we arrive at a divisor $A$ with 
 $$
-\cO_C(A+F+D') = \cO_C(A+F+D)  = \cO_C(m).
+\cO_C(A+F+D') = \cO_C(A+F+D)  = \cO_C(m),
 $$
-But from the exact sequence 
+that is, $A+F+D$ is linearly equivalent on $C$ to the divisor (H) defined by the vanishing of some form $H$ of degree $m. This means that
+$A+F+D  = (H') +(P/Q) for some forms $P,Q$ of equal degree, with $Q$ not vanishing identically on $C$. Since $A+F+D$ is effective,
+the zeros of $Q$ on $C$ must be contained in the zeros of $H'P$ on $C$. Writing
+$G$ for the generator of the ideal of $C$, and using the fact that
+$G,Q$ is a regular sequence, and thus unmixed, we see that $H'P = LG+HQ$ for some
+forms $L,H$ of degree $\deg HP - \deg Q$. In particular, $H = (H'P- LG)/Q$ is a form
+of degree $m$ defining $A+F+D$, as desired.
+
+Alternatively, the fact that any regular sequence $G,Q$ defines an unmixed ideal is equivalent to the vanishing of the intermediate cohomology of all twists of the structure sheaf of $\PP^2$; and we can use this to achieve the same conclusion with fewer symbols, though more sophistication: from the exact sequence 
 $$
 0 \to \cO_{\PP^2}(m-d) \to \cO_{\PP^2}(m)  \to \cO_C(m) ]\to 0
 $$
-and the vanishing of $H^1(\cO_{\PP^2}(m-d))$, we have that every global section of $ \cO_C(m)$ is the restriction to $C$ of a homogeneous polynomial of degree $m$ on $\PP^2$. Thus there is a polynomial $H$ cutting out the divisor $A+F+D'$ on $C$, as claimed.
+and the vanishing of $H^1(\cO_{\PP^2}(m-d))$, we again see that every global section of $ \cO_C(m)$ is the restriction to $C$ of a homogeneous polynomial of degree $m$ on $\PP^2$. 
 
 Note that if, in the process described, it turns out there is no polynomial $H$ vanishing on  $A + F + D$ but not vanishing identically on $C$, that simply means that $|D| = \emptyset$; that is, \emph{$D$ is not linearly equivalent to any effective divisor}. (It may not be obvious that the existence of such an $H$ is independent of the choice of $m$ or $G$, but the argument here shows it is.)
 
