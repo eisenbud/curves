@@ -3,27 +3,31 @@
 \chapter{Plane Curves}
 \label{PlaneCurvesChapter}
 
-Plane curves occupied a central role in the development of the theory of algebraic curves. Indeed, They were the only algebraic curves studied for a long time. Originally the study was of curves in the affine plane over the real numbers, but by about 1850 the complex projective plane was well understood, and complex curves in $\PP^2 = \PP^2_\CC$ were recognized as the natural objects of study. One of the central topics was duality: given a curve in $\PP^2$, the dual curve is the closure of the set of tangent lines at its smooth points, the dual curve. Starting with smooth curve each bitangent line corresponds to a node of the dual curve, and each flex corresponds to a cusp, so curve singularities were also studied.
+For a long time, plane curves were the only algebraic curves that were studied. Originally these were curves in the affine plane over the real numbers, but by about 1850 the complex projective plane was well understood, and curves in $\PP^2 = \PP^2_\CC$, corresponding to irreducible forms in 3 variables, were recognized as the natural objects of study. One of the central topics was duality: given a curve in $\PP^2$, the dual curve is the closure of the set of tangent lines at its smooth points. Starting with smooth curve each bitangent line corresponds to a node of the dual curve, and each flex corresponds to a cusp, so singular curves were included.
 
-The work of Bernard Riemann dramatically changed the focus of the theory to branched coverings of   the ``Riemann Sphere'' ($\PP^1_\CC$). The Riemann-Roch, theorem, in particular, gave information about the existenced of meromorphic functions on such coverings, well beyond what could be done in the earlier theory. However, Riemann's work, depending as it did on the then-obscure ``Dirichlet principle'', was not universally accepted. In the 1860s Rudolph Clebsch and, after Clebsch' death in 1872, Alexander Brill and Max Noether (Emmy Noether's father), undertook the ambitious program of redoing the Riemann-Roch theorem entirely in terms of plane curves. They went beyond Riemann in certain directions, too: the Brill-Noether Theorem treated in our Chapter~\ref{Brill-Noether chapter} was formulated by Brill and Noether, ``proved'' through an unsupported appeal to general position. 
+The work of Bernard Riemann dramatically changed the focus of the theory to branched coverings of   the ``Riemann Sphere'' ($\PP^1_\CC$). The Riemann-Roch, theorem, in particular, gave information about the existence of meromorphic functions on such coverings, well beyond what could be done in the earlier theory. However, Riemann's work, depending as it did on the then-obscure ``Dirichlet principle'', was not universally accepted. In the 1860s Rudolph Clebsch and, after Clebsch' death in 1872, Alexander Brill and Max Noether (Emmy Noether's father), undertook the ambitious program of redoing the Riemann-Roch theorem entirely in terms of plane curves. They went beyond Riemann in certain directions, too: the Brill-Noether Theorem treated in our Chapter~\ref{Brill-Noether chapter} was formulated by Brill and Noether, ``proved'' through an unsupported general position assumption. 
 
 A central difficulty in the Brill-Noether attempt on the Riemann-Roch theorem was that,
 although any smooth curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
-However, we shall show in Section~\ref{projection section} that every curve can be mapped birationally into $\PP^2$: we can embed $C$ as a curve $\tilde C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $\tilde C$ birationally onto its image $C_0$, called a plane model of $C$, with singularities, so that $C$ is the normalization of $C_0$. Brill and Noether wanted to prove the Riemann-Roch theorem for $C$ by formulating and proving a related theorem for $C_0$. In particular, they tried to characterize linear equivalence of divisors on $C$ in terms of certain ``clusters'' of points on $C_0$. \fix{make the notation here and in the later part of the chapter consistent!}
-
+However, as we shall show in Section~\ref{good projections}, we can embed $C$ as a curve $\widetilde C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $\widetilde C$ birationally onto its image $C_0$, called a plane model of $C$. The curve $C_0$ will have singularities, and $C$ is the normalization of $C_0$. Brill and Noether wanted to prove the Riemann-Roch theorem for $C$ by formulating and proving a related theorem for $C_0$. In particular, they tried to characterize linear equivalence of divisors on $C$ in terms of certain ``clusters'' of points---we would say 0-dimensional subschemes---of $C_0$. \fix{make the notation here and in the later part of the chapter consistent!}
 
 To carry out this program, a key result is that if $D\subset C_0$ is contained in the intersection
 $D'$ of $C_0$ and some other plane curve $C_0'$, then the diifference 
-$E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and Noether seem simply to have assumed that this is so, but Frances Sowerby Macaulay who proved that this is possible a bit later. This early work of Macaulay led directly to his later definitions of  ``perfection'' (a homogeneous ideal
+$E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and Noether seem simply to have assumed that this is so. Frances Sowerby Macaulay proved that this is possible a bit later, and also understood that this would not generally be possible if $D$ were the intersection of three or more curves. 
+
+Macaulay exploited this theory of residualtion  to prove what he called the ``Generalized Riemann-Roch Theorem'' (now erroneously called the ``Cayley Bacharach Theorem''.) This early work of Macaulay led directly to his definitions of  ``perfection'' (a homogeneous ideal
 $I  \subset S:= k[x_0, \dots, x_n]$ is perfect if $S/I$ is Cohen-Macaulay) and ``super-perfection'' (the case when $S/I$ is
-Gorenstein), and he proved what he called the ``Generalized Riemann-Roch Theorem'' (now called, erroneously, the ``Cayley Bacharach Theorem''---see for example the discussion in "\cite{Eisenbud-Gray}.)
+Gorenstein). For all this, see "\cite{Eisenbud-Gray}.
 
-In the first part of this Chapter we will use ideas that go back to Brill and Noether to prove the ``completeness of the adjoint series'', giving us a recipe using $C_0$ to find all effective divisors on $C$ equivalent on $C$ to a given (possibly) non-effective divisor. In the last Section we will study the ``Severi variety'' of nodal plane curves $C_0$ whose normalization $C$ has given genus (called the 
-``geomtric genus'' of $C_0$.
+In the first part of this Chapter we will use ideas that go back to Brill and Noether to prove the ``completeness of the adjoint series'', giving us a recipe, using $C_0$, to find all effective divisors on $C$ equivalent on $C$ to a given (possibly) non-effective divisor. In Section~\ref{linear series on smooth plane curves} we treat the simple case of smooth plane curves, and in subsequent sections we treat the case of plane curves with nodes, and then plane curves with arbitrary singularities.
 
+ In the last Section we will study the ``Severi variety'' of nodal plane curves $C_0$ of given geometric genus (the genus of the normalization, $C$.)
+ 
 \begin{exercise}
- Show that no curve of genus 2---can be represented as a smooth curve in $\PP^2$.
+ Show that no hyperelliptic curve of genus $\geq 2$ can be embedded as a smooth curve in $\PP^2$.
 \end{exercise}
+
+\fix{is it easy to determine the minimum number of nodes a hyperelliptic plane curve must have?}
 
 %; and there are still many aspects of the geometry of a curve that are best approached in this way. In this chapter, we'll describe some of the tools used to study  curves via their plane models.
 
@@ -32,9 +36,9 @@ In the first part of this Chapter we will use ideas that go back to Brill and No
 %On the other hand, we shall show in Section~\ref{projection section} that every curve can be mapped birationally into $\PP^2$: we can embed $C$ as a curve $\tilde C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $\tilde C$ birationally onto its image. This is indeed how 19th century geometers typically described a curve, in the days before abstract varieties: as the normalization of a plane curve. The points on the normalization were realized as valuations on the function field of $C$ \fix{this point of view is not 19th c.: I think it's due to Chevalley, mid 20th c},  taking advantage of the fact that for smooth curves birational and biregular isomorphism are the same thing. Much of the analysis of the geometry of the curve---for example, the description of the linear systems on the curve---was carried out on the plane model.\fix{the last is true -- work of Brill-Noether and others.}
 
 
-\section{Using plane models to compute linear series}
+\section{Using plane models to compute linear series} \label{good projections}
 
-Given the equations of a smooth curve $C$ embedded in some projective space, and the coordinates of a collection of points $p_i$,  we can project it birationally to a (possibly singular) plane curve $C_0$, and use this ``plane model'' to explicitly and algorithmically determine the complete the linear series 
+To summarize: given the equations of a smooth curve $C$ embedded in some projective space, and the coordinates of a collection of points $p_i$,  we can project it birationally to a (possibly singular) plane curve $C_0$, and use this ``plane model'' to explicitly and algorithmically determine the complete the linear series 
 $|\sum_i p_i|$. 
 
 In particular:
@@ -45,11 +49,11 @@ In particular:
 
 Along the way we will see how to test when two given divisors $D$ and $E$ on $C$ are linearly equivalent; and whether a given divisor $D$ linearly equivalent to an effective divisor.
 
-We will pursue these goals in three stages: first when $C = C_0$ is a smooth plane curve (\S \ref{smooth plane curves}); next for nodal curves (\S~\ref{nodal plane curves}), which in principle this covers all smooth curves; and finally for arbitrary reduced, irreducible plane curves (\S\ref{arbitrary plane curves}): many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Theorem~\ref{****} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is often easier to work with the given plane model. 
+We will pursue these goals in three stages: first when $C = C_0$ is a smooth plane curve (\S \ref{linear series on smooth plane curves}); next for nodal curves (\S~\ref{nodal plane curves}), which in principle this covers all smooth curves; and finally for arbitrary reduced, irreducible plane curves (\S\ref{arbitrary plane curves}): many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Theorem~\ref{****} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is often easier to work with the given plane model. 
 
-\section{Smooth plane curves}\label{smooth plane curves}
+\section{Differentials on a smooth plane curve}\label{canonical series on smooth plane curves}
 
-Let $C \subset \PP^2$  be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\tilde C = C \cap U$ is given as the zero locus $V(f) \subset  \AA^2$. \fix{in the B-N chapter, $\tilde C$ is the
+Let $C \subset \PP^2$  be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\widetilde C = C \cap U$ is given as the zero locus $V(f) \subset  \AA^2$. \fix{in the B-N chapter, $\widetilde C$ is the
 normalization of $C$.}
 
 Since an automorphism of $\PP^2$ can carry any line in the plane to the line at infinity, and any point on that line to the point $(0,1,0)$, we may assume:
@@ -60,7 +64,7 @@ Since an automorphism of $\PP^2$ can carry any line in the plane to the line at 
 
 These conditions are not necessary: in Exercise~\ref{****} we will see how to do  without them.
  
-We start toward our first goal by writing down a single rational 1-form on $C$: just take a regular 1-form on $\AA^2$, such as $dx$, and restrict/pull back to $C$. Though $dx$ is regular on $\tilde C$, writing
+We start toward our first goal by writing down a single rational 1-form on $C$: just take a regular 1-form on $\AA^2$, such as $dx$, and restrict/pull back to $C$. Though $dx$ is regular on $\widetilde C$, writing
 $$
 dx = d\frac{X}{Z} = \frac{X dZ+ Z dX}{Z^2}
 $$
@@ -73,11 +77,11 @@ $\AA^2$ has a pole of order $d$ along the line $L$ at infinity. Thus if $h$ has 
  $$
  h(x,y) = \frac{\partial f}{\partial y}(x,y).
  $$
- Note that on $\tilde C$,
+ Note that on $\widetilde C$,
  $$
  df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy \equiv 0.
  $$
-Because $C$ is smooth, the functions $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $\tilde C$. Moreover, the differentials $dx$ and $dy$ have no common zeros on $\tilde C$. It follows that at for all $p \in \tilde C$ we  have
+Because $C$ is smooth, the functions $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $\widetilde C$. Moreover, the differentials $dx$ and $dy$ have no common zeros on $\widetilde C$. It follows that at for all $p \in \widetilde C$ we  have
 $$
 \ord_p(dx) = \ord_p(\frac{\partial f}{\partial y}), 
 $$ 
@@ -85,7 +89,7 @@ and thus the quotient
 $$
 \omega_0 = \frac{dx}{\partial f/\partial y}
 $$
-is everywhere regular and nowhere 0 in $\tilde C$.
+is everywhere regular and nowhere 0 in $\widetilde C$.
 
 The differential $dx$ has poles of order $2$ at the points $p_i$. The polynomial $\partial f/\partial y$, having degree $d-1$, has poles of order $d-1$. Thus $\omega_0$ has zeroes of order $d-3$ at the points $p_i$; in other words, as divisors,
 $$
@@ -137,7 +141,7 @@ Let $C$ be a smooth plane curve of degree $d$. Show that $C$ admits a one-parame
 \end{exercise}
 
 
-\subsection{Finding complete linear systems on smooth plane curves}
+\subsection{Finding complete linear systems on smooth plane curves}\label{linear series on smooth plane curves}
 
 Suppose that $D$ is any divisor on a smooth plane curve $C$, expressed as the difference of
 two effective divisors, $D= E-F$. We would like to find all the \emph{effective} divisors linearly equivalent to $D$, that is, of the form
@@ -175,7 +179,7 @@ and the vanishing of $H^1(\cO_{\PP^2}(m-d))$, we again see that every global sec
 
 Note that if, in the process described, it turns out there is no polynomial $H$ vanishing on  $A + F + D$ but not vanishing identically on $C$, that simply means that $|D| = \emptyset$; that is, \emph{$D$ is not linearly equivalent to any effective divisor}. (It may not be obvious that the existence of such an $H$ is independent of the choice of $m$ or $G$, but the argument here shows it is.)
 
-\section{Nodal plane curves}\label{nodal plane curves}
+\section{Differentials on nodal plane curves}\label{canonical series on nodal plane curves}
 
 As noted, smooth plane curves are very special among all curves. We now want to carry out the analyses above for curves with at most nodes as singularities. These are still special among all plane curves, but as we'll see in Section~\ref{projection section} below, every smooth curve is the normalization of a nodal plane curve.
 
@@ -239,7 +243,7 @@ Let $C_0$ be a plane curve of degree $d$ with two nodes and no other singulariti
 
 \fix{this suggests, falsely, I suppose, the generalization to $n$ nodes. That needs a comment---where does it break?}
 
-\subsection{Linear series on a nodal curve}
+\subsection{Linear series on a nodal curve}\label{linear series on nodal plane curves}
 
 Next, we take up the second of our keynote problems in this setting: with $C \to C_0 \subset \PP^2$ as above, given a divisor $D$ on $C$, can we find the complete linear series $|D|$?
 
@@ -304,7 +308,7 @@ The lemma follows by applying the Leray spectral sequence, which relates the coh
 \end{proof}
 
 
-\subsection{Existence of good projections}\label{projection section}
+\subsection{Existence of good projections}\label{projection section}\label{good projections}
 
 In this section, we want to verify the assertion made above that every smooth curve $C$ is birational to a nodal plane curve $C_0 \subset \PP^2$; we'll do this by first embedding $C$ in $\PP^n$, and then arguing that the projection $\pi_\Lambda : C \to \PP^2$ from a general $(n-3)$-plane $\Lambda \subset \PP^n$ is birational onto its image $C_0$ and that $C_0$ has only nodes as singularities. This is certainly plausible, but in fact a proof relies on an application of the uniform position lemma of Section~\ref{****}.
 
@@ -336,17 +340,17 @@ In characteristic 0 we can conclude as follows: It can't be the case that for a 
 In characteristic $p > 0$ it may not be the case that a general projection of a smooth curve to $\PP^2$ is nodal---but it's still true that every curve is the normalization of a nodal plane curve: we have the slightly weaker
 
 \begin{exercise}
-Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\tilde C = \nu_m(C)$ be image of $C$. Prove:
+Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\widetilde C = \nu_m(C)$ be image of $C$. Prove:
 
 \begin{proposition}[Proposition~\ref{nodal projection} in characteristic $p$]\label{positive characteristic nodes}
-The projection of $\tilde C$ from a general $\PP^{N-3}$ is a nodal plane curve.
+The projection of $\widetilde C$ from a general $\PP^{N-3}$ is a nodal plane curve.
 \end{proposition}
 
 by showing that, for a general $\Lambda \cong \PP^{N-3}$:
 \begin{enumerate}
-\item there do not exist three points $p,q,r \in \tilde C$ such that $p, q, r$ and $\Lambda$ are all contained in a $\PP^{N-2}$; and
-\item there does not exist a pair of points $p, q \in \tilde C$ such that 
-$p, q$ and $\Lambda$ are contained in a $\PP^{N-2}$ and $\TT_p(\tilde C), \TT_q(\tilde C)$ and $\Lambda$ are contained in a $\PP^{N-1}$.
+\item there do not exist three points $p,q,r \in \widetilde C$ such that $p, q, r$ and $\Lambda$ are all contained in a $\PP^{N-2}$; and
+\item there does not exist a pair of points $p, q \in \widetilde C$ such that 
+$p, q$ and $\Lambda$ are contained in a $\PP^{N-2}$ and $\TT_p(\widetilde C), \TT_q(\widetilde C)$ and $\Lambda$ are contained in a $\PP^{N-1}$.
 \end{enumerate}
 \end{exercise}
 
@@ -410,11 +414,11 @@ Let $p \in C$ be a singular point of a reduced curve $C$. Show that if $\delta_p
 
 
 
-\subsection{Linear series on (the normalization of) a plane curve} 
+\subsection{Linear series on the normalization of a plane curve} 
 
 We return now to our basic setting: we have a reduced and irreducible curve $C_0 \subset \PP^2$ with normalization $\nu : C \to C_0$, and we want to extend our solution to the keynote problems---finding all regular differentials on $C$, and finding all divisors on $C$ linearly equivalent to a given $D \in \Div(C)$---to this more general setting.
 
-In this setting, if we simply try to mimic the analysis above in the nodal case we're led to introduce the \emph{adjoint ideal} of each singularity (which is simply the maximal ideal of the point in the case of a node), in terms of which we have theorems analogous to the results obtained above in the nodal case.
+In this setting, if we simply try to mimic the analysis above in the nodal case we're led to introduce the \emph{adjoint ideal} of each singularity; in the case of a node, this is the maximal ideal of the point), in terms of which we have theorems analogous to the results obtained above in the nodal case.
 
 So: let $C_0 \subset \PP^2$ be a reduced and irreducible plane curve, with normalization $\nu : C \to C_0$. We focus for now on one singular point $q \in C_0$, with points $r_1,\dots,r_k \in C$ lying over $q$. If our goal is to describe the canonical series on $C$, we can start as we did in the previous two sections: by considering differentials of  the form $g(x,y)\omega_0$, where
 $$
@@ -443,7 +447,7 @@ We then find all polynomials $H$ of degree $m$ in the adjoint ideal, vanishing o
 $$
 (H) = F + A + \Delta + D'
 $$
-we arrive at an effective divisor $D'$ on $C$ linearly equivalent to $D$. Indeed,  the analog of the theorem of completeness of the adjoint series tells us that we arrive at \emph{every} effective divisor $D'$ on $C$ linearly equivalent to $D$ in this way.
+we arrive at an effective divisor $D'$ on $C$ linearly equivalent to $D$. Indeed,  the analog of the theorem of completeness of the adjoint series tells us that we arrive at \emph{every} effective divisor $D'$ on $C$ linearly equivalent to $D$ in this way. \fix{What do we need  about the embedded resolution of the curve singularity to prove the vanishing of cohomology as in the nodal case? I think we shoudl do embedded resolution somewhere.}
 
 
 
@@ -482,17 +486,24 @@ $$
 then the adjoint ideal of $C_0$ at $p$ is simply the ideal of functions $g$ such that $ord_{r_i}(\nu^*g) \geq m_i$.
 \end{proposition}
 
+\fix{ add proof}
+
 \subsection{The conductor ideal}
 
-There is another ideal we can associate to an isolated curve singularity, called the \emph{conductor ideal}. It's simple to define: if $C_0$ is a reduced curve and $\nu : C \to C_0$ its normalization, we can think of the direct image $\nu_*\cO_C$ as a module over the structure sheaf $\cO_{C_0}$; the conductor ideal is simply the annihilator of the quotient $\nu_*\cO_C/\cO_{C_0}$. In concrete terms, on any affine open $U \subset C_0$ this is the ideal of functions $g \in \cO_{C_0}(U)$ such that for any function $h \in \cO_C(\nu^{-1}(U))$ the product $hg$ will be the pullback of a function on $C_0$.
+There is another ideal we can associate to a singularity, called the \emph{conductor ideal}. If $X_0$ is any reduced projective scheme and  $\nu : X \to X_0$ its normalization, the conductor ideal is the annihilator of the quotient $\nu_*\cO_X/\cO_{X_0}$. In concrete terms, on any affine open $U \subset X_0$ this is the ideal of functions $g \in \cO_{X_0}(U)$ such that for any function $h \in \cO_X(\nu^{-1}(U))$ the product $hg$ is the pullback of a function on $X_0$.
 
 For example, in the case of a node $q \in C_0$, with $r_1,r_2$ the points of $C$ lying over $q$, we see that any function on $C$ vanishing at both $r_1$ and $r_2$ is the pullback of a function on $C_0$; thus the conductor is simply the maximal ideal at $q$. Similarly, if $q \in C_0$ is a cusp, with $r \in C$ lying over it, a function $f$ on $C$ will descend to $C_0$---that is, be the pullback of a function on $C_0$---if it vanishes to order 2 at $r$; since the pullback to $C$ of any function on $C_0$ vanishing at $q$ vanishes to order at least 2 at $r$, the conductor ideal is just the maximal ideal at $q$.
 
-The sharp-eyed reader will have noticed a coincidence here, and will not be completely surprised by the
-
 \begin{theorem}
-For any plane curve singularity, the adjoint ideal and the conductor ideal coincide.
+If $C_0$ is a reduced plane curve, then the adjoint ideal of $C_0$ is equal to the conductor ideal of $C_0$.
 \end{theorem}
+
+\fix{needs a proof! Also, admit that this is only an algorithm if one has an algorithm for normalization;
+we never treated embedded resolution, but probably we should somewhere.}
+
+\begin{proof}
+ 
+\end{proof}
 
 This is a reflection of the fact that plane curve singularities are necessarily local complete intersections, and hence \emph{Gorenstein}, about which we will hear more in the following chapter.
 
@@ -513,31 +524,58 @@ $$
 
 This lack of rational functions was viewed as a defect of the curve, and called its \emph{deficiency} (and typically denoted $p$, rather than $g$). Of course, now that we're in possession of the Riemann-Roch formula, we can recognize this as equivalent to the genus.
 
-Of course, at the time the notion of deficiency first appeared, Riemann-Roch was still well into the future. But the method of finding rational functions described in the algorithm above was known, and they applied it. 
+%Of course, at the time the notion of deficiency first appeared, Riemann-Roch was still well into the future. But the method of finding rational functions described in the algorithm above was known, and they applied it. 
 
 \section{Severi varieties}\label{severi variety}
 
-As we said at the outset of this chapter, there is a trade-off when we go from studying curves in $\PP^3$ and higher-dimensional projective space to studying plane curves. On the one hand, a curve $C \subset \PP^n$ with $n \geq 3$ is defined by a collection of polynomials, which in turn (unless the curve is a complete intersection) have to satisfy non-trivial syzygies. It's thus not a priori clear how we can vary the coefficients of these polynomials without losing the syzygies they satisfy; as a consequence, things like the dimension of the family of such curves can be obscure.
+%As we said at the outset of this chapter, there is a trade-off when we go from studying curves in $\PP^3$ and higher-dimensional projective space to studying plane curves. On the one hand, a curve $C \subset \PP^n$ with $n \geq 3$ is defined by a collection of polynomials, which in turn (unless the curve is a complete intersection) have to satisfy non-trivial syzygies. It's thus not a priori clear how we can vary the coefficients of these polynomials without losing the syzygies they satisfy; as a consequence, things like the dimension of the family of such curves can be obscure.
+%
+%A plane curve $C_0 \subset \PP^2$, by contrast, is simply the zero locus of a single polynomial, and we can vary the coefficients of that polynomial arbitrarily to arrive at a family of curves. But as we said, there's a trade-off: unless we're dealing with the very special case of curves of degree $d$ and geometric genus $g = \binom{d-1}{2}$, the plane model of a curve $C$ of genus $g$ will be singular; and it's not so clear how we can vary the coefficients of its defining polynomial so as to preserve those singularities and arrive at a family of curves of degree $d$ and geometric genus $g$.
+%
+%In this section, we'll address exactly this question. 
 
-A plane curve $C_0 \subset \PP^2$, by contrast, is simply the zero locus of a single polynomial, and we can vary the coefficients of that polynomial arbitrarily to arrive at a family of curves. But as we said, there's a trade-off: unless we're dealing with the very special case of curves of degree $d$ and geometric genus $g = \binom{d-1}{2}$, the plane model of a curve $C$ of genus $g$ will be singular; and it's not so clear how we can vary the coefficients of its defining polynomial so as to preserve those singularities and arrive at a family of curves of degree $d$ and geometric genus $g$.
+The family of reduced irreducible plane curves of degree $d$ is an open subset of the space 
+$\PP^{{d+2\choose 2}}$, the space of forms of degree $d$ up to scalars---it is the complement of the union of the images of the maps 
+$$
+\PP^{{d_1+2\choose 2}}\PP^{{d_2+2\choose 2}} \to \PP^{{d+2\choose 2}}
+$$ 
+with $d_1+d+2 = d$ given by multiplication of forms.
+All plane curves $C$ of degree $d$ have Hilbert polynomial 
+$$
+\chi(\sO_C(m)) = md+(1-{d-1\choose 2})
+$$
+as follows from a computation of the Hilbert function, and thus arithmetic genus 
+$p_a = {d-1\choose 2}$. But depending on the singulariities of the $C$, the geometric genus can vary from 0 up to $p_a$. 
 
-In this section, we'll address exactly this question. Our main goal will be to give a description of at least an open subset of the Severi variety parametrizing plane curves of degree $d$ and geometric genus $g$; we'll be able to deduce the fact that the Severi variety always has the expected dimension; and we'll be able to prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, which we used in Chapter~\ref{InflectionsChapter}.
+Our first goal in this section
+is to describe an open subset of those curves of degree $d$ with given geometric genus $g$, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
 
-\subsection{Definitions, and the statement of our main theorem}
+%Our main goal will be to give a description of at least an open subset of the Severi variety parametrizing plane curves of degree $d$ and geometric genus $g$; 
+%we'll be able to deduce the fact that the Severi variety always has the expected dimension; and we'll be able to prove 
 
-Let's start by defining the objects we'll be considering. Fix a degree $d$, and let $\PP^N$ be the projective space parametrizing plane curves of degree $d$.
+%\subsection{Definitions, and the statement of our main theorem}
 
-\begin{definition} 
+Fix a degree $d$, and let $\PP^N := \PP^{{d+2\choose 2}}$ be the projective space parametrizing plane curves of degree $d$.
+\begin{propdef}
 \begin{enumerate}
-\item By the \emph{Severi variety} $V_{d,g}$ we will mean the locus of reduced and irreducible curves of degree $d$ and geometric genus $g$. Note that this is a locally closed subvariety of $\PP^N$.
+\item The \emph{Severi variety} $V_{d,g}$ is the locus of reduced and irreducible curves of degree $d$ and geometric genus $g$. This is is a locally closed subvariety of $\PP^N$. 
 
-\item By the \emph{small Severi variety} $\tilde V_{d,g} \subset V_{d,g}$ we'll mean the locus of plane curves of degree $d$ with exactly $\delta = \binom{d-1}{2} - g$ nodes. Note that this is an open subset of $V_{d,g}$.
+\item The \emph{small Severi variety} $\widetilde V_{d,g} \subset V_{d,g}$ is the locus of plane curves of degree $d$ with $\delta = \binom{d-1}{2} - g$ nodes and no other singularities. This is an open subset of $V_{d,g}$.
 
-\item By the \emph{large Severi variety} $\overline V_{d,g}$ we'll mean the closure of $V_{d,g}$ in the projective space $\PP^n$.
+\item The \emph{large Severi variety} $\overline V_{d,g}$ is the closure of $V_{d,g}$ in the projective space $\PP^N$.
+
 \end{enumerate}
-\end{definition}
 
-We should remark that the large Severi variety is not something we would want to encounter in a dark alley: it includes points, for example, corresponding to $d$-fold lines, and the singularities of $\overline V_{d,g}$ at such points are impenetrable. We introduce it here for the sole purpose of posing the problem of finding a better compactification of $\tilde V_{d,g}$, a problem that is very much open. Indeed, even the singularities of $V_{d,g}$  are not well understood, which is why we try to focus on the small Severi variety whenever possible.
+\end{propdef}
+
+\fix{THE Severi variety is actually never mentioned again; only the small and the large. Are its singularities well-understood? Say something about this?}
+
+\begin{proof}
+  \fix{ The first part is semi-continuity of cohomology, $H^1\cO_C$, the push-forward from the universal family. The second part?}
+\end{proof}
+
+We will see that in a neighborhood of $\widetilde {V}_{d,g}$,  the large Severi variety is well behaved; but away from this,
+even the singularities of $overline V_{d,g}$  are not well understood. It is is an interesting open problem to find a better compactification of $\widetilde V_{d,g}$.
 
 \subsection{The universal singular point}
 
@@ -554,7 +592,7 @@ is given as the zero locus of the single bihomogenous polynomial of bidegree $(1
 $$
 F([a_{i,j,k}], [X,Y,Z] ) = \sum a_{i,j,k} X^iY^jZ^k;
 $$
-and the universal singular point is given (in characteristic 0!) as the common zero locus of the three partial derivatives $\partial F/\partial X$, $\partial F/\partial Y$ and  $\partial F/\partial Z$. 
+and the universal singular point is given (in characteristic 0!) as the common zero locus of the three partial derivatives $\partial F/\partial X$, $\partial F/\partial Y$ and  $\partial F/\partial Z$. \fix{char p?}
 
 The key now is to understand the map $\pi : \Phi \to \PP^N$, and the geometry of its image, the discriminant hypersurface  $\Delta \subset \PP^n$. A fundamental fact is the
 
@@ -602,12 +640,16 @@ Now, the hypothesis that $p$ is a node of $C$ means exactly that the upper right
 
 Now, suppose that $C \subset \PP^2$ is a curve with $\delta$ nodes $p_1,\dots,p_\delta$ and no other singularities. The preimage of the point $C \in \PP^N$ is then the $\delta$ points $(C,p_i) \in \Phi$, and according to  Lemma~\ref{tangent space to discriminant} an analytic neighborhood of $C$ in the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets. Moreover, by Lemma~\ref{adjoint independent} above, the tangent spaces to these sheets are linearly independent; in other words, \emph{$\Delta$ has normal crossing singularities at $C$}.
 
-This in turn gives us a beautiful picture of the closure of the Severi variety $V_{d,g}$, at least in a neighborhood of a nodal curve such as $C$ above. For example, suppose we start with a rational nodal curve $C$ of degree $d$, with nodes $p_1,\dots,p_\delta$ (so that $\delta = \binom{d-1}{2}$). Again, in a neighborhood of the point $C \in \PP^N$, the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets intersecting transversely. What's more, if we set $\delta' = \binom{d-1}{2} - g$, we see that in that neighborhood the variety $V_{d,g}$ will consist of the $\delta'$-fold intersections of these sheets. In other words, we have established the
-
+This in turn gives us a beautiful picture of $\overline V_{d,g}$ in a neighborhood of a nodal curve:
 \begin{lemma}\label{local geometry of Severi}
 In a neighborhood of a point $C \in \PP^N$ corresponding to a nodal curve with nodes $p_1,\dots,p_\delta$,
 the variety $\overline V_{d,g}$ is the union of $\binom{\delta}{\delta'}$ smooth branches, each of dimension $N - \delta'$, corresponding bijectively with subsets of $\{p_1,\dots,p_\delta\}$ of cardinality $\delta'$.
 \end{lemma}
+\begin{proof}
+ Let $C$ be a rational nodal curve of degree $d$, with nodes $p_1,\dots,p_\delta$ (so that $\delta = \binom{d-1}{2}$). In a neighborhood of the point $C \in \PP^N$, the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets intersecting transversely. What's more, if we set $\delta' = \binom{d-1}{2} - g$, we see that in that neighborhood the variety $V_{d,g}$ will consist of the $\delta'$-fold intersections of these sheets. In other words, we have established the
+\end{proof}
+
+
 
 There are a number of immediate consequences. First of all, we have the
 
@@ -630,9 +672,11 @@ Let $p_1, \dots, p_g, q_1, \dots, q_g \in \PP^1$ be any $2g$ distinct points, an
 \end{lemma}
 
 \begin{proof}
-Let's start by realizing the curve $C_0$ in projective space. This is straightforward: to begin, choose a degree $d > 2g+2$, and embed $\PP^1$ as a rational normal curve in $\PP^d$ via the Veronese map. Let $L_i = \overline{p_i,q_i} \subset \PP^d$ be the line spanned by $p_i$ and $q_i$, and let $\Lambda \cong \PP^{g-1} \subset \PP^d$ be a general $(g-1)$-plane meeting each of the lines $L_1,\dots,L_g$. Let $\pi_\Lambda : \PP^d \to \PP^{d-g}$ be the projection with center $\Lambda$, and let $C \subset \PP^{d-g}$ be the image of our rational normal curve. We claim to begin with that \emph{the curve $C$ is the curve above obtained by identifying the $g$ pairs of points $p_i, q_i \in \PP^1$}. 
+Let's start by realizing the curve $C_0$ in projective space. This is straightforward: to begin, choose a degree $d > 2g+2$, and embed $\PP^1$ as a rational normal curve in $\PP^d$ via the Veronese map. Let $L_i = \overline{p_i,q_i} \subset \PP^d$ be the line spanned by $p_i$ and $q_i$, and let $\Lambda \cong \PP^{g-1} \subset \PP^d$ be the $(g-1)$-plane spanned by a general point on each of these
+lines.
+Let $\pi_\Lambda : \PP^d \to \PP^{d-g}$ be the projection with center $\Lambda$, and let $C \subset \PP^{d-g}$ be the image of our rational normal curve. We claim that the curve $C$ has degree $d$; that  $C$ has ordinary nodes at the points corresponding to the pairs $p_i,q_i$; and that $C$ has no other singularities.
 
-This requires a sequence of verifications: we have to check that
+Thus we have to check that
 \begin{enumerate}
 \item $\Lambda$ is disjoint from the rational normal curve, so that the map $\pi_\Lambda$ is regular on $\PP^1$;
 \item $\Lambda$ does not meet any secant or tangent lines to $\PP^1$ other than the $L_i$, so that the map $\pi_\Lambda$ is an isomorphism away from the points $p_i, q_i$; and
