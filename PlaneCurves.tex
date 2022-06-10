@@ -526,6 +526,50 @@ This lack of rational functions was viewed as a defect of the curve, and called 
 
 %Of course, at the time the notion of deficiency first appeared, Riemann-Roch was still well into the future. But the method of finding rational functions described in the algorithm above was known, and they applied it. 
 
+To see how this goes, let's start with a smooth plane curve $C \subset \PP^2$ of degree $n$, and suppose that $D = p_1+\dots + p_d$ is a divisor of degree $d$ ()assumed effective for simplicity). As we described in Section~\ref{}, to find the complete linear system $|D|$ we start by choosing a plane curve $B$ of degree $m$ containing $D$ but not containing $C$; again for simplicity of notation we'll assume $m \geq n$. The intersection $B \cap C$ will then consist of $D$ plus another divisor $E$ on $C$, of degree $mn-d$; and what we saw is that the complete linear series $|D|$ will be cut on $C$ by plane curves of degree $m$ containing $E$, modulo those containing $C$.
+
+How large a linear system is this? Well, if the $(mn-d)$ points of $E$ impose independent conditions on curves of degree $m$, the space of curves of degree $m$ containing $E$ will have dimension
+$$
+h^0(\cI_{E/\PP^2}(m)) = \binom{m+2}{2} - (mn-d);
+$$ 
+and the subspace of curves of degree $m$ containing all of $C$ has dimension
+$$
+h^0(\cO_{\PP^2}(m-n)) = \binom{m-n+2}{2}
+$$
+so the expected dimension of $H^0(\cO_C(D))$ is
+$$
+h^0(\cO_C(D)) = \binom{m+2}{2} - (mn-d) -  \binom{m-n+2}{2} = d + 1 - \binom{n-1}{2}.
+$$
+As our distant forebears put it, a smooth plane curve of degree $n$ has deficiency $\binom{n-1}{2}$.
+
+Now suppose the curve $C$, instead of being smooth, has a node at a point $p$; let $D$ again be a divisor of degree $d$, whose support we assume does not contain $p$. If we take our curve $E$ to pass through the point $p$, then the residual intersection $E$ will consist of $mn-d-2$ points rather than $mn-d$. To construct the complete linear system $|D|$, then, we take curves of degree $m$ passing through this residual divisor $E$ and passing through $p$.
+
+The point is, we have a sort of ``two-for-one" deal: the curves of degree $m$ that cut out the linear series $|D|$ have to satisfy the one additional condition of passing through the node $p$; but the number of points of $E$ that these curves have to contain has been reduced by 2. The expected dimension of the linear series associated to $DS$ is thus
+$$
+h^0(\cO_C(D)) = \binom{m+2}{2} - (mn-d-2) -  \binom{m-n+2}{2} = d  - \binom{n-1}{2}.
+$$
+so the deficiency of the curve is $\binom{n-1}{2}-1$, or one less. More generally, if $C$ has $\delta$ nodes, we can get this two-for-one deal $\delta$ times, resulting in a deficiency of $\binom{n-1}{2} - \delta$, giving us an early version of the genus formula for plane curves with nodes.
+
+What about other singularities? For example, what if $C$ has a triple point $p$? In this case, we can get a ``three-for-one" deal by requiring our curve of degree $m$ to pass through $p$; as in the nodal case, this means the residual divisor $E$ will have degree 3 less; again, the curves of degree $m$ that cut out the linear series $|D|$ only have to satisfy the one additional condition of passing through $p$, so the apparent deficiency will be 2 less than for a smooth plane curve of degree $n$.
+
+But we can do better! If we require our initial curve of degree $m$ to be double at $p$, that reduces the degree of the residual divisor $E$  by 6. Of course, now the curves of degree $m$ containing $E$ that cut our the linear system $|D|$ have to double at $p$ as well, but this is only 3 linear conditions; in effect, we have got a ``six-for-three" deal, suggesting (correctly, as we know) that the presence of a triple point should reduce the deficiency by 3. 
+
+In general---for singularities beyond nodes or triple points---the adjoint ideal can be characterized as the largest ideal that gives the best ``deal" in this sense. 
+
+\begin{exercise}
+Continuing the example of a plane curve with a triple point $p$, show that requiring our curve of degree $m$ to be triple at $p$ gives us a ``nine-for-six" deal---the same net effect as when we required our curve of degree $m$ to be double. (In general, an ideal contained in the adjoint ideal will work as well; the adjoint ideal is characterized as the largest ideal that works.)
+\end{exercise}
+
+\begin{exercise}
+Now let $C \subset \PP^2$ be a plane curve with a tacnode at $p$. Show that by taking our curve of degree $m$ to pass through $p$ and be tangent to the branches of $C$ at $p$ we get a four-for-two deal; and that this is the best we can do, so that the effect of a tacnode is to drop the deficiency by 2.
+\end{exercise}
+
+In this way, our ancestors were able to both define the genus (a.k.a. deficiency) of a plane curve, and also arrive at the genus formula, long before the introduction of modern definitions of genus.
+
+
+
+
+
 \section{Severi varieties}\label{severi variety}
 
 %As we said at the outset of this chapter, there is a trade-off when we go from studying curves in $\PP^3$ and higher-dimensional projective space to studying plane curves. On the one hand, a curve $C \subset \PP^n$ with $n \geq 3$ is defined by a collection of polynomials, which in turn (unless the curve is a complete intersection) have to satisfy non-trivial syzygies. It's thus not a priori clear how we can vary the coefficients of these polynomials without losing the syzygies they satisfy; as a consequence, things like the dimension of the family of such curves can be obscure.
