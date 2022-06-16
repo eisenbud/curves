@@ -1,3 +1,4 @@
+% !TEX TS-program = latex
 \input header.tex
 
 \chapter{Jacobians}\label{new Jacobians chapter}
@@ -22,7 +23,7 @@ A priori, this is a map of sets. But it is a fundamental fact that both sets may
 
 One part is relatively easy: the divisors on a smooth curve are parametrized by the \emph{symmetric powers} $C^{(d)}$ of the curve $C$, described in Section~\ref{symmetric section}. By contrast, the parametrization of the set of invertible sheaves on $C$ of a given degree by the points of an algebraic variety $\pic^d(C)$ is a major undertaking, one that historically brought complex analysis and algebraic geometry together. We'll describe the original construction of the varieties $\pic^d(C)$ by complex analysis in Section~\ref{picard section} below, and touch briefly on the algebraic constructions.
 
-The fact that invertible sheaves of a given degree of a curve $C$ are parametrized by the points of a variety $\pic^d(C)$ has many consequences.  For example, applying dimension theory to $\pic^d(C)$, we will show in Theorem~\ref{g+3 theorem} that every curve can be embedded in projective space as a curve of degree $g+3$.
+The fact that invertible sheaves of a given degree of a curve $C$ are parametrized by the points of a variety $\pic^d(C)$ has many consequences.  For example, applying dimension theory to $\pic^d(C)$, we will show in Theorem~\ref{g+3 theorem} that the general line bundle of degree $g+3$ on any curve is very ample, and thus every curve  can be embedded as a curve of degree $g+3$ in $\PP^{3}$.
 
 \section{Symmetric products}\label{symmetric section}
 
@@ -98,7 +99,11 @@ is a closed subvariety of the product $C^{(d)} \times C$, whose fiber over any p
 the symmetric product -- the fine moduli space for invariant divisors of degree $d$.}
 \end{exercise}
 
-The variety $\cD$ is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique morphism $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$. Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$. These statements are not generally true for higher-dimensional varieties; see Chapter~\ref{hilbert scheme chapter} and especially Exercise~\ref{symmetric power vs Hilbert scheme}
+The variety $\cD$ is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique morphism $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$.
+
+\fix{do this here}
+
+ Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$. These statements are not generally true for higher-dimensional varieties; see \fix{basic ref for Hilb?}
 
 
 \section{Jacobians}
@@ -219,49 +224,64 @@ dimension, the linear series $|D|$ has dimension $d-g = \dim C^{(d)} - \dim J(C)
 $\mu_{d}$ is surjective.
 \end{proof}
 
-\subsection{Applications to linear series}
-
-To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
-
-\begin{theorem}\label{g+3 theorem}
-Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general divisor of degree $g+3$ on $C$, then 
-$D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
-\end{theorem}
-
-We proved in Theorem~\ref{very ample} that \emph{every divisor} of degree $\geq 2g+1$ is very ample; the difference here is that we are taking a \emph{general} divisor. This result is sharp in the sense that hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. However, if we consider only general divisors on general curves, we can do still better: ``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$ \cite{}.
-
-\begin{proof}
-If $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
-\begin{enumerate}
-\item for any point $p \in C$, we have $h^0(\cO_C(D-p)) = 3$ (that is, $|D|$ has no base points, and so defines a regular map $\phi_D : C \to \PP^3$); and
-\item for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
-\end{enumerate}
-The second of these assertions immediately implies the first, and this is what we will prove.
-
-Now let $D$ be an arbitrary divisor of degree $g+3$. To say that $h^0(\cO_C(D-p-q)) \geq 3$ is equivalent, by the Riemann-Roch theorem, to the condition $h^0(\omega_C(-D + p + q)) \geq 1$; fixing a divisor 
-$K_{C}\in |\omega_{C}|$, this is the condition that there exists  
-an effective divisor $E$ of degree $g-3$ linearly equivalent to a divisor in $K_C - D + p + q|$. 
-
-Now consider the map 
-$$
-\nu : C^{(g-3)} \times C^{(2)} \; \to \; J(C)
-$$
-given by
-$$
-\nu : (E,F) \; \mapsto \; \mu_{2g-2}(K_C) - \mu_{g-3}(E) + \mu_{2}(p+q), 
-$$
-where the $+$ and $-$ on the right refer to the group law on $J(C)$. 
-
-By what we have just said, and Abel's theorem, the divisor $D$ fails to be very ample only if
-$\mu(D) \in {\rm Im}(\nu)$. But the source $C^{(g-3)} \times C^{(2)}$ of $\nu$ has dimension $g-3+2 = g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image of a general divisor $D \in C^{(g-3)}$ is a general point of $J(C)$ and thus will not lie in ${\rm Im}(\nu)$. 
-\end{proof}
-
-Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!
-
-\fix{we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. we also need to know that the group law is algebraic. We need to have a formal statement of the existence as an algebraic group. Will be taken care of by the Characterization section, yet to be written.}
-
 
 \section{Picard varieties}\label{picard section}
+
+This section is based on the treatment of the Picard scheme in Chapter 9 of "FGA Explained", written by Steve Kleiman.  The general story is quite complicated, but simplifies a great deal in the case of a smooth curve over an algebraically closed field (or even a smooth curve with a rational point.)
+
+%The point of view is Pic_{X/S} as a functor on S-schemes; no picard bundle needed, but rather deduced under some circumstances. The main theorem is that Pic_(X/S) is representable *in the etale topology* if X/S is projective, flat, and with geometrically irreducible fibers; and actually represents the relative picard functor when X has a section over S (Kleiman Theorem 9.2.5, part 2) but there are other possible conditions and four different topologies in which the sheafified Pic_{X/S\ top} might or might not be representable (always by the same scheme, however, when one exists.) A LOT of the results in Kleiman have the hypothesis that it's representable in one or another sense. The universal family exists and satisfies the properties you'd like when X/S has a section and the push-forward of O_X is "universally" O_S, which is true when X->S is proper and flat with reduced, connected geometric fibers (for example).  The existence of the universal sheaf is then Exercise 9.4.3 in Kleiman, and follows easily from representability and Yoneda's Lemma (Kleiman gives the solutions to the exercises at the end.)
+
+Definition: Let $S$ be a scheme. An $S-scheme$ $X/S$ is a scheme $X$ together with a morphism $f:X\to S$ called the structure map. If $g: T\to S$ is any morphism, then we can form the $T$-scheme $X_T/T$, where  $X_T=X\times_ST$, with structure map $f\times_Sg: X_T \to T$; the other projection gives a morphism $X_T \to X$, as in the following pullback diagram:
+$$
+\begin{diagram}
+X_T &\rTo &X\\
+\dTo f_T &&\dTo f\\
+T &\rTo^g&S
+\end{diagram}
+$$
+A \emph{morphism $g$ of $S$-schemes $Y/S\to X/S$} is a morphism of schemes $Y\to X$ that commutes
+with the structure maps, 
+$$
+\begin{diagram}
+ Y &\rTo^g &X\\
+ \dTo&&\dTo\\
+ S &\rTo^1&S
+\end{diagram}
+$$
+
+The \emph{relative Picard functor} $\Pic$ associates to each flat $S$-Scheme $f:X/S$ the abelian group of invertible sheaves on $X$ under tensor product, modulo the subgroup of those invertible sheaves of the form
+$f^*(N)$, where $N$ is an invertible sheaf on $S$.  A morphism $g: T \to S$ defines a morphism
+of groups $\Pic(X/S) \to \Pic(X_T/T)$, sending the class of an invertible sheaf $\L$ on $X$ to that of
+its pullback on $X_T$.
+
+Given an $S$-scheme $X/S$ there may exist an $S$-scheme $A/S$ such that the set of 
+morphisms $T/S \to A/S$ is naturally isomorphic (as sets) with $\Pic(X_T/T)$. When it exists,
+$A/S$ is called the \emph{Picard scheme} of $X/S$. 
+
+The idea of defining the Picard scheme in this way is due to Grothendieck, and there are very general theorems concerning its existence and properties, with a long and complicated history; see \cite{Kl} for information. Our case is simple:
+
+\begin{theorem}
+ If $X/\CC$ is a smooth curve over the complex numbers, then the Picard scheme $\Pic(X) := \Pic(X/\CC)$
+ exists.
+\end{theorem}
+
+\begin{exercise}
+ If $X\subset \PP^r_\RR$ is the real projective conic with no real points, $x^2+y^2+z^2 = 0$, then $\Pic(X/\RR)$ does not exist. This follows from:
+ 
+\begin{enumerate}
+ \item The only divisors on $X$ are the positive and negative multiples of the hyperplane section, which has degree 2, and thus associating to each invertible sheaf its degree gives a one-to one correspondence with the even integers. Thus if the Picard scheme $A = \Pic(X/\RR)$ existed, the set $A_\RR$ of its $\RR$-valued points would be
+ a discrete set in correspondence with the even integers. However $X_\CC$ is $\PP^1_\CC$, so
+  and the image of $A_\RR$ in $A_\CC$ would be a 
+ \item 
+\end{enumerate}
+\end{exercise}
+Grothendieck's definition makes it easy to prove properties of the Picard scheme. For example:
+
+\begin{proposition}
+ If the Picard scheme exists, then it is an algebraic group. 
+\end{proposition}
+\fix{the rest of this chapter is more like an outline than a chapter. Joe, we could go over the material you want to
+put in together, and I could try to write it, or you could write it.}
 
 The modern treatment of the Picard variety, due to Grothendieck and his school, defines the Picard variety as the solution to a universal problem. 
 If $B$ is any scheme, then a \emph{family of invertible sheaves on $X$ over $B$} is an invertible sheaf on $X\times B$, flat over $B$.
@@ -377,12 +397,50 @@ $\Pic_{d, X/k}$ is not isomorphic to $ \Pic_{e, X/k}$, unless $d\equiv
  \pm e$ (mod $2g-2$) \cite{Kouvidakis}.
 \end{fact}
 
-In parallel with the functor $B \mapsto Pic(X/B)$ we define the functor of relative divisors: 
+
+
+\subsection{Applications to linear series}
+
+To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
+
+\begin{theorem}\label{g+3 theorem}
+Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general divisor of degree $g+3$ on $C$, then 
+$D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
+\end{theorem}
+
+We proved in Theorem~\ref{very ample} that \emph{every divisor} of degree $\geq 2g+1$ is very ample; the difference here is that we are taking a \emph{general} divisor. This result is sharp in the sense that hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. However, if we consider only general divisors on general curves, we can do still better: ``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$ \cite{}.
+
+\begin{proof}
+If $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
+\begin{enumerate}
+\item for any point $p \in C$, we have $h^0(\cO_C(D-p)) = 3$ (that is, $|D|$ has no base points, and so defines a regular map $\phi_D : C \to \PP^3$); and
+\item for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
+\end{enumerate}
+The second of these assertions immediately implies the first, and this is what we will prove.
+
+Now let $D$ be an arbitrary divisor of degree $g+3$. To say that $h^0(\cO_C(D-p-q)) \geq 3$ is equivalent, by the Riemann-Roch theorem, to the condition $h^0(\omega_C(-D + p + q)) \geq 1$; fixing a divisor 
+$K_{C}\in |\omega_{C}|$, this is the condition that there exists  
+an effective divisor $E$ of degree $g-3$ linearly equivalent to a divisor in $K_C - D + p + q|$. 
+
+Now consider the map 
 $$
-Div(X/B) :=
-\hbox{Divisors in $X\times B$, flat over $B$}\}
+<<<<<<< HEAD:4-Jacobians.tex
+\nu : C^{(g-3)} \times C^{(2)} \; \to \; J(C)
 $$
-\fix{DE rev to here 3/13/22}
+given by
+$$
+\nu : (E,F) \; \mapsto \; \mu_{2g-2}(K_C) - \mu_{g-3}(E) + \mu_{2}(p+q), 
+$$
+where the $+$ and $-$ on the right refer to the group law on $J(C)$. 
+
+By what we have just said, and Abel's theorem, the divisor $D$ fails to be very ample only if
+$\mu(D) \in {\rm Im}(\nu)$. But the source $C^{(g-3)} \times C^{(2)}$ of $\nu$ has dimension $g-3+2 = g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image of a general divisor $D \in C^{(g-3)}$ is a general point of $J(C)$ and thus will not lie in ${\rm Im}(\nu)$. 
+\end{proof}
+
+Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!
+
+\fix{we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. we also need to know that the group law is algebraic. We need to have a formal statement of the existence as an algebraic group. Will be taken care of by the Characterization section, yet to be written.}
+
 
 \def\cW{{\mathcal W}}
  

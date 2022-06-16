@@ -2,12 +2,12 @@
 
 \chapter{Hyperelliptic curves and curves of genus 2 and 3}\label{genus 2 and 3 chapter}
 
-\section{Hyperelliptic Curves}
+\section{Hyperelliptic Curves}\label{hyperelliptic}
  
  
 In the world of curves, hyperelliptic curves are outliers: they behave differently from other curves, and the techniques used to analyze them are different from the techniques used for more general curves. Many theorems about curves contain the hypothesis ``non-hyperelliptic," with the corresponding result for hyperelliptic curves arrived at directly by ad hoc methods. Because the methods of this section will not be used in other cases, it could be skipped in first reading
  
-There will be a further discussion of hyperelliptic curves in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings; the analysis here will cover most of the questions we'll be asking about curves in general in the next four chapters. 
+%There will be a further discussion of hyperelliptic curves in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings; the analysis here will cover most of the questions we'll be asking about curves in general in the next four chapters. 
   
  \subsection{The equation of a hyperelliptic curve}
  
@@ -18,6 +18,7 @@ By definition, a hyperelliptic curve $C$ is one admitting a degree two map $\pi 
 There is a unique smooth projective hyperelliptic curve $C$ expressible as a 2-sheeted cover of $\PP^1$ branched over any set of $2g+2$ distinct points.
 \end{theorem}
 
+\begin{proof} 
 We can easily construct such a curve, postponing for a moment the uniqueness:
 If the coordinate of the point $p_i \in \PP^1$ is $\lambda_i$, it is the smooth projective model of the affine curve 
   $$
@@ -31,49 +32,8 @@ $$
   
   It's worth pointing out that $C$ is \emph{not} simply the closure of the affine curve $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$: as you can see from a direct examination of the equation, each of these closures will be singular at the (unique) point at infinity.
   
+   The remainder of the proof of Theorem~\ref{hyperelliptic existence} will be a special case of the  description of branched covers of curves in general given in Section~\ref{branched covers} below.
    
-
-
-\begin{proof} [Completion of the proof of Theorem~\ref{hyperelliptic existence}]
-The proof (in characteristic 0) of uniqueness follows from elementary algebraic topology:
-
-First, a punctured 2-disk has fundamental group $\ZZ$ and the unique $n$-sheeted covering is again a punctured
-disk; regarding these disks as neighborhoods of the origin in $\CC^2$, the covering map
-can be taken to be $x \mapsto x^n$. This map can of course be extended (by the same formula) to a map
-analytic also at the origin, with ramification index (by definition) $n-1$.
-
-Now suppose that $\Gamma = \{p_1, \dots, p_{d}\}$ is the desired branch divisor.
-Globally, if $\gamma_i$ is a small loop around $p_i$ then the abelianization of the fundamental group $\pi$ of the $d$-times punctured sphere
-$$
-S' := \PP^1\setminus \Gamma
-$$
-is its
-first homology group, 
-$$
-H := H_1(S', \ZZ) = \frac{\oplus \ZZ\cdot \gamma_i}{\ZZ\cdot\sum_i [\gamma_i]}
-$$
-\fix{Insert ``lollipop picture''}. Since $\ZZ/2$ is abelian, a degree 2 unramified covering of $S'$ corresponds to a map $H\to \ZZ/2$, and this map must send $2\gamma_i$ to 0 for $i=1\dots d$.  There is such a map 
-if and only if $d$ is even, and in this case the map is unique. 
-
-Summarizing: there is, a unique degree $2$ topological covering  $C'\to \PP^1\setminus \Gamma$
-by a  surface $C'$ that extends to a ramified covering of $\rho: C\to\PP^1$, simply ramified over the points of
-$\Gamma$, as long as the number of ramification points  is even. 
-
-A triangulation of $\PP^1$ with 
-$V$ vertices including the points of $\Gamma$, $E$ edges, and $F$ triangles must have 
-$$
-V-E+F = \chi_{\rm top}(S^2) = 2.
-$$
- It lifts to a triangulation of $C$ with $2V-d$ vertices, $2E$ edges, and $2F$ faces, so 
-$$
- \chi_{\rm top}(C) = 2V-d-2E+2F = 4-d,
-$$
-so if $d = 2g+2$ then $\chi_{\rm top}(C) = 2-2g$, so $C$ is  a surface of genus $g$.
-
-Though given as a topological surface, the map $\rho$ is a local homeomorphism at every point not in the preimage of $\Gamma$, so $C$ inherits a unique complex structure from the requirement that $\rho$ be holomorphic; thus $C$ is actually a smooth algebraic curve of genus $g$. \fix{we had better say topological and algebraic genus are the same in the intro.}
-\end{proof}
-
-
  \begin{exercise}
   In the case $g=1$, show that the closure $\overline{C^\circ}$ of $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$ consists of the union of $C^\circ$ with one additional point, with that point a tacnode of $\overline{C^\circ}$ in either case.
   \end{exercise}
@@ -87,6 +47,10 @@ It is also possible to give a projective model of the hyperelliptic curve $C$ wi
   C \; = \; \big\{ (X,Y) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
   $$
   (No local analysis is needed to see that $C \subset \PP^1 \times \PP^1$ is smooth: it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the formula for the genus of a curve in $\PP^1 \times \PP^1$ derived in Section~\ref{rational quartics section} tells us that such a curve has arithmetic genus $g$.)
+  
+  Finally, note that the map $\iota : C \to C$ that exchanges the two points in each reduced fiber of the map $C \to \PP^1$ and fixes the ramification points is visibly algebraic (for example, in terms of the last representation of $C$, it is given simply by $([X_0,X_1], [Y_0,Y_1]) \mapsto  ([X_0,X_1], [Y_0,-Y_1]) $). The map $\iota$ is called the \emph{hyperelliptic involution} on $C$.
+
+
 
 %  \
 %  
@@ -123,7 +87,7 @@ It is also possible to give a projective model of the hyperelliptic curve $C$ wi
 
 We can give a very concrete description of the differentials, and thus the canonical linear series, on a hyperelliptic curve $C$ by working with the affine model $C^\circ = V(f) \subset \AA^2$, where
 $$
-f(x,y) = y^2 - \prod_{i=1}^{2g-2} (x - \lambda_i).
+f(x,y) = y^2 - \prod_{i=1}^{2g+2} (x - \lambda_i).
 $$
 We will again denote the two points at infinity---that is, the two points of $C \setminus C^\circ$ by $r$ and $s$; for convenience, we'll denote the divisor $r+s$ by $D$.
 
@@ -163,31 +127,164 @@ H^0(K_C) = \langle \omega, x\omega,\dots,x^{g-1}\omega \rangle,
 $$
 we see that the canonical map $\phi : C \to \PP^{g-1}$ is given by $[1,x,\dots,x^{g-1}]$. In other words, the canonical map $\phi$ is simply the composition of the map $\pi : C \to \PP^1$ with the Veronese embedding $\PP^1 \hookrightarrow \PP^{g-1}$ of $\PP^1$ into $\PP^{g-1}$ as a rational normal curve of degree $g-1$.
 
-Note that as a consequence of this fact, we see that \emph{a hyperelliptic curve $C$ has a \emph{unique} linear series $g^1_2$ of degree 2 and dimension 1}, that is, a unique map of degree 2 to $\PP^1$. 
+Note that as a consequence of this fact, we see that \emph{a hyperelliptic curve $C$ has a \emph{unique} linear series $g^1_2$ of degree 2 and dimension 1}: the $g^1_2$ is characterized as the complete linear system $|D|$, where $D$ is the sum of any two points mapping to the same point under the canonical map. Equivalently, we see that $C$ admits  a unique map of degree 2 to $\PP^1$. 
+
 Finally, we can give an explicit description of special linear series on a hyperelliptic curve: if $D = \sum p_i$ is any effective divisor on $C$, we can pair up points $p_i$ that are conjugate under the involution $\iota$ exchanging sheets of the degree 2 map $C \to \PP^1$; each conjugate pair is a divisor of the unique $g^1_2$ on $C$, and so we can write
 $$
 D \sim r\cdot g^1_2 + q_1 + \dots + q_{d-2r},
 $$
 where no two of the points $q_i$ are conjugate under $\iota$. Now the geometric form of the Riemann-Roch formula tells us that the dimension $r(D)$ of the complete linear series $|D|$ is exactly $r$, so that in fact 
 $$
-|D| = |r\cdot g^1_2| + + q_1 + \dots + q_{d-2r};
+|D| = |r\cdot g^1_2| + q_1 + \dots + q_{d-2r};
 $$
-that is, the points $q_i$ are base points of the linear series $D$.
+that is, the points $q_i$ are base points of the linear series $|D|$.
 
-One key observation is that, according to this analysis, \emph{no special linear series on a hyperelliptic curve can be very ample}; the map associated to any special series factors through the degree 2 map $C \to \PP^1$. This is in marked contrast to the case of non-hyperelliptic curves, for which the embeddings of minimal degree in projective space are given by special linear series. 
+One key observation is that, according to this analysis, \emph{no special linear series on a hyperelliptic curve can be very ample}; the map associated to any special series factors through the degree 2 map $C \to \PP^1$. This is in marked contrast to the case of non-hyperelliptic curves of genus $g \geq 3$, for which the embeddings of minimal degree in projective space are given by special linear series. 
+
+   \section{Interlude: branched covers with specified branch divisor}\label{branched covers}
+   
+   We will describe here the classification of branched covers $\pi : C \to B$ of a given curve $B$ with specified branch points. To give ourselves a concrete goal, we will address the question: given a curve $B$ and a collection $\Delta = \{p_1,\dots,p_b\} \subset B$ of points in $B$, how many branched covers $\pi : C \to B$ of degree $d$ are there with specified branching over each of the points $p_i$, up to isomorphism over $B$? Our analysis will consist of two steps: first, we will reduce the problem to the classification of topological covering spaces of the complement $U = B \setminus \Delta$; we will then use our knowledge of the fundamental group of $U$ to enumerate such covering spaces.
+   
+   For the first step, we claim that \emph{given any topological covering space $\pi^\circ : V \to U$, the 2-manifold $V$ may be given the structure of a Riemann surface in a unique way so that the map $\pi^\circ$ is holomorphic; and $V$ may be compactified to a compact Riemann surface $C$ such that the map $\pi^\circ$ extends to a holomorphic map $\pi : C \to B$, again in a unique way.} The first statement---that $V$ inherits the structure of a complex manifold from $U$---is clear: if $D \subset U$ is any simply connected coordinate chart, the preimage $({\pi^\circ})^{-1}(D)$ will be a disjoint union of $d$ copies of $D$; these will serve as coordinate charts on $V$. 
+   
+   As for the compactification, we observe that if $D^* = \{ z \in \CC \mid 0 < |z| < 1 \}$ is a punctured disc, then \emph{any connected finite covering space of $D^*$, with the inherited complex structure, is again biholomorphic to a punctured disc}; thus if $D_i$ is a small neighborhood of the point $p_i \in B$ biholomorphic to a disc, then the preimage of the punctured disc $D_i^* := D_i \cap U$ in $V$ is a disjoint union of punctured discs; $V$ can then be compactified to a compact Riemann surface by completing each one to a full disc.
+   
+%   So: let's suppose that $q_1, \dots ,q_b \in \PP^1$ are any $b$ given points; we want to describe covers $C \to \PP^1$ of degree $d$ simply branched over the points $q_i$ (so that $b = 2d + 2g - 2$, where $g$ is the genus of $C$). To begin with, let $\Delta = \{q_1,\dots,q_b\}$ be the set of branch points, and choose a base point $p \in \PP^1$ not in $\Delta$, and let $\gamma_1, \dots, \gamma_b$ be simple arcs joining $p$ to the points $q_i$, disjoint except for their initial point $p$.
+%   
+%   One point to establish right away is this: if $\pi : C \to B$ is a branched cover, branched over $\Delta = \{q_1,\dots,q_b\} \subset B$, let $U = B \setminus \Delta$ be the complement of the branch locus and $V = \pi^{-1}(U) \subset C$. The restriction $\pi^\circ = \pi |_{V} : V \to U$ is then a topological covering space in the classical topology, and we claim that \emph{we have a bijection between connected, degree $d$ covering spaces of $U$ and smooth, projective curves $C$ with a map $\pi : C \to B$ of degree $d$}---in other words, any topological covering space $V \to U$ of $U$ can be compactified and given the structure of a Riemann surface in such a way that the map $V \to U$ extends to a holomorphic map $C \to B$, and this extension is unique.
+%   
+%   The proof of this assertion is straightforward. Let $V \to U$ be a covering space. If $D_\alpha$ is a small ball around the branch point $q_\alpha$, let $D^*_\alpha = D_\alpha \cap U = D_\alpha \setminus \{q_\alpha\}$ be the corresponding punctured disc. The preimage of $D^*_\alpha$ in $V$ is then a covering space of the punctured disc, and so must be a disjoint union of punctured discs. We can then complete each of these punctured discs to a disc by adding one point, which maps to $q_alpha$. The resulting compact surface $C$ can then be given the structure of a Riemann surface such that the extended map $\pi : C \to B$ is holomorphic.
+   
+   Given the bijection between connected, degree $d$ covering spaces of $U$ and smooth, projective curves $C$ with a map $\pi : C \to B$ of degree $d$, the problem becomes one of classifying covering spaces of $U$. To carry this out, we'll deal first with the case where  $B = \PP^1$ and $\pi : C \to \PP^1$ is simply branched; we'll indicate how the more general problem goes in Section\ref{general covers}.
+   
+ \subsection{Simply branched covers of $\PP^1$} 
+ 
+  We start by drawing the classical picture. Choose a base point $p_0 \in U$, and draw simple, non-intersecting arcs $\gamma_i$ joining $p_0$ to $p_i$ in $U$. If $\Sigma$ is the complement of the union of these arcs in the sphere, then the preimage of $\Sigma$ in $V$ will be the disjoint union of $d$ copies of $\Sigma$, called the \emph{sheets} of the cover; label these $\Sigma_1,\dots,\Sigma_d$
+   
+  \includepdf{"pic4.1"}
+   
+   Now, covering spaces $V \to U$ of $U$ are classified by their \emph{monodromy}, which is the map
+   $$
+   \pi_1(U, p_0) \to S_d
+   $$
+   associating to each loop $\beta$ in $U$ the permutation of the points of $\pi^{-1}(p_0)$ given by sending a point $q \in \pi^{-1}(p_0)$ to the endpoint of the unique lift of $\beta$ starting at $q$. Now, let $\beta_i$ be a loop starting at $p_0$, going out along the arc $\gamma_i$ until just short of $p_i$, going once around $p_i$ and then going back to $p_0$ along the same path $\gamma_i$, as drawn in the Figure, and let $\tau_i$ be the corresponding permutation of $\{1,2,\dots,d\}$. The loops $\beta_i$  generate the fundamental group $\pi_1(U, p_0)$, with the one relation that the product $\beta_1\cdot \dots \cdot \beta_b = Id$ is the identity; the permutations $\tau_1,\dots,\tau_b$ thus determine the covering space $V$.
+   
+\includepdf{"pic4.2"}
+   
+Now, the hypothesis that the cover $\pi : C \to B$ is simply branched amounts to the assertion that $\tau_i$ is a transposition for each $i$. The hypothesis that $V$ is connected says that the subgroup $\langle \tau_1, \dots, \tau_b \rangle \subset S_d$ is transitive. Finally, note that if we were to relabel the sheets $\Sigma_\alpha$ according to some permutation $\sigma$, the effect would be to conjugate each $\tau_i$ by $\sigma$. 
+
+%In sum, then, we conclude that the set of connected, simply branched covers $C \to \PP^1$ of degree $d$ branched over the points $p_1,\dots,p_b$ are in bijection with the set
+%$$
+%\left\{ (\tau_1,\dots,\tau_b) \mid \tau_i \text{ is a transposition }; \prod \tau_i = id, \text{ and } \langle \tau_1, \dots, \tau_b \rangle \subset S_d \text{ is transitive } \right\}
+%$$
+%modulo the action of $S_d$ by simultaneous conjugation.
+%   
+%%   Now consider a small loop around the point $q_i \in \PP^1$, starting and ending a point in $V$. Since the map $\pi : \pi^{-1}(\PP^1 \setminus \Delta) \to \PP^1 \setminus \Delta$ is a covering space, for each $\alpha = 1, \dots, d$ there will be a unique lifting of the loop to an arc in $C$ starting at a point in $V_\alpha$. Suppose now that the endpoint of this lifted arc lies in $V_{\sigma_i(\alpha)}$; in this way, we define a permutation $\sigma_i$ of the set $\{1,\dots,d\}$. Note that by the hypothesis that $\pi$ is simply branched, each $\sigma_i$ is a transposition.
+%   
+%   There are several things to observe here. The first is that \emph{the data of the collection of transpositions $\sigma_1, \dots, \sigma_b$ determines $C$ as a topological space, and hence as a compact Riemann surface}. Secondly, we observe that the transpositions $\sigma_i$ satisfy two basic conditions: the product $\sigma_1\cdot \dots \cdot \sigma_b$ in the symmetric group $S_d$ is the identity; and the $\sigma_i$ together generate a transitive subgroup of $S_d$. Finally, we note that we could have labelled the sheets $V_1, \dots,V_d$ differently; if we relabel according to a permutation $\tau \in S_d$, the effect will be to conjugate each of the $\sigma_i$ simultaneously by $\tau$.
+   
+   In sum, then, we have the basic result:
+   
+   \begin{lemma}
+   Let $p_1,\dots, p_b \in \PP^1$ be any $b$ given points. There is a natural bijection between 
+   \begin{enumerate}
+   \item the set of  simply branched covers $\pi : C \to \PP^1$ of degree $d$, branched over the points $p_i$, up to isomorphism over $\PP^1$ 
+%   (that is, we say $\pi : C \to \PP^1$ is equivalent to $\pi' : C' \to \PP^1$ if there exists an isomorphism $\phi : C \to C'$ commuting with $\pi$ and $\pi'$)
+   ; and 
+   \item the set of $b$-tuples of transpositions $\tau_1, \dots, \tau_b \in S_d$ such that $\prod \tau_i = id$ and such that $\tau_1, \dots, \tau_b$ generate a transitive subgroup of $S_d$, modulo simultaneous conjugation by $S_d$.
+   \end{enumerate}
+   \end{lemma}
+
+Observe that in the simplest case $d=2$, there is only one transposition in $S_2$, so this says that there is a unique double cover of $\PP^1$ with given branch points $p_1,\dots,p_b$ (it also says that $b$ is even!). This completes the proof of Theorem~\ref{hyperelliptic existence}.
+
+\end{proof}
+
+For a less trivial example, let's count the number of trigonal curves $C \to \PP^1$ with given branch points. This is still relatively simple, given the observation that every odd permutation $\tau \in S_3$ is necessarily a transposition. In other words, if $b$ is even and we specify arbitrary transpositions $\tau_1,\dots,\tau_{b-1} \in S_3$, the product is necessarily a transposition; thus the number of $b$-tuples of transpositions $\tau_1,\dots,\tau_{b} \in S_3$ with $\prod \tau_i = id$ is simply $3^{b-1}$. The requirement that the group generated by the $\tau_i$ is transitive eliminates just the three cases where all the $\tau_i$ are equal; and the group $S_3$ acts on the set of connected covers without stabilizers, so that every cover corresponds to exactly 6 collections $\tau_1,\dots,\tau_b$. In sum, then, we see that \emph{the number of simply branched three-sheeted covers of $\PP^1$ with specified branch points $q_1,\dots,q_b \in \PP^1$ is}
+$$
+\frac{3^{b-1} - 3}{6} \; = \; \frac{3^{b-2} - 1}{2} 
+$$
+
+
+%
+%First, a punctured 2-disk has fundamental group $\ZZ$ and the unique $n$-sheeted covering is again a punctured
+%disk; regarding these disks as neighborhoods of the origin in $\CC^2$, the covering map
+%can be taken to be $x \mapsto x^n$. This map can of course be extended (by the same formula) to a map
+%analytic also at the origin, with ramification index (by definition) $n-1$.
+%
+%Now suppose that $\Gamma = \{p_1, \dots, p_{d}\}$ is the desired branch divisor.
+%Globally, if $\gamma_i$ is a small loop around $p_i$ then the abelianization of the fundamental group $\pi$ of the $d$-times punctured sphere
+%$$
+%S' := \PP^1\setminus \Gamma
+%$$
+%is its
+%first homology group, 
+%$$
+%H := H_1(S', \ZZ) = \frac{\oplus \ZZ\cdot \gamma_i}{\ZZ\cdot\sum_i [\gamma_i]}
+%$$
+%\fix{Insert ``lollipop picture''}. Since $\ZZ/2$ is abelian, a degree 2 unramified covering of $S'$ corresponds to a map $H\to \ZZ/2$, and this map must send $2\gamma_i$ to 0 for $i=1\dots d$.  There is such a map 
+%if and only if $d$ is even, and in this case the map is unique. 
+%
+%Summarizing: there is, a unique degree $2$ topological covering  $C'\to \PP^1\setminus \Gamma$
+%by a  surface $C'$ that extends to a ramified covering of $\rho: C\to\PP^1$, simply ramified over the points of
+%$\Gamma$, as long as the number of ramification points  is even. 
+%
+%A triangulation of $\PP^1$ with 
+%$V$ vertices including the points of $\Gamma$, $E$ edges, and $F$ triangles must have 
+%$$
+%V-E+F = \chi_{\rm top}(S^2) = 2.
+%$$
+% It lifts to a triangulation of $C$ with $2V-d$ vertices, $2E$ edges, and $2F$ faces, so 
+%$$
+% \chi_{\rm top}(C) = 2V-d-2E+2F = 4-d,
+%$$
+%so if $d = 2g+2$ then $\chi_{\rm top}(C) = 2-2g$, so $C$ is  a surface of genus $g$.
+%
+%Though given as a topological surface, the map $\rho$ is a local homeomorphism at every point not in the preimage of $\Gamma$, so $C$ inherits a unique complex structure from the requirement that $\rho$ be holomorphic; thus $C$ is actually a smooth algebraic curve of genus $g$. 
+%%\fix{we had better say topological and algebraic genus are the same in the intro.}
+
+\subsection{More general covers}\label{general covers}
+
+As we indicated, there are natural extensions of this basic theory to covers with arbitrary branching, and to covers of curves of any genus. For the first, suppose that instead of specifying ``simply branched"---meaning that the fiber over any branch point consists of $d-2$ simple points and one double point---we specified that the fiber over a given branch point $q_i$ consisted of $m_1$ simple points, $m_2$ double points, $m_3$ triple points and so on. This amounts to specifying a conjugacy class in $S_d$, and instead of associating to $q_i$ a transposition, we want to specify an element $\tau_i$ of this conjugacy class. Again, the permutations $\tau_i$ have to have product the identity, and to generate a transitive subgroup of $S_d$; and again, they are determined up to simultaneous conjugation by an element of $S_d$.
+
+\begin{exercise}
+Find the number of 3-sheeted covers $C \to \PP^1$ of genus $g$ with simple branching except for one point of total ramification.
+\end{exercise}
+
+Similarly, we can similarly enumerate cover of curves $B$ of positive genus by a modification of the construction above. Again, we choose a base point $p \in B$; we can then draw $2g$ loops $\alpha_1,\dots,\alpha_{g},\beta_1, \dots, \beta_g$ based at $p$ and disjoint except for $p$; so that the complement $B \setminus \cup \alpha_i$ is a disc with boundary $\alpha_1, \beta_1, \alpha_1^{-1}, \beta_1^{-1}, \dots, \alpha_g, \beta_g, \alpha_g^{-1}, \beta_g^{-1}$. We then draw arcs $\gamma_i$ joining $p$ to each of the branch points $q_i$. We can then associate to a cover a collection of permutations $\sigma_1, \dots, \sigma_b, \mu_1,\dots,\mu_g, \nu_1,\dots,\nu_g$ (with $\sigma_i$ a transposition, if we are assuming simple branching, or of specified conjugacy class in general, and the $\mu_i$ and $\nu_i$ arbitrary). These determine the cover, and have to satisfy the relation
+$$
+\prod_{i=1}^b \sigma_i = \prod_{\alpha=1}^g \; [\mu_\alpha, \nu_\alpha]
+$$
+and of course generate a transitive subgroup of $S_d$
+
+\begin{exercise}
+Let $B$ be a given curve of genus $h$. How many unramified double covers of $B$ are there? 
+\end{exercise}
+
+
+\begin{exercise} Let $E$ be a curve of genus 1, and $q_1,\dots,q_b \in E$. How many double covers $C \to E$ are there branched over the $q_i$?
+\end{exercise}
+
+
+\begin{exercise} Let $E$ be a curve of genus 1, and $q, q' \in E$. How many triple covers $C \to E$ are there simply branched over $q$ and $q'$?
+\end{exercise}
+
+
+In general, the numbers of branched covers of a given curve with given branching are called \emph{Hurwitz numbers}; they are of interest to physicists, for reasons we can't fathom.
+
+
 
 \section{Curves of genus 2}
 
 %Canonical map to $\PP^1$. Embedding in $\PP^3$ as $(2,3)$ on a quadric, via any degree 5 line bundle. Ideal is 1 quadric, 2 cubics.
 %Plane model of degree 4 with node or cusp.
 
-Since  curves of genus 2 are hyperelliptic, everything we said above applies to them; in particular, the canonical map $\phi_K : C \to \PP^1$ on a curve of genus 2 is simply the expression of $C$ as a double cover of $\PP^1$. In this section, we'll consider other maps from $C$ to projective space, starting with the simplest possible projective embedding of $C$.
+Since  curves of genus 2 are hyperelliptic, everything we said above applies to them; in particular, the canonical map $\phi_K : C \to \PP^1$ on a curve of genus 2 is simply the expression of $C$ as a double cover of $\PP^1$. In this section, we'll consider other maps from $C$ to projective space, starting with maps $C \to \PP^1$.
 
 \subsection{Maps of $C$ to $\PP^1$}\label{genus 2 pencil}
 
 Of course, $C$ may be expressed as a degree 2 cover of $\PP^1$ by taking the map associated to the canonical series $|K_C|$. But what about other degrees? For example, can we express $C$ as a three-sheeted cover of $\PP^1$?
 
-The answer is ``yes," and in fact we can do so in many ways. First start with a line bundle $L$ of degree 3 on $C$. Riemann-Roch tells us immediately that $h^0(L) = 2$, and we see that there are two possibilities:
+The answer is ``yes," and in fact we can do so in many ways. First, start with a line bundle $L$ of degree 3 on $C$. Since $3 > 2g-2$, Riemann-Roch tells us immediately that $h^0(L) = 2$, and we see that there are two possibilities:
 
 \begin{enumerate}
 \item First, if the linear series $|L|$ has a base point $p \in C$, then $h^0(L(-p)) = 2$, and hence $L$ must be of the form $L = K_C(p)$. Conversely, if $L = K_C(p)$, then $h^0(L(-p)) = h^0(L)$, which is to say $p$ is a base point of $|L|$.
@@ -209,7 +306,7 @@ since both sides are 3-dimensional vector spaces and the map is injective, we ha
 
 \item Suppose now that $L$ is not equal to $K_C^2$; equivalently, $M = L \otimes K_C^{-1}$ is a line bundle of degree 2 other than the canonical bundle. We have then $h^0(M) = 1$, so that $M$ is the line bundle $\cO_C(p+q)$ associated to a pair of points $p, q \in C$; in other words, $L = K_C(p+q)$ for a unique pair of points $p, q \in C$.
 
-Let's consider next the general case $p \neq q$. In this case, every section of $L$ vanishing at $p$ vanishes at $q$ and vice versa, so that $\phi_L(p) = \phi_L(q)$. At the same time, for any effective divisor $D = r+s$ of degree 2 on $C$  other than $p+q$, we have $h^0(L(-D)) = 1$, so apart from the fact that $\phi_L(p) = \phi_L(q)$, the map $\phi_L$ is an embedding. We'll see in Exercise~\ref{} below that in fact the point $\phi_L(p) = \phi_L(q)$ is a node of the image curve $\phi_L(C)$; so to summarize: in this case ($L = K_C(p+q)$, with $p \neq q$ and $p+q \neq K_C$), the map $\phi_L : C \to \PP^2$ is a birational embedding of $C$ as a quartic plane curve with one node, the node being the common image of $p$ and $q$.
+Let's consider next the general case $p \neq q$. In this case, every section of $L$ vanishing at $p$ vanishes at $q$ and vice versa, so that $\phi_L(p) = \phi_L(q)$. At the same time, for any effective divisor $D = r+s$ of degree 2 on $C$  other than $p+q$, we have $h^0(L(-D)) = 1$, so apart from the fact that $\phi_L(p) = \phi_L(q)$, the map $\phi_L$ is an embedding. We'll see in Exercise~\ref{nodal quartic} below that in fact the point $\phi_L(p) = \phi_L(q)$ is a node of the image curve $\phi_L(C)$; so to summarize: in this case ($L = K_C(p+q)$, with $p \neq q$ and $p+q \neq K_C$), the map $\phi_L : C \to \PP^2$ is a birational embedding of $C$ as a quartic plane curve with one node, the node being the common image of $p$ and $q$.
 
 \item Finally, the remaining case is where $L = K_C(2p)$, where $p \in C$ is any point such that $2p \not\sim K_C$. This behaves much like the preceding case, but here the map $\phi_L$ is one-to-one with vanishing differential at $p$, and the image curve $\phi_L(C)$ has correspondingly a cusp at the point $\phi_L(p)$.
 \end{enumerate}
@@ -223,7 +320,7 @@ To summarize: the map $\phi_L : C \to \PP^2$ associated to a line bundle $L$ of 
 
 Note that the last case is the ``general" one, meaning it holds for $L$ in an open subset of $\Pic^4(C)$; the second case holds for a one-dimensional locus in $\Pic^4(C)$, and the first case holds for just one point in $\Pic^4(C)$.
 
-\begin{exercise}
+\begin{exercise}\label{nodal quartic}
 Let $L \in \Pic^4(C)$ be a line bundle of the form $L = K_C(p+q)$ with $p \neq q$ and $p+q \not\sim K_C$. Show that
 \begin{enumerate}
 \item $h^0(L(-2p)) = h^0(L(-2q)) = 1$, and
@@ -246,17 +343,16 @@ Deduce from this that the map $\phi_L$ is an immersion, and that the tangent lin
 %$$
 %for some triple $\alpha,\beta,\gamma \in \CC$ distinct from each other and from 0 and 1. This representation shows us that the moduli space $M_2$ is the space of 6-tuples of distinct points in $\PP^1$ modulo the action of $PGL_2$. This tells us immediately that $M_2$ is irreducible of dimension 3; with a fair amount of additional work, we can also use this to describe the coordinate ring of $M_2$ (\ref{**}).
 
-\subsubsection{Embeddings in $\PP^3$}
+\subsection{Embeddings in $\PP^3$}
 
-So far we have not found any embeddings of $C$ in projective space; but that's about to change: if $L \in \Pic^5(C)$ is any line bundle of degree 5, by Corollary~\ref{degree 2g+1 embedding}, it is very ample and gives an embedding of $C$ in $\PP^3$. Let's consider now what we can say about the geometry of the image curve.
+So far we have not found any embeddings of $C$ in projective space; but that's about to change: if $L \in \Pic^5(C)$ is any line bundle of degree 5, by Corollary~\ref{degree 2g+1 embedding}, it is very ample and gives an embedding of $C$ in $\PP^3$.
+Write $\phi_L : C \to \PP^3$ for the map given by the complete linear system $|L|$. Since $\phi_L$ is an embedding, we'll also denote the image $\phi_L(C) \subset \PP^3$ by $C$ and write $\cO_C(1)$ for $L$.
 
-So: for the following, let $L$ be any line bundle of degree 5 on our curve $C$, and $\phi_L : C \to \PP^3$ the embedding given by the complete linear system $|L|$. By a mild abuse of language, we'll also denote the image $\phi_L(C) \subset \PP^3$ by $C$.
-
-The first question to ask is once more, what degree surfaces in $\PP^3$ contain the curve $C$? We start with degree 2, where we consider the restriction map
+What degree surfaces in $\PP^3$ contain the curve $C$? We start with degree 2, where we consider the restriction map
 $$
 H^0(\cO_{\PP^3}(2)) \to H^0(\cO_C(2)) = H^0(L^2).
 $$
-The space on the left has dimension 10 as always; on the right, Riemann-Roch tells us that $h^0(L^2) = 2\cdot5 - 2 + 1 = 9$. It follows that $C$ must lie on a quadric surface $Q$; and by Bezout that $Q$ is unique (since $C$ can't lie on a union of planes, any quadric containing $C$ must be irreducible; if there were more than one such, Bezout would imply that $\deg(C) \leq 4$).
+The space on the left has dimension 10; by Riemann-Roch we have $h^0(L^2) = 2\cdot5 - 2 + 1 = 9$. It follows that $C$ must lie on a quadric surface $Q$; and by Bezout's  theorem  $Q$ is unique (since $C$ can't lie on a union of planes, any quadric containing $C$ must be irreducible; if there were more than one such, Bezout would imply that $\deg(C) \leq 4$).
 
 We might ask at this point: is $Q$ smooth or a quadric cone? The answer depends on the choice of line bundle $L$. 
 
@@ -268,10 +364,10 @@ $$
 for some point $p \in C$; in this case, the point $p$ is the vertex of $Q$.
 \end{proposition}
 
-Note that there is a 2-parameter family of line bundles of degree 5 on $C$, of which a one-dimensional subfamily are of the form $K^2(p)$, conforming to our naive expectation that ``in general" $Q$ should be smooth, and that it should become singular in codimension 1.
+Note that the variety $\pic^5(C)$ has dimension 2, while the bundles of the form $K^2(p)$ form a one-dimensional subfamily. Thus in general $Q$ will be smooth, and will become singular in codimension one, as we might expect.
 
 \begin{proof}
-First, suppose that the line bundle $L \cong K^2(p)$ for some $p \in C$. Then $L(-p) \cong K^2$, meaning that the map $\pi : C \to \PP^2$ given by projection from $p$ is the map $\phi_{K^2} : C \to \PP^2$ given by the square of the canonical bundle. As we've seen, the map $\phi_{K^2}$ is two-to-one onto a conic curve $E \subset \PP^2$, and so we see that the curve $C$ lies on the cone $Q$ over $E$ with vertex $p$, and this is the unique quadric surface containing $C$.
+First, suppose that the line bundle $L \cong K^2(p)$ for some $p \in C$. Then $L(-p) \cong K^2$, so that the map $\pi : C \to \PP^2$ given by projection from $p$ is the map $\phi_{K^2} : C \to \PP^2$ given by the square of the canonical bundle. As we've seen, the map $\phi_{K^2}$ is two-to-one onto a conic curve $E \subset \PP^2$, so that the curve $C$ lies on the cone $Q$ over $E$ with vertex $p$, and this is the unique quadric surface containing $C$.
 
 Next, let's consider the case where $L$ is not of the form $K^2(p)$. Set $M = LK^{-1}$, so that we can write
 $$
@@ -318,15 +414,15 @@ Show that for any pair of lines $L, L'$ of the appropriate ruling of $Q$, the th
 % For $m=1$ do it by number of quadrics, uniform position. For m>1 the bpf pencil trick.
 %\end{proof}
 
-\subsubsection{The dimension of $M_2$ via maps to projective space}
+\subsection{The dimension of $M_2$ via maps to projective space}
 
 We remark here that each of the maps we've described from a curve $C$ of genus 2 to projective space gives us a way of finding the dimension of the moduli space $M_2$ of curves of genus 2.
 
 To start, we know that every curve $C$ of genus 2 is uniquely expressible as a double cover of $\PP^1$ branched at six points, modulo the group $PGL_2$ of automorphisms of $\PP^1$. The space of such double covers has dimension 6, and $\dim(PGL_2) = 3$, so we may conclude that $\dim(M_2) = 6-3 = 3$.
 
-Similarly, we've seen that a curve $C$ of genus 2 is expressible as a 3-sheeted cover of $\PP^1$ (with eight branch points) in a 2-dimensional family of ways. Such a triple cover is determined up to a finite number of choices by its branch divisor, so the space of such triple covers has dimension 8; modulo $PGL_2$ it has dimension 5, and since every curve is expressible as a triple cover in a two-dimensional family of ways, we arrive again at $\dim M_2 = 5-2 = 3$.
+Similarly, we've seen that a curve $C$ of genus 2 is expressible as a 3-sheeted cover of $\PP^1$ (with eight branch points) in a 2-dimensional family of ways. As we saw in the preceding section, such a triple cover is determined up to a finite number of choices by its branch divisor, so the space of such triple covers has dimension 8; modulo $PGL_2$ it has dimension 5, and since every curve is expressible as a triple cover in a two-dimensional family of ways, we arrive again at $\dim M_2 = 5-2 = 3$.
 
-We've also seen that $C$ can be realized as (the normalization of) a plane quartic curve with a node in a 2-dimensional family of ways. The space of plane quartics has dimension 14; the family of those with a node has codimension one and hence dimension 13. Since  the automorphism group $PGL_3$ of $\PP^2$ has dimension 8, we see that the family of nodal plane quartics modulo $PGL_3$ has dimension 5, and since every curve of genus 2 corresponds to a 2-parameter family of such curves, we have $\dim M_2 = 5-2=3$.
+We've also seen that $C$ can be realized as (the normalization of) a plane quartic curve with a node in a 2-dimensional family of ways. The space of plane quartics has dimension 14; the family of those with a node has codimension one (\ref{PlaneCurvesChapter}) and hence dimension 13. Since  the automorphism group $PGL_3$ of $\PP^2$ has dimension 8, we see that the family of nodal plane quartics modulo $PGL_3$ has dimension 5, and since every curve of genus 2 corresponds to a 2-parameter family of such curves, we have $\dim M_2 = 5-2=3$.
 
 Finally, a curve of genus 2 may be realized as a quintic curve in $\PP^3$ in a two-parameter family of ways. To count the dimension of the family of such curves, note that each one lies on a unique quadric $Q$, and is of type $(2,3)$ on $Q$. Thus to specify such a curve we have to specify $Q$ (9 parameters) and then a bihomogeneous polynomial of bidgree $(2,3)$ on $Q \cong \PP^1 \times \PP^1$ up to scalars; these have $3\cdot 4 - 1 = 11$ parameters. Altogether, then, there is a 20-dimensional family of such curves; modulo the automorphism group $PGL_4$ of $\PP^3$, this is a 5-dimensional family. Again, every abstract curve $C$ of genus 2 corresponds to a 2-parameter family of these curves modulo $PGL_4$, so once more we have $\dim M_2 = 5 - 2 = 3$.
 
