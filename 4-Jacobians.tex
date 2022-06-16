@@ -22,7 +22,7 @@ A priori, this is a map of sets. But it is a fundamental fact that both sets may
 
 One part is relatively easy: the divisors on a smooth curve are parametrized by the \emph{symmetric powers} $C^{(d)}$ of the curve $C$, described in Section~\ref{symmetric section}. By contrast, the parametrization of the set of invertible sheaves on $C$ of a given degree by the points of an algebraic variety $\pic^d(C)$ is a major undertaking, one that historically brought complex analysis and algebraic geometry together. We'll describe the original construction of the varieties $\pic^d(C)$ by complex analysis in Section~\ref{picard section} below, and touch briefly on the algebraic constructions.
 
-The fact that invertible sheaves of a given degree of a curve $C$ are parametrized by the points of a variety $\pic^d(C)$ has many consequences.  For example, applying dimension theory to $\pic^d(C)$, we will show in Theorem~\ref{g+3 theorem} that every curve can be embedded in projective space as a curve of degree $g+3$.
+The fact that invertible sheaves of a given degree of a curve $C$ are parametrized by the points of a variety $\pic^d(C)$ has many consequences.  For example, applying dimension theory to $\pic^d(C)$, we will show in Theorem~\ref{g+3 theorem} that the general line bundle of degree $g+3$ on any curve is very ample, and thus every curve  can be embedded as a curve of degree $g+3$ in $\PP^{3}$.
 
 \section{Symmetric products}\label{symmetric section}
 
@@ -99,7 +99,11 @@ the symmetric product -- the fine moduli space for invariant divisors of degree 
 
 \end{exercise}
 
-The variety $\cD$ is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique morphism $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$. Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$. These statements are not generally true for higher-dimensional varieties; see Chapter~\ref{hilbert scheme chapter} and especially Exercise~\ref{symmetric power vs Hilbert scheme}
+The variety $\cD$ is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique morphism $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$.
+
+\fix{do this here}
+
+ Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$. These statements are not generally true for higher-dimensional varieties; see \fix{basic ref for Hilb?}
 
 
 \section{Jacobians}
@@ -220,47 +224,6 @@ dimension, the linear series $|D|$ has dimension $d-g = \dim C^{(d)} - \dim J(C)
 $\mu_{d}$ is surjective.
 \end{proof}
 
-\subsection{Applications to linear series}
-
-To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
-
-\begin{theorem}\label{g+3 theorem}
-Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general divisor of degree $g+3$ on $C$, then 
-$D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
-\end{theorem}
-
-We proved in Theorem~\ref{very ample} that \emph{every divisor} of degree $\geq 2g+1$ is very ample; the difference here is that we are taking a \emph{general} divisor. This result is sharp in the sense that hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. However, if we consider only general divisors on general curves, we can do still better: ``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$ \cite{}.
-
-\begin{proof}
-If $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
-\begin{enumerate}
-\item for any point $p \in C$, we have $h^0(\cO_C(D-p)) = 3$ (that is, $|D|$ has no base points, and so defines a regular map $\phi_D : C \to \PP^3$); and
-\item for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
-\end{enumerate}
-The second of these assertions immediately implies the first, and this is what we will prove.
-
-Now let $D$ be an arbitrary divisor of degree $g+3$. To say that $h^0(\cO_C(D-p-q)) \geq 3$ is equivalent, by the Riemann-Roch theorem, to the condition $h^0(\omega_C(-D + p + q)) \geq 1$; fixing a divisor 
-$K_{C}\in |\omega_{C}|$, this is the condition that there exists  
-an effective divisor $E$ of degree $g-3$ linearly equivalent to a divisor in $K_C - D + p + q|$. 
-
-Now consider the map 
-$$
-\nu : C^{(g-3)} \times C^{(2)} \; \to \; J(C)
-$$
-given by
-$$
-\nu : (E,F) \; \mapsto \; \mu_{2g-2}(K_C) - \mu_{g-3}(E) + \mu_{2}(p+q), 
-$$
-where the $+$ and $-$ on the right refer to the group law on $J(C)$. 
-
-By what we have just said, and Abel's theorem, the divisor $D$ fails to be very ample only if
-$\mu(D) \in {\rm Im}(\nu)$. But the source $C^{(g-3)} \times C^{(2)}$ of $\nu$ has dimension $g-3+2 = g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image of a general divisor $D \in C^{(g-3)}$ is a general point of $J(C)$ and thus will not lie in ${\rm Im}(\nu)$. 
-\end{proof}
-
-Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!
-
-\fix{we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. we also need to know that the group law is algebraic. We need to have a formal statement of the existence as an algebraic group. Will be taken care of by the Characterization section, yet to be written.}
-
 
 \section{Picard varieties}\label{picard section}
 
@@ -378,13 +341,49 @@ $\Pic_{d, X/k}$ is not isomorphic to $ \Pic_{e, X/k}$, unless $d\equiv
  \pm e$ (mod $2g-2$) \cite{Kouvidakis}.
 \end{fact}
 
-In parallel with the functor $B \mapsto Pic(X/B)$ we define the functor of relative divisors: 
+
+
+\subsection{Applications to linear series}
+
+To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
+
+\begin{theorem}\label{g+3 theorem}
+Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general divisor of degree $g+3$ on $C$, then 
+$D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
+\end{theorem}
+
+We proved in Theorem~\ref{very ample} that \emph{every divisor} of degree $\geq 2g+1$ is very ample; the difference here is that we are taking a \emph{general} divisor. This result is sharp in the sense that hyperelliptic curves, for example, cannot be embedded in projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. However, if we consider only general divisors on general curves, we can do still better: ``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$ \cite{}.
+
+\begin{proof}
+If $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
+\begin{enumerate}
+\item for any point $p \in C$, we have $h^0(\cO_C(D-p)) = 3$ (that is, $|D|$ has no base points, and so defines a regular map $\phi_D : C \to \PP^3$); and
+\item for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
+\end{enumerate}
+The second of these assertions immediately implies the first, and this is what we will prove.
+
+Now let $D$ be an arbitrary divisor of degree $g+3$. To say that $h^0(\cO_C(D-p-q)) \geq 3$ is equivalent, by the Riemann-Roch theorem, to the condition $h^0(\omega_C(-D + p + q)) \geq 1$; fixing a divisor 
+$K_{C}\in |\omega_{C}|$, this is the condition that there exists  
+an effective divisor $E$ of degree $g-3$ linearly equivalent to a divisor in $K_C - D + p + q|$. 
+
+Now consider the map 
 $$
-Div(X/B) := \frac{\{
-\hbox{Divisors in $X\times B$, flat over $B$}\}}
-{\{\hbox{divisors pulled back from $B$}\}}.
+\nu : C^{(g-3)} \times C^{(2)} \; \to \; J(C)
 $$
-\fix{DE rev to here 3/13/22}
+given by
+$$
+\nu : (E,F) \; \mapsto \; \mu_{2g-2}(K_C) - \mu_{g-3}(E) + \mu_{2}(p+q), 
+$$
+where the $+$ and $-$ on the right refer to the group law on $J(C)$. 
+
+By what we have just said, and Abel's theorem, the divisor $D$ fails to be very ample only if
+$\mu(D) \in {\rm Im}(\nu)$. But the source $C^{(g-3)} \times C^{(2)}$ of $\nu$ has dimension $g-3+2 = g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image of a general divisor $D \in C^{(g-3)}$ is a general point of $J(C)$ and thus will not lie in ${\rm Im}(\nu)$. 
+\end{proof}
+
+Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!
+
+\fix{we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. we also need to know that the group law is algebraic. We need to have a formal statement of the existence as an algebraic group. Will be taken care of by the Characterization section, yet to be written.}
+
 
 \def\cW{{\mathcal W}}
  
