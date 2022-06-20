@@ -39,28 +39,32 @@ $$
 \PP^1\to\PP^a: (s,t) \mapsto (s^a, s^{a-1}t, \dots, t^a),
 $$
 corresponding to the complete linear series
-$|\cO_{\PP^1}(a)|$, is called a \emph{rational normal curve}; it is, up to linear transformations, the unique nondegenerate curve of degree $a$ in $\PP^a$ (\ref{*****}).\fix{this must have been done in an early chapter!}
+$|\cO_{\PP^1}(a)|$, is called a \emph{rational normal curve}; it is, up to linear transformations, the unique nondegenerate curve of degree $a$ in $\PP^a$ (\ref{rational normal curves section}).
 
-Scrolls are one answer to the question: ``What are the higher-dimensional analogues of rational normal curves?'' To construct a scroll of dimension 2, we choose integers $0<a_1, a_2$ and consider  a projective space 
+``Scrolls'' is one answer to the question: ``What are the higher-dimensional analogues of rational normal curves?'' To construct a scroll of dimension 2, we choose integers $0\leq a_1, a_2$ (meaning that both $a_{1}$ and $a_{2}$ are non-negative) and consider  a projective space 
 $$
 \PP^{a_1+a_2+1} = \PP_B(\CC^{a_1+1}\oplus \CC^{a_2+1})
 $$
-with its two subspaces $\PP^{a_i} = \PP_B(\CC^{a_i+1})$. We choose rational normal curves $C_i\subset \PP^{a_i}$, and we choose an isomorphism $\phi: C_1\to C_2$. We define the scroll $S(a_1, a_2)$ to be the union of the lines
+with its two subspaces $\PP^{a_i} = \PP_B(\CC^{a_i+1})$. When $0< a_{1}, a_{2}$ we choose rational normal curves $C_i\subset \PP^{a_i}$, and we choose an isomorphism $\phi: C_1\to C_2$. We define the scroll $S(a_1, a_2)$ to be the union of the lines
 $$
 S(a_1,a_2) := \bigcup_{p\in C_1} \overline{p, \phi(p)}.
 $$
-We call the curves $C_{a_{1}}$ and $C_{a_{2}}$ the \emph{directrices} (singular: directrix) of the scroll, and we call the lines $\overline{p, \phi(p)}$ the \emph{rulings} of the scroll.
+We call the curves $C_{a_{1}}$ and $C_{a_{2}}$ the \emph{directrices} (singular: directrix) of the scroll, and we call the lines $\overline{p, \phi(p)}$ the \emph{rulings} of the scroll. To deal with the degenerate case $a_{i}= 0$ we think of $C_{i}$ as the image of $\PP^{1}$ under the map corresponding to the linear series $|\sO_{\PP^{1}}(a_{i})$, so that $C_{0}= \PP^{0}$ is a point. Thus if $a_{2}>0$ then we define $S(0,a_{2})$ to be the cone
+in $\PP^{a_{2+1}}$ over a rational normal curve of degree $a_{2}$. We will never have occasion to use the case $a_{1}=a_{2} = 0$, though we might consider that to be a single line.
+
 
 It is not hard to prove directly that $S(a_1,a_2)$ is an algebraic variety, and we shall soon write down its defining equations.
 
 From this description we can immediately deduce the dimension and degree of the scroll:
+
 \begin{proposition}
 \begin{enumerate}
 \item $S(a_1,a_2)$ is a nondegenerate surface.
  \item $S(a_1,a_2)$ has degree $a_1+a_2$, and codimension $a_1+a_2-1.$
+ \item $S(a_{1},a_{2})$ is non-singular if $0<a_{1}, a_{2}$.
  \end{enumerate}
-
 \end{proposition}\label{deg and codim}
+
 \begin{proof}
  The rational normal curves separately span the spaces $\PP^{a_i}$, so a hyperplane containing both of them would contain $\overline{\PP^{a_1}, \PP^{a_{2}+1}} = \PP$, proving nondegeneracy. 
  
@@ -69,6 +73,9 @@ codimension $a_{1}+a_{2}+1 -2 = a_{1}+a_{2}-1$.
 
 To compute the degree, we choose a general hyperplane $H$ containing $\PP^{a_{1}}$. The intersection $H\cap C_{2}$ consists of $a_{2}$ reduced points. Thus the intersection $H\cap S$ consists of $C_{1}$ and the $a_{2}$ reduced lines connecting 
 the points of $H\cap C_{2}$ with their corresponding points on $C_{1}$; this union has degree $a_{1}+a_{2}$.
+
+If $0< a_{1}, a_{2}$ we also see from this argument that, given any point  $p\in S(a_{1},s_{2})$, there is
+a hyperplane section that is non-singular at $p$, and thus $S(a_{1},s_{2})$ is nonsingular at $p$.
 \end{proof}
 
 A completely parallel construction creates rational normal scrolls of dimension $r$. Set $N = \sum_{i=1}^{r}(a_{i}+1)$, where each $a_{i}>0$ and
@@ -109,7 +116,7 @@ Thus scrolls are \emph{varieties of minimal degree}. The reader already knows th
 Any nondegenerate variety $X\subset \PP^{N}$ with with $\deg X = \codim X+1$, is either a scroll or the Veronese surface in $\PP^{5}$ or a cone over one of these.
 \end{theorem}
 
-A proof is given in the appendix to this chapter.
+A proof is given in an appendix to this book. \fix{do we want to keep this??}
 
 One interesting way to view the construction above is that we chose subvarieties $C_{i}\subset \PP^{a_{i}}$ and a one-to-one correspondence between them, that is, a subscheme
 $\Gamma\subset \prod_{i}C_{i}$ that projects isomorphically onto each $C_{i}$; the scroll is then the
@@ -136,7 +143,8 @@ showing that $S(a_{1}, a_{2})$ is independent, up to an automorphism of the ambi
 
 \section{1-generic matrices and the equations of scrolls
 (the name that's particular)}\label{particular name}
-From the definition above it is easy to find the equations of a rational normal scroll. To warm up, we look at the case of the rational normal curve, $S(a)\subset \PP^{a}$. For $a=1$ there is of course no problem, so we assume $a>1$. Consider the expression of the hyperplane bundle $\cO_{\PP^{1}}(a)$ as the product
+
+From the definition above it is easy to find the equations of a rational normal scroll. To warm up, we return to the case of the rational normal curve, $S(a)\subset \PP^{a}$, first treated in Section~\ref{rational normal curves section}. For $a=1$ there is of course no problem, so we assume $a>1$. Consider the expression of the hyperplane bundle $\cO_{\PP^{1}}(a)$ as the product
 $$
  \cO_{\PP^{1}}(1)\otimes_{\PP^{1}} \cO_{\PP^{1}}(a-1) = \cO_{\PP^{1}}(a). 
 $$
@@ -146,7 +154,7 @@ $$
 $$
 which, in coordinates $s,t$ on $\PP^{1}$, is just the multiplication map
 $$
-<s,t> \otimes_{\CC}<s^{a-1}, s^{a-2}t,\dots,t^{a-1}.
+<s,t> \otimes_{\CC}<s^{a-1}, s^{a-2}t,\dots,t^{a-1}>.
 $$
 We may represent this map as a multiplication table, with matrix
 $$
@@ -337,17 +345,6 @@ We have already seen that the ideal of minors of the 1-generic $2\times a$ matri
 
 \begin{theorem}\label{1-generic basics} Let $M$ be a 1-generic $2\times a$ matrix of linear forms on $\PP^n$. 
 Let $I = I_2(M)$  be the ideal generated by the $2\times 2$ minors of $M$. \begin{enumerate}
-%\item The matrix
-%$$
-%M_a:= \begin{pmatrix}
-% z_0&z_1&\dots&z_{a-1}\\
-% z_1&z_2&\dots&z_{a}\\
-%\end{pmatrix},
-%$$
-%is 1-generic, and if $n=a$ then
-%then
-%$I = I_{2}(M_{a})$ is the homogeneous ideal of the rational
-%normal curve.
 
 \item The ideal $I$ is
 prime, and the variety $V = V(I) \subset \PP^n$ has degree $a$ and codimension $a-1$.
@@ -359,19 +356,6 @@ curve of degree $a$.
 \end{enumerate}
 
 \end{theorem}
-
-%\begin{proof} (1) Since $M_{a}$ only involves $a+1$ variables, it suffices to treat the case $n=a$. We will show that  $I = I_{2}(M_{a})$ is  the homogeneous ideal of the rational normal curve $C_{a}$. It follows that $M_{a}$ is 1-generic, since otherwise $I_{2}(M_{a})$ would contain the product of two linear forms.
-%
-%The homogeneous ideal $J$ of $C_{a}$ is the kernel of the ring homomorphism
-%$$
-%\psi: S:= \CC[z_0,\dots,z_a] \to \CC[s,t]; \quad z_i \mapsto s^{a-i}t^i.
-%$$
-% and
-%the coordinate ring $S_{C_{a}} = S/J$ is isomorphic to the ring spanned by
-%monomials in $s,t$ that have degree a multiple of $a$. Such
-%a monomial may be written uniquely as a power of
-%$s^a$
-%times a power of $t^a$ times a monomial $s^{a-i}t^i$ with $1\leq i\leq a-1$.
 
 \begin{proof} 
 1) The inequality $a\leq n$ was established in Lemma~\ref{size of 1-generic}. We will reduce the case $a<n$ to the case $a=n$. Thus we suppose $a<n$, and let $\ell$ be a general linear form. By induction on $n$, the image of $I_{2}(M)$ in $S/\ell \cong \CC[x_{0},\dots, x_{n-1}$ is prime of codimension $a-1$, and degree $a$ so
@@ -444,7 +428,6 @@ More is true:
  Every
  1-generic matrix of linear forms is equivalent to one of the type shown in
 Corollary~\ref{equations of scrolls}, and thus the minors of any 1-generic matrix defines a scroll or the cone over a scroll. 
-
 \end{fact}
 
 \begin{proof}[References]
@@ -484,13 +467,21 @@ that is, if the determinant of each $2\times 2$ submatrix is ``naturally'' homog
 \cite[ Theorem *** ]{Ei}
 \end{proof}
 
+\begin{exercise} 
+ Minimal degree varieties; as the varieties of given degree lying on the maximal number of quadrics.
+ \fix{sketch proof}
+\end{exercise}
+
 
 \section{Scrolls as Images of Projective Bundles (the deep and inscrutable name)}\label{inscrutable name}
 
-Our third description of scrolls is that they are projective space bundles on $\PP^{1}$, embedded by the complete series associated to the tautological line bundle. For simplicity we focus on the 2-dimensional case; the case of a higher dimensional scroll is similar. We start from the description of 
+Our third description of scrolls is that they are the images of projective space bundles on $\PP^{1}$ under the map given by the complete series associated to the tautological line bundle; when both $a_{1}$ and $a_{2}$ are strictly positive, we will see that this is an embedding. For simplicity we focus on the 2-dimensional case; the case of a higher dimensional scroll is similar. 
+
+We start from the description of 
 $
-X:=S(a_{1}, a_{2})
+X:=S(a_{1}, a_{2}),
 $
+with $0\leq a_{1}, a_{2}$ and not both 0,
 as the vanishing locus of the minors of the matrix
 $$
 \setcounter{MaxMatrixCols}{20}
@@ -509,7 +500,7 @@ all vanish, so that $R_{p}$ is a ruling of $X$ in $\PP^{N}$
 
 
 \begin{theorem}\label{scroll as proj}
-Let $X = S(a_{1}, a_{2})\subset \PP^{N}$, with $N = a_{1}+a_{2}+1$, be a non-singular rational normal scroll. The rulings $R_{p}$ of $X$ are the preimages of points under a morphism $\pi: X\to \PP^{1}$. Furthermore, the line bundle 
+Let $X = S(a_{1}, a_{2})\subset \PP^{N}$, with $N = a_{1}+a_{2}+1$, and assume $0<a_{1}, a_{2}$. The rulings $R_{p}$ of $X$ are the preimages of points under a morphism $\pi: X\to \PP^{1}$. Furthermore, the line bundle 
 $$
 \sL := \sO_{\PP^{N}}(1)|_{X}
 $$ 
@@ -519,6 +510,9 @@ $\sO_{\PP^{1}}(a_{1})\oplus \sO_{\PP^{1}}(a_{2})$.
 
 Moreover, $X\cong \PP(\cE)$ and the embedding $X\subset \PP^N$ corresponds to the complete linear series $|\cO_{\PP(\cE)}(1)|$.
 \end{theorem} 
+
+In Proposition~\ref{singular scrolls} we will extend this to singular scrolls, showing that the scroll $S(0,a)$, which is the cone over the rational normal curve 
+of degree $a$, is the image of $S(1,a+1)$ under a map that blows down the line $C_{1}$.
 
 \begin{proof} We write $M$ for the matrix $M_{a_{1}, a_{2}}$.
 Since there are $N+1$ independent entries of $M$ the intersection
@@ -570,20 +564,6 @@ $$
 commute, proving the desired assertion.
 \end{proof}
  
-The following  observation will also be useful:
-
-\begin{proposition}
-If $X$ is a scheme, $\sE$ a locally free sheaf on $X$, and $\sL$ an invertible sheaf on $X$, then
-$$
-\PP(\sE) \cong \PP(\sL \otimes \sE).
-$$
-\end{proposition}
-\begin{proof} Let $\pi: \PP(\sE)\to X$ be the projection.
-There is a map $\PP(\sE) \to \PP(\sE\otimes \sL)$ corresponding to the surjection 
-$\pi^*(\sE \otimes\sL) \ \pi^*(\sE) \otimes \pi^*(\sL) \to \sO_{\PP(\sE)}(1) \otimes \pi^*(\sL)$, 
-and the inverse map is formed similarly.
-\end{proof}
-
 \begin{proposition}
 Let $\sE = \sO_{\PP^1}(a_1)\oplus \sO_{\PP^1}(a_2)$, and let $\pi: X:= \PP(\sE) \to \PP^1$ be the projection.
 The sections $\sigma:\PP^1 \to C\subset X$ of $\pi$---that is, maps $\sigma$ such that $\pi\sigma$ is the identity---then 
@@ -593,7 +573,7 @@ $\PP^{a_1+a_2+1}$, we have $\sL = \sigma^*\sO_C(1)$, so the degree of $C$ is equ
 to the degree of $\sL$.
 
 Thus $\pi$ admits a section of degree $e$ as a curve in $\PP^{a_1+a_2+1}$ if and only if
-$e = \min\{a_1,a_2\}$ or $e\geq \max\{a_1, a_2\}$.
+$0<e = \min\{a_1,a_2\}$ or $e\geq \max\{a_1, a_2\}$.
 \end{proposition}
 
 \begin{proof}
@@ -605,14 +585,14 @@ Apply \cite[II.7.12]{Hartshorne1977}).
 $$
 \sE = \sO_{\PP^1}(a_1) \oplus\sO_{\PP^1}(a_2)
 $$
-with $a_1\leq a_2$ and the scroll
+with $0\leq a_1\leq a_2$ and the scroll
 scroll $X = S(a_{1}, a_{2}) = \PP(\sE) \subset \PP^N$, where $N = a_1+a_2+1$. We write $\pi:X \to \PP^1$ for the projection, and
 $C_{a_i}\subset X$ for the directrix of degree $a_i$. The degree of $X$ is $d := a_1+a_2$.
 
-Our interest in scrolls in this book is primarily for the curves that lie on them.The key is to understand the Picard group and the canonical class:
+Our interest in scrolls in this book is primarily for the curves that lie on them.The key is to understand the Picard group and the canonical class. We begin with the nonsingular case.
 
 \begin{theorem}\label{pic of scroll}
-\begin{enumerate}
+\begin{enumerate} Suppose in addition that $a_{1}>0$.
 \item The Picard group of $X$ is $\Pic X \cong \ZZ^2$, freely generated by  the class $F$ of a ruling and the class $H$ of a  hyperplane section. 
 \item The
 intersection form on $\Pic(X)$ is given by
@@ -670,7 +650,7 @@ the canonical curve
 
 Now we can say exactly which classes on the scroll contain curves:
 
-\begin{theorem}\label{where are the curves?}
+\begin{theorem}\label{where are the curves?} Again, suppose that $0<a_{1},a_{2}$.
 There are reduced irreducible curves in the class $D = pH+qF$ if and only if one of the following holds:
 \begin{enumerate}
 \item $D\sim F$; that is, $p=0, q=1$; or
@@ -730,11 +710,6 @@ $$
 so any effective divisor in the class of $D$ must have a component in common with $C_{a_{1}}$.
 \end{proof}
 
-
-
-\begin{exercise} \fix{keep this? sketch proof!}
- Minimal degree varieties; as the varieties of given degree lying on the maximal number of quadrics.
-\end{exercise}
  
 We can easily compute the degrees and genera of curves that lie on scrolls:
 \fix{Add the characterization classes that contain smooth curves. Prove there is one in a given class iff it meets the directrix non-negatively.}
@@ -769,6 +744,29 @@ $X$ would be birationally isomorphic to $C\times \PP^{1}$, and thus not rational
 %\section{Automorphisms} (first compute the intersection form...) \fix{probably drop this section -- seems we don't use it elsewhere.}
 %\section{Appendix: Centennial Account}
 
+Finally, we treat the case of the cone over a rational normal curve:
+\begin{proposition}\label{singular scrolls}
+If $X$ is a scheme, $\sE$ a locally free sheaf on $X$, and $\sL$ an invertible sheaf on $X$, 
+and Let $\pi: \PP(\sE)\to X$ the natural projection.
+$$
+\PP(\sL \otimes \sE)\cong \PP(\sE).
+$$
+Under this isomorphism the invertible sheaf $\sO_{\PP(\sE\otimes \sL)}(1)$ corresponds to the invertible sheaf
+$\sO_{\PP(\sE)}(1)\otimes \pi^{*}\sL$. 
+
+Moreover, the singular scroll $S(0,a_{2})$, which is the cone over a rational normal curve of degree $a_{2}$, is the image of
+$S(1, a_{2}+1)$ under the map corresponding to the complete linear series 
+$$
+|\sO_{S(1, a_{2}+1)}(1) \otimes \pi^{*}(\sO_{\PP^{1}}(-1))|,
+$$
+which blows down the line $C_{1}$.
+\end{proposition}
+
+\begin{proof} 
+The desired map $\PP(\sE) \to \PP(\sE\otimes \sL)$ corresponds to the surjection 
+$\pi^*(\sE \otimes\sL) \ \pi^*(\sE) \otimes \pi^*(\sL) \to \sO_{\PP(\sE)}(1) \otimes \pi^*(\sL)$, 
+and the inverse map is formed similarly.
+\end{proof}
 
 \section{Appendix: Varieties of minimal degree}
 \includepdf[pages=1-11]{Centennial.pdf}
