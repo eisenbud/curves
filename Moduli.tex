@@ -1,6 +1,6 @@
 \input{header}
 
-\chapter{Moduli of Curves}
+\chapter{Moduli of Curves} 
 \label{Moduli chapter}
 
 Philosophy of this chapter: the book \emph{Moduli of Curves} has already been written, and we don't want to write it again. But a summary of the basic information would be useful
@@ -9,14 +9,16 @@ Philosophy of this chapter: the book \emph{Moduli of Curves} has already been wr
 
 We've already seen, in the preceding chapters, examples of \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll try to systematize this, giving a general framework for the notion of moduli space, introducing the main examples we'll be dealing with here, and mentioning some common variants.
 
-As for the question of the title, in colloquial terms a \emph{moduli problem} consist of two things: a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, and the like---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. As usual, some examples will make this somewhat vague notion more real. In each case, we'll discuss the notion as it applies to curves.
+As for the question of the title, in colloquial terms a \emph{moduli problem} consist of two things: a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes and the like---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. As usual, some examples will make this somewhat vague notion more real. In each case, we'll discuss the notion as it applies to curves.
 
 \subsection{Examples}
 
-\begin{enumerate}
+These are the four main instances of moduli spaces we'll encounter in this book.
+
+\begin{enumerate}\label{list of moduli problems}
 \item \emph{Curves of genus $g$}. Here, the objects are simply (isomorphism classes of) smooth, projective curves of genus $g$. By a family of such curves, we'll mean a smooth, projective morphism $f : \cC \to B$ whose fibers are  curves of genus $g$.
 
-\item \emph{Curves in projective space} Here, the objects are simply subschemes $C \subset \PP^r$ of degree $d$, isomorphic to smooth, projective curves of genus $g$. By a family of such curves, we'll mean a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$.
+\item \emph{Curves in projective space}. Here, the objects are simply subschemes $C \subset \PP^r$ of degree $d$, isomorphic to smooth, projective curves of genus $g$. By a family of such curves, we'll mean a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$.
 
 \item \emph{Effective divisors on a given curve}. The objects are divisors of degree $d$ on a given smooth, projective curve $C$. To define a family of such divisors, we use the equivalence between effective divisors and subschemes to define a family to be subscheme $\cD \subset B \times C$, flat of relative degree $d$ over $B$.
 
@@ -31,33 +33,116 @@ The basic idea here is straightforward: given a moduli problem, we want to const
 
 In the pre-scheme days, the answer was not entirely satisfactory, but at least easy to understand:  for any family of objects parametrized by a variety $B$, we have an induced map of sets from the closed points of $B$ to the set of closed points in $M$, and the requirement is simply that this be the underlying set map of a regular morphism $B \to M$.
 
-In the world of schemes, however, a map is not determined by its underlying set map, and this needs to be updated. In the end, rather than construct a morphism $B \to M$ associated to a family of objects over $B$ and then require it to be a regular map, we simply require that there exist a natural bijection, for any scheme $B$, between the set of families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$. Moreover, here the word ``natural" is easy to make precise: we require that if $\pi : B \to B_0$ is any morphism of schemes, $\cC_0 \to B_0$ a family ovr $B_0$ and $\cC := \cC_0 \times_{B_0} B \to B$ the induced family over $B$, then the morphism
+In the world of schemes, however, a map is not determined by its underlying set map, and this needs to be updated. In the end, rather than construct a morphism $B \to M$ associated to a family of objects over $B$ and then require it to be a regular map, we simply require that there exist a natural bijection, for any scheme $B$, between the set of families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$. Moreover, here the word ``natural" is easy to make precise: we require that the association to a family of a morphism to $M$ \emph{commute with base change}; that is, if $\pi : B \to B_0$ is any morphism of schemes, $\cC_0 \to B_0$ a family over $B_0$ and $\cC := \cC_0 \times_{B_0} B \to B$ the induced family over $B$, then the morphism
 $$
 \phi_B = \phi_{B_0} \circ \pi.
 $$
-In other words, we have two functors from the category of schemes to the category of sets: the functor $h$ that associates to a scheme $B$ the set of families over $B$; and the functor $\rm{Mor}(\bullet, M)$ that associates to a scheme $B$ the set of morphisms $B \to M$. We'll say that $M$ is a \emph{fine moduli space} for the given moduli problem if there exists an isomorphism of functors $h \cong \rm{Mor}(\bullet, M)$
+In other words, we have two functors from the category of schemes to the category of sets: the functor $h$ that associates to a scheme $B$ the set of families over $B$; and the functor $\rm{Mor}(\bullet, M)$ that associates to a scheme $B$ the set of morphisms $B \to M$. We'll say that $M$ is a \emph{fine moduli space} for the given moduli problem if there exists an isomorphism of functors $h \cong \rm{Mor}(\bullet, M)$, and this is what we call a solution to the moduli problem.
+
+One problem: fine moduli spaces may not exist. Indeed, this is the case for the fundamental Example 1 of ~\ref{list of moduli problems}, which we'll discuss in the following section. There is a weaker notion, that of a \emph{coarse moduli space} $M$, where we require a bijection between families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$ only after finite base change: that is, we have an association to any family $\cC$ over $B$ of a morphism $\phi_\cC : B \to M$ such that
+
+\begin{enumerate}
+\item if $\phi_\cC : B_0 \to M$ is any morphism, then there exists a finite cover $\pi : B \to B_0$ such that $\phi_\cC \circ \pi : B \to M$ is the morphism associated to some family; and
+\item if $\cC \to B_0$ and $\cC' \to B_0$ are two families such that the associated morphisms $\phi_\cC = \phi_{\cC'} : B_0 \to M$ are equal, then there exists a finite cover $\pi : B \to B_0$ such that the pullbacks of $\cC$ and $\cC'$ to $B$ are equal.
+\end{enumerate}
 
 \section{$M_g$}
 
-\fix{History, starting with Riemann and $6g-6$. 
-Assert existence as a coarse, rather than a fine moduli space (say what this means and give ref to Geometry of Schemes?) Deligne-Mumford, Knutson-Mumford (sp of Knutson??). Severi, curves of low genus. Strategy of general type, referring to the B-N chapter. ref to papers, and to Harris-Morrison. Prove the following as a corollary of general type}
+The space $M_g$ parametrizing isomorphism classes of smooth projective curves of genus $g$---Example 1 of ~\ref{list of moduli problems}---is at the heart of the mystery that is algebraic curves. We'll talk briefly here about what is known about these spaces, and how our understanding has developed over the last two centuries.
+
+Algebraic geometers of the 19th century were certainly aware that, while every smooth projective curve of genus 0 was isomorphic to the Riemann sphere, in  genus 1 and higher you could have continuously varying families of non-isomorphic curves. It's not clear at what point geometers started to think about the set of isomorphism classes as the points of a space, but the idea was clearly present in the work of Riemann, who asked among other things what the dimension of that space should be. He arrived at the answer $\dim M_g = 3g-3$ for $g \geq 2$ by using the auxilliary construction of the \emph{Hurwitz space}, which we'll describe in Section~\ref{hurwitz spaces} below. The same auxilliary construction was used by Hurwitz, Clebsch and others to assert the irreducibility of $M_g$; this was a crucial development, in that it allows us to talk unambiguously about a ``general curve."
+
+In low genus it is possible to give explicit constructions of $M_g$, though not necessarily to describe its geometry in full. For example, in genus 2 we have seen that every curve of genus 2 is expressible as a double cover of $\PP^1$ branched at six points, and  that the curve is determined by those points. Now, given six distinct points in $\PP^1$ we can find an automorphism of $\PP^1$ carrying three of the points to 0, 1 and $\infty$. The remaining three points will be sent to three distinct points in $\PP^1 \setminus \{0, 1, \infty \} $. Of course, this depends on how we order the points in the first place; at the end of the day, we see that the symmetric group $S_6$ acts on the quasi-projective variety
+$$
+\Gamma = \left( \PP^1 \setminus \{0, 1, \infty \} \right)^3 \setminus \Delta
+$$
+(where $\Delta$ is the union of all diagonals in the triple product), and we may realize the moduli space $M_2$ as the quotient $\Gamma/S_6$. There is clearly much more to say, but this construction at least does two things:
+
+One, it may serve to convince us that $M_2$ is irreducible of dimension 3; and
+
+Two, it allows us to write down explicitly a ``general curve of genus 2:" this is just the curve
+$$
+y^2 = x(x-1)(x-a)(x-b)(x-c)
+$$
+with $a, b$ and $c$ general scalars.
+
+There are similarly ad-hoc ways of describing the moduli space $M_g$ for small values of $g$. For example, in genus 3 we've seen that a non-hyperelliptic curve of genus 3 is embeddable as a smooth plane quartic curve $C \subset \PP^2$. Now, the space of all quartic curves is a projective space $\PP^{14}$, and the subset of smooth curves is an open subset $U \subset \PP^{14}$. Moreover, the group $PGL_3$ of automorphisms of $\PP^2$ acts on this open set $U$, and we can think of the moduli of (nonhyperelliptic) curves of genus 3 as the quotient $U/PGL_3$.
+
+This is bogus in several respects: apart from the fact that we're excluding hyperelliptic curves, a much more serious issue is that we're taking the quotient of a variety by the positive-dimensional group $PGL_3$; and while quotients by finite groups always exist, quotients by positive-dimensional groups may not (think of $\CC^*$ acting on $\CC$ by scalar multiplication!). Nonetheless, it does two things:
+
+
+One, it may serve to convince us that $M_3$ is irreducible of dimension $14-8 = 6$; and
+
+Two, it allows us to write down explicitly a ``general curve of genus 3:" this is just the curve in $\PP^2$ given by
+$$
+\sum_{i+j+k = 4} a_{i,j,k} X^iY^jZ^k = 0
+$$
+with $a_{i,j,k}$ general scalars.
+
+In general,  one of the central problems in curve theory was simply, ``can we write down a general curve of genus $g$?" More precisely, we can ask: can we find a family of curves depending freely on parameters---in other words, a family $\cC \to B$ over an open subset $B \subset \AA^n$---that includes a general curve of genus $g$, so that the induced map $\phi_\cC : B \to M_g$ is dominant? 
+
+We have done this in the case of genus 2 and 3. Essentially
+the same approach works in genera $4$ and $5$; in each case a general canonical curve is a complete intersection, so that if we take the coefficients of its defining polynomials to be general scalars we have a general curve.
+
+This breaks down when we get to genus 6, where a canonical curve is not a complete intersection. But it's close enough: a general canonical curve of genus 6 is the intersection of a smooth del Pezzo surface $S \subset \PP^5$ with a quadric hypersurface $Q$; since all smooth del Pezzo surfaces in $\PP^5$ are isomorphic, we can just fix one such surface $S$ and let $Q$ be a general quadric.
+
+It gets harder as the genus increases. Let's do one more case, genus 7, which already calls for a different approach. Here we want to argue that, by Brill-Noether theory, a general curve of genus $7$ can be realized as (the normalization of) a plane septic curve with 8 nodes $p_1,\dots,p_8 \in \PP^2$. Equivalently, if we let $S = Bl_{p_1,\dots,p_8}(\PP^2)$ be the blow-up, and let $l$ and $e_1,\dots,e_8$ be the classes of the pullback of a line and of the eight exceptional divisors respectively, a divisor of class $7l - 2 \sum e_i$ on $S$. Thus the curves on $S$ form a linear series, parametrized by a projective space $\PP^{11}$.
+
+The problem is, there are many such surfaces $S$; we don't have a single linear system that includes the general curve of genus 7. The good news is, that's OK because the surfaces $S$ themselves form a rationally parametrized family. Explicitly, if we look at the set $\Phi$ of pairs $(S, C)$ with $S = Bl_{p_1,\dots,p_8}(\PP^2)$  the blow-up of $\PP^2$ at eight points and $C \subset S$ a curve of class $7l - 2 \sum e_i$ on $S$, then $\Phi$ is a $\PP^{11}$-bundle over $(\PP^2)^8$, and so is again a rational variety; choosing a rational parametrization of $\Phi$ we get a family of curves of genus $7$ parametrized by $\PP^{27}$ and dominating $M_7$. As before, then, a general point in $\PP^{27}$ yields a general curve of genus 7.
+
+Things continued in this vein up through genus 10, but then this approach fails as well: if we represent a general curve of genus 11 as a plane curve with nodes, the nodes are no longer general points of $\PP^2$, and the same argument doesn't work. Ad hoc (and much more difficult) arguments were given in genera 11, 12 13 and 14, but that's where progress apparently stalled.
+
+
+\subsection{The Deligne-Mumford paper}
+
+For the most part, 19th century discussions of moduli were like this: plausible, but not rigorous by 20th century standards. All this changed in 1969, with the publication of the landmark paper \cite{Deligne-Mumford}. In that paper, Deligne and Mumford did two things that fundamentally altered the landscape of curve theory. 
+
+First, they gave a precise, rigorous construction of the moduli space $M_g$ for any $g \geq 2$ (showing in particular that it was a coarse moduli space, if not a fine one; they also introduced the \emph{moduli stack} $\cM_g$, which is a fine moduli space, albeit a stack rather than a scheme). Second, they gave a modular compactification of $M_g$ (described in Section~\ref{} below), called the \emph{Deligne-Mumford compactification} and denoted $\overline M_g$. 
+
+The latter in particular was crucial: it opened up the study of the moduli space of curves to the powerful techniques of modern projective geometry. This made possible the resolution of many outstanding problems related to moduli of curves, including the question we asked in the last paragraph: to say that there exists a family $\cC \to B$ over an open subset $B \subset \AA^n$ such that the induced map $\phi_\cC : B \to M_g$ is dominant implies that $M_g$ is \emph{unirational}, an assertion that we can disprove simply by exhibiting a pluricanonical divisor on a desingularization of $\overline M_g$. This was carried out in (many references) for all genera $g \geq 23$; in a neat twist, the divisor used consisted of curves possessing a special linear system with Brill-Noether number $-1$, meaning its existence was dependent on the proof of Brill-Noether!
+
+In fact, the existence of an effective pluricanonical divisor on $\overline M_g$ tells us more. For example, it tells us that \emph{$M_g$ is not uniruled}, meaning that through a general point $[C] \in M_g$ there are no rational curves. This in turns gives us a striking corollary:
+
 \begin{corollary}
  A general curve $C$ of  genus $\geq 22$ does not lie in a nontrivial linear series on any surface
  except those birational to $C\times \PP^1$.
 \end{corollary}
 
 
-\section{Compactifying $M_g$}
 
-Describe the Deligne-Mumford compactification; mention alternatives?
+\subsection{$M_g$ is only a coarse moduli space}
+
+We mentioned above that the moduli space $M_g$ parametrizing curves of genus $g$ is only a coarse moduli space, not a fine one. What this means in practice is either or both of two things:
+
+\begin{enumerate}
+\item There exists a scheme $B$ and a map $B \to M_g$ that does not arise from a family $\cC \to B$ of curves over $B$; and
+\item There exists a scheme $B$ and two families $\cC \to B$ and $\cC' \to B$ such that the associated maps $\phi_\cC$ and $\phi_{\cC'} \to B$ are equal (meaning in particular that for each closed point $b \in B$ the fibers $C_b$ and $C'_b$ are isomorphic); but such that $\cC$ and $\cC'$ are not isomorphic.
+\end{enumerate}
+
+Examples of both of these can be found in \cite{Geometry of Schemes}.
+
+\subsection{Compactifying $M_g$}
+
+We mentioned above that Deligne and Mumford constructed a \emph{modular} compactification of $M_g$. What does the word ``modular" mean in this context, and how did they do it?
+
+The answer to the first question is straightforward. In general, if $X$ is any variety a compactification of $X$ is simply the inclusion of $X$ as an open subset of a compact, or proper variety. In case $X$ is a moduli space parametrizing a certain class $\Sigma$ of geometric objects---for example, smooth projective curves of genus $g$---one way to produce such a compactification is to enlarge the class of objects we're parametrizing. If the larger class $\overline \Sigma$ has the property that every family of objects in $\Sigma$ parametrized by a punctured disc $\Delta^*$ can be extended to a family of objects in the larger class $\overline \Sigma$ over the full disc $\Delta$ in a unique way, and if the larger class $\overline \Sigma$ has a moduli space $\overline X$, the valuative criterion tells us that $\overline X$ will be proper. This is called a \emph{modular compactification} of the moduli space $X$.
+
+In the example of the moduli space $M_g$ parametrizing smooth, projective curves of genus $g$, Deligne and Mumford introduced the larger class of \emph{stable curves}. These are by definition connected curves $C$ of arithmetic genus $g$, with two properties:
+
+\begin{enumerate}
+\item $C$ has only nodes as singularities; and
+\item the automorphism group of $C$ is finite.
+\end{enumerate}
+
+This is a brilliant solution to the problem, but it's not the only one! For example, Schubert (David, not Hermann) showed that we can compactify $M_g$ by enlarging the class of smooth curves to the class of \emph{pseudo-stable} curves, in which we allow cusps as well as nodes, but disallow elliptic tails (smooth components of genus 1 meeting the rest of the curve in only one point). This was extended by Hassett, Keel, Smyth, Fedorchuk, Alper... (do we really want to get into all this?)
 
 \section{Auxilliary constructions}
 
-It is hard to specify an abstract curve. It is much easier if the curve $C$ comes to us with some additional structure, such as a map to projective space; if the map is a birational embedding, we can specify the curve just by specifying a set of polynomial equations cutting it out. 
+It is hard to specify an abstract curve. It is much easier if the curve $C$ comes to us with some additional structure, such as a map to projective space; for example, if the map is a birational embedding, we can specify the curve just by specifying a set of polynomial equations cutting it out. 
 
 There are two special cases of this: we can look at pairs $(C,f)$ where $f : C \to \PP^1$ is a branched cover of degree $d$, which yields various flavors of the \emph{Hurwitz spaces}; and we can look at pairs $(C,f)$ where $f : C \to \PP^2$ is a birational embedding of $C$ as a plane curve of degree $d$, yielding the \emph{Severi varieties}. Both of these spaces are more readily described and better-behaved than the moduli space $M_g$ of abstract curves, or the Hilbert scheme $\cH$ of curves in higher-dimensional space; for this reason they are useful in proving theorems about $M_g$ and $\cH$.
 
-\subsection{Hurwitz spaces}
+\subsection{Hurwitz spaces}\label{hurwitz spaces}
 
 Fix integers $d \geq 2$ and $g \geq 0$. By the \emph{small Hurwitz space} $\cH^\circ_{d,g}$ we will mean a space parametrizing simply branched covers $f : C \to \PP^1$ of degree $d$, with $C$ a smooth projective curve of genus $g$. Here ``simply branched" means that every fiber  either is reduced---that is, consists of $d$ reduced points---or consists of one double point and $d-2$ reduced points. If a map $f : C \to \PP^1$ is simply branched, in particular, the branch divisor $B \subset \PP^1$ of the map will consist of $b = 2d+2g-2$ distinct points in $\PP^1$
 
@@ -131,7 +216,7 @@ The second key attribute that the Severi variety $V_{d,g}$ shares with the Hurwi
 
 \section{Hilbert schemes}\label{hilbert scheme section}
 
-The Hilbert schemes---schemes $\cH_{d,g,r}$ parametrizing curves of given degree and arithmetic genus in $\PP^r$ for any $r$---are the subject of a later chapter in their own right. But it should be said at this point that the sort of regular behavior exhibited by the Hurwitz spaces and the Severi varieties is completely absent from the Hilbert scheme. Even if we restrict out attention to  what we might call the ``small Hilbert scheme"---the open subset corresponding to smooth, irreducible and nondegenerate curves---Hilbert schemes are truly wild. Locally, they can have arbitrarily bad singularities (ref to Vakil \fix{I thought he needed surfaces}); globally, they can have many irreducible components---no one has any idea how many in general---of many different dimensions.
+The Hilbert schemes---schemes $\cH_{d,g,r}$ parametrizing curves of given degree and arithmetic genus in $\PP^r$ for any $r$---are the subject of a later chapter in their own right. But it should be said at this point that the sort of regular behavior exhibited by the Hurwitz spaces and the Severi varieties is completely absent from the Hilbert scheme. Even if we restrict out attention to  what we might call the ``small Hilbert scheme"---the open subset corresponding to smooth, irreducible and nondegenerate curves---Hilbert schemes are truly wild. Locally, they can have arbitrarily bad singularities (ref to Vakil \fix{I thought he needed surfaces}\fix{No, I think Ravi proves it for Hilbert schemes of smooth curves in $\PP^r$ for all $r \geq 3$; I think the question of curves in $\PP^3$ is still open}); globally, they can have many irreducible components---no one has any idea how many in general---of many different dimensions.
 
 \begin{exercise}\label{symmetric power vs Hilbert scheme}
 \begin{enumerate}
@@ -141,36 +226,21 @@ The Hilbert schemes---schemes $\cH_{d,g,r}$ parametrizing curves of given degree
 \end{enumerate}
  \end{exercise}
 
+%
+%\section{Unirationality}
+%
+%The Brill-Noether theorem, in all its many forms, deals with a simple question: what linear series $g^r_d$ does a curve $C$ of genus $g$ possess? Of course, the answer depends on $C$, but we know from general principles that it's constant on an open subset of $M_g$; so it's natural to ask what the answer is on that open set. That is the subject of the Brill-Noether theorem: what linear series exist on a general curve $C$ of genus $g$? This raises, naturally, a question we'll take up next.
+%
+%\subsection{Can we write down a general curve of genus $g$?}
+%
+%Let's do this one genus at a time. For curves of genus 2, the family of curves given by
+%$$
+%y^2 = x^6 + a_5x^5 + \dots + a_1x + a_0
+%$$
+%includes every curve of genus $2$; in other words, the induced (rational) map $\AA^6 \to M_2$ is dominant, so that  a general choice of the coefficients $a_i$ will yield a general curve.
 
-\section{Unirationality}
-
-The Brill-Noether theorem, in all its many forms, deals with a simple question: what linear series $g^r_d$ does a curve $C$ of genus $g$ possess? Of course, the answer depends on $C$, but we know from general principles that it's constant on an open subset of $M_g$; so it's natural to ask what the answer is on that open set. That is the subject of the Brill-Noether theorem: what linear series exist on a general curve $C$ of genus $g$? This raises, naturally, a question we'll take up next.
-
-\subsection{Can we write down a general curve of genus $g$?}
-
-Let's do this one genus at a time. For curves of genus 2, the family of curves given by
-$$
-y^2 = x^6 + a_5x^5 + \dots + a_1x + a_0
-$$
-includes every curve of genus $2$; in other words, the induced (rational) map $\AA^6 \to M_2$ is dominant, so that  a general choice of the coefficients $a_i$ will yield a general curve.
-
-For genus 3, we can consider the family
-$$
-\sum_{i+j+k = 4} a_{i,j,k}x^i y^jz^k = 0
-$$
-of all plane quartic curves; again, the rational map $\AA^{15} \to M_3$ is dominant, so a general choice of the $a_{i,j,k}$ yields a general curve. The same approach works in genera $4$ and $5$; in each case a general canonical curve is a complete intersection, so that if we take the coefficients of its defining polynomials to be general scalars we have a general curve.
-
-This breaks down when we get to genus 6, where a canonical curve is not a complete intersection. But it's close enough: a general canonical curve of genus 6 is the intersection of a smooth del Pezzo surface $S \subset \PP^5$ with a quadric hypersurface $Q$; since all smooth del Pezzo surfaces in $\PP^5$ are isomorphic, we can just fix one such surface $S$ and let $Q$ be a general quadric.
-
-What we are doing in each of these cases is exhibiting a family of curves of the relevant genus over a rational base that dominates $M_g$. Thus, to say that we can write down a general curve of genus $g$ is tantamount to saying that \emph{the moduli space $M_g$ is unirational}
-
-It gets harder as the genus increases. Let's do one more case, genus 7, which already calls for a different approach. Here we want to argue that, by Brill-Noether theory, a general curve of genus $7$ can be realized as (the normalization of) a plane septic curve with 8 nodes $p_1,\dots,p_8 \in \PP^2$. Equivalently, if we let $S = Bl_{p_1,\dots,p_8}(\PP^2)$ be the blow-up, and let $l$ and $e_1,\dots,e_8$ be the classes of the pullback of a line and of the eight exceptional divisors respectively, a divisor of class $7l - 2 \sum e_i$ on $S$. Thus the curves on $S$ form a linear series, parametrized by a projective space $\PP^{11}$.
-
-The problem is, there are many such surfaces $S$; we don't have a single linear system that includes the general curve of genus 7. The good news is, that's OK because the surfaces $S$ themselves form a rationally parametrized family. Explicitly, if we look at the set $\Phi$ of pairs $(S, C)$ with $S = Bl_{p_1,\dots,p_8}(\PP^2)$  the blow-up of $\PP^2$ at eight points and $C \subset S$ a curve of class $7l - 2 \sum e_i$ on $S$, then $\Phi$ is a $\PP^{11}$-bundle over $(\PP^2)^8$, and so is again a rational variety; choosing a rational parametrization of $\Phi$ we get a family of curves of genus $7$ parametrized by $\PP^{27}$ and dominating $M_7$. As before, then, a general point in $\PP^{27}$ yields a general curve of genus 7.
-
-Things continued in this vein up through genus 10, but then this approach fails as well: if we represent a general curve of genus 11 as a plane curve with nodes, the nodes are no longer general points of $\PP^2$, and the same argument doesn't work. Ad hoc (and much more difficult) arguments were given in general 11, 12 13 and 14, but that's where progress apparently stalled.
-
-The reason why became apparent in \fix{ref}1982, when it was shown that for $g$ odd and $>23$, \emph{the moduli space $M_g$ is of general type} (the restriction to odd $g$ is unneccessary, as was shown in \fix{ref}); in particular, it can't be unirational. Thus the answer to our naive question---can we write down a general curve of genus $g$---is ``no" for large g!
+\fix{History, starting with Riemann and $6g-6$. 
+Assert existence as a coarse, rather than a fine moduli space (say what this means and give ref to Geometry of Schemes?) Deligne-Mumford, Knutson-Mumford (sp of Knutson??). Severi, curves of low genus. Strategy of general type, referring to the B-N chapter. ref to papers, and to Harris-Morrison. Prove the following as a corollary of general type}
 
 
 \input{footer}
