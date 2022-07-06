@@ -1,14 +1,19 @@
 \input{header.tex}
 
 \chapter{Linear Systems}
+This Chapter is intended largely as a review of material that should be familiar, couched in the language we will use throughout the book. Experienced readers 
+may want to skip it, and return if and when that is needed. Nearly all of the material can be found in texts such as \cite{H}, the main exception being the treatment of
+Noether's Theorem on canonical curves in Section~\ref{Noether theorem section}.
 
-Morphisms of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems and invertible sheaves. 
 
 \section{Morphisms to projective space, and families of Cartier divisors}
+Morphisms of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems, invertible sheaves, and line bundles.
 
-Let $\phi: C\to \PP^{r}$ be a morphism from a smooth curve $C$. If $H\subset \PP^r$ is a hyperplane that does not contain $\phi(C)$, then the preimage of $\phi(C)\cap H$ is a finite sets of points on $C$, with multiplicities when $H$ is tangent to $\phi(C)$ or passes through a singular point of $\phi(C)$. Such a set of points with non-negative integer multiplicities is called an \emph{effective divisor} on $C$; more generally, a \emph{divisor} (sometimes called a \emph{Weil divisor})on a scheme $X$ is an integral linear combination of codimension 1 subvarieties, and it is called \emph{effective} if the coefficients are all non-negative. The divisors that arise as the pullbacks of general hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function,
-and for a general hyperplane, this will be a nonzerodivisor; that is, it is an  \emph{effective Cartier divisor}. See \cite[pp. 140-146]{H} for more information; on a smooth curve every divisor is Cartier, so the difference between Weil and Cartier divisors will not be an issue for us.) 
+Let $\phi: C\to \PP^{r}$ be a morphism from a smooth curve $C$. If $H\subset \PP^r$ is a hyperplane that does not contain $\phi(C)$, then the preimage of $\phi(C)\cap H$ is a finite sets of points on $C$, with multiplicities when $H$ is tangent to $\phi(C)$ or passes through a singular point of $\phi(C)$. Such a set of points with non-negative integer multiplicities is called an \emph{effective divisor} on $C$; more generally, a \emph{divisor} (sometimes called a \emph{Weil divisor})on a scheme $X$ is an integral linear combination of codimension 1 subvarieties, and it is called \emph{effective} if the coefficients are all non-negative. he \emph{degree} of a divisor on a smooth curve
+is the sum of the coefficients; more generally it is the sum of the constituent codimension 1 subvarieties, weighted with their coefficients. 
 
+The divisors that arise as the pullbacks of general hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function,
+and for a general hyperplane, this will be a nonzerodivisor; that is, it is an  \emph{effective Cartier divisor}. See \cite[pp. 140-146]{H} for more information; on a smooth curve every divisor is Cartier, so the difference between Weil and Cartier divisors will not be an issue for us.) T
 The  word ``local'' scattered through the previous paragraph is needed because, if $X$ is a projective variety, then the only algebraic functions $X\to \CC$ are constant functions. (Proof: the image of a projective variety
 is again projective, and the only projective subvarieties of an affine variety are points.)
 
@@ -20,6 +25,7 @@ $H, H'\subset \PP^r$ are defined by the linear forms $h, h'$  then $1/h'$ has a 
 In this sense the divisor $H-H'$ on $\PP^n$ is defined by the rational function $\lambda= h/h'$. If neither $H$ nor $H'$ contain $C$ then the pullback of $\lambda$ is a well-defined, nonzero rational function on $C$, and the divisor 
 $\phi^{-1}(\phi(C)\cap H') - \phi^{-1}(\phi(C)\cap H)$ is defined by the pullback  $\phi^*(\lambda) := \lambda \circ f$. Thus the divisors arising from a given morphism to $\PP^{r}$ differ by the divisors of zeros minus poles of rational functions on $C$. 
 
+
 If $C$ is a smooth curve then the local ring $\sO_{C,p}$ of $C$ at a point $p$ is a discrete valuation ring, and if $\pi$ is a generator of the maximal ideal of $\sO_{C,p}$, then any rational
 function $\lambda$ on $C$ can be expressed uniquely as $u\pi^k$ where $u\in \sO_{C,p}$ is a unit and $k\in \ZZ$. We say that
 the \emph{order} of $\lambda$ at $p$, and write $k = \ord_p \lambda$. We associate $\lambda$ to the divisor
@@ -30,12 +36,23 @@ The \emph{class group} of $C$ is defined to be the the group of divisors on $C$ 
 Thus the divisors on $C$ that are preimages of intersections of $\phi(C)$ with different hyperplanes all belong to the same
 \emph{divisor class}, and form a linear system in the sense of the following section.
 
+It is important to note that the degree of the divisor associated to a rational function on a smooth curve is always 0: this is evident on $\PP^1$, where rational 
+functions are the ratios of two forms of the same degree; and a rational function $\phi$ on a smooth curve may be regarded as the pullback of a rational function
+on $\PP^1$ under the map given by $\phi$; since any non-constant map of smooth curves is flat, the pullback multiplies the degree of a divisor by the degree 
+of the covering. \fix{this sounds more advanced than the rest of this section; but it helps make the "linearly equivalent" concept in the next section sensible.}
+
 \section{Morphisms and linear systems}
 We want to understand morphisms to $\PP^r$ more than set-theoretically, and we want to be able to produce them from data on $C$. For this we use the notion of linear system (sometimes called linear series). 
 
 \begin{definition}
  A \emph{linear system} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf on $X$ and
- $V$ is a vector space of global sections of $\sL$. 
+ $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be $\dim \sV$ is defined to be
+ $$
+ \dim \sV := \dim V -1,
+ $$
+ While the \emph{degree} of $\sV$ is by definition the degree of the divisor of zeros and poles of any of its sections; since the 
+ ratio of two sections is a rational function, this is independent of the section chosen. A $g^r_d$ is by definition a linear system
+ of dimension $r$ and degree $d$.
 \end{definition}
 
 Our goal in the next sections is to explain and prove:
@@ -681,7 +698,7 @@ r(D) = d - 1 - \dim \overline{\phi(D)}.
 $$
 \end{theorem}
  
- \section{Canonical Curves}
+ \section{Canonical Curves}\label{Noether theorem section}
 We follow the treatment in \cite{Schreyer}, and treats a more general situation than that of the 
 images of smooth curves under the canonical embeddings.
 
