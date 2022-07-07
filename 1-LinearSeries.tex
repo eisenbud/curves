@@ -214,10 +214,30 @@ the hyperplane $\{x_k = 0\}\subset \PP^r$. This completes the explanation and pr
 
 \subsection{More about linear systems}
 
-Let $\sV = (\sL, V)$ be a linear sysytem on $X$.  The linear system is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$. If $\cL \cong \cO_C(D))$, we also write it as $|D|$. 
+Let $\sV = (\sL, V)$ be a linear system on $X$.  The linear system is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$. If $\cL \cong \cO_C(D))$, we also write it as $|D|$. 
  If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, a linear system of dimension 1 is called a \emph{pencil}, a linear system of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear system is called a \emph{web}. 
 
+We can relate the geometry of the morphism associated to an incomplete linear system $V \subset H^0(\cL)$ to the geometry of the morphism associated to the complete linear system $|\cL|$. In general, if $V \subset W \subset H^0(\cL)$ are a pair of nested linear systems, we have a linear map $W^* \to V^*$ dual to the inclusion $V \hookrightarrow W$, and a corresponding linear projection $\pi : \PP W^* \dashrightarrow \PP V^*$, with indeterminacy locus the subspace $\PP(Ann(V)) \subset \PP W^*$. In this case, we have 
+$$
+\phi_V = \pi \circ \phi_W;
+$$
+that is, we have the diagram 
+
+\begin{diagram}
+& & \PP W^* \\
+& \ruTo^{\phi_W} & \dDashto_\pi \\
+C & \rTo^{\phi_V} & \PP V^*.
+\end{diagram}
+In this case, given that $W$ is base-point-free, the condition that $V$ be base-point-free is equivalent to saying that the center $\PP(Ann(V))$ of the projection $\pi$ is disjoint from $\phi_W(C)$.
+
+By way of language, we will say that a curve $C \subset \PP^r$ embedded by a complete linear series is \emph{linearly normal}; this is equivalent to saying that the restriction map
+$$
+H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{C}(1))
+$$
+is surjective, which is in turn equivalent to saying that $C$ is not the regular  projection of a nondegenerate curve $\tilde C \subset \PP^{r+1}$.
+
 A linear system $\sV = (\sL, V)$ is called  \emph{very ample}  if it is basepoint-free and defines an embedding. If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear system $|D|$ is versy ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$.
+
 
 Given a linear system $\sV = (\sL, V)$ and an effective divisor $D$ on $C$, we'll  set
 $
@@ -229,6 +249,7 @@ $$
 $$
 The difference $\dim \sV - \dim \sV(-D)$ is called the \emph{number of conditions imposed by $D$ on the linear system $\sV$}; we say that $D$ \emph{imposes independent conditions} on $\sV$ if $\dim \sV - \dim \s V(-D) = \deg(D)$.
 
+On the other hand,  the invertible sheaf $\cL(D) = \cL \otimes \cO(D)$ to be the sheaf of rational sections $\sigma$ of $\cL$ satisfying $\ord_{p_i}(\sigma) \geq -m_i$ for all $i$; as a line bundle, this is the same as $\cL \otimes \cO_C(D)$.
 
 Via the correspondence of Theorem~\ref{morphisms and linear systems}, the statements about the geometry of a morphism $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear systems. We will see this in many instances throughout this book. It will be most convenient to formulate this in terms of the vector space $H^{0}(\sL)$ of global sections of $\sL$, and we write $h^{0}(\sL)$ for the dimension of this vector space. Here is a first example:
 
@@ -251,49 +272,20 @@ Let $\phi$ be the map defined by $\sL$, and suppose that the image of $\phi$ is 
 $$
 \phi^*: \sO_{D,\phi(p)} \to \sO_{C,p}
 $$
-is an isomorphism. What we have shown so far is that $
+is an isomorphism. What we have shown so far is that 
 $$
-\phi^*: \frac{\sO_{D,\phi(p)}}{\mm_{D,\phi(p)}^2} \to \frac{\sO_{C,p}}{\mm_{C,p)^2}
+\phi^*: \frac{\sO_{D,\phi(p)}}{\gm_{D,\phi(p)}^2} \to \frac{\sO_{C,p}}{\gm_{C,p}^2}
 $$
 is an isomorphism. This is not enough, as we can see from the fact that the completion of $\sO_{C,p}$ is not
-isomorphic to $\sO_{C,p}. 
+isomorphic to $\sO_{C,p}.$
 
-The key additional fact is that $phi$ makes $\sO_{C,p}$  a \emph{finitely generated} module over 
+The key additional fact is that $\phi$ makes $\sO_{C,p}$  a \emph{finitely generated} module over 
 $\sO_{D,\phi(p)}$;
 given this, the conclusion follows from Nakayama's Lemma, which shows that
-$$\sO_{D,\phi(p)}$ is generated as a module by the element 1, and then the fact that
-The required finiteness is a consequence of Theorem~\ref{FTET}, below.
+$\sO_{D,\phi(p)}$ is generated as a module by the element 1.
+See the exposition in \cite[Proposition 7.3 and Lemma 7.4]{H} for details.
 \end{proof}
 
-The following result is sometimes called the Fundamental Theorem of
-Elimination Theory since it implies that the image of a projective variety is closed; in analytic geometry
-it corresponds to the fact that projective space is compact, and thus all projective varieties are compact too.
-
-\begin{theorem}\label{FTET}
-If $\phi:X\to Y$ is a morphism of varieties, and $X$ is projective, then $\phi_*(\sO_{X})$ is a coherent sheaf
-on $Y$, and in  particular $\ph^*$ makes the local ring $\sO_{X,p}$ into a finitely generated module
-over $\sO_{Y, \phi(p)}$ for any $p\in X$.
-\end{theorem}
-
-We can also relate the geometry of the morphism associated to a incomplete linear system $V \subset H^0(\cL)$ to the geometry of the morphism associated to the complete linear system $|\cL|$. In general, if $V \subset W \subset H^0(\cL)$ are a pair of nested linear systems, we have a linear map $W^* \to V^*$ dual to the inclusion $V \hookrightarrow W$, and a corresponding linear projection $\pi : \PP W^* \dashrightarrow \PP V^*$, with indeterminacy locus the subspace $\PP(Ann(V)) \subset \PP W^*$. In this case, we have 
-$$
-\phi_V = \pi \circ \phi_W;
-$$
-that is, we have the diagram 
-
-\begin{diagram}
-& & \PP W^* \\
-& \ruTo^{\phi_W} & \dDashto_\pi \\
-C & \rTo^{\phi_V} & \PP V^*.
-\end{diagram}
-
-Note that in this case, given that $W$ is base-point-free, the condition that $V$ be base-point-free is equivalent to saying that the center $\PP(Ann(V))$ of the projection $\pi$ is disjoint from $\phi_W(C)$.
-
-By way of language, we will say that a curve $C \subset \PP^r$ embedded by a complete linear series is \emph{linearly normal}; this is equivalent to saying that the restriction map
-$$
-H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{C}(1))
-$$
-is surjective, which is in turn equivalent to saying that $C$ is not the regular  projection of a nondegenerate curve $\tilde C \subset \PP^{r+1}$.
 
 \begin{exercise}
 Extend the statement of Proposition~\ref{very ample} to incomplete linear systems; that is, prove that the morphism associated to a linear system $(\cL, V)$ is an embedding iff
@@ -307,10 +299,6 @@ An automorphism of $\PP^r$ takes hyperplanes to hyperplanes. Deduce that it is g
 $\sV = \sO_{\PP^r}(1), H^0(\sO_{\PP^r}(1))$, and use this to show that $\Aut \PP^r = PGL(r+1)$. 
 \end{exercise}
 
-\begin{exercise}
-Show that, if $s<r$, then the image of any morphism $\PP^r \to \PP^s$ is a single point.
-\end{exercise}
-
 For another example of the relationship between linear series on curves and morphisms of curves to projective space, consider a smooth curve $C \subset \PP^r$ embedded in projective space, and assume that $C$ is linearly normal. If $\phi : C \to C$ is any automorphism, we can ask whether $\phi$ is induced by an automorphism of $\PP^r$; in other words, does there exist an automorphism $\Phi : \PP^r \to \PP^r$ such that $\Phi(C) = C$ and $\Phi|_C = \phi$? The answer is expressed in the following exercise.
 
 \begin{exercise}\label{projective automorphism}
@@ -318,24 +306,23 @@ In the circumstances above, the automorphism $\phi$ is induced by an automorphis
 \end{exercise}
 
 \begin{example}
-Consider the morphism of $\PP^1to \PP^d$ given by the complete linear system $|\cO_{\PP^1}(d)|$; this is called the \emph{rational normal curve}. Since there is a unique invertible sheaf of each degree $n$ on $C$, and the curve is linearly normal, we see that \emph{every automorphism of a rational normal curve $C \subset \PP^d$  is projective}, so ``the'' rational normal curve of degree $d$ is well-defined up to an automorphism of $\PP^d$.  A similar statement holds
+Consider the rational normal curve of degree $d$, which is the image of the morphism $\PP^1\to \PP^d$ given by the complete linear system $|\cO_{\PP^1}(d)|$. Since there is a unique invertible sheaf of each degree $n$ on $C$, and the curve is linearly normal, we see that \emph{every automorphism of a rational normal curve $C \subset \PP^d$  is projective}, so ``the'' rational normal curve of degree $d$ is well-defined up to an automorphism of $\PP^d$.  A similar statement holds
 for the image of any Veronese morphism.
 \end{example}
 
-If $\sL, \sL'$ are linear systems on a smooth curve $C$ and $D = (\sigma)_0,D' = (\sigma')_0$ are the divisors of zeros of sections of $\sL$ and $\sL'$ respectively, then $D+D'$ is the divisor of zeros of the section $\sigma\otimes \sigma'$ of
-$\sL\otimes \sL'$.
+%If $\sL, \sL'$ are linear systems on a smooth curve $C$ and $D = (\sigma)_0,D' = (\sigma')_0$ are the divisors of zeros of sections of $\sL$ and $\sL'$ respectively, then $D+D'$ is the divisor of zeros of the section $\sigma\otimes \sigma'$ of
+%$\sL\otimes \sL'$.
 
-We  often want to consider sections of a given invertible sheaf $\cL$ with bounded singularities: if $D = \sum m_ip_i$ is a divisor, we define the invertible sheaf $\cL(D)$ to be the sheaf of rational sections $\sigma$ of $\cL$ satisfying $\ord_{p_i}(\sigma) \geq -m_i$ for all $i$; as a line bundle, this is the same as $\cL \otimes \cO_C(D)$.
 
 If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of $\phi$} is the number of points in the preimage of a general point of $\phi(X)$. Thus, for example, if $D := \sum_{p\in C} n_pp$ is a divisor on a smooth curve, and the linear system $|D|$ is basepoint free, then the degree of the morphism associated to $|D|$ is $\deg D := \sum_{p\in C} n_p$.
 
 \subsection{The most interesting linear system}
 
-The most important invertible sheaf on a smooth variety $X$ is the sheaf of global sections of the top exterior power of the  the cotangent bundle of $X$, called the canonical sheaf $\omega_X$ of $X$ (for canonical sheaves more generally, see Chapter~\ref{dualizing sheaf}). A section of 
+The most important invertible sheaf on a smooth variety $X$ is the sheaf of global sections of the top exterior power of the  the cotangent bundle of $X$, called the canonical sheaf $\omega_X$ of $X$. A section of 
 $\omega_X$ is thus a differential form of degree equal to the dimension of $X$, and the divisor class
 of such a form is usually denoted $K_C$. 
 \begin{theorem}
- The canonical sheaf of $\PP^{r}$ is $\sO_{\PP^{n}}(-r-1)$. 
+ The canonical sheaf of $\PP^{r}$ is $\sO_{\PP^{r}}(-r-1)$. 
 \end{theorem}
 \begin{proof}
 Let $x_{0}, \dots, x_{r}$ be the projective coordinates on $\PP^{r}$ and let  $U = \PP^{r}\setminus H$ be the affine open set where $x_{0} \neq 0$. Thus $U \cong \AA^{r}$ with coordinates $z_{1 := }x_{1}/x_{0}, \dots, z_{r}:=x_{r}/x_{0}$. The space of $r$-dimensional differential forms on $U$ is spanned by $d(x_{1}/x_{0})\wedge\cdots\wedge d(x_{r}/x_{0})$, which is regular everywhere in $U$. In view of the formula
@@ -355,7 +342,7 @@ is $-(r+1)H$, and this is the canonical class.
 A different derivation: there is a short exact sequence of sheaves of differentials, called the Euler sequence:
 $$
 0\to \Omega_{\PP^{r}} \to \sO_{\PP^{r}}^{r+1} (-1) \to \sO_{\PP^{r}} \to 0.
-$$. 
+$$
 Taking exterior powers, we see that
 $$
 \bigwedge^{r}\Omega_{\PP^{r}} \otimes \bigwedge^{1}\sO_{\PP^{r}} = \bigwedge^{r+1} (\sO_{\PP^{r}}^{r+1} (-1)) = \sO_{\PP^{r}}(-r-1).
@@ -436,6 +423,7 @@ $K_{C} = df^{*}(K_{X})+R$.
 A famous result asserted by Franchetta and proved by **** is that the canonical sheaf (and its powers) are the \emph{only} sheaves that can be chosen uniformly among all, or even almost all, smooth curves. For a more precise statement, see ****.
 \end{fact}
 
+\fix{revised to here 7/6/22}
 \section{Genus, Riemann-Roch and Serre Duality}
 
 We will henceforward assume that the reader is acquainted with sheaf cohomology, at least sufficiently to write
