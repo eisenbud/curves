@@ -159,8 +159,8 @@ space of lines in $V^{*}$. Note that the isomorphism $\PP(V)\cong \PP^{r}_{\CC}$
 of $\Aut(\PP^r) = PGL(r+1)$.
 
 
-Given a linear system $\sV:=(\sL, V)$  of dimension $r$ on a scheme $X$, where
-$\sL$ is an invertible sheaf on $X$ and $V = \langle\sigma_{0}, \dots \sigma_{r}\rangle$ is a vector space of global sections, we define the \emph{base locus} of $\sV$ to be the closed subscheme 
+Given a linear system $\sV:=(\sL, V)$  of dimension $r$ on a scheme $X$, 
+we define the \emph{base locus} of $\sV$ to be the closed subscheme 
 $$
 B_\sV := \bigcap_{i= 0}^{r}\{\sigma_{i} = 0\}.
 $$
@@ -184,13 +184,13 @@ that is, for every point $q\in X$, there is a section $\sigma \in V$ such that $
 
 \begin{example}\label{Veronese definition}
 The morphism from $\PP^r$ defined by the complete linear system $|\cO_{\PP^r}(d)|$ has target
-$\PP^{r+d\choose r}$, and takes a point $x_0,\dots x_r$ to the point whose coordinates are all the monomials of
-degree $d$ in $x_0,\dots x_r$. It is called the \emph{$d$-th Veronese morphism} of $\PP^r$. For example on $\PP^1$, this has the form
+$\PP^{{r+d\choose r}-1}$, and takes a point $x_0,\dots x_r$ to the point whose coordinates are all the monomials of
+degree $d$ in $x_0,\dots x_r$. It is called the \emph{$d$-th Veronese morphism} from $\PP^r$. For example on $\PP^1$, this has the form
 $$
 (x_0,x_1) \mapsto (x_0^d,\ x_0^{d-1}x_1,\ \dots,x_1^d).
 $$
 The image of $\PP^1$ under this morphism is called the \emph{rational normal curve} of degree $d$; in the case $d=2$ is the
-\emph{plane conic}, and if $d=3$ it is called the \emph{twisted cubic}. Veronese himself studied the image of $\PP^2$
+\emph{plane conic}, and in the case $d=3$ it is called the \emph{twisted cubic}. Veronese himself studied the image of $\PP^2$
 by the Veronese morphism of degree 2 now simply called \emph{the Veronese surface}.
 \end{example}
 
@@ -215,16 +215,19 @@ the hyperplane $\{x_k = 0\}\subset \PP^r$. This completes the explanation and pr
 \subsection{More about linear systems}
 
 Let $\sV = (\sL, V)$ be a linear sysytem on $X$.  The linear system is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$. If $\cL \cong \cO_C(D))$, we also write it as $|D|$. 
-The \emph{dimension of $\sV$} is $\dim V -1$ . If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, a linear system of dimension 1 is called a \emph{pencil}, a linear system of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear system is called a \emph{web}. 
+ If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, a linear system of dimension 1 is called a \emph{pencil}, a linear system of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear system is called a \emph{web}. 
 
-A linear system $\sV = (\sL, V)$ is called \emph{basepoint free} if it defines a morphism to $\PP(V)$, or equivalently if the
-the sections in $V$ generate $\sL$ locally at each point of $X$. It is called \emph{very ample}  if it is basepoint-free and defines an embedding. If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear system $|D|$ is versy ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$.
+A linear system $\sV = (\sL, V)$ is called  \emph{very ample}  if it is basepoint-free and defines an embedding. If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear system $|D|$ is versy ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$.
 
 Given a linear system $\sV = (\sL, V)$ and an effective divisor $D$ on $C$, we'll  set
+$
+\sV(-D) = (\sL(-D),V(-D))
+$
+where
 $$
-V(-D) := \{ \sigma \in V \mid \sigma(D) = 0 \}.
+\sL(-D): = \sL \otimes \sO(-D)\hbox{ and } V(-D) := \{ \sigma \in V \mid \sigma(D) = 0 \}.
 $$
-The difference $\dim V - \dim V(-D)$ is called the \emph{number of conditions imposed by $D$ on the linear system $\sV$}; we say that $D$ \emph{imposes independent conditions} on $\sV$ if $\dim V - \dim V(-D) = \deg(D)$.
+The difference $\dim \sV - \dim \sV(-D)$ is called the \emph{number of conditions imposed by $D$ on the linear system $\sV$}; we say that $D$ \emph{imposes independent conditions} on $\sV$ if $\dim \sV - \dim \s V(-D) = \deg(D)$.
 
 
 Via the correspondence of Theorem~\ref{morphisms and linear systems}, the statements about the geometry of a morphism $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear systems. We will see this in many instances throughout this book. It will be most convenient to formulate this in terms of the vector space $H^{0}(\sL)$ of global sections of $\sL$, and we write $h^{0}(\sL)$ for the dimension of this vector space. Here is a first example:
@@ -234,19 +237,43 @@ Let $\cL$ be an invertible sheaf on a smooth curve $C$. The complete linear syst
 $$
 h^0(\cL(-p)) = h^0(\cL) - 1 \quad \forall p \in C;
 $$
-and in this case the associated morphism $\phi_\cL$ is an embedding, so $|\cL|$ is very ample, iff
+and $\sL$ is very ample, iff
 $$
 h^0(\cL(-p-q)) = h^0(\cL) - 2 \quad \forall p, q \in C.
 $$
 \end{proposition} 
 
 \begin{proof}
-The statement $h^0(\cL(-p-q)) = h^0(\cL) - 2$ for $p \neq q$ implies that $\phi_\cL(p) \neq \phi_\cL(q)$. The tangent space of $C$ at $p$ is $(\sI_C(p)/\sI_C(p)^2)^*$, so the condition that there is a section of $\sL$ that vanishes at $p$, but does not vanish
-to order 2, implies that the differential $d\phi_\cL$ is injective at $p$.
+Since a divisor of degree $d$ cannot impose more than $d$ condtions on a linear system, the statement $h^0(\cL(-p-q)) = h^0(\cL) - 2$ for all $p, q$ implies the condition for base-point freeness; and saying that $\phi_\cL(p) \neq \phi_\cL(q)$ implies that the linear system defines a set-theoretic injection. The tangent space of $C$ at $p$ is $(\sI_C(p)/\sI_C(p)^2)^*$, so the condition that there is a section of $\sL$ that vanishes at $p$, but does not vanish
+to order 2, implies that the differential $d\phi_\cL$ is injective at $p$ as well.
+
+Let $\phi$ be the map defined by $\sL$, and suppose that the image of $\phi$ is the curve $D$. To say that $\phi$  is an isomorphism locally at a point $p$, we need to know that the map of local rings
+$$
+\phi^*: \sO_{D,\phi(p)} \to \sO_{C,p}
+$$
+is an isomorphism. What we have shown so far is that $
+$$
+\phi^*: \frac{\sO_{D,\phi(p)}}{\mm_{D,\phi(p)}^2} \to \frac{\sO_{C,p}}{\mm_{C,p)^2}
+$$
+is an isomorphism. This is not enough, as we can see from the fact that the completion of $\sO_{C,p}$ is not
+isomorphic to $\sO_{C,p}. 
+
+The key additional fact is that $phi$ makes $\sO_{C,p}$  a \emph{finitely generated} module over 
+$\sO_{D,\phi(p)}$;
+given this, the conclusion follows from Nakayama's Lemma, which shows that
+$$\sO_{D,\phi(p)}$ is generated as a module by the element 1, and then the fact that
+The required finiteness is a consequence of Theorem~\ref{FTET}, below.
 \end{proof}
 
-\fix{this uses a lot: even given the identification of the tangent space with $m/m^2$ we really only get an analytic isomorphism.
-To deduced the algebraic one we'd need a finiteness principal: projective maps with finite fibers are finite. Should we say  some of this??}
+The following result is sometimes called the Fundamental Theorem of
+Elimination Theory since it implies that the image of a projective variety is closed; in analytic geometry
+it corresponds to the fact that projective space is compact, and thus all projective varieties are compact too.
+
+\begin{theorem}\label{FTET}
+If $\phi:X\to Y$ is a morphism of varieties, and $X$ is projective, then $\phi_*(\sO_{X})$ is a coherent sheaf
+on $Y$, and in  particular $\ph^*$ makes the local ring $\sO_{X,p}$ into a finitely generated module
+over $\sO_{Y, \phi(p)}$ for any $p\in X$.
+\end{theorem}
 
 We can also relate the geometry of the morphism associated to a incomplete linear system $V \subset H^0(\cL)$ to the geometry of the morphism associated to the complete linear system $|\cL|$. In general, if $V \subset W \subset H^0(\cL)$ are a pair of nested linear systems, we have a linear map $W^* \to V^*$ dual to the inclusion $V \hookrightarrow W$, and a corresponding linear projection $\pi : \PP W^* \dashrightarrow \PP V^*$, with indeterminacy locus the subspace $\PP(Ann(V)) \subset \PP W^*$. In this case, we have 
 $$
