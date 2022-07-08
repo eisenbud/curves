@@ -28,7 +28,7 @@ We begin this chapter by giving three different characterizations of these varie
 
 In each section we will focus on the 2-dimensional case, both because this is the case that occurs in our applications, and to simplify the discussion. We will also indicate the surprisingly simple extension to higher dimensions.
 
-In this chapter we will refer to rational normal scrolls simply as scrolls. The third characterization we will give lends itself to a natural generalization to families of irrational ruled varieties, which we'll briefly mention, and the reader should be aware that in the literature the word ``scroll'' is used for this wider class.
+In this chapter we will refer to rational normal scrolls simply as scrolls. The third characterization we will give lends itself to a natural generalization to  irrational ruled varieties, which we'll briefly mention, and the reader should be aware that in the literature the word ``scroll'' is used for this wider class.
 
 [Notation:  $\PP^{N}$ and $\PP^{1}$ mean $\PP_{\CC}^{N}$ and $\PP_{\CC}^{1}$. ]
 
@@ -39,23 +39,27 @@ $$
 \PP^1\to\PP^a: (s,t) \mapsto (s^a, s^{a-1}t, \dots, t^a),
 $$
 corresponding to the complete linear series
-$|\cO_{\PP^1}(a)|$, is called a \emph{rational normal curve}; it is, up to linear transformations, the unique nondegenerate curve of degree $a$ in $\PP^a$ (\ref{rational normal curves section}).
+$|\cO_{\PP^1}(a)|$, is called a \emph{rational normal curve}; it is, up to linear transformations of $\PP^a$, the unique nondegenerate curve of degree $a$ in $\PP^a$ (\ref{rational normal curves section}).
 
-``Scrolls'' is one answer to the question: ``What are the higher-dimensional analogues of rational normal curves?'' To construct a scroll of dimension 2, we choose integers $0\leq a_1, 0< a_2$ and consider  a projective space 
+``Scrolls'' is one answer to the question: ``What are the higher-dimensional analogues of rational normal curves?'' To construct a scroll of dimension 2 in $\PP^n$, we start by choosing integers $0\leq a_1 \leq a_2$ with $a_1 + a_2 = n-1$, and consider  a pair of complementary linear subspaces $\PP^{a_1}$ and $\PP^{a_2} \subset \PP^n$---that is, we have an $(n+1)$-dimensional vector space $V$, expressed as a direct sum of subspaces $V_1, V_2 \subset V$ of dimensions $a_1+1$ and $a_2+1$, and let $\PP^{a_1} = \PP V_1$ and $\PP^{a_2} = \PP V_2 \subset \PP V$.
+
+Next, we take $\phi_i : \PP^1 \to \PP^{a_i}$ to be the map given by a basis of homogeneous polynomials of degree $a_i$. (If $a_i > 0$, this is of course the usual parametrization of a rational normal curve $C_i \subset \PP^{a_i}$; if $a_i = 0$ this is just the constant map from $\PP^1$ to a point.) Finally, we define the scroll $S(a_1, a_2)$ to be the union of the lines
 $$
-\PP^{a_1+a_2+1} = \PP_B(\CC^{a_1+1}\oplus \CC^{a_2+1})
+S(a_1,a_2) := \bigcup_{t\in \PP^1} \overline{\phi_1(p), \phi_2(p)}.
 $$
-with its two subspaces $\PP^{a_i} = \PP_B(\CC^{a_i+1})$. When $0< a_{1}, a_{2}$ we choose rational normal curves $C_i\subset \PP^{a_i}$, and we choose an isomorphism $\phi: C_1\to C_2$. We define the scroll $S(a_1, a_2)$ to be the union of the lines
+We call the curve $C_{a_{1}}$ the \emph{directrix} of the scroll, and we call the lines $ \overline{\phi_1(p), \phi_2(p)}$ the \emph{ruling} of the scroll. For example, the simplest nontrivial case is a smooth quadric surface in $\PP^3$, which we can realize as the union $S(1,1)$ of the lines joining corresponding points on two skew lines in $\PP^3$. 
+
+In the degenerate case $a_{1}= 0$, $C_{0}= \PP^{0}$ is a point, and the surface $S(0,a_{2})$ is the cone
+in $\PP^{a_{2}+1}$ over a rational normal curve of degree $a_{2}$. In this case, since $S(0,a_2)$ may be singular, it is sometimes useful to introduce the auxiliary surface
 $$
-S(a_1,a_2) := \bigcup_{p\in C_1} \overline{p, \phi(p)}.
+\tilde S(0, a_2) := \left\{ (t, q) \in \PP^1 \times \PP^n  \mid q \in \overline{\phi_1(t), \phi_2(t)}\right)\};
 $$
-We call the curves $C_{a_{1}}$ and $C_{a_{2}}$ the \emph{directrices} (singular: directrix) of the scroll, and we call the lines $\overline{p, \phi(p)}$ the \emph{rulings} of the scroll. To deal with the degenerate case $a_{i}= 0$ we think of $C_{i}$ as the image of $\PP^{1}$ under the map corresponding to the linear series $|\sO_{\PP^{1}}(a_{i})$, so that $C_{0}= \PP^{0}$ is a point. Thus if $a_{2}>0$ then we define $S(0,a_{2})$ to be the cone
-in $\PP^{a_{2+1}}$ over a rational normal curve of degree $a_{2}$. 
+this is just the blow-up of the cone $S(0, a_2)$ at its vertex; like the surfaces $S(a_1,a_2)$ with $a_1 > 0$ it is a $\PP^1$ bundle over $\PP^1$ and in particular smooth.
 
 
 It is not hard to prove directly that $S(a_1,a_2)$ is an algebraic variety, and we shall soon write down its defining equations.
 
-Note the behavior of some boundary cases: We may think of the ``rational normal curve of degree 0 as a point, so we take $S(0, a_2)$ to be the cone over the rational normal curve of degree $a_2$. A still less typical case occurs with $S(0,1) = \PP^2$, the ``cone over a line in the plane''. Since these cases are atypical, we will usually suppose $1\leq a_1\leq a_2$. 
+
 
 From the description above we can immediately deduce the dimension and degree of a scroll:
 
@@ -76,8 +80,8 @@ codimension $a_{1}+a_{2}+1 -2 = a_{1}+a_{2}-1$.
 To compute the degree, we choose a general hyperplane $H$ containing $\PP^{a_{1}}$. The intersection $H\cap C_{2}$ consists of $a_{2}$ reduced points. Thus the intersection $H\cap S$ consists of $C_{1}$ and the $a_{2}$ reduced lines connecting 
 the points of $H\cap C_{2}$ with their corresponding points on $C_{1}$; this union has degree $a_{1}+a_{2}$.
 
-If $0< a_{1}, a_{2}$ we also see from this argument that, given any point  $p\in S(a_{1},s_{2})$, there is
-a hyperplane section that is non-singular at $p$, and thus $S(a_{1},s_{2})$ is nonsingular at $p$.
+If $0< a_{1}$ we also see from this argument that, given any point  $p\in S(a_{1},a_{2})$, there is
+a hyperplane section that is non-singular at $p$, and thus $S(a_{1},a_{2})$ is nonsingular at $p$.
 \end{proof}
 
 A completely parallel construction creates rational normal scrolls of dimension $r$. Set $N = \sum_{i=1}^{r}(a_{i}+1)$, where each $a_{i}>0$ and
