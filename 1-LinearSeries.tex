@@ -6,8 +6,12 @@ may want to skip it, and return if and when that is needed. Nearly all of the ma
 Noether's Theorem on canonical curves in Section~\ref{Noether theorem section}.
 
 
-\section{Morphisms to projective space, and families of Cartier divisors}
-Morphisms of a smooth curve $C$ (or indeed of any scheme) to a projective space are conveniently studied using the closely related notions of Divisors, linear systems, invertible sheaves, and line bundles.
+\section{Projective varieties, Morphisms to projective space, and families of Cartier divisors}
+
+Though affine varieties are defined by the functions on them---the coordinate ring, which is defined by the variety---projective varieties have very few functions, and
+the homogeneous coordinate ring of a variety $X\subset \PP^n$ is not characteristic of $X$, but of $X$ together with some auxiliary data, an 
+either a family of divisors of a simple kind or an invertible sheaf and a collection of global sections. Such data, more generally, can be used to define a morphism or a birational map
+to a projective space, and we begin by describing these relations.
 
 Let $\phi: C\to \PP^{r}$ be a morphism from a smooth curve $C$. If $H\subset \PP^r$ is a hyperplane that does not contain $\phi(C)$, then the preimage of $\phi(C)\cap H$ is a finite sets of points on $C$, with multiplicities when $H$ is tangent to $\phi(C)$ or passes through a singular point of $\phi(C)$. Such a set of points with non-negative integer multiplicities is called an \emph{effective divisor} on $C$; more generally, a \emph{divisor} (sometimes called a \emph{Weil divisor})on a scheme $X$ is an integral linear combination of codimension 1 subvarieties, and it is called \emph{effective} if the coefficients are all non-negative. he \emph{degree} of a divisor on a smooth curve
 is the sum of the coefficients; more generally it is the sum of the constituent codimension 1 subvarieties, weighted with their coefficients. 
@@ -39,13 +43,13 @@ Thus the divisors on $C$ that are preimages of intersections of $\phi(C)$ with d
 It is important to note that the degree of the divisor associated to a rational function on a smooth curve is always 0: this is evident on $\PP^1$, where rational 
 functions are the ratios of two forms of the same degree; and a rational function $\phi$ on a smooth curve may be regarded as the pullback of a rational function
 on $\PP^1$ under the map given by $\phi$; since any non-constant map of smooth curves is flat, the pullback multiplies the degree of a divisor by the degree 
-of the covering. \fix{this sounds more advanced than the rest of this section; but it helps make the "linearly equivalent" concept in the next section sensible.}
+of the covering. 
 
 \section{Morphisms and linear systems}
-We want to understand morphisms to $\PP^r$ more than set-theoretically, and we want to be able to produce them from data on $C$. For this we use the notion of linear system (sometimes called linear series). 
+We want to understand morphisms to $\PP^r$ more than set-theoretically, and we want to be able to produce them from data on $C$. For this we use the notion of linear system (sometimes called linear series). Our goal in the next sections is to explain this connection:
 
 \begin{definition}
- A \emph{linear system} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf on $X$ and
+ A \emph{linear system} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $X$ and
  $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be $\dim \sV$ is defined to be
  $$
  \dim \sV := \dim V -1,
@@ -55,7 +59,7 @@ We want to understand morphisms to $\PP^r$ more than set-theoretically, and we w
  of dimension $r$ and degree $d$.
 \end{definition}
 
-Our goal in the next sections is to explain and prove:
+
 
 \begin{theorem}\label{morphisms and linear systems}
 There is a natural bijection between the set of nondegenerate morphisms $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and basepoint-free linear systems of dimension $r$ on $C$.\end{theorem}
@@ -64,7 +68,7 @@ Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in
  $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and basepoint-free means that there is no point of $C$ where all the sections in $V$
 vanish.
 
-\subsection{Invertible sheaves}
+\subsection{Invertible sheaves}\label{Invertible sheaves}
 Recall first that a \emph{coherent sheaf} $\sL$ on a scheme $X$ may be defined by
 giving 
 \begin{itemize}
@@ -426,9 +430,11 @@ A famous result asserted by Franchetta and proved by **** is that the canonical 
 \section{Genus, Riemann-Roch and Serre Duality}
 
 We will henceforward assume that the reader is acquainted with sheaf cohomology, at least sufficiently to write
-$H^i(X, \sF$ or  $H^i(\sF)$ (our preferred form) without blushing. If $D$ is a divisor on a scheme $X$ we will often
+$H^i(X, \sF$ or  $H^i(\sF)$ without blushing. If $D$ is a divisor on a scheme $X$ we will often
 abbreviate $H^i(\sO_X(D))$ to $H^i(D)$, and we write $h^i(\sF)$ or $h^{i}(D)$ for $\dim_{\CC}H^i(\sF)$ or $\dim_{\CC}H^i(D)$. For $i>0$, $h^{i}(\sF)$ often appears as a kind of ``error term'' in formulas when one would like to compute
-$H^{0}(\sF)$, so vanishing theorems have an important place in all of algebraic and analytic geometry. We will use the simplest of these often:
+$H^{0}(\sF)$, so vanishing theorems have an important place in all of algebraic and analytic geometry. We will use the simplest of these often.
+Note that if $\sF$ is a sheaf on $X$ and $X\subset Y$ then the cohomology  $H^i(X, \sF) = H^i(Y,\sF)$ canonically, so we will
+simply and unambiguously write $H^i(\sF)$ for either of these.
 
 \begin{theorem}[Serre Vanishing Theorem]\label{Serre vanishing} If $\sF$ is a coherent sheaf on $\PP^n$, then
 $H^{i}(\sF)= 0$ for all $i>\dim \supp \sF$; and  $H^{i}(\sF(d))= 0$ for all $i>0$ and $d\gg 0$  
@@ -468,23 +474,16 @@ By the Hopf index theorem, the topological Euler characteristic is the degree of
 $$
 g(C) = \frac{\deg(K_C)}{2} + 1.
 $$
-This formula serves to define the genus of a smooth projective curve over any field.
+This formula serves to define the genus of a smooth projective curve over any field. It is useful to 
 
 Other characterizations of the genus require more machinery to establish. We will state some here, and use  tools from the following section to prove equivalence.
 
 \begin{enumerate}
 
-\item\label{genus 1forms} $g(C)$ is the dimension of the vector space of regular 1-forms (that is, global sections of the
-cotangent sheaf) on $C$.
-
 \item 
-$$
-g(C) = 1 - \chi(\cO_C).
-$$
-
-Recall that if $X\subset \PP^{r} = \PP(V)$ is any projective scheme, the \emph{homogeneous coordinate ring} of $X$
-is the ring $S/I(X)$ where $S = \Sym V \cong \CC[x_{0}, \dots, x_{r}]$ and $I(V)\subset S$ is the ideal of homogeneous
-forms that vanish on $X$.
+$
+g(C) = 1 - \chi(\cO_C). \label{pa}
+$
 
 \item\label{genus Hilbert} If $C \subset \PP^r = \PP(V)$ is a smooth curve of degree $d$  with homogeneous coordinate ring
 $S_C$, then for sufficiently large $d$ the function $d \mapsto p_C(m) := \dim_\CC (S_C)_d$ is equal to a linear function
@@ -492,7 +491,15 @@ $$
 p_C(m) =  dm - g + 1,
 $$
 so $g(C) = dm+1-p_C(m)$. 
+
+\item\label{genus 1forms} $g(C)$ is the dimension of the vector space of regular 1-forms (that is, global sections of the
+cotangent sheaf) on $C$.
 \end{enumerate}
+
+
+Applied to a possibly singular or even non-reduced 1-dimensional projective scheme, the formula~\ref{pa} and the equivalent~\ref{genus Hilbert}, define
+what is called the \emph{arithmetic genus} $p_a(C)$. By contrast, if $C$ is reduced, so that the normalization
+$\widetilde C \to C$ makes sense, then the genus of $\widetilde C$ is called the \emph{geometric genus} of $C$.
 
 \subsection{The Riemann-Roch Theorem}
 
@@ -738,7 +745,7 @@ If $d$ times the degree of $C$ is $>2g-2$, the the Riemann-Roch Theorem tell us 
  
 \begin{definition} An embedding of a smooth curve
 $C\subset \PP^n$ is said to be \emph{projectively normal} if all the maps $H^0(\sO_{\PP^n}(d) \to H^0(\sO_C(d)$ are surjective,
-or equivalently h^1(\sI_{C/\PP^n}(d))=0$.
+or equivalently $h^1(\sI_{C/\PP^n}(d))=0$ for all $d\geq 0$.
 \end{definition}
  
 By Serre's Criterion of Normality  a 1-dimensional scheme  $C\subset \PP^n$
@@ -751,7 +758,7 @@ In particular, for any very ample invertible sheaf $\sL$ on a smooth curve $C$, 
 $$
 R(C, \sL) := \oplus_{m=0}^\infty H^0(\sL^m)
 $$
-is normal. See for example \cite[Theorem ***{Eisenbud1995}.
+is normal. See for example \cite[Theorem ***]{Eisenbud1995}.
 
 \begin{example}
 For $d\geq 1$ the rational normal curve $C\subset \PP^d$ of degree $d$ is projectively normal. 
@@ -881,7 +888,10 @@ $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$.
 \end{proof}
 
  \section{A bit about surfaces}
- We will often analyze curves  on a smooth surface; here are a few results that will be useful. Suppose for this section that $X$ is a smooth projective surface.
+ We will often analyze curves  on a smooth surface; here are a few results that will be useful. We refer to~\cite[Chapter V]{Hartshorne1977}
+ and~\cite[Chapter I]{B} for proofs.
+ 
+ We suppose for this section that $X$ is a smooth projective surface.
  We define $\Pic(X)$ to be the group whose elements are invertible sheaves on $X$.
 When two divisors $D,E$ on $X$ meet transeversally we define $D\cdot E$ to be the number of points in which they meet. If they have not common
 components, we can still define a non-negative intersection multiplicity $m_X(D,E,p)$ at each point $p$, and then set
@@ -906,16 +916,48 @@ $$
 $\Pic(X) \times \Pic(X) \to \ZZ$ extending the case of intersections of two transverse curves on $X$. 
 \end{theorem}
 
-For proofs and discussion see~\ref[Section V.1]{H} and \ref[Theorem I.4]{Beauville}. 
+A frequent use of the the intersection pairing is to compute the (arithmetic) genus of a curve on a surface,
+a result called the adjunction formula.
+
+\begin{theorem}[Adjunction Formula]\label{adjuction formula}
+If $C$ is a curve lying on a smooth surface $X$ then 
+$$
+\omega_C = \omega_X \otimes \sO_X(C) \otimes \sO_C.
+$$
+In particular 
+$$
+2p_a(C) -2 = (K_X+C).C.
+ $$
+\end{theorem}
 
 It is useful to know what happens under mappings of surfaces, particularly the case of the mapping
-corresponding to blowing up a point:
+corresponding to blowing up a point.
 
 \begin{theorem}
-If $\pi: X \to Y$ is a generically finite map of smooth surfaces, then the pullback map on divisors
-preserves
+If $\pi: X \to Y$ is a birational map of smooth surfaces, then the pullback map on divisors
+preserves the intersection pairing. If $X$ is the blowup of $Y$ at a point $p$, with exceptional
+divisor $E = \pi^{-1}(p)$ then:
+
+\begin{enumerate}
+ \item $\Pic X =\pi^*(\Pic Y) \oplus \ZZ E$.
+\item The canonical class on $X$ is given by $K_X = \pi^*(K_Y)+E$.
+ \item The intersection pairing on $\Pic X$ is given by
+ 
+\begin{itemize}
+\item $\pi^*(D).\pi^*(D') = D.D'$ for all $D,D'\in \Pic Y$.
+\item $\pi^*(D).E = 0$ for all $D\in \Pic Y$.
+ \item $E.E = -1$.
+ \item $K_X.E = -1$.
+ \item If $C$ is a curve that has an $m$-fold point at $p$ then $\pi^{-1}(C)$ contains $E$ with multiplicity $m$.
+ \end{itemize}
+\end{enumerate}
 \end{theorem}
-description of int pairing on blowup of a smooth surface at a point. can div via rational 2-forms
-proper transform of a curve with m-fold point has arith genus reduced by m choose 2.
-del Pezzo surfaces (we use Pic of smooth cubic). trans of monodromy is at best a cheerqful fact -- in the Mumford ch.
+
+Blowups occur frequently in the theory of surfaces, and are easy to characterize:
+\begin{theorem}
+If $E\subset X$ is a curve on a smooth projective surface $X$ and
+ that $E^2 = E.K_X = -1$ then $E$ can be ``blown down'' in the sense that
+ $X$ is the blowup of a smooth surface $Y$ at a point $p\in Y$, and $E$ is the exceptional divisor.
+\end{theorem}
+
 \input footer.tex
