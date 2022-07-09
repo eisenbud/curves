@@ -41,24 +41,29 @@ As an application of the mere existence of these spaces, we show in Theorem~\ref
 
 Let $C$ be a smooth curve. The space of effective divisors on $C$ can be characterized by a universal property. 
 
-\def\Cd{{C^{(d)}}}
 \begin{definition}
 A \emph{family} of degree $d$ divisors on $C$ is a flat map $X\to C\times B$ whose fibers over points of $B$ are divisors of degree $d$ on $C$ (more precisely:
 project isomorphically to divisors of degree $d$ on $C$.)
 
-The universal family of divisors is the pair $(\Cd,\ \sD \rTo^\alpha C \times \Cd)$ such that for any family of divisors  $X\beta C\times B$ there is a unique map
+The universal family of divisors is a pair $(\sC,\ \sD \rTo^\alpha C \times \sC)$ such that for any family of divisors  $X\rTo^\beta C\times B$ there is a unique map
 $\phi: B\to \Cd$ such that the family $X\to C\times B$ is the pullback of $\beta$ along $\phi$; that is, such that there is a pullback diagram
 $$
 \begin{diagram}
  X &\rTo &\sD\\
  \dTo^\beta&&\dTo^\alpha\\
- B& \rTo^\phi & \Cd
+ B& \rTo^\phi & \sC
 \end{diagram}
 $$
 \end{definition}
 
-From the universal property it is clear that the universal divisor is unique if it exists; we sketch the construction, using symmetric products.
+Equivalently, we may say that $\sC$ \emph{represents the functor} $F$ that takes a scheme $B$ to
+the set $F(B)$ of families of divisors on $C\times B$, 
+$$
+F \cong \Hom_{\rm{Schemes}}( -, \sC).
+$$
+From the universal property it is clear that the universal divisor is unique if it exists; we sketch the construction, using symmetric products. 
 
+We will construct a universal family over a quotient of the direct product $C^d$ by the group of permutations, and we pause to discuss such quotients.
 If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the map $X\to X/G$ induced by the inclusion of rings is finite, and the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see for example \cite[Theorem ***]{E}).  Since the map $X\to X/G$ is finite, $\dim X/G = \dim X$. The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (see exercise~\ref{quotient of projective})---as well.
 When the group $G$ is infinite, the situation becomes much more complex---see Section *** (in the Moduli chapter) for some  idea of what can and cannot be done.
 
@@ -98,7 +103,7 @@ gives us the diagram in the Theorem, and it can be shown that the map $\phi$ is 
 \end{fact}
  
 \begin{proposition}
-If $X$ is a smooth curve then each symmetric power $X^{(d)}$ is smooth.
+If $C$ is a smooth curve then each symmetric power $C^{(d)}$ is smooth.
 \end{proposition}
 \begin{proof}
  The general case follows from the case of $\AA^{1}$ because locally analytically the action of the symmetric group on $C^d$ is the same as for $\AA^1$: If  $\overline p \in X^{(d)}$, then it suffices to
@@ -158,15 +163,22 @@ Once again, given a smooth curve $C$ we define $Pic_d(C)$ by its universal prope
  families as equivalent if they differ by an invertible sheaf pulled back from $B$. Thus, given a point $p\in C$, and family of invertible sheaves
  is equivalent to a unique one whose restriction to $\{p\}\times B$ is trivial. 
  
- Since the Euler characteristic of the sheaves in such a family must be constant, the degree of the restriction of 
+ If $B$ is connected, then since the Euler characteristic of the sheaves in such a family must be constant, the degree of the restriction of 
  the sheaf to $C\times \{b\}$ for each point $b\in B$ is the same, and we define it to be the degree of $\sL$. 
  
  The Jacobian $\Jac(C) = \Pic_0(C)$ is a scheme together with a base point $p\in C$ and an invertible sheaf $\sP$ on $C\times \Jac(C)$ such
  that $\sP|_{\{p\}\times B} = \sO_B$, the trivial sheaf, having the universal property that if $\sM$ is an invertible sheaf on
  $C\times B$, trivial over $\{p\}\times B$, and having degree 0, there is a unique morphism $\phi: B \to \Jac(C)$ such that $\sL = (1\times \phi)^*(\sP).$
- The varieties $Pic_d(C)$ are all isomorphic to the Jacobian via the map sending an invertible sheaf $\sL$ of degree 0 to $\sL(dp)$, where $p\in C$ is the
+ The varieties $\Pic_d(C)$ are all isomorphic to the Jacobian via the map sending an invertible sheaf $\sL$ of degree 0 to $\sL(dp)$, where $p\in C$ is the
 base point.
 \end{definition}
+
+Just as in the case of the symmetric product, the universal property of the Jacobian and the Picard
+varieties may be expressed as an isomorphism of functors. If $Pic^C_d$ is the functor from Schemes to Sets
+sending a scheme $B$ to the set of families over $B$ of invertible sheaves of degree $d$ on $C$, then
+$$
+Pic^C_d \cong \Hom_{\rm Schemes}(-, \Pic_d(C)).
+$$
 
 The study of the Jacobian began in the 19th century as part of the study of integrals of algebraic equations, described below, 
 and there is an analytic construction that is fairly simple. But the search for an algebraic construction motivated a good deal of the
@@ -174,10 +186,10 @@ algebraic geometry done in the first half of the 20th century. It was finally co
 generality by Grothendieck and his school.
 
 \begin{fact}
-If $C$ is a smooth curve then $Pic_d(C)$, with its universal bundle, exists as a projective variety, and may be constructed purely algebraically---so that, for example, if the curve $C$ is defined over a given field $K$ then $J(C)$ will be defined over $K$ as well.  
+If $C$ is a smooth curve then $\Jac(C)$, with its universal bundle, exists as a projective variety, and may be constructed purely algebraically---so that, for example, if the curve $C$ is defined over a given field $K$ then $J(C)$ will be defined over $K$ as well.  
 \end{fact}
 
-We will now trace some of the history leading to the analytic construction of the Jacobian. A goal of the 19th century mathematicians was  to make sense of integrals of algebraic functions. In the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
+The history leading to the analytic construction of the Jacobian starts from a very different place. A goal of the 19th century mathematicians was  to make sense of integrals of algebraic functions. In the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
 $$
 \int_{t_0}^t \frac{dx}{\sqrt{x^2+1}}.
 $$
@@ -213,37 +225,28 @@ where the bar denotes complex conjugation $H^1(C, \CC)$, and the map $\iota$ is 
  Now
 $H_1(C,\CC) = \CC\otimes_\ZZ H_1(C,\ZZ)$, so any basis of $H_1(C,\ZZ)$ maps to a basis of 
  $H^1(C, \CC)$ invariant under conjugation in $H^1(C, \CC)$---See Voisin \cite{} or Griffiths-Harris~\cite{}. 
-  If there were a real dependence relation among elements 
- of the image of this basis under $\iota$, then it the same relation would hold after complex
- conjugation and thus hold on the image of the basis in $H_1(C,\CC)$, a contradiction. 
+%  If there were a real dependence relation among elements 
+% of the image of this basis under $\iota$, then it the same relation would hold after complex
+% conjugation and thus hold on the image of the basis in $H_1(C,\CC)$, a contradiction. 
 }
-one can show that $\iota$ induces an injective map of vector spaces 
-$$
-\RR \otimes H_1(C,\ZZ) = H_1(C,\RR) \to H^0(\omega_C)^*
-$$
+one can show that the image of $\iota$ is a lattice in $H^0(\omega_C)^*$, and thus the quotient
+is a torus of real dimension $2g$. Moreover, the
+complex structure on $H^0(\omega_C)^*$ yields a complex analytic structure on the quotient $\CC^{g}/\iota(\ZZ^{2g})$, which is thus a complex torus of  dimension $g$.  This quotient, with its structure as a $g$-dimensional complex manifold is the Jacobian of $C$.
 
- The complex structure on $H^0(\omega_C)^*$ yields a complex analytic structure on the quotient $\CC^{g}/\iota(\ZZ^{2g})$, which is thus a torus of real dimension $2g$.  We call this quotient, with its structure as a $g$-dimensional complex manifold, the Jacobian of $C$, denoted
+The point of this construction is that for any pair of points $p, q \in C$, the expression $\int_q^p$ describes a linear functional on $H^0(\omega_C)$, defined up to functionals obtained by integration over closed loops, and thus a point of $J(C)$. Thus, for example, if we choose a ``base point''  $p\in C$, we get a holomorphic map
 $$
-J(C) \; = \; V/\Lambda.
+\mu \; : \; C \; \to \; J(C); \quad q\mapsto \int_{p}^{q}
 $$
-The point of this construction is that for any pair of points $p, q \in C$, the expression $\int_q^p$ describes a linear functional on $H^0(\omega_C)$, defined up to functionals obtained by integration over closed loops, and thus a point of $J(C)$. Thus, for example, if we choose a ``base point''  $q\in C$, we get a holomorphic map
+and more generally the \emph{Abel-Jacobi} maps
 $$
-\mu \; : \; C \; \to \; J(C); \quad p\mapsto \int_{q}^{p}
+\mu_d \; : \; \Cd \; \to \; J(C); \quad (q_1,\dots, q_d) \mapsto \sum_i \int_{p}^{q_i}
 $$
 
 %To fully utilize this, we want to extend it from points  to divisors on $C$, and to do this we need to find a space parametrizing effective divisors on $C$. This is readily available: since an effective divisor of degree $d$ on $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C_d$ of $C$, defined to be the quotient of the ordinary product $C^d$ by the action of the symmetric group $\Sigma_d$ on $d$ letters. This is a smooth, $d$-dimensional projective variety; for a description, see for example Section 10.3.1 of~\ref{3264}.
 %
 %\fix{insert the discussion 3264 showing that the symmetric power is smooth; note that this fails in higher dimension.} 
 
-Having chosen a base point $q \in C$ as above, we get for each $d\geq 0$ the \emph{Abel-Jacobi} map
-$$
-\mu_d \; : \; C^{(d)} \; \to \; J(C),
-$$
-defined by
-$$
-\mu_d(p_1 + \dots + p_d) \; = \; \sum \int_q^{p_i}.
-$$
-When there is no ambiguity about $d$, we will denote them  by $\mu$.  and we 
+When there is no ambiguity about $d$, we will denote all these maps  by $\mu$.  and we 
 we define $\mu(-D)$ to be $-\mu(D)$. 
 The map $\mu$ is a group homomorphism in the sense that if $D, E$ are divisors, then
 $\mu (D+E) = \mu(D) + \mu(E)$; this is immediate when the divisors are effective, and 
@@ -292,10 +295,18 @@ dimension, the linear series $|D|$ has dimension $d-g = \dim C^{(d)} - \dim J(C)
 $\mu_{d}$ is surjective.
 \end{proof}
 
+\fix{It would be nice to exhibit -- even analytically -- a universal family over $J(C)$!}
+
+A priori, these constructions take place in the analytic category; but in fact they are all algebraic:
+
+\begin{fact}
+$J(C)$ exists as algebraic group of finite type over $\CC$ (and can be defined over any field) and the Abel-Jacobi maps are
+maps of algebraic varieties.
+\end{fact}
+
 \subsection{Applications to linear series}
 
-To illustrate some of the power of Abel's theorem, we will use it to prove a basic result:
-
+The applications of Abel's Theorem
 \begin{theorem}\label{g+3 theorem}
 Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general divisor of degree $g+3$ on $C$, then 
 $D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
@@ -331,11 +342,9 @@ $\mu(D) \in {\rm Im}(\nu)$. But the source $C^{(g-3)} \times C^{(2)}$ of $\nu$ h
 
 Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!
 
-\fix{we said early on that we don't need to know that $J(C)$ is algebraic; for the present purposes, it's enough to know that $J(C)$ is a  complex torus of dimension $g$. But in that case we do need to know that if $f : X \to Y$ is a holomorphic map of compact complex manifolds with $\dim X < \dim Y$, then $f(X)$ is a proper analytic subvariety of $Y$. we also need to know that the group law is algebraic. We need to have a formal statement of the existence as an algebraic group. Will be taken care of by the Characterization section, yet to be written.}
-
-
-\section{Picard varieties}\label{picard section}
-
+%
+%\section{Picard varieties}\label{picard section}
+%
 %The modern treatment of the Picard variety, due to Grothendieck and his school, defines the Picard variety as the solution to a universal problem. 
 %If $B$ is any scheme, then a \emph{family of invertible sheaves on $X$ over $B$} is an invertible sheaf on $X\times B$, flat over $B$.
 %We often minimize the impact of $B$ on this definition by saying that two invertible sheaves on $X$ over $B$ are equivalent
@@ -378,86 +387,85 @@ Thus Abel's theorem, which was born out of an effort to evaluate calculus integr
 %is a family of invertible sheaves of degree $d$ in the sense that for every point $p\in \Pic_{d, X/\CC}$ the restriction of $\cP$ to $X = X\times p$ is
 %a sheaf of degree $d$.
 %
-\fix{I commented out a page or so of material. We need to decide between notations: $\Pic(C)$ and  $\Pic_{X/\CC}$l}
-The functorial description of $\Pic_{X/\CC}$ makes it easy to prove a number of properties:
-
-\begin{theorem}
-If $X$ is a smooth curve, then $\Pic_{X/\CC}$ is smooth and the tangent space to $\Pic_{X/\CC}$ at any closed point is isomorphic to $H^1(\cO_X)$.
-\end{theorem}
-
-\begin{proof} We first prove the smoothness. Since we are working over an algebraically closed field, it is enough to check the criterion of formal smoothness \cite{Stacks project 37.11}: given an affine scheme
-$B$ and a subscheme $B'$ such that $\cI_{B'/B}^2 = 0$, we must show that any map $B'\to X$ extends to a map $B\to X$.
-But a map $B'\to X$ corresponds to an invertible sheaf on $X \times B'$, and similarly for $B$, so we must show that every
-invertible sheaf on $X\times B'$ extends to an invertible sheaf on $X \times B$. We will use the identification of the group of invertible sheaves  on a space
-with the first cohomology of the multiplicative group of invertible functions on the space.
-
-Note that  $\cI_{B'/B}$ is supported on $B'$, and Let $N$ be the pullback of $\cI_{B'/B}$ to $X \times B'$. From the exact sequence
-$$
-0\to N \to \cO_{X\times B} \to \cO_{X \times B'} \to 0
-$$
-we deduce an exact sequence of multiplicative groups 
-$$
-1 \to (1+N)\to \cO_{X\times B}^* \to \cO_{X\times B'}^* \to 1.
-$$
-Since $\cI_(B'/B)^2=0$, the sheaf of multiplicative groups, $(1+N)$ is isomorphic to the sheaf of additive groups $N$, and we get a long
-exact sequence in cohomology
-$$
-H^0 \cO_{X\times B}^* \to H^0 \cO_{X\times B'}^* \to H^1 \cO_X \to H^1(\cO_{X\times T}^*) \to H^1(\cO_{X^*\times B'}^*) \to H^2(N) 
-$$
-Since $B$ is affine and $X$ is 1-dimensional,  $H^2(N) = 0$, proving that we can extend invertible sheaves. 
-
-Rcall that the tangent space to a scheme $Y$ at a closed point $p: \Spec k \to Y$ is the set of extensions of $p$ to a morphism $\Spec k[\epsilon]/\epsilon^2 \to Y$.
-From the exact sequence above we see that the set of extensions is $H^1(\cO_X)$.
-\end{proof}
-
-We can also use the universal property to prove properness:
-
-\begin{corollary}
- $X$ is a nonsingular projective curve, then $\Pic_{X/\CC}$ is proper over $\CC$. 
- \end{corollary}
- 
-\begin{proof}
-We use the valuative criterion of properness.
-Thus we consider $D := \Spec R$, where $R$ is a discrete valuation ring, and an invertible sheaf $\cL$ on $X\times U$, where $U$ is the generic point of $D$, 
-and we must show that $\cL$ extends to $X\times D$.
-
-Choose a rational section of $\cL$, and let $\ell$ be the associated  Cartier divisor of zeros and poles. Because $X$ is smooth, the closure $\overline \ell$ of $\ell$ in $X\times D$
-is again a Cartier divisor, and the invertible sheaf associated to $\overline \ell$ is an extension of $\cL$.
-\end{proof}
-
-Since the points of $\Pic_{X/\CC}$ correspond to invertible sheaves, it is not surprising that $\Pic_{X/\CC}$ is an abelian algebraic group in a natural way:
-
-\begin{exercise}
-Write $\pi_{1,2}$ and $\pi_{1,3}$ for the projections 
-$$
-X \times \Pic_{X/\CC} \times \Pic_{X/\CC}  \to X \times \Pic_{X/\CC}
-$$ 
-onto the $(1,2)$ and $(1,3)$ factors, respectively. 
-The map $\Pic_{X/\CC} \times \Pic_{X/\CC} \to \Pic_{X/\CC}$ corresponding to the family $\pi_{1,2}^*\cP \otimes \pi_{1,3}^*\cP$
-makes $\Pic_{X/\CC}$ into an abelian algebraic group, with inverse operation $\Pic_{X/\CC} \to \Pic_{X/\CC}$ corresponding
-to the sheaf $\cP^{-1}$.
-\end{exercise}
-
-\begin{exercise}
-Show that if $X$ is an irreducible curve with a smooth closed point $p$ over a field $k$, then tensoring with $cO_X(p)$ induces
-isomorphisms $\Pic_{d, X/k} \to \Pic_{d+1, X/k}$ for all $d$. Without assuming the existence of a smooth closed point, show that
-$\Pic_{d, X/k} \to \Pic_{d+2g-2, X/k}$, where $g$ is the genus of $X$.
-\end{exercise}
-
-\begin{fact}
-There are smooth curves over certain fields such that
-$\Pic_{d, X/k}$ is not isomorphic to $ \Pic_{e, X/k}$, unless $d\equiv
- \pm e$ (mod $2g-2$) \cite{Kouvidakis}.
-\end{fact}
-
-%In parallel with the functor $B \mapsto Pic(X/B)$ we define the functor of relative divisors: 
+%\fix{I commented out a page or so of material. I also changed the smooth curve $X$ to $C$ and both  $Pic^d(C)$ and $Pic_{X/\CC}$ to $\Pic_d(C)$. }
+%The functorial description of $\Pic_d$ makes it easy to prove a number of properties:
+%
+%\begin{theorem}
+%If $C$ is a smooth curve, then $\Pic_d(C)$ is smooth and the tangent space to $\Pic_d(C)$ at any closed point is isomorphic to $H^1(\cO_C)$.
+%\end{theorem}
+%
+%\begin{proof} We first prove the smoothness. Since we are working over an algebraically closed field, it is enough to check the criterion of formal smoothness \cite{Stacks project 37.11}: given an affine scheme
+%$B$ and a subscheme $B'$ such that $\cI_{B'/B}^2 = 0$, we must show that any map $B'\to C$ extends to a map $B\to C$.
+%But a map $B'\to C$ corresponds to an invertible sheaf on $C \times B'$, and similarly for $B$, so we must show that every
+%invertible sheaf on $C\times B'$ extends to an invertible sheaf on $C \times B$. We will use the identification of the group of invertible sheaves  on a space
+%with the first cohomology of the multiplicative group of invertible functions on the space.
+%
+%Note that  $\cI_{B'/B}$ is supported on $B'$, and Let $N$ be the pullback of $\cI_{B'/B}$ to $C \times B'$. From the exact sequence
 %$$
-%Div(X/B) :=
-%\hbox{Divisors in $X\times B$, flat over $B$}\}
+%0\to N \to \cO_{C\times B} \to \cO_{C \times B'} \to 0
 %$$
-
-\def\cW{{\mathcal W}}
- 
+%we deduce an exact sequence of multiplicative groups 
+%$$
+%1 \to (1+N)\to \cO_{C\times B}^* \to \cO_{C\times B'}^* \to 1.
+%$$
+%Since $\cI_(B'/B)^2=0$, the sheaf of multiplicative groups, $(1+N)$ is isomorphic to the sheaf of additive groups $N$, and we get a long
+%exact sequence in cohomology
+%$$
+%H^0 \cO_{C\times B}^* \to H^0 \cO_{C\times B'}^* \to H^1 \cO_C \to H^1(\cO_{C\times T}^*) \to H^1(\cO_{C^*\times B'}^*) \to H^2(N) 
+%$$
+%Since $B$ is affine and $C$ is 1-dimensional,  $H^2(N) = 0$, proving that we can extend invertible sheaves. 
+%
+%Rcall that the tangent space to a scheme $Y$ at a closed point $p: \Spec k \to Y$ is the set of extensions of $p$ to a morphism $\Spec k[\epsilon]/\epsilon^2 \to Y$.
+%From the exact sequence above we see that the set of extensions is $H^1(\cO_C)$.
+%\end{proof}
+%
+%We can also use the universal property to prove properness:
+%
+%\begin{corollary}
+% $C$ is a nonsingular projective curve, then $\Pic_d(C)$ is proper over $\CC$. 
+% \end{corollary}
+% 
+%\begin{proof}
+%We use the valuative criterion of properness.
+%Thus we consider $D := \Spec R$, where $R$ is a discrete valuation ring, and an invertible sheaf $\cL$ on $C\times U$, where $U$ is the generic point of $D$, 
+%and we must show that $\cL$ extends to $C\times D$.
+%
+%Choose a rational section of $\cL$, and let $\ell$ be the associated  Cartier divisor of zeros and poles. Because $C$ is smooth, the closure $\overline \ell$ of $\ell$ in $C\times D$
+%is again a Cartier divisor, and the invertible sheaf associated to $\overline \ell$ is an extension of $\cL$.
+%\end{proof}
+%
+%Since the points of $\Pic_d(C)$ correspond to invertible sheaves, it is not surprising that $\Pic_d(C)$ is an abelian algebraic group in a natural way:
+%
+%\begin{exercise}
+%Write $\pi_{1,2}$ and $\pi_{1,3}$ for the projections 
+%$$
+%C \times \Pic_d(C) \times \Pic_d(C)  \to C \times \Pic_d(C)
+%$$ 
+%onto the $(1,2)$ and $(1,3)$ factors, respectively. 
+%The map $\Pic_d(C) \times \Pic_d(C) \to \Pic_d(C)$ corresponding to the family $\pi_{1,2}^*\cP \otimes \pi_{1,3}^*\cP$
+%makes $\Pic_d(C)$ into an abelian algebraic group, with inverse operation $\Pic_d(C) \to \Pic_d(C)$ corresponding
+%to the sheaf $\cP^{-1}$.
+%\end{exercise}
+%
+%\begin{exercise}
+%Show that if $C$ is an irreducible curve with a smooth closed point $p$ over a field $k$, then tensoring with $cO_C(p)$ induces
+%isomorphisms $\Pic_{d, C/k} \to \Pic_{d+1, C/k}$ for all $d$. Without assuming the existence of a smooth closed point, show that
+%$\Pic_{d, C/k} \to \Pic_{d+2g-2, C/k}$, where $g$ is the genus of $C$.
+%\end{exercise}
+%
+%\begin{fact}
+%There are smooth curves over certain fields such that
+%$\Pic_{d, C/k}$ is not isomorphic to $ \Pic_{e, C/k}$, unless $d\equiv
+% \pm e$ (mod $2g-2$) \cite{Kouvidakis}.
+%\end{fact}
+%
+%In parallel with the functor $B \mapsto Pic(C/B)$ we define the functor of relative divisors: 
+%$$
+%Div(C/B) :=
+%\hbox{Divisors in $C\times B$, flat over $B$}\}
+%$$
+%
+% 
 %\section{Differential of the Abel-Jacobi map}
 %
 %In this section we will describe the differential $d\mu$ of the Abel-Jacobi map $\mu : C_d \to J(C)$; this yields a sharper form of Abel's theorem.
@@ -516,27 +524,43 @@ $\Pic_{d, X/k}$ is not isomorphic to $ \Pic_{e, X/k}$, unless $d\equiv
 %
 %Now, note that the codimension of the image of $d\mu^*$---equivalently, the dimension of the kernel of the differential $d\mu$---is by the geometric Riemann-Roch theorem exactly the dimension of the fiber of $C_d$ over the point $\mu(D) \in J(C)$. In other words, the fibers of $\mu$ are smooth, and in particular reduced. Thus we can think of Proposition~\ref{differential of Abel-Jacobi} as a strengthening of the Abel-Clebsch theorem: while Abel and Clebsch show that the fibers of $\mu$ are complete linear series set-theoretically, we see from the above that it is in fact true scheme-theoretically.
 %
+%
 
-\fix{I commented out the section on the derivative of Abel-Jacobi.}\fix{revised to here}
-\section{Further consequences}
 
-The set of $g^r_d$s on $C$---that is, linear systems ofdegree $d$ and dimension $r$ can be given the structure of a scheme in its own right.
-We define $W^r_d(C) \subset \Pic^d(C)$ to be  the set of invertible sheaves $L \in \Pic^d(C)$ such that $h^0(L) \geq r+1$. This is  the locus where the fiber dimension of the Abel-Jacobi map $\mu : C_d \to \Pic^d(C)$ is at least $r$, which is closed by upper-semicontinuity of fiber dimension. 
+\fix{I commented out the sections on Picard functor and on the derivative of Abel-Jacobi.}
 
-Note that among the subvarieties $W^r_d$ are the images $W^0_d$ of the Abel-Jacobi maps; in other words, the locus of \emph{effective} divisor classes of degree $d$. The superscript is often omitted, meaning $W^0_d$ is usually written  $W_d$.
+\section{The scheme of $g^r_d$s}
 
-Moreover, the subsets $W^r_d \subset \Pic^d(C)$ can be given the structure of a scheme, in a natural way. To set this up, suppose we fix an effective divisor $D$  of degree $m$, with $m$ large enough that $h^0(L(D))$ is the same for all invertible sheaves $L$ of degree $d$---that is, with $m+d > 2g-2$. Now consider the Poincar\'e sheaf $\cL = \cL_{m+d}$ on $\Pic^{d+m}(C) \times C$. The pushforward $(\pi_1)_*(\cL_{m+d})$ is then a vector bundle on $\Pic^{d+m}(C)$ of rank $m+d-g+1$.
+\fix{ decide between $Pic \times C$ as here, and $C\times \Cd$ and $C\times \Pic$ as in the earlier sections.}
 
-Now take the restriction map
+The set $W^r_d(C)$ of  invertible sheaves that can support a $g^r_d$ on $C$---that is, can be given the structure of a scheme in its own right, characterized by saying that
+$W^r_d(C)$ represents the functor of families of invertible sheaves $L \in \Pic_d(C)$ on $C$ with  $h^0(L) \geq r+1$.
+As a set,
+ $W^r_d(C) \subset \Pic_d(C)$ is the set of invertible sheaves $L \in \Pic_d(C)$ such that $h^0(L) \geq r+1$. As a set, $W^r_d$ is locus where the fiber dimension of the Abel-Jacobi map $\mu : C_d \to \Pic_d(C)$ is at least $r$, which is closed by upper-semicontinuity of fiber dimension. 
+
+\fix{I revised but then commented out this construction:}
+%We can construct the scheme structure on $W^r_d$ as follows: Fx an effective divisor $D$  of degree $m$, with $m$ large enough that $h^0(L(D))$ is the same for all invertible sheaves $L$ of degree $d$---that is, with $m+d > 2g-2$. Let  $\cL = \cL_{m+d}$ be the Poincar\'e sheaf on $C \times \Pic_{d+m}(C) \times C$ and let $\rho$ be
+% the restriction map
 %$$
-%\cL_{m+d} \to \cL_{m+d}|_{\Pic^{d+m}(C) \times D}
+%\rho: \cL_{m+d} \to \cL_{m+d}|_{\Pic_{d+m}(C) \times D}.
 %$$
-and push it forward via the projection map to the first factor $\Pic^{d+m}(C)$. We get a map between two vector bundles of ranks $m+d-g+1$ and $m$; and if we identify $\Pic^{d+m}(C)$ with $\Pic^d(C)$ via tensoring with $\cO_C(D)$, the locus $W^r_d(C)$ is exactly the locus where the rank of this map is less than or equal to $m+d-g-r$. We can thus define the scheme $W^r_d$ as the determinantal scheme associated to this bundle map.
+%Writing $\pi$ for the projection map to the first factor $\Pic_{d+m}(C)$, we consider the map
+%$$
+%\pi_* \cL_{m+d} \rTo^{\pi_*\rho} \pi_*(\cL_{m+d}|_{\Pic_{d+m}(C) \times D})
+%$$ 
+%Because the restriction of $\cL$ to the fibers of $\pi$ all have $m+d-g+1$ sections, 
+%the source of $\pi_*\rho$ is a bundle of rank $m+d-g+1$. On the other hand the restriction
+%of $\cL$ to the zero-dimensional scheme $D$ is trivial, so the target
+%of $\ph_*\rho$ is a bundle of rank $m = \deg D$. If we identify $\Pic_{d+m}(C)$ with $\Pic_d(C)$ via tensoring with $\cO_C(D)$, then the locus $W^r_d(C)$ is the locus where the rank of this map is less than or equal to $m+d-g-r$. We give $W^r_d$ the determinantal scheme structure defined by the vanishing of
+%$\wedge^{1+m+d-g-r$(\pi_*\rho)$.
 
 
-One way to characterize this scheme structure is to say that the scheme $W^r_d$ represents the functor of families of invertible sheaves $L \in \Pic^d(C)$ on $C$ with  $h^0(L) \geq r+1$.
+Note that  the $W^r_d$ are nested insice $W^0_d$, the locus of all \emph{effective} divisor classes of degree $d$. We generally omit the superscript and write $W_d$ instead of $W^0_d$.
 
-In the other construction, we can actually parametrize the set of linear series $g^r_d$ on $C$: that is, there is a scheme  $G^r_d(C)$ parametrizing pairs $(L, V)$ with $L \in \Pic^d(C)$ and $V \subset H^0(L)$ a subspace of dimension $r+1$. Again, the scheme structure may be characterized by saying that $G^r_d(C)$ represents the functor of families of linear series on $C$. Note that the natural map $G^r_d \to W^r_d$ is an isomorphism over the dense open subset $W^r_d \setminus W^{r+1}_d$, and more generally its fiber over a point of $W^s_d \setminus W^{s+1}_d$ is a copy of  the Grassmannian $\GG(r, s)$. 
+A $g^r_d$ on $C$ can be thought of as the choice of an invertible sheaf $\sL$ of degree $d$ with at least $r$ sections together with a choice of an $r+1$-dimensional subspace in $H^0(\sL)$ Thus the set
+$G^r_d(C)$ of $g^r_d$s on $C$ maps to $W^r_d$, and the fiber over $\sL \in W^r_d(C)$ is the Grassmannian, $\GG_{r+1}(H^0(\sL))$. This suggests the (correct) result that there is a scheme  $G^r_d(C)$  that parametrizes $g^r_d$s  $(\sL, V)$ with $L \in \Pic_d(C)$. 
+
+Again, the scheme structure may be characterized by saying that $G^r_d(C)$ represents the functor of families of linear series on $C$. Note that the natural map $G^r_d \to W^r_d$ is an isomorphism over the dense open subset $W^r_d \setminus W^{r+1}_d$. 
 
 
 
@@ -587,75 +611,76 @@ $$
 
 There are extensions of Martens' theorem to the case $\dim(W^r_d(C)) = d-2r-1$ (Mumford) and $d-2r-2$ (Keem).
 
-
-\section{The Torelli theorem}
-\fix{consider making this a cheerful fact. or exercise?}
-In the examples above, we see that a lot of information about a curve $C$ is encoded in the geometry of its Jacobian. In fact, we can make this official: we have the celebrated
-
-\begin{theorem}[Torelli]
-A curve $C$ is determined by the pair $(J(C), \Theta)$.
-\end{theorem}
-
-\begin{proof}
-In fact, there are many ways of reconstructing a curve from its Jacobian; this one is  due to Andreotti, and makes essential use of our description of the differential of the Abel-Jacobi map. 
-
-A key  fact is that the Jacobian $J(C) = H^0(\omega_C)^*/H_1(C,\ZZ)$ is a torus, and so has trivial tangent bundle, with fiber $H^0(\omega_C)^*$ at every point. What this means is that if $X \subset J(C)$ is a smooth, $k$-dimensional subvariety, we have a \emph{Gauss map}
-$$
-\cG : X \to G(k, g) = G(k, H^0(\omega_C)^*),
-$$
-sending a point $x \in X$ to its tangent plane $T_xX \subset T_xJ(C) = H^0(\omega_C)^*$; more generally, if $X$ is singular then $\cG$ will be a rational map. In particular, if $X = \Theta = W_{g-1}$, we get a rational map
-$$
-W_{g-1} \rTo \PP^{g-1} = \PP(H^0(\omega_C))
-$$
-between two $g-1$-dimensional varieties, and it is the geometry of this map from which we can recover the curve $C$.
-
-To start with, let's identify an open subset of $W_{g-1}$ where the Gauss map is defined. This is not hard: a point $L \in W_{g-1} \setminus W^1_{g-1}$ is the image of a unique point $D \in C_{g-1}$ under the map $\mu$, and moreover we've seen that the differential $d\mu$ is injective at $D$; it follows that $L$ is a smooth point of $W_{g-1}$. 
-
-Moreover, we've identified the tangent space to $W_{g-1}$ at $L = \mu(D)$: as we saw, the differential $d\mu : T_D(C_{g-1}) \to T_L(J) = H^0(\omega_C)^*$ is just the transpose of the evaluation map $H^0(\omega_C) \to H^0(\omega_C(-D))$, and it follows that the tangent space to $W_{g-1}$ at the point $L$ is the hyperplane in $H^0(\omega_C)^*$ dual to the unique differential vanishing on $D$. To put it another way: if we think of $C$ as canonically embedded in $\PP(H^0(\omega_C)^*)$, then by geometric Riemann-Roch the divisor $D$ will span a hyperplane in $\PP(H^0(\omega_C)^*)$, and the Gauss map $\cG$ sends $L$ to the point in the dual projective space $\PP(H^0(\omega_C))$ corresponding to that hyperplane.
-
-\begin{fact}
-We have shown that the open subset $W_{g-1} \setminus W^1_{g-1}$ is contained in the smooth locus of $W_{g-1}$. In fact, they are equal; that is, $W^1_{g-1}$ is exactly the singular locus of $W_{g-1}$. This is a special case of the beautiful \emph{Riemann singularity theorem}, which says that for any point $L \in W_{g-1}$, the multiplicity $\mult_L(W_{g-1}) = h^0(L)$. For a proof of the Riemann singularity theorem, see for example [GH]. 
-\end{fact}
-
-\fix{David -- can we find another reference for the RST? The proof in [GH] is clear but somewhat sketchy; I don't have a copy handy, but as I recall it implicitly assumes that the tangent cone is generically reduced.}
-
-We are now in a position to describe the Gauss map
-$$
-\cG : W_{g-1} \rTo  \PP(H^0(\omega_C))
-$$
-explicitly in terms of the geometry of the canonical curve $C \subset \PP(H^0(\omega_C)^*)$. To start, let $p \in \PP(H^0(\omega_C))$ be a general point, dual to a general hyperplane $H \subset \PP(H^0(\omega_C)^*)$. The hyperplane $H$ will intersect the canonical curve $C$ transversely in $2g-2$ points $p_1,\dots,p_{2g-2}$; these points will be in linear general position (in particular, any $g-1$ of them will be linearly independent and so span $H$). It follows that the fiber of $\cG$ over the point $H$ will consist of the invertible sheaves $L = \cO_C(p_{\alpha_1} + \dots + p_{\alpha_{g-1}})$, where $p_{\alpha_1}, \dots, p_{\alpha_{g-1}}$ is any subset of $g-1$ of the points $p_i$; in particular, we see that the degree of the map $\cG$ is
-$$
-\deg (\cG) = \binom{2g-2}{g-1}.
-$$
-
-The next question is, where does this analysis fail---in other words, for which hyperplanes $H \subset \PP H^0(\omega_C)^*$ does the fiber of $\cG$ not consist of $\binom{2g-2}{g-1}$ points, or equivalently,
-what is the branch divisor of the map $\cG$? The answer is, the analysis above fails in two cases: when the points $p_1,\dots, p_{2g-2}$ are not in linear general position---specifically, when some $g-1$ of the points $p_i$ fail to be linearly independent; and when the hyperplane $H$ is not transverse to $C$, so that the hyperplane section $H \cap C$ consists of fewer than $2g-2$ distinct points.
-
-The first of these occurs in codimension 2 in $\PP H^0(\omega_C)$, and so does not contribute any components to the branch divisor of $\cG$. It follows that the branch divisor of the map $\cG$ is exactly the locus of hyperplanes $H \subset H^0(\omega_C)^*$ tangent to the canonical curve $C$; in other words, \emph{the branch divisor of $\cG$ is the hypersurface in $\PP H^0(\omega_C)$ dual to the canonical curve $C \subset \PP H^0(\omega_C)^*$}.
-
-Now we can  invoke the fact that the dual of the dual of a variety $X \subset \PP^n$ is $X$ itself (see for example [3264] or something by Kleiman). We thus have a way of recovering the curve $C$ from the data of the pair $(J, W_{g-1})$: simply put, \emph{the curve $C$ is the dual of the branch divisor of the Gauss map on $W_{g-1}$}, and the Torelli theorem is proved.
-
-\end{proof}
-
-The Torelli theorem for curves was the first instance of a class of theorems, called \emph{Torelli theorems}, to the effect that certain classes of varieties are determined to some degree by their Hodge structure; there are, for example, Torelli theorems of varying strength for K3 surfaces, cubic threefolds and fourfolds and hypersurfaces in $\PP^n$.
-
-\section{Additional topics}
-
-A couple of topics that would naturally go here, if we have the inclination and space.
-
-\subsection{Theta characteristics}
-
-Basically: introduce the notion of theta-characteristic (= square root of the canonical bundle), and prove the invariance of $h^0(\cL)$ mod 2. Describe the configuration of theta-characteristics on a given curve $C$ as a principal homogeneous space for the group $J(C)[2] \cong (\ZZ/2)^{2g}$ of torsion of order 2 in the Jacobian.
-
-Example: bitangents to a plane quartic; distinguished triples of bitangents
-
-\subsection{Intermediate Jacobians and the irrationality of cubic threefolds}
-
-First, describe the intermediate Jacobians $J(X)$ of higher-dimensional varieties $X$ by analogy with the case of curves; introduce the Abel-Jacobi maps from parameter spaces of cycles on $X$ to $J(X)$.
-
-Application: show that the intermediate Jacobian of a cubic threefold is not the Jacobian of a curve by calculating the degree of the Gauss map on the theta-divisor and showing it's not 70 (which by the calculation above it would be if $J(X)$ were a Jacobian). Deduce irrationality of $X$.
-
-I know this is a bit of a stretch for the current volume, but I'd really like to include it if at all possible: the proof in Clemens-Griffiths is a mess, and this is much simpler
+\fix{I commented out the Torelli theorem and the fantasy of the intermediate Jacobian etc.}
+%
+%\section{The Torelli theorem}
+%\fix{consider making this a cheerful fact. or exercise?}
+%In the examples above, we see that a lot of information about a curve $C$ is encoded in the geometry of its Jacobian. In fact, we can make this official: we have the celebrated
+%
+%\begin{theorem}[Torelli]
+%A curve $C$ is determined by the pair $(J(C), \Theta)$.
+%\end{theorem}
+%
+%\begin{proof}
+%In fact, there are many ways of reconstructing a curve from its Jacobian; this one is  due to Andreotti, and makes essential use of our description of the differential of the Abel-Jacobi map. 
+%
+%A key  fact is that the Jacobian $J(C) = H^0(\omega_C)^*/H_1(C,\ZZ)$ is a torus, and so has trivial tangent bundle, with fiber $H^0(\omega_C)^*$ at every point. What this means is that if $X \subset J(C)$ is a smooth, $k$-dimensional subvariety, we have a \emph{Gauss map}
+%$$
+%\cG : X \to G(k, g) = G(k, H^0(\omega_C)^*),
+%$$
+%sending a point $x \in X$ to its tangent plane $T_xX \subset T_xJ(C) = H^0(\omega_C)^*$; more generally, if $X$ is singular then $\cG$ will be a rational map. In particular, if $X = \Theta = W_{g-1}$, we get a rational map
+%$$
+%W_{g-1} \rTo \PP^{g-1} = \PP(H^0(\omega_C))
+%$$
+%between two $g-1$-dimensional varieties, and it is the geometry of this map from which we can recover the curve $C$.
+%
+%To start with, let's identify an open subset of $W_{g-1}$ where the Gauss map is defined. This is not hard: a point $L \in W_{g-1} \setminus W^1_{g-1}$ is the image of a unique point $D \in C_{g-1}$ under the map $\mu$, and moreover we've seen that the differential $d\mu$ is injective at $D$; it follows that $L$ is a smooth point of $W_{g-1}$. 
+%
+%Moreover, we've identified the tangent space to $W_{g-1}$ at $L = \mu(D)$: as we saw, the differential $d\mu : T_D(C_{g-1}) \to T_L(J) = H^0(\omega_C)^*$ is just the transpose of the evaluation map $H^0(\omega_C) \to H^0(\omega_C(-D))$, and it follows that the tangent space to $W_{g-1}$ at the point $L$ is the hyperplane in $H^0(\omega_C)^*$ dual to the unique differential vanishing on $D$. To put it another way: if we think of $C$ as canonically embedded in $\PP(H^0(\omega_C)^*)$, then by geometric Riemann-Roch the divisor $D$ will span a hyperplane in $\PP(H^0(\omega_C)^*)$, and the Gauss map $\cG$ sends $L$ to the point in the dual projective space $\PP(H^0(\omega_C))$ corresponding to that hyperplane.
+%
+%\begin{fact}
+%We have shown that the open subset $W_{g-1} \setminus W^1_{g-1}$ is contained in the smooth locus of $W_{g-1}$. In fact, they are equal; that is, $W^1_{g-1}$ is exactly the singular locus of $W_{g-1}$. This is a special case of the beautiful \emph{Riemann singularity theorem}, which says that for any point $L \in W_{g-1}$, the multiplicity $\mult_L(W_{g-1}) = h^0(L)$. For a proof of the Riemann singularity theorem, see for example [GH]. 
+%\end{fact}
+%
+%\fix{David -- can we find another reference for the RST? The proof in [GH] is clear but somewhat sketchy; I don't have a copy handy, but as I recall it implicitly assumes that the tangent cone is generically reduced.}
+%
+%We are now in a position to describe the Gauss map
+%$$
+%\cG : W_{g-1} \rTo  \PP(H^0(\omega_C))
+%$$
+%explicitly in terms of the geometry of the canonical curve $C \subset \PP(H^0(\omega_C)^*)$. To start, let $p \in \PP(H^0(\omega_C))$ be a general point, dual to a general hyperplane $H \subset \PP(H^0(\omega_C)^*)$. The hyperplane $H$ will intersect the canonical curve $C$ transversely in $2g-2$ points $p_1,\dots,p_{2g-2}$; these points will be in linear general position (in particular, any $g-1$ of them will be linearly independent and so span $H$). It follows that the fiber of $\cG$ over the point $H$ will consist of the invertible sheaves $L = \cO_C(p_{\alpha_1} + \dots + p_{\alpha_{g-1}})$, where $p_{\alpha_1}, \dots, p_{\alpha_{g-1}}$ is any subset of $g-1$ of the points $p_i$; in particular, we see that the degree of the map $\cG$ is
+%$$
+%\deg (\cG) = \binom{2g-2}{g-1}.
+%$$
+%
+%The next question is, where does this analysis fail---in other words, for which hyperplanes $H \subset \PP H^0(\omega_C)^*$ does the fiber of $\cG$ not consist of $\binom{2g-2}{g-1}$ points, or equivalently,
+%what is the branch divisor of the map $\cG$? The answer is, the analysis above fails in two cases: when the points $p_1,\dots, p_{2g-2}$ are not in linear general position---specifically, when some $g-1$ of the points $p_i$ fail to be linearly independent; and when the hyperplane $H$ is not transverse to $C$, so that the hyperplane section $H \cap C$ consists of fewer than $2g-2$ distinct points.
+%
+%The first of these occurs in codimension 2 in $\PP H^0(\omega_C)$, and so does not contribute any components to the branch divisor of $\cG$. It follows that the branch divisor of the map $\cG$ is exactly the locus of hyperplanes $H \subset H^0(\omega_C)^*$ tangent to the canonical curve $C$; in other words, \emph{the branch divisor of $\cG$ is the hypersurface in $\PP H^0(\omega_C)$ dual to the canonical curve $C \subset \PP H^0(\omega_C)^*$}.
+%
+%Now we can  invoke the fact that the dual of the dual of a variety $X \subset \PP^n$ is $X$ itself (see for example [3264] or something by Kleiman). We thus have a way of recovering the curve $C$ from the data of the pair $(J, W_{g-1})$: simply put, \emph{the curve $C$ is the dual of the branch divisor of the Gauss map on $W_{g-1}$}, and the Torelli theorem is proved.
+%
+%\end{proof}
+%
+%The Torelli theorem for curves was the first instance of a class of theorems, called \emph{Torelli theorems}, to the effect that certain classes of varieties are determined to some degree by their Hodge structure; there are, for example, Torelli theorems of varying strength for K3 surfaces, cubic threefolds and fourfolds and hypersurfaces in $\PP^n$.
+%
+%\section{Additional topics}
+%
+%A couple of topics that would naturally go here, if we have the inclination and space.
+%
+%\subsection{Theta characteristics}
+%
+%Basically: introduce the notion of theta-characteristic (= square root of the canonical bundle), and prove the invariance of $h^0(\cL)$ mod 2. Describe the configuration of theta-characteristics on a given curve $C$ as a principal homogeneous space for the group $J(C)[2] \cong (\ZZ/2)^{2g}$ of torsion of order 2 in the Jacobian.
+%
+%Example: bitangents to a plane quartic; distinguished triples of bitangents
+%
+%\subsection{Intermediate Jacobians and the irrationality of cubic threefolds}
+%
+%First, describe the intermediate Jacobians $J(X)$ of higher-dimensional varieties $X$ by analogy with the case of curves; introduce the Abel-Jacobi maps from parameter spaces of cycles on $X$ to $J(X)$.
+%
+%Application: show that the intermediate Jacobian of a cubic threefold is not the Jacobian of a curve by calculating the degree of the Gauss map on the theta-divisor and showing it's not 70 (which by the calculation above it would be if $J(X)$ were a Jacobian). Deduce irrationality of $X$.
+%
+%I know this is a bit of a stretch for the current volume, but I'd really like to include it if at all possible: the proof in Clemens-Griffiths is a mess, and this is much simpler
 
 \input footer.tex
 
