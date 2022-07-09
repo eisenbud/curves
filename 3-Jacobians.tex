@@ -18,21 +18,48 @@ $$
 \mu : \big\{ \text{effective divisors of degree } d \big\} \rTo \big\{ \text{invertible sheaves of degree } d \big\}.
 $$
 
-A priori, this is a map of sets. But it is a fundamental fact that both sets may  be given the structures of  algebraic varieties in a natural way, so that the map between them is regular. The geometry of this map governs the geometry of the curve in many ways.
 
-One part is relatively easy: the divisors on a smooth curve are parametrized by the \emph{symmetric powers} $C^{(d)}$ of the curve $C$, described in Section~\ref{symmetric section}. By contrast, the parametrization of the set of invertible sheaves on $C$ of a given degree by the points of an algebraic variety $\pic^d(C)$ is a major undertaking, one that historically brought complex analysis and algebraic geometry together. We'll describe the original construction of the varieties $\pic^d(C)$ by complex analysis in Section~\ref{picard section} below, and touch briefly on the algebraic constructions.
+A priori, this is a map of sets. But it is a fundamental fact that both sets may  be given the structures of  algebraic varieties in a natural way, so that the map between them is regular and respects the natural group structures on the two sets. The geometry of this map governs the geometry of the curve in many ways.
+We start with the divisors, which in our case are parametrized by the \emph{symmetric powers} $C^{(d)}$ of the curve $C$, described in Section~\ref{symmetric section}. 
 
-The fact that invertible sheaves of a given degree of a curve $C$ are parametrized by the points of a variety $\pic^d(C)$ has many consequences.  For example, applying dimension theory to $\pic^d(C)$, we will show in Theorem~\ref{g+3 theorem} that every curve can be embedded in projective space as a curve of degree $g+3$.
+The parametrization of the set of invertible sheaves on $C$ of a given degree $d$ by the variety $\Pic_d(C)$ requires different techniques. We will define it by a universal property in the category of schemes, but construct it only as an analytic variety, actually a complex torus, whose group structure reflects the product structure of
+sheaves in $\Jac(C) := \Pic_0(C)$, the family of line bundles of degree 0.
+Historically, the algebraic construction was a major milestone first reached in the work of Andre Weil in the middle of
+the 20th century, and was the reshaped by Grothendieck and his school. The interested reader will find a detailed account both of the history and the most
+modern theory in the exposition~\cite{Kleiman}.
 
-\section{Symmetric products}\label{symmetric section}
+The existence of these spaces has striking consequences. For example, we show in Theorem~\ref{g+3 theorem} that every curve can be embedded in projective space as a curve of degree $g+3$.
 
-If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the map $X\to X/G$ induced by the inclusion of rings is finite, and the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see for example \cite[Theorem ***]{E}), something that often fails when $G$ is infinite. Since the map $X\to X/G$ is finite, $\dim X/G = \dim X$. The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (see exercise~\ref{quotient of projective})---as well.
+\section{Symmetric products and the universal divisor}\label{symmetric section}
+
+Let $C$ be a smooth curve. The space of effective divisors on $C$ can be characterized by a universal property. 
+
+\def\Cd{{C^{(d)}}}
+\begin{definition}
+A \emph{family} of divisors over $C$ is a flat map $X\to C\times B$ whose fibers over points of $B$ are divisors of degree $d$ on $C$ (more precisely:
+project isomorphically to divisors of degree $d$ on $C$.)
+
+The universal family of divisors is the pair $(\Cd,\ \sD \rTo^\alpha C \times \Cd)$ such that for any family of divisors  $X\beta C\times B$ there is a unique map
+$\phi: B\to \Cd$ such that the family $X\to C\times B$ is the pullback of $\beta$ along $\phi$; that is, such that there is a pullback diagram
+$$
+\begin{diagram}
+ X &\rTo &\sD\\
+ \dTo^\beta&&\dTo^\alpha\\
+ B& \rTo^\phi & \Cd
+\end{diagram}
+$$
+\end{definition}
+
+From the universal property it is clear that the universal divisor is unique if it exists; we will now construct it, using symmetric products.
+
+If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the map $X\to X/G$ induced by the inclusion of rings is finite, and the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see for example \cite[Theorem ***]{E}).  Since the map $X\to X/G$ is finite, $\dim X/G = \dim X$. The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (see exercise~\ref{quotient of projective})---as well.
+When the group $G$ is infinite, the situation becomes much more complex---see Section *** (in the Moduli chapter) for some  idea of what can be done.
 
 \begin{exercise}
  Let $G$ be a finite group acting on a quasi-projective scheme $X$. Show that there is a finite covering of $X$ by invariant open affine sets. (Hint: consider the sum of the $G$-translates of a very ample divisor.)
 \end{exercise}
 
-For any variety $X$ \fix{I guess we need to say in the intro that varieties are quasi-projective...} we define the $d$-th symmetric power of $X$ to be the quotient of the Cartesian product $X^d$ of $d$ copies of $X$ by the action of the group of all permutations of the factors. The resulting variety $X^d/S_d$ is called the \emph{$d$-th symmetric power}, or \emph{$d$-th symmetric product}, of $X$, denoted  $X^{(d)}$. 
+For any quasi-projective variety $X$ we define the $d$-th symmetric power of $X$ to be the quotient of the Cartesian product $X^d$ of $d$ copies of $X$ by the action of the group of all permutations of the factors. The resulting variety $X^d/S_d$ is called the \emph{$d$-th symmetric power}, or \emph{$d$-th symmetric product}, of $X$, denoted  $X^{(d)}$. Since an effective divisor of degree $d$ on a curve $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C^{(d)}$. For this reason we will write the points of $\Cd$ as $d$-tuples.
 
 For example, if $X=\AA^{1}$ then $X^{d} = \AA^{d}$, and the ring of invariants of the symmetric group acting on
 $\cO_{\AA^{d}} = k[x_{1}, \dots, x_{d}]$ by permuting the variables is generated by the $d$ elementary symmetric functions, which generate a polynomial subring. Since the symmetric functions of the roots of a polynomial are the coefficients of
@@ -48,13 +75,27 @@ an isomorphism $\Sym^d(\PP^1)\to \PP^d$.
 Again, we may think of this map as taking a $d$-tuple of points to the
 homogeneous form of degree $d$ vanishing on it, which is unique up to scalars.
 
-Note that this argument does not say anything about the symmetric products of $\AA^2$, which are in fact singular---see Exercise~\ref{sym2A2}.
+Finally we come to the construction of the universal family:
 
-Since an effective divisor of degree $d$ on a curve $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C^{(d)}$.
+\begin{theorem}
+ There is a universal family of divisors $\sD\rTo^\alpha \Cd$ where
+ $\sD \subset C \times \Cd$ is the incidence correspondence 
+$$
+\sD := \{(x,(x_1,\dots x_d)) \mid x = x_i\hbox{ for some }i\}.
+$$
+and $\alpha: \sD \subset C \times \Cd$ is the inclusion.
+\end{theorem}
+ 
+\begin{proof}
+If $X \to C\times B$ is a family of divisors of degree $d$ on $C$ then we may define a set-theoretic map $\phi: B\to \Cd$ by sending $b\in B$ to the
+unordered $d$-tuple of points of the divisor that is the fiber over $b$. This together with the composition $X \to C \rTo^1 C$
+gives us the diagram in the Theorem, and we need only prove that the map $\phi$ is a map of schemes. \fix{how to finish?|}
+\end{proof}
 
-There is one aspect of the symmetric powers that is special to the case of curves:  
 
-\begin{proposition}\label{sym2A2}
+One aspect of the symmetric powers that is special to the case of curves:  
+
+\begin{proposition}
 If $X$ is a smooth curve then each symmetric power $X^{(d)}$ is smooth.
 \end{proposition}
 \begin{proof}
@@ -67,26 +108,7 @@ If $X$ is a smooth curve then each symmetric power $X^{(d)}$ is smooth.
  \end{proof}
 
 By contrast, if $\dim X \geq 2$ then the symmetric powers $X^{(d)}$ are singular for all $d \geq 2$.
-
-\begin{exercise}
-\begin{enumerate}
- \item We say that a group $G$ acts freely on $X$ if $gx = gy$ only when $g =1$ or $x=y$. Show that
- if $G$ is a finite group acting freely on a smooth affine variety $X$ then the quotient $X/G$ is smooth.
-\item Let $X = (\AA^{2})^{2}$ and let $G = \ZZ/2$ act on $X$ by permuting the two copies of $\AA^{2}$; algebraically,
-$(\AA^{2})^{2} = \Spec S$, with $S = k[x_{1},x_{2}, y_{1}, y_{2}]$ and the nontrivial element $\sigma\in G$ acts by
-$\sigma(x_{i}) = y_{i}$. 
-\item. Show that $G$ acts freely on the complement of the diagonal, but fixes the diagonal pointwise.
-\item Show that the algebra $S^{G}$ has dimension 4 and is generated by the 5 elements
-$$ 
-f_{1} = x_{1}+y_{1}, f_{2} = x_{2}+y_{2}, g_{1} = x_{1}y_{1}, g_{2} = x_{2}y_{2}, h = x_{1}y_{2}+x_{2}y_{1},
-$$
-perhaps by appropriately modifying the steps given in \cite[Exercise 1.6]{E}. 
-\item Show that $h^2$ lies in the subring generated by $f_1,\dots, f_4$, and thus $S^{(2)}$ is a hypersurface, singular
-along the  codimension 2 subset $f_{1} = f_{2} = 0$, which is the image of the diagonal subset of the 
-cartesian product $(\AA^{2})^{2}$.
-\end{enumerate}
-\end{exercise}
-
+See Exercise~\ref{sym2A2} for the case of $(\AA^2)^{(2)}$ and Exercise~\ref{free actions} for a well-behaved case.
 
 \begin{exercise}[The universal divisor of degree $d$]\label{universal divisor}
 Let $C$ be a smooth projective curve, and $C^{(d)}$ its $d$th symmetric power. Show that the locus
@@ -100,8 +122,48 @@ the symmetric product -- the fine moduli space for invariant divisors of degree 
 
 The variety $\cD$ is called the universal divisor on $C$ by virtue of the fact that for any family of divisors of degree $d$ on $C$---that is, a scheme $B$ and a subscheme $\cE \subset B \times C$ flat of degree $d$ over $B$, there is a unique morphism $\phi : B \to C^{(d)}$ such that $\cE$ is the pullback via $\phi$ of $\cD\subset C^{(d)} \times C$. Indeed, this amounts to saying that $C^{(d)}$ is the \emph{Hilbert scheme} parametrizing subschemes of $C$ of degree $d$. These statements are not generally true for higher-dimensional varieties; see Chapter~\ref{hilbert scheme chapter} and especially Exercise~\ref{symmetric power vs Hilbert scheme}
 
+\begin{exercise}\label{free actions}
+We say that a group $G$ acts freely on $X$ if $gx = gy$ only when $g =1$ or $x=y$. Show that
+ if $G$ is a finite group acting freely on a smooth affine variety $X$ then the quotient $X/G$ is smooth.
+\end{exercise}
+
+\begin{exercise}
+ \label{sym2A2} 
+ \begin{enumerate}
+ \item Let $X = (\AA^{2})^{2}$ and let $G := \ZZ/2$ act on $X$ by permuting the two copies of  $\AA^{2}$; algebraically,
+$(\AA^{2})^{2} = \Spec S$, with $S = k[x_{1},x_{2}, y_{1}, y_{2}]$ and the nontrivial element $\sigma\in G$ acts by
+$\sigma(x_{i}) = y_{i}$. 
+\item Show that $G$ acts freely on the complement of the diagonal, but fixes the diagonal pointwise.
+\item Show that the algebra $S^{G}$ has dimension 4 and is generated by the 5 elements
+$$ 
+f_{1} = x_{1}+y_{1}, f_{2} = x_{2}+y_{2}, g_{1} = x_{1}y_{1}, g_{2} = x_{2}y_{2}, h = x_{1}y_{2}+x_{2}y_{1},
+$$
+perhaps by appropriately modifying the steps given in \cite[Exercise 1.6]{E}. 
+\item Show that $h^2$ lies in the subring generated by $f_1,\dots, f_4$, and thus $S^{(2)}$ is a hypersurface, singular
+along the  codimension 2 subset $f_{1} = f_{2} = 0$, which is the image of the diagonal subset of the 
+cartesian product $(\AA^{2})^{2}$.
+\end{enumerate}
+\end{exercise}
+
+
 
 \section{Jacobians}
+
+Once again, given a smooth curve $C$ we define $Pic_d(C)$ by its universal property.
+
+\begin{definition}
+ A \emph{family of invertible sheaves on $C$ over a scheme $B$} is an invertible sheaf $\sL$ on $C\times B$, flat over $B$. We regard two such
+ families as equivalent if they differ by an invertible sheaf pulled back from $B$. Thus, given a point $p\in C$, and family of invertible sheaves
+ is equivalent to one whose restriction to $\{p\}\times B$ is trivial. 
+ 
+ Since the Euler characteristic of the sheaves in such a family must be constant, the degree of the restriction of 
+ the sheaf to $C\times \{b\}$ for each point $b\in B$ is the same, and we define it to be the degree of $\sL$. 
+ 
+ The Jacobian $\Jac(C) = \Pic_0(C)$ is a scheme together with a base point $p\in C$ and an invertible sheaf $\sP$ on $C\times \Jac(C)$ such
+ that $\sP|_{\{p\}\times B} = \sO_B$, the trivial sheaf, having the universal property that if $\sM$ is an invertible sheaf on
+ $C\times B$, trivial over $\{p\}\times B$, and having degree 0, there is a unique morphism $\phi: B \to \Jac(C)$ such that $\sL = (1\times \phi)^*(\sP).$
+
+\end{definition}
 
 To construct $\Pic^d(C)$ we start with $d=0$, and identify $\Pic^0(C)$ with  the \emph{Jacobian} $J(C)$ of $C$ using \emph{abelian integrals} and the classical topology. This produces a complex manifold rather than an algebraic variety, but has the virtue of being relatively concrete. \fix{I think we should make the following into a formal theorem-- in the characterization section --- which maybe doesn't exist yet?} The Jacobian $J(C)$ is in fact a projective variety, and may be constructed purely algebraically---so that, for example, if the curve $C$ is defined over a given field $K$ then $J(C)$ will be defined over $K$ as well. The search for such a construction was one of the driving forces of algebraic geometry in the first half of the 20th century, giving rise to the notion of abstract algebraic varieties. See for example \cite{??s} [Kleiman must have something for this].
 
