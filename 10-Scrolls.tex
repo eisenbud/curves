@@ -84,24 +84,28 @@ If $0< a_{1}$ we also see from this argument that, given any point  $p\in S(a_{1
 a hyperplane section that is non-singular at $p$, and thus $S(a_{1},a_{2})$ is nonsingular at $p$.
 \end{proof}
 
-A completely parallel construction creates rational normal scrolls of dimension $r$. Set $N = \sum_{i=1}^{r}(a_{i}+1)$, where each $a_{i}>0$ and
+A completely parallel construction creates rational normal scrolls of dimension $r$. Start with a series of integers $0 \leq a_1 \leq \dots \leq a_r$;
+set $N = \sum_{i=1}^{r}(a_{i}+1)$,  and
 decompose $\CC^{N}$ as
 $$
-\CC^{\sum_{i=1}^{r}(a_{i}+1)} = \oplus_{i=1}^{r}\CC^{a_{i}+1}.
+\CC^{N} = \bigoplus_{i=1}^{r}\CC^{a_{i}+1}.
 $$
-Let $\PP^{a_{i}}\subset \PP^{N}$ be the subspaces corresponding to the summands,  choose
-rational normal curves $C_{i}\subset \PP^{a_{i}}$ and choose isomorphisms $C_{1}\to C_{i}$. 
-Set
+Let $\PP^{a_{i}}\subset \PP^{N-1}$ be the subspaces corresponding to the summands,  choose
+maps $\phi_i : \PP^1 \to \PP^{a_{i}}$ be a map given by a basis of homogeneous polynomials of degree $a_i$, and define the scroll $S \subset \PP^{N-1}$ by
 $$
-S:=S(a_{1}, \dots, a_{r}) = \bigcup_{p\in C_{1}}\overline{p, \phi_{2}(p), \dots, \phi_{r}(p)}.
+S:=S(a_{1}, \dots, a_{r}) = \bigcup_{p\in C_{1}}\overline{\phi_1(p), \phi_{2}(p), \dots, \phi_{r}(p)}.
 $$
-The variety $S$ is nondegenerate of codimension $N-r$ and degree $\sum_{i}a_{i} = N-r+1$. The proof is similar to the one we gave for $r=2$.
-Note the case $r=1$, in which $S(a)$ is simply the rational normal curve of degree $a$. 
+The variety $S$ is nondegenerate of codimension $N-1-r$ and degree $\sum a_{i} = N-r$. The proof is similar to the one we gave for $r=2$.
+
+As in the surface case, if one or more of the indices $a_i$ are equal to 0, the resulting variety $S$ is a cone. In these cases, it is again useful in some settings to introduce the blow-up of this cone along its vertex, which we can realize as the variety
+$$
+\tilde S := \left\{ (t, q) \in \PP^1 \times \PP^n  \mid q \in \overline{\phi_1(t), \dots, \phi_r(t)}\right)\}.
+$$
 
 To put this result in context, we recall an elementary fact of projective geometry:
  
 \begin{proposition}\label{minimal degree}
- Any nondegenerate variety of codimension $c$ in $\PP^{N}$ has degree $\geq c +1$.
+ Any irreducible, nondegenerate variety of codimension $c$ in $\PP^{N}$ has degree $\geq c +1$.
 \end{proposition}
 
 \begin{proof} We do induction on $c$.The case $c=0$ being trivial,
@@ -116,13 +120,13 @@ $\pi_{p}(L)$ meets $X'$ in the images of the points of $L\cap X$ other than $p$,
 $\deg X\geq \deg X'+1$. By induction, $\deg X' \geq \codim X'+1 = \codim X$, completing the argument.
 \end{proof}
 
-Thus scrolls are \emph{varieties of minimal degree}. The reader already knows that the rational normal curves of degree $a$ in $\PP^{a}$ are the only curves of degree $a$ and codimension $a-1$. A celebrated Theorem of Del Pezzo (for surfaces) and Bertini (in general) generalizes this statement:
+Thus scrolls are \emph{varieties of minimal degree}. The reader already knows that the rational normal curves of degree $a$ in $\PP^{a}$ are the only irreducible, nondegenerate curves of degree $a$ and codimension $a-1$. A celebrated theorem of del Pezzo (for surfaces) and Bertini (in general) generalizes this statement:
 
-\begin{theorem}\label{classification of scrolls} 
-Any nondegenerate variety $X\subset \PP^{N}$ with with $\deg X = \codim X+1$, is either a scroll or the Veronese surface in $\PP^{5}$ or a cone over one of these.
-\end{theorem}
+\begin{fact}\label{classification of scrolls} 
+Any irreducible, nondegenerate variety $X\subset \PP^{N}$  with $\deg X = \codim X+1$, is either a quadric hypersurface, a scroll, the Veronese surface in $\PP^{5}$, or a cone over the Veronese surface.
+\end{fact}
 
-A proof is given in an appendix to this book. \fix{do we want to keep this??}
+A proof may be found in \cite{****} (centennial paper)
 
 One interesting way to view the construction above is that we chose subvarieties $C_{i}\subset \PP^{a_{i}}$ and a one-to-one correspondence between them, that is, a subscheme
 $\Gamma\subset \prod_{i}C_{i}$ that projects isomorphically onto each $C_{i}$; the scroll is then the
@@ -423,21 +427,6 @@ in $\CC^{2}\otimes \CC^{a}\otimes \CC^{N+1}$, or, equivalently, as an $a\times (
 \cite[Theorems *** and ***]{Gantmacher} for a modern exposition. 
 \end{proof}
 
-In fact it will be convenient to widen the definition of scrolls to allow cones over scrolls as well: indeed, if we think of a \emph{rational normal curve of degree 0}, then the cone over $S(a_{1}, \dots, a_{r})$with $b$-dimensional  vertex is $S(0,\dots,0, a_{1}, \dots a_{r})$, where there are 
-$b$ zeros in the sequence. With this in mind, we can say that giving a scroll of codimension $a-1$ is ``the same'' as giving a 1-generic $2\times a$ matrix of linear forms.
-
-There are not many types of varieties of minimal degree:
-
-\begin{fact}
-Suppose that $X\subset \PP^{N}$ is a nondegenerate variety of minimal degree; that is, 
-$\deg X - 1 = \codim X$. Then $X$ is one of the following:
-\begin{itemize}
-\item a quadric hypersurface;
-\item a (cone over the) Veronese surface $\PP^{2}\subset \PP^{5}$; or
-\item a (cone over a) rational normal scroll.
-\end{itemize}
-\end{fact}
-
 
 We have used an important result from commutative algebra.
 We say that a matrix of forms is \emph{homogeneous} if the entries $f_{i,j}$ satisfy
@@ -454,9 +443,10 @@ that is, if the determinant of each $2\times 2$ submatrix is ``naturally'' homog
 \end{proof}
 
 \begin{exercise}\label{many quadrics}
- If $X$ is a nondegenerate projective variety of codimension $c$ whose homogeneous ideal
+ If $X \subset \PP^n$ is an irreducible, nondegenerate projective variety of codimension $c$ whose homogeneous ideal
  contains ${c\choose 2}$ independent quadratic forms, then $X$ is a variety of degree $c$.
- \fix{give hint?}
+ 
+Hint: Let $Y = X \cap H$ be a general hyperplane section of $X$ and consider the restriction map $H^0(\cI_{X/\PP^n}(2)) \to H^0(\cI_{Y/\PP^{n-1}}(2))$; repeat $n-c$ times.
 \end{exercise}
 
 \begin{corollary}\label{hyperelliptic and trigonal} Suppose that one of the following holds:

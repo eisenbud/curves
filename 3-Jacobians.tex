@@ -17,15 +17,16 @@
 
 An essential construction in studying a curve $C$ is the association of a divisor  to an invertible sheaf---in other words, the map
 $$
-\mu : \big\{ \text{effective divisors } on C\big\} \rTo \big\{ \text{invertible sheaves } on C \big\}.
+\mu : \big\{ \text{effective divisors of degree $d$ on C}\big\} \rTo \big\{ \text{invertible sheaves of degree $d$ on C} \big\}.
 $$
+sending $D$ to $\cO_C(D)$.
 
-A priori, this is a map of sets. But it is a fundamental fact that both sets may  be given the structures of  algebraic varieties in a natural way, so that the map between them is regular and respects the natural group structures on the two sets. The geometry of this map governs the geometry of the curve in many ways.
+A priori, this is a map of sets. But it is a fundamental fact that both sets may  be given the structures of  algebraic varieties in a natural way, so that the map between them is regular. The geometry of this map governs the geometry of the curve in many ways.
 
-Note that both the source and the target of $\mu$ are disjoint unions, indexed by degree, and $\mu$ sends degree $d$ divisors to degree $d$ sheaves. Each degree is represented, as we shall see, by
-an irreducible variety. Indeed the 
+%Note that both the source and the target of $\mu$ are disjoint unions, indexed by degree, and $\mu$ sends degree $d$ divisors to degree $d$ sheaves. Each degree is represented, as we shall see, by
+%an irreducible variety. Indeed the 
 
-We start with the effective divisors. Since $C$ is smooth, effective divisors on $C$ may be thought of as finite subschemes, and thus
+We start with the effective divisors. Since $C$ is smooth, an effective divisor of degree $d$ on $C$ may be thought of as a subscheme $D \subset C$ of dimension 0 and degree $d$, and thus
 the family of effective divisors of degree $d$ on $C$ is a Hilbert scheme. We will see that this Hilbert scheme may be identified with
 the $d$-th \emph{symmetric power}  of $C$, described in Section~\ref{symmetric section}. 
 
@@ -39,39 +40,61 @@ As an application of the mere existence of these spaces, we show in Theorem~\ref
 
 \section{Symmetric products and the universal divisor}\label{symmetric section}
 
-Let $C$ be a smooth curve. The space of effective divisors on $C$ can be characterized by a universal property. 
+Let $C$ be a smooth curve. The space of effective divisors on $C$ can be characterized by a universal property. We start by saying what we mean by a ``family of effective divisors of degree $d$ on $C$:"
 
 \begin{definition}
-A \emph{family} of degree $d$ divisors on $C$ is a flat map $X\to C\times B$ whose fibers over points of $B$ are divisors of degree $d$ on $C$ (more precisely:
-project isomorphically to divisors of degree $d$ on $C$.)
-
-The universal family of divisors is a pair $(\sC,\ \sD \rTo^\alpha C \times \sC)$ such that for any family of divisors  $X\rTo^\beta C\times B$ there is a unique map
-$\phi: B\to \Cd$ such that the family $X\to C\times B$ is the pullback of $\beta$ along $\phi$; that is, such that there is a pullback diagram
-$$
-\begin{diagram}
- X &\rTo &\sD\\
- \dTo^\beta&&\dTo^\alpha\\
- B& \rTo^\phi & \sC
-\end{diagram}
-$$
+Let $B$ be any scheme. A \emph{family} of degree $d$ divisors on $C$ parametrized by the scheme $B$ is a closed subscheme $X\subset B\times C$ whose intersection with fibers $\{b\} \times C \cong C$ over points of $B$ are divisors of degree $d$ on $C$.
 \end{definition}
 
-Equivalently, we may say that $\sC$ \emph{represents the functor} $F$ that takes a scheme $B$ to
-the set $F(B)$ of families of divisors on $C\times B$, 
+Given this, we have a contravariant functor 
+$$
+F : (schemes) \to (sets),
+$$
+defined by taking a scheme $B$ to the set of families of divisors of degree $d$ over $B$; if $\pi : B' \to B$ is any morphism, the induced map $F(B) \to F(B')$ is defined by taking a family $\cD \subset B \times C$ to the preimage of $\cD$ under the map $\pi \times Id : B' \times C \to B \times C$. As with any moduli problem, we say that a scheme $\cC$ is a fine moduli space for divisors of degree $d$ on $C$ if we have an isomorphism of functors
 $$
 F \cong \Hom_{\rm{Schemes}}( -, \sC).
 $$
-From the universal property it is clear that the universal divisor is unique if it exists; we sketch the construction, using symmetric products. 
+This is equivalent to the existence of a \emph{universal family} $\cD \subset \cC \times C$, with the property that for any family $X \subset B \times C$ of divisors on $C$ over any scheme $B$, there is a unique map $\phi : B \to \cC$ such that $X = (\phi \times Id)^{-1}(\cD)$.
 
-We will construct a universal family over a quotient of the direct product $C^d$ by the group of permutations, and we pause to discuss such quotients.
-If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the map $X\to X/G$ induced by the inclusion of rings is finite, and the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see for example \cite[Theorem ***]{E}).  Since the map $X\to X/G$ is finite, $\dim X/G = \dim X$. The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (see exercise~\ref{quotient of projective})---as well.
+From the universal property it is clear that a fine moduli space for divisors of degree $d$ on $C$ is unique if it exists. Indeed, it does exist, and we'll sketch the construction, using symmetric products. This construction relies on the existence of quotients of schemes by finite groups, and we'll pause here to discuss this issue.
+
+
+%The universal family of divisors is a pair $(\sC,\ \sD \rTo^\alpha C \times \sC)$ such that for any family of divisors  $X\rTo^\beta C\times B$ there is a unique map
+%$\phi: B\to \Cd$ such that the family $X\to C\times B$ is the pullback of $\beta$ along $\phi$; that is, such that there is a pullback diagram
+%$$
+%\begin{diagram}
+% X &\rTo &\sD\\
+% \dTo^\beta&&\dTo^\alpha\\
+% B& \rTo^\phi & \sC
+%\end{diagram}
+%$$
+%\end{definition}
+%
+%Equivalently, we may say that $\sC$ \emph{represents the functor} $F$ that takes a scheme $B$ to
+%the set $F(B)$ of families of divisors on $C\times B$, 
+%$$
+%F \cong \Hom_{\rm{Schemes}}( -, \sC).
+%$$
+%%From the universal property it is clear that the universal divisor is unique if it exists; we sketch the construction, using symmetric products. 
+%
+%We will construct a universal family over a quotient of the direct product $C^d$ by the group of permutations, and we pause to discuss such quotients.
+
+\subsubsection{Finite group quotients}
+
+
+If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the map $X\to X/G$ induced by the inclusion of rings is finite, and the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see for example \cite[Theorem ***]{E}).  Since the map $X\to X/G$ is finite, $\dim X/G = \dim X$. 
+
+The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (see exercise~\ref{quotient of projective})---as well.
+
 When the group $G$ is infinite, the situation becomes much more complex---see Section *** (in the Moduli chapter) for some  idea of what can and cannot be done.
 
 \begin{exercise}
  Let $G$ be a finite group acting on a quasi-projective scheme $X$. Show that there is a finite covering of $X$ by invariant open affine sets. (Hint: consider the sum of the $G$-translates of a very ample divisor.)
 \end{exercise}
 
-For any quasi-projective variety $X$ we define the $d$-th symmetric power of $X$ to be the quotient of the Cartesian product $X^d$ of $d$ copies of $X$ by the action of the group of all permutations of the factors. The resulting variety $X^d/S_d$ is called the \emph{$d$-th symmetric power}, or \emph{$d$-th symmetric product}, of $X$, denoted  $X^{(d)}$. Since an effective divisor of degree $d$ on a curve $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C^{(d)}$. For this reason we will write the points of $\Cd$ as $d$-tuples.
+As an example of this general construction, if $X$ is any scheme or any quasi-projective variety $X$ we define the $d$-th symmetric power of $X$ to be the quotient of the Cartesian product $X^d$ of $d$ copies of $X$ by the action of the group of all permutations of the factors. The resulting variety $X^d/S_d$ is called the \emph{$d$-th symmetric power}, or \emph{$d$-th symmetric product}, of $X$, denoted  $X^{(d)}$. 
+
+%Since an effective divisor of degree $d$ on a curve $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C^{(d)}$. For this reason we will write the points of $\Cd$ as $d$-tuples.
 
 For example, if $X=\AA^{1}$ then $X^{d} = \AA^{d}$, and the ring of invariants of the symmetric group acting on
 $\cO_{\AA^{d}} = k[x_{1}, \dots, x_{d}]$ by permuting the variables is generated by the $d$ elementary symmetric functions, which generate a polynomial subring. Since the symmetric functions of the roots of a polynomial are the coefficients of
@@ -86,6 +109,13 @@ localize on each of the standard affine open sets $(\AA^1)^d=\AA^d$ to the usual
 an isomorphism $\Sym^d(\PP^1)\to \PP^d$.
 Again, we may think of this map as taking a $d$-tuple of points to the
 homogeneous form of degree $d$ vanishing on it, which is unique up to scalars.
+
+\subsection{Symmetric products of curves}
+
+We have stepped all over our punchline, but let's go ahead and deliver it anyway:
+\begin{fact}
+If $C$ is a smooth projective curve, then the $d$th symmetric power $C^{(d)}$ of $C$ is the fine moduli space for divisors of degree $d$ on $C$.
+\end{fact}
 
 Finally we come to the definition of the universal family:
 
