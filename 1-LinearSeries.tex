@@ -49,12 +49,12 @@ of the covering.
 We want to understand morphisms to $\PP^r$ more than set-theoretically, and we want to be able to produce them from data on $C$. For this we use the notion of linear system (sometimes called linear series). Our goal in the next sections is to explain this connection:
 
 \begin{definition}
- A \emph{linear system} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $X$ and
+ A \emph{linear system} on a scheme $C$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $C$ and
  $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be $\dim \sV$ is defined to be
  $$
  \dim \sV := \dim V -1,
  $$
- While the \emph{degree} of $\sV$ is by definition the degree of the divisor of zeros and poles of any of its sections; since the 
+ If $C$ is a smooth curve, then the divisor of zeros and the divisor of poles of a (rational) section of of $\sV$ are subschemes, and the \emph{degree} of $\sV$ is by definition the degree of the divisor of poles minus the degree of the divisor of zeros of any of its sections; since the 
  ratio of two sections is a rational function, this is independent of the section chosen. A $g^r_d$ is by definition a linear system
  of dimension $r$ and degree $d$.
 \end{definition}
@@ -67,6 +67,8 @@ There is a natural bijection between the set of nondegenerate morphisms $\phi : 
 Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane; the dimension of the series
  $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and basepoint-free means that there is no point of $C$ where all the sections in $V$
 vanish.
+
+\fix{make sure we don't assume that $C$ is a smooth curves without saying so!}
 
 \subsection{Invertible sheaves}\label{Invertible sheaves}
 Recall first that a \emph{coherent sheaf} $\sL$ on a scheme $X$ may be defined by
@@ -148,7 +150,15 @@ $
 $
 and the global section $1\in H^0(\sO_{\PP^{r}})\subset H^0(\sO_{\PP^{r}}(D))$, restricted to
 $U_{i}$, is $F/(x_{0}^{d})$ times the local generator of $\sO_{\PP^{r}}(D)$ and thus vanishes on $D$.
- Because every
+ 
+To compute $H^0(\cO_{\PP1} (d))$ directly, let $D = z_1 +z_2 +\cdots+z_d$ be a divisor of degree d and suppose that the coordinates are chosen so that none of the $z_i$ are at infinity. The sections of $\cO_{\PP1} (D)$ are the rational functions with poles in $\AA^1$ only at 
+the $z_i$. In affine coordinates, identifying the $z_i$ with complex numbers, these can each be written
+$$
+\frac{g(z)}{(z-z_1)(z-z_2)\cdots(z-z_d)}
+$$
+where $g$ is a polynomial. The condition that the point at infinity is not a pole is the condition $\deg(g) \leq d$. With this condition, these rational functions form a vector space of dimension $d+1$.
+
+More generally, because every
 rational function on $\PP^{r}$ has degree 0, and any two global sections differ by a rational
 function, it follows that every global section of $\sO_{\PP^{r}}(d)$ vanishes on a divisor of degree $d$. Thus
 we may identify $H^{0}(\sO_{\PP^{r}}(d))$ with the ${n+d\choose n}$-dimensional vector space of forms of degree $d$ on $\PP^{r}$.
@@ -217,6 +227,7 @@ the hyperplane $\{x_k = 0\}\subset \PP^r$. This completes the explanation and pr
 
 
 \subsection{More about linear systems}
+
 
 Let $\sV = (\sL, V)$ be a linear system on $X$.  The linear system is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$. If $\cL \cong \cO_C(D))$, we also write it as $|D|$. 
  If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, a linear system of dimension 1 is called a \emph{pencil}, a linear system of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear system is called a \emph{web}. 
@@ -498,8 +509,9 @@ cotangent sheaf) on $C$.
 
 
 Applied to a possibly singular or even non-reduced 1-dimensional projective scheme, the formula~\ref{pa} and the equivalent~\ref{genus Hilbert}, define
-what is called the \emph{arithmetic genus} $p_a(C)$. By contrast, if $C$ is reduced, so that the normalization
-$\widetilde C \to C$ makes sense, then the genus of $\widetilde C$ is called the \emph{geometric genus} of $C$.
+what is called the \emph{arithmetic genus} $p_a(C)$. 
+
+Any reduced, irreducible 1-dimensional scheme $C$ has a normalization $\widtilde C$ which is a smooth curve. The genus of $\widetilde C$ is called the \emph{geometric genus} of $C$.
 
 \subsection{The Riemann-Roch Theorem}
 
@@ -760,7 +772,7 @@ R(C, \sL) := \oplus_{m=0}^\infty H^0(\sL^m)
 $$
 is normal. See for example \cite[Theorem ***]{Eisenbud1995}.
 
-\begin{example}
+\begin{example}\label{rnc is projectively normal}
 For $d\geq 1$ the rational normal curve $C\subset \PP^d$ of degree $d$ is projectively normal. 
 We have $H^0(\sO_{\PP^1}(md))  = \CC[s,t]_{md}$. Th natural natural map
 $$
