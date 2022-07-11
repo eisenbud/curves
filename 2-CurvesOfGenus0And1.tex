@@ -518,6 +518,11 @@ perhaps with a few low degree exceptions. Is this true of a general rational cur
 
 \section{Curves of genus 1}
 
+We will describe the maps of a curve of genus 1 given by
+the complete linear systems in the lowest degree cases of interest, 2,3,and 4 and 5. Along the
+way we will see evidence for the assertion that there is a 1-parameter family of non-isomorphic
+curves of genus 1, an assertion that we will make precise in ****.
+
 %We cannot begin to describe everything that has been said or done with curves of genus 1, or \emph{elliptic curves}\footnote{Technically, an elliptic curve is a smooth curve of genus 1 with a distinguished point, called the \emph{origin}.}. They appeared, in the second half of the 19th century, as key objects in the developing subjects of geometry, number theory and complex analysis, and the literature is correspondingly rich. Though all curves of genus 0 are isomorphic to $\PP^1$ and on a given curve of genus 0 all divisors of a given degree are linearly equivalent, neither of the analogous statements holds true for curves of genus 1. The ways in which 19th century geometers dealt with this fact has shaped much of algebraic geometry.
 %
 %Classical geometers \fix{who?? as plane cubics? or is this Riemann?} observed that there was a one-parameter family of curves of genus 1 up to isomorphism, and that on a given curve of genus 1 there was a one-dimensional family of divisors up to linear equivalence. These were perhaps the earliest examples of \emph{moduli spaces}, and they were ultimately generalized to the moduli space $M_g$ of curves of genus $g$, and the Picard variety $\Pic^d(C)$ parametrizing divisors of degree $d$ on a given curve $C$ up to linear equivalence.
@@ -528,30 +533,68 @@ perhaps with a few low degree exceptions. Is this true of a general rational cur
 
 On a curve $E$ of genus 1 the canonical sheaf has degree 0; and since it has 1 section, it must be $\sO_C$.
 Since invertible sheaves of negative degree cannot have any sections, the \trr shows that
-$h^0( \sL) = \deg \sL$ for any $\sL$ of positive degree. 
+$h^0( \sL) = \deg \sL$ for any $\sL$ of positive degree. Among the surprising consequences is that, once we choose a point as 
+origin (technically, making our curve of genus 1 into an \emph{elliptic curve}) the  the curve becomes
+an algebraic group. 
 
+The group operation is easy to describe:
+Let $E$ be an elliptic curve with origin $o\in E$ chosen arbitrarily. If $p,q$ are points of $E$ then $\sO_E(p+q-o)$ has degree 1, and
+thus has a unique global section. This vanishes at a unique point $r$, which may also be described as the unique
+effective divisor linearly equivalent to $p+q-o$. For example if $r$ is the  unique point
+linearly equivalent to $2o-p$ then $p+r-o\sim o$, so that $r$ is the inverse $-p$ of $p$. Note that this operation is commutative.
 
-We will describe the maps given by
-the complete linear systems in the lowest degree cases of interest, 2,3,and 4 and 5. Along the
-way we will see evidence for the assertions that there is a 1-parameter family of non-isomorphic
-curves of genus 1, and that on each such curve there is a 1-parameter family of distinct
-invertible sheaves, assertions that we will make precise in later chapters.
+\begin{proposition}\label{group law} Let $E$ be an elliptic curve with origin $o\in E$.
+If we set $p+q = r$ where $r$ is the unique effective divisor linearly equivalent to $p+q-o$, then $E$ becomes an algebraic group
+and the group of divisor classes is divisible, in the sense that for divisor $D$ of degre $n>0$
+ there is a point $p$ such that $D\sim np$.
+ \end{proposition}
+
+\begin{remark}
+From the definition it is obvious that 
+the map
+$E \to \Pic_0(E)$ sending $p$ to $\sO_E(p-o)$ is an isomorphism of groups.
+ In Chapter~ref{JacobianChapter} we will see a similar construction: the Picard groups can be made into
+varieties, and for a curve $C$ of genus $g$ the divisors
+of degree $g$ form a group that is birational to $Pic_g(C)$; for smooth curves any birational map is an isomorphism.
+For the moment we simply note that there is a natural sense in which the invertible sheaves of degree 0 on $E$
+form a 1-dimensional family; and multiplying by any fixed divsor of degree $d$, we see similarly
+that $\Pic^d(E)$ is naturally a 1-dimensional family. 
+\end{remark}
+ 
+\begin{proof}
+To show that the group operation is given by regular functions, we map $E$ to $\PP^2$ by the complete linear system $|3o|$. Since
+$h^0(3o) = 3$ but $h^0(3o-p-q) = 1$ for any points $p,q$, this is an embedding. Moreover, there is a line in $\PP^2$ that meets
+$E$ triply at $o$, which is thus an inflection point, and nowhere else. The three points $p,q,r$ in which any other line in the plane
+meet $E$ sum to a divisor linearly equivalent to $3o$, and thus sum to zero in the group law, that is $r = -p-q$ Since $r$ is the unique
+point in which the line
+through $p,q$ meets  E, it follows that the coordinates of $r$ are polynomial functions of those of $p,q$, so the operation
+$(p,q) \to -p-q$ is algebraic. But by the same token, the tangent line to $E$ at $r$ meets $E$ again at the point $-r$,
+so the operation $r\to -r$ is also algebraic.
+
+Given the group operation, we see that multiplication by a positive integer $n$ defines a non-constant map of 
+curves $E\to E$. Since $E$ is projective, this map is surjective, proving the divisibility of the divisor classes of degree 0. 
+Given a divisor class $D$ of degree $n$, the class $D -no$has degree 0, and thus can be written as $n(r-o)$, so
+$D\sim nr$.
+\end{proof}
+
+\begin{corollary}\label{equivalence of sheaves}
+Given two invertible sheaves $\sL, \sL'$ on an of the same degree on a curve $E$ genus 1, there is an automorphism $\sigma: E\to E$
+such that $\sigma^*\sL = \sL'$.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{group law} we may write $\sL \cong \sO_E(np)$ and $\sL'\cong \sO_E(np')$ for some points $p,p'$; and tranlation by $p-p'$
+is an automorphism of $E$ carrying one into the other.
+\end{proof}
+
 
 For the rest of the chapter, we fix a smooth irreducible projective curve $E$ of genus 1.
 
-\subsection{Plane cubics}
-
-Let $\sL$ be an invertible sheaf of degree 3 on $E$. We see from Corollary~\ref{degree 2g+1 embedding} that the sections of $\sL$ give an embedding of $E$ as a smooth plane cubic curve; conversely, the genus formula tells us that a smooth plane cubic curve indeed has genus 1. 
-
-We claim that once we fix a point as the origin, the points of $E$ form a group in a natural way that mimics
-the : to add two points, we
-
-The space of plane cubic curves is parametrized by the space of cubic forms in 3 variables up to 
-scalars, a  $\PP^9$. The locus of forms defining smooth curves is a Zariski open subset. On the other hand, by what we've said, two plane cubics are isomorphic iff they are congruent under the group $PGL_3$ of automorphisms of $\PP^2$. Since the group $PGL_3$ has dimension 8, we would expect that the family of such curves up to isomorphism has dimension 1.
-
 \subsection{Double covers of $\PP^1$}
 
-Let $E$ be a smooth projective curve of genus 1 and let  $\sL$ be an invertible sheaf of degree 2 on $E$. By \trr{},\kern -3pt $h^0(\sL) = 2$ and the linear series $|\sL|$ is base point free, so we get a map $\phi : E \to \PP^1$ of degree 2. By \trh the map $\phi$ will have 4 branch points; by the remark above, these four points are determined, up to automorphisms of $\PP^1$ by the curve $E$, and are independent of the choice of $\sL$.
+Let $E$ be a smooth projective curve of genus 1 and let  $\sL$ be an invertible sheaf of degree 2 on $E$. By \trr{},\kern -3pt $h^0(\sL) = 2$ and the linear series $|\sL|$ is base point free, so we get a map $\phi : E \to \PP^1$ of degree 2. By \trh the map $\phi$ will have 4 branch points, which must be distinct because in a degree 2 map
+only simple branching is possible. By Corollary~\ref{equivalence of sheaves}, these four points are determined, up to automorphisms of $\PP^1$ by the curve $E$, and are independent of the choice of $\sL$.
+
 After composing with an automorphism of $\PP^1$ we can take these four points to be $0, 1, \infty$ and $\lambda$ for some $\lambda \neq 0, 1 \in \CC$. Since there is a unique double cover of $\PP^1$ with given branch divisor (see~\ref{**}) it follows that $E \cong E_\lambda$, where $E_\lambda$ is the curve given by the affine equation
 $$
 y^2 = x(x-1)(x-\lambda).
@@ -561,46 +604,65 @@ When are two curves $E_\lambda$ and $E_{\lambda'}$ isomorphic? By what we've sai
 $$
 \lambda' \in \{\lambda, \; 1-\lambda, \; \frac{1}{\lambda},\;  \frac{1}{1-\lambda}, \; \frac{\lambda - 1}{\lambda}, \; \frac{\lambda}{\lambda - 1} \}.
 $$
-Now, the quotient of $\PP^1$ by the action of $G$ is again isomorphic to $\PP^1$ by Luroth's theorem, which means that the field of rational functions on $\PP^1$ invariant under $G$ is again a purely transcendental extension $K(j)$; explicitly, we can take
+We now use L\"uroth's Theorem: any subfield of $\CC(x)$ having transcendence degree 1 over $\CC$ is equal to $\CC(y)$ for some rational function $j$.
+Since the quotient of a normal variety by a group is normal, this implies that any quotient of $\PP^1$ by a finite group is again isomorphic to $\PP^1$.
+One can check that $j$ can be taken to be
 $$
 j \; = \; 256\cdot \frac{\lambda^2 - \lambda + 1}{\lambda^2(\lambda - 1)^2}.
 $$
-(the factor of 256 is there for arithmetic reasons). In any case, we see explicitly that there is a unique smooth projective curve of genus 1 for each value of $j$; in particular, the family of all such curves is parametrized by a curve.
+(the factor of 256 is there for arithmetic reasons). Thus there is a unique smooth projective curve of genus 1 for each value of $j$, and in particular, the family of
+curves of genus 1 is parametrized by points on a line.
+
+\subsection{Plane cubics}
+
+Let $\sL$ be an invertible sheaf of degree 3 on $E$. As in the proof of Proposition~\ref{group law} the linear system $|\sL|$ gives an embedding of $E$ as a smooth plane cubic curve of degree 3; conversely, the genus formula tells us that a smooth plane cubic curve indeed has genus 1. 
+
+The space of plane cubic curves is parametrized by the space of cubic forms in 3 variables up to 
+scalars, a  $\PP^9$. The locus of forms defining smooth curves is a Zariski open subset. On the other hand, by what we've said, two plane cubics are isomorphic iff they are congruent under the group $PGL_3$ of automorphisms of $\PP^2$. Since the group $PGL_3$ has dimension 8, one should expect that the family of such curves up to isomorphism has dimension 1.
+
 
 
 \subsection{Quartics in $\PP^3$} 
 
-Again, let $E$ be a smooth projective curve of genus 1, and consider now the embedding of $E$ into $\PP^3$ given by the sections of an invertible sheaf $\sL$ of degree 4. The first question we might ask is what polynomial equations in $\PP^3$ cut out the image, and as before we will do this by looking at the restriction map
+Again, let $E$ be a smooth projective curve of genus 1, and consider now the embedding of $E$ into $\PP^3$ given by the sections of an invertible sheaf $\sL$ of degree 4. To understand the ideal of $E$ we consider the restriction map
 $$
 \rho_2 \;  : \; H^0(\cO_{\PP^3}(2)) \; \to \; H^0(\cO_{E}(2)) = H^0(\sL^2).
 $$
-The space on the right---the space of homogeneous polynomials of degree 2 in four variables---has dimension 10, while by Riemann-Roch the space $H^0(\sL^2)$ has dimension 8. It follows that $E$ lies on at least two linearly independent quadrics $Q$ and $Q'$. Since $E$ does not lie in any plane, neither $Q$ nor $Q'$ can be reducible; thus by \bt we see that
+The space on the left---the space of homogeneous polynomials of degree 2 in four variables---has dimension 10, while by Riemann-Roch the space $H^0(\sL^2)$ has dimension 8. It follows that $E$ lies on at least two linearly independent quadrics $Q$ and $Q'$. Since $E$ does not lie in any plane, neither $Q$ nor $Q'$ can be reducible; thus by \bt we see that
 $$
 E = Q \cap Q'
 $$
-is the complete intersection of two quadrics in $\PP^3$. Moreover, we also see from the Lasker-Noether ``AF+BG" theorem that the kernel of $\rho_2$ is exactly the span of $Q$ and $Q'$. Thus $E$ determines a point in the Grassmannian $G(2, H^0(\cO_{\PP^3}(2))) = G(2, 10)$ of pencils of quadrics; and by Bertini's Theorem, a Zariski open subset of that Grassmannian correspond to smooth quartic curves of genus 1. We can use this to once more calculate the dimension of the family of curves of genus 1: the Grassmannian $G(2,10)$ has dimension 16, while the group $PGL_4$ of automorphisms of $\PP^3$ has dimension 15, so we may conclude that the family of curves of genus 1 up to isomorphism has dimension 1.
+is the complete intersection of two quadrics in $\PP^3$. Moreover, we also see from the Lasker-Noether ``AF+BG" theorem that the kernel of $\rho_2$ is exactly the span of $Q$ and $Q'$. Thus $E$ determines a point in the Grassmannian $G(2, H^0(\cO_{\PP^3}(2))) = G(2, 10)$ of pencils of quadrics; and by Bertini's Theorem, a Zariski open subset of that Grassmannian correspond to smooth quartic curves of genus 1. We can use this to once more calculate the dimension of the family of curves of genus 1: the Grassmannian $G(2,10)$ has dimension 16, while the group $PGL_4$ of automorphisms of $\PP^3$ has dimension 15, so again one should expect that the family of curves of genus 1 up to isomorphism has dimension 1.
 
-There is a beautiful correspondence associated to quartic curves of genus 1 in $\PP^3$, which we'll describe now. Briefly: as we've seen, such a curve lies on a pencil of quadric surfaces $Q_\lambda \subset \PP^3$, and is the intersection of these quadrics. Now, among the quadrics $Q_\lambda$, exactly four will be cones, and the rest will be smooth. (``exactly four" requires an exercise). A smooth quadric has two rulings by lines; a cone has one. Thus the family
+There is a direct way to go back and forth between the representation of the smooth genus 1 curve $E$ as the intersection of two quadrics in $\PP^3$ and the representation of $E$ as a double cover
+of $\PP^1$ branched at 4 distinct points. First, by Bertini's Theorem, we may take the two quadrics to be nonsingular, since they must meet transversely along $E$, and elsewhere the
+pencil of quadrics they span has no base points. Representing the quadrics as symmetric matrices $A,B$, the pencil of all quadrics containing $E$ can be 
+written as $sA+tB$. A quadric in the pencil is singular at the points $(s,t)$ such that the quartic polynomial $det(sA+tB)$ vanishes; thus at 4 points.
+
+ A smooth quadric has two rulings by lines; a cone has one. Thus the family
 $$
 \Phi := \{ (\lambda, \sL) \mid \sL \in \Pic(Q_\lambda) \text{ is the class of a ruling of } Q_\lambda \}
 $$
-is a 2-sheeted cover of $\PP^1$, branched over the four values of $\lambda$ corresponding to singular quadrics in the pencil. In fact, we claim
+is---at least set-theoretically---a 2-sheeted cover of $\PP^1$, branched over the four values of $\lambda$ corresponding to singular quadrics in the pencil. In fact, we claim
 
 \begin{proposition}\label{rulings on pencil}
-The curve $\Phi$ is isomorphic to $E$.
+There is a natural identification of $\Phi$ with $E$, and thus the branch points of $\Phi$ over $\PP^1$---that is, the set of singular elements of the pencil of quadrics---are the same, up to automorphisms of $\PP^1$ as the four points over which a double cover of $\PP^1$ by $E$ are ramified.
 \end{proposition} 
 
+
 \begin{proof}
-First, choose a base point $p \in E$. We will construct inverse maps $E \to \Phi$ and $\Phi \to E$ as follows:
+First, choose a base point $o \in E$. We will construct inverse maps $E \to \Phi$ and $\Phi \to E$ as follows:
 \begin{enumerate}
-\item Suppose $q \in E$ is any point other than $p$, and let $M = \overline{p,q}$. Every quadric $Q_\lambda$ contains the two points $p, q \in M$; if $r \in M$ is any third point, there will be a unique $\lambda$ such that $r$, and hence all of $M$, lies in $Q_\lambda$. Thus the choice of $q$ determines both one of the quadrics $Q_\lambda$ of the pencil, and a ruling of that quadric, giving us a map $E \to \Phi$.
-\item The other direction is similarly straightforward. Given a quadric $Q_\lambda$ and a choice of ruling of $Q_\lambda$, there will be a unique line $M \subset Q_\lambda$ of that ruling passing through $p$, and that line $M$ will meet the curve $E$ in one other point $q$; this gives uf the inverse map $\Phi \to E$.
+\item Suppose $q \in E$ is any point other than $o$, and let $M = \overline{o,q}$. Every quadric $Q_\lambda$ contains the two points $o, q \in M$; if $r \in M$ is any third point, there will be a unique $\lambda$ such that $r$, and hence all of $M$, lies in $Q_\lambda$. Thus the choice of $q$ determines both one of the quadrics $Q_\lambda$ of the pencil, and a ruling of that quadric, giving us a map $E \to \Phi$.
+\item The other direction is similarly straightforward. Given a quadric $Q_\lambda$ and a choice of ruling of $Q_\lambda$, there will be a unique line $M \subset Q_\lambda$ of that ruling passing through $o$, and that line $M$ will meet the curve $E$ in one other point $q$; this gives uf the inverse map $\Phi \to E$.
 \end{enumerate}
 \end{proof}
 
-We mention this correspondence in particular because there is a beautiful extension of this to pencils of quadrics in any odd-dimensional projective space. Briefly: a smooth quadric $Q \subset \PP^{2g+1}$ has two rulings by $g$-planes, which merge into one family when the quadric specializes to quadric of rank $2g+1$, that is, a cone over a smooth quadric in $\PP^{2g}$. If $\{Q_\lambda\}_{\lambda \in \PP^1}$ is a pencil with smooth base locus $X = \cap_{\lambda \in \PP^1} Q_\lambda$, then exactly $2g+2$ of the quadrics will be singular, and they will all be of rank $2g+1$. The space $\Phi$ of rulings of the quadrics $Q_\lambda$ is thus a double cover of $\PP^1$ branched at $2g+2$ points; that is, a hyperelliptic curve of genus $g$.
+There is a beautiful extension of this result to pencils of quadrics in any odd-dimensional projective space. Briefly: a smooth quadric $Q \subset \PP^{2g+1}$ has two rulings by $g$-planes, which merge into one family when the quadric specializes to quadric of rank $2g+1$, that is, a cone over a smooth quadric in $\PP^{2g}$. If $\{Q_\lambda\}_{\lambda \in \PP^1}$ is a pencil with smooth base locus $X = \cap_{\lambda \in \PP^1} Q_\lambda$, then exactly $2g+2$ of the quadrics will be singular, and they will all be of rank $2g+1$. The space $\Phi$ of rulings of the quadrics $Q_\lambda$ is thus a double cover of $\PP^1$ branched at $2g+2$  points; that is, a hyperelliptic curve of genus $g$. For a proof see for example~\cite[Proposition 22.34]{Harris1992}.
+ This shows in particular that the polynomial $\det(sA+tB)$ has $2g+2$ \emph{distinct} roots. 
 
-The assertions made so far are elementary; proofs can be found for example in \cite{First Course book}. But now we have a remarkable analogue of Proposition~\ref{rulings on pencil} for any $g$: \emph{the variety $F_{g-1}(X)$ of $g-1$-planes in the base locus $X$ of the pencil is isomorphic to the Jacobian of the  curve $\Phi$}. A proof of this in case $g=2$ can be found in~\cite{Griffiths-Harris}; for all $g$ it is done in~\cite{Donagi paper}
+
+There is also a remarkable analogue of Proposition~\ref{rulings on pencil} for any $g$: the variety $F_{g-1}(X)$ of $g-1$-planes in the base locus $X$ of the pencil is isomorphic to the Jacobian of the  curve $\Phi$. A proof of this in case $g=2$ can be found in~\cite{Griffiths-Harris}; for all $g$ it is done in~\cite{Donagi paper}
 
 
 \input footer.tex
