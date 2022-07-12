@@ -278,7 +278,7 @@ $$
 \end{theorem}
 
 
-To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. We don't a priori know how many sections $\cL$ will have, but if we fix a divisor $D = \sum p_i$ of degree $e \geq 2g-1-d$ and set $\cM:= \cL(D)$, we do know how many sections $\cM$ will have: since it has degree $> 2g-2$, Riemann-Roch tells us that
+To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. We don't a priori know how many sections $\cL$ will have, but if we fix a divisor $D = \sum p_i$ of degree $e \geq 2g-1-d$ and set $\cM:= \cL(D)$, we do know how many sections $\cM$ will have: since it has degree $d+e > 2g-2$, Riemann-Roch tells us that
 $$
 h^0(\cM) = d + e - g + 1.
 $$
@@ -293,7 +293,7 @@ $$
 
 Now, let $\cL$ vary in $\Pic_d(C)$. We get a \emph{family} of maps $\rho$ between vector spaces of dimension $d + e - g + 1$ and $e$, parametrized by the Picard variety $\Pic_d(C)$. In general, given a family of maps between vector spaces of dimensions $m$ and $n$, the expected codimension of the locus where the map has rank $k$ or less is $(m-k)(n-k)$; in our present circumstances, this works out to $(r+1)(g-d+r)$. Since the Picard variety has dimension $g$, the expected dimension of $W^r_d(C)$ is then $\rho(g,r,d)$.
 
-The first part of Theorem~\ref{basic Brill Noether}, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{}) and Kleiman-Laksov (\cite{}). Both proofs proceeded essentially by globalizing the construction of the preceding paragraph to express $W^r_d(C)$ as a determinantal scheme associated to a map of vector bundles on $\Pic_d(C)$, calculating the Chern classes of the bundles in question and applying the Thom-Porteous formula to deduce that the determiantal variety was nonempty. A sketch of this argument may  be found in \cite[Appendix D.3]{3264}.  
+The first part of Theorem~\ref{basic Brill Noether}, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{}) and Kleiman-Laksov (\cite{}). Both proofs proceeded essentially by globalizing the construction of the preceding paragraph to express $W^r_d(C)$ as a determinantal scheme associated to a map of vector bundles on $\Pic_d(C)$, calculating the Chern classes of the bundles in question and applying the Thom-Porteous formula to deduce that the determinantal variety was nonempty. A sketch of this argument may  be found in \cite[Appendix D.3]{3264}.  
 
 The second half of Theorem~\ref{basic Brill Noether}---the ``non-existence half"---requires a completely different approach. On the one hand, the condition ``$W^r_d(C) = \emptyset$" is an open condition on $M_g$, so that to prove it one needs only exhibit a single curve with this property. On the other hand, that is easier said than done: as we discuss in Appendix~\ref{}, it's not possible to write down a general curve of large genus $g$; and the curves we can write down explicitly---hyperelliptic curves, trigonal curves, smooth plane curves---tend to be ones that violate Brill-Noether.
 
@@ -350,14 +350,23 @@ where the last map is the difference of the natural projections
 $k[[x]] \to k$ and $k[[y]] \to k$. Thus
 $\widehat\cO_{C', r_i} \cong k[[x,y]]/(xy)$ as required, completing the construction.
 
-As a more geometric alternative to the above, we outline a construction of a $g$-nodal curve of arithmetic genus $g$ in the following series of exercises. 
+As a more geometric alternative to the above, we outline in the following pair of exercises a construction of the curve $C_0$ obtained by identifying $k$ pairs of points on a smooth curve $C$ of genus $h$ (we'll be applying this just in the case $C \cong \PP^1$ and $k=g$, but the construction works more generally). The construction is extremely simple: to start with, we embed the curve $C$ in projective space by the sections of a line bundle of high degree $d$, and then we project.
+
+\begin{exercise}\label{independent secants} Let $C \subset \PP^N$ be a smooth curve of genus $h$, embedded in projective space by the complete linear system associated to a line bundle $\cL$ of degree $d > 2g + 2k$. Show that \emph{any $k+1$ secant or tangent lines to $C$  having pairwise disjoint intersection with $C$ are linearly independent}; that is, they span a $\PP^{2k-1}$.
+\end{exercise}
+
+Now let $p_1,\dots,p_k, q_1,\dots, q_k \in C$ be any $2k$ distinct points; let $s_i \in \overline{p_i,q_i} \subset \PP^N$ be a general point on the secant line $\overline{p_i,q_i} $, and let $\Lambda \cong \PP^{k-1}$ be the plane spanned by the points $s_1,\dots,s_k$. Let $\pi_\Lambda : \PP^N \to \PP^{N-k}$ be the projection from $\Lambda$, and let $C_0 \subset \PP^{N-k}$ the image $\pi_\Lambda(C)$, and let $r_i = \pi_\Lambda(p_i) = \pi_\Lambda(q_i) \in C_0$.
 
 \begin{exercise}
+Using Exercise~\ref{independent secants}, show that 
 \begin{enumerate}
-\item Using the fact that $d > 2g+2$, show that no two secant or tangent lines to $C \subset \PP^n$ meet; and
-\item Deduce from this that the image $C' = \pi(C)$ is isomorphic to the curve constructed above.
+\item $\Lambda \cap C = \emptyset$:
+\item The map $\pi_\Lambda$ gives an isomorphism between $C \setminus \{p_1,\dots,p_k, q_1,\dots, q_k\}$ and $C_0 \setminus \{r_1,\dots,r_k\}$ (so in particular, $C_0$ is smooth away from the points $r_i$); and
+\item The $r_i$ are nodes on $C_0$.
 \end{enumerate}
 \end{exercise}
+
+Thus $C_0$ is the curve constructed above.
 
 \subsubsection{Step 2: Castelnuovo's specialization}
 
@@ -372,10 +381,8 @@ Let $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ be distinct points, and $C_0$ the 
 \end{enumerate}
 \end{lemma}
 
-This Lemma will follow from the local geometry of Severi varieties, as worked out in Chapter~\ref{PlaneCurvesChapter}, and we defer the proof to that chapter.
+This lemma is an immediate consequence of elementary deformation theory, and if any professional deformation theorist could be bothered to state it, we would happily give a reference. As it is, it will follow from the local geometry of Severi varieties, as worked out in Chapter~\ref{PlaneCurvesChapter}, and we defer the proof to that chapter.
 
-The lemma can also be proved by deformation theory, as in \fix{ citations to Greuel et al would work here. You would think that Hartshorne (\cite{}) and Sernesi (\cite{}) would have it but Joe was unable to find this statement, or anything implying it, in either book.}. 
-%
 %\begin{lemma}\label{BN in family}
 %If $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ are general points and $\cC \to B$ is a family of curves as described in Lemma~\ref{specialization to nodal curve} above, then for general $b \in B$ the fiber $C_b$ does not possess a $g^r_d$ with $\rho < 0$.
 %\end{lemma}
@@ -392,7 +399,7 @@ The analysis proposed by Altman and Kleiman considers the question: given a fami
 
 Suppose now we have a family $\pi : \cC \to B$ and in Lemma~\ref{specialization to nodal curve}, and suppose that the general curve $C_b$ in the family does have a line bundle  of degree $d$ with $r+1$ sections. Let 
 $$
-\pi^\circ: \cC^circ := \cC \setminus C_0\to B^\circ := B\setminus 0.
+\pi^\circ: \cC^\circ := \cC \setminus C_0\to B^\circ := B\setminus 0.
 $$
 and write $\Pic_{\cC^\circ/B^\circ}$ for the relative Picard scheme.
 
