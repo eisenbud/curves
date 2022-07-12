@@ -264,9 +264,10 @@ Finally, by the strong form of Clifford's Theorem \ref{***}, equality here impli
 
 \section{Proof of (half of) the Brill-Noether theorem}
 
-The Brill-Noether theorem tells us exactly which linear series exist on a general curve:
+In its bare-bones form, the Brill-Noether theorem tells us exactly which linear series exist on a general curve:
 
-\begin{theorem} Let $d,g,r$ be non-negative integers, and set 
+\begin{theorem}\label{basic Brill Noether}
+Let $d,g,r$ be non-negative integers, and set 
 $$
 \rho =\rho(g,r,d) := g - (r+1)(g-d+r).
 $$
@@ -276,29 +277,40 @@ $$
 \end{enumerate}
 \end{theorem}
 
-The first part, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{}) and Kleiman-Laksov (\cite{}); both proofs relied on an application of the Thom-Porteous formula to a particular map of vector bundles on the Jacobian of $C$. A sketch of this argument may  be found in \cite[Appendix D.3]{3264}.  
 
-To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. If 
-$h^0(\cL) = r+1$ then, by the Riemann-Roch Theorem, $h^1(\cL) = g-d+r$. 
-Given such an invertible sheaf $\cL$ one can show that, in a neighborhood of $\cL$, the subset of the Picard variety of a curve C consisting of invertible sheaves of 
-degree $d$ with at least $r$ sections is defined by the vanishing of the subdeterminants of
-size $k+1$ in a matrix $M$ of size $(k+h^0(\cL) )\times (k+ h^1(\cL))$, for any large $k$. The number
-$(r+1)(g-d+r)$ is the upper bound for the codimension of the minors of any such matrix $M$, as in shown in
-\cite[Theorem ***]{Eisenbud}. Thus, given the existence of $\cL$, the set of invertible sheaves of degree $d$ on $C$ with at least $r+1$ sections must have dimension at least $\rho$.
+To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. We don't a priori know how many sections $\cL$ will have, but if we fix a divisor $D = \sum p_i$ of degree $e \geq 2g-1-d$ and set $\cM:= \cL(D)$, we do know how many sections $\cM$ will have: since it has degree $> 2g-2$, Riemann-Roch tells us that
+$$
+h^0(\cM) = d + e - g + 1.
+$$
+To estimate $h^0(\cL)$, then, we can consider the restriction map
+$$
+\rho : H^0(\cM) \to H^0(\cM|_D);
+$$
+the kernel of this map is $H^0(\cL)$. Thus,
+$$
+h^0(\cL) \geq r+1 \quad \iff \quad \rank(\rho) \leq d+e-g-r.
+$$
 
-We will  apply the Pl\"ucker formula, to deduce the second half of the statement above---the ``nonexistence half."---and some further refinements. 
-Our proof will use an ingenious idea first suggested by Castelnuovo \fix{Since Castelnuovo's intentions are several times quoted, I'd like an actual citation!}:
-a ``general curve of genus $g$" may be a mysterious object for large $g$. But we can construct nodal curves of arithmetic genus $g$ readily: we just start with $\PP^1$, pick $2g$ distinct points $p_1,\dots,p_g, q_1,\dots,q_g \in \PP^1$, and identify each pair of points $p_i, q_i$ to form a $g$-nodal curve $C_0$. We will see below that there exists a family of smooth curves of genus $g$ specializing to such a curve, and we can analyze linear series on the general member of such a family by considering how they specialize to $C_0$.
+Now, let $\cL$ vary in $\Pic_d(C)$. We get a \emph{family} of maps $\rho$ between vector spaces of dimension $d + e - g + 1$ and $e$, parametrized by the Picard variety $\Pic_d(C)$. In general, given a family of maps between vector spaces of dimensions $m$ and $n$, the expected codimension of the locus where the map has rank $k$ or less is $(m-k)(n-k)$; in our present circumstances, this works out to $(r+1)(g-d+r)$. Since the Picard variety has dimension $g$, the expected dimension of $W^r_d(C)$ is then $\rho(g,r,d)$.
+
+The first part of Theorem~\ref{basic Brill Noether}, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{}) and Kleiman-Laksov (\cite{}). Both proofs proceeded essentially by globalizing the construction of the preceding paragraph to express $W^r_d(C)$ as a determinantal scheme associated to a map of vector bundles on $\Pic_d(C)$, calculating the Chern classes of the bundles in question and applying the Thom-Porteous formula to deduce that the determiantal variety was nonempty. A sketch of this argument may  be found in \cite[Appendix D.3]{3264}.  
+
+The second half of Theorem~\ref{basic Brill Noether}---the ``non-existence half"---requires a completely different approach. On the one hand, the condition ``$W^r_d(C) = \emptyset$" is an open condition on $M_g$, so that to prove it one needs only exhibit a single curve with this property. On the other hand, that is easier said than done: as we discuss in Appendix~\ref{}, it's not possible to write down a general curve of large genus $g$; and the curves we can write down explicitly---hyperelliptic curves, trigonal curves, smooth plane curves---tend to be ones that violate Brill-Noether.
+
+We will give here a proof of the second half of Theorem~\ref{basic Brill Noether}, using the Pl\"ucker formula as our essential tool.
+Our proof will use an ingenious construction first suggested by Castelnuovo, which is to consider a family of smooth curves specializing to a $g$-nodal curve. After all, 
+a ``general curve of genus $g$" may be a mysterious object for large $g$, but we can construct nodal curves of arithmetic genus $g$ readily: we just start with $\PP^1$, pick $2g$ distinct points $p_1,\dots,p_g, q_1,\dots,q_g \in \PP^1$, and identify each pair of points $p_i, q_i$ to form a $g$-nodal curve $C_0$. We will see below that there exists a family of smooth curves of genus $g$ specializing to such a curve, and we can analyze linear series on the general member of such a family by considering how they specialize to $C_0$.
 
 Interestingly, Castelnuovo introduced this construction not to prove the Brill-Noether theorem---then considered as established---but to answer an enumerative question: Castelnuovo asked, if a general curve of genus $g = 2k$ has a finite number of $g^1_{k+1}$s, what is the number? As we've seen, for genera $g = 2, 4$ and 6 the answers are 1, 2 and 5 respectively; Castelnuovo used his construction to find the number in general, as we'll describe below. It was Altman and Kleiman, in~\cite{}, who first proposed that Castelnuovo's construction could be used to prove the Brill-Noether theorem, and carried out the reduction given in Proposition~\ref{} below.
 
+\subsection{$g$-nodal curves}
 Our first task is to describe ``the curve obtained by identifying pairs of points on $\PP^1$'':
 
 \subsubsection{Step 1: Constructing nodal curves}
 We follow the treatment of \cite{Serre, Corps locaux, pp70ff},
  where a slightly more general case is treated.
  
-Suppose that $\{\{p_1,p_1'\},\dots, \{p_g,p_g'\}\}$ is a set of $g$ pairs of smooth points on a curve $C$, and let $\pi: C \to C':=C/\sim$ be the set-theoretic quotient of $C$ by the equivalence relation
+Suppose that $\{ p_1,\dots, p_g, q_1,\dots, q_g  \}$ is a set of $2g$ distinct smooth points on a curve $C$, and let $\pi: C \to C':=C/\sim$ be the set-theoretic quotient of $C$ by the equivalence relation
  $p_i\sim q_i$ for each $i$. Let $r_i\in C'$ be the common image of $p_i, q_i$. We claim that $C'$ can be given the structure of an  algebraic curve with nodes at the points $r_i$, in the sense that the completion satisfies
 $$
 \widehat\cO_{C', r_i} \cong k[[x,y]]/(xy).
@@ -338,13 +350,14 @@ where the last map is the difference of the natural projections
 $k[[x]] \to k$ and $k[[y]] \to k$. Thus
 $\widehat\cO_{C', r_i} \cong k[[x,y]]/(xy)$ as required, completing the construction.
 
+As a more geometric alternative to the above, we outline a construction of a $g$-nodal curve of arithmetic genus $g$ in the following series of exercises. 
+
 \begin{exercise}
 \begin{enumerate}
 \item Using the fact that $d > 2g+2$, show that no two secant or tangent lines to $C \subset \PP^n$ meet; and
 \item Deduce from this that the image $C' = \pi(C)$ is isomorphic to the curve constructed above.
 \end{enumerate}
 \end{exercise}
-\fix{I assume that the reader is to do this one double point at a time, inductively. To complete this, we seem to need the properties of $2g+2$ also for singular curves. Also: does this need projection from a *general point of the secant line, as specified?}
 
 \subsubsection{Step 2: Castelnuovo's specialization}
 
