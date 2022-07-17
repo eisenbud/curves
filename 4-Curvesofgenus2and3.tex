@@ -2,7 +2,7 @@
 
 \chapter{Hyperelliptic curves and curves of genus 2 and 3}\label{genus 2 and 3 chapter}
 
-\section{Hyperelliptic Curves}\label{hyperelliptic}
+\section{Hyperelliptic Curves}\label{hyperelliptics}
  
  
 In the world of curves, hyperelliptic curves are outliers: they behave differently from other curves, and the techniques used to analyze them are different from the techniques used for more general curves. Many theorems about curves contain the hypothesis ``non-hyperelliptic," with the corresponding result for hyperelliptic curves arrived at directly by ad hoc methods. Because the methods of this section will not be used in other cases, it could be skipped in first reading
@@ -506,12 +506,74 @@ then $f$ is locally constant.
 
 We say that a theta-characteristic $\cL$ is \emph{even} or \emph{odd} according to the parity of $h^0(\cL)$. Given the irreducibility of the moduli space $M_g$,  Theorem~\ref{locally constant sign} says that all curves of genus $g$ have the same number of even theta characteristics; the number is given by the 
 
-\begin{theorem}
+\begin{theorem}\label{number of theta characteristics}
 If $C$ is any curve of genus $g$, then $C$ has $2^{g-1}(2^g - 1)$ even theta characteristics and $2^{g-1}(2^g+1)$ odd theta characteristics.
 \end{theorem}
 
 Note that in case of a nonhyperelliptic curve $C$ of genus 3, the dimension $h^0(\cL)$ of a theta characteristic $\cL$ cannot be $\geq 2$, so this says exactly that there are $2^{g-1}(2^g-1) = 28$ effective theta-characteristics, a.k.a. bitangents.
 
+We'll sketch here the proofs of these theorems; for details, see~\cite{Mumford paper} and~\cite{JH paper}. 
+
+First, the proof of Theorem~\ref{locally constant sign} follows, via an ingenious construction of Mumford's, from an elementary fact about quadratic forms in an even number of variables. To state this, suppose that $V$ is a complex vector space of dimension $2n$ and $Q$ a nondegenerate symmetric bilinear form on $V$. By an \emph{isotropic plane} we mean a linear space $\Lambda \subset V$ such that $Q(\Lambda, \Lambda) = 0$. We summarize what we know about these:
+
+\begin{enumerate}
+\item The maximal isotropic subspaces for $Q$ have dimension $n$;
+\item The set of maximal isotropic subspaces for $Q$ is a subvariety of the Grassmannian $G(n,V)$, or dimension $\binom{n}{2}$ and having exactly two connected components (the ``rulings" of $Q$); and
+\item If $\Lambda, \Lambda' \subset V$ are any two maximal isotropic subspaces, then
+$$
+\dim(\Lambda \cap \Lambda') \equiv n \text{ (mod 2)} \quad \iff \quad \Lambda, \Lambda' \text{ belong to the same ruling.}
+$$
+\end{enumerate} 
+
+The first of these assertions is completely elementary: since the map $\tilde Q : V \to V^*$ associated to the form $Q$ carries an isotropic subspace to its annihilator, there can't be an isotropic plane of dimension $>n$; and similarly if $\Lambda \subset V$ is any isotropic plane of dimension $<n$ we can include $\Lambda$ in a larger isotropic plane by adding any nullvector for the induced quadratic form on $\ann(\Lambda)/\Lambda$.
+
+The second and third assertions are less elementary, but the reader may already have seen the first two nontrivial cases of each. When $n=2$, they amount to observing that a smooth quadric surface in $\PP^3$ has two rulings by lines, and lines of opposite rulings meet in a point, while lines of the same ruling are either disjoint or equal. When $n=3$, we can see both assertions via the identification of a smooth quadric in $\PP^5$ with the Grassmannian $\GG(1,3)$: the two families of maximal isotropic subspaces are the loci of lines containing a given point $p \in \PP^3$ and the loci of lines contained in a given plane $H \subset \PP^3$.
+
+No, given these facts, suppose that $C$ is a smooth curve of genus $g$, and $\cL$ an invertible sheaf on $C$ with $\cL^2 \cong K_C$; that is, a theta characteristic. Choose a divisor $D = p_1 + \dots + p_n$ of degree $n> g-1$ consisting of distinct points, and let $V$ be the $2n$-dimensional vector space
+$$
+V := H^0( \cL(D) / \cL(-D) ).
+$$
+(Note that the sheaf $ \cL(D) / \cL(-D) $ is supported on $D$, with stalk of dimension 2 at each $p_i \in D$.) We can define a quadratic form on $V$ by setting
+$$
+Q(\sigma, \tau) := \sum_i \text{Res}_{p_i}(\sigma \cdot \tau)
+$$
+where we use the isomorphism $\cL^2 \cong K_C$ to identify the product $\sigma\tau$ with a rational differential.
+
+We now introduce two isotropic subspaces for $Q$: first, we set
+$$
+\Lambda := H^0( \cL / \cL(-D) );
+$$
+this is isotropic simply because the product $\sigma\tau$ of two elements of $\Lambda$ corresponds to a regular differential, and so has no residues. Second, we set
+$$
+\Lambda' := \im\left( H^0(\cL(D)) \to H^0( \cL(D) / \cL(-D) ) \right)
+$$
+Since the $H^0(\cL(-D)) = 0$, the map is injective and according to Riemann-Roch, $h^0(\cL(D)) = n$, so this is again an $n$-dimensional subspace of $V$; it's isotropic because the sum of the residues of a global rational differential on $C$ is 0. Finally, the payoff: we observe that
+$$
+H^0(\cL) \cong \Lambda \cap \Lambda',
+$$
+and Theorem~\ref{locally constant sign} follows.
+
+As for Theorem~\ref{number of theta characteristics}, there are two ways we can go. One is to dig a little deeper and actually describe the configurations of odd and even theta characteristics as subsets of the set $S$ of all theta characteristics, which as we've seen is a principle homogeneous space for the group $\Jac(C)_2 \cong (\ZZ/2\ZZ)^{2g}$ of points of order 2 on the Jacobian. Alternatively, we can use the invariance of these configurations under deformation to reduce to the hyperelliptic case; the result in that case is expressed in the following exercise.
+
+\begin{exercise}
+Let $C$ be a hyperelliptic curve of genus $g$, expressed as a 2-sheeted cover of $\PP^1$ with ramification points $p_1,\dots,p_{2g+2}$. If $\cE$ is the (unique) $g^1_2$ on $C$, show that any theta characteristic on $C$ is represented by a divisor
+$$
+D = m\cdot \cE + \sum_{i \in I} p_i
+$$
+for some $m \geq -1$ and $I \subset \{1,\dots, 2g+2\}$ a subset of cardinality $g-1-2m$; and that in this case
+$$
+h^0(D) = m+1.
+$$
+Using this, count the number of even and odd theta characteristics on $C$ (and thus on any curve of genus $g$).
+\end{exercise}
+
+Of course, if we do describe the configurations $S^+$ and $S^-$ of even and odd theta characteristics, we get more information. We won't go in to that here---again, the result is in~\cite{Mumford} and~\cite{JH paper}---but we will mention one remarkable fact that we can derive from it.
+
+As noted, if we choose any theta characteristic on a curve $C$, we may identify the set $S^-$ of odd theta-characteristics with a subset of the group $\Jac(C)_2$ of points of order 2 on the Jacobian of $C$. We might expect, then, that some 4-tuples of these points will add up to 0 in $\Jac(C)$; in other words, there should exist some 4-tuples $\cL_1,\dots,\cL_4 \in S^-$ such that
+$$
+\cL_1+ \dots +\cL_4 = 2K_C.
+$$
+What this means in the specific case of genus $g=3$ is: \emph{among the 28 bitangents to a smooth plane quartic curve $C$, there will be some subsets of 4 whose eight points of tangency form the intersection of $C$ with a plane conic curve}; if we know the configuration $S^-$, we should be able to say how many. Indeed, the number was first found by Salmon; it is 315.
 
 
 
