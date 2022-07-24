@@ -52,8 +52,7 @@ In the last few chapters, we have alternated between setting up a general descri
 
 \section{Clifford's theorem}
 
-
-There are various ways to interpret this question. Let's start by taking the question in its crudest form: for which $g, r$ and $d$ does there exist a curve $C$ of genus $g$ and a linear system $(\cL,V)$ on $C$ of degree $d$ and dimension $r$? In this form, the answer is given for line bundles of large degree $d \geq 2g-1$ by the Riemann-Roch theorem: on any curve, there exists a linear series of degree $d > 2g-2$ and dimension $r$ iff $r \leq d-g$. As for line bundles of degree $d \leq 2g-2$, we have:
+For which $g, r$ and $d$ does there exist a curve $C$ of genus $g$ and a linear system $(\cL,V)$ on $C$ of degree $d$ and dimension $r$? For line bundles of large degree $d \geq 2g-1$ by the Riemann-Roch theorem: on any curve, there exists a linear series of degree $d > 2g-2$ and dimension $r$ iff $r \leq d-g$. For line bundles of degree $d \leq 2g-2$, we have:
 
 \begin{theorem}[Clifford's theorem]\label{Clifford}
 Suppose that $C$ is a smooth projective curve of genus $g\geq 2$. If $D$ is a divisor on $C$ of degree $d \leq 2g-2$, then $r(D) := h^0(D) - 1 \leq d/2$. Moreover, if equality holds then either $D\sim 0$, $D\sim K$ or
@@ -71,10 +70,9 @@ $$
 r(D)-r(K-D) = d - g +1
 $$
 yields $2r(D)\leq d$ as required.
-
 \end{proof}
 
-Combining this statement with the Riemann-Roch theorem, we arrive at the answer to the crudest form of our question:
+Combining these statements, we have:
 
 \begin{theorem}\label{arbitrary linear series}
 There exists a curve $C$ of genus $g$ and line bundle $\cL$ of degree $d$ on $C$ with $h^0(\cL) \geq r+1$ if and only if
@@ -93,21 +91,29 @@ Prove a slightly stronger version of Theorem~\ref{arbitrary linear series} in th
 
 \section{Castelnuovo's theorem}
 
-Theorem~\ref{arbitrary linear series} gives a complete and sharp answer to the question originally posed: for which $d,r$ and $g$ does there exists a triple $(C,\cL,V)$ with $C$ a curve of genus $g$, $\cL$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ of dimension $r+1$. 
-
+Theorem~\ref{arbitrary linear series} gives a complete and sharp answer to the question of existence.
+% originally posed: for which $d,r$ and $g$ does there exists a triple $(C,\cL,V)$ with $C$ a curve of genus $g$, $\cL$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ of dimension $r+1$. 
+%
 But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least a birational embedding. 
 
-Now, we'll see that the maximal dimension of a birationally very ample linear series of degree $d$ on a curve of genus $g$ is a decreasing function of $g$; so with this restriction, the question is tantamount to the
+We will show that the maximal dimension of a birationally very ample linear series of degree $d$ on a curve of genus $g$ is a decreasing function of $g$. With this understanding, we need only ask:
 
 \begin{question}
 What is the largest possible genus of an irreducible, nondegenerate curve $C \subset \PP^r$ of degree $d$?
 \end{question}
 
-A sharp bound, answering  this question, is given by a theorem of Castelnuovo, and is quite different from the inequality in Theorem~\ref{arbitrary linear series}.  We'll sketch the derivation of the inequality here; we'll prove that it is in fact sharp and describe in detail  the curves that achieve it in Chapter~\ref{}. \fix{*if* we keep the scrolls chapter}
+\begin{theorem}[Castelnuovo's bound]
+If $C \subset \PP^r$ is an irreducible, nondegenerate curve of degree $d$ and genus $g$, then
+$$
+g \leq \pi(d,r).
+$$
+\end{theorem}
 
-The proof of Castelnuovo's bound is simple but elegant. Briefly, if $C$ is a curve of degree $d$ and genus $g$ in $\PP^r$, the idea is to prove successive lower bounds for the dimensions $h^0(\cO_C(m))$ of multiples of the $g^r_d$ cut on $C$ by hyperplanes. For large values of $m$ the line bundle $\cO_C(m)$ is non-special, and so a lower bound on the dimension of its space of sections translates, via Riemann-Roch, into an upper bound on the genus $g$.
+\fix{The uniform position argument coming up is char 0; is the theorem char 0 only? We should say.}
 
-To start with, we have to introduce some language:
+We will see in Chapter~\ref{} that this is in fact sharp: for every $r$ and $d \geq r$, there do exist such curves with genus exactly $\pi(d,r)$. 
+
+Briefly, if $C$ is a curve of degree $d$ and genus $g$ in $\PP^r$, the idea of the proof is to give successive lower bounds for the dimensions $h^0(\cO_C(m))$ of multiples of the $g^r_d$ cut on $C$ by hyperplanes. For large values of $m$ the line bundle $\cO_C(m)$ is non-special, and so a lower bound on the dimension of its space of sections translates, via the Riemann-Roch Theorem, into an upper bound on the genus $g$. 
 
 \begin{definition}
 Let $\cL$ be any line bundle on a smooth projective variety $X$, and $D = \{p_1,\dots,p_d\}$ a collection of points of $X$. By the \emph{number of conditions imposed by $D$ on sections of $\cL$} we  mean  the difference
@@ -139,13 +145,13 @@ $$
 h^0(\cO_C(m)) \geq \sum_{k=0}^m h_\Gamma(k).
 $$
 
-To apply this we need a lower bound on the Hilbert function of a general hyperplane section $\Gamma$ of our curve $C$. This is turn requires that we have some knowledge of the geometry of $\Gamma$. The key statement is the \emph{general position lemma}:
+To apply this we need a lower bound on the Hilbert function of a general hyperplane section $\Gamma$ of our curve $C$. This is turn requires that we have some knowledge of the geometry of $\Gamma$. The key statement is a general position result:
 
-\begin{lemma}[general position lemma]\label{general position lemma}
+\begin{lemma}[Linear General Position]\label{general position lemma}
 If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
 \end{lemma}
 
-Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are colinear. Even this case is surprisingly tricky to prove (and it's false in characteristic $p$!); the following exercise sketches a proof.
+Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are colinear. Even this case is surprisingly tricky to prove (and is false in characteristic $p$); the following exercise sketches a proof.
 
 \begin{exercise}
 Let $C \subset \PP^3$ be an irreducible, nondegenerate space curve. Assuming characteristic 0,
@@ -157,41 +163,78 @@ Let $C \subset \PP^3$ be an irreducible, nondegenerate space curve. Assuming cha
 \end{enumerate}
 \end{exercise}
 
-The general position lemma was originally asserted by Castelnuovo. In modern language, it can be deduced as a special case of the more general \emph{uniform position lemma}; since this is a useful (and beautiful) theorem in its own right we'll take a few pages out and 
-derive it. 
+The truth of Lemma~\ref{general position lemma} was originally asserted by Castelnuovo. It can be deduced as a special case of the far stronger Uniform Position Theorem, to which we now turn
 
 \subsection{Uniform position} 
 
-\subsubsection{The monodromy group}
+\subsubsection{The monodromy group of a generically finite morphism}
 
-We start by introducing the \emph{monodromy group} of a generically finite cover. Let $f : Y \to X$ be a dominant map between varieties of the same dimension over $\CC$, and suppose that $X$ is irreducible. There is then an open subset $U \subset X$ such that $U$ and 
-its preimage $V = f^{-1}(U)$ are smooth, and the restriction of $f$ to $V$ is a covering space in the classical topology; we'll denote by $d$ the number of sheets (in case $Y$ is irreducible, this is the degree of the field extension $K(Y)/K(X)$). 
+Let $f : Y \to X$ be a dominant map between varieties of the same dimension over $\CC$, and suppose that $X$ is irreducible. There is then an open subset $U \subset X$ such that $U$ and 
+its preimage $V = f^{-1}(U)$ are smooth, and the restriction of $f$ to $V$ is a covering space in the classical topology. Let $d$ be the number of sheets. This is the degree of the extension $K(Y)/K(X)$.
 
-Choose a base point $p_0 \in U \subset X$, and suppose $\Gamma := f^{-1}(p_0)  = \{q_1,\dots,q_d\}$. If $\gamma$ is any loop in $U$ with base point $p_0$, for any $i = 1, \dots, d$ there is a unique lifting of $\gamma$ to an arc $\tilde \gamma_i$ in $V$ with initial point $\tilde \gamma_i(0) = q_i$ and end point $\tilde \gamma_i(1) = q_j$ for some $j \in \{1,2,\dots,d\}$; in this way, we can associate to $\gamma$ a permutation of $\{1,2,\dots,d\}$. 
+A basic construction from homotopy theory now associates a monodromy group to any finite topological covering map: Choose a base point $p_0 \in U \subset X$, and suppose $\Gamma := f^{-1}(p_0)  = \{q_1,\dots,q_d\}$. If $\gamma$ is any loop in $U$ with base point $p_0$, for any $i = 1, \dots, d$ there is a unique lifting of $\gamma$ to an arc $\tilde \gamma_i$ in $V$ with initial point $\tilde \gamma_i(0) = q_i$ and end point $\tilde \gamma_i(1) = q_j$ for some $j \in \{1,2,\dots,d\}$. Since we could traverse the loop in the opposite direction, the index $j$ determines $i$, and the map $i\mapsto j$ is a permutation of $\{1,2,\dots,d\}$. 
 Since the set $\Gamma$ is discreet, the permutation depends only on the class of $\gamma$ in $\pi_1(U,p_0)$ so we have defined a homomorphism to the symmetric group:
 $$
 \pi_1(U,p_0)  \to {\rm Perm}(\Gamma) \cong S_d.
 $$
 The image $M$ of this map is called the \emph{monodromy group} of the map $f$. It depends on the labeling of the points of $\Gamma$, but is well-defined  up to conjugation. Moreover, it is independent of the choice of open set $U$: if $U' \subset U$ is a Zariski open subset, the map $\pi_1(U', p_0) \to \pi_1(U,p_0)$ is surjective,  so the image of $\pi_1(U', p_0)$ in $S_d$ is the same.
 
-One note: we do not assume here that $Y$ is irreducible. Note that any irreducible components of $Y$ that fail to dominate $X$ simply won't appear in the construction---they'll be eliminated when we pass to the open subset $U \subset X$. As for components of $Y$ that dominate $X$, we observe that \emph{$Y$ will have a unique irreducible component dominating $X$ if and only if the monodromy group $M$ is a transitive subgroup of $S_d$}. (Since $V$ is assumed smooth, it is irreducible if and only if it is connected, that is, if and only if $M$ is transitive.)
+Since we assumed that $X$ is irreducible, the space $U$ is (path) connected, and it follows that the monodromy group is transitive if and only if the space $V$ is (path) connected. But $V$ is a smooth
+variety, so this is the case if and only if $V$ is irreducible.
+
+We will apply this construction to the ``general hyperplane section'', constructed as follows:
+Let $C \subset \PP^r$ be a smooth irreducible, nondegenerate curve of degree $d$, let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$. We define the \emph{universal hyperplane section of $C$} to be the variety:
+$$
+Y = \{ (H, p) \in {\PP^r}^* \times C \mid p \in H \}.
+$$
+We will compute the monodromy of the projection $f: Y$ to ${\PP^r}^*$. Its fibers are the hyperplane
+sections of $C$, so it is a dominant finite map. If we let $U\subset {\PP^r}^*$ be an open subset of hyperplanes
+meeting $C$ transversely, then the restriction of $f$ to the preimage $V$ of $U$ is a covering space
+whose fibers each consist of $d$ distinct points, which we think of as the general hyperplane sections
+of $C$.
+
+\begin{theorem}[Uniform Position Theorem]\label{uniform position lemma}
+The monodromy group of the general hyperplane sections of an irreducible curve $C \subset \PP^r_\CC$ is the full symmetric group.
+\end{theorem}
+
+Informally, this theorem says that two subsets of the same cardinality in the general hyperplane section of $C$
+are indistinguishable from the point of view of any discrete invariant that is constant in
+a connected, smooth family. We shall see examples below.
+
+This result fails over fields of finite characteristic; see \cite{Rathmann} and \cite{Kadets} for examples and details of what is known. 
 
 \begin{fact}
-There is another characterization of the monodromy group $M$ that will not be used here but that is worth knowing. In the situation described above, if we assume that $Y$ is irreducible the pullback map $f^*$ expresses the function field $K(Y)$ as a finite algebraic extension of $K(X)$; the degree $d$ is the degree of this extension, and $M$ is equal to the Galois group of the Galois normalization of $K(Y)$ over $K(X)$. (For a proof of this equality, see \cite{Harris1979}.)
+There is another characterization of the monodromy group $M$ that will not be used here but that is worth knowing. In the situation described above, if we assume that $Y$ is irreducible the pullback map $f^*$ expresses the function field $K(Y)$ as a finite algebraic extension of $K(X)$; the degree $d$ is the degree of this extension, and $M$ is equal to the Galois group of the Galois normalization of $K(Y)$ over $K(X)$. (see \cite{Harris1979}.)
 \end{fact}
 
-There are two basic theorems relating the geometry of $Y \to X$ to the monodromy group $M$. For the first, we observed above that $Y$ has a unique irreducible component dominating $X$ if and only $M$ is transitive. We can extend this result in a useful way as follows:
+Since the symmetric group $S_d$ is generated by transpositions, we may prove that a subgroup $M\subset S_d$ is equal to $S_d$ by showing that $M$ is doubly transitive and contains a transposition (of course it will then follow that $M$ is $k$-fold transitive for any $k\leq d$.) We can translate these properties into geometry as follows:
 
+%\begin{lemma}\label{transitivity lemma}
+%Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$; let $U \subset X$ and $V = f^{-1}(U) \subset Y$ be open sets as above. For any $k = 1,2,\dots,d$, let $V_k^*$ be the complement of the large diagonal in the $k$th fiber power of $V \to U$; that is,
+%$$
+%V_k^* = \{ (x; y_1,\dots, y_k) \in U \times V^k \mid f(y_i) = x \text{ and } y_i \neq y_j \; \forall i \neq j\}.
+%$$
+%Then $V_k^*$ is irreducible if and only if $M$ is $k$ times transitive. \qed
+%\end{lemma}
 \begin{lemma}\label{transitivity lemma}
-Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$; let $U \subset X$ and $V = f^{-1}(U) \subset Y$ be open sets as above. For any $k = 1,2,\dots,d$, let $V_k^*$ be the complement of the large diagonal in the $k$th fiber power of $V \to U$; that is,
-$$
-V_k^* = \{ (x; y_1,\dots, y_k) \in U \times V^k \mid f(y_i) = x \text{ and } y_i \neq y_j \; \forall i \neq j\}.
-$$
-Then $V_k^*$ is irreducible if and only if $M$ is $k$ times transitive. \qed
+Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$.
+The $k$-fold fiber product $\prod_1^k(Y/X)$ is irreducible if and only if $M$ is $k$ times transitive.
 \end{lemma}
 
-As for the second theorem relating the monodromy group $M$ to the geometry of $Y$, it may seem arbitrary at first, but it will be extremely useful in what follows. 
+\begin{proof}
+The monodromy of the covering $f^k: \times^k(Y/X) \to X$ is the the diagonal action of
+$M$ in the product $\prod_1^k S_d$.
+\end{proof}
 
+Thus a consequence of the Uniform Position Theorem is an irreducibility result:
+
+\begin{corollary} If $C\subset \PP^r$ is a smooth curve of degree $d$, then 
+for $k\leq \deg C$, the fibered products $\prod_1^k(Y/{\PP^r}^*)$  of the general hyperplane section 
+of $C$ are irreducible.
+\end{corollary}
+
+We can give at least a sufficient condition for double transitivity:
+\fix{de revised to here 7/24}
 \begin{lemma}\label{transposition lemma}
 Let $f : Y \to X$ be a generically finite cover of degree $d$ over an irreducible variety $X$, with  monodromy group $M \subset S_d$.  
 If,  for some smooth point $p \in X$ the fiber $f^{-1}(p)\subset V$ consists of $d-2$ reduced points $p_1,\dots, p_{d-2}$ and one point $q$ of multiplicity 2, where $q$ is also a smooth point of $Y$, then $M$ contains a transposition.
@@ -205,32 +248,13 @@ Now, let $A \subset X$ be a small neighborhood of $p$ in the classical topology.
 Let $p' \in A \cap U$. Two of the $d$ points of $f^{-1}(p')$ will lie in the component $B$ of $f^{-1}(A)$ containing $q$; call these $q'$ and $q''$. Since $B \cap V$ is connected (it's the complement of a proper subvariety in the neighborhood $B$ of the smooth point $q \in Y$), we can draw a real arc $\gamma : [0,1] \to B \cap V$ joining $q'$ to $q''$; by construction, the permutation of $f^{-1}(p')$ associated to the loop $f \circ \gamma$ will exchange $q'$ and $q''$ and fix each of the remaining $d-2$ points of $f^{-1}(p')$.
 \end{proof}
 
-\subsubsection{Application to hyperplane sections of curves}
-
-To apply Lemmas~\ref{transitivity lemma} and~\ref{transposition lemma}, let $C \subset \PP^r$ be a smooth irreducible, nondegenerate curve of degree $d$, let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$, and let
-$$
-Y = \{ (H, p) \in {\PP^r}^* \times C \mid p \in H \}
-$$
-The projection of $Y$ to ${\PP^r}^*$, restricted to the the open set $U\subset {\PP^r}^*$
-of hyperplanes that are transverse to $C$, is a topological covering space of degree $d$ over   $U$. The monodromy group of this covering is called the monodromy group of the general hyperplane section of $C$. 
-
 %For every $k\leq \deg C$ we consider the fiber product over $U$ minus the main diagonal $\Delta$
 %\begin{align*}
 % Y^{k*} :=&Y\times_U Y\times_U \cdots Y\times_U \setminus \Delta  =\\
 %                                                 & \{ (H, p_1,\dots, p_k) \in {\PP^r}^* \times C^k \mid p_1,\dots, p_k \in H, p_i \neq p_j \hbox{ for all } i,j \}.
 %\end{align*}
 
-\begin{theorem}[uniform position lemma]\label{uniform position lemma}
-The monodromy group of the general hyperplane section of an irreducible curve $C \subset \PP^r_\CC$ is the full symmetric group; in particular the varieties $Y^k$ are irreducible.
-\end{theorem}
-
-Informally, this theorem says that two subsets of the same cardinality in the general hyperplane section of $C$
-are indistinguishable from the point of view of any discrete invariant that is constant in
-a connected, smooth family. We shall see examples below.
-
-This result fails over fields of finite characteristic; see \cite{Rathmann} and \cite{Kadets} for examples and details of what is known. 
-
-\begin{proof} 
+\begin{proof}[Proof of the Uniform Position Theorem]
 We show first that the monodromy group $M$ is twice transitive, and then that it contains a transposition. It follows that $M$ contains all the transpositions so that  $M = S_d$.
 Restricting to an open subset of $C$, we may assume that $C$ is smooth.
 
@@ -246,6 +270,8 @@ the tangent line at a general point of $C$ meets $C$ with multiplicity exactly 2
 
 Given this, let $p \in C$ be a general point, and let $H \subset \PP^r$ be a general hyperplane containing the tangent line $T_pC$. Since a general tangent line to $C$ is not bitangent (Exercise~\ref{}), the fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
 \end{proof}
+
+\subsubsection{Hyperplane sections of curves}
 
 \begin{corollary}[numerical uniform position lemma]
 Let $C\subset \PP^r$ be an irreducible curve, and let $H\cap C$ be a general hyperplane section. Any two subsets of $H\cap C$ with the same cardinality impose the same number of conditions on forms of any degree; that is, any two subsets of the same cardinality have the same Hilbert function.
@@ -371,14 +397,14 @@ $$
 $$
 In these terms, we have proved the
 
-\begin{theorem}[Castelnuovo's bound]
-If $C \subset \PP^r$ is an irreducible, nondegenerate curve of degree $d$ and genus $g$, then
-$$
-g \leq \pi(d,r).
-$$
-\end{theorem}
-
-We will see in Chapter~\ref{} that this is in fact sharp: for every $r$ and $d \geq r$, there do exist such curves with genus exactly $\pi(d,r)$. For now, we make a few observations:
+%\begin{theorem}[Castelnuovo's bound]
+%If $C \subset \PP^r$ is an irreducible, nondegenerate curve of degree $d$ and genus $g$, then
+%$$
+%g \leq \pi(d,r).
+%$$
+%\end{theorem}
+%
+%We will see in Chapter~\ref{} that this is in fact sharp: for every $r$ and $d \geq r$, there do exist such curves with genus exactly $\pi(d,r)$. For now, we make a few observations:
 
 \begin{enumerate}
 \item In case $r=2$, all the inequalities used in the derivation of Castenuovo's bound are in fact equalities, and indeed we see that in this case $\pi(d,2) = \binom{d-1}{2}$ is the genus of a smooth plane curve of degree $d$.
