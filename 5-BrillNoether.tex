@@ -194,12 +194,11 @@ whose fibers each consist of $d$ distinct points, which we think of as the gener
 of $C$.
 
 \begin{theorem}[Uniform Position Theorem]\label{uniform position lemma}
-The monodromy group of the general hyperplane sections of an irreducible curve $C \subset \PP^r_\CC$ is the full symmetric group.
+The monodromy group of the general hyperplane sections of an irreducible curve $C \subset \PP^r_\CC$ is the full symmetric group $S_d$.
 \end{theorem}
 
 Informally, this theorem says that two subsets of the same cardinality in the general hyperplane section of $C$
-are indistinguishable from the point of view of any discrete invariant that is constant in
-a connected, smooth family. We shall see examples below.
+are indistinguishable from the point of view of any discrete invariant that is semicontinuous in the Zariski topology. We shall see examples below.
 
 This result fails over fields of finite characteristic; see \cite{Rathmann} and \cite{Kadets} for examples and details of what is known. 
 
@@ -288,7 +287,7 @@ $k$-times transitive, $Y_k^*$ is irreducible.
 For each $m$ the number of conditions that $\Gamma$ imposes on forms of degree $m$ is lower semicontinuous, so it achieves its maximum on a Zariski open subset of $Y^{k*}$. Since $Y^{k*}$ is irreducible, the complement of this open has dimension strictly less than $\dim Y^{k*} = r$. Thus a general hyperplane $H \in {\PP^r}^*$ will lie outside the image of $Y^{k*}$, meaning that the number of conditions imposed by all the $k$-element subsets $\Gamma \subset C \cap H$ will have this maximal value.
 \end{proof}
 
-Another easy consequence of the Uniform Position Lemma is a result about sums of linear series:
+Another easy consequence of the uniform position lemma is a result about sums of linear series.
 Recall that if $D$ is a divisor on a curve $C$ we write $r(D) = \dim |D| = h^0(\cO_C(D))-1$.
 
 \begin{corollary}\label{Clifford equality plus}
@@ -361,9 +360,13 @@ h_\Gamma(m) = \min\{d, mn+1\}
 $$
 \end{exercise} 
 
+Castelnuovo in fact proved a converse to this observation:
+
 \begin{fact}
-Castelnuovo in fact proved a converse to this observation: he showed that if $d \geq 2n+3$, then \emph{any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(m) = \min\{d, mn+1\}$ must lie on a rational normal curve}. This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus; we'll see how it's applied in Chapter~\ref{} (scrolls, if we include it).
+If $d \geq 2n+3$, then any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(m) = \min\{d, mn+1\}$ must lie on a rational normal curve. 
 \end{fact}
+
+This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus; we'll see how it's applied in Chapter~\ref{} (scrolls, if we include it). For a proof, see for example~\cite{ACGH} or~\cite{Montreal}
 
 At this point, all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$, so that we can write
 $$
@@ -407,7 +410,7 @@ In these terms, we have proved the
 %We will see in Chapter~\ref{} that this is in fact sharp: for every $r$ and $d \geq r$, there do exist such curves with genus exactly $\pi(d,r)$. For now, we make a few observations:
 
 \begin{enumerate}
-\item In case $r=2$, all the inequalities used in the derivation of Castenuovo's bound are in fact equalities, and indeed we see that in this case $\pi(d,2) = \binom{d-1}{2}$ is the genus of a smooth plane curve of degree $d$.
+\item In case $r=2$, all the inequalities used in the derivation of Castelnuovo's bound are in fact equalities, and indeed we see that in this case $\pi(d,2) = \binom{d-1}{2}$ is the genus of a smooth plane curve of degree $d$.
 
 \item In case $r=3$, we have
 $$
@@ -418,7 +421,7 @@ k(k-1) &\text{ if $d=2k+1$ is odd.}
 \end{cases}
 $$
 In this case again, it's not hard to see the bound is sharp: these are exactly the genera of curves of bidegree $(k,k)$ and $(k+1,k)$ respectively on a quadric surface $Q \cong \PP^1 \times \PP^1 \subset \PP^3$.
-\item In general, we see that for fixed $r$ asymptotically
+\item In general we see that for fixed $r$, asymptotically
 $$
 \pi(d,r) \sim \frac{d^2}{2(r-1)}.
 $$
@@ -426,7 +429,7 @@ $$
 
 
 \begin{exercise}
-Show that with $C$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
+Show that with $C$ and $M$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
 \end{exercise}
 
 
@@ -449,15 +452,24 @@ The bottom line is, even with Castelnuovo's bound, if we were to pick a curve $C
 Brill-Noether theory addresses exactly this issue: it asks, ``what linear series exist on a \emph{general} curve of a given genus?" When it comes to non-special linear series, of course, Riemann-Roch answers the question simply and completely, so we'll restrict our attention to special linear series (that is, with $r > d - g$). 
 Here is a crude version of the result:
 
-\begin{theorem}\label{basic BN}
-Fix non-negative integers $g, r$ and $d$ with $d \leq g+r$, and let $C$ be a general curve of genus $g$. If we denote by $W^r_d(C) \subset \Pic^d(C)$ the locus of invertible sheaves $\cL$ with $h^0(\cL) \geq r+1$, then
+\begin{theorem}[Brill Noether, bare-bones version]\label{basic BN}
+A general curve $C$ of genus $g$  possesses a linear series of degree $d$ and dimension $r$ if and only if
 $$
-\dim W^r_d(C) = \rho(g,r,d) := g - (r+1)(g-d+r).
+ \rho(g,r,d) := g - (r+1)(g-d+r) \geq 0.
 $$
-In particular, it is the case that a general curve of genus $g$ possesses a linear series of degree $d$ and dimension $r$ if and only if $\rho(g,r,d) \geq 0$.
 \end{theorem}
 
-In the following sections, we'll see why we might naively expect this to be the case, and we'll also state some refinements and strengthenings of the theorem.  A proof of the existence half of the theorem (the ``if" part of the statement) may be found in \cite[Theorem ****]{3264};  we will give in Chapter~\ref{InflectionsChapter} of this book a relatively simple proof of the nonexistence part (the ``only if"). 
+%\begin{theorem}[Brill Noether, bare-bones version]\label{basic BN}
+%Fix non-negative integers $g, r$ and $d$ with $d \leq g+r$, and let $C$ be a general curve of genus $g$. If we denote by $W^r_d(C) \subset \Pic^d(C)$ the locus of invertible sheaves $\cL$ with $h^0(\cL) \geq r+1$, then
+%$$
+%\dim W^r_d(C) = \rho(g,r,d) := g - (r+1)(g-d+r).
+%$$
+%In particular, it is the case that a general curve of genus $g$ possesses a linear series of degree $d$ and dimension $r$ if and only if $\rho(g,r,d) \geq 0$.
+%\end{theorem}
+
+\fix{Add chart from 3264 comparing the Clifford, Castelnuovo and Brill-Noether bounds}
+
+In the following sections, we'll see why we might naively expect this to be the case, and we'll also state some of the many refinements and strengthenings of the theorem.  A proof of the existence half of the theorem (the ``if" part of the statement) may be found in \cite[Theorem ****]{3264};  we will give in Chapter~\ref{InflectionsChapter} of this book a relatively simple proof of the nonexistence part (the ``only if"). 
 
 The case $r=1$ is already interesting:
 
@@ -476,7 +488,7 @@ Let $C$ be a smooth projective curve of genus $g$, and $D = p_1 + \dots + p_d$ a
 
 When does the divisor $D$ move in an $r$-dimensional linear series? Riemann-Roch gives an answer: it says that $h^0(D) \geq r+1$ if and only if the vector space $H^0(K-D)$ of 1-forms vanishing on $D$ has dimension at least $g-d+r$---that is, if and only if the  evaluation map
 $$
-H^0(K) \to H^0(K|_D) = \oplus k_{p_i}
+H^0(K) \to H^0(K|_D) = \bigoplus k_{p_i}
 $$
 has rank at most $d-r$. 
 
@@ -505,7 +517,7 @@ At the same time, if any divisor of degree $d$ with $h^0(D) \geq r+1$ exists, th
 
 \subsection{Refinements of the Brill-Noether theorem}
 
-As we indicated, Theorem~\ref{basic BN} is only a crude version of the Brill-Noether theorem. We now know much more, both about the geometry of the scheme $W^r_d(C)$ and about the linear series parametrized by $W^r_d(C)$:
+As we indicated, Theorem~\ref{basic BN} is just a starting point. It raises a slew of questions, both about the geometry of the schemes $W^r_d(C)$ parametrizing linear series on a general curve $C$ (what are their dimensions, are they irreducible, etc.), and about the geometry of the linear systems themselves (do they give embeddings; what's the Hilbert function of the image, and so on). A great deal of progress has been made on these fronts; we collect here some of the main results.
 
 \begin{theorem}[Brill-Noether theorem, omnibus version]\label{BN omnibus}
 Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, then
@@ -529,12 +541,24 @@ is injective, and the Zariski tangent space to the scheme $W^r_d(C)$ at the poin
 \item if $r=1$, the map $\phi_D : C \to \PP^2$ expresses $C$ as a simply branched cover of $\PP^1$.
 \end{enumerate}
 
-\item\label{maximal rank} If $L \in W^r_d(C)$ is a general point (or any point, if $\rho = 0$), then for each $m > 0$ the multiplication map
+\item\label{maximal rank}[The maximal rank theorem] If $L \in W^r_d(C)$ is a general point (or any point, if $\rho = 0$), then for each $m > 0$ the multiplication map
 $$
 \rho_m : \Sym^m H^0(L) \to H^0(L^m)
 $$
 has maximal rank; that is, it is either injective or surjective.
+\item\label{interpolation}[The interpolation theorem]
+Let $d, g$ and $r$
+be nonnegative integers with $\rho(d, g, r) \geq 0$. There is a general curve of degree $d$ and genus $g$ through $n$ general
+points in $\PP^r$
+if and only if
+$$
+(r-1)n \leq (r + 1)d-(r-3)(g-1)
+$$
+except in the four exceptional cases $(d, g, r) = (5, 2, 3),(6, 4, 3),(7, 2, 5)$ or $(10, 6, 5)$.
 \end{enumerate}
+
+\fix{add references, attributions, etc.}
+
 \end{theorem}
 
 A few special cases are worth noting:
