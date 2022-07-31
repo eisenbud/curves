@@ -46,7 +46,7 @@ The first two terms in the ramification sequence are particularly important: $\a
 
 \subsection{The Pl\"ucker formula}
 
-In characteristic 0, a linear series on a smooth projective curve can have only finitely many inflection points, and in fact the sum of the weights of all the inflection points depends only on the genus of the curve and the degree of the the linear series. The result is called the Pl\"ucker Formula:
+In characteristic 0, a linear series on a smooth projective curve can have only finitely many inflection points (we'll prove this in Lemma~\ref{finite infections} below), and in fact the sum of the weights of all the inflection points depends only on the genus of the curve and the degree of the the linear series. The result is called the Pl\"ucker Formula:
 
 \begin{theorem}\label{Plucker}
 If $C \subset \PP^r$ is a nondegenerate smooth curve of degree $d$, then
@@ -157,9 +157,58 @@ There is still much we don't know about Weierstrass points in general. Most nota
 Buchweitz' example (the semigroup of $\sL^2$ has the wrong number of elements)
 \end{exercise}
 
+\section{Results needed for the proof of the uniform position lemma}
+
+There are two results concerning the inflectionary behavior of a curve in projective space that we needed for the proof of the uniform position lemma in Chapter~\ref{}; we'll prove them here.
+
+\subsection{Not every tangent line is a flex}
+
+The first is just a special case of the statement made earlier in this chapter: that, in characteristic 0, a curve $C \subset \PP^r$ can have only finitely many inflection points; that is, a general point of $C$ is not an inflectionary point. We'll prove this here for a smooth curve embedded in $\PP^r$, but the proof applies to any linear series on a curve.
+
+\begin{lemma}\label{finite infections}
+If $C \subset \PP^r$ is a smooth, irreducible and nondegenerate curve, then not every point of $C$ is an inflectionary point.
+\end{lemma}
+
+\begin{proof}
+To set this up, suppose that the inclusion $C \hookrightarrow \PP^r$ is given parametrically, in terms of a local coordinate $t$ on $C$, by a vector-valued function $v(t) \in \CC^{r+1}$. To say that a point $p \in C$ is an inflection point is to say that there is a hyperplane $H \subset \PP^r$ having contact of order $>r$ with $C$ at $p$, which is
+precisely to say that the vectors $v(p), v'(p), \dots, v^{(r)}(p)$ lie in a hyperplane, that is, are linearly dependent. To say that every point is inflectionary says that this holds for all $p \in C$; that is,
+$$
+v(p) \wedge v'(p) \wedge \dots \wedge v^{(r)}(p) \; \equiv \; 0.
+$$
+Now let $k$ be the smallest integer such that
+$$
+v(p) \wedge v'(p) \wedge \dots \wedge v^{(k)}(p) \; \equiv \; 0,
+$$
+so that the vectors $v(p), v'(p), \dots, v^{(k-1)}(p)$ span a $k$-plane $\Lambda \subset \CC^{r+1}$, and $v^{(k)}(p) \in \Lambda$.
+
+When we take the derivative of the wedge product $v(p) \wedge v'(p) \wedge \dots \wedge v^{(k)}(p)$ by applying the product rule we see that the first $k$ terms are automatically zero because they contain a repeated factor; it follows that
+$$
+v(p) \wedge v'(p) \wedge \dots \wedge v^{(k-1)}(p)\wedge v^{(k+1)}(p) \equiv 0,
+$$
+so that $v^{(k+1)}(p) \in \Lambda$ as well. Indeed, as we continue to take derivatives, we see in each case that all but one term is automatically zero, and we deduce that \emph{$v^{(l)}(p) \in \Lambda$ for all $l$}; in characteristic 0 this says that $C$ lies in a $(k-1)$-plane in $\PP^r$, contradicting the hypothesis of nondegeneracy.
+\end{proof}
+
+ \subsection{Not every tangent is bitangent}
  
+ This statement seems even more obvious than Lemma~\ref{finite infections} above, but---like that lemma---is false in characteristic $p$!
+ 
+ \begin{lemma}\label{tangent not bitangent}
+ Let $C \subset \PP^r$ be a smooth, irreducible, nondegenerate curve, with $r > 1$. If $p \in C$ is a general point, then the tangent line $\TT_p(C) \subset \PP^r$ is not tangent to $C$ at any other point.
+ \end{lemma}
+ 
+ \begin{proof}
+ To set this up, we introduce the variety parametrizing bitangents: we set
+ $$
+ \Sigma := \{ (p,q) \in C \times C \mid p \neq q \text{ and }\TT_p(C) = \TT_q(C) \}
+ $$
+ Our goal is to say that the projection maps $\Sigma \to C$ are not dominant; suppose instead that they are, and let $(p,q) \in \Sigma$ be a general point. Since $\Sigma$ cannot contain an open subset of a fiber, a local coordinate $t$ on $\Sigma$ at the point $(p,q)$ will serve as a local coordinate on $C$ at both $p$ and $q$; that is, we can write neighborhoods of $p$ and $q \in C$ parametrically via vector-valued functions $v(t)$ and $w(t) \in \CC^{r+1}$. The statement that the tangent lines to $C$ at the points $v(t)$ and $w(t)$ are equal then says that the vectors $v(t), v'(t), w(t)$ and $w'(t)$ all lie in a 2-dimensional subspace of $\CC^{r+1}$; in particular,
+ $$
+ v(t) \wedge v'(t) \wedge w(t) \equiv 0 \quad \text{and likewise} \quad v(t) \wedge w(t) \wedge w'(t) \equiv 0
+ $$
+We proceed now exactly as in the proof of Lemma~\ref{finite infections}: taking derivatives, we see that \emph{all derivatives of $v(t)$ at $t=0$ lie in a subspace $\Lambda$}, and hence $r=1$.
+ \end{proof}
 
-
+Note: it's much less clear whether it can be the case that a general tangent line to $C$ can intersect $C$ in a point other than $p$, except of course in case $r=2$. See~\cite{} for results on this question.
 
 \section{Finiteness of the automorphism group}
 
