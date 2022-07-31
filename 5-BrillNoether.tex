@@ -138,7 +138,18 @@ We will see analogues of these curves, lying in certain classes on rational norm
 In some sense the construction there makes the  numerical answer more reasonable. 
 \end{example}
 
-To prove the result, we will give lower bounds for the dimensions of the linear series  cut on a curve $C$ by hypersurfaces of degree $m$. For large values of $m$ the line bundle $\cO_C(m)$ is non-special and $H^1(\sI_{C/\PP^r}(m) = 0$, so a lower bound on the dimension of its space of sections translates, via the Riemann-Roch theorem, into an upper bound on the genus $g$ and this is the Castelnuovo bound. To execute this strategy, we need to know more about the set of points that can be the general hyperplane section of a curve. The following definition will be convenient:
+To prove the result, we will give lower bounds for the dimensions of the linear series  cut on a curve $C$ by hypersurfaces of degree $m$. For large values of $m$ the line bundle $\cO_C(m)$ is non-special and $H^1(\sI_{C/\PP^r}(m) = 0$, so a lower bound on the dimension of its space of sections translates, via the Riemann-Roch theorem, into an upper bound on the genus $g$ and this is the Castelnuovo bound. To execute this strategy, we need to know more about the set of points that can be the general hyperplane section of a curve. 
+It turns out that what we need follows from a linear independence result:
+
+\begin{lemma}[Linear General Position]\label{general position lemma}
+If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
+\end{lemma}
+
+We will prove this as a consequence of the far stronger Uniform Position Theorem, in the next section. From Lemma~\ref{general position lemma} we
+can derive a seemingly crude bound on the number of conditions imposed by hyperplane sections:
+
+
+To describe the consequence for the dimensions of linear series, the following definition will be convenient:
 
 \begin{definition}
 If $\sV = (V,cL)$ is a linear system on a variety and $\Gamma$ is a subscheme then the number of conditions
@@ -166,11 +177,22 @@ $$
 h^0(\cO_C(m)) \geq \sum_{k=0}^m h_\Gamma(k).
 $$
 
-To apply this we need a lower bound on the Hilbert function of a general hyperplane section $\Gamma$ of our curve $C$. The key statement is a general position result:
+\begin{proposition}\label{min hilb}
+If $\Gamma \subset \PP^n$ is a collection of $d$ points in linearly general position that span $\PP^n$, then 
+$$
+h_\Gamma(m) \geq \min\{d, mn+1\}
+$$
+\end{proposition}
 
-\begin{lemma}[Linear General Position]\label{general position lemma}
-If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
-\end{lemma}
+\begin{proof}
+Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mn+1} \in \Gamma$ be any subset of $mn+1$ points. It suffices to show that $\Gamma' = \{p_1,\dots,p_{mn+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^n}(m))$, that is, for any $p_i \in \Gamma'$ there is a hypersurface $X \subset \PP^n$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mn+1}$ but not containing $p_i$.
+
+To construct such an $X$, group the $mn$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $n$; each set $\Gamma_k$ will span a hyperplane $H_k \subset \PP^n$, and we can take $X = H_1 \cup \dots \cup H_m$. 
+
+In the case where $d<mn+1$, we add $mn+1-d$ general points; each one imposes exactly one
+additional condition on hypersurfaces of degree $m$.
+\end{proof}
+This may seem like a crude argument, but the bound derived is sharp, as the following exercise asserts
 
 Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are colinear. Even this case is surprisingly tricky to prove (and is false in characteristic $p$); the following exercise sketches a proof.
 
@@ -182,6 +204,68 @@ Let $C \subset \PP^3$ be an irreducible, nondegenerate space curve. Assuming cha
 \item Using the irreducibility of $C \times C$, show that $C$ can have at most a 1-parameter family of trisecant lines.
 \item Deduce that a general plane $H \subset \PP^3$ does not contain three colinear points of $C$.
 \end{enumerate}
+\end{exercise}
+
+
+
+\begin{exercise}
+Let $D \subset \PP^n$ be a rational normal curve. If $\Gamma \subset D$ is any collection of $d$ points on $D$ (or for that matter any subscheme of $D$ of degree $d$) then the Hilbert function of $\Gamma$ is
+$$
+h_\Gamma(m) = \min\{d, mn+1\}
+$$
+\end{exercise} 
+
+Castelnuovo in fact proved a converse to this observation:
+
+\begin{fact}
+If $d \geq 2n+3$, then any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(m) = \min\{d, mn+1\}$ must lie on a rational normal curve. 
+\end{fact}
+
+This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus; we'll see how it's applied in Chapter~\ref{} (scrolls, if we include it). For a proof, see for example~\cite{ACGH} or~\cite{Montreal}
+
+At this point, all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$, so that we can write
+$$
+d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2.
+$$
+We have 
+\begin{align*}
+h^0(\cO_C(M)) &\geq \sum_{k=0}^M h^0(\cO_C(k)) - h^0(\cO_C(k-1)) \\
+&\geq  \sum_{k=0}^M k(r-1)+1 \\
+&= \frac{M(M+1)}{2}(r-1) + M + 1
+\end{align*}
+and similarly
+$$
+h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M + 1 + md.
+$$
+For sufficiently large $m$, the line bundle $\cO_C(M+m)$ will be nonspecial, so by the Riemann-Roch Theorem,
+\begin{align*}
+g &= (M+m)d - h^0(\cO_C(M+m)) + 1 \\
+&\leq (M+m)d - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 + md \bigr) \\
+& = M\bigl( M(r-1) + 1 + \epsilon \bigr) - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 \bigr) \\
+&= \frac{M(M-1)}{2}(r-1) + M\epsilon.
+\end{align*}
+
+%To summarize our discussion: for positive integers $d$ and $r$, we write
+%$$
+% d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2
+%$$
+%and set
+%$$
+%\pi(d,r) = \frac{M(M-1)}{2}(r-1) + M\epsilon.
+%$$
+%In these terms, we have proved the
+
+%\begin{theorem}[Castelnuovo's bound]
+%If $C \subset \PP^r$ is an irreducible, nondegenerate curve of degree $d$ and genus $g$, then
+%$$
+%g \leq \pi(d,r).
+%$$
+%\end{theorem}
+%
+%We will see in Chapter~\ref{} that this is in fact sharp: for every $r$ and $d \geq r$, there do exist such curves with genus exactly $\pi(d,r)$. For now, we make a few observations:
+
+\begin{exercise}
+Show that with $C$ and $M$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
 \end{exercise}
 
 The truth of Lemma~\ref{general position lemma} was originally asserted by Castelnuovo. It follows easily from the far stronger Uniform Position Theorem, to which we now turn. 
@@ -317,8 +401,7 @@ the tangent line at a general point $p\in C$ meets $C$ with multiplicity exactly
 Thus the fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
 \end{proof}
 
-
-
+\subsection{Other Applications}
 Another consequence of the uniform position lemma is a result about sums of linear series.
 Recall that if $D$ is a divisor on a curve $C$ we write $r(D) = \dim |D| = h^0(\cO_C(D))-1$.
 
@@ -360,109 +443,6 @@ which implies that every canonical divisor is expressible as a sum of a divisor 
 By Corollary~\ref{Clifford equality plus}, $K$ is not very ample; so $C$ is hyperelliptic. Moreover the
 divisors equivalent to $D$ are sums of the fibers of the map given by $|K|$.
 \end{proof}
-
-\subsection{Castelnuovo's bound}
-
-We return now to Castelnuovo's analysis.
-
-The general position lemma is the special case $m=1$ of the numerical uniform position lemma. This may not seem like much information about $\Gamma$, but in fact it's all we need:
-
-\begin{proposition}\label{min hilb}
-If $\Gamma \subset \PP^n$ is a collection of $d$ points in linearly general position that span $\PP^n$, then 
-$$
-h_\Gamma(m) \geq \min\{d, mn+1\}
-$$
-\end{proposition}
-
-\begin{proof}
-Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mn+1} \in \Gamma$ be any subset of $mn+1$ points. It suffices to show that $\Gamma' = \{p_1,\dots,p_{mn+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^n}(m))$, that is, for any $p_i \in \Gamma'$ there is a hypersurface $X \subset \PP^n$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mn+1}$ but not containing $p_i$.
-
-To construct such an $X$, group the $mn$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $n$; each set $\Gamma_k$ will span a hyperplane $H_k \subset \PP^n$, and we can take $X = H_1 \cup \dots \cup H_m$. 
-
-In the case where $d<mn+1$, we add $mn+1-d$ general points; each one imposes exactly one
-additional condition on hypersurfaces of degree $m$.
-\end{proof}
-
-This may seem like a crude argument, but the bound derived is sharp, as the following exercise asserts
-
-\begin{exercise}
-Let $D \subset \PP^n$ be a rational normal curve. If $\Gamma \subset D$ is any collection of $d$ points on $D$ (or for that matter any subscheme of $D$ of degree $d$) then the Hilbert function of $\Gamma$ is
-$$
-h_\Gamma(m) = \min\{d, mn+1\}
-$$
-\end{exercise} 
-
-Castelnuovo in fact proved a converse to this observation:
-
-\begin{fact}
-If $d \geq 2n+3$, then any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(m) = \min\{d, mn+1\}$ must lie on a rational normal curve. 
-\end{fact}
-
-This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus; we'll see how it's applied in Chapter~\ref{} (scrolls, if we include it). For a proof, see for example~\cite{ACGH} or~\cite{Montreal}
-
-At this point, all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$, so that we can write
-$$
-d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2.
-$$
-We have 
-\begin{align*}
-h^0(\cO_C(M)) &\geq \sum_{k=0}^M h^0(\cO_C(k)) - h^0(\cO_C(k-1)) \\
-&\geq  \sum_{k=0}^M k(r-1)+1 \\
-&= \frac{M(M+1)}{2}(r-1) + M + 1
-\end{align*}
-and similarly
-$$
-h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M + 1 + md.
-$$
-For sufficiently large $m$, the line bundle $\cO_C(M+m)$ will be nonspecial, so by the Riemann-Roch Theorem,
-\begin{align*}
-g &= (M+m)d - h^0(\cO_C(M+m)) + 1 \\
-&\leq (M+m)d - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 + md \bigr) \\
-& = M\bigl( M(r-1) + 1 + \epsilon \bigr) - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 \bigr) \\
-&= \frac{M(M-1)}{2}(r-1) + M\epsilon.
-\end{align*}
-
-%To summarize our discussion: for positive integers $d$ and $r$, we write
-%$$
-% d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2
-%$$
-%and set
-%$$
-%\pi(d,r) = \frac{M(M-1)}{2}(r-1) + M\epsilon.
-%$$
-%In these terms, we have proved the
-
-%\begin{theorem}[Castelnuovo's bound]
-%If $C \subset \PP^r$ is an irreducible, nondegenerate curve of degree $d$ and genus $g$, then
-%$$
-%g \leq \pi(d,r).
-%$$
-%\end{theorem}
-%
-%We will see in Chapter~\ref{} that this is in fact sharp: for every $r$ and $d \geq r$, there do exist such curves with genus exactly $\pi(d,r)$. For now, we make a few observations:
-
-\begin{enumerate}
-\item In case $r=2$, all the inequalities used in the derivation of Castelnuovo's bound are in fact equalities, and indeed we see that in this case $\pi(d,2) = \binom{d-1}{2}$ is the genus of a smooth plane curve of degree $d$.
-
-\item In case $r=3$, we have
-$$
-\pi(d,3) =
-\begin{cases}
-\left( k - 1 \right)^2 &\text{ if $d=2k$ is even; and} \\
-k(k-1) &\text{ if $d=2k+1$ is odd.}
-\end{cases}
-$$
-In this case again, it's not hard to see the bound is sharp: these are exactly the genera of curves of bidegree $(k,k)$ and $(k+1,k)$ respectively on a quadric surface $Q \cong \PP^1 \times \PP^1 \subset \PP^3$.
-\item In general we see that for fixed $r$, asymptotically
-$$
-\pi(d,r) \sim \frac{d^2}{2(r-1)}.
-$$
-\end{enumerate}
-
-
-\begin{exercise}
-Show that with $C$ and $M$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
-\end{exercise}
 
 
 \section{Brill-Noether theory}
