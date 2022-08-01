@@ -94,15 +94,19 @@ Prove a slightly stronger version of Theorem~\ref{arbitrary linear series} in th
 Theorem~\ref{arbitrary linear series} gives a complete and sharp answer to the question of existence.
 % originally posed: for which $d,r$ and $g$ does there exists a triple $(C,\cL,V)$ with $C$ a curve of genus $g$, $\cL$ a line bundle of degree $d$ on $C$ and $V \subset H^0(\cL)$ of dimension $r+1$. 
 %
-But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least a birational embedding. 
+But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least a birational embedding; that is, we would like to know bounds for the genus and degree of a reduced,
+irreducible curve in $\PP^r$. 
 
-We will show that the maximal dimension of a birationally very ample linear series of degree $d$ on a curve of genus $g$ is a decreasing function of $g$. With this understanding, we need only ask:
+%We will show that the maximal dimension of a birationally very ample linear series of degree $d$ on a curve of genus $g$ is a decreasing function of $g$. 
+%With this understanding, we need only ask \fix{I don't understand the "we need only": For plane curves they only exist at the bound. Is there a band
+%of existence in general?}
 
-\begin{question}
-What is the largest possible genus of an irreducible, nondegenerate curve $C \subset \PP^r$ of degree $d$?
-\end{question}
 
-The numerical answer is a little complicated. For positive integers $d$ and $r$, we write
+%\begin{question}
+%What is the largest possible genus of an irreducible, nondegenerate curve $C \subset \PP^r$ of degree $d$?
+%\end{question}
+
+A classical result of Castelnuovo gives such a bound, which is in some sense explained by the classification of the curves that achieve it. For positive integers $d$ and $r$, we write
 $$
  d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2
 $$
@@ -112,32 +116,50 @@ $$
 $$
 
 \begin{theorem}[Castelnuovo's bound]
-If $C \subset \PP^r$ is an irreducible, nondegenerate curve of degree $d$ and arithmetic genus $p_a$, then
+If $C \subset \PP^r$ is a reduced, irreducible, nondegenerate curve of degree $d$ and arithmetic genus $p_a$, then
 $$
 p_a \leq \pi(d,r).
 $$
 \end{theorem}
 \fix{The uniform position argument coming up is char 0; is the theorem char 0 only? We should say.}
 
-We will say that a curve achieving the bound is a \emph{Castelnuovo curve}. \fix{For plane curves they only exist at the bound. Is there a band
-of existence in general?}
-We will see in Chapter~\ref{} that the bound is sharp: for every $r$ and $d \geq r$, there exist curves with genus exactly $\pi(d,r)$. 
+We will say that a curve achieving the bound is a \emph{Castelnuovo curve}. We will see in Chapter~\ref{} that the bound is sharp: for every $r$ and $d \geq r$, there exist curves with genus exactly $\pi(d,r)$. 
 
 \begin{example}
 For plane curves, $r=2$ so $\epsilon = 0$ and $M = d-1$, so we recover the necessary $p = \pi(d,2) =  {d-1\choose 2}$: thus every reduced irreducible
 plane curve is a Castelnuovo curve.
 \end{example}
 
-\begin{example}
- When $r=3$ we have $d= 2M+1+\epsilon$ with $\epsilon = 0$ or 1. and $\pi(d,3) = M*M-1+M\epsilon$. If $C$ is a curve of class
-$M+1,M+1$ on a smooth quadric (that is, the complete intersection of the quadric with a surface of degree $M+1$), then
-$\deg C = 2M+2, \epsilon=1, then \ p_a(C) = M^2 = \pi(d,3)$. Also, if $C$ has class $(M,M+1)$ then
-$\deg C = 2M+1, \epsilon=0, then \ p_a(C) = M(M-1) = \pi(d,3)$ again, so these two classes of curves on a smooth quadric
-achieve the bound, and a variant of this works for singular quadrics as well. However, these are the only Castelnuovo curves in $\PP^3$.
-We will see analogues of these curves, lying in certain classes on rational normal scrolls, in Chapter~\ref{ScrollsChapter}. 
-In some sense the construction there makes the  numerical answer more reasonable. 
+\begin{example}For a more typical situation, consider the case $r=3$
+Then we have $d= 2M+1+\epsilon$ with $\epsilon = 0$ if $d$ is odd or 1 if $d$ is even, so 
+$$
+p_a \leq \pi(d,3) = 
+\begin{cases}
+d^2/4-d+1 & \text{ if } 2|d\\
+d^2/4 -d+3/4& \text{ if } 2 \not | d
+\end{cases}
+$$
+ If $d$ is even and $C$ is a curve of class
+$(d/2, d/2)$ on a smooth quadric or $d$ is odd and $C$ is a curve of class $((d-1)/2, (d+1)/2)$
+on a smooth quadric then $g = \pi(d,3)$  so these two classes of curves on a smooth quadric
+achieve the bound, and a variant of this works for singular quadrics as well. The classification  explained in Chapter~\ref{ScrollsChapter}
+shows that these are the only Castelnuovo curves in $\PP^3$.
 \end{example}
 
+\begin{fact}
+A famous theorem of Gruson and Peskine~\ref{Gruson-Peskine} completes the picture of the possibilities for the degree $d$ and  genus $g$ \fix{Check P-G; I think these can all be smooth, but I'm not sure}
+ of a curve in $\PP^3$: Such curves always exist if
+$$
+g\leq \pi_1(d,r) := 
+\begin{cases}
+ d^2/6-d/2+1&\text{ if } 3|d\\
+ d^2/6-d/2+1/3 & \text{ if } 3\not | d
+\end{cases}
+$$
+but for $\pi_1(d,r) < g\leq \pi(d,r)$,
+such a curve must lie on a quadric, and thus such curves exist if and only if the equations $d=a+b\ g=(a-1)(b-1)$ can be solved for $a,b$. A first example
+of non-existence is
+\end{fact}
 To prove the result, we will give lower bounds for the dimensions of the linear series  cut on a curve $C$ by hypersurfaces of degree $m$. For large values of $m$ the line bundle $\cO_C(m)$ is non-special and $H^1(\sI_{C/\PP^r}(m) = 0$, so a lower bound on the dimension of its space of sections translates, via the Riemann-Roch theorem, into an upper bound on the genus $g$ and this is the Castelnuovo bound. To execute this strategy, we need to know more about the set of points that can be the general hyperplane section of a curve. 
 It turns out that what we need follows from a linear independence result:
 
@@ -285,7 +307,7 @@ $$
 The image $M$ of this map is called the \emph{monodromy group} of the map $f$. It depends on the labeling of the points of $\Gamma$, but is well-defined  up to conjugation. Moreover, it is independent of the choice of open set $U$: if $U' \subset U$ is a Zariski open subset, the map $\pi_1(U', p_0) \to \pi_1(U,p_0)$ is surjective,  so the image of $\pi_1(U', p_0)$ in $S_d$ is the same.
 
 \begin{fact}
-The theory of finite coverings is not only analogous to Galois theory, is \emph{is} Galois theory: In the situation described above, if we assume that $Y$ is irreducible, then the pullback map $f^*$ expresses the function field $K(Y)$ as a finite algebraic extension of $K(X)$. The degree of this extension is the degree of the map $f$. The monodromy group of $f$  the Galois group of the Galois normalization of $K(Y)$ over $K(X)$. (see \cite{Harris1979}.)
+The theory of finite coverings of algebraic varieties is not only analogous to Galois theory, is \emph{is} Galois theory: In the situation described above, if we assume that $Y$ is irreducible, then the pullback map $f^*$ expresses the function field $K(Y)$ as a finite algebraic extension of $K(X)$. The degree of this extension is the degree of the map $f$. The monodromy group of $f$  the Galois group of the Galois normalization of $K(Y)$ over $K(X)$. (see \cite{Harris1979}.)
 \end{fact}
 
 Since we assumed that $X$ is irreducible, the space $U$ is (path) connected, and it follows that the monodromy group is transitive if and only if the space $V$ is (path) connected. But $V$ is a smooth
@@ -396,7 +418,7 @@ $$
 $$
 where $p+q$ is the divisor $p+q$ on $C$, viewed as a subscheme of $C$. The projection $\pi_{2,3} : \Phi \to C \times C$ is a $\PP^{r-2}$-bundle, and so irreducible; applying Lemma~\ref{transitivity lemma}, we deduce that $M$ is twice transitive.
 
-To prove that $M$ contains a transposition, we will use the characteristic 0 hypothesis. As we shall see in Chapter~\ref[Theorem ****]{InflectionsChapter}, a general hyperplane $H$ containing
+To prove that $M$ contains a transposition, we will use the characteristic 0 hypothesis. It follows from Bertini's theorem and Lemma~\ref{tangent not bitangent} that a general hyperplane $H$ containing
 the tangent line at a general point $p\in C$ meets $C$ with multiplicity exactly 2 at $p$ and meets $C$ transversely elsewhere. 
 Thus the fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
 \end{proof}
