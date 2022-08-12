@@ -508,11 +508,57 @@ so $g(C) = dm+1-p_C(m)$.
 cotangent sheaf) on $C$.
 \end{enumerate}
 
+\subsection{Arithmetic genus and geometric genus}
+In this section, we'll deal with a  curve $C_0$ that is assumed to be reduced and irreducible.
+Any reduced, irreducible 1-dimensional scheme $C_0$ has a normalization $\nu: \widetilde C \to C$ which is a birational
+map from a smooth curve. The genus of $C$ is called the \emph{geometric genus} of $C_0$.
+$\nu : C \to C_0$. 
+
+The geometry of singular curves is a fascinating topic, from the local analysis of the singularities to the global questions involving linear series on singular curves, and most of the results of this book have analogues for singular curves. But this is a topic beyond the scope of this book; for us, the questions are about smooth curves, with singular curves appearing as a useful adjunct, for example in Chapter~\ref{PlaneCurveChapter}.
 
 Applied to a possibly singular or even non-reduced 1-dimensional projective scheme, the formula~\ref{pa} and the equivalent~\ref{genus Hilbert}, define
 what is called the \emph{arithmetic genus} $p_a(C)$. 
 
-Any reduced, irreducible 1-dimensional scheme $C$ has a normalization $\widetilde C$ which is a smooth curve. The genus of $\widetilde C$ is called the \emph{geometric genus} of $C$.
+We can relate the two notions via the map of sheaves
+$$
+\cO_{C} \to \nu_*\cO_C.
+$$
+This is injective; the cokernel sheaf will be a skyscraper sheaf supported exactly on the singular points of $C_0$. Denoting this sheaf by $\cF$, we have an exact sequence
+$$
+0 \to \cO_{C_0} \to \nu_*\cO_C \to \cF \to 0.
+$$
+
+The normalization map $\nu: C \to C_0$ is finite, so that the higher direct images $R^i\nu_*\cO_C = 0$ for $i > 0$; it follows from the Leray spectral sequence that $\chi(\nu_*\cO_C) = \chi(\cO_C)$. Thus
+$$
+p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF);
+$$ 
+in other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks on $\cF$; colloquially, it's the number of linear conditions a function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant of the singularity}; to rephrase the statement above in these terms, we have
+$$
+p_a(C_0) - g(C) = \sum_{p \in (C_0)_{sing}} \delta_p
+$$ 
+
+The $\delta$ invariant of a singularity is easy to compute in simple cases. For example:
+\begin{enumerate}
+
+\item (nodes) If $p \in C_0$ is a node, with points $r,s \in C$ lying over it, the condition for a function $f$ on $C$ to descend is simply that $f(r)=f(s)$; this is one linear condition and accordingly $\delta_p = 1$.
+
+\item (cusps) If $p \in C_0$ is a cusp, with  $r \in C$ lying over it, the condition for a function $f$ on $C$ to descend is simply that the derivative $f'(r)=0$; again, this is one linear condition and accordingly $\delta_p = 1$.
+
+\item (tacnodes) Suppose now that $p \in C_0$ is a \emph{tacnode}, that is, $C_0$ has two smooth branches at $p$ simply tangent to one another. There will be two points $r, s \in C$ lying over it, and the condition for a function $f$ on $C$ to descend is that in terms of suitable local coordinates both $f(r)=f(s)$ and $f'(r)=f'(s)$.  This represents two linear conditions and accordingly $\delta_p = 2$.
+
+\item (planar triple points) Next up, consider an ordinary triple point $p \in C_0$ of a plane curve: that is, a singularity consisting of three smooth branches meeting pairwise transversely, such as the zero locus of $y^3-x^3$. There will be three points $r,s,t \in C$ lying over $p$, and certainly a necessary condition for a function $f$ on $C$ to descend is that $f(r)=f(s)=f(t)$---two linear conditions. But there's a third, less obvious linear condition: in order for $f$ to descend, the derivatives $f'(r), f'(s), f'(t)$ have to satisfy a linear condition---a reflection of the fact that a function on $C_0$ cannot vanish to order 2 on each of two branches without vanishing to order 2 along the third as well. Thus $\delta_p = 3$
+
+\item (spatial triple points) We will be concerned in what follows only with planar singularities, but spatial triple points provide a useful contrast to the last example. A spatial triple point is a singularity consisting of three smooth branches, with linearly independent tangent lines, so that its Zariski tangent space is 3-dimensional. An example would be the union of the three coordinate axes in $\AA^3$.
+
+In this case, in contrast to the last one, the condition that $f(r)=f(s)=f(t)$ is both necessary and sufficient for $f$ to descend, and accordingly we have $\delta_p=2$.
+
+\end{enumerate}
+
+\begin{exercise}
+Let $p \in C$ be a singular point of a reduced curve $C$. Show that if $\delta_p = 1$, then $p$ must be either a node or a cusp.
+\end{exercise}
+
+
 
 \subsection{The Riemann-Roch Theorem}
 
