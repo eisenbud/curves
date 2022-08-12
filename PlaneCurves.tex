@@ -493,28 +493,35 @@ Now let $C \subset \PP^2$ be a plane curve with a tacnode at $p$. Show that by t
 %
 %In this section, we'll address exactly this question. 
 
-The family of reduced irreducible plane curves of degree $d$ is an open subset of the space 
-$\PP^{{d+2\choose 2}}$, the space of forms of degree $d$ up to scalars---it is the complement of the union of the images of the maps 
+The set of plane curves of given degree is naturally an algebraic variety---the projective space of forms of that degree. The idea of varying a plane curve by varying the coefficients of its defining equation was exploited from the very beginning of the subject in the vague ``principle of conservation of number''. Perhaps this obvious family of curves is what originally suggested a key feature of algebraic geometry, that sets of ``similar'' algebraic varieties, or vector bundles, or still more complicated objects, often can be made into algebraic varieties in a natural way---the various sorts of moduli, of which several are addressed in this book.
+
+Despite its antiquity, many questions about the family of plane curves, such as which ones degenerated into which others, and in what way, remain open. All plane curves of degree $d$ have the same Hilbert funcdtion, and thus the same arithmetic genus, but since curves of degree $d$ can have different sorts and numbers of singularities, they can have many different geometric genera, all the way from 0 to $\binom{d-1}{2}$, as we have seen. In this section we will explore the subset of of (reduced, irreducible) curves of degree $d$ with a fixed geometric genus. We will focus on the open set consisting of curves with only nodes as singularities, which we call \emph{nodal curves}, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
+
+Let $\PP^N := \PP^{{d+2\choose 2}}$ be the projective space parametrizing plane curves of degree $d$.
+
+Since we will always be working with reduced irreducible curves, we begin by noting that this set is an open subset of the space 
+$\PP^N$---it is the complement of the union of the images of the maps 
 $$
-\PP^{{d_1+2\choose 2}}\PP^{{d_2+2\choose 2}} \to \PP^{{d+2\choose 2}}
+\PP^{{d_1+2\choose 2}}\PP^{{d_2+2\choose 2}} \to \PP^N
 $$ 
 with $d_1+d+2 = d$ given by multiplication of forms.
-All plane curves $C$ of degree $d$ have Hilbert polynomial 
-$$
-\chi(\sO_C(m)) = md+(1-{d-1\choose 2})
-$$
-as follows from a computation of the Hilbert function, and thus arithmetic genus 
-$p_a = {d-1\choose 2}$. But depending on the singulariities of the $C$, the geometric genus can vary from 0 up to $p_a$. \fix{ the discussion of arithmetic vs geometric genus should go somewhere else.}.
+%All plane curves $C$ of degree $d$ have Hilbert polynomial 
+%$$
+%\chi(\sO_C(m)) = md+(1-{d-1\choose 2})
+%$$
+%as follows from a computation of the Hilbert function, and thus arithmetic genus 
+%$p_a = {d-1\choose 2}$. But depending on the singulariities of the $C$, the geometric genus can vary from 0 up to $p_a$. \fix{ the discussion of arithmetic vs geometric genus should go somewhere else.}.
 
-Our first goal in this section
-is to describe an open subset of those curves of degree $d$ with given geometric genus $g$, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
-
+%Our first goal in this section
+%is to describe an open subset of those curves of degree $d$ with given geometric genus $g$, and compute its dimension. 
 %Our main goal will be to give a description of at least an open subset of the Severi variety parametrizing plane curves of degree $d$ and geometric genus $g$; 
 %we'll be able to deduce the fact that the Severi variety always has the expected dimension; and we'll be able to prove 
 
 %\subsection{Definitions, and the statement of our main theorem}
 
-Fix a degree $d$, and let $\PP^N := \PP^{{d+2\choose 2}}$ be the projective space parametrizing plane curves of degree $d$.
+\def\Vdg{{V_{d,g}}}
+\def\Vdgtilde{{\widetilde{V}_{d,g}}} 
+\def\Vdgbar{{\overline{V}_{d,g}}} 
 \begin{propdef}
 
 \begin{enumerate}
@@ -530,22 +537,27 @@ Fix a degree $d$, and let $\PP^N := \PP^{{d+2\choose 2}}$ be the projective spac
 \fix{THE Severi variety is actually never mentioned again; only the small and the large. Are its singularities well-understood? Say something about this?}
 
 \begin{proof}
-  \fix{ Insert some proof of something!}
+\fix{ How about proving that $V_{d,g}$ is locally closed, and at least mentioning that $\widetilde V_{d,g}$ is open in $\overline V_{d,g}$}
 \end{proof}
 
-We will see that in a neighborhood of $\widetilde {V}_{d,g}$,  the large Severi variety is well behaved; but away from this,
-even the singularities of $overline V_{d,g}$  are not well understood. It is is an interesting open problem to find a better compactification of $\widetilde V_{d,g}$.
+We will see that in a neighborhood of the small Severi variety $\widetilde {V}_{d,g}$,  the large Severi variety $\overline V_{d,g}$  is well behaved; but away from this,
+even the singularities of $\overline V_{d,g}$  are not well understood. It is is an interesting open problem to find a better compactification of $\widetilde V_{d,g}$.
 
-\fix{We should at least mention the irreducibility result as a "fact"!}
+\fix{We should at least mention the irreducibility result as a "fact"! Also, list some more of what is NOT known about these sets.}
 
-\subsection{The universal singular point}
+\subsection{The local geometry of $\overline V_{d,g}$}
 
-The key to understanding the geometry of nodal curves is to introduce what we may call the \emph{universal singular point}. This is the incidence correspondence
+We first consider the \emph{universal singular point}
 $$
 \Phi := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C_{sing} \right\}
 $$
+and its image $\Delta\subset \PP^N$, the \emph{discriminant} variety. 
 
-The first thing to say about $\Phi$ is that \emph{it is smooth and irreducible of dimension $N-1$}. We can see this readily via projection on the second factor, which expresses $\Phi$ as a $\PP^{N-3}$-bundle over $\PP^2$. Explicitly, if $[X,Y,Z]$ are homogeneous coordinates on $\PP^2$, and $\{a_{i,j,k} \mid i+j+k = d \}$ are homogeneous coordinates on $\PP^N$, then the universal curve 
+\begin{proposition}
+ $\Phi$ is smooth and irreducible of dimension $N-1$, and the discriminant $\Delta$ is a hypersurface in $\PP^N$.
+\end{proposition}
+\begin{proof}
+Projection on the second factor expresses $\Phi$ as a $\PP^{N-3}$-bundle over $\PP^2$. Explicitly, if $[X,Y,Z]$ are homogeneous coordinates on $\PP^2$, and $\{a_{i,j,k} \mid i+j+k = d \}$ are homogeneous coordinates on $\PP^N$, then the universal curve 
 $$
 \CC := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C \right\}
 $$
@@ -553,28 +565,32 @@ is given as the zero locus of the single bihomogenous polynomial of bidegree $(1
 $$
 F([a_{i,j,k}], [X,Y,Z] ) = \sum a_{i,j,k} X^iY^jZ^k;
 $$
-and the universal singular point is given (in characteristic 0!) as the common zero locus of the three partial derivatives $\partial F/\partial X$, $\partial F/\partial Y$ and  $\partial F/\partial Z$. \fix{char p?}
+and the universal singular point is the common zero locus of the three partial derivatives $\partial F/\partial X$, $\partial F/\partial Y$ and  $\partial F/\partial Z$. 
 
-The key now is to understand the map $\pi : \Phi \to \PP^N$, and the geometry of its image, the discriminant hypersurface  $\Delta \subset \PP^n$. A fundamental fact is the
+The set of forms $F$ define curves singular at a given point is defined by 3 independent linear conditions, and since the set of 
+points is 2-dimensional, $\Delta$ has dimension $N-1$.
+\end{proof}
+ 
+We next compute the differential of the map $\pi : \Phi \to \PP^N$:
 
 \begin{lemma}\label{tangent space to discriminant}
-Let $C \subset \PP^2$ be a plane curve of degree $d$, and $p \in C$ a node of $C$. The differential 
+Let $C \subset \PP^2$ be a plane curve of degree $d$, regarded as a point in $\PP^N$,  having a node at a point $p$. The differential 
 $$
 d\pi : T_{(C,p)}\Phi \to T_C \PP^N
 $$
 is injective, with image the hyperplane $H_p \subset \PP^N$ of plane curves containing the point $p$.
 \end{lemma}
 
-Thus, if $p$ is the only singularity of $C$, then $\Delta$ is smooth at $C$; and more generally the image of a small analytic neighborhood of $(C,p) \in \Phi$ is smooth, with tangent space the hyperplane $H_p$.
+Thus, if $p$ is the only singularity of $C$, then $\Delta$ is smooth at $C$; and more generally the image of a small analytic neighborhood of $(C,p) \in \Phi$ is smooth, and we can identify its tangent space at $p$ with the hyperplane $H_p$. 
 
 \begin{proof}
-For this, it's easier to work with affine coordinates on both projective spaces. Suppose that the point $p$ is $[0,0,1]$, and let $x = X/Z$ and $y = Y/Z$ be coordinates on the affine plane $Z \neq 0$; and write the polynomial $F(x,y,1)$ above as
+We will prove this using affine coordinates on $\PP^2$ and $\PP^N$. Changing coordinates if necessary, we may assume that the point $[1,0,0] \notin C$, and that the point $p$ is $[0,0,1]$. let $x = X/Z$ and $y = Y/Z$ be coordinates on the affine plane $Z \neq 0$ and write the polynomial $F(x,y,1)$ above as
 $$
 f(x,y) = \sum_{i+j \leq d} a_{i,j} x^iy^j
 $$
-with $a_{d,0}$ normalized to 1. (Thus assumes that the point $[1,0,0] \notin C$; if not, change coordinates.)
+with $a_{d,0}$ normalized to 1. 
 
-Now, let's consider $f$ and its two partial derivatives  
+Let $g,h$ be the two partial derivatives of $f$, that is:
 $$
 g(x,y) := \binom{\partial f}{\partial x} = \sum_{i+j \leq d} i a_{i,j} x^{i-1}y^j
 $$
@@ -582,9 +598,9 @@ and
 $$
 h(x,y) := \binom{\partial f}{\partial y} = \sum_{i+j \leq d} j a_{i,j} ix^{i}y^{j-1}.
 $$
-$f, g$ and $h$ are local defining equations for $\Phi$; we consider their partial derivatives with respect to $x, y$ and $a_{0,0}$, evaluated at the point $(C,p)$. In matrix form, we have
+The functions $f, g$ and $h$ are local defining equations for $\Phi$; we consider their partial derivatives with respect to $x, y$ and $a_{0,0}$, evaluated at the point $(C,p)$, as in in figure~\ref{tang to Delta}.
 
-\begin{table}[h!]
+\begin{table}[h!]\label{tang to Delta}
   \begin{center}
      \begin{tabular}{c|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
             & $f$ & $g$ & $h$ \\
@@ -596,41 +612,40 @@ $\frac{\partial}{\partial a_{0,0}}$ & 1 & 0 & 0
   \end{center}
 \end{table}
 
-Now, the hypothesis that $p$ is a node of $C$ means exactly that the upper right $2 \times 2$ minor of this matrix is nonsingular, which shows that the differential $d\pi$ is injective, and its image is the hyperplane $a_{0,0} = 0$ in $\PP^N$, which is exactly the hyperplane of curves containing $p$.
+The point $p$ is a node of $C$ (and not a more complicated singularity) if and only if the upper right $2 \times 2$ submatrix is nonsingular, which shows that the differential $d\pi$ is injective, and its image is the hyperplane $a_{0,0} = 0$ in $\PP^N$, which is exactly the hyperplane of curves containing $p$.
 \end{proof}
 
-Now, suppose that $C \subset \PP^2$ is a curve with $\delta$ nodes $p_1,\dots,p_\delta$ and no other singularities. The preimage of the point $C \in \PP^N$ is then the $\delta$ points $(C,p_i) \in \Phi$, and according to  Lemma~\ref{tangent space to discriminant} an analytic neighborhood of $C$ in the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets. Moreover, by Lemma~\ref{adjoint independent} above, the tangent spaces to these sheets are linearly independent; in other words, \emph{$\Delta$ has normal crossing singularities at $C$}.
-
-This in turn gives us a beautiful picture of $\overline V_{d,g}$ in a neighborhood of a nodal curve:
-\begin{lemma}\label{local geometry of Severi}
-In a neighborhood of a point $C \in \PP^N$ corresponding to a nodal curve with nodes $p_1,\dots,p_\delta$,
+\begin{corollary}\label{local geometry of Severi}
+If $C$ is a nodal curve of degree $d$ with geometric genus $g = \binom{d-1}{2}-g$, then in a neighborhood of $C\in \PP^N$
+the discriminant hypersurface consists of $\delta$ smooth sheets, meeting transversely. Thus in a neighborhood  $C \in \PP^N$ 
 the variety $\overline V_{d,g}$ is the union of $\binom{\delta}{\delta'}$ smooth branches, each of dimension $N - \delta'$, corresponding bijectively with subsets of $\{p_1,\dots,p_\delta\}$ of cardinality $\delta'$.
-\end{lemma}
+\end{corollary}
 \begin{proof}
- Let $C$ be a rational nodal curve of degree $d$, with nodes $p_1,\dots,p_\delta$ (so that $\delta = \binom{d-1}{2}$). In a neighborhood of the point $C \in \PP^N$, the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets intersecting transversely. What's more, if we set $\delta' = \binom{d-1}{2} - g$, we see that in that neighborhood the variety $V_{d,g}$ will consist of the $\delta'$-fold intersections of these sheets. In other words, we have established the
+Lemma~\ref{tangent space to discriminant} shows that in an analytic neighborhood of $C\in \PP^N$ the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets, each corresponding to one node, and Lemma~\ref{adjoint independent} implies that the tangent spaces to these sheets are linearly independent. 
 \end{proof}
 
-
-
-There are a number of immediate consequences. First of all, we have the
 
 \begin{corollary}\label{dim Severi}
 The small Severi variety $V_{d,g}$ has pure dimension $N - \delta$, where $\delta = \binom{d-1}{2} - g$.
 \end{corollary}
 
-Note that this is exactly the ``expected dimension:" in Section~\ref{estimating dim hilb}, we gave a heuristic calculation of the expected dimension $h(d,g,r)$ of the variety parametrizing curves of degree $d$ and genus $g$ in $\PP^r$:
+\fix{for the following to make sense, we have to include curves of geometric genus $g$ --- the Hilbert scheme doesn't include these.}
+In Section~\ref{estimating dim hilb}, we give a heuristic calculation of the ``expected dimension'' $h(d,g,r)$ of the variety parametrizing curves of degree $d$ and genus $g$ in $\PP^r$
 $$
 h(g,r,d) := 4g-3 + (r+1)(d-g+1) - 1.
 $$
-As we saw in that chapter, the actual dimension of the restricted Hilbert scheme may be quite different. But what Corollary~\ref{dim Severi} is saying that in case $r=2$ (as in the case of $r=1$), \emph{the actual dimension is always the expected}.
+The actual dimension of the restricted Hilbert scheme may be quite different. But  Corollary~\ref{dim Severi} shows that in case $r=2$ (as in the case of $r=1$), \emph{the actual dimension is always the expected}.
 
-Lemma~\ref{local geometry of Severi} has another important consequence, one which we have already invoked in Chapter~\ref{InflectionsChapter}: the existence of families of curves of genus $g$ specializing to a $g$-nodal rational curve. In fact, such families are already explicit in Lemma~\ref{local geometry of Severi}: if we start with a rational nodal  curve $C_0 \subset \PP^2$---for example, the general projection of a rational normal curve $\PP^1 \hookrightarrow \PP^d$ to $\PP^2$---the lemma says that we can find a family of nodal curves $C_t$ of geometric genus $g$ specializing to $C_0$, in which the  $\delta = \binom{d-1}{2} - g$ nodes of $C_t$ specialize to a subset of $\delta$ of the nodes of $C_0$. Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired.
+Corollary~\ref{local geometry of Severi} has an important consequence that we use in Chapter~\ref{InflectionsChapter}: the existence of a families of smooth curves of genus $g$ specializing to a $g$-nodal rational curve. 
 
-To carry this out in detail, let us first state precisely the lemma we seek to establish:
+%In fact, such families are already explicit in Lemma~\ref{local geometry of Severi}: if we start with a rational nodal  curve $C_0 \subset \PP^2$---for example, the general projection of a rational normal curve $\PP^1 \hookrightarrow \PP^d$ to $\PP^2$---the lemma says that we can find a family of nodal curves $C_t$ of geometric genus $g$ specializing to $C_0$, in which the  $\delta = \binom{d-1}{2} - g$ nodes of $C_t$ specialize to a subset of $\delta$ of the nodes of $C_0$. Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired. \fix{watch out! the normalization of a flat family
+%is not always the normalization of each fiber! -- eg there are normal surfaces with both smooth and singular fibers.}
+%
+%To carry this out in detail, let us first state precisely the lemma we seek to establish:
 
-\begin{lemma}
+\begin{corollary}\label{smoothing nodes}
 Let $p_1, \dots, p_g, q_1, \dots, q_g \in \PP^1$ be any $2g$ distinct points, and let $C := \PP^1/p_i \sim q_i$ be the nodal curve of arithmetic genus $g$ obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family $\cC \to  \Delta $ of curves, parametrized by the disc $\Delta$, with $C_t$ a smooth projective curve of genus $g$ for all $t \neq 0$ and $C_0 = C$ as above.
-\end{lemma}
+\end{corollary}
 
 \begin{proof}
 Let's start by realizing the curve $C_0$ in projective space. This is straightforward: to begin, choose a degree $d > 2g+2$, and embed $\PP^1$ as a rational normal curve in $\PP^d$ via the Veronese map. Let $L_i = \overline{p_i,q_i} \subset \PP^d$ be the line spanned by $p_i$ and $q_i$, and let $\Lambda \cong \PP^{g-1} \subset \PP^d$ be the $(g-1)$-plane spanned by a general point on each of these
@@ -644,15 +659,19 @@ Thus we have to check that
 \item for each $i$, the 3-plane $\overline{2p_i + 2q_i}$ spanned by the tangent lines to $\PP^1$ at $p_i$ and $q_i$ meets $\Lambda$ in only one point (the point of intersection of $\Lambda$ with $L_i$), so that the common image point $\pi_\Lambda(p_i) = \pi_\Lambda(q_i) \in C$ is indeed a node of $C$.
 \end{enumerate}
 
-Each of these assertions can be verified by a simple (or at least straightforward) dimension count. Denote by $\Sigma_{d-g}(L_i) \subset \GG(g-1, d)$ the Schubert cycle of $(g-1)$-planes in $\PP^d$ meeting $L_i$. The cycles $\Sigma_{d-g}(L_i)$ have codimension $d-g$ in $\GG(g-1,d)$; since the lines $L_i$ are linearly independent, they intersect properly in a subvariety
+Each of these assertions can be verified by a  dimension count. Denote by $\Sigma_{d-g}(L_i) \subset \GG(g-1, d)$ the Schubert cycle of $(g-1)$-planes in $\PP^d$ meeting $L_i$. The cycles $\Sigma_{d-g}(L_i)$ have codimension $d-g$ in $\GG(g-1,d)$; since the lines $L_i$ are linearly independent \fix{did we ever prove that? Put in Ch 2?}, the Schubert cycles intersect properly in a subvariety
 $$
 X := \bigcap_{i=1}^g \Sigma_{d-g}(L_i) \subset \GG(g-1,d)
 $$
-of dimension $g(d-g+1) - g(d-g) = g$. (This makes sense: a $(g-1)$-plane $\Lambda \in X$ is determined by its points of intersection with the $L_i$.) Since $\Lambda$ corresponds to a general point of $X$, we just have to show that the locus of $(g-1)$-planes violating each of the conditions above has strictly smaller dimension; we leave these verifications as Exercise~\ref{} below.
+of dimension $g(d-g+1) - g(d-g) = g$. (Thus a $(g-1)$-plane $\Lambda \in X$ is determined by its points of intersection with the $L_i$.) Since $\Lambda$ corresponds to a general point of $X$, we just have to show that the locus of $(g-1)$-planes violating each of the conditions above has strictly smaller dimension; we leave these verifications as Exercise~\ref{} below.
 
 Next, we project again: we take $\Gamma \cong \PP^{d-g-3} \subset \PP^{d-g}$ a general $(d-g-3)$-plane, and consider the projection $\pi_\Gamma : C \to \PP^2$. We claim that this map is regular and birational onto a rational nodal plane curve $C_0$, so that $C_0$ has $\binom{d-1}{2}$ nodes $r_1,\dots,r_{\binom{d-1}{2}}$, of which $r_1,\dots,r_g$ are the images of the nodes of $C$. Again, this requires a series of verifications: we have to show that the locus of planes $\Gamma \cong \PP^{d-g-3} \subset \PP^{d-g}$ for which each part of the statement fails has dimension strictly less than $\dim \GG(d-g-3, d-g) = 3(d-g-2)$; again, we leave this as an exercise.
 
-Finally, given all this, Lemma~\ref{local geometry of Severi} gives us what we seek: it says we can find an arc $\{C_t\}$ in the Severi variety $\overline V_{d,g}$ whose general member has $\binom{d-1}{2} - g$ nodes and whose special member $C_0$ is the curve we've just constructed, with the $\binom{d-1}{2} - g$ nodes of $C_t$ specializing to the nodes $r_{g+1}, \dots r_{\binom{d-1}{2}} \in C_0$.
+Finally, given all this, Lemma~\ref{local geometry of Severi} implies that we can find an arc $\{C_t\}$ in the Severi variety $\overline V_{d,g}$ whose general member has $\binom{d-1}{2} - g$ nodes and whose special member $C_0$ is the curve we've just constructed, with the $\binom{d-1}{2} - g$ nodes of $C_t$ specializing to the nodes $r_{g+1}, \dots r_{\binom{d-1}{2}} \in C_0$.
+
+ Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired. \fix{this NEEDS a proof! the normalization of a flat family
+is not always the normalization of each fiber! -- eg there are normal surfaces with both smooth and singular fibers.
+Why isn't the total space of this family normal already?}
 \end{proof}
 
 \input{footer}
