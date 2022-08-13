@@ -1,6 +1,6 @@
 \input{header.tex}
 
-\chapter{Linear Systems}\label{linear systems}
+\chapter{Linear Series}\label{linear systems}\label{linear series}
 This Chapter is intended largely as a review of material that should be familiar, couched in the language we will use throughout the book. Experienced readers 
 may want to skip it, and return if and when that is needed. Nearly all of the material can be found in texts such as \cite{H}, the main exception being the treatment of
 Noether's Theorem on canonical curves in Section~\ref{Noether theorem section}.
@@ -67,7 +67,6 @@ Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in
  $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and basepoint-free means that there is no point of $C$ where all the sections in $V$
 vanish.
 
-\fix{make sure we don't assume that $C$ is a smooth curves without saying so!}
 
 \subsection{Invertible sheaves}\label{Invertible sheaves}
 Recall first that a \emph{coherent sheaf} $\sL$ on a scheme $X$ may be defined by
@@ -126,7 +125,6 @@ Moreover, if $H'$ is the hyperplane defined by another linear form $\ell'$, then
 $$
 \frac{\ell'}{\ell}\cdot\sI_{H/\PP^{r}} = \sI_{H'/\PP^{r}} 
 $$
-\fix{check that this is out notation for ideal sheaf}
 so the sheaves $\sI_{H/\PP^{r}}$ and $\sI_{H'/\PP^{r}} $ are isomorphic, justifying the name $\sO_{\PP^{r}}(-1)$.
 
 The $p$-th tensor power of $\sO_{\PP^{r}}(-1)$ is called $\sO_{\PP^{r}}(-d)$; it is isomorphic to the
@@ -737,27 +735,6 @@ If $\cO_C(p+q)$ has two independent sections and has $d$ basepoints, then it def
 we must have $d=0$, proving the first statement. 
 \end{proof}
 
-%Furthermore, $C$ is hyperelliptic. To finish the proof, by Corollary~\ref{degree 2g+1 embedding} it suffices to show that
-% an invertible sheaf $\sL$ of degree 1 on $C$ must have $h^{0}(\sL)\leq 1$.
-% 
-%Suppose that $\sigma_{0}, \sigma_{1}$ were two linearly independent sections of $\sL$. Each $\sigma_{i}$ vanishes at a unique point $p_{i}$. If $p_{0}= p_{1}$ then a linear combination of $\sigma_{0}, \sigma_{1}$ would be a section vanishing to order $\geq 2$, which is impossible, so $\sL$ is basepoint free, and defines a degree 1 morphism $C\to \PP^{1}$. Such a morphism must be an isomorphism (because $\PP^{1}$ is normal), contradicting $g(C) \geq 2$.
-%
-%
-%\fix{the following argument is only set-theoretic. Admit this or make it precise}
-%Note that if $C$ is hyperelliptic, the morphism $\phi_K$ factors through the degree 2 morphism $\pi : C \to \PP^1$: if $\{p,q\} \subset C$ is a fiber of this morphism, we have $h^0(\cO_C(p+q)) = 2$ and hence $\phi_K(p) = \phi_K(q)$. The image of the morphism $\phi_K$ is a nondegenerate curve of degree $g-1$ in $\PP^{g-1}$, which we will see is a \emph{rational normal curve}. This observation implies in particular that if $C$ is hyperelliptic of genus $g \geq 2$, then the invertible sheaf $\cL$ of degree 2 with $h^0(\cL) = 2$ is in fact unique.
-%
-%\fix{note that the next para needs a parameterization of the curves of genus }
-%
-%Among curves with $g \geq 3$ the hyperelliptic curves are very special: in the family of all curves, as we'll see, they comprise a closed subvariety. Also, the behavior of linear series and morphisms on a hyperelliptic curve is very different from that of series on a general curve; when we discuss the geometry of curves of low genus in the Chapter~\ref{}, we will exclude  the hyperelliptic case, and deal with this case in a separate chapter.
-%
-%For non-hyperelliptic curves, however, the geometry of the canonical morphism, and its image, the canonical curve, are the keys to understanding the curve. We'll see this in detail in many cases in the following chapter; for now, we mention one highly useful result along these lines.
-%
-%\fix{add here: canonical series on plane curves cut by $|\cO_{\PP^2}(d-3)|$; consequence that no smooth plane curve can be hyperelliptic}
-%
-%\fix{maybe move initial discussion of hyperelliptic curves from Ch. 6 to a section here}
-%
-%\fix{maybe add to this chapter: differentials on plane curves $C$, possibly with nodes or more general singularities; adjoint conditions; algorithm for determining the complete linear system associated to a divisor $D$ on $C$}
-%
 \subsection{The geometric Riemann-Roch theorem}
 
 If $C$ is a nonhyperelliptic curve, embedded in $\PP^{g-1}$ by its canonical series and  $D = p_1+\dots + p_d$ is a divisor consisting of $d$ distinct points; let $\overline D$ be the span of the points $p_i \in C \subset \PP^{g-1}$. Since the hyperplanes in $\PP^{g-1}$ containing $\{p_1,\dots,p_d\}$ correspond (up to scalars) to sections of $K_C$ vanishing at all the points $p_i$, we see that
@@ -852,7 +829,7 @@ To do this we will make use of an auxiliary construction, a \emph{simple $(g-4)$
  
 \begin{proof}
 The plane $L$ is contained in a hyperplane $H$, and since the points are general, we may take this to be a general hyperplane. By Bertini's Theorem, $C\cap H$ is reduced, so $C\cap L$ is also reduced.
- If $C\cap L$ had length $>m$, then by Theorem~\ref{uniform position??}\fix{in ch 8-BrillNoether} every set of $m+1$ points of $C\cap H$ would be dependent,
+ If $C\cap L$ had length $>m$, then by Lemma~\ref{general position lemma} every set of $m+1$ points of $C\cap H$ would be dependent,
  and the span of $C\cap H$ would thus have dimension $\leq m-1<n-1$, and we could choose a hyperplane section $C\cap H'$ with more points than $C\cap H$, which is absurd.
 \end{proof}
 
@@ -864,7 +841,7 @@ $g-2$ secant, then it is arithmetically Cohen-Macaulay; that is,
 $\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m\in \ZZ$.
 \end{theorem}
  
-For a canonically embedded irreducible curve the simple $g-3$-dimensional $g-2$ secant planes $\Lambda$  correspond to base-point-free pencils of degree $g = 2g-2 -(g-2)$: Given $\Lambda$, the linear series of hyperplanes containing $\Lambda$ intersects $C$ in $\Lambda$ plus the fibers of this pencil.Conversely, given such a pencil, the plane is the span of the complement of a general  member $P$ of the pencil in  $C\cap \overline P$, where $\overline P$ is the hyperplane that is the linear span of $P$.
+For a canonically embedded irreducible curve the simple $g-3$-dimensional $g-2$ secant planes $\Lambda$  correspond to base-point-free pencils of degree $g = 2g-2 -(g-2)$: Given $\Lambda$, the linear series of hyperplanes containing $\Lambda$ intersects $C$ in $\Lambda$ plus the fibers of this pencil. Conversely, given such a pencil, the plane is the span of the complement of a general  member $P$ of the pencil in  $C\cap \overline P$, where $\overline P$ is the hyperplane that is the linear span of $P$.
  \fix{I worry about the converse; why shouldn't the base locus of $K-g^{1}_{g}$ have a multiple point, or even contain a singular point?}  
   
 \begin{proof} The Hilbert polynomial $\chi_{C}(t) = h^{0}\sO(t)-\h^{1}\sO(t)$ of $C$ has degree equal to
