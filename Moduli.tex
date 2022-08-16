@@ -3,33 +3,45 @@
 \chapter{Moduli} 
 \label{Moduli chapter}\label{ModuliChapter}
 
-Philosophy of this chapter: the book \emph{Moduli of Curves} has already been written, and we don't want to write it again. But a summary of the basic information would be useful
-
 \section{What is a moduli problem?}
 
-We've already seen, in the preceding chapters, examples of \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll try to systematize this, giving a general framework for the notion of moduli space, introducing the main examples we'll be dealing with here, and mentioning some common variants.
+Plane curves, the original objects studied by algebraic geometry, come naturally in a family: the plane curves of degree $d$
+are in natural one-to-one correspondence with the forms of degree $d$ up to (nonzero) scalars---that is, with the points
+of 
+$\PP^{\binom{d+2}{2}} = \PP(H^0(\sO_{\PP^2}(d)))$.
+Perhaps this is the origin of the impulse in algebraic geometry to make 
+ \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll try to systematize this, giving a general framework for the notion of moduli space, introducing the main examples that we will treat in this book and their desirable or undesirable properties.
 
-As for the question of the title, in colloquial terms a \emph{moduli problem} consist of two things: a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes and the like---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. As usual, some examples will make this somewhat vague notion more real. In each case, we'll discuss the notion as it applies to curves.
+In modern terms, a \emph{moduli problem} is a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common atrributes---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
+which associates to each scheme $B$ the set of families of the given sort. As usual, some examples will make this somewhat vague notion more real. In each case, we'll discuss the notion as it applies to curves.
 
 \subsection{Examples}
 
-These are the four main instances of moduli spaces we'll encounter in this book.
+These instances of moduli problems we'll encounter in this book:
 
 \begin{enumerate}\label{list of moduli problems}
-\item \emph{Curves of genus $g$}. Here, the objects are simply (isomorphism classes of) smooth, projective curves of genus $g$. By a family of such curves, we'll mean a smooth, projective morphism $f : \cC \to B$ whose fibers are  curves of genus $g$.
+\item \emph{Curves of genus $g$}. The objects are simply (isomorphism classes of) smooth, projective curves of genus $g$. A \emph{family of curves of genus $g$} over $B$ is a smooth, projective morphism $f : \cC \to B$ whose fibers are  curves of genus $g$, and we identify two such families $f, f'$ if there is a commutative diagram
+$$
+\begin{diagram}
+\cC && \rTo^\cong && \cC'\\
+&\rdTo_f&&\ldTo_{f'}\\
+&&B
+\end{diagram}
+$$
 
-\item \emph{Curves in projective space}. Here, the objects are simply subschemes $C \subset \PP^r$ of degree $d$, isomorphic to smooth, projective curves of genus $g$. By a family of such curves, we'll mean a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$.
+\item \emph{Curves of given degree $d$ and genus $g$ in $\PP^r$}. The objects are subschemes $C \subset \PP^r$ of degree $d$, isomorphic to smooth, projective curves of genus $g$. A family of such curves over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$.
 
-\item \emph{Effective divisors on a given curve}. The objects are divisors of degree $d$ on a given smooth, projective curve $C$. To define a family of such divisors, we use the equivalence between effective divisors and subschemes to define a family to be subscheme $\cD \subset B \times C$, flat of relative degree $d$ over $B$.
+\item \emph{Effective divisors on a given curve}. The objects are divisors of degree $d$ on a given smooth, projective curve $C$. A family of such divisors is a subscheme $\cD \subset B \times C$, flat of relative degree $d$ over $B$. Here we are using
+the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ subschemes of the curve.
 
-
-\item \emph{Line bundles on a given curve}. Now the objects are line bundles of degree $d$ on a given smooth, projective curve $C$; by a family of line bundles we'll mean simply a line bundle $\cL$ on $B \times C$, whose restriction to each fiber of $B \times C$ over $B$ has degree $d$.
+\item \emph{Line bundles on a given curve}. The objects are line bundles of degree $d$ on a given smooth, projective curve $C$. A family of line bundles over $B$ is a line bundle $\cL$ on $B \times C$, whose restriction to each fiber of $B \times C$ over $B$ has degree $d$. Here we usually identify two families $\cL$ and $\cL'$ on $B \times C$ if $\cL$ and $\cL'$ differ by a line
+bundle pulled back from $B$.
 
 \end{enumerate}
 
 \section{What is a solution to a moduli problem?}
 
-The basic idea here is straightforward: given a moduli problem, we want to construct a scheme $M$ whose closed points are in natural  1-to-1 correspondence with the objects we're trying to parametrize. The problem, as it so often is, is the word ``natural" appearing in that last sentence: given that most of the time, the set of objects has cardinality $\aleph_1$, as do all positive-dimensional varieties $M$ over $\CC$, the existence of a bijection between the points of $M$ and the objects to be parametrized is not much of a condition!
+The basic idea here is straightforward: given a moduli problem, we want to construct a scheme $M$ whose closed points are in natural  1-to-1 correspondence with the objects we're trying to parametrize. The word \emph{natural} appearing in that last sentence is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere a bijection between the points of $M$ and the objects to be parametrized is useless.
 
 In the pre-scheme days, the answer was not entirely satisfactory, but at least easy to understand:  for any family of objects parametrized by a variety $B$, we have an induced map of sets from the closed points of $B$ to the set of closed points in $M$, and the requirement is simply that this be the underlying set map of a regular morphism $B \to M$.
 
