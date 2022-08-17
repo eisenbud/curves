@@ -41,34 +41,59 @@ bundle pulled back from $B$.
 
 \section{What is a solution to a moduli problem?}
 
-The basic idea here is straightforward: given a moduli problem, we want to construct a scheme $M$ whose closed points are in natural  1-to-1 correspondence with the objects we're trying to parametrize. The word \emph{natural} appearing in that last sentence is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere a bijection between the points of $M$ and the objects to be parametrized is useless.
+Given a moduli problem, we want to construct a scheme $M$ whose closed points are in natural  1-to-1 correspondence with the objects we're trying to parametrize. The word \emph{natural} appearing in that last sentence is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere a bijection between the points of $M$ and the objects to be parametrized is useless.
 
-In the pre-scheme days, the answer was not entirely satisfactory, but at least easy to understand:  for any family of objects parametrized by a variety $B$, we have an induced map of sets from the closed points of $B$ to the set of closed points in $M$, and the requirement is simply that this be the underlying set map of a regular morphism $B \to M$.
-
-In the world of schemes, however, a map is not determined by its underlying set map, and this needs to be updated. In the end, rather than construct a morphism $B \to M$ associated to a family of objects over $B$ and then require it to be a regular map, we simply require that there exist a natural bijection, for any scheme $B$, between the set of families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$. Moreover, here the word ``natural" is easy to make precise: we require that the association to a family of a morphism to $M$ \emph{commute with base change}; that is, if $\pi : B \to B_0$ is any morphism of schemes, $\cC_0 \to B_0$ a family over $B_0$ and $\cC := \cC_0 \times_{B_0} B \to B$ the induced family over $B$, then the morphism
+For some moduli problems there exists a \emph{fine moduli space}: a scheme $M$ with a ``universal'' family $\phi: \cX\to M$ such that for each family of $f: X\to B$
+there is a unique morphism $g: B\to M$ such that $f$ is equal, as a family, to the pullback from the universal family:
 $$
-\phi_B = \phi_{B_0} \circ \pi.
+\begin{diagram}
+ X&&\rTo^\cong && \cX \times_M B &\rTo& \cX\\
+ &\rdTo^f&&\ldTo&&&\dTo^\phi\\
+ &&B&&\rTo^g&&M
+\end{diagram}
 $$
-In other words, we have two functors from the category of schemes to the category of sets: the functor $h$ that associates to a scheme $B$ the set of families over $B$; and the functor $\rm{Mor}(\bullet, M)$ that associates to a scheme $B$ the set of morphisms $B \to M$. We'll say that $M$ is a \emph{fine moduli space} for the given moduli problem if there exists an isomorphism of functors $h \cong \rm{Mor}(\bullet, M)$, and this is what we call a solution to the moduli problem.
+This can be expressed more abstractly but more succinctly by saying that there is an isomorphism of functors:
 
-One problem: fine moduli spaces may not exist. Indeed, this is the case for the fundamental Example 1 of ~\ref{list of moduli problems}, which we'll discuss in the following section. There is a weaker notion, that of a \emph{coarse moduli space} $M$, where we require a bijection between families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$ only after finite base change: that is, we have an association to any family $\cC$ over $B$ of a morphism $\phi_\cC : B \to M$ such that
+\centerline{
+$\{ B \mapsto$ families of $X$ over $B \} \cong \{ B\mapsto \rm{Mor}_{\rm Schemes}(B, M) \}.$
+}
+
+If $M$ is a fine moduli space then the identity map $M\to M$ corresponds to the ``universal family'' $\phi: \cX \to M$. The proof of the equivalence of the two formulations is Yoneda's Lemma. An advantage to this approach is that a fine moduli space
+is obviously unique up to unique isomorphism: given two avatars $M,M'$ of the fine moduli space of a given moduli problem,
+the universal family on $M$ corresponds to a map $M\to M'$, and we similarly produce a map $M'\to M$. The pullback of the universal family on $M$ by the composition of these two maps is again the universal family, so the composition is the identity map by uniqueness.
+
+Such fine moduli spaces don't exist for all the moduli problems one might wish to treat; and indeed no fine
+moduli space exists in the case of what is perhaps the most important one above, the moduli space of
+smooth curves.  There are two essentially equivalent ways out of this problem that sometimes work:
+
+First, we can weaken the definition and only requires a bijection between families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$ after finite base change. A \emph{coarse moduli space} $M$ is a space such that for every family  $\cC$ over $B$ 
+of the appropriate type there is a morphism $\phi_\cC : B \to M$ such that:
 
 \begin{enumerate}
 \item if $\phi_\cC : B_0 \to M$ is any morphism, then there exists a finite cover $\pi : B \to B_0$ such that $\phi_\cC \circ \pi : B \to M$ is the morphism associated to some family; and
 \item if $\cC \to B_0$ and $\cC' \to B_0$ are two families such that the associated morphisms $\phi_\cC = \phi_{\cC'} : B_0 \to M$ are equal, then there exists a finite cover $\pi : B \to B_0$ such that the pullbacks of $\cC$ and $\cC'$ to $B$ are equal.
 \end{enumerate}
 
+A careful argument shows that a coarse moduli space, if it exists, is also uniquely defined, by the moduli problem it solves.
+
+Second, and essentially equivalent to this, is to enlarge the category of schemes to the category of (Deligne-Mumford) stacks, and look for
+a stack $M$ and replace morphisms in the category of schemes with morphisms to a stack. For this approach see~\cite{Deligne-Mumford}. 
+
+The moduli problem for smooth curves does have a coarse moduli space called $M_g$, to which we now turn.
+
 \section{$M_g$}
 
-The space $M_g$ parametrizing isomorphism classes of smooth projective curves of genus $g$---Example 1 of ~\ref{list of moduli problems}---is at the heart of the mystery that is algebraic curves. We'll talk briefly here about what is known about these spaces, and how our understanding has developed over the last two centuries.
+The space $M_g$ parametrizing isomorphism classes of smooth projective curves of genus $g$---Example 1 of ~\ref{list of moduli problems}---is at the heart of the mystery that is algebraic curves. 
+Algebraic geometers of the 19th century were certainly aware that, while every smooth projective curve of genus 0 was isomorphic to the Riemann sphere, in  genus 1 and higher there are continuously varying families of non-isomorphic curves. 
 
-Algebraic geometers of the 19th century were certainly aware that, while every smooth projective curve of genus 0 was isomorphic to the Riemann sphere, in  genus 1 and higher you could have continuously varying families of non-isomorphic curves. It's not clear at what point geometers started to think about the set of isomorphism classes as the points of a space, but the idea was clearly present in the work of Riemann, who asked among other things what the dimension of that space should be. He thought of $M_g$ as a real manifold, and arrived at the (correct) answer $\dim M_g = 6g-6$ for $g \geq 2$ by using the auxilliary construction of the \emph{Hurwitz space}, which we'll describe in Section~\ref{hurwitz spaces} below. The same auxilliary construction was used by Hurwitz, Clebsch and others to assert the irreducibility of $M_g$; this was a crucial development, in that it allows us to talk unambiguously about a ``general curve."
+The idea of
+making these into the points was clearly present in the work of Riemann, who asked among other things what the dimension of that space should be. He thought of $M_g$ as a real manifold, and arrived at the (correct) answer $\dim_\RR M_g = 6g-6$ for $g \geq 2$ by using the auxilliary construction of the \emph{Hurwitz space}, which we describe in Section~\ref{hurwitz spaces}. The same auxilliary construction was used by Hurwitz, Clebsch and others to assert the irreducibility of $M_g$; this was a crucial development, in that it allows us to talk unambiguously about a ``general curve."
 
-In low genus it is possible to give explicit constructions of $M_g$, though not necessarily to describe its geometry in full. For example, in genus 2 we have seen that every curve of genus 2 is expressible as a double cover of $\PP^1$ branched at six points, and  that the curve is determined by those points. Now, given six distinct points in $\PP^1$ we can find an automorphism of $\PP^1$ carrying three of the points to 0, 1 and $\infty$. The remaining three points will be sent to three distinct points in $\PP^1 \setminus \{0, 1, \infty \} $. Of course, this depends on how we order the points in the first place; at the end of the day, we see that the symmetric group $S_6$ acts on the quasi-projective variety
+In low genus it is possible to give explicit constructions of $M_g$. For example, we have seen that every curve of genus 2 is expressible as a double cover of $\PP^1$ branched at six points, and  that the curve is determined by those points. Now, given six distinct points in $\PP^1$ we can find an automorphism of $\PP^1$ carrying three of the points to 0, 1 and $\infty$. The remaining three points will be sent to three distinct points in $\PP^1 \setminus \{0, 1, \infty \} $. Of course, this depends on how we order the points in the first place; at the end of the day, we see that the symmetric group $S_6$ acts on the quasi-projective variety
 $$
 \Gamma = \left( \PP^1 \setminus \{0, 1, \infty \} \right)^3 \setminus \Delta
 $$
-(where $\Delta$ is the union of all diagonals in the triple product), and we may realize the moduli space $M_2$ as the quotient $\Gamma/S_6$. There is clearly much more to say, but this construction at least does two things:
+(where $\Delta$ is the union of all diagonals in the triple product), and the moduli space $M_2$ is the quotient $\Gamma/S_6$. There is clearly much more to say, but this construction at least does two things:
 
 One, it may serve to convince us that $M_2$ is irreducible of dimension 3; and
 

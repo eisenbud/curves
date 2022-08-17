@@ -499,14 +499,14 @@ The set of plane curves of given degree is naturally an algebraic variety---the 
 
 Despite its antiquity, many questions about the family of plane curves, such as which ones degenerated into which others, and in what way, remain open. All plane curves of degree $d$ have the same Hilbert funcdtion, and thus the same arithmetic genus, but since curves of degree $d$ can have different sorts and numbers of singularities, they can have many different geometric genera, all the way from 0 to $\binom{d-1}{2}$, as we have seen. In this section we will explore the subset of of (reduced, irreducible) curves of degree $d$ with a fixed geometric genus. We will focus on the open set consisting of curves with only nodes as singularities, which we call \emph{nodal curves}, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
 
-Let $\PP^N := \PP^{{d+2\choose 2}}$ be the projective space parametrizing plane curves of degree $d$.
+Let $\PP^N := \PP^{{d_1+2\choose 2} - 1}$ be the projective space parametrizing plane curves of degree $d$.
 
 Since we will always be working with reduced irreducible curves, we begin by noting that this set is an open subset of the space 
 $\PP^N$---it is the complement of the union of the images of the maps 
 $$
-\PP^{{d_1+2\choose 2}}\PP^{{d_2+2\choose 2}} \to \PP^N
+\PP^{{d_1+2\choose 2} - 1}\times\PP^{{d_2+2\choose 2}-1} \to \PP^N
 $$ 
-with $d_1+d+2 = d$ given by multiplication of forms.
+with $d_1+d_2 = d$ given by multiplication of forms.
 %All plane curves $C$ of degree $d$ have Hilbert polynomial 
 %$$
 %\chi(\sO_C(m)) = md+(1-{d-1\choose 2})
@@ -526,10 +526,11 @@ with $d_1+d+2 = d$ given by multiplication of forms.
 \def\Vdgbar{{\overline{V}_{d,g}}} 
 \begin{propdef}
 
+\fix{make 2 the Severi variety; delete the other two
 \begin{enumerate}
-\item The \emph{Severi variety} $V_{d,g}$ is the locus of reduced and irreducible curves of degree $d$ and geometric genus $g$. This is is a locally closed subvariety of $\PP^N$. 
+\item The \emph{Severi variety} $V_{d,g}$ is the locus of reduced and irreducible curves of degree $d$ and geometric genus $g$. This is a locally closed subvariety of $\PP^N$. 
 
-\item The \emph{small Severi variety} $\widetilde V_{d,g} \subset V_{d,g}$ is the locus of plane curves of degree $d$ with $\delta = \binom{d-1}{2} - g$ nodes and no other singularities. This is an open subset of $V_{d,g}$.
+\item The \emph{small Severi variety} $\widetilde V_{d,g} \subset V_{d,g}$ is the locus of plane curves of degree $d$ with $\delta = \binom{d-1}{2} - g$ nodes and no other singularities. This is a locally closed subset of $\PP^N$, as we shall see.
 
 \item The \emph{large Severi variety} $\overline V_{d,g}$ is the closure of $V_{d,g}$ in the projective space $\PP^N$.
 \end{enumerate}
@@ -632,6 +633,7 @@ The small Severi variety $V_{d,g}$ has pure dimension $N - \delta$, where $\delt
 \end{corollary}
 
 \fix{for the following to make sense, we have to include curves of geometric genus $g$ --- the Hilbert scheme doesn't include these.}
+\fix{ expand this to follow the deriviation :curve plus line bundle with enough sections plus basis} 
 In Section~\ref{estimating dim hilb}, we give a heuristic calculation of the ``expected dimension'' $h(d,g,r)$ of the variety parametrizing curves of degree $d$ and genus $g$ in $\PP^r$
 $$
 h(g,r,d) := 4g-3 + (r+1)(d-g+1) - 1.
@@ -671,9 +673,9 @@ Next, we project again: we take $\Gamma \cong \PP^{d-g-3} \subset \PP^{d-g}$ a g
 
 Finally, given all this, Lemma~\ref{local geometry of Severi} implies that we can find an arc $\{C_t\}$ in the Severi variety $\overline V_{d,g}$ whose general member has $\binom{d-1}{2} - g$ nodes and whose special member $C_0$ is the curve we've just constructed, with the $\binom{d-1}{2} - g$ nodes of $C_t$ specializing to the nodes $r_{g+1}, \dots r_{\binom{d-1}{2}} \in C_0$.
 
- Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired. \fix{this NEEDS a proof! the normalization of a flat family
-is not always the normalization of each fiber! -- eg there are normal surfaces with both smooth and singular fibers.
-Why isn't the total space of this family normal already?}
+ Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired. \fix{this NEEDS a proof. the normalization of a flat family
+is not always the normalization of each fiber! In this case the general fiber gets normalized, but not the new nodes in the
+special fiber.}
 \end{proof}
 
 \input{footer}
