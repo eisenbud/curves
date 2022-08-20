@@ -877,7 +877,7 @@ by $|K_C|$ as a smooth curve in $\PP^{g-1}$.
 To do this we will make use of an auxiliary construction, a \emph{simple $(g-4)$-secant $(g-3)$-plane.}
 
 \begin{lemma}\label{simple secant}
- If $C\subset \PP^n$ is a smooth nondegenerate curve, and $m\leq n-1$, then the linear span $L := \overline{p_1,\dots, p_m}$
+ If $C\subset \PP^n$ is a smooth nondegenerate curve, $n\geq 3$, and $m\leq n-1$, then the linear span $L := \overline{p_1,\dots, p_m}$
  of $m$ general points of $C$ is a simple $m$-secant; that is, a plane of dimension $m-1$ such that
  $C\cap L = \{p_1,\dots,p_m\}$ scheme-theoretically.
  \end{lemma}
@@ -889,7 +889,9 @@ By Lemma~\ref{general position lemma} the points of a general hyperplane section
 The following was proven, for smooth curves, by Max Noether, Emmy's father.
 
 \begin{theorem}\label{canonical curves are ACM}
-If $C\subset \PP^{g-1}$ is the canonical image of a smooth curve, then 
+If $C\subset \PP^{g-1}$ is the canonical image of a smooth curve of genus $\geq 2$ then the natural maps
+$\HH^0(\sO_{\PP^{g-1}}(m) \to \HH^0(\sO_C(m)$
+are surjective for all $m\in \ZZ$; equivalently,
 $\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m\in \ZZ$.
 \end{theorem}
  
@@ -898,67 +900,89 @@ curves as well.
  
    
 \begin{proof} 
-We must show that the natural map
+One sees the equivalence of the two statements from the long exact sequence in cohomology coming from the sequences
 $$
-\HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
+0\to sI_{C/\PP^{g-1}} \to\sO_{\PP^{g-1}} \to \sO_C \to 0 
 $$
- is surjective for all $m\in \ZZ$. For $m=0,1$ this is immediate from the hypothesis that $C$ is embedded by the complete canonical series.
+after tensoring with $\sO_{\PP^{g-1}}(m)$.
 
-We begin by showing that $\sO(-m)$ has no global sections for $m>0$.
-If $D$ is a divisor equivalent to $m$ times the hyperplane section, we have an exact sequence
-$$
-0\to \HH^{0}(\sO_{C}(-m)) \to \HH^{0}(\sO_{C}) \to \HH^{0}(\sO_{D}) \to \cdots.
-$$
-The vector space $\HH^{0}\sO_{C}$ is spanned by constant functions. These
-restrict non-trivially to $\sO_{D}$, and $\HH^{0}(\sO_{C}(-m)) = 0$ as claimed.
-%
-%Using the Riemann-Roch Theorem we can now compute the Hilbert function $\chi_{C}(m)$:
-%We have 
-%\begin{align*}
-% \chi_{C}(0) &= h^{0}(\sO_{C}) - h^{1}(\sO_{C}) = h^{0}(\sO_{C}) - h^{0}(\omega_{C}) = 1-g.\\
-%\chi_{C}(1) &= h^{0}(\sO_{C}(1)) - h^{1}(\sO_{C}(1)^{*}\otimes \omega_{C}) = h^{0}(\omega_{C}) - h^{0}(\sO_{C}) = g-1.
-%\end{align*}
-%and we deduce
-%$\chi_{C}(m) = (2g-2)m -g+1$, whence we see that the degree of $C$ is $2g-2$ and $p(C) = g$ as claimed.
-%
-%To show that
-%$C$ is arithmetically Cohen-Macaulay we use the sequence
-%$$
-%\cdots \to \HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
-%\to \HH^{1}(\sI_{C}(m))\to \HH^{1}(\sO_{\PP^{n}}(m)) \to\cdots .
-%$$
-%Since $\HH^{1}(\sO_{\PP^{n}}(m)) = 0$, it
-%is enough to show that the natural map 
-%$$
-%\HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
-%$$
-% is surjective for all $m\in \ZZ$. For $m=0,1$ this is immediate from the hypothesis.
-%
-%For $m <0$ we must show $\HH^{0}(\sO_{C}(m))=0.$ 
-%If $D$ is a divisor equivalent to $-m$ times the hyperplane section, we have an exact sequence
-%$$
-%0\to \HH^{0}(\sO_{C}(m)) 
-%\to \HH^{0}(\sO_{C}) 
-%\to \HH^{0}(\sO_{D}) \to \cdots.
-%$$
-%By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
-%restrict non-trivially to $\sO_{D}$, so the kernel, $\HH^{0}(\sO_{C}(m))$, is 0 as claimed. 
 
-By Lemma simple secant, $every smooth curve$C$ has a  simple $g-3$-dimensional $g-2$ secant plane $\Lambda$. 
-By the geometric Riemann-Roch theorem, 
-$\Lambda$ corresponds to a base-point-free pencil of degree $g = 2g-2 -(g-2)$: Given $\Lambda$, the linear series of hyperplanes containing $\Lambda$ intersects $C$ in $\Lambda$ plus the fibers of this pencil. Conversely, given such a pencil, the plane is the span of the complement of a general  member $P$ of the pencil in  $C\cap \overline P$, where $\overline P$ is the hyperplane that is the linear span of $P$.
-Thus $C$ has such a pencil, $(\sL, V)$
+The invertible sheaf $\sO_C(-m)$ has negative degree, and thus no nonzero global sections for $m<0$.
+For $m=0,1$ the surjectivity of  $\HH^0(\sO_{\PP^{g-1}}(m) \to \HH^0(\sO_C(m)$ is immediate from the hypothesis that $C$ is
+the image of a map corresponding to a complete linear series.
 
-We now use an idea sometimes called the \emph{base-point-free pencil trick}
-For $m\geq 2$ there are maps of vector spaces
+If
+$g=2$ then $C$ is a line, and the result is trivial, so we may assume $g\geq 3$.
+
+%Also, if $g=3$ then $C$ is a plane quartic,
+%and $\sI_{C/\PP^{g-1}} = \sO_{\PP^2}(-4)$. Since $H^1(\sO_{\PP^n}(d)) = 0$ for all $n>1$ and all $d$, the Theorem is true
+%in this case. Thus we may assume $g\geq 4$.
+
+By Lemma simple secant, $C$ in has a  simple $g-3$-dimensional $g-2$ secant plane $\Lambda$. Write
+$\Lambda\cap C = \{p_1,\dots, p_{g-2}\}$. Choose linear forms $x_1,\dots, x_{g-2}$ on $\PP^{g-1}$ such that
+$x_i$ vanishes on $p_j$ if and only if $i=j$. 
+
+To simplify the notation, let $D$ be the divisor $p_1+\cdots+p_{g-2}$.
+The sheaf $\sO_C(K_C)$, restricted to any finte set is trivial,
+so the quotient 
 $$
-\wedge^{2} V\otimes \HH^{0}(\sO_{C}(m-2)) \to V\otimes \HH^{0}(\sO_{C}(m-1)) 
-\to \HH^{0}(\sO_{C}(m))
+\frac{\sO_C(K_C-D)}{\sO_C(mK_C-D)}
 $$
-where the right hand map is multiplication and the left hand map sends
-$s_{1}\wedge s_{2}\otimes \sigma$ to $s_{1}\otimes \sigma-s_{2}\otimes \sigma$ for any local section $\sigma$.
-The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never vanish simultaneously except on the $p_{i}$, and has image  consisting of sections that vanish on the points $p_{i}$
-\fix{complete this proof!}
+is generated by $x_1^m,\dots, x_{g-2}^m$ for every $m\geq 1$.
+Thus it suffices to show that the maps
+$$
+\HH^0(K_C-D) \otimes \HH^0(\sO_C((m-1)K_C)) \to \HH^0(\sO_C(mK_C -D)
+$$
+are surjective for every $m\geq 2$.
+
+By the geometric Riemann-Roch theorem, divisor $K_C-D$ move in a base-point free pencil; that is
+$V = \HH^0(K_C-D) = \CC^2$, and setting $\sL = \sO_C(K_C-D)$ for simplicity,
+ the linear series $(\sL, V)$ is base-point free. 
+
+The following argument is sometimes called the \emph{base-point-free pencil trick}: Choose sections $\sigma_1, \sigma_2$ that
+generate the 2-dimensional vector space $V$, and consider the complex of sheaves
+$$
+0\to \wedge^{2} V\otimes \sL^{-1} \rTo^{
+\begin{pmatrix}
+ \sigma_2\\-\sigma_1
+\end{pmatrix}}
+ V\otimes \sO \rTo^{
+\begin{pmatrix}
+ \sigma_2&\sigma_2
+\end{pmatrix}}
+ \sL \to 0. \quad (*)
+$$
+Locally at a point $p$ we may identify $\sigma_1,\sigma_2$ with functions in the local ring $R := \sO_{C,,p}$
+and rewrite the complex as
+$$
+0 \to R \rTo^{
+\begin{pmatrix}
+ \sigma_2\\-\sigma_1
+\end{pmatrix}}
+R^2 \rTo^{
+\begin{pmatrix}
+ \sigma_2&\sigma_2
+\end{pmatrix}}
+R \to 0. \quad (**)
+$$
+Since $p$ is not a basepoint of the pencil, with this identification
+ $(\sigma_1, \sigma_2)\subset R$ is the unit ideal, so the  sequence $(**)$ is exact, and
+ thus the sequence $(*)$ of sheaves is exact too. 
+ 
+ We now tensor the sequence $(*)$ with $\sO_C((m-1)K)$ obtaining an exact sequence
+ $$
+0\to \wedge^{2} V\otimes \sO_C((m-2)K+D) \rTo V\otimes \sO_C((m-1)K) \rTo \sO_C(mK-D) \to 0.
+$$
+By the argument at the beginning of the proof, it suffices to show that this induces an exact sequence
+on global sections for all $m\geq 2$.
+
+For $m = 2$, we see, again by the geometric Riemann-Roch theorem, that $h^0(\sO_C(D)) = 1$,
+while $\dim_\CC(V\otimes \HH^0(\sO_C(K) )= 2g$. Since $\deg(2K-D) = 3g-2>2g-2$, the Riemann-Roch
+theorem gives $h^0(\sO_C(2K-D)) = 2g-1$. Since the sequence on cohomology is automatically left-exact,
+this dimension computation shows that it is exact.
+
+Finally, for $m>2$ the degree of $(m-2)K+D$ is $>2g-2$, so $\HH^1(\sO_C((m-2)K+D))= 0$ so again we see
+that the required sequence is exact, completing the proof.
 \end{proof}
 
 \begin{corollary}\label{canonical hilbert function}
