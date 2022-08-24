@@ -13,22 +13,17 @@
  But I tell you, a cat needs a name that's particular ...
  But above and beyond there's still one name left over,  ...
  [his] deep and inscrutable, singular name.
-
- 
- --T.S.Eliot, Practical Cats
 \end{verbatim}
+--T. S. Eliot, Old Possum's Book of Practical Cats\footnote{\cite{PracticalCats}}
 
-\fix{Notation in this chapter the field often has to be algebraically closed. I am writing it as $\CC$,
-but this will be easy to replace globally with $k$ if this seems desirable -- in which case we should add a blanket assumption. Also we write
-$\PP$ instead of $\PP_{\CC}$.}
-
+\section*{}
 Some of the simplest subvarieties in projective space are the \emph{rational normal scrolls}. They appear in many contexts in algebraic geometry, and are useful for describing the embeddings of curves of low degree and genus. 
 
 We begin this chapter by giving three different characterizations of these varieties, each useful in a different context: First a classical geometric construction that gives a good picture, then an algebraic description that allows one to ``find" the scrolls containing a given variety, and then a more modern geometric definition that makes it easy to understand the divisors on a scroll. Finally, we turn to some of the applications to the embeddings of curves.
 
 In each section we will focus on the 2-dimensional case, both because this is the case that occurs in our applications, and to simplify the discussion. We will also indicate the surprisingly simple extension to higher dimensions.
 
-In this chapter we will refer to rational normal scrolls simply as scrolls. The third characterization we will give lends itself to a natural generalization to families of irrational ruled varieties, which we'll briefly mention, and the reader should be aware that in the literature the word ``scroll'' is used for this wider class.
+In this chapter we will refer to rational normal scrolls simply as scrolls. The third characterization we will give lends itself to a natural generalization to  irrational ruled varieties, which we'll briefly mention, and the reader should be aware that in the literature the word ``scroll'' is used for this wider class.
 
 [Notation:  $\PP^{N}$ and $\PP^{1}$ mean $\PP_{\CC}^{N}$ and $\PP_{\CC}^{1}$. ]
 
@@ -39,23 +34,27 @@ $$
 \PP^1\to\PP^a: (s,t) \mapsto (s^a, s^{a-1}t, \dots, t^a),
 $$
 corresponding to the complete linear series
-$|\cO_{\PP^1}(a)|$, is called a \emph{rational normal curve}; it is, up to linear transformations, the unique nondegenerate curve of degree $a$ in $\PP^a$ (\ref{rational normal curves section}).
+$|\cO_{\PP^1}(a)|$, is called a \emph{rational normal curve}; it is, up to linear transformations of $\PP^a$, the unique irreducible, nondegenerate curve of degree $a$ in $\PP^a$ (\ref{rational normal curves section}).
 
-``Scrolls'' is one answer to the question: ``What are the higher-dimensional analogues of rational normal curves?'' To construct a scroll of dimension 2, we choose integers $0\leq a_1, 0< a_2$ and consider  a projective space 
+``Scrolls'' is one answer to the question: ``What are the higher-dimensional analogues of rational normal curves?'' To construct a scroll of dimension 2 in $\PP^n$, we start by choosing integers $0\leq a_1 \leq a_2$ with $a_1 + a_2 = n-1$, and consider  a pair of complementary linear subspaces $\PP^{a_1}$ and $\PP^{a_2} \subset \PP^n$---that is, we have an $(n+1)$-dimensional vector space $V$, expressed as a direct sum $V = V_1 \oplus V_2$ of subspaces $V_1, V_2 \subset V$ of dimensions $a_1+1$ and $a_2+1$, and let $\PP^{a_1} = \PP V_1$ and $\PP^{a_2} = \PP V_2 \subset \PP V$.
+
+Next, we take $\phi_i : \PP^1 \to \PP^{a_i}$ to be the map given by a basis of homogeneous polynomials of degree $a_i$. (If $a_i > 0$, this is of course the usual parametrization of a rational normal curve $C_i \subset \PP^{a_i}$; if $a_i = 0$ this is just the constant map from $\PP^1$ to a point.) Finally, we define the scroll $S(a_1, a_2)$ to be the union of the lines
 $$
-\PP^{a_1+a_2+1} = \PP_B(\CC^{a_1+1}\oplus \CC^{a_2+1})
+S(a_1,a_2) := \bigcup_{t\in \PP^1} \overline{\phi_1(p), \phi_2(p)}.
 $$
-with its two subspaces $\PP^{a_i} = \PP_B(\CC^{a_i+1})$. When $0< a_{1}, a_{2}$ we choose rational normal curves $C_i\subset \PP^{a_i}$, and we choose an isomorphism $\phi: C_1\to C_2$. We define the scroll $S(a_1, a_2)$ to be the union of the lines
+We call the curve $C_{a_{1}}$ the \emph{directrix} of the scroll, and we call the lines $ \overline{\phi_1(p), \phi_2(p)}$ the \emph{ruling} of the scroll. For example, the simplest nontrivial case is a smooth quadric surface in $\PP^3$, which we can realize as the union $S(1,1)$ of the lines joining corresponding points on two skew lines in $\PP^3$. 
+
+In the degenerate case $a_{1}= 0$, $C_{0}= \PP^{0}$ is a point, and the surface $S(0,a_{2})$ is the cone
+in $\PP^{a_{2}+1}$ over a rational normal curve of degree $a_{2}$. In this case, since $S(0,a_2)$ may be singular, it is sometimes useful to introduce the auxiliary surface
 $$
-S(a_1,a_2) := \bigcup_{p\in C_1} \overline{p, \phi(p)}.
+\tilde S(0, a_2) := \left\{ (t, q) \in \PP^1 \times \PP^n  \mid q \in \overline{\phi_1(t), \phi_2(t)}\right)\}.
 $$
-We call the curves $C_{a_{1}}$ and $C_{a_{2}}$ the \emph{directrices} (singular: directrix) of the scroll, and we call the lines $\overline{p, \phi(p)}$ the \emph{rulings} of the scroll. To deal with the degenerate case $a_{i}= 0$ we think of $C_{i}$ as the image of $\PP^{1}$ under the map corresponding to the linear series $|\sO_{\PP^{1}}(a_{i})$, so that $C_{0}= \PP^{0}$ is a point. Thus if $a_{2}>0$ then we define $S(0,a_{2})$ to be the cone
-in $\PP^{a_{2+1}}$ over a rational normal curve of degree $a_{2}$. 
+This is just the blow-up of the cone $S(0, a_2)$ at its vertex; like the surfaces $S(a_1,a_2)$ with $a_1 > 0$ it is a $\PP^1$ bundle over $\PP^1$ and in particular smooth.
 
 
 It is not hard to prove directly that $S(a_1,a_2)$ is an algebraic variety, and we shall soon write down its defining equations.
 
-Note the behavior of some boundary cases: We may think of the ``rational normal curve of degree 0 as a point, so we take $S(0, a_2)$ to be the cone over the rational normal curve of degree $a_2$. A still less typical case occurs with $S(0,1) = \PP^2$, the ``cone over a line in the plane''. Since these cases are atypical, we will usually suppose $1\leq a_1\leq a_2$. 
+
 
 From the description above we can immediately deduce the dimension and degree of a scroll:
 
@@ -68,7 +67,7 @@ From the description above we can immediately deduce the dimension and degree of
 \end{proposition}\label{deg and codim}
 
 \begin{proof}
- The rational normal curves separately span the spaces $\PP^{a_i}$, so a hyperplane containing both of them would contain $\overline{\PP^{a_1}, \PP^{a_{2}+1}} = \PP$, proving nondegeneracy. 
+ The rational normal curves separately span the spaces $\PP^{a_i}$, so a hyperplane containing both of them would contain $\overline{\PP^{a_1}, \PP^{a_{2}}} = \PP$, proving nondegeneracy. 
  
  It is clear from our description that $S$ is 2-dimensional, and thus of
 codimension $a_{1}+a_{2}+1 -2 = a_{1}+a_{2}-1$. 
@@ -76,31 +75,35 @@ codimension $a_{1}+a_{2}+1 -2 = a_{1}+a_{2}-1$.
 To compute the degree, we choose a general hyperplane $H$ containing $\PP^{a_{1}}$. The intersection $H\cap C_{2}$ consists of $a_{2}$ reduced points. Thus the intersection $H\cap S$ consists of $C_{1}$ and the $a_{2}$ reduced lines connecting 
 the points of $H\cap C_{2}$ with their corresponding points on $C_{1}$; this union has degree $a_{1}+a_{2}$.
 
-If $0< a_{1}, a_{2}$ we also see from this argument that, given any point  $p\in S(a_{1},s_{2})$, there is
-a hyperplane section that is non-singular at $p$, and thus $S(a_{1},s_{2})$ is nonsingular at $p$.
+If $0< a_{1}$ we also see from this argument that, given any point  $p\in S(a_{1},a_{2})$, there is
+a hyperplane section that is non-singular at $p$, and thus $S(a_{1},a_{2})$ is nonsingular at $p$.
 \end{proof}
 
-A completely parallel construction creates rational normal scrolls of dimension $r$. Set $N = \sum_{i=1}^{r}(a_{i}+1)$, where each $a_{i}>0$ and
+A completely parallel construction creates rational normal scrolls of dimension $r$. Start with a series of integers $0 \leq a_1 \leq \dots \leq a_r$;
+set $N = \sum_{i=1}^{r}(a_{i}+1)$,  and
 decompose $\CC^{N}$ as
 $$
-\CC^{\sum_{i=1}^{r}(a_{i}+1)} = \oplus_{i=1}^{r}\CC^{a_{i}+1}.
+\CC^{N} = \bigoplus_{i=1}^{r}\CC^{a_{i}+1}.
 $$
-Let $\PP^{a_{i}}\subset \PP^{N}$ be the subspaces corresponding to the summands,  choose
-rational normal curves $C_{i}\subset \PP^{a_{i}}$ and choose isomorphisms $C_{1}\to C_{i}$. 
-Set
+Let $\PP^{a_{i}}\subset \PP^{N-1}$ be the subspaces corresponding to the summands,  choose
+maps $\phi_i : \PP^1 \to \PP^{a_{i}}$ be a map given by a basis of homogeneous polynomials of degree $a_i$, and define the scroll $S \subset \PP^{N-1}$ by
 $$
-S:=S(a_{1}, \dots, a_{r}) = \bigcup_{p\in C_{1}}\overline{p, \phi_{2}(p), \dots, \phi_{r}(p)}.
+S:=S(a_{1}, \dots, a_{r}) = \bigcup_{p\in C_{1}}\overline{\phi_1(p), \phi_{2}(p), \dots, \phi_{r}(p)}.
 $$
-The variety $S$ is nondegenerate of codimension $N-r$ and degree $\sum_{i}a_{i} = N-r+1$. The proof is similar to the one we gave for $r=2$.
-Note the case $r=1$, in which $S(a)$ is simply the rational normal curve of degree $a$. 
+The variety $S$ is nondegenerate of codimension $N-1-r$ and degree $\sum a_{i} = N-r$. The proof is similar to the one we gave for $r=2$.
 
-To put this result in context, we recall an elementary fact of projective geometry:
+As in the surface case, if one or more of the indices $a_i$ are equal to 0, the resulting variety $S$ is a cone. In these cases, it is again useful in some settings to introduce the blow-up of this cone along its vertex, which we can realize as the variety
+$$
+\tilde S := \left\{ (t, q) \in \PP^1 \times \PP^n  \mid q \in \overline{\phi_1(t), \dots, \phi_r(t)}\right)\}.
+$$
+
+To put this construction in context, we recall an elementary fact of projective geometry:
  
 \begin{proposition}\label{minimal degree}
- Any nondegenerate variety of codimension $c$ in $\PP^{N}$ has degree $\geq c +1$.
+ Any irreducible, nondegenerate variety of codimension $c$ in $\PP^{N}$ has degree $\geq c +1$.
 \end{proposition}
 
-\begin{proof} We do induction on $c$.The case $c=0$ being trivial,
+\begin{proof} We do induction on $c$. The case $c=0$ being trivial,
  we may assume that $c\geq1$. A general plane $L\subset \PP^{N}$ meets $X$ in $\deg X$
  distinct general points, which must be nonsingular points of $X$.
  
@@ -112,13 +115,13 @@ $\pi_{p}(L)$ meets $X'$ in the images of the points of $L\cap X$ other than $p$,
 $\deg X\geq \deg X'+1$. By induction, $\deg X' \geq \codim X'+1 = \codim X$, completing the argument.
 \end{proof}
 
-Thus scrolls are \emph{varieties of minimal degree}. The reader already knows that the rational normal curves of degree $a$ in $\PP^{a}$ are the only curves of degree $a$ and codimension $a-1$. A celebrated Theorem of Del Pezzo (for surfaces) and Bertini (in general) generalizes this statement:
+Thus scrolls are \emph{varieties of minimal degree}. The reader already knows that the rational normal curves of degree $a$ in $\PP^{a}$ are the only irreducible, nondegenerate curves of degree $a$ and codimension $a-1$. A celebrated theorem of del Pezzo (for surfaces) and Bertini (in general) generalizes this statement:
 
-\begin{theorem}\label{classification of scrolls} 
-Any nondegenerate variety $X\subset \PP^{N}$ with with $\deg X = \codim X+1$, is either a scroll or the Veronese surface in $\PP^{5}$ or a cone over one of these.
-\end{theorem}
+\begin{fact}\label{classification of scrolls} 
+Any irreducible, nondegenerate variety $X\subset \PP^{N}$  with $\deg X = \codim X+1$, is either a quadric hypersurface, a scroll, the Veronese surface in $\PP^{5}$, or a cone over the Veronese surface.
+\end{fact}
 
-A proof is given in an appendix to this book. \fix{do we want to keep this??}
+A proof may be found in \cite{Eisenbud-Harris-Centennial}.
 
 One interesting way to view the construction above is that we chose subvarieties $C_{i}\subset \PP^{a_{i}}$ and a one-to-one correspondence between them, that is, a subscheme
 $\Gamma\subset \prod_{i}C_{i}$ that projects isomorphically onto each $C_{i}$; the scroll is then the
@@ -142,11 +145,11 @@ Elementary linear algebra shows that there are automorphisms of $\PP$ carrying a
 showing that $S(a_{1}, a_{2})$ is independent, up to an automorphism of the ambient space, of the choice in (3)  as well.
 \end{proof}
 
-\begin{exercise}label{special projections}
-Suppose $1\leq a_1\leq a_2$. Show that the projection of $S(a_1,a_2)$ from any point on $C_{a_1}$ is 
-$S(a_1-1, a_2)$, and that the projection from any point on $C_{a_2}$ is $S(a_1, a_2-1)$.
+\begin{exercise}\label{special projections}
+Suppose $1\leq a_1 < a_2$. Show that the projection of $S(a_1,a_2)$ from any point on $C_{a_1}$ is 
+$S(a_1-1, a_2)$, and that the projection from any point on $C_{a_2}$ is $S(a_1, a_2-1)$. (If $a_1 = a_2$, projection of $S(a_1,a_2)$ from any point is $S(a_1-1, a_2)$.)
 
-Conclude, in particular, that the blowup of the cone $S(0,a_2)$ over the rational normal curve of degree $a_2$ is $S(1,a_2)$. Note 
+Conclude, in particular, that the blowup of the cone $S(0,a_2)$ over the rational normal curve of degree $a_2$ is $S(1,a_2+1)$.  
 \end{exercise}
 
 
@@ -154,10 +157,9 @@ Conclude, in particular, that the blowup of the cone $S(0,a_2)$ over the rationa
 (the name that's particular)}\label{particular name}
 
 Suppose that $X \subset \PP^n$ is embedded by a complete linear series, and that
-$\sO_X(1)$ can be ``factored'' as a tensor product $\sL\otimes \sM$ of invertible sheaves.
-sheaf. If we pick sets of $p$ independent elements $\{\ell_i\}\subset H^0(\sL)$ and  $q$ independent elements $\{m_i\} \subset H^0(\sM)$ then the multiplication map 
+$\sO_X(1)$ can be ``factored'' as a tensor product $\sL\otimes \sM$ of invertible sheaves. If we pick sets of $p$ independent elements $\{\ell_i\}\subset H^0(\sL)$ and  $q$ independent elements $\{m_i\} \subset H^0(\sM)$ then the multiplication map 
 $$
-\mu: H^0(\sL) \otimes H^0(\sM) \to H^0(\sO_{\PP^n}(1)
+\mu: H^0(\sL) \otimes H^0(\sM) \to H^0(\sO_{\PP^n}(1))
 $$
  gives rise to 
 a $p\times q$ matrix $M_\mu$ of linear forms on $\PP^n$ whose $i,j$ entry is $\mu(\ell_im_j)$.
@@ -195,8 +197,8 @@ M_a = \bordermatrix{
 s&  s^{a}& s^{a-1}t&\dots&st^{a-1}\cr
 t&  s^{a-1}t& s^{a-2}t^{2}&\dots&t^{a}\cr
 }$$
-where we have written $s,t$ for the basis of $\sO_{\PP^1}(1)$, and bordered the matrix
-with the corresponding bases of $\sO_{\PP^1}(1)$ and $\sO_{\PP^1}(a-1)$, and it is obvious
+where we have written $s,t$ for the basis of $H^)(\sO_{\PP^1}(1))$, and bordered the matrix
+with the corresponding bases of $H^0(\sO_{\PP^1}(1))$ and $H^0(\sO_{\PP^1}(a-1))$, and it is obvious
 that the minors of $M_a$ are 0.
 
 By a \emph{generalized row} of $M_{a}$, we mean a $\CC$-linear combination of the given rows of $M_{a}$. Note that the points at which the $2\times 2$ minors of $M_{a}$ vanish are the points at which the evaluations of the two rows are linearly dependent; that is, the points at which some
@@ -228,7 +230,7 @@ it is 1-generic in the following sense:
  \end{definition}
 
 \begin{exercise}
-Show that a matrix $M$ of linear form is 1-generic iff, even after arbitrary row and column transformations, it's entries are all non-zero.
+Show that a matrix $M$ of linear forms is 1-generic iff, even after arbitrary row and column transformations, its entries are all non-zero.
 \end{exercise}
  For example, the matrix 
 $$
@@ -269,7 +271,7 @@ $$
 Here is another way of seeing that $M'$ above is \emph{not} 1-generic:
 \begin{lemma}
   \label{size of 1-generic} There exist 1-generic $p\times q$ matrices of linear forms in $n+1$ variables over $\CC$ if and only if $n\geq p+q$;
-In particular, the dimension of the space of linear forms spanned by the $1\times 1$ minors of a  1-generic matrix $M$ of size $p\times q$ is at least $p+q-1$. Moreover, if this space of linear forms has dimension $>p+q-1$, then the restriction of $M$ to a general hyperplane is still 1-generic.
+In particular, the dimension of the space of linear forms spanned by the entries of a  1-generic matrix $M$ of size $p\times q$ is at least $p+q-1$. Moreover, if this space of linear forms has dimension $>p+q-1$, then the restriction of $M$ to a general hyperplane is still 1-generic.
 \end{lemma}
 \begin{proof} Consider any map of vector spaces $A\otimes B \to C$, where we regard $C$ as a 
 space of linear forms.
@@ -280,7 +282,7 @@ is disjoint from the set of rank 1 matrices. This set has codimension $(m-1)(n-1
 so for 1-genericity we must have $\codim \ker \mu \geq m+n-1$. Since $\codim \ker \mu = \dim \im \mu\subset C$ we see that any 1-generic matrix must involve at least $m-n+1$ variables. 
 
 Furthermore, the restriction of $M_\mu$ to a hyperplane corresponds to the composite homomorphism
-$A\otimes B \to C \to C/<x>$, or equivalently to the addition of 1 element to $\ker \mu$, and thus
+$A\otimes B \to C \to C/\langle x \rangle$, or equivalently to the addition of 1 element to $\ker \mu$, and thus
 if $M_\mu$ is 1-generic and involves $>m+n-1$ variables, then the restriction to a general hyperplane
 is again 1-generic.
 \end{proof}
@@ -327,9 +329,6 @@ curve of degree $a$.
 \end{enumerate}
 \end{theorem}
 
-\begin{remark}l
-In general the $p\times p$ minors of a 1-generic $p\times q$ matrix generate ap
-\end{remark}
 \begin{proof} 
 (1) The inequality $a\leq n$ was established in Lemma~\ref{size of 1-generic}. We will reduce the case $a<n$ to the case $a=n$. Thus we suppose $a<n$, and let $\ell$ be a general linear form. By induction on $n$, the image of $I_{2}(M)$ in $S/\ell \cong \CC[x_{0},\dots, x_{n-1]}$ is prime of codimension $a-1$, and degree $a$ so
 $V(I_{2}(M))$ is irreducible of degree $a$ and codimension $a-1$. It remains to show
@@ -343,13 +342,13 @@ since $\ell\notin P$ we must have $f'\in P$, a contradiction. Thus $P = 0$; that
 prime, as required.
 
 (2) The points of  $X = V(I_{2}(M))$ are the points where some generalized
-row of $M$ vanish. Since the family of generalized rows is $\PP^{1}$, this variety is
+row of $M$ vanishes. Since the family of generalized rows is $\PP^{1}$, this variety is
 at most one-dimensional. If it were 0-dimensional then, since $\PP^{1}$ is irreducible
 it would have to be a single point---that is, all the generalized rows would be contained
 in a single vector space of linear forms of dimension $n$, contradicting Lemma~\ref{size of 1-generic}.
 Thus $X$ is a curve in $\PP^{N}$, and $I_{2}(M)$ has codimension $n-1 = a-1$.
 
-We now use an important general result from commutative algebra, Theorem~\ref{Macaulay's Theorem}, from which we see that $I_{2}(M)$ is unmixed, and that, even after factoring out two ($=$ dimension $I_{2}(M)$) general linear forms $\ell_{1}, \ell_{2}$, the $2\times 2$ minors of $M$ remain linearly indedpendent.   Since the dimension of the space of quadratic forms in 
+We now use an important general result from commutative algebra, Theorem~\ref{Macaulay's Theorem}, from which we see that $I_{2}(M)$ is unmixed, and that, even after factoring out two ($=$ dimension $I_{2}(M)$) general linear forms $\ell_{1}, \ell_{2}$, the $2\times 2$ minors of $M$ remain linearly independent.   Since the dimension of the space of quadratic forms in 
 $T := S/(\ell_{1}, \ell_{2})$ in $n-1$ variables is ${n\choose 2}$,  the same as the number of minors,we see that the vector space dimension of $\overline S/(I_{2}(M)+(\ell_{1}, \ell_{2})$
 is $1+(n-1) = n$; thus the curve defined (in the scheme-theoretic sense) by $I_{2}(M)$ 
 has degree $n$. As it is nondegenerate in $\PP^{N}$, $X_{\rm red}$ must be the rational normal curve, and since $I_{2}(M)$ is unmixed it follows that $I_{2}(M)$ is the whole homogeneous ideal
@@ -372,7 +371,7 @@ equal to $s^{a-1}t,\dots,t^{a}$; that is, the matrix $M$ is equivalent under row
 (3) If the space spanned by the entries of $M$ has dimension $n>a+1$ then the matrix remains 1-generic modulo a general linear form, and thus we may assume that $n=a+1$. By part (2), if suffices to prove
 the result for the matrix $M_a$. If we regrade the polynomial ring, giving the variable $x_i$ degree $i^2$
 then the anti-diagonal term of each $2\times 2$ minor has strictly lower degree than the diagonal term.
-If the $2\times 2$ minors were linearly dependent, then there lowest degree terms would also be linearly dependent, as one can see by passing to the 
+If the $2\times 2$ minors were linearly dependent, then their lowest degree terms would also be linearly dependent, as one can see by passing to the 
 associated graded ring with respect to the new grading. However the lowest degree terms are precisely the ${a\choose 2}$ monomials of degree 2
 in the variables $x_1, \dots, x_{a-1}$.
 \end{proof}
@@ -380,7 +379,7 @@ in the variables $x_1, \dots, x_{a-1}$.
 \begin{fact}
 The argument in (3) is usually phrased as a Gr\"obner basis argument. A different proof can be given using the Eagon-Northcott complex, and this
 applies more generally to prove the independence of the $p\times p$ minors of any $p\times q$ matrix whose minors generate
-an ideal of codimension $q-p+1$, the maximum possible value; see for example~\cite{}
+an ideal of codimension $q-p+1$, the maximum possible value; see for example~\cite[Theorem ***]{Eisenbud1995}
 \end{fact}
 
 \begin{exercise}
@@ -389,14 +388,14 @@ contains at least $m$ independent quadrics. Use this to prove that if $X$ has co
 $X$ is a variety of minimal degree (that is, $\deg X = c+1$.)
 \end{exercise}
 
-\begin{corollary}\label{equations of scrolls} Let $a_{1}, \dots a_{r}$ be positive integers, and let $N = r-1+sum_{i=1}^{r} a_{i}$.
+\begin{corollary}\label{equations of scrolls} Let $a_{1}, \dots, a_{r}$ be non-negative integers, and let $N = r-1+\sum_{i=1}^{r} a_{i}$.
 The ideal of $S(a_{1},\dots,a_{r})\subset \PP^{N}$ is generated by the $2\times 2$ minors of the matrix
 {\footnotesize
 $$
 \setcounter{MaxMatrixCols}{20}
 M = \begin{pmatrix}
-x_{1,0}&x_{1,1}&\dots&x_{1, a_{1}-1}&|&x_{2,0}&\dots&x_{2, a_{1}-1}&|&\dots&|&x_{r,0}&\dots&x_{r, a_{1}-1}\\
-x_{1,1}&x_{1,2}&\dots&x_{1, a_{1}}.  &|&x_{2,1}&\dots&x_{2, a_{1}}&|&\dots&|&x_{r,1}&\dots&x_{r, a_{1}}
+x_{1,0}&x_{1,1}&\dots&x_{1, a_{1}-1}&|&x_{2,0}&\dots&x_{2, a_{2}-1}&|&\dots&|&x_{r,0}&\dots&x_{r, a_{r}-1}\\
+x_{1,1}&x_{1,2}&\dots&x_{1, a_{1}}.  &|&x_{2,1}&\dots&x_{2, a_{2}}&|&\dots&|&x_{r,1}&\dots&x_{r, a_{r}}
 \end{pmatrix}
 $$
 }
@@ -413,30 +412,15 @@ As always, the set $V(M)$ is the union of the linear spaces on which generalized
 More is true: 
 \begin{fact}
  Every
- 1-generic matrix of linear forms is equivalent to one of the type shown in
-Corollary~\ref{equations of scrolls}, and thus the minors of any 1-generic matrix defines a scroll or the cone over a scroll. 
+ 1-generic $2 \times N$ matrix of linear forms is equivalent to one of the type shown in
+Corollary~\ref{equations of scrolls}, and thus the minors of any 1-generic matrix defines a scroll. 
 \end{fact}
 
 \begin{proof}[References]
-A $2\times a$ matrix of linear forms in $N+1$ variables may be though of as a tensor
+A $2\times a$ matrix of linear forms in $N+1$ variables may be thought of as a tensor
 in $\CC^{2}\otimes \CC^{a}\otimes \CC^{N+1}$, or, equivalently, as an $a\times (N+1)$ matrix of linear forms in 2 variables. This, in turn is equivalent to a \emph{pencil} (that is, a projective line) in the vector space of scalar $a\times (N+1)$ matrices. These were first classified by Kronecker; see 
 \cite[Theorems *** and ***]{Gantmacher} for a modern exposition. 
 \end{proof}
-
-In fact it will be convenient to widen the definition of scrolls to allow cones over scrolls as well: indeed, if we think of a \emph{rational normal curve of degree 0}, then the cone over $S(a_{1}, \dots, a_{r})$with $b$-dimensional  vertex is $S(0,\dots,0, a_{1}, \dots a_{r})$, where there are 
-$b$ zeros in the sequence. With this in mind, we can say that giving a scroll of codimension $a-1$ is ``the same'' as giving a 1-generic $2\times a$ matrix of linear forms.
-
-There are not many types of varieties of minimal degree:
-
-\begin{fact}
-Suppose that $X\subset \PP^{N}$ is a nondegenerate variety of minimal degree; that is, 
-$\deg X - 1 = \codim X$. Then $X$ is one of the following:
-\begin{itemize}
-\item a quadric hypersurface;
-\item a (cone over the) Veronese surface $\PP^{2}\subset \PP^{5}$; or
-\item a (cone over a) rational normal scroll.
-\end{itemize}
-\end{fact}
 
 
 We have used an important result from commutative algebra.
@@ -450,13 +434,14 @@ that is, if the determinant of each $2\times 2$ submatrix is ``naturally'' homog
 \end{fact}
 
 \begin{proof}[References] \fix{I think we're going to prove this in the free res chapter}
-\cite[ Theorem *** ]{Ei}
+\cite[ Theorem *** ]{Eisenbud1995}
 \end{proof}
 
 \begin{exercise}\label{many quadrics}
- If $X$ is a nondegenerate projective variety of codimension $c$ whose homogeneous ideal
+ If $X \subset \PP^n$ is an irreducible, nondegenerate projective variety of codimension $c$ whose homogeneous ideal
  contains ${c\choose 2}$ independent quadratic forms, then $X$ is a variety of degree $c$.
- \fix{give hint?}
+ 
+Hint: Let $Y = X \cap H$ be a general hyperplane section of $X$ and consider the restriction map $H^0(\cI_{X/\PP^n}(2)) \to H^0(\cI_{Y/\PP^{n-1}}(2))$; repeat $n-c$ times.
 \end{exercise}
 
 \begin{corollary}\label{hyperelliptic and trigonal} Suppose that one of the following holds:
@@ -478,7 +463,7 @@ $D_\lambda$ that are contained in a single hyperplane.
 \end{corollary}
 
 \begin{proof}
-Let $\sL$ be the invertible sheaf $sO_C(D_\lambda)$ corresponding to the $g^1_2$ in case 1 or
+Let $\sL$ be the invertible sheaf $\cO_C(D_\lambda)$ corresponding to the $g^1_2$ in case 1 or
 the $g_3^1$ in case 2 and let $s_\lambda$ be
 the section vanishing on $D_\lambda$. Setting $\sM =  \sL^{-1}\otimes \sO_C(1)$, we see that
 $s_\lambda\cdot H^0(\sM) \subset H^0(\sO_C(1)$ is the space of linear forms vanishing on
@@ -495,7 +480,7 @@ The proof is completed by the more general Proposition~\ref{which scroll}.
 
 \begin{proposition}\label{which scroll}
 Let $S(a_1,a_2)\subset \PP^{a_1+a_2+1}$ be a scroll. The maximal number of rulings contained in
-a proper subspace of $ \PP^{a_1+a_2+1}$ is $\max\{a_1,a_2\}$.
+a proper subspace of $ \PP^{a_1+a_2+1}$ is $a_2$.
 \end{proposition}
 
 \begin{proof}
@@ -585,20 +570,20 @@ Since the spaces spanned by $C_{1}$ and $C_{2}$ are complementary, this map of r
 It remains to show that $X \cong \PP(\sE)$, embedded by $|\cO_{\PP(\cE)}(1)|$. Maps $\phi: X \to \PP (\sE)$ correspond to surjections 
 $\alpha: \pi^* \sE \to \sM$ for some line bundle $\sM$ on $X$ in such a way that $\sM = \phi^*\sO_{\PP(\sE)}(1)$ (after passing to an open
 cover of $\PP^1$ the proof is almost the same as in the case of a map to projective space; see \cite[II.7.12]{Hartshorne1977}) . We may take $\alpha$ to be the 
-natural map $\pi^*\sE = \pi^*\pi_*\sO_X(1)$, and the corresponding map $\phi$ then makes the diagram
+natural map $\pi^*\sE = \pi^*\pi_*\sO_X(1)$, and the corresponding map $\beta$ then makes the diagram
  \newarrow{Eq}{}{=}{=}{=}{}
 $$
 \begin{diagram}
- X&\rTo^{|\sO_{X}(1)|}&\PP^N\\
-\dTo^\phi&&\dEq \\
-\PP\sE &\rTo^{|\cO_{\PP(\cE)}(1)|}&\PP^N
+ X&\rTo^{\phi_{|\sO_{X}(1)|}}&\PP^N\\
+\dTo^\beta&&\dEq \\
+\PP\sE &\rTo^{\phi_{|\cO_{\PP(\cE)}(1)|}}&\PP^N
 \end{diagram}
 $$
 commute, proving the desired assertion.
 \end{proof}
  
-\begin{proposition}
-Let $\sE = \sO_{\PP^1}(a_1)\oplus \sO_{\PP^1}(a_2)$, and let $\pi: X:= \PP(\sE) \to \PP^1$ be the projection.
+\begin{proposition} Suppose that $0<a_1\leq a_2$ and
+$\sE = \sO_{\PP^1}(a_1)\oplus \sO_{\PP^1}(a_2)$. Let $\pi: X:= \PP(\sE) \to \PP^1$ be the projection.
 The sections $\sigma:\PP^1 \to C\subset X$ of $\pi$---that is, maps $\sigma$ such that $\pi\sigma$ is the identity---then 
 correspond to surjections
 $\sE \to \sL$ for some line bundle $\sL$ on $\PP^1$. Considering  $X$ as embedded in 
@@ -606,21 +591,23 @@ $\PP^{a_1+a_2+1}$, we have $\sL = \sigma^*\sO_C(1)$, so the degree of $C$ is equ
 to the degree of $\sL$.
 
 Thus $\pi$ admits a section of degree $e$ as a curve in $\PP^{a_1+a_2+1}$ if and only if
-$0<e = \min\{a_1,a_2\}$ or $e\geq \max\{a_1, a_2\}$.
+$0<e = a_1$ or $e\geq a_2$.
 \end{proposition}
 
 \begin{proof}
 Apply \cite[II.7.12]{Hartshorne1977}).
 \end{proof}
 
-\section{Curves on a scroll} 
+\section{Curves on a 2-dimensional scroll}\label{curves on scrolls}
+
 \noindent{\bf Notation:} Throughout this section we consider the vector bundle 
 $$
 \sE = \sO_{\PP^1}(a_1) \oplus\sO_{\PP^1}(a_2)
 $$
-with $0\leq a_1\leq a_2$ and the scroll
-scroll $X = S(a_{1}, a_{2}) = \PP(\sE) \subset \PP^N$, where $N = a_1+a_2+1$. We write $\pi:X \to \PP^1$ for the projection, and
-$C_{a_i}\subset X$ for the directrix of degree $a_i$. The degree of $X$ is $d := a_1+a_2$.
+with $0\leq a_1\leq a_2$ and the 
+scroll $ S(a_1, a_2) \subset \PP^N$, where $N = a_1+a_2+1$. This scroll is the image of $X = \PP(\sE)$ by a map that is an isomorphism
+if $0<a_1$ and is the blow-down of the $C_1$ if $a_1=0$.  We write $\pi:X \to \PP^1$ for the projection, and
+$C_{a_i}\subset X$ for the directrix of degree $a_i$. The degree of $S(a,b)$ is $d := a_1+a_2$.
 
 Our interest in scrolls in this book is primarily for the curves that lie on them.The key is to understand the Picard group and the canonical class. We begin with the nonsingular case.
 
@@ -645,7 +632,7 @@ ${p\choose 2}d+pq-p-q+1$.
 \item The class of $C_{a_1}$
 is $H-a_2F$, and the class of $C_{a_2}$ is 
 is $H-a_1F$. 
-\item If $C \subset \PP^{g-1}$ is a trigonal canonical curve and $X$ is the scroll swept out by the trisecants of $C$, then the class of $C$ is $3H+(4-g)F = H-K$
+\item If $C \subset \PP^{g-1}$ is a trigonal canonical curve and $X$ is the scroll swept out by the trisecants of $C$, then the class of $C$ is $3H+(4-g)F = H-K$. (Note that in this case we necessarily have $a_1 > 0$.)
 \end{enumerate}
 \end{theorem}
 
@@ -689,7 +676,7 @@ computation shows that there is no solution to this equation with $p\neq 0$ and 
 
 Now we can say exactly which classes on the scroll contain curves:
 
-\begin{theorem}\label{where are the curves?} Again, suppose that $0<a_{1},a_{2}$.
+\begin{theorem}\label{where are the curves?} Again, suppose that $0<a_{1}$.
 There are reduced  curves in the class $D = pH+qF$ if and only if one of the following holds:
 
 \begin{enumerate}
@@ -706,16 +693,17 @@ on $X$ other than $C_{a_1}$ can have negative self-intersection.
 
 \begin{proof}
 The existence of smooth curves of types 1 and 2 is obvious; the following result will show that
-the ones of type 3 move in a base-point-free linear series. By Bertini's Theorem \ref{***} such a series must contain smooth curves unless the associated map factors through a curve, in which case $D^2 = dp^2-2pq = p(pa_1+pa_2 -2 q) = 0$, which implies that $a_2=a_1$ and $q= -pa_1$.
+the ones of type 3 move in a base-point-free linear series. By Bertini's theorem \ref{***} such a series must contain smooth curves unless the associated map factors through a curve, in which case $D^2 = dp^2-2pq = p(pa_1+pa_2 -2 q) = 0$, which implies that $a_2=a_1$ and $q= -pa_1$.
 
-The next result, Theorem~\ref{global sections}, thus completes the proof.\end{proof}
+The next result, Theorem~\ref{global sections}, thus completes the proof.
+\end{proof}
 
-\begin{theorem}\label{global sections}
+\begin{theorem}\label{global sections} Again, suppose that $0<a_{1}$.
 Suppose that $D$ is a divisor on the scroll $X$ as above. If $D \sim pH+qF$, then 
 \begin{align*}
  H^{0}(\sO_{X}(D)) &= H^{0}(\sO_{\PP^{1}}(q) \otimes \Sym^{p} \sE)\\
  &= 
-\oplus_{0\leq i\leq p}H^{0}\bigl(\sO_{\PP^{1}}(q + (p-i)a_{1}+i a_{2})\bigr).
+\bigoplus_{0\leq i\leq p}H^{0}\bigl(\sO_{\PP^{1}}(q + (p-i)a_{1}+i a_{2})\bigr).
 \end{align*}
 and $|D|$ is basepoint free iff every summand is nonzero.
 Thus, numerically,
@@ -754,7 +742,7 @@ Thus
 \pi_{*}\bigl(\sO_{X}(p) \otimes \pi^{*}\sO_{\PP^{1}}(q)\bigr) \\
  &= \pi_{*}\bigl(\sO_{X}(p)\bigr)\otimes \sO_{\PP^{1}}(q)\\
 &=  \Sym^{p}(\sE)\otimes \sO_{\PP^{1}}(q)\\
-&=  \bigl(\oplus_{0\leq i\leq p} \sO_{\PP^{1}}((p-i)a_{1}+i a_{2})\bigr) \otimes \sO_{\PP^{1}}(q),
+&=  \bigl(\bigoplus_{0\leq i\leq p} \sO_{\PP^{1}}((p-i)a_{1}+i a_{2})\bigr) \otimes \sO_{\PP^{1}}(q),
 \end{align*}
 and the first formula follows. 
 
@@ -769,7 +757,7 @@ there are sections  vanishing on $C_{a_{1}}$ but not $C_{a_{2}}$, and vice versa
  
 We can easily compute the degrees and genera of curves that lie on scrolls:
 
-\begin{proposition}
+\begin{proposition}Again, suppose that $0<a_{1}$.
  Suppose that $D\sim pH+qF$ is a smooth irreducible curve on $S(a_{1}, a_{2})$ as in Theorem~\ref{where are the curves?}. 
 \begin{itemize}
  \item The degree of $D$ is $p(a_{1}+a_{2}) +q$.
@@ -786,7 +774,7 @@ By the adjunction formula
 so $g = {p\choose 2}(a_{1}+a_{2}) + (p-1)(q-1)$ as required.
 \end{proof}
 
-\begin{exercise}label{general projections}
+\begin{exercise}\label{general projections}
 Improve the result of Exercise~\ref{special projections} by showing that, if $0\leq a_1,\leq a_2$, then
  the projection of $S(a_1,a_2)$ from any point not on $C_{a_1}$ (or not the vertex, in case $a_1=0$) is 
  is $S(a_1, a_2-1)$.
@@ -823,6 +811,8 @@ $$
 which blows down the line $C_{1}$.
 \end{proposition}
 
+Note that $S(1,a_2+1)$ is isomorphic to the surface $\tilde S(0, a_2)$ of Section~\ref{daily name}.
+
 \begin{proof} 
 The desired map $\PP(\sE) \to \PP(\sE\otimes \sL)$ corresponds to the surjection 
 $\pi^*(\sE \otimes\sL) \ \pi^*(\sE) \otimes \pi^*(\sL) \to \sO_{\PP(\sE)}(1) \otimes \pi^*(\sL)$, 
@@ -840,13 +830,23 @@ is $|\sO_{\PP^1}(a_2)|$.
 \begin{corollary}\label{curves on a singular scroll}
  The smooth curves that lie on the cone $S(0,a_2)$ with $a_2>1$ are isomorphic to their strict transforms
  on $S(1,a_2+1)$, and on $S(1,a_2+1)$ these lie in the classes $mH-mF$ and $mH-(m-1)F$ for $m\geq 1$, 
- corresponding to a multiple of the hyperplane section on $S(0,a_2)$ or a hyperplane section plus one ruling,
- respectively. The latter is a Weil divisor that is not a Cartier divisor on $S(0,a_2)$.
+ corresponding to a multiple of the hyperplane section on $S(0,a_2)$ or one ruling plus a multiple of the hyperplane section. The latter is a Weil divisor that is not a Cartier divisor on $S(0,a_2)$.
 \end{corollary}
 
 \begin{proof}
 These are the classes that intersect $C_{a_1}$ in degree 0 or 1.
 \end{proof}
+
+\begin{exercise}\label{curves on cones}
+\item If $C \subset S(0, a_2) \subset \PP^{a_2+1}$ is a smooth curve with class $m$ times the hyperplane section (that is, corresponding to a curve on $S(1,a_2+1)$ with class $mH - mF$), show that
+$$
+\deg(C) = ma_2 \quad \text{and} \quad g(C) = \binom{m}{2}a_2 - m + 1.
+$$
+\item If $C \subset S(0, a_2) \subset \PP^{a_2+1}$ is a smooth curve with class $m$ times the hyperplane section plus a ruling (that is, corresponding to a curve on $S(1,a_2+1)$ with class $mH - (m-1)F$), show that
+$$
+\deg(C) = ma_2 + 1 \quad \text{and} \quad g(C) = \binom{m}{2}a_2.
+$$
+\end{exercise}
 
 In these terms we can also see which classes on a scroll correspond to hyperelliptic or trigonal curves in the way described by Corollary~\ref{hyperelliptic and trigonal}:
 
