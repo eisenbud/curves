@@ -351,6 +351,8 @@ W^r_d(C) = \left\{ \cL \in \Pic_d(C) \mid \dim(\mu^{-1}(\cL)) \geq r \right\}.
 $$
 Thus $W^r_d(C)$ has the structure of an algebraic variety, and we can talk about its dimension, irreducibility, smoothness or singularity and so on.
 
+We can also introduce the corresponding subvarieties of the symmetric products $C_d$: the preimage $\mu^{-1}(W^r_d) \subset C_d$ parametrizes effective divisors $D$ with $r(D) \geq r$, and is denoted $C^r_d$.
+
 A much less basic fact, and one we won't prove here, is that \emph{$W^r_d(C)$ has naturally the structure of a scheme}. Here ``natural" means that the scheme $W^r_d(C)$ represents the functor of families of invertible sheaves with $r+1$ or more sections (that is, the functor that associates to a scheme $B$ the set of invertible sheaves $\cL$ on $B \times C$ such that the pushforward $(\pi_2)_*\cL$ has a locally free subsheaf of rank $r+1$ over every curvilinear subscheme of $B$, as always modulo tensoring with pullbacks of invertible sheaves on $B$). For a more detailed account of this, see~\cite{ACGH}.
 
 This sounds complicated, and indeed it is. We won't  dwell on it, but it does arise: as we'll see in Chapter~\ref{}, for some curves $C$ of genus 4 the scheme $W^1_3(C)$ will be non-reduced, and for some curves $C$ of genus 6 the scheme $W^1_4(C)$ will be non-reduced (we'll even see an example where $W^1_4(C) \cong \Spec \CC[\epsilon]/(\epsilon^5)$!). 
@@ -398,11 +400,48 @@ Note that if $C$ is hyperelliptic with $g^1_2 = |D|$, we have
 $$
 W^r_d(C) \supset W_{d-2r}(C) + \mu(rD).
 $$
-(In fact, as we'll see in the following chapter, this is an equality.) Since this has dimension $d-2r$, we see that Martens' theorem is sharp. Note also that Clifford's theorem is a special case of Martens' theorem!
+(In fact, as we'll see in the following chapter, this is an equality.) Since this has dimension $d-2r$, we see that Martens' theorem is sharp. Note also that Clifford's theorem is a special case of Martens' theorem! Finally, note that since
+$$
+W^r_d(C) = K_C - W^{g-1-d+r}_{2g-2-d}
+$$
+and
+$$
+2g-2-d - 2(g-1-d+r) = d-2r,
+$$
+it will suffice to prove the theorem in case $d \leq g-1$.
+
+Since the fibers of $C^r_d$ over $W^r_d(C)$ have dimension at least $r$, Marten's inequality will follow from the corresponding inequality
+$$
+\dim C^r_d \; \leq \; d-r.
+$$
+In this form, it will follow immediately from the geometric form of the Riemann-Roch formula and the elementary
+
+\begin{lemma}[elementary secant plane lemma]\label{elementary secant plane lemma}
+Let $C \subset \PP^n$ be a smooth, irreducible and nondegenerate curve. If we denote by $\Sigma \subset C_d$ the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$, then for any $d \leq n$ and $r > 0$,
+$$
+\dim \Sigma \leq d-r.
+$$
+\end{lemma}
 
 \begin{proof}
-\fix{add proof}
+We will proceed by induction on $d$. To start, let $C^d$ be the Cartesian product and $\alpha : C^d \to C_d$ the quotient map; let $\Phi = \alpha^{-1}(\Sigma)$. Since the fibers of $\pi$ are finite, the lemma is equivalent to the assertion that $\dim \Phi \leq d-r$. Now, consider the projection map $\pi : C^d \to C^{d-r}$ on the first $d-r$ factors. On the one hand, a general $(d-r)$-tuple of points on the curve are linearly independent, so the general fiber of the restriction $\pi_\Phi : \Phi \to C^{d-r}$ is finite. More generally, by the induction hypothesis the locus of $(d-r)$-tuples of points on $C$ that span only a $(d-r-1-s)$-plane has codimension at least $s$ in $C^{d-r}$, and fibers over this locus have dimension $s$, so we conclude that $\dim \Phi \leq d-r$.
+\end{proof}
 
+This establishes the Martens inequality, and is completely elementary. To prove the full statement of Martens' theorem---that we have strict inequality in case the curve $C$ is non-hyperelliptic---we need a stronger version of Lemma~\ref{elementary secant plane lemma}. This will require ``borrowing" the general position lemma~\ref{general position lemma} from Chapter~\ref{Brill-Noether}; given this, we can prove the stronger
+
+\begin{lemma}[Strong secant plane lemma]\label{Strong secant plane lemma}
+Let $C \subset \PP^n$ be a smooth, irreducible and nondegenerate curve. If we denote by $\Sigma \subset C_d$ the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$, then for any $d \leq n$ and $r > 0$,
+$$
+\dim \Sigma \leq d-r-1.
+$$
+\end{lemma}
+
+\begin{proof}
+We set up an incidence correspondence: 
+$$
+\Gamma := \left\{ (D, H) \in \Sigma \times {\PP^n}^* \mid \overline D \subset H \right\}.
+$$
+The curve being nondegenerate, the projection map $\Gamma \to  {\PP^n}^*$ is finite. But the fibers of $\Gamma$ over $\Sigma$ have dimension at least $n-d+r$; if we had $\dim \Sigma \geq d-r$, it would follow that $\dim \Gamma \geq n$, and hence that the projection map $\Gamma \to  {\PP^n}^*$ is dominant---contradicting the general position lemma~\ref{general position lemma}.
 \end{proof}
 
 There are extensions of Martens' theorem to the case $\dim(W^r_d(C)) = d-2r-1$ (Mumford) and $d-2r-2$ (Keem).
