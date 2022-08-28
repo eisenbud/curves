@@ -241,7 +241,7 @@ Though we will systematically prefer the invertible sheaf terminology, there are
 section of the line bundle as a function. Second, and more serious, given a morphism $f: Y\to X$ of schemes, the 
 pullback $f^*(\sL)$ of an invertible sheaf $\sL$ on $X$ is defined as the tensor product of $\sO_Y$ with a sort of naive pullback; whereas the pullback of a linebundle is a straightforward set-theoretic operation.
 
-\subsection{More about linear series}
+\subsection{Incomplete linear series}
 
 
 Let $\sV = (\sL, V)$ be a linear series on $X$.  The linear series is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$. If $\cL \cong \cO_C(D))$, we also write it as $|D|$. 
@@ -272,8 +272,9 @@ H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{C}(1))
 $$
 is surjective, which is in turn equivalent to saying that $C$ is \emph{not} the regular  projection of a nondegenerate curve $\tilde C \subset \PP^{r+1}$.
 
-A linear series $\sV = (\sL, V)$ is called  \emph{very ample}  if it is basepoint-free and defines an embedding. If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear series $|D|$ is very ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$.
+\subsection{Which linear series define embeddings?}
 
+A linear series $\sV = (\sL, V)$ is called  \emph{very ample}  if it is basepoint-free and defines an embedding. If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear series $|D|$ is very ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$.
 
 Given a linear series $\sV = (\sL, V)$ and an effective divisor $D$ on $C$, we  set
 $
@@ -285,7 +286,9 @@ $$
 $$
 The difference $\dim \sV - \dim \sV(-D)$ is called the \emph{number of conditions imposed by $D$ on the linear series $\sV$}; we say that $D$ \emph{imposes independent conditions} on $\sV$ if $\dim \sV - \dim \s V(-D) = \deg(D)$.
 
-Via the correspondence of Theorem~\ref{morphisms and linear series}, the statements about the geometry of a morphism $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear series. We will see this in many instances throughout this book. In the case of complete series, these are statements about the vector space $H^{0}(\sL)$ of global sections of $\sL$. As is customary, we write $h^{0}(\sL)$ for the dimension of this vector space. Here is a useful statement of this kind:
+Via the correspondence of Theorem~\ref{morphisms and linear series}, the statements about the geometry of a morphism $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear series. In the case of complete series, these are statements about the vector space $H^{0}(\sL)$ of global sections of $\sL$. As is customary, we write $h^{0}(\sL)$ for the dimension of this vector space. It is useful to have criteria
+in these terms for when a linear series defines an embedding, or even to be basepoint free so that it
+defines a morphism:
 
 \begin{proposition}\label{very ample}\cite[Thm. IV.3.1]{H}
 Let $\cL$ be an invertible sheaf on a smooth curve $C$. The complete linear series $|\cL|$ is base-point-free iff
@@ -325,8 +328,11 @@ For another example of the relationship between linear series on curves and morp
 
 If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of $\phi$} is the number of points in the preimage of a general point of $\phi(X)$. It follows that if $D := \sum_{p\in C} n_pp$ is a divisor on a smooth curve, and the linear series $|D|$ is basepoint free, then the degree of the morphism associated to $|D|$ is $\deg D := \sum_{p\in C} n_p$.
 
-\fix{do Serre vanishing and the easy version of Riemann-Roch BEFORE the section on the canonical series; that gives
-much more motivation.}
+\subsection{How large are the linear series?}
+
+Because we are going to study curves via their maps to projective spaces, we will want to know how large a space of global
+sections we should expect an invertible sheaf to have. We will answer this in several ways, but the beginning
+of the story is the Riemann-Roch theorem.
 
 We will henceforward assume that the reader is acquainted with sheaf cohomology, at least sufficiently to write
 $H^i(X, \sF)$ without blushing. Note that if $\sF$ is a sheaf on $X$ and $X\subset Y$ then the cohomology  $H^i(X, \sF) = H^i(Y,\sF)$ canonically, so we will
@@ -347,7 +353,7 @@ if $X\subset \PP^m$, then $H^i(\sF(d)) = 0$ for all $i>0$ and $d\gg 0$.\qed
 
 Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d) = h^0(\sL(d)$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL = h^0(\sL) - h^1(\sL)$ as well.
 
-\begin{theorem} (Easy Riemann-Roch)
+\begin{theorem} (Easy Riemann-Roch)\label{easy RR}
 If $C$ is a smooth curve, and $\sL$ is an invertible sheaf on $C$, then $\chi(\sL) = \deg \sL + \chi(\sO_C)$.
 \end{theorem}
 
@@ -368,15 +374,21 @@ Since every divisor on $C$ can be reached by adding and subtracting points, this
 We can make a more useful Riemann-Roch theorem by understanding the error term $h^1(\sL)$ using
 the canonical divisor and Serre duality, to which
 we now turn.
-\fix{end of new section}
 
-\subsection{The most interesting linear series}
 
-The most important invertible sheaf on a smooth variety $X$ is the sheaf of global sections of the $\dim X$ exterior power of the   sheaf of the locally free sheaf of differentials $\Omega_X$ of $X$, called the canonical sheaf $\omega_X$ of $X$.  Since a differential
-is a section of the cotangent bundle, we may also identify this as the sheaf of sections of the top exterior power of the 
-cotangent bundle. A section of 
-$\omega_X$ is thus a differential form of degree equal to the dimension of $X$, and the class of the divisor
-of such a form is usually denoted $K_X$. One example in which the canonical sheaf is easy to compute in other terms is the following. .
+\section{The most interesting linear series}
+
+The most important vector bundles on a manifold are the tangent and cotangent bundles. For reasons that
+will become clear, the focus in algebraic geometry is on the cotangent bundle or, equivalently, the sheaf of differential forms. On a smooth curve $C$, this is usually called the \emph{canonical sheaf} (on a smooth
+variety of dimension $n$ the canonical sheaf is the $n$-exterior power of the sheaf of differentials). A section of 
+$\omega_C$ is thus a differential form, and the class of the divisor
+of such a form is usually denoted $K_X$. 
+
+\begin{fact}
+A famous result asserted by Franchetta and proved in~\cite{Harer} (see also~\cite{MR895568} and~\cite{MR1984659}) states that the canonical sheaf (and its powers) are the \emph{only} invertible sheaves that can be chosen uniformly on all, or even almost all, smooth curves. 
+\end{fact}
+
+On projective space we can compute the canonical sheaf directly; other computations of the canonical sheaf will usually reduce to this central case.
 
 \begin{theorem}
  The canonical sheaf of $\PP^{r}$ is $\sO_{\PP^{r}}(-r-1)$. 
@@ -423,14 +435,13 @@ The most important invariant of a smooth curve can be defined in terms of the ca
 If $C$ is a smooth curve we define the genus $g(C)$ to be the dimension of $H^0(\omega_C)$.
 \end{definition}
 
-Computations of the canonical sheaf on a variety usually involve comparing the variety to another variety, such as projective space, where the canonical sheaf is already known. The most useful results of this type are  the \emph{adjunction formula}
+Computations of the canonical sheaf on a variety usually involve comparing the variety to a variety where the canonical sheaf is already known. The most useful results of this type are  the \emph{adjunction formula}
 and \emph{Hurwitz' Theorem}. 
 
 \subsection{The Adjunction Formula}\label{Adjunction Formula}
 
 The adjunction formula describes the difference between the canonical divisor of
 a codimension 1 subvariety and the restriction of the canonical divisor of the ambient variety.
-
 
 \begin{proposition}\label{adjunction}(Adjunction Formula)
  Let $X$ be a variety that is a Cartier divisor on a variety $Y$, and let $K_{Y}$ be the canonical class of $Y$. The canonical class $K_X$ of $X$ is
@@ -481,7 +492,6 @@ $
 $
 \end{theorem}
  
- 
 \begin{proof}
 Choose a rational 1-form $\omega$ on $X$, and let $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (Since we have the freedom to multiply by any rational function on $X$ we can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) 
 
@@ -492,18 +502,38 @@ $K_{C} = f^{*}(K_{X})+R$.
 \end{proof}
 
 \begin{example}
+Let $C\subset \PP^2$ be a smooth plane curve and let $p\in \PP^2$ be a general point, with ideal
+sheaf generated by the vector space of linear forms $W = \langle x_0,x_1\rangle$. 
+The linear series $(\sO_C(1), W)$ defines the projection of $C$ from $p$ to $\PP^1$, a map of degree
+$d = \deg C$.
+\fix{insert picture}. The canonical sheaf of $\PP^1$ has degree $-2$, so by Hurwitz' theorem
+$K_C$ has degree $ -2d+ \deg R$, where $R$ is the branch locus. We may choose coordinates
+so that none of the branch points lie on the line $x_0 = 0$. Taking this to be the line at infinity, we
+may compute the branch locus after passing to the affine open set $x_0\neq 0$, where the projection
+map is given by the function $z = x_1/x_0$.  Suppose that $C$ is defined, in this open set,
+by the equation $f(x,y)= 0$. A point $q\in C$ is a branch point if the tangent line to $C$ at $q$
+passes through $p$, that is, if $dx$  and 
+$$
+df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy
+$$
+are linearly dependent, that is, if $\partial f/{\partial y}$ vanishes at $q$. The intersection of 
+$C$ with the curve defined by $\partial f/{\partial y}=0$ has degree $d(d-1)$ by Bezout's theorem,
+so the degree of the ramification divisor $R$ is $d(d-1)$ whence the degree of the canonical
+divisor on $C$ is $\deg K_C = -2d+d(d-1) = d(d-3)$, which is in accord with 
+Corollary~\ref{canonical of plane curve}.
+
+\end{example}
+
+\begin{example}
  Let $V$ be the vector space of homogeneous polynomials of degree $d$ in two variables; that is, $V = H^0(\cO_{\PP^1}(d))$. In the projectivization $\PP(V^{*}) \cong \PP^d$, let $\Delta$ be the locus of polynomials with a repeated factor. Since $\Delta$ is defined by the vanishing of the discriminant, it is a hypersurface. What is its degree?
  
- To answer this, let $W\subset V$ be a general 2-dimensional linear subspace---that is, a general pencil of forms of degree $d$ on $\PP^1$. The linear series $\sW = (\sO_{\PP^{d}}, W)$ defines a morphism $\phi_{\sW} : \PP^{1} \to \PP(W) \cong \PP^{1}$ and the fiber over the point of $\PP(W)$ corresponding to a form $f$ of degree $d$ is the divisor $\{f = 0\}\subset \PP^{1}$. Thus the locus of polynomials in $W$ with a multiple root is the branch locus of $\phi_{\sW}$, where we count an $m$-fold root $m-1$ times.
+ To answer this, let $W\subset V$ be a general 2-dimensional linear subspace---that is, a general pencil of forms of degree $d$ on $\PP^1$. The linear series $\sW = (\sO_{\PP^{1}}, W)$ defines a morphism $\phi_{\sW} : \PP^{1} \to \PP(W) \cong \PP^{1}$ and the fiber over the point of $\PP(W)$ corresponding to a form $f$ of degree $d$ is the divisor $\{f = 0\}\subset \PP^{1}$. Thus the locus of polynomials in $W$ with a multiple root is the branch locus of $\phi_{\sW}$, where we count an $m$-fold root $m-1$ times.
  By Hurwitz' formula, the degree of the branch locus $B$ of a degree $d$ morphism from $\PP^{1}$ to $\PP^{1}$ is
  $$
  \deg B = \deg \omega_{\PP^{1}} - d\deg \omega_{\PP^{1}} = 2d-2.
  $$
  \end{example}
   
-\begin{fact}
-A famous result asserted by Franchetta and proved in~\cite{Harer} (see also~\cite{MR895568} and~\cite{MR1984659}) states that the canonical sheaf (and its powers) are the \emph{only} invertible sheaves that can be chosen uniformly on all, or even almost all, smooth curves. 
-\end{fact}
 
 \section{Genus, Riemann-Roch and Serre Duality}
 
@@ -542,15 +572,19 @@ and thus $h^1(D) = h^0(K_C-D)$.
 For proofs see \cite[Theorem III.5.2 and III.7.6]{H}. 
 
 For example we see that $h^1 (\sO_C) = h^0(K_C) = g(C)$.   
-Using this we can recast the Easy Riemann-Roch theorem above in a more useful form:
+Using this we can recast the Easy Riemann-Roch theorem above in a more useful form. 
 
 \begin{theorem} (Riemann-Roch)
-If $\sL$ is an invertible sheaf on a smooth curve, then $\chi(\sO_C) = 1-g$ and
+If $C$ is a smooth curve, then $\chi(\sO_C) = 1-g(C)$.
+If $D$ is any divisor on $C$, then 
 $$
-h^0(\sL) - h^1(\sL) = \deg \sL - g(C) +1.
+h^0(D) - h^0(K_C -D) = \deg D - g(C) +1.
 $$
 \end{theorem}
 
+\begin{proof}
+Combine Theorem~\ref{easy RR} with Theorem~\ref{sd}.
+\end{proof}
 Applying the formula with $D = K_C$, we get 
 $\deg K_C = 2g(C) -2$.
 
@@ -568,9 +602,9 @@ H^i(X,\CC) = H^i_{\rm de Rham}(X) = \bigoplus_{j=0}^i H^j(\bigwedge^{i-j} \Omega
 $$
 For a smooth curve $C$, this says in  particular that
 $$
-H^1(C; \CC) = H^0(\omega_C)\oplus H^1(\sO_C) = H^0(\omega_C)\oplus (H^1(\sO_C))H^0(\omega_C))^\vee, 
+H^1(C; \CC) = H^0(\omega_C)\oplus H^1(\sO_C) = H^0(\omega_C)\oplus (H^0(\omega_C))^\vee, 
 $$
-so $ h^1(\omega_C)$ is half the rank of the middle singular cohomology group, justifying the name ``genus''.
+so $ h^0(\omega_C)$ is half the rank of the middle singular cohomology group, justifying the name ``genus''.
 \end{fact}
 
 
@@ -619,6 +653,9 @@ so $ h^1(\omega_C)$ is half the rank of the middle singular cohomology group, ju
 %For example, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Using this and \trr for $D=K$
 %we get $\deg K = 2g-2$. Also, since $h^0(D) = 0$ for any divisor $D$ of negative degree, the formula gives the dimension of $h^{0}(D)$ when $\deg D$ is large:
 
+If $E$ is a divisor of negative degree then $H^0(E) = 0$ so we get the form of the Riemann-Roch theorem
+originally proved by Riemann:
+
 \begin{corollary}\label{nonspecial RR}
 For any divisor $D$ of degree $d$ we have
 $$
@@ -626,7 +663,7 @@ h^0(D) \geq d - g + 1,
 $$
 with equality if $d > 2g-2$.
 \end{corollary}
-This was the theorem originally proven by Riemann; his student Roch supplied the correction term $h^0(K_C - D)$ for divisors of lower degree.
+It was Riemann's student Roch  who supplied the correction term $h^0(K_C - D)$ for divisors of lower degree.
 The dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$.
 
 Corollary~\ref{nonspecial RR} and Proposition~\ref{very ample} together show that all high degree divisors come from hyperplane sections in 
