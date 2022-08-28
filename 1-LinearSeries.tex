@@ -302,33 +302,73 @@ $$
 Since a divisor of degree $d$ cannot impose more than $d$ condtions on a linear series, the statement $h^0(\cL(-p-q)) = h^0(\cL) - 2$ for all $p, q$ implies the condition for base-point freeness; and saying that $\phi_\cL(p) \neq \phi_\cL(q)$ implies that the linear series defines a set-theoretic injection. The tangent space of $C$ at $p$ is $(\sI_C(p)/\sI_C(p)^2)^*$, so the condition that there is a section of $\sL$ that vanishes at $p$, but does not vanish
 to order 2, implies that the differential $d\phi_\cL$ is injective at $p$ as well.
 
-Let $\phi$ be the map defined by $\sL$, and suppose that the image of $\phi$ is the curve $D$. To say that $\phi$  is an isomorphism locally at a point $p$, we need to know that the map of local rings
+Let $\phi:C \to \PP^r$ be the map defined by $\sL$. To say that $\phi$  is an embedding locally at a point $p$, we need to know that the map of local rings
 $$
-\phi^*: \sO_{D,\phi(p)} \to \sO_{C,p}
+\phi^*: \sO_{\PP^r,\phi(p)} \to \phi_*(\sO_{C})_p)
 $$
-is an isomorphism. What we have shown so far is that 
+is surjective. Since $C$ is proper,  $\phi_*(\sO_{C})$ is coherent, 
+and the constants  $\CC =\sO_{\PP^r,\phi(p)}/\gm_{\PP^r,\phi(p)}$ pull back to the constants in
+$\sO_{C,p}/\gm_{C,p}$. 
+By Nakayama's lemma, the surjectivity will follow if 
 $$
-\phi^*: \frac{\sO_{D,\phi(p)}}{\gm_{D,\phi(p)}^2} \to \frac{\sO_{C,p}}{\gm_{C,p}^2}
+\frac{\sO_{C,p}}
+{\phi^*(\gm_{\PP^r,\phi(p)})  \sO_{C,p}}
 $$
-is an isomorphism. This is not enough, as we can see from the fact that the completion of $\sO_{C,p}$ is not
-isomorphic to $\sO_{C,p}.$
-
-The key additional fact is that $\phi$ makes $\sO_{C,p}$  a \emph{finitely generated} module over 
-$\sO_{D,\phi(p)}$;
-given this, the conclusion follows from Nakayama's Lemma, which shows that
-$\sO_{D,\phi(p)}$ is generated as a module by the element 1.
-See the exposition in \cite[Proposition 7.3 and Lemma 7.4]{H} for details.
+is 1-dimensional; that is, if  the pullback of $\gm_{\PP^r,\phi(p)}$ is not contained in the square of the
+maximal ideal $\gm_{C,p}$. The inequality $h^0(\sL(-2p) \neq h^0(\sL(-p))$ shows that there is a 
+section in $H^0(\sL(-p))$ that does not vanish to order 2, completing the proof.
 \end{proof}
 
 
 For another example of the relationship between linear series on curves and morphisms of curves to projective space, consider a smooth curve $C \subset \PP^r$ embedded in projective space, and assume that $C$ is linearly normal. If $\phi : C \to C$ is any automorphism, we can ask whether $\phi$ is induced by an automorphism of $\PP^r$; in other words, does there exist an automorphism $\Phi : \PP^r \to \PP^r$ such that $\Phi(C) = C$ and $\Phi|_C = \phi$? The answer is expressed in Exercise~\ref{projective automorphism}.
 
 
-\begin{example}
-Consider the rational normal curve of degree $d$, which is the image of the morphism $\PP^1\to \PP^d$ given by the complete linear series $|\cO_{\PP^1}(d)|$. Since there is a unique invertible sheaf of each degree $d$ on $C$, and the curve is linearly normal, we see that every automorphism of a rational normal curve $C \subset \PP^d$  extends to $\PP^d$.
-\end{example}
-
 If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of $\phi$} is the number of points in the preimage of a general point of $\phi(X)$. It follows that if $D := \sum_{p\in C} n_pp$ is a divisor on a smooth curve, and the linear series $|D|$ is basepoint free, then the degree of the morphism associated to $|D|$ is $\deg D := \sum_{p\in C} n_p$.
+
+\fix{do Serre vanishing and the easy version of Riemann-Roch BEFORE the section on the canonical series; that gives
+much more motivation.}
+
+We will henceforward assume that the reader is acquainted with sheaf cohomology, at least sufficiently to write
+$H^i(X, \sF)$ without blushing. Note that if $\sF$ is a sheaf on $X$ and $X\subset Y$ then the cohomology  $H^i(X, \sF) = H^i(Y,\sF)$ canonically, so we will
+simply and unambiguously write $H^i(\sF)$ for either of these. 
+We write $h^i(\sF)$ or (if $D$ is a divisor) $h^{i}(D)$ for $\dim_{\CC}H^i(\sF)$ or $\dim_{\CC}H^i(D)$. 
+
+Since we need lots of global sections of a line bundle $\sL$ to produce interesting maps from a curve $C$, we would like to be able to compute  $h^0(\sL) = \dim H^0(\sL)$. Much easier is to compute a sort of approximation to this number,
+$$
+\chi(\sL):= \sum_{i\geq 0} (-1)^i h^i(\sL),
+$$
+which makes sense by virtue of:
+Theorems \ref{Theorems III.2.7 and III.5.2}{H}, due to Grothendieck and Serre.
+
+\begin{theorem} (Vanishing Theorem)
+If $\sF$ is a coherent sheaf on a scheme $X$ of dimension $n$, then for any $i$, the vector space $H^i(\sF)$ is finite dimensional, and 0 if  $i>\dim X$. Moreover,
+if $X\subset \PP^m$, then $H^i(\sF(d)) = 0$ for all $i>0$ and $d\gg 0$.\qed
+\end{theorem}
+
+Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d) = h^0(\sL(d)$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL = h^0(\sL) - h^1(\sL)$ as well.
+
+\begin{theorem} (Easy Riemann-Roch)
+If $C$ is a smooth curve, and $\sL$ is an invertible sheaf on $C$, then $\chi(\sL) = \deg \sL + \chi(\sO_C)$.
+\end{theorem}
+
+\begin{proof}
+ The result is tautological if $\sL = \sO_C$. Every invertible sheaf on $C$ has the form $\sL = \sO_C(D)$ for some
+divisor $D$. If $p\in C$, then writing $\kappa(p)$ for the 1-dimensional skyscraper sheaf at $p$, the long exact sequence in cohomology
+associated to the short exact sequence
+$$
+0\to \sL(-p) \to \sL \to \sL\otimes \kappa(p)
+$$
+allows us to compute 
+$$
+\chi(\sL) = \chi(\sL(-p)) + \chi(\kappa(p)) = \chi(\sL(-p)) + 1.
+$$
+Since every divisor on $C$ can be reached by adding and subtracting points, this suffices.
+\end{proof}
+
+We can make a more useful Riemann-Roch theorem by understanding the error term $h^1(\sL)$ using
+the canonical divisor and Serre duality, to which
+we now turn.
+\fix{end of new section}
 
 \subsection{The most interesting linear series}
 
@@ -376,6 +416,12 @@ represents $\bigwedge^i(\Omega_{\PP^{r}})$ as the sheaf associated to the graded
 In particular, the canonical module $\omega_{\PP^r} = \bigwedge^r(\Omega_{\PP^{r}})$ is the sheaf associated to the 
 $(r+1)$-st syzygy, $S(-r-1)$.
 \end{fact}
+
+The most important invariant of a smooth curve can be defined in terms of the canonical sheaf:
+
+\begin{definition}
+If $C$ is a smooth curve we define the genus $g(C)$ to be the dimension of $H^0(\omega_C)$.
+\end{definition}
 
 Computations of the canonical sheaf on a variety usually involve comparing the variety to another variety, such as projective space, where the canonical sheaf is already known. The most useful results of this type are  the \emph{adjunction formula}
 and \emph{Hurwitz' Theorem}. 
@@ -461,31 +507,29 @@ A famous result asserted by Franchetta and proved in~\cite{Harer} (see also~\cit
 
 \section{Genus, Riemann-Roch and Serre Duality}
 
-We will henceforward assume that the reader is acquainted with sheaf cohomology, at least sufficiently to write
-$H^i(X, \sF)$ without blushing. Note that if $\sF$ is a sheaf on $X$ and $X\subset Y$ then the cohomology  $H^i(X, \sF) = H^i(Y,\sF)$ canonically, so we will
-simply and unambiguously write $H^i(\sF)$ for either of these. 
-We write $h^i(\sF)$ or (if $D$ is a divisor) $h^{i}(D)$ for $\dim_{\CC}H^i(\sF)$ or $\dim_{\CC}H^i(D)$. 
-
-We will often wish to compute $h^0(\sL)$ for some
-sheaf $\sL$, and find that we can more easily compute 
-The (Zariski) Euler characteristic 
-$$
-\chi(\sL) = \sum_{i=0}^\infty (-1)^ih^i(\sL).
-$$
-
-Since $h^{i}(\sF)$ may be thought of in this way as an ``error term'' in formulas when one would like to compute
-$h^{0}(\sF)$,  vanishing theorems have an important place in all of algebraic and analytic geometry. We will use the simplest of these often:
+We now return to the task of understanding $h^0(\sL)$ for an invertible sheaf $\sL$ on a smooth curve. Since $\chi(\sL) = h^0(\sL)-h^1(\sL)$ is easier to compute, we would like to understand $h^1(\sL)$ in a more concrete way. The key is duality:
 
 
-\begin{theorem}[Serre Vanishing Theorem]\label{Serre vanishing} If $\sF$ is a coherent sheaf on $\PP^n$, then
-$H^{i}(\sF)= 0$ for all $i>\dim \supp \sF$; and  $H^{i}(\sF(d))= 0$ for all $i>0$ and $d\gg 0$  
-\end{theorem}
-
-Using the second part of Theorem~\ref{Serre vanishing}, we see that the Euler characteristic of a coherent sheaf $\sF$ on a curve
- is  $\chi(\sF) = h^0(\sF) - h^1(\sF)$.
- 
- The other important cohomological result we will use is duality. We will use it only for invertible sheaves on curves, so we give it in
- that special case:
+%We will often wish to compute $h^0(\sL)$ for some
+%sheaf $\sL$, and find that we can more easily compute 
+%The (Zariski) Euler characteristic 
+%$$
+%\chi(\sL) = \sum_{i=0}^\infty (-1)^ih^i(\sL).
+%$$
+%
+%Since $h^{i}(\sF)$ may be thought of in this way as an ``error term'' in formulas when one would like to compute
+%$h^{0}(\sF)$,  vanishing theorems have an important place in all of algebraic and analytic geometry. We will use the simplest of these often:
+%
+%
+%\begin{theorem}[Serre Vanishing Theorem]\label{Serre vanishing} If $\sF$ is a coherent sheaf on $\PP^n$, then
+%$H^{i}(\sF)= 0$ for all $i>\dim \supp \sF$; and  $H^{i}(\sF(d))= 0$ for all $i>0$ and $d\gg 0$  
+%\end{theorem}
+%
+%Using the second part of Theorem~\ref{Serre vanishing}, we see that the Euler characteristic of a coherent sheaf $\sF$ on a curve
+% is  $\chi(\sF) = h^0(\sF) - h^1(\sF)$.
+% 
+% The other important cohomological result we will use is duality. We will use it only for invertible sheaves on curves, so we give it in
+% that special case:
  
 \begin{theorem}[Serre Duality]\label{sd}
 If $C$ is a smooth curve and $D$ is a divisor on $C$, then
@@ -497,56 +541,83 @@ and thus $h^1(D) = h^0(K_C-D)$.
 
 For proofs see \cite[Theorem III.5.2 and III.7.6]{H}. 
 
-\subsection{The genus of a curve}
+For example we see that $h^1 (\sO_C) = h^0(K_C) = g(C)$.   
+Using this we can recast the Easy Riemann-Roch theorem above in a more useful form:
 
-The sole topological invariant of a smooth projective curve $C$ is its genus. As a manifold it is a compact, oriented surface, and its genus is half the rank of its first integral homology, $H^{1}(C; \ZZ)$---informally, the ``number of holes'':
-
-\includegraphics[scale = 1]{RiemannSurface}
-**** Riemann Surface of genus 3, from Wikimedia ****
-
-This definition does not apply to curves over fields other than $\CC$, and doesn't relate the genus to the algebra of the curve. However, we can relate the topological genus of a curve directly to its topological Euler characteristic. Since $C$ is topologically compact, connected, and oriented, we have
-$H^{0}(C; \ZZ)=H^{2}(C; \ZZ) = \ZZ$, so:
-$
-\chi_{top}(C) = 2-2g.
-$
-By the Hopf index theorem, the topological Euler characteristic is the degree of the tangent sheaf, or equivalently, minus the degree of the cotangent sheaf $\omega_{C}$; that is, $\deg K_{C} = 2g-2$, and thus
+\begin{theorem} (Riemann-Roch)
+If $\sL$ is an invertible sheaf on a smooth curve, then $\chi(\sO_C) = 1-g$ and
 $$
-g(C) = \frac{\deg(K_C)}{2} + 1.
-$$
-This formula serves to define the genus of a smooth projective curve over any field. 
-Other characterizations of the genus require more machinery to establish. We will state some here, and use  tools from the following section to prove the equivalences.
-
-\begin{enumerate}
-
-\item\label{pa}
-$
-g(C) = 1 - \chi(\cO_C). 
-$
-
-\item\label{genus Hilbert} If $C \subset \PP^r$ is a smooth curve of degree $d$  with homogeneous coordinate ring
-$S_C$, then for sufficiently large $d$ the function $m \mapsto h_C(m) := \dim_\CC (S_C)_m$ is equal to a linear function
-$$
-p_C(m) =  dm - g + 1,
-$$
-so $g(C) = dm+1-p_C(m)$. 
-
-\item\label{genus 1forms} $g(C)$ is the dimension of the vector space of regular 1-forms (that is, global sections of the
-canonical sheaf) on $C$.
-\end{enumerate}
-
-\subsection{The Riemann-Roch Theorem}
-
-To prove that these formulas for the genus are correct, we use \trr and Serre duality~\ref{sd} (sometimes called Kodaira-Serre duality, since Kodaira was responsible for the analytic version.)
-
-\begin{theorem}[Riemann-Roch Theorem]\label{RR}
- If $C$ is a smooth, connected projective curve of genus $g$, and $D$ a divisor of degree $d$ on $C$ then
-$$
-h^0(D) = d - g + 1 + h^0(K_C - D).
+h^0(\sL) - h^1(\sL) = \deg \sL - g(C) +1.
 $$
 \end{theorem}
 
-For example, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Using this and \trr for $D=K$
-we get $\deg K = 2g-2$. Also, since $h^0(D) = 0$ for any divisor $D$ of negative degree, the formula gives the dimension of $h^{0}(D)$ when $\deg D$ is large:
+Applying the formula with $D = K_C$, we get 
+$\deg K_C = 2g(C) -2$.
+
+We can now explain the relationship between the genus of a smooth curve, as we have defined it and the 
+topological genus, the ``number of holes'' in the Riemann surface:
+\includegraphics[scale = 1]{RiemannSurface}
+**** Riemann Surface of genus 3, from Wikimedia ****
+
+\begin{fact} (Hodge Theory)
+The sole topological invariant of a smooth projective curve $C$ is its genus. As a manifold it is a compact, oriented surface, and its genus is half the rank of its first singular cohomology, $H^{1}(C; \CC)$, which is equal to its first deRham cohomology.
+Breaking up the deRham cohomology of any smooth complex variety $X$ in terms of holomorphic and antiholomorphic differential
+forms we get the \emph{Hodge decomposition}
+$$
+H^i(X,\CC) = H^i_{\rm de Rham}(X) = \bigoplus_{j=0}^i H^j(\bigwedge^{i-j} \Omega_X).
+$$
+For a smooth curve $C$, this says in  particular that
+$$
+H^1(C; \CC) = H^0(\omega_C)\oplus H^1(\sO_C) = H^0(\omega_C)\oplus (H^1(\sO_C))H^0(\omega_C))^\vee, 
+$$
+so $ h^1(\omega_C)$ is half the rank of the middle singular cohomology group, justifying the name ``genus''.
+\end{fact}
+
+
+%
+%This definition does not apply to curves over fields other than $\CC$, and doesn't relate the genus to the algebra of the curve. However, we can relate the topological genus of a curve directly to its topological Euler characteristic. Since $C$ is topologically compact, connected, and oriented, we have
+%$H^{0}(C; \ZZ)=H^{2}(C; \ZZ) = \ZZ$, so:
+%$
+%\chi_{top}(C) = 2-2g.
+%$
+%By the Hopf index theorem, the topological Euler characteristic is the degree of the tangent sheaf, or equivalently, minus the degree of the cotangent sheaf $\omega_{C}$; that is, $\deg K_{C} = 2g-2$, and thus
+%$$
+%g(C) = \frac{\deg(K_C)}{2} + 1.
+%$$
+%This formula serves to define the genus of a smooth projective curve over any field. 
+%Other characterizations of the genus require more machinery to establish. We will state some here, and use  tools from the following section to prove the equivalences.
+%
+%\begin{enumerate}
+%
+%\item\label{pa}
+%$
+%g(C) = 1 - \chi(\cO_C). 
+%$
+%
+%\item\label{genus Hilbert} If $C \subset \PP^r$ is a smooth curve of degree $d$  with homogeneous coordinate ring
+%$S_C$, then for sufficiently large $d$ the function $m \mapsto h_C(m) := \dim_\CC (S_C)_m$ is equal to a linear function
+%$$
+%p_C(m) =  dm - g + 1,
+%$$
+%so $g(C) = dm+1-p_C(m)$. 
+%
+%\item\label{genus 1forms} $g(C)$ is the dimension of the vector space of regular 1-forms (that is, global sections of the
+%canonical sheaf) on $C$.
+%\end{enumerate}
+%
+%\subsection{The Riemann-Roch Theorem}
+%
+%To prove that these formulas for the genus are correct, we use \trr and Serre duality~\ref{sd} (sometimes called Kodaira-Serre duality, since Kodaira was responsible for the analytic version.)
+%
+%\begin{theorem}[Riemann-Roch Theorem]\label{RR}
+% If $C$ is a smooth, connected projective curve of genus $g$, and $D$ a divisor of degree $d$ on $C$ then
+%$$
+%h^0(D) = d - g + 1 + h^0(K_C - D).
+%$$
+%\end{theorem}
+%
+%For example, if we take $D=0$, this tells us that $h^0(K) = g$, proving the characterization~(\ref{genus 1forms}) above. Using this and \trr for $D=K$
+%we get $\deg K = 2g-2$. Also, since $h^0(D) = 0$ for any divisor $D$ of negative degree, the formula gives the dimension of $h^{0}(D)$ when $\deg D$ is large:
 
 \begin{corollary}\label{nonspecial RR}
 For any divisor $D$ of degree $d$ we have
@@ -595,31 +666,31 @@ By Theorem~\ref{Serre vanishing} we have $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $
 The Riemann-Roch formula does \emph{not} give us a formula for the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such divisors $D$ are called \emph{special divisors}. The existence or non-existence of divisors $D$ with given $h^{0}(D)$ and $h^{1}(D)$ often serves to distinguish one curve from another, and will be an important part of our study.
 
 
-\subsection{Proof of Theorem~\ref{RR} from Theorem~\ref{sd}.}
-
-If, following~\ref[Chapter IV]{H} we take the definition of the genus of  a smooth connected curve $C$ to be $h^1(\sO_C)$ (so that $g = h^0(K_C)$ becomes a Corollary of Theorem~\ref{sd}), then it is easy to establish the following form of the Riemann-Roch Theorem:
-
-\begin{corollary}
- If $C$ is a smooth, connected projective curve and $D$ is a divisor on $C$ then
-$$
-\chi(\sO_C(C)) := h^0(D) - h^1(D) = d-g+1
-$$
-or in other words, for any invertible sheaf $\cL$ of degree $d$ on $C$,
-$$
-\chi(\cL) = d-g+1.
-$$
-\end{corollary}
-\begin{proof}
- Taking $D=0$ the statement becomes $h^0(\sO) - h^1(\sO) = 1-g$, which is our definition of $g$. On the other hand,
-for any divisor $D$ on $C$ and any point $p \in C$ we have an exact sequence of sheaves
-$$
-0 \to \cO_C(D-p) \to \cO_C(D) \to \frac{\cO_C(D)}{\gm_{C,p}\cO_C(D)} \to 0
-$$
-Since $\cO_C(D)$ is locally isomorphic to $\sO_C$ we see that $\cO_C(D)/\gm_{C,p}\cO_C(D)\cong \kappa(p)$ is a sky-scraper sheaf of dimension 1, concentrated at $p$,
-and thus has Euler characteristic 1. 
-
-Thus the Riemann-Roch Theorem for $\cO_C(D)$ is equivalent to the Riemann-Roch Theorem for $\cO_C(D-p)$. Since any divisor can be obtained from 0 by adding and subtracting points, the Riemann-Roch formula for an arbitrary $\cL$ follows from the special case $\cL = \cO_C$ with which we began.
-\end{proof}
+%\subsection{Proof of Theorem~\ref{RR} from Theorem~\ref{sd}.}
+%
+%If, following~\ref[Chapter IV]{H} we take the definition of the genus of  a smooth connected curve $C$ to be $h^1(\sO_C)$ (so that $g = h^0(K_C)$ becomes a Corollary of Theorem~\ref{sd}), then it is easy to establish the following form of the Riemann-Roch Theorem:
+%
+%\begin{corollary}
+% If $C$ is a smooth, connected projective curve and $D$ is a divisor on $C$ then
+%$$
+%\chi(\sO_C(C)) := h^0(D) - h^1(D) = d-g+1
+%$$
+%or in other words, for any invertible sheaf $\cL$ of degree $d$ on $C$,
+%$$
+%\chi(\cL) = d-g+1.
+%$$
+%\end{corollary}
+%\begin{proof}
+% Taking $D=0$ the statement becomes $h^0(\sO) - h^1(\sO) = 1-g$, which is our definition of $g$. On the other hand,
+%for any divisor $D$ on $C$ and any point $p \in C$ we have an exact sequence of sheaves
+%$$
+%0 \to \cO_C(D-p) \to \cO_C(D) \to \frac{\cO_C(D)}{\gm_{C,p}\cO_C(D)} \to 0
+%$$
+%Since $\cO_C(D)$ is locally isomorphic to $\sO_C$ we see that $\cO_C(D)/\gm_{C,p}\cO_C(D)\cong \kappa(p)$ is a sky-scraper sheaf of dimension 1, concentrated at $p$,
+%and thus has Euler characteristic 1. 
+%
+%Thus the Riemann-Roch Theorem for $\cO_C(D)$ is equivalent to the Riemann-Roch Theorem for $\cO_C(D-p)$. Since any divisor can be obtained from 0 by adding and subtracting points, the Riemann-Roch formula for an arbitrary $\cL$ follows from the special case $\cL = \cO_C$ with which we began.
+%\end{proof}
 
 
 \subsection{Arithmetic genus and geometric genus}
@@ -1210,7 +1281,12 @@ $\sV = (\sO_{\PP^r}(1), H^0(\sO_{\PP^r}(1)))$, and use this to show that $\Aut \
 \end{exercise}
 
 \begin{exercise}\label{projective automorphism}
-In the circumstances above, the automorphism $\phi$ is induced by an automorphism of $\PP^r$ if and only if $\phi$ carries the invertible sheaf $\cO_{C}(1)$ to itself; that is, $\phi^*(\cO_{C}(1)) = \cO_{C}(1)$. In this case we say that the
+In the circumstances above, the automorphism $\phi$ is induced by an automorphism of $\PP^r$ if and only if $\phi$ carries the invertible sheaf $\cO_{C}(1)$ to itself; that is, $\phi^*(\cO_{C}(1)) = \cO_{C}(1)$. In this case we say that the automorphism
+is projective. Show that every automorphism of a rational normal curve $C \subset \PP^d$  extends to $\PP^d$. Since the
+automorphism group $PSL_3$ acts transitively on $\PP^1$, we say that
+$C$ is \emph{projectively homogeneous}.
+
+
 \end{exercise}
 
 \begin{exercise}
