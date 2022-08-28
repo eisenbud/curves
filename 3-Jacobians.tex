@@ -357,6 +357,48 @@ A much less basic fact, and one we won't prove here, is that \emph{$W^r_d(C)$ ha
 
 This sounds complicated, and indeed it is. We won't  dwell on it, but it does arise: as we'll see in Chapter~\ref{}, for some curves $C$ of genus 4 the scheme $W^1_3(C)$ will be non-reduced, and for some curves $C$ of genus 6 the scheme $W^1_4(C)$ will be non-reduced (we'll even see an example where $W^1_4(C) \cong \Spec \CC[\epsilon]/(\epsilon^5)$!). 
 
+\section{The $g+2$ theorem}
+
+With a little more effort, we can prove an analogue of Theorem~\ref{g+3 theorem} for general linear series of degree $g+2$.
+
+\begin{theorem}
+Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
+\begin{enumerate}
+\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
+\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Let's start by proving that $\phi_D$ is birational onto its image, which is true whether or not $C$ is hyperelliptic. We do this much as in the proof of Theorem~\ref{g+3 theorem}. Since $D$ is general, we know that $h^0(D) = 3$. To say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$, accordingly, means exactly that $h^0(D-p-q) = 2$. This in turn means that $D-p-q = K-E$ for some effective divisor $E$ of degree $g-2$; in other words, to say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$ means that $\mu(D)$ is in the image of the map
+$$
+\nu : C_2 \times C_{g-2} \to \Pic_{g+2}(C)
+$$
+sending $(p+q, E)$ to $K_C - E + p + q$. Now, $\nu$ is a map between projective varieties of the same dimension, so we might expect that it is surjective, and indeed the genus formula tells us that $\phi_D$ cannot be an embedding. But by the same token, the locus in $\Pic_{g+2}(C)$ over which the fibers of $\nu$ are positive-dimensional must be a proper subvariety; thus for general $D$ we conclude that \emph{there are only finitely many pairs $p, q \in C$ such that $\phi_D(p) = \phi_D(q)$}; in other words, $\phi_D$ is birational onto its image.
+
+Let's now suppose that $C$ is non-hyperelliptic and $D$ is a general divisor of degree $g+2$ on $C$. To prove the theorem in this case, we have to show  three things: that the image $C_0 = \phi_D(C)$ does not have cusps; that it does not have triple points, and that it does not have tacnodes. (The facts that $|D|$ is base point free  will follow from the first of these arguments, as noted below.)
+
+Cusps: to say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by Riemann-Roch, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
+$$
+\mu(D) \in 2W_1 + K_C - W_{g-2},
+$$
+and the locus on the right has dimension at most $g-1$, a general point of $J(C)$ will not lie in it. Note that this subsumes the fact that $|D|$ has no base points.
+
+Triple points: to say that $C_0$ has a triple point means that for some divisor $E = p+q+r$ of degree 3, $h^0(D-E) \geq 1$; thus we must have 
+$$
+\mu(D) \in W_3 + W^1_{g-1}
+$$
+Now, to argue that this is not the case, we need to know that $\dim W^1_{g-1} \leq g-4$. In fact, that's not always true: the correct statement is that $\dim W^1_{g-1} = g-4$ if $C$ is non-hyperelliptic, and $\dim W^1_{g-1} = g-3$ if $C$ is hyperelliptic. (This is Marten's theorem, which I believe we do have somewhere but not at this point in the text.) In fact, the hyperelliptic case violates the statement of our theorem/exercise: if $C$ is hyperelliptic, then a general divisor of degree $g+2$ is of the form $g^1_2 + p_1+ \dots + p_g$, from which we see that $\phi_D$ maps $C$ birationally onto a plane curve of degree $g+2$ having a point of multiplicity $g$! So it seems we have to add ``$C$ nonhyperelliptic" to the hypotheses.
+
+Tacnodes: Here's where we're truly screwed. To say that a pair of points $p, q \in C$ map to a tacnode of $C_0$ means two things: that $h^0(D-E) \geq 2$ (where $E = p+q$); and that $h^0(D-2E) \geq 1$. This means
+$$
+\mu(D) \in W_2 + (K_C - W_{g-2}) \quad \text{and} \quad \mu(D) \in 2W_2 + W_{g-2}.
+$$
+Now, each of these conditions is satisfied by a general divisor $D$ of degree $g+2$; the point is, they can't be satisfied simultaneously with the same divisor $E$; and to see this we would need a description of the tangent spaces to subvarieties of $J(C)$.
+
+
+
+\end{proof}
 
 \section{Examples in low genus}
 
@@ -496,32 +538,6 @@ be the $i$th diagonal. We have a diagram
 and since the union $\cup \Delta_i$ is a projective variety, its image $ \cD \subset C^{(d)} \times C$ is closed.)
 \end{exercise}
 
-\begin{exercise}
-For any smooth curve $C$, show that a general invertible sheaf of degree $g+2$ defines a birational map to $\\P^2$, and the image of this map has only nodes as singularities. Compute the number of singularities
-of such a plane curve. 
-
-Hint: Given a general divisor class $D$ of degree $g+2$, we have to show three things: that the image $C_0 = \phi_D(C)$ does not have cusps; that it does not have triple points, and that it does not have tacnodes. (The facts that $|D|$ is base point free and birationally very ample will follow from these arguments, as noted below.)
-
-Cusps: to say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by Riemann-Roch, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
-$$
-\mu(D) \in 2W_1 + K_C - W_{g-2},
-$$
-and the locus on the right has dimension at most $g-1$, a general point of $J(C)$ will not lie in it. Note that this subsumes the fact that $|D|$ has no base points.
-
-Triple points: to say that $C_0$ has a triple point means that for some divisor $E = p+q+r$ of degree 3, $h^0(D-E) \geq 1$; thus we must have 
-$$
-\mu(D) \in W_3 + W^1_{g-1}
-$$
-Now, to argue that this is not the case, we need to know that $\dim W^1_{g-1} \leq g-4$. In fact, that's not always true: the correct statement is that $\dim W^1_{g-1} = g-4$ if $C$ is non-hyperelliptic, and $\dim W^1_{g-1} = g-3$ if $C$ is hyperelliptic. (This is Marten's theorem, which I believe we do have somewhere but not at this point in the text.) In fact, the hyperelliptic case violates the statement of our theorem/exercise: if $C$ is hyperelliptic, then a general divisor of degree $g+2$ is of the form $g^1_2 + p_1+ \dots + p_g$, from which we see that $\phi_D$ maps $C$ birationally onto a plane curve of degree $g+2$ having a point of multiplicity $g$! So it seems we have to add ``$C$ nonhyperelliptic" to the hypotheses.
-
-Tacnodes: Here's where we're truly screwed. To say that a pair of points $p, q \in C$ map to a tacnode of $C_0$ means two things: that $h^0(D-E) \geq 2$ (where $E = p+q$); and that $h^0(D-2E) \geq 1$. This means
-$$
-\mu(D) \in W_2 + (K_C - W_{g-2}) \quad \text{and} \quad \mu(D) \in 2W_2 + W_{g-2}.
-$$
-Now, each of these conditions is satisfied by a general divisor $D$ of degree $g+2$; the point is, they can't be satisfied simultaneously with the same divisor $E$; and to see this we would need a description of the tangent spaces to subvarieties of $J(C)$.
-
-
-\end{exercise}
 
 \begin{exercise}
 Show that if $r \geq d-g$, then $W^r_d(C) \setminus W^{r+1}_d(C)$ is dense in $W^r_d(C)$ (that is, $W^{r+1}_d(C)$ does not contain any irreducible component of $W^r_d(C)$).
