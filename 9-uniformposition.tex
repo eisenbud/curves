@@ -51,47 +51,14 @@ $p$, a copy of $\PP^{r-1}$, and thus $Y$ is irreducible. Thus the monodromy grou
 The monodromy group of the universal hyperplane section of an irreducible curve $C \subset \PP^r_\CC$ is the full symmetric group $S_d$.
 \end{theorem}
 
-Informally, this theorem says that two subsets of the same cardinality in the general hyperplane section of $C$
-are indistinguishable from the point of view of any discrete invariant that is semicontinuous in the Zariski topology. 
-The Uniform position result fails over fields of finite characteristic; see \cite{Rathmann} and \cite{Kadets} for what is known. 
+Theorem~\ref{uniform position lemma} fails over fields of finite characteristic; see \cite{Rathmann} and \cite{Kadets} for what is known. 
 
-The following is a good example of how the theorem is applied:
+Informally, theorem~\ref{uniform position lemma} says that two subsets of the same cardinality in the general hyperplane section of $C$
+are indistinguishable from the point of view of any discrete invariant that is semicontinuous in the Zariski topology. To make this more precise, and to deduce some immediate consequences, it will be useful to start with a definition:
 
-\begin{corollary}[numerical uniform position lemma]\label{numerical uniform position lemma}
-Let $C\subset \PP^r$ be an irreducible curve, and let $\Gamma = H\cap C$ be a general hyperplane section. Any two subsets of $\Gamma$ with the same cardinality impose the same number of conditions on forms of any degree; that is, any two subsets of the same cardinality have the same Hilbert function.
-\end{corollary}
-
-\begin{proof} Let $U = {\PP^r}^* \setminus C^*$ be the open subset of hyperplanes transverse to $C$, and let $Y\to U$ be the universal hyperplane section.
-Thus
-\begin{align*}
- Y^{k*} :=&Y\times_U Y\times_U \cdots Y\times_U \setminus \Delta  =\\
-                                                 & \{ (H, \Gamma) \in {\PP^r}^* \times C^k \mid \Gamma \subset H, \hbox{ and $\Gamma$ consists of $k$ distinct points.}\}\\
-                                                 &\to U
-\end{align*}
-is the family subsets $\Gamma$ of cardinality $k$ in hyperplane sections $H \cap C$ of $C$. Because the monodromy is of the universal hyperplane section of $C$ is
-$k$-times transitive, $Y_k^*$ is irreducible.
-
-For each $m$ the number of conditions that $\Gamma$ imposes on forms of degree $m$ is lower semicontinuous, so it achieves its maximum on a Zariski open subset of $Y^{k*}$. Since $Y^{k*}$ is irreducible, the complement of this open set has dimension strictly less than $\dim Y^{k*} = r$. Thus a general hyperplane $H \in {\PP^r}^*$ will lie outside the image of $Y^{k*}$, meaning that the number of conditions imposed by all the $k$-element subsets $\Gamma \subset C \cap H$ will have this maximal value.
-
-\end{proof}
-
-
-As a special case of Corollary~\ref{numerical uniform position lemma}, we can consider just the number of conditions imposed by subsets of $C \cap H$ on linear forms. Here, since $C \subset \PP^r$ is irreducible and nondegenerate, the points of a general hyperplane section $\Gamma = H \cap C$ of $C$ span the hyperplane $H \cong \PP^{r-1}$, so some subset of $r$ points of $\Gamma$ span $H$; from Corollary~\ref{numerical uniform position lemma}, then, we deduce that \emph{any} $r$ points of $\Gamma$ do. This is the classical
-
-
-\begin{lemma}[Linear General Position]\label{general position lemma}
-If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
-\end{lemma}
-
-
-Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are colinear. Even this case is surprisingly tricky to prove (and is false in characteristic $p$); Exercise~\ref{weak general position} sketches a proof.
-See \cite[Lemma 1.1]{Rathmann} for a fairly direct proof, valid for smooth curves in every characteristic, except for the plane conic in characteristic 2.  Remarkably, even this special case of a special case of the uniform position theorem already suffices for the proof of the Castelnuovo bound on the genus of a curve $C \subset \PP^r$, which we'll derive in Section~\ref{}.
-
-\subsection{Proof of the uniform position theorem}
-
-To show that a subgroup $M \subset S_d$ is the full symmetric group, it suffices to establish two facts: that $M$ is twice transitive; and that $M$ contains a transposition. Given these two facts, it will follow that $M$ contains all transpositions, and hence that $M = S_d$.
-
-To carry this out in the case of the monodromy group $M$ of the universal hyperplane section of an irreducible, nondegenerate curve $C \subset \PP^r$, then, we need to establish sufficient conditions for $M$ to be doubly transitive, and for $M$ to contain a transposition; we'll start with the first of these. It will be helpful to introduce one construction first:
+%The following is a good example of how the theorem is applied:
+%
+%To carry this out in the case of the monodromy group $M$ of the universal hyperplane section of an irreducible, nondegenerate curve $C \subset \PP^r$, then, we need to establish sufficient conditions for $M$ to be doubly transitive, and for $M$ to contain a transposition; we'll start with the first of these. It will be helpful to introduce one construction first:
 
 \begin{definition}
 Let $\phi : Y \to X$ be a finite morphism. By the \emph{restricted fiber power} $\tilde Y^n/X$ we will mean the complement of all diagonals in the ordinary fiber power; that is,
@@ -106,22 +73,67 @@ In these terms, we have
 
 \begin{lemma}\label{transitivity lemma}
 Let $f : Y \to X$ be a generically finite cover of degree $d$, with  monodromy group $M \subset S_d$.
-$M$ is $n$ times transitive if and only if the restricted fiber product $\tilde Y^n/X$ is irreducible.
+$M$ is $n$ times transitive if and only if the restricted fiber power $\tilde Y^n/X$ is irreducible.
 \end{lemma}
 
 \begin{proof}
-The monodromy of the covering $f^k: \times^k(Y/X) \to X$ is the the diagonal action of
-$M$ in the product $\prod_1^k S_d$.
+If we restrict ourselves to open subsets $U \subset X$ and $V = f^{-1}(U) \subset Y$ such that $U$ and $V$ are smooth and the restriction $f|_V : V \to U$ is a covering space map in the classical topology, then the restricted fiber powers are unions of connected component of the usual fiber power $Y^n/X$. The condition that the monodromy if $n$-times transitive is equivalent to the condition that the restricted fiber power $\tilde Y^n/X$ is connected; since the fiber powers are all smooth, this is equivalent to $\tilde Y^n/X$ being irreducible.
 \end{proof}
 
-Thus a consequence of the Uniform Position Theorem is an irreducibility result:
+Applying this to the universal hyperplane section of a curve $C \subset \PP^r$, a consequence of the Uniform Position Theorem is an irreducibility result:
 
-\begin{corollary} If $C\subset \PP^r$ is a smooth curve of degree $d$, then 
-for $k\leq \deg C$, the fibered products $\prod_1^k(Y/{\PP^r}^*)$  of the universal hyperplane section 
+\begin{corollary}\label{hyperplane section monodromy} If $C\subset \PP^r$ is a smooth curve of degree $d$, then 
+for $k\leq \deg C$, the restricted fibered powers $\tilde Y^n/X$  of the universal hyperplane section 
 of $C$ are irreducible.
 \end{corollary}
 
-Here is a sufficient condition for double transitivity:
+As a consequence, we have the
+
+\begin{corollary}[numerical uniform position lemma]\label{numerical uniform position lemma}
+Let $C\subset \PP^r$ be an irreducible curve, and let $\Gamma = H\cap C$ be a general hyperplane section. Any two subsets of $\Gamma$ with the same cardinality impose the same number of conditions on forms of any degree; that is, any two subsets of the same cardinality have the same Hilbert function.
+\end{corollary}
+
+\begin{proof} Let $U = {\PP^r}^* \setminus C^*$ be the open subset of hyperplanes transverse to $C$, and let $Y\to U$ be the universal hyperplane section.
+%Thus
+%\begin{align*}
+% Y^{k*} :=&Y\times_U Y\times_U \cdots Y\times_U \setminus \Delta  =\\
+%                                                 & \{ (H, \Gamma) \in {\PP^r}^* \times C^k \mid \Gamma \subset H, \hbox{ and $\Gamma$ consists of $k$ distinct points.}\}\\
+%                                                 &\to U
+%\end{align*}
+Corollary~\ref{hyperplane section monodromy} says that the restricted fiber powers $\tilde V^n/U$ are irreducible.
+
+Now, for each $m$ the number of conditions that $\Gamma$ imposes on forms of degree $m$ is lower semicontinuous, so it achieves its maximum on a Zariski open subset of $\tilde V^n/U$. Since $\tilde V^n/U$ is irreducible, the complement $Z$ of this open set has dimension strictly less than $\dim \tilde V^n/U = \dim U$. Thus a general hyperplane $H \in {\PP^r}^*$ will lie outside the image of $Z$, meaning that the number of conditions imposed by all the $k$-element subsets $\Gamma \subset C \cap H$ will have this maximal value.
+\end{proof}
+
+
+As a special case of Corollary~\ref{numerical uniform position lemma}, we can consider just the number of conditions imposed by subsets of $C \cap H$ on linear forms. Here, since $C \subset \PP^r$ is irreducible and nondegenerate, the points of a general hyperplane section $\Gamma = H \cap C$ of $C$ span the hyperplane $H \cong \PP^{r-1}$, so some subset of $r$ points of $\Gamma$ span $H$; from Corollary~\ref{numerical uniform position lemma}, then, we deduce that \emph{any} $r$ points of $\Gamma$ do. This is the classical
+
+
+\begin{lemma}[Linear General Position]\label{general position lemma}
+If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
+\end{lemma}
+
+
+Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are colinear. Even this case is surprisingly tricky to prove (and is false in characteristic $p$); Exercise~\ref{weak general position} sketches a proof.
+See \cite[Lemma 1.1]{Rathmann} for a fairly direct proof, valid for smooth curves in every characteristic, except for the plane conic in characteristic 2.  
+
+Remarkably, even this special case of a special case of the uniform position theorem already suffices for the proof of the Castelnuovo bound on the genus of a curve $C \subset \PP^r$, which we'll derive in Section~\ref{}.
+
+\subsection{Proof of the uniform position theorem}
+
+To set up, let $C \subset \PP^r$ be an irreducible, nondegenerate curve of degreed $d$ and $f : Y \subset {\PP^r}^* \times C \to  X = {\PP^r}^*$ its universal hyperplane section; let $U \subset {\PP^r}^*$ be the open subset of hyperplanes transverse to $C$ and $V = f^{-1}(U)$; let $M \subset S_d$ be the monodromy group of $V$ over $U$.
+To
+ show that  $M$ is the full symmetric group, it suffices to establish two facts: that $M$ is twice transitive; and that $M$ contains a transposition. Given these two facts, it will follow that $M$ contains all transpositions, and hence that $M = S_d$.
+
+To carry this out, then, we need to establish sufficient conditions for $M$ to be doubly transitive, and for $M$ to contain a transposition; we'll start with the first of these. 
+
+To prove that $M$ is doubly transitive, we can give a concrete description of the restricted fiber power $\tilde V^2/U$: let
+$$
+\Sigma := \left\{ (H, p, q) \in {\PP^r}^* \times C \times C \mid p, q \in H \text{ and } p \neq q \right\}.
+$$
+Projection on the second and third factor expresses $\Sigma$ as a $\PP^{r-2}$-bundle over the complement $C \times C \setminus \Delta$ of the diagonal in $C \times C$. Thus $\Sigma$ is irreducible, and it follows that the restricted fiber square $\tilde V^2/U$, which is a Zariski open subset of $\Sigma$, is as well. Note that this part of the argument does not rely on any assumption about the characteristic.
+
+As for the existence of a transposition in the monodromy group of the universal hyperplane section, we have the following lemma:
 
 \begin{lemma}\label{transposition lemma}
 Let $f : Y \to X$ be a generically finite cover of degree $d$ over an irreducible variety $X$, with  monodromy group $M \subset S_d$.  
@@ -142,20 +154,20 @@ Let $p' \in A \cap U$. Two of the $d$ points of $f^{-1}(p')$ will lie in the com
 %                                                 & \{ (H, p_1,\dots, p_k) \in {\PP^r}^* \times C^k \mid p_1,\dots, p_k \in H, p_i \neq p_j \hbox{ for all } i,j \}.
 %\end{align*}
 
-\begin{proof}[Proof of the Uniform Position Theorem]
-We show first that the monodromy group $M$ is twice transitive, and then that it contains a transposition. It follows that $M$ contains all the transpositions so that  $M = S_d$.
-Restricting to an open subset of $C$, we may assume that $C$ is smooth.
-
-For the double transitivity, we introduce a related cover: set
-$$
-\Phi = \{ (H, p, q) \in {\PP^r}^* \times C \times C \mid p + q \subset H \}
-$$
-where $p+q$ is the divisor $p+q$ on $C$, viewed as a subscheme of $C$. The projection $\pi_{2,3} : \Phi \to C \times C$ is a $\PP^{r-2}$-bundle, and so irreducible; applying Lemma~\ref{transitivity lemma}, we deduce that $M$ is twice transitive.
-
-To prove that $M$ contains a transposition, we will use the characteristic 0 hypothesis. It follows from Bertini's theorem and Lemma~\ref{tangent not bitangent} that a general hyperplane $H$ containing
-the tangent line at a general point $p\in C$ meets $C$ with multiplicity exactly 2 at $p$ and meets $C$ transversely elsewhere. 
-Thus the fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
-\end{proof}
+%\begin{proof}[Proof of the Uniform Position Theorem]
+%We show first that the monodromy group $M$ is twice transitive, and then that it contains a transposition. It follows that $M$ contains all the transpositions so that  $M = S_d$.
+%Restricting to an open subset of $C$, we may assume that $C$ is smooth.
+%
+%For the double transitivity, we introduce a related cover: set
+%$$
+%\Phi = \{ (H, p, q) \in {\PP^r}^* \times C \times C \mid p + q \subset H \}
+%$$
+%where $p+q$ is the divisor $p+q$ on $C$, viewed as a subscheme of $C$. The projection $\pi_{2,3} : \Phi \to C \times C$ is a $\PP^{r-2}$-bundle, and so irreducible; applying Lemma~\ref{transitivity lemma}, we deduce that $M$ is twice transitive.
+%
+%To prove that $M$ contains a transposition, we will use the characteristic 0 hypothesis. It follows from Bertini's theorem and Lemma~\ref{tangent not bitangent} that a general hyperplane $H$ containing
+%the tangent line at a general point $p\in C$ meets $C$ with multiplicity exactly 2 at $p$ and meets $C$ transversely elsewhere. 
+%Thus the fiber of $\Phi$ over the point $H \in {\PP^r}^*$ consists of the point $p$ with multiplicity 2, and $d-2$ reduced points; applying Lemma~\ref{transposition lemma}, we deduce that $M$ contains a transposition.
+%\end{proof}
 
 \section{Applications I: the strong form of Clifford's theorem}
 
@@ -245,6 +257,69 @@ The curve being nondegenerate, the projection map $\Gamma \to  {\PP^n}^*$ is fin
 Now, if a curve $C$ is non-hyperelliptic, we can apply the strong secant plane lemma to conclude that $\dim W^r_d(C) \leq d-2r-1$; it follows that if we have $\dim W^r_d(C) = d-2r$ the curve $C$ in question must be hyperelliptic.
 
 There are extensions of Martens' theorem to the case $\dim(W^r_d(C)) = d-2r-1$ (Mumford) and $d-2r-2$ (Keem).
+
+\section{The $g+2$ theorem}
+
+Now that we have the strong form of Martens' theorem, we can prove an analogue of Theorem~\ref{g+3 theorem} for general linear series of degree $g+2$.
+
+\begin{theorem}
+Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
+\begin{enumerate}
+\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
+\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Let's start by proving that $\phi_D$ is birational onto its image, which is true whether or not $C$ is hyperelliptic. We do this much as in the proof of Theorem~\ref{g+3 theorem}. Since $D$ is general, we know that $h^0(D) = 3$. To say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$, accordingly, means exactly that $h^0(D-p-q) = 2$. This in turn means that $D-p-q = K-E$ for some effective divisor $E$ of degree $g-2$; in other words, to say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$ means that $\mu(D)$ is in the image of the map
+$$
+\nu : C_2 \times C_{g-2} \to \Pic_{g+2}(C)
+$$
+sending $(p+q, E)$ to $K_C - E + p + q$. Now, $\nu$ is a map between projective varieties of the same dimension, so we might expect that it is surjective, and indeed the genus formula tells us that it must be: $\phi_D$ cannot be an embedding. But by the same token, the locus in $\Pic_{g+2}(C)$ over which the fibers of $\nu$ are positive-dimensional must be a proper subvariety; thus for general $D$ we conclude that \emph{there are only finitely many pairs $p, q \in C$ such that $\phi_D(p) = \phi_D(q)$}; in other words, $\phi_D$ is birational onto its image.
+
+Let's now suppose that $C$ is non-hyperelliptic and $D$ is a general divisor of degree $g+2$ on $C$. To prove the theorem in this case, we have to show  three things: that the image $C_0 = \phi_D(C)$ does not have cusps; that it does not have triple points, and that it does not have tacnodes. (The fact that $|D|$ is base point free  will follow from the first of these arguments, as noted below.) We'll take these assertions in turn:
+
+\begin{enumerate}
+
+
+\item Cusps: to say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by Riemann-Roch, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
+$$
+\mu(D) \in 2W_1 + K_C - W_{g-2},
+$$
+and since the locus on the right has dimension at most $g-1$, a general point of $J(C)$ will not lie in it. Note that this subsumes the fact that $|D|$ has no base points.
+
+\item Triple points: to say that $C_0$ has a triple point means that for some divisor $E = p+q+r$ of degree 3, $h^0(D-E) \geq 1$; thus we must have 
+$$
+\mu(D) \in W_3 + W^1_{g-1}
+$$
+Now, to argue that this is not the case, we need to know that $\dim W^1_{g-1} \leq g-4$. Here we have to invoke Marten's theorem, which says that $\dim W^1_{g-1} \leq g-4$ if $C$ is non-hyperelliptic; given this, we conclude that $C_0$ has no triple points.
+
+\item Tacnodes:  To say that a pair of points $p, q \in C$ map to a tacnode of $C_0$ means two things: that $h^0(D-p-q) \geq 2$; and that $h^0(D-2p-2q) \geq 1$. If this is the case, set $E = D - 2p - 2q$;  the condition $h^0(D-2p-2q) \geq 1$ is simply that $E$ is an effective divisor, and by the geometric Riemann-Roch the condition $h^0(D-p-q) \geq 2$ says that in terms of the canonical embedding of $C$, the secant line $\overline{p,q}$ meets the $g-3$-plane $\overline E$ spanned by $E$. Now, not every secant line to $C$ can meet a linear subspace $\Lambda \cong \PP^{g-3}$ of dimension $g-3$---the projection $\pi_\Lambda : C \to \PP^1$ would be constant---so we see that $\mu(D)$ would have to lie on the image of a proper subvariety of $C_{g-2} \times C_2$ under the map 
+$$
+(E, p+q) \mapsto E+2p+2q.
+$$
+By a dimension count it follows that $D$ cannot be a general divisor of degree $g+2$.
+
+\end{enumerate}
+
+Thus, in the non-hyperelliptic case, the image curve $C_0 = \phi_D(C)$ has only nodes as singularities; the fact that there are exactly $\binom{g}{2}$ of them follows from the genus formula.
+
+
+This concludes the proof in the non-hyperelliptic case. The hyperelliptic case is very different, as you might expect from the statement. To analyze this case, suppose that $C$ is hyperelliptic; let $|E|$ be the (unique) $g^1_2$ on $C$. Now, if  $D$ is any divisor of degree $g+2$, the divisor $D - E$ will have degree $g$, and so be effective; thus we can write
+$$
+D = E + p_1 + \dots + p_g
+$$
+for some $g$-tuple of points $p_i$. If the divisor $D$ is general, the points $p_i$ will be general as well, and in particular distinct.
+
+Now, the fact that
+$$
+h^0(D - p_1 - \dots - p_g) = h^0(E) = 2 = h^0(D) - 1
+$$
+says that $\phi_D$ maps all the points $p_i$ to the same point! The image curve $C_0$ thus has a point of multiplicity at least $g$, with at least $g$ branches; by the genus formula, we see that this is an ordinary $g$-fold point of $C_0$ and that $C_0$ can have no other singularities.
+
+\fix{add argument via embedding in quadric}
+
+\end{proof}
 
 
 
