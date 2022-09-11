@@ -5,7 +5,7 @@
 
 An essential construction in studying a curve $C$ is the association to a divisor  of an invertible sheaf---in other words, the map
 $$
-\mu : \big\{ \text{effective divisors of degree $d$ on C}\big\} \rTo \big\{ \text{invertible sheaves of degree $d$ on C} \big\}.
+\big\{ \text{effective divisors of degree $d$ on C}\big\} \rTo^\mu \big\{ \text{invertible sheaves of degree $d$ on C} \big\}.
 $$
 sending $D$ to $\cO_C(D)$.
 
@@ -13,54 +13,62 @@ A priori, this is a map of sets. But it is a fundamental fact that each set may 
 In this chapter we will describe the source and target of $\mu$, and give references to proofs of their properties. 
 
 We start with the effective divisors. Since $C$ is smooth, an effective divisor of degree $d$ on $C$ is the same thing as a subscheme $D \subset C$ of dimension 0 and degree $d$, and thus
-the family of effective divisors of degree $d$ on $C$ is a Hilbert scheme; see~\ref{hilbert scheme section}. This Hilbert scheme may be identified with
-the $d$-th \emph{symmetric power}  of $C$, described in Section~\ref{symmetric section}. 
+the family $C_d$ of effective divisors of degree $d$ on $C$ is a Hilbert scheme; see~\ref{hilbert scheme section}. This Hilbert scheme may be identified with
+the $d$-th \emph{symmetric power} $C^(d)$  of $C$, described in Section~\ref{symmetric section}. 
 
-The parametrization of the set of invertible sheaves on $C$ of a given degree $d$ by the variety $\Pic_d(C)$ requires different techniques. We will define it by a universal property in the category of schemes, and exhibit its construction as an analytic variety, actually a complex torus, whose group structure reflects the product structure of
-sheaves in $\Jac(C) := \Pic_0(C)$.
+The parametrization of the set of invertible sheaves on $C$ of a given degree $d$ by the variety $\Pic_d(C)$ requires different techniques. We will define it by a universal property in the category of schemes, and exhibit its construction as an analytic variety, actually a complex torus $\Jac(C)$, whose group structure reflects the tensor product of
+sheaves in $\Pic_0(C)$.
 Historically, the algebraic construction was a major milestone first reached in the work of Andre Weil in the middle of
-the 20th century, and was the reshaped by Grothendieck and his school. The interested reader will find a detailed account both of the history and the 
+the 20th century, and was the reshaped by Grothendieck and his school. The interested reader will find a beautiful, detailed account both of the history and the 
 modern theory of the scheme of divisors and the Picard scheme in the exposition~\cite{Kleiman-PicardScheme}. We will give
-more specific references to this very complete text as we go, and the reader will find extensive references to the original literature there.
+more specific references to this text as we go, and the reader will find extensive references to the original literature there.
 
-As an application of the mere existence of these spaces, we show in Theorem~\ref{g+3 theorem} that a general divisor of degree $g+3$ on any curve of genus $g$ gives rise to an embedding in $\PP^3$ as a curve of degree $g+3$. Similar techniques, in Section~\ref{g+2 section} show that a general divisor of degree $g+2$ on any curve gives a birational morphism to a plane curve of degree $g+2$. Moreover, if the curve is not hyperelliptic then the image has  only nodes
+As an application of the mere existence of the spaces $C_d$ and $\Pic_d$, we show in Theorem~\ref{g+3 theorem} that a general divisor of degree $g+3$ on any curve of genus $g$ gives rise to an embedding in $\PP^3$ as a curve of degree $g+3$. Similar techniques, in Section~\ref{g+2 section} show that a general divisor of degree $g+2$ on any curve gives a birational morphism to a plane curve of degree $g+2$. Moreover, if the curve is not hyperelliptic then its image in $\PP^2$ has  only nodes
 as singularities, while in the hyperelliptic case its only singularity is one ordinary $g$-fold point. 
 
 \section{Symmetric products and the universal divisor}\label{symmetric section}
 
-Let $C$ be a smooth curve. The space of effective divisors on $C$ can be characterized by a universal property. We start by saying what we mean by a ``family of effective divisors of degree $d$ on $C$:"
+Let $C$ be a smooth curve. The space of effective divisors on $C$ can be characterized by a universal property. 
 
 \begin{definition}
-Let $B$ be any scheme. A \emph{family} of degree $d$ divisors on $C$ parametrized by the scheme $B$ is a closed subscheme $X\subset B\times C$ whose intersection with fibers $\{b\} \times C \cong C$ over points of $B$ are divisors of degree $d$ on $C$.
+Let $B$ be any scheme. A \emph{family} of effective divisors of degree $d$ on $C$, parametrized by the scheme $B$, is a Cartier divisor $X\subset B\times C$ whose intersection with fibers $\{b\} \times C \cong C$ over points of $B$ are divisors of degree $d$ on $C$.
 \end{definition}
 
 Given this, we have a contravariant functor 
 $$
 F : (schemes) \to (sets),
 $$
-defined by taking a scheme $B$ to the set of families of divisors of degree $d$ over $B$; if $\pi : B' \to B$ is any morphism, the induced map $F(B) \to F(B')$ is defined by taking a family $\cD \subset B \times C$ to the preimage of $\cD$ under the map $\pi \times Id : B' \times C \to B \times C$. We say that a scheme $\cC$ is a fine moduli space for divisors of degree $d$ on $C$ if we have an isomorphism of functors
+defined by taking a scheme $B$ to the set of families of divisors of degree $d$ over $B$; if $\pi : B' \to B$ is any morphism, the induced map $F(B) \to F(B')$ is defined by taking a family $\cD \subset B \times C$ to the preimage of $\cD$ under the map $\pi \times Id : B' \times C \to B \times C$. We say that a scheme $C_d$ is a fine moduli space for divisors of degree $d$ on $C$ if we have an isomorphism of functors
 $$
-F \cong \Hom_{\rm{Schemes}}( -, \sC).
+F \cong \Hom_{\rm{Schemes}}( -, C_d).
 $$
-By Yoneda's Lemma, this is equivalent to the existence of a \emph{universal family} $\cD \subset \cC \times C$, with the property that for any family $X \subset B \times C$ of divisors on $C$ over any scheme $B$, there is a unique map $\phi : B \to \cC$ such that $X = (\phi \times Id)^{-1}(\cD)$.
+By Yoneda's Lemma, this is equivalent to the existence of a \emph{universal family} $\cD \subset C_d \times C$, with the property that for any family $X \subset B \times C$ of divisors on $C$ over any scheme $B$, there is a unique map $\phi : B \to C_d$ such that $X = (\phi \times Id)^{-1}(\cD)$.
 
 From the universal property it is clear that a fine moduli space for divisors of degree $d$ on $C$ is unique if it exists. Indeed, it does exist, and we'll sketch the construction, using symmetric products. This construction relies on the existence of quotients of schemes by finite groups, and we'll pause here to discuss such quotients.
 
 \subsection{Finite group quotients}
 
-If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. It is a basic theorem of commutative algebra that the map $X\to X/G$ induced by the inclusion of rings is finite, and the fibers of the map $X\to X/G$ are actually the orbits of $G$ (see for example \cite[Proposition 13.10]{Eisenbud1995}).  Since the map $X\to X/G$ is finite, we have $\dim X/G = \dim X$. 
+If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. The following result shows that this definition reflects the desired
+geometry: 
 
-The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (see exercise~\ref{quotient of projective})---as well.
+\begin{theorem}\label{finite invariant theory}
+ The map $\pi: X\to X/G$ induced by the inclusion of rings is finite. If $X$ is a normal variety, then the fibers of $\pi$  are the orbits of $G$.
+\end{theorem}
+For a proof, see for example \cite[Proposition 13.10]{Eisenbud1995}).  
+
+Since the map $X\to X/G$ is finite, we have $\dim X/G = \dim X$. 
+
+The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (Exercise~\ref{quotient of projective})---as well.
 
 When the group $G$ is infinite, the situation becomes much more complex---see Chapter~\ref{ModuliChapter} for some  idea of what can and cannot be done.
 
-As an example of this general construction, if $X$ is any scheme or any quasi-projective variety $X$ we define the $d$-th symmetric power of $X$ to be the quotient of the Cartesian product $X^d$ of $d$ copies of $X$ by the action of the group of permutations of the factors. The resulting variety $X^d/S_d$ is called the \emph{$d$-th symmetric power}, or \emph{$d$-th symmetric product}, of $X$, denoted  $X^{(d)}$. 
+For example, if $X$ is any scheme or any quasi-projective variety $X$ we define the \emph{$d$-th symmetric power $X^{(d)}$ of $X$} to be the quotient of the Cartesian product $X^d$ of $d$ copies of $X$ by the action of the group of permutations of the factors. 
 
 %Since an effective divisor of degree $d$ on a curve $C$ is an unordered $d$-tuple of points on $C$, with repetitions allowed, it corresponds to a point in the \emph{$d$th symmetric power} $C^{(d)}$. For this reason we will write the points of $\Cd$ as $d$-tuples.
 
-For example, if $X=\AA^{1}$ then $X^{d} = \AA^{d}$, and the ring of invariants of the symmetric group acting on
-$\cO_{\AA^{d}} = k[x_{1}, \dots, x_{d}]$ by permuting the variables is generated by the $d$ elementary symmetric functions, which generate a polynomial subring. Since the symmetric functions of the roots of a polynomial are the coefficients of
-the polynomial, the scheme $X^{(d)}$ is also isomorphic to $\AA^{d}$. (\cite[Exercises 1.6, 13.2-13.4]{Eisenbud1995})
+If $X=\AA^{1}$ then $X^{d} = \AA^{d} = \Spec \CC[x_{1}, \dots, x_{d}]$. The ring of invariants of the symmetric group acting on
+$\CC[x_{1}, \dots, x_{d}]$ by permuting the variables is generated by the $d$ elementary symmetric functions, which generate a polynomial subring, and $X^{(d)}$ is isomorphic to $\AA^{d}$. Since the symmetric functions of the roots of a polynomial in one variable are the coefficients of
+that polynomial, we may identify $X^{(d)}$ with the affine space of monic polynomials of degree $d$ in $\CC[z]$. (\cite[Exercises 1.6, 13.2-13.4]{Eisenbud1995})
 
 Next consider $X = \PP^1$ and the product $(\PP^1)^d$. Taking the homogeneous coordinates of the
 $i$-th copy of $\PP^1$ to be $(s_i,t_i)$, the $d+1 $multilinear symmetric functions of degree $d$,
@@ -73,10 +81,11 @@ $$
 $$
 defining a general subcheme of $\PP^1$ of degree $d$ and  define
 an isomorphism $(\PP^1)^{(d)} \to \PP^d$.
-Again, we may think of this map as taking a $d$-tuple of points to the
-homogeneous form of degree $d$ vanishing on it, which is unique up to scalars.
+Again, we may think of this map as taking a $d$-tuple of points to the unique-up-to-scalars
+homogeneous form of degree $d$ vanishing on it.
 
-More generally, we have the
+We shall see that when $C$ is a smooth curve of higher genus, the global geometry of $C^{(d)}$ is quite nontrivial, but at least
+the local geometry is simple:
 
 \begin{proposition}
 If $C$ is a smooth curve then each symmetric power $C^{(d)}$ is smooth.
@@ -85,7 +94,7 @@ If $C$ is a smooth curve then each symmetric power $C^{(d)}$ is smooth.
 \begin{proof}
  The general case follows from the case of $\AA^{1}$ because locally analytically the action of the symmetric group on $C^d$ is the same as for $\AA^1$: If  $\overline p \in X^{(d)}$, then it suffices to
  show that the quotient of an invariant formal neighborhood of the preimage $p_1,\dots, p_s$ of
- overline $p$ is smooth. After completing the local rings, we get an action of the symmetric group
+ $\overline p$ is smooth. After completing the local rings, we get an action of the symmetric group
  $G$ on the product of the completions of $X$ at the $p_i$, and this depends only on the orbit
  structure of $G$ acting on $\{p_1,\dots, p_s\}$. Thus it would be the same for some orbit of
  points on $\AA^1$.
@@ -94,16 +103,14 @@ If $C$ is a smooth curve then each symmetric power $C^{(d)}$ is smooth.
 By contrast, if $\dim X \geq 2$ then the symmetric powers $X^{(d)}$ are singular for all $d \geq 2$.
 See Exercise~\ref{sym2A2} for the case of $(\AA^2)^{(2)}$ and Exercise~\ref{free actions} for a well-behaved case.
 
+It is clear from Theorem~\ref{finite invariant theory} that the points of $C^{(d)}$ are in one-to-one correspondence with the effective divisors of
+degree $d$ on $C$, but much more is true:
 
-
-
-\subsection{Symmetric products of curves}
-
-\begin{fact} \cite[Remark 9.3.9]{Kleiman-PicardScheme}
-If $C$ is a smooth projective curve, then the $d$th symmetric power $C^{(d)}$ of $C$ is the fine moduli space for effective divisors of degree $d$ on $C$.
-
-\end{fact}
-
+\begin{theorem}
+ If $C$ is a smooth projective curve, then the $d$th symmetric power $C^{(d)}$ of $C$ is the fine moduli space $C_d$ for effective divisors of degree $d$ on $C$.
+\end{theorem}
+For a proof in the analytic category, see \cite[]{ACGH}; for the algebraic fact, see \cite[Remark 9.3.9]{Kleiman-PicardScheme}.
+Henceforward we will write $C_d$ in place of $C^(d)$ for this space.
 
 
 %Finally we come to the definition of the universal family:
@@ -125,7 +132,7 @@ If $C$ is a smooth projective curve, then the $d$th symmetric power $C^{(d)}$ of
 
 \section{The Picard varieties}
 
-As with the symmetric products, we define $\Pic_d(C)$ by its universal property. We start by saying what we mean by a family of invertible sheaves on a smooth curve $C$:
+As with $C_d$, we may define $\Pic_d(C)$ by a universal property. We start by saying what we mean by a family of invertible sheaves on a smooth curve $C$:
 
 \begin{definition}
  For any scheme $B$, a \emph{family of invertible sheaves on $C$ over $B$} is an equivalence class of invertible sheaves $\sL$ on $B\times C$, where two such
@@ -136,10 +143,13 @@ As with the symmetric products, we define $\Pic_d(C)$ by its universal property.
 for some invertible sheaf $\cF$ on $B$.
  \end{definition}
 
-Note that one way to eliminate the equivalence relation is to choose a point $p \in C$ and require that the restriction of $\sL$ to $B \times \{p\}$ is trivial.
+If $p \in C$ and $\cF$ is a sheaf on $B$ then $\pi_1^*(\cF)\mid_{B\times p} = \cF$, so we could have eliminated the
+equivalence relation at the expense of choosing a point by insisting that the restriction of $\sL$ to $B \times \{p\}$ be trivial.
  
 % Thus, given a point $p\in C$, and family of invertible sheaves
 % is equivalent to a unique one whose restriction to $\{p\}\times B$ is trivial. 
+ 
+ \fix{Revised to here 9/11}
  
  If $B$ is connected, then since the Euler characteristic of the sheaves in such a family must be constant, the degree of the restriction of 
  the sheaf to $C\times \{b\}$ for each point $b\in B$ is the same, and we define it to be the degree of $\sL$. 
