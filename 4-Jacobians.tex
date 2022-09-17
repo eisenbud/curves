@@ -149,26 +149,29 @@ equivalence relation at the expense of choosing a point by insisting that the re
 % Thus, given a point $p\in C$, and family of invertible sheaves
 % is equivalent to a unique one whose restriction to $\{p\}\times B$ is trivial. 
  
- \fix{Revised to here 9/11}
+
  
- If $B$ is connected, then since the Euler characteristic of the sheaves in such a family must be constant, the degree of the restriction of 
- the sheaf to $C\times \{b\}$ for each point $b\in B$ is the same, and we define it to be the degree of $\sL$. 
+We say that $\sL$  is a family of sheaves of degree $d$ if the restriction of $\sL$
+ to $C\times \{b\}$ is $d$ for each point $b\in B$. 
  
- Having defined the notion of a family of invertible sheaves on $C$, we define the functor
+We define the functor
  $$
  Pic_d : (schemes) \to (sets)
  $$
- by associating to any scheme $B$ the set of invertible sheaves of degree $d$ on $B \times C$, again modulo tensoring with pullbacks of invertible sheaves on $B$. Again, it turns out that this functor is representable by a scheme:
+ by associating to any scheme $B$ the set of invertible sheaves of degree $d$ on $B \times C$, modulo tensoring with pullbacks of invertible sheaves on $B$. Since the tensor product and inverse of an invertible sheaf of degree 0 again has degree 0, 
+ $Pic_0$ factors through the category of abelian groups. These functors are representable by schemes:
   
  \begin{fact}\cite[Theorem 9.4.8]{Kleiman-PicardScheme}
- There exists a fine moduli space $\Pic_d(C)$ for invertible sheaves of degree $d$ on $C$; that is, a scheme $\Pic_d(C)$ such that for any scheme $B$ we have a natural bijection between families of invertible sheaves of degree $d$ over $B$, modulo invertible sheaves on $B$, and morphisms $B \to \Pic_d(C)$.
+ There exists a fine moduli space $\Pic_d(C)$ for invertible sheaves of degree $d$ on $C$; that is, a scheme $\Pic_d(C)$ such that for any scheme $B$ we have a natural bijection between families of invertible sheaves of degree $d$ over $B$, modulo invertible sheaves on $B$, and morphisms $B \to \Pic_d(C)$. The tensor product of invertible sheaves makes $\Pic_0(C)$ an algebraic group, which acts on each $\Pic_d(C)$.
  \end{fact}
  
- Note that if $\sL$ is any invertible sheaf of degree $e$ on $C$, we can define a bijection between families of invertible sheaves of degree $d$ over $B$ and families of invertible sheaves of degree $d+e$ over $B$ simply by tensoring with the pullback $\pi_2^*\sL$, from which we can conclude that $\Pic_d(C) \cong \Pic_{d+e}(C)$ (but not canonically, since the isomorphism depends on the choice of $\sL$).
+If $\sL$ is any invertible sheaf of degree $e$ on $C$, we can define a bijection between families of invertible sheaves of degree $d$ over $B$ and families of invertible sheaves of degree $d+e$ over $B$, uniformly for all $B$, by tensoring with the pullback $\pi_2^*\sL$. Thus $\Pic_d(C) \cong \Pic_{d+e}(C)$ (but not canonically, since the isomorphism depends on the choice of $\sL$).
  
  Note also that the variety $\Pic_0(C)$ is a group, with group law given by tensor product of invertible sheaves of degree 0; and for each $d$, $\Pic_d(C)$ is a principal homogeneous space for $\Pic_0(C)$. 
  
- Now, on the basis of the characterization of $\Pic_d(C)$ above, it's not at all clear what the geometry of $\Pic_d(C)$ is like: whether it's irreducible, for example, or what its dimension is. In fact, we can get a very good picture of the geometry of $\Pic_d(C)$ from the classical (19th century) construction of the Jacobian, which we'll describe now.
+ \fix{shouldn't we use the universal properties to produce the map $C_d \to \Pic_d$ at this point?}
+ 
+ Now, on the basis of the characterization of $\Pic_d(C)$ above, it is not at all clear what the geometry of $\Pic_d(C)$ is like: whether it's irreducible, for example, or what its dimension is. In fact, we can get a very good picture of the geometry of $\Pic_d(C)$ from the classical (19th century) construction of the Jacobian, which we'll describe now.
  
 % The Jacobian $\Jac(C) = \Pic_0(C)$ is a scheme together with a base point $p\in C$ and an invertible sheaf $\sP$ on $C\times \Jac(C)$ such
 % that $\sP|_{\{p\}\times B} = \sO_B$, the trivial sheaf, having the universal property that if $\sM$ is an invertible sheaf on
@@ -194,7 +197,7 @@ equivalence relation at the expense of choosing a point by insisting that the re
 
 \section{Jacobians}
 
-The history leading to the analytic construction of the Jacobian starts from a very different place. A goal of the 19th century mathematicians was  to make sense of integrals of algebraic functions. In the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
+The history leading to the analytic construction of the Jacobian starts from a calculus problem. A goal of the 19th century mathematicians was  to make sense of integrals of algebraic functions. In the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
 $$
 \int_{t_0}^t \frac{dx}{\sqrt{x^2+1}}.
 $$
@@ -202,13 +205,13 @@ Such integrals can be thought of as path integrals of meromorphic differentials 
 $$
 \int_{s_0}^s R(z)dz,
 $$
-with $R$ a rational function, and such integrals are readily evaluated by the technique of partial fractions.
+with $R$ a rational function, and such integrals can be evaluated by the technique of partial fractions.
 
-When they tried to extend this to similar-looking integrals like
+When they tried to extend this to similar-looking integrals, such as
 $$
 \int_{t_0}^t \frac{dx}{\sqrt{x^3+1}},
 $$
-which arises when one studies the length of an arc of an ellipse and was thus called an elliptic integral, they were stymied. The reason gradually emerged: the problem is that the Riemann surface associated to the equation $y^2 = x^3+1$ is not $\PP^1$, but rather a curve of genus 1, and so has nontrivial homology group $H_1(C, \ZZ) \cong \ZZ^2$. In particular, if one expresses this ``function'' of $t$  as a path integral, then the value depends on a choice of path; it is defined only modulo a lattice $\ZZ^2 \subset \CC$. This implies that the inverse function is a doubly periodic meromorphic function on $\CC$, and not an elementary function. Many new special functions, such as the Weierstrass $\sP$-function were studied as a result. The name ``elliptic curve'' arose from these considerations too.
+which arises when one studies the length of an arc of an ellipse, they were stymied. The reason gradually emerged: the problem is that the Riemann surface associated to the equation $y^2 = x^3+1$ is not $\PP^1$, but rather a curve of genus 1, and so has nontrivial homology group $H_1(C, \ZZ) \cong \ZZ^2$. In particular, if one expresses this ``function'' of $t$  as a path integral, then the value depends on a choice of path; it is defined only modulo a lattice $\ZZ^2 \subset \CC$. This implies that the inverse function is a doubly periodic meromorphic function on $\CC$, and not an elementary function. Many new special functions, such as the Weierstrass $\sP$-function were studied as a result. The name ``elliptic curve'' arose from these considerations.
 
 Once this case was understood, the next step was to extend the theory to path integrals of holomorphic differentials on curves of arbitrary genus. One problem is that the dependence of the integral on the choice of path is much worse; the set of homology classes of paths between two points $p_0, p \in C$ is identified with $H_1(C,\ZZ) \cong \ZZ^{2g}$ rather than $\ZZ^2$, rendering the expression $\int_p^q \omega$ for a given 1-form $\omega$ virtually meaningless.
 
@@ -221,7 +224,7 @@ We consider the space $V = H^0(\omega_C)^*$ of linear functions on the space of 
 $$
 \iota: \ZZ^{2g} = H_1(C,\ZZ) \; \to \;  H^0(\omega_C)^* \cong H^1(\sO_C) = \CC^{g}.
 $$
-Using  Hodge theory\footnote{By Hodge theory 
+By Hodge theory, 
 $$
 H^1(C, \CC) \cong H^1(C, \cO_C) \oplus \overline{H^1(C, \cO_C)}
 $$
@@ -229,39 +232,49 @@ where the bar denotes complex conjugation $H^1(C, \CC)$, and the map $\iota$ is 
  the natural inclusion with the projection to the first summand.
  Now
 $H_1(C,\CC) = \CC\otimes_\ZZ H_1(C,\ZZ)$, so any basis of $H_1(C,\ZZ)$ maps to a basis of 
- $H^1(C, \CC)$ invariant under conjugation in $H^1(C, \CC)$---See~\cite{Voisin} or~\cite{Griffiths-Harris1978}. 
-%  If there were a real dependence relation among elements 
-% of the image of this basis under $\iota$, then it the same relation would hold after complex
-% conjugation and thus hold on the image of the basis in $H_1(C,\CC)$, a contradiction. 
-}
-one can show that the image of $\iota$ is a lattice in $H^0(\omega_C)^*$, and thus the quotient
-is a torus of real dimension $2g$. Moreover, the
-complex structure on $H^0(\omega_C)^*$ yields a complex analytic structure on the quotient $\CC^{g}/\iota(\ZZ^{2g})$, which is thus a complex torus of  dimension $g$.  This quotient, with its structure as a $g$-dimensional complex manifold is the \emph{Jacobian} of $C$.
+ $H^1(C, \CC)$ invariant under conjugation in $H^1(C, \CC)$---See~\cite{Voisin} or~\cite[p. 116]{Griffiths-Harris1978}. 
 
-The point of this construction is that for any pair of points $p, q \in C$, the expression $\int_q^p$ describes a linear functional on $H^0(\omega_C)$, defined up to functionals obtained by integration over closed loops, and thus a point of $J(C)$. Thus, for example, if we choose a ``base point''  $p\in C$, we get a holomorphic map
+One can show that the image of $\iota$ is a lattice in $H^0(\omega_C)^*$, and thus the quotient
+is a torus of real dimension $2g$. Moreover, the
+complex structure on $H^0(\omega_C)^*$ yields a complex analytic structure on the quotient $\CC^{g}/\iota(\ZZ^{2g})$, which is thus a complex torus of  dimension $g$.  
+
+\begin{definition}
+ The complex torus $\CC^{g}/\iota(\ZZ^{2g})$ is called the \emph{Jacobian} of $C$.
+\end{definition}
+
+The point of this construction is that for any pair of points $p, q \in C$, the expression $\int_q^p$ describes a linear functional on $H^0(\omega_C)$, defined up to functionals obtained by integration over closed loops, and thus a point of $J(C)$. We can think of $p-q$ as a divisor of
+degree 0, and the map $p-q \mapsto \int_q^p$ extends to a well defined map $\mu_0$ from divisors of degree 0 to $J(C)$ because
+$$
+\int_q^p +\int_{q'}^{p'} - (\int_q^{p'} +\int_{q'}^p) 
+$$
+is the integral around a closed path $q\to p\to q'\to p' \to q$.
+
+Further, if we choose a ``base point''  $p\in C$, we can define the holomorphic map
 $$
 \mu \; : \; C \; \to \; J(C); \quad q\mapsto \int_{p}^{q}
 $$
-and more generally the \emph{Abel-Jacobi} maps
+and more generally maps
 $$
-\mu_d \; : \; \Cd \; \to \; J(C); \quad (q_1,\dots, q_d) \mapsto \sum_i \int_{p}^{q_i}
+\mu_d \; : \; C_d \; \to \; J(C): \quad  \quad (q_1,\dots, q_d) \mapsto \sum_i \int_{p}^{q_i}.
 $$
 
-When there is no ambiguity about $d$, we will denote all these maps  by $\mu$.  and  
+These maps are called the \emph{Abel-Jacobi} maps. When there is no ambiguity about $d$, we will denote all these maps  by $\mu$,  and  
 we define $\mu(-D)$ to be $-\mu(D)$. 
 The map $\mu$ is a group homomorphism in the sense that if $D, E$ are divisors, then
 $\mu (D+E) = \mu(D) + \mu(E)$; this is immediate when the divisors are effective, and 
 follows in general because the group of divisors is a free group.
 
 \section{Abel's theorem}
+ The connection between the discussion above and the geometry of linear series is made by one of the landmark theorems of the 19th century :
 
-Dear reader, you may be wondering at this point: what on earth do the last three pages have to do with what came before? The connection between the discussion above and the geometry of linear series is made by one of the landmark theorems of the 19th century, \emph{Abel's theorem}:
-
-\begin{theorem}\label{abel}
-Two divisors $D, D' \in C^{(d)}$ on $C$ are linearly equivalent if and only if $\mu(D) = \mu(D')$; in other words, the fibers of $\mu_d$ are the complete linear systems of degree $d$ on $C$.
+\begin{theorem}[Abel's Theorem]\label{abel}
+Two divisors $D, D'$ on $C$ are linearly equivalent if and only if their images under the Abel-Jacobi map are equal, $\mu(D) = \mu(D')$; in other words, the fibers of $\mu_d$ are the complete linear systems of degree $d$ on $C$. Thus $\mu_0$ induces a canonical isomorphism
+$\Pic_0(C) \to J(C)$ and after choosing a base point $p$ an isomorphism $\Pic_d(C) \to Jac(C)$, factoring through the isomorphism
+$$
+\Pic_d(C) \rTo^{-\otimes \sO_C(-dp)} \Pic_0(C) \to J(C).
+$$
 \end{theorem}
 
-The import of this theorem is quite simple to state: it says that \emph{the Jacobian $J(C)$ is isomorphic to $\Pic_0(C)$ canonically, and isomorphic to $\Pic_d(C)$ non-canonically for any $d$}.
 
 See \cite[Section 2.2]{Griffiths-Harris1978}  for a complete proof of Theorem~\ref{abel}; we will just prove the ``only if" part. This was in fact the only part proved by Abel; the converse, which is substantially more subtle, was proved by Clebsch.
 
@@ -271,42 +284,42 @@ Taking linear combinations of $\sigma$ and $\sigma'$, we get a pencil $\{D_\lamb
 $$
 D_\lambda \; = \; V(\lambda_0\sigma + \lambda_1\sigma'),
 $$
-and by Exercise~\ref{universal divisor} this corresponds to a regular map $\alpha : \PP^1 \to C^{(d)}$. 
+and by the universal property of the symmetric product, this corresponds to a regular map $\alpha : \PP^1 \to C^{(d)}$. 
 
-Consider now the composition
+Consider the composition
 $$
 \phi = \mu \circ \alpha \; : \; \PP^1 \; \to \; J(C).
 $$
-Now, $J(C)$ is the quotient of the complex vector space $V = H^0(\omega_C)^*$ by a discrete lattice. If $z$ is any linear functional on $V$, then, the differential $dz$  on $V$ descends to a global holomorphic 1-form on the quotient $J(C)$, so that the regular one-forms on $J(C)$ generate the cotangent space to $J(C)$ at every point. But for any 1-form $\omega$ on $J(C)$, the pullback $\phi^*\omega$ is a global holomorphic 1-form on $\PP^1$, and hence identically zero. It follows that the differential $d\phi$ vanishes identically, and hence (since we are in characteristic 0) that $\phi$ is constant; thus $\mu(D) = \mu(D')$.
+ If $z$ is any linear functional on $V = H^0(\omega_C)^*$, then, the differential $dz$  on $V$ descends to a global holomorphic 1-form on
+ $J(C)$, which is the quotient of $V$ by a discrete lattice. Thus the regular one-forms on $J(C)$ generate the cotangent space to $J(C)$ at every point. But for any 1-form $\omega$ on $J(C)$, the pullback $\phi^*\omega$ is a global holomorphic 1-form on $\PP^1$, and hence identically zero. It follows that the differential $d\phi$ vanishes identically, and hence that $\phi$ is constant, proving that $\mu(D) = \mu(D')$.
 \end{proof}
 
-Abel's theorem goes surprisingly far to describe the Jacobian. The first statement of the following corollary suggests how to describe the structure of the Jacobian algebraically, and was used by Andre Weil in the first such construction.
+Andre Weil applied Abel's theorem to describe the structure of the Jacobian algebraically:
 
 \begin{corollary}
 If $C$ is a smooth curve of genus $g$ then the Abel-Jacobi map $\mu_{g}: C^{(g)} \to J(C)$ is a surjective birational map.
-More generally, $\mu_{d}$ is generically injective for $d\leq g$ and surjective for $d\geq g$.
+More generally, $\mu_{d}$ is surjective for $d\geq g$ and generically injective for $d\leq g$.
 \end{corollary}
 
 \begin{proof}
 For $d\leq g = \dim H^{0}(\omega_{C})$,  a divisor $D$ that is the sum of $d$ general points $p_{1}, \dots,  p_{d} \in C$ will impose independent vanishing conditions on the sections of $\omega_{C}$, and thus
 $$
-h^{1}\cO_{C}(D) = h^0(\omega_C(-D)) = g-d,
+h^0(\omega_C(-D)) = g-d,
 $$
-by Serre duality. Using this, the Riemann-Roch formula gives $h^{0}\cO_{C}(D) = 1$, so the fiber of 
+ Using this, the Riemann-Roch formula gives $h^{0}\cO_{C}(D) = 1$, so the fiber of 
 $\mu_{d}$ consists of a single point, proving generic injectivity. In particular when $d= g$, the image of $\mu_{d}$ has
 dimension $g$, and since $C^{(g)}$ is compact, the image is closed, so it must be equal to $J(C)$.
 
-Similarly, if $d \geq g$, we will have $h^0(\omega_C(-D)) = 0$ and hence $h^0(\cO_C(D)) = d-g+1$. Since this is the affine
-dimension, the linear series $|D|$ has dimension $d-g = \dim C^{(d)} - \dim J(C)$, and again it follows that
+Similarly, if $d \geq g$ then $h^0(\omega_C(-D)) = 0$ and hence $r(D) = d-g= \dim C^{(d)} - \dim J(C)$, and it follows that
 $\mu_{d}$ is surjective.
 \end{proof}
 
-
+The image of $C_d$ in $J(C)\cong \Pic_d(C)$ can be identified with the set of invertible sheaves 
 A priori, these constructions take place in the analytic category; but in fact they are all algebraic:
 
 \begin{fact}
-$J(C)$ exists as algebraic group of finite type over $\CC$ (and can be defined over any field) and the Abel-Jacobi maps are
-maps of algebraic varieties.
+$J(C)$ has the structure of an algebraic group of finite type over $\CC$ (and can be defined over any field where $C$ is defined) and the Abel-Jacobi maps are
+maps of algebraic varieties~\cite[]{Kleiman-PicardScheme}.
 \end{fact}
 
 \subsubsection{The differential of the Abel-Jacobi map}
@@ -318,58 +331,53 @@ $$
 &q \mapsto \int_p^q 
 \end{aligned}
 $$
-Differentiating under the integral sign, and using the fact that the canonical series $|K_C|$ has no base points, we see that the differential of this map is nonzero: explicitly, the image of the differential $d\mu_1 : T_q(C) \to T_{\mu_1(q)}J(C) = H^0(K_C)^*$ is the line in $H^0(K_C)^*$ corresponding to the hyperplane $H^0(K_C(-q)) \subset H^0(K_C)$.
+Differentiating under the integral sign, and using the fact that the canonical series $|K_C|$ has no base points, we see \fix{I don't see!} that the differential of this map is nonzero: explicitly, the image of the differential $d\mu_1 : T_q(C) \to T_{\mu_1(q)}J(C) = H^0(K_C)^*$ is the line in $H^0(K_C)^*$ corresponding to the hyperplane $H^0(K_C(-q)) \subset H^0(K_C)$.
 
-Note that by Abel's theorem, since $\cO_C(p) \neq \cO_C(q)$ for any distinct points $p, q \in C$, the Abel-Jacobi map $\mu_1$ is one-to-one; by the above, we can conclude that \emph{$\mu_1 : C \to J(C)$ is an embedding}. Indeed, since the tangent spaces to $J(C)$ are all identified with $H^0(K_C)^*$, if $Z \subset J(C)$ is a smooth subvariety of dimension $k$ we can define a \emph{Gauss map} $\cG : Z \to G(k, H^0(K_C)^*)$ by sending each point $z \in Z$ to the tangent space $T_{\mu(z)} J(C)$; the analysis here says that \emph{the Gauss map applied to the curve $W_1(C) = {\rm Im}(\mu_1)$ is the canonical map!}
-
-\begin{exercise}
-Show more generally that the Abel-Jacobi map $C^{(d)} \to J(C)$ is an immersion on the open subset $C^{(d)} \setminus C^1_d$, and that the image of its differential at a point $D \in C^{(d)} \setminus C^1_d$ is simply the plane in $\PP^{g-1}$ spanned by the divisor $D$ on the canonical curve (which has the right dimension by the geometric Riemann Roch theorem).
-\end{exercise}
+If $g(C)>0$ then $p$ cannot be linearly equivalent to $q$ for distinct points $p, q \in C$ so the Abel-Jacobi map $\mu_1$ is one-to-one, and since its differential is nonzero, $\mu_1 : C \to J(C)$ is an embedding. Indeed, since the tangent spaces to $J(C)$ are all identified with $H^0(K_C)^*$, if $Z \subset J(C)$ is a smooth subvariety of dimension $k$ we can define a \emph{Gauss map} $\cG : Z \to G(k, H^0(K_C)^*)$ by sending each point $z \in Z$ to the tangent space $T_{\mu(z)} J(C)$ \fix{this doesn't make sense: I think it should be
+$T_z Z\subset H^0(K_C)^*$ (if that's our notation)}. In particular, the Gauss map applied to the curve $W_1(C) = {\rm Im}(\mu_1)$ is the canonical map! \fix{the notation $W_1$ hasn't been introduced.}
 
 
+\section{The $g+3$ theorem}
 
-\section{An application to linear series: the $g+3$ theorem}
-
-Even after the description of the Picard varieties $\Pic_d(C) \cong J(C)$ in the last section, the Picard varieties may seem like mysterious objects. They are! But even the bare-bones facts---that there exists a  moduli space for invertible sheaves of degree $d$ on $C$, and that this space is irreducible of dimension $g$---suffice to prove non-trivial theorems about curves. We'll illustrate this with 
+Even after the description of the Picard varieties $\Pic_d(C) \cong J(C)$ in the last section, the Picard varieties may seem like mysterious objects. They are! But even the bare-bones facts---that there exists a  moduli space for invertible sheaves of degree $d$ on $C$, and that this space is irreducible of dimension $g$---suffice to provea non-trivial theorem about curves: 
 
 \begin{theorem}\label{g+3 theorem}
 Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general divisor of degree $g+3$ on $C$, then 
 $D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
 \end{theorem}
 
-To compare this to other very-ampleness theorems, we proved in Theorem~\ref{very ample} that \emph{every divisor} of degree $\geq 2g+1$ is very ample; the difference here is that we are taking a \emph{general} divisor. This result is sharp in the sense that hyperelliptic curves, for example, cannot be embedded in any projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. A parallel result, which we will prove in Chapter~\ref{uniformpositionchapter} shows that a general divisor of degree $g+2$ maps the curve birationally to $\PP^2$, onto a curve that either has $\binom{g}{2}$ ordinary nodes and no other singularities unless the curve
+A parallel result, which we will prove in Chapter~\ref{uniformpositionchapter} shows that a general divisor of degree $g+2$ maps the curve birationally to $\PP^2$, onto a curve that either has $\binom{g}{2}$ ordinary nodes and no other singularities unless the curve
 is hyperelliptic, in which case it has an ordinary $g$-fold point and no other singularities.
 
-However, if we consider only general divisors on \emph{general} curves, we can do still better: the omnibus Brill-Noether theorem (\ref{BN omnibus}) says that``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$.
+We proved in Theorem~\ref{very ample} that every divisor of degree $\geq 2g+1$ is very ample, and this is sharp: the canonical divisor plus 2 points is not very ample. The difference here is that we are taking a general divisor. Theorem~\ref{g+3 theorem} is also sharp: hyperelliptic curves cannot be embedded in any projective space as curves of any degree less than $g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. 
+
+If we consider only general divisors on \emph{general} curves, we can do still better: the omnibus Brill-Noether theorem (\ref{BN omnibus}) says that``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$.
 
 \begin{proof}
-If $D$ is general of degree $g+3$ we have $h^0(\cO_C(D)) = 4$. To show that it is very ample, we have to show that
-\begin{enumerate}
-\item for any point $p \in C$, we have $h^0(\cO_C(D-p)) = 3$ (that is, $|D|$ has no base points, and so defines a regular map $\phi_D : C \to \PP^3$); and
-\item for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
-\end{enumerate}
-The second of these assertions immediately implies the first, and this is what we will prove.
+If $D$ is general of degree $g+3$ then $D$ is nonspecial, so $h^0(\cO_C(D)) = 4$. By Proposition~\ref{very ample} we must show that
+for any pair of points $p, q \in C$, we have $h^0(\cO_C(D-p-q)) = 2$.
 
-Now let $D$ be an arbitrary divisor of degree $g+3$. To say that $h^0(\cO_C(D-p-q)) \geq 3$ is equivalent, by the Riemann-Roch theorem, to the condition $h^0(\omega_C(-D + p + q)) \geq 1$; fixing a divisor 
+If, on the contrary, $h^0(\cO_C(D-p-q)) \geq 3$ then by the Riemann-Roch theorem $h^0(\omega_C(-D + p + q)) \geq 1$; fixing a divisor 
 $K_{C}\in |\omega_{C}|$, this is the condition that there exists  
 an effective divisor $E$ of degree $g-3$ linearly equivalent to a divisor in $|K_C - D + p + q|$. 
 
-Next, consider the map 
+Consider the map 
 $$
 \nu : C^{(g-3)} \times C^{(2)} \; \to \; J(C)
 $$
 given by
 $$
-\nu : (E,F) \; \mapsto \; \mu_{2g-2}(K_C) - \mu_{g-3}(E) + \mu_{2}(p+q), 
+\nu : (E,F) \; \mapsto \; \mu_{2g-2}(K_C) - \mu_{g-3}(E) + \mu_{2}(F), 
 $$
 where the $+$ and $-$ on the right refer to the group law on $J(C)$. 
 
-By what we have just said, and Abel's theorem, the divisor $D$ fails to be very ample only if
+By what we have just said and Abel's theorem, a divisor $D$ fails to be very ample only if
 $\mu(D) \in {\rm Im}(\nu)$. But the source $C^{(g-3)} \times C^{(2)}$ of $\nu$ has dimension $g-3+2 = g-1$, and so its image in $J(C)$ must be a proper subvariety; since $\mu_{g+3}$ is dominant, the image of a general divisor $D \in C^{(g-3)}$ is a general point of $J(C)$ and thus will not lie in ${\rm Im}(\nu)$. 
 \end{proof}
 
-Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, winds up proving a basic fact in the theory of algebraic curves!  
+Thus Abel's theorem, which was born out of an effort to evaluate calculus integrals, yields a basic fact in about algebraic curves[
 
+\fix{revised to here 9/16}
 
 \section{The schemes $W^r_d(C)$}
 
@@ -611,6 +619,11 @@ Let $C \subset J(C)$ be the image of the Abel-Jacobi map $\mu_1$. Show that the 
 \begin{exercise}
 Consider the map $C \times C \to \Pic_0(C)$ defined by sending $(p, q)\in C \times C$ to the invertible sheaf $\cO_C(p-q)$. What is the degree of this map?
 \end{exercise}
+
+\begin{exercise} \label{comparison with geometric RR}
+Show more generally that the Abel-Jacobi map $C^{(d)} \to J(C)$ is an immersion on the open subset $C^{(d)} \setminus C^1_d$ \fix{not defined} and that the image of its differential at a point $D \in C^{(d)} \setminus C^1_d$ is  the plane in $\PP^{g-1}$ spanned by the divisor $D$ on the canonical curve (which has the right dimension by the geometric Riemann Roch theorem).
+\end{exercise}
+
 
 \begin{exercise}\label{blow-up of $J(C)$ at a point}
 Let $C$ be a curve of genus 2. The canonical map $\phi_K : C \to \PP^1$ expresses $C$ as a 2-sheeted cover of $\PP^1$, and we have correspondingly an involution $\tau : C \to C$ exchanging points in the fibers of $\phi_K$ (equivalently, for any $p \in C$, we have $h^0(K_C(-p)) = 1$; $\tau$ will send $p$ to the unique zero of the unique section $\sigma \in H^0(K_C(-p))$). Let $\Gamma \subset C \times C$ be the graph of $\tau$.
