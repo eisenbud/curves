@@ -363,16 +363,18 @@ The Riemann-Roch formula does \emph{not} give us a formula for the dimension $h^
 
 
 \subsection{Arithmetic genus and geometric genus}
-In this section, we'll deal with a  curve $C_0$ that is assumed to be reduced and irreducible, but not necessarily smooth.
-Given $C_0$ there is a unique normalization morphism $\nu: C \to C_0$, and thus $C_0$ is birational to a unique
-smooth curve. The genus of $C$ is called the \emph{geometric genus} of $C_0$.
+In this section, we'll deal with a  curve $C_0$ that is reduced and irreducible, but not necessarily smooth.
+Given $C_0$ there is a birational normalization morphism $\nu: C \to C_0$, and any map of a smooth ($=$normal) curve to $C_0$
+factors through $C$. Thus $C_0$ is birational to a unique
+smooth curve. The genus of $C$ is called the \emph{geometric genus} of $C_0$
 
 Most of the results of this book have analogues for singular curves, but this is a topic beyond our scope; for us, the questions are about smooth curves, with singular curves appearing as a useful adjunct, for example in Chapter~\ref{PlaneCurveChapter}.
 
-Applied to a possibly singular or even non-reduced 1-dimensional projective scheme, the formula~\ref{pa} and the equivalent~\ref{genus Hilbert}, define
-what is called the \emph{arithmetic genus} $p_a(C)$. 
-
-We can relate the arithmetic and geometric genera of $C_0$ using the map of sheaves
+Applied to any 1-dimensional projective scheme $C_0$, the formula~\ref{pa} and the equivalent~\ref{genus Hilbert}, define
+ the \emph{arithmetic genus} $p_a(C_0) = 1-\chi(\sO_{C_0})$ of $C_0$. For some examples with curves that are not
+ integral, see Exercise~\ref{pa examples}.
+ 
+Returning to the case where $C_0$ is reduced and irreducible, we can relate the arithmetic and geometric genera of t $C_0$ using the map of sheaves
 $$
 \cO_{C_0} \to \nu_*\cO_C.
 $$
@@ -380,7 +382,6 @@ This is injective; the cokernel sheaf will be a skyscraper sheaf supported on th
 $$
 0 \to \cO_{C_0} \to \nu_*\cO_C \to \cF \to 0.
 $$
-
 
 The normalization map $\nu: C \to C_0$ is finite, so that the direct images $R^i\nu_*\cO_C$ vanish for $i > 0$; it follows from the Leray spectral sequence~\ref{Leray} that $\chi(\nu_*\cO_C) = \chi(\cO_C)$. Thus
 $$
@@ -400,8 +401,6 @@ $$
   \HH^p(R^qf_*(\sF)) \Longrightarrow \HH^{p+q}(\sF).
   $$
  \end{fact}
-  
-
 
 The $\delta$ invariant is easy to compute in simple cases:
 \begin{enumerate}
@@ -425,30 +424,17 @@ In this case, in contrast to case of the planar triple point, the condition that
 
 \section{The canonical morphism}
 
-We will generally begin to study the invertible sheaves on a smooth curve $C$ by studying the complete linear series associated to the canonical divisor $|K|$ and the \emph{canonical map}
- $\phi_K : C \to \PP^{g-1}$. 
+ The canonical sheaf on $\PP^1$ has negative degree, so $|K_{\PP^1}| = \emptyset$. In the case $g=1$ the canonical sheaf has degree 0 and since it has nonzero global sections, 
+ $\omega_C = \sO_C$, and $K_C = 0$. Thus we restrict our attention to smooth curves $C$ of genus $g\geq 2$. 
  
- In the case $g=0$ the canonical sheaf has degree 0 and since it has nonzero global sections, 
- $\omega_C = \sO_C$, and $K_C = 0$. Thus we restrict our attention to smooth curves $C$ of genus $g\geq 2$. We will see
+ 
  that the canonical series is then base-point free, so $|K|$ defines a morphism.
 
+We will generally begin to study the invertible sheaves on a smooth curve $C$ by studying the complete linear series associated to the canonical divisor $|K|$ and, when $g\geq 2$, the \emph{canonical map}
+ $\phi_K : C \to \PP^{g-1}$. 
+ 
 Recall that a curve of genus $\geq 2$
 is said to be \emph{hyperelliptic} if there exists a morphism $f: C \to \PP^1$ of degree 2. 
-
-
-\begin{theorem}\label{canonical series is very ample}
-If $C$ is a smooth curve of genus $\geq 2$ then the canonical morphism $\phi_K : C \to \PP^{g-1}$ is an embedding if and only if $C$ is not hyperelliptic. 
-\end{theorem}
-
-The image of the canonical morphism of a non-hyperelliptic curve of genus $g>2$ is called a \emph{canonical curve}.
-
-\begin{proof}
-By Corollary~\ref{degree 2g+1 embedding} we have to show that for any pair of points $p, q \in C$ we have
-$$
-h^0(K_C(-p-q)) = h^0(K_C)-2 = g-2.
-$$
-Applying \trr we see this fails if and only if $h^0(\cO_C(p+q)) \geq 2$ for some $p,q \in C$. By Lemma~\ref{deg 2 morphism}, this implies that $C$ is hyperelliptic.
-\end{proof}
 
 \begin{lemma}\label{deg 2 morphism}
 Let $C$ be a smooth, projective curve of genus $g\geq 2$. If $C$ has an invertible sheaf $\cL$ of degree 2 with two independent sections, then
@@ -457,33 +443,76 @@ $|\cL|$ defines a morphism of degree 2 to $\PP^{1}$, and $C$ is hyperelliptic. I
 
 \begin{proof}
 If $\cO_C(p+q)$ has two independent sections and has $d$ basepoints, then it defines a morphism of degree $2-d$ to $\PP^1$. Since $C$ is not rational,
-we must have $d=0$, proving the first statement. 
+Theorem~\ref{characterization of P1} implies that $d=0$, proving the first statement. 
 \end{proof}
+
+\begin{theorem}\label{canonical series is very ample} Let $C$ be a smooth curve of genus $\geq 2$.
+\begin{enumerate}
+ \item $|K_C|$ is base-point free.
+ \item $|K_C|$ is very ample if and only if $C$ is not hyperelliptic.
+\end{enumerate}
+\end{theorem}
+
+
+\begin{proof}
+By Proposition~\ref{very ample} we have to show that for any pair of points $p, q \in C$ we have
+$$
+h^0(K_C(-p-q)) = h^0(K_C)-2 = g-2.
+$$
+Applying \trr we see this fails if and only if $h^0(\cO_C(p+q)) \geq 2$ for some $p,q \in C$. By Lemma~\ref{deg 2 morphism}, this implies that $C$ is hyperelliptic. Conversely, if $C$ is hyperelliptic then for some divisor $D = p+q$ we have $h^0(D) = 2$, whence $h^0(K-p-q) = h^0(K) -1$ by
+the Riemann-Roch formula.
+\end{proof}
+
+The image of the canonical morphism of a non-hyperelliptic curve of genus $g>2$ is called a \emph{canonical curve}.
+
 
 \subsection{The geometric Riemann-Roch theorem}
 
-If $C$ is a nonhyperelliptic curve, embedded in $\PP^{g-1}$ by its canonical series and  $D = p_1+\dots + p_d$ is a divisor consisting of $d$ distinct points, we will write $\overline D$ be the span of the points $p_i \in C \subset \PP^{g-1}$. Since the hyperplanes in $\PP^{g-1}$ containing $\{p_1,\dots,p_d\}$ correspond (up to scalars) to sections of $K_C$ vanishing at all the points $p_i$, we see that
+If $C$ is a smooth curve of genus $g\geq 2$ we write $\phi_K: C\to \PP^{g-1}$ for the canonical morphism.
+If  $D = p_1+\dots + p_d$ is a divisor on $C$ of degree $d$, we will write $\overline{ \phi_K(D)}$ for the \emph{span}
+of  $\phi_K(D)$, that is, the dimension of the smallest  subspace of $\PP^{g-1}$ containing $\phi_K(D)$. Since the hyperplanes in $\PP^{g-1}$ containing $\phi_K(D)$ correspond (up to scalars) to sections of $K_C$ vanishing on $D$, we see that
 $$
-h^0(K_C-D) = g - 1 - \dim \overline D = \codim \overline D \subset \PP^{g-1}
+h^0(K_C-D) = \codim \overline{ \phi_K(D)} \subset \PP^{g-1}= g - 1 - \dim \overline{ \phi_K(D)}.
 $$
-Plugging this into the Riemann-Roch formula, we arrive at the statement
-$$
-r(D) = d - 1 - \dim \overline D;
-$$
-or in other words, the dimension of the linear series $|D|$ in which the divisor $D$ moves is equal to the number of linear relations on the points $p_i$ on the canonical curve. Thus, for example, if $D = p_1+p_2+p_3$, we see that $D$ moves in a pencil if and only if the points $p_i$ become collinear under the canonical morphism.
+Applying the Riemann-Roch theorem we obtain  the \emph{geometric Riemann-Roch theorem}:
 
-We can extend this statement to the case of arbitrary effective divisors $D$ on any smooth curve if we define our terms correctly. To do this, suppose $f : C \to \PP^d$ is any morphism, and $D \subset C$ any divisor. We define the \emph{span} of  $f(D)$ to be the intersection
+\begin{corollary}\label{geometric RR}
+If $D$ is a divisor on a smooth curve $C$ of genus $\geq 2$ then
 $$
-\overline{f(D)} = \bigcap_{H \mid f^{-1}(H)\supset D} H 
+r(D) = d - 1 - \dim \overline{ \phi_K(D)}.
 $$
-of all hyperplanes in $\PP^d$ whose preimage in $C$ contains $D$. The argument above applies to prove:
+\end{corollary}
 
-\begin{theorem}[Geometric Riemann-Roch Theorem]\label{geometric RR}
-If $C$ is any curve of genus $g \geq 2$,  $\phi : C \to \PP^{g-1}$ its canonical morphism and $D \subset C$ any effective divisor of degree $d$, then
-$$
-r(D) = d - 1 - \dim \overline{\phi(D)}.
-$$
-\end{theorem}
+When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism, and we say that $C \cong \phi(C)\subset \PP^{g-1}$ is a \emph{canonical curve}, or that it is canonically embedded. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that the dimension of the linear series $|D|$ in which  $D$ moves is equal to the number of linear relations between the points $p_i$ on the canonical curve. 
+
+\subsection{Linear series on a hyperelliptic curve}
+In the hyperelliptic case the canonical map factors:
+
+\begin{corollary}\label{canonical on hyperelliptic}
+Let $C$ be a smooth hyperelliptic curve of genus $g\geq 2$. The curve $C$ admits a unique degree 2 morphism $\pi: C\to \PP^1$,
+and the canonical map $\phi_K: C\to \PP^{g-1}$ is the composition of $\pi$ with the Veronese map of degree $g-1$ from
+$\PP^1$ to the rational normal curve of degree $g-1$; that is, every canonical divisor is a sum of $g-1$ fibers of $\pi$.
+\end{corollary}
+
+\begin{proof}
+If $D$ is a general fiber of a degree 2 map $\pi:C\to \PP^1$ so that $D= p+q$ and $r(D) = 1$, then by the Riemann-Roch theorem or its geometric version, $D$ imposes only one condition on sections of $K_C$; that is, $\phi_K(p) = \phi_K(q)$. Consequently the degree of the canonical morphism $\phi_K$ is at least 2, and the image is thus a nondegenerate curve in $\PP^{g-1}$ of degree $\leq (2g-2)/2 = g-1$. By Theorem~\ref{characterization of P1}, the image of $\phi_K$ is the rational normal curve of degree $g-1$ and every fiber of $\phi_K$ is a divisor linearly equivalent to $D$. It follows that $\pi$ is determined by $K$, so it is unique. Since every canonical divisor is the pullback of a hyperplane section of the rational normal curve,
+every canonical divisor is a sum of $g-1$ fibers of $\pi$.
+\end{proof}
+
+We can use these ideas to analyze all special divisors.
+
+\begin{corollary}\label{special on hyperelliptic} Let $C$ be a smooth hyperelliptic curve with map $\pi: C\to \PP^1$ of degree 2.
+Every special divisor $D$ of degree $d$ on a hyperelliptic curve is a sum of $s$ fibers of $\pi$ and $d-2s$ base-points.
+\end{corollary}
+
+\begin{proof}
+Suppose that $D$ contains the sum $E$ of $s$ fibers of $\pi$ and no more; and write $D = E+D'$, with $\deg D' = d-2s$.
+ 
+If $\phi_K:C \to \PP^{g-1}$ is the canonical map, then $\phi_K(D')$ consists of $d-2s$ distinct points, while $\phi_K(E$ consists of
+$s$ points. By Corollary~\ref{points on a RNC} the span of $\phi_K(D)$ has dimension $\min\{g-1, d-s\}$, so 
+$r(D) = d-1-\min\{g-1, d-s\} = max \{s,d-g\}$. Since $D$ is a special divisor, $r(D) > d-g$, so $r(D) = s$. 
+Since $r(E) =s$, we see that $D'$ is in the base locus of $D$.
+\end{proof}
 
 \section{Clifford's theorem}
 
@@ -514,8 +543,6 @@ whence $r(\cL) \leq d/2$.
 \end{proof}
 
 The usual statement of Clifford's theorem includes a description of when equality can occur:
-To state it, we define a curve $C$ of genus $\geq 2$ to be \emph{hyperelliptic} if there exists a $g^1_2$ on $C$; that is an
-invertible sheaf $\cL$ of degree $2$ with 2 independent global sections or, equivalently, a morphism $C\to \PP^1$ of degree 2. We will see in Chapter~\ref{genus 2 and 3 chapter} that such a sheaf would be unique, and $h^0(\cL) = 2$, and that such curves have extremely special properties.
 
 \begin{theorem}\label{Clifford}\label{Clifford equality}
 Let $C$ be a curve of genus $g$ and $\cL$ a line bundle of degree $d \leq 2g-2$. If
@@ -530,6 +557,8 @@ the largest possible value, then either
 \end{enumerate}
 \end{theorem}
 
+From Corollary~\ref{canonical on hyperelliptic} and Corollary~\ref{geometric RR} we see that the equality does indeed hold
+in each of the cases enumerated. 
 For the proof of the second half of Clifford's Theorem, we will use a basic fact about the geometry of hyperplane sections of a curve in projective space (Proposition~\ref{monodromy of hyperplane section}); we give the proof after proving that result.
 
 
@@ -713,6 +742,14 @@ $$
 
 \end{exercise}
 
+\begin{exercise}\label{pa example}
+\begin{enumerate}
+ \item Show that the arithmetic genus of the disjoint union of two lines is $-1$.
+\item Let $L\subset Q\subset \PP^3$ be a line on a smooth quadric surface in $\PP^3$. Show that the 
+divisor $3L$, regarded as a 1-dimensional scheme, has $p_a(3L) = -2$.
+\item Compare these results with the result of simply applying the adjunction formula.
+\end{enumerate}
+\end{exercise}
 
 \begin{exercise}
 With $C$ as in Exercise~\ref{hyperelliptic curve 1}:

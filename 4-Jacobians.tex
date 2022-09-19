@@ -169,32 +169,16 @@ If $\sL$ is any invertible sheaf of degree $e$ on $C$, we can define a bijection
  
  Note also that the variety $\Pic_0(C)$ is a group, with group law given by tensor product of invertible sheaves of degree 0; and for each $d$, $\Pic_d(C)$ is a principal homogeneous space for $\Pic_0(C)$. 
  
- \fix{shouldn't we use the universal properties to produce the map $C_d \to \Pic_d$ at this point?}
- 
- Now, on the basis of the characterization of $\Pic_d(C)$ above, it is not at all clear what the geometry of $\Pic_d(C)$ is like: whether it's irreducible, for example, or what its dimension is. In fact, we can get a very good picture of the geometry of $\Pic_d(C)$ from the classical (19th century) construction of the Jacobian, which we'll describe now.
- 
-% The Jacobian $\Jac(C) = \Pic_0(C)$ is a scheme together with a base point $p\in C$ and an invertible sheaf $\sP$ on $C\times \Jac(C)$ such
-% that $\sP|_{\{p\}\times B} = \sO_B$, the trivial sheaf, having the universal property that if $\sM$ is an invertible sheaf on
-% $C\times B$, trivial over $\{p\}\times B$, and having degree 0, there is a unique morphism $\phi: B \to \Jac(C)$ such that $\sL = (1\times \phi)^*(\sP).$
-% The varieties $\Pic_d(C)$ are all isomorphic to the Jacobian via the map sending an invertible sheaf $\sL$ of degree 0 to $\sL(dp)$, where $p\in C$ is the
-%base point.
-%
-%Just as in the case of the symmetric product, the universal property of the Jacobian and the Picard
-%varieties may be expressed as an isomorphism of functors. If $Pic^C_d$ is the functor from Schemes to Sets
-%sending a scheme $B$ to the set of families over $B$ of invertible sheaves of degree $d$ on $C$, then
-%$$
-%Pic^C_d \cong \Hom_{\rm Schemes}(-, \Pic_d(C)).
-%$$
-%
-%The study of the Jacobian began in the 19th century as part of the study of integrals of algebraic equations, described below, 
-%and there is an analytic construction that is fairly simple. But the search for an algebraic construction motivated a good deal of the
-%algebraic geometry done in the first half of the 20th century. It was finally completed by Weil, and then redone in much greater
-%generality by Grothendieck and his school.
-%
-%\begin{fact}
-%If $C$ is a smooth curve then $\Jac(C)$, with its universal bundle, exists as a projective variety, and may be constructed purely algebraically---so that, for example, if the curve $C$ is defined over a given field $K$ then $J(C)$ will be defined over $K$ as well.  
-%\end{fact}
+The description of the functors represented by the symmetric product $C_d$ and the Picard scheme $\Pic_d$ implies that the 
+set-theoretic map
+$$
+C_d \to \Pic_d \quad D \mapsto \sO_c(D)
+$$
+is the underlying set map of a morphism of schemes: on the level of functors the map takes a family of divisors $\cD\subset B\times C$
+to the 
 
+The characterization of $\Pic_d(C)$ above does shed much light on the geometry of $\Pic_d(C)$: whether it's irreducible, for example, or what its dimension is. But we can get a  good picture from the classical (19th century) construction of the Jacobian, $\Jac(C)$.
+ 
 \section{Jacobians}
 
 The history leading to the analytic construction of the Jacobian starts from a calculus problem. A goal of the 19th century mathematicians was  to make sense of integrals of algebraic functions. In the early development of calculus, mathematicians figured out how to evaluate explicitly integrals such as
@@ -324,19 +308,31 @@ maps of algebraic varieties~\cite[]{Kleiman-PicardScheme}.
 
 \subsubsection{The differential of the Abel-Jacobi map}
 
-Let us consider once more the basic Abel-Jacobi map
+Consider once more the  Abel-Jacobi map
 $$
 \begin{aligned}
 \mu_1 : \; &C \to J(C) := H^0(K_C)^*/H_1(C, \ZZ) \\
-&q \mapsto \int_p^q 
+&q \mapsto \int_p^q .
 \end{aligned}
 $$
-Differentiating under the integral sign, and using the fact that the canonical series $|K_C|$ has no base points, we see \fix{I don't see!} that the differential of this map is nonzero: explicitly, the image of the differential $d\mu_1 : T_q(C) \to T_{\mu_1(q)}J(C) = H^0(K_C)^*$ is the line in $H^0(K_C)^*$ corresponding to the hyperplane $H^0(K_C(-q)) \subset H^0(K_C)$.
+To compute the differential of $\mu_1$ at a point $p\in C$ we choos a local parameter $z$ at $p$.
+We can then write any differential, locally at $p$, in the form $f(z)dz$ where $f$ is a function analytic on
+a neighborhood of $p$. The choice of $z$ also serves to identify the tangent and cotangent space of $C$ with $\CC$.
 
-If $g(C)>0$ then $p$ cannot be linearly equivalent to $q$ for distinct points $p, q \in C$ so the Abel-Jacobi map $\mu_1$ is one-to-one, and since its differential is nonzero, $\mu_1 : C \to J(C)$ is an embedding. Indeed, since the tangent spaces to $J(C)$ are all identified with $H^0(K_C)^*$, if $Z \subset J(C)$ is a smooth subvariety of dimension $k$ we can define a \emph{Gauss map} $\cG : Z \to G(k, H^0(K_C)^*)$ by sending each point $z \in Z$ to the tangent space $T_{\mu(z)} J(C)$.
+ For any $q\in C$ close to $p$ we have
+$$
+\frac{\partial}{\partial q} \int_q^p f(z)dz = f(q)
+$$
 
-\fix{this doesn't make sense: I think it should be
-$T_z Z\subset H^0(K_C)^*$ (if that's our notation)}. In particular, the Gauss map applied to the curve $W_1(C) = {\rm Im}(\mu_1)$ is the canonical map! \fix{the notation $W_1$ hasn't been introduced.}
+The tangent space to $J(C) =  H^0(K_C)^*/H_1(C, \ZZ)$ at any point is $H^0(K_C)^*$, so the cotangent space is $H^0(K_C)$. The co-differential 
+$T^*(\mu_1)O(p)$ of $\mu_1$, evaluated at $p$, thus sends the element $\omega\in H^0(K)$ to the functional on $f(p)\in \CC = T^*_{C,p}$. 
+The kernel of $T^*(\mu_1)O(p)$ is thus the set of global differential forms that vanish at $p$.
+Since $(\omega_C, H^0(\omega_C))$ is base-point free, there is a global differential $\omega$ 
+with local expression $\omega = f(z)dz$ such that $f(p) \neq 0$; this shows that the codifferential is a surjection, and dually the
+differential $T(\mu_1)(p)$ carries the tangent space to $C$ at $p$ to the line in $H^0(K_C)^*$ corresponding to the hyperplane $H^0(K_C(-q)) \subset H^0(K_C)$.
+
+If $g(C)>0$ then $p$ cannot be linearly equivalent to $q$ for distinct points $p, q \in C$ so the Abel-Jacobi map $\mu_1$ is one-to-one, and since its differential is nonzero, $\mu_1 : C \to J(C)$ is an embedding. Indeed, since the tangent spaces to $J(C)$ are all identified with $H^0(K_C)^*$, if $Z \subset J(C)$ is a smooth subvariety of dimension $k$ we can define a \emph{Gauss map} $\cG : Z \to G(k, H^0(K_C)^*)$ by sending each point $z \in Z$ to the tangent space $T_z Z\subset H^0(K_C)^*$.
+In particular, the Gauss map applied to the curve $(\mu_1)(C)$ is the canonical map.
 
 
 \section{The $g+3$ theorem}
@@ -396,73 +392,7 @@ Thus $W^r_d(C)$ has the structure of an algebraic variety, and we can talk about
 
 We can also introduce the corresponding subvarieties of the symmetric products $C_d$: the preimage $\mu^{-1}(W^r_d) \subset C_d$ parametrizes effective divisors $D$ with $r(D) \geq r$, and is denoted $C^r_d$.
 
-In fact, $W^r_d(C)$ can be given the structure of a scheme representing the functor of families of invertible sheaves with $r+1$ or more sections (that is, the functor that associates to a scheme $B$ the set of invertible sheaves $\cL$ on $B \times C$ such that the pushforward $(\pi_2)_*\cL$ has a locally free subsheaf of rank $r+1$ over every curvilinear subscheme of $B$, as always modulo tensoring with pullbacks of invertible sheaves on $B$). We will later see examples of curves $C$ genus 4 that suggest that the scheme $W^1_3(C)$ is non-reduced, and  curves $C$ of genus 6 suggesting that the scheme $W^1_4(C)$ is non-reduced (in fact isomorphic to $\Spec \CC[\epsilon]/(\epsilon^5)$). \fix{
-the claim was that we would see these things; changed to "suggest". OK?} For a definition of the scheme structure, see~\cite[****]{ACGH}. \fix{add ref}
-
-%\section{The $g+2$ theorem}
-%
-%\fix{We should talk about what to do with this theorem. We could either leave it where it is (with forward references to the elements of the proof coming later); move it to a later chapter; or convert it to a series of exercises somewhere.}
-%
-%With a little more effort, we can prove an analogue of Theorem~\ref{g+3 theorem} for general linear series of degree $g+2$.
-%
-%\begin{theorem}
-%Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
-%\begin{enumerate}
-%\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
-%\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
-%\end{enumerate}
-%\end{theorem}
-%
-%\begin{proof}
-%Let's start by proving that $\phi_D$ is birational onto its image, which is true whether or not $C$ is hyperelliptic. We do this much as in the proof of Theorem~\ref{g+3 theorem}. Since $D$ is general, we know that $h^0(D) = 3$. To say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$, accordingly, means exactly that $h^0(D-p-q) = 2$. This in turn means that $D-p-q = K-E$ for some effective divisor $E$ of degree $g-2$; in other words, to say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$ means that $\mu(D)$ is in the image of the map
-%$$
-%\nu : C_2 \times C_{g-2} \to \Pic_{g+2}(C)
-%$$
-%sending $(p+q, E)$ to $K_C - E + p + q$. Now, $\nu$ is a map between projective varieties of the same dimension, so we might expect that it is surjective, and indeed the genus formula tells us that it must be: $\phi_D$ cannot be an embedding. But by the same token, the locus in $\Pic_{g+2}(C)$ over which the fibers of $\nu$ are positive-dimensional must be a proper subvariety; thus for general $D$ we conclude that \emph{there are only finitely many pairs $p, q \in C$ such that $\phi_D(p) = \phi_D(q)$}; in other words, $\phi_D$ is birational onto its image.
-%
-%Let's now suppose that $C$ is non-hyperelliptic and $D$ is a general divisor of degree $g+2$ on $C$. To prove the theorem in this case, we have to show  three things: that the image $C_0 = \phi_D(C)$ does not have cusps; that it does not have triple points, and that it does not have tacnodes. (The fact that $|D|$ is base point free  will follow from the first of these arguments, as noted below.) We'll take these assertions in turn:
-%
-%\begin{enumerate}
-%
-%
-%\item Cusps: to say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by Riemann-Roch, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
-%$$
-%\mu(D) \in 2W_1 + K_C - W_{g-2},
-%$$
-%and since the locus on the right has dimension at most $g-1$, a general point of $J(C)$ will not lie in it. Note that this subsumes the fact that $|D|$ has no base points.
-%
-%\item Triple points: to say that $C_0$ has a triple point means that for some divisor $E = p+q+r$ of degree 3, $h^0(D-E) \geq 1$; thus we must have 
-%$$
-%\mu(D) \in W_3 + W^1_{g-1}
-%$$
-%Now, to argue that this is not the case, we need to know that $\dim W^1_{g-1} \leq g-4$. Here we have to invoke Marten's theorem, which says that $\dim W^1_{g-1} \leq g-4$ if $C$ is non-hyperelliptic; given this, we conclude that $C_0$ has no triple points.
-%
-%\item Tacnodes:  To say that a pair of points $p, q \in C$ map to a tacnode of $C_0$ means two things: that $h^0(D-p-q) \geq 2$; and that $h^0(D-2p-2q) \geq 1$. If this is the case, set $E = D - 2p - 2q$;  the condition $h^0(D-2p-2q) \geq 1$ is simply that $E$ is an effective divisor, and by the geometric Riemann-Roch the condition $h^0(D-p-q) \geq 2$ says that in terms of the canonical embedding of $C$, the secant line $\overline{p,q}$ meets the $g-3$-plane $\overline E$ spanned by $E$. Now, not every secant line to $C$ can meet a linear subspace $\Lambda \cong \PP^{g-3}$ of dimension $g-3$---the projection $\pi_\Lambda : C \to \PP^1$ would be constant---so we see that $\mu(D)$ would have to lie on the image of a proper subvariety of $C_{g-2} \times C_2$ under the map 
-%$$
-%(E, p+q) \mapsto E+2p+2q.
-%$$
-%By a dimension count it follows that $D$ cannot be a general divisor of degree $g+2$.
-%
-%\end{enumerate}
-%
-%Thus, in the non-hyperelliptic case, the image curve $C_0 = \phi_D(C)$ has only nodes as singularities; the fact that there are exactly $\binom{g}{2}$ of them follows from the genus formula.
-%
-%
-%This concludes the proof in the non-hyperelliptic case. The hyperelliptic case is very different, as you might expect from the statement. To analyze this case, suppose that $C$ is hyperelliptic; let $|E|$ be the (unique) $g^1_2$ on $C$. Now, if  $D$ is any divisor of degree $g+2$, the divisor $D - E$ will have degree $g$, and so be effective; thus we can write
-%$$
-%D = E + p_1 + \dots + p_g
-%$$
-%for some $g$-tuple of points $p_i$. If the divisor $D$ is general, the points $p_i$ will be general as well, and in particular distinct.
-%
-%Now, the fact that
-%$$
-%h^0(D - p_1 - \dots - p_g) = h^0(E) = 2 = h^0(D) - 1
-%$$
-%says that $\phi_D$ maps all the points $p_i$ to the same point! The image curve $C_0$ thus has a point of multiplicity at least $g$, with at least $g$ branches; by the genus formula, we see that this is an ordinary $g$-fold point of $C_0$ and that $C_0$ can have no other singularities.
-%
-%\end{proof}
-
-\fix{revised to here 9/16}
+In fact, $W^r_d(C)$ can be given the structure of a scheme representing the functor of families of invertible sheaves with $r+1$ or more sections (that is, the functor that associates to a scheme $B$ the set of invertible sheaves $\cL$ on $B \times C$ such that the pushforward $(\pi_2)_*\cL$ has a locally free subsheaf of rank $r+1$ over every curvilinear subscheme of $B$, as always modulo tensoring with pullbacks of invertible sheaves on $B$). We will later see examples of curves $C$ genus 4 that suggest that the scheme $W^1_3(C)$ is non-reduced, and  curves $C$ of genus 6 suggesting that the scheme $W^1_4(C)$ is non-reduced (in fact isomorphic to $\Spec \CC[\epsilon]/(\epsilon^5)$). For a definition of the scheme structure, see~\cite[Section IV.3]{ACGH}. 
 
 \section{Examples in low genus}
 
@@ -481,16 +411,17 @@ $g^1_2$; see Exercise~\ref{blow-up of $J(C)$ at a point}.
 
 \subsection{Genus 3}
 \begin{fact}
- Let $C$ be a curve of genus 3. The geometry of the map $\mu_2$ depends on whether or not $C$ is hyperelliptic. If it is, $\mu_2$ will collapse the locus in $C_2$ of divisors of the hyperelliptic $g^1_2$ to a point, but is otherwise one-to-one, and $W_2(C)$ is singular  If $C$ is not hyperelliptic, by contrast, $\mu_2$ will be an embedding, and $W_2(C)$ smooth (see~\cite[pp. 53--4]{MumfordCJ}).\fix{Mumford does all this set-theoretically, and just asserts the singularity ---with a nice picture.}
+ Let $C$ be a curve of genus 3. The geometry of the map $\mu_2$ depends on whether or not $C$ is hyperelliptic. If it is, $\mu_2$ will collapse the locus in $C_2$ of divisors of the hyperelliptic $g^1_2$ to a point, but is otherwise one-to-one, and $W_2(C)$ is singular  If $C$ is not hyperelliptic, by contrast, $\mu_2$ will be an embedding, and $W_2(C)$ smooth. 
+ %\fix{Mumford does all this set-theoretically, and just asserts the singularity---with a nice picture.}
 
-In genus 3, the birational surjection $\mu_3 = \mu_g$ is the blow-up of $J(C) \cong \Pic_3(C)$ along the locus $W^1_3(C)$ \fix{reference?}. At the same time, we know that
+In genus 3, the birational surjection $\mu_3 = \mu_g$ is the blow-up of $J(C) \cong \Pic_3(C)$ along the locus $W^1_3(C)$. At the same time, we know that
 $$
 W^1_3(C) = K - W_1(C),
 $$
 in the sense that any invertible sheaf $\sL$ defining a $g^1_3$ has, by the Riemann-Roch theorem, the form $\omega_C\otimes \sL'$,
 where $\sL'$ has degree 1 and $h^0(\sL') = 1$,
 so $W^1_3$ is isomorphic to $C$. Thus $C^{(3)}$ is the blow-up of $J(C)$ along the curve $C$.
-See 
+(see~\cite[pp. 53--4]{MumfordCJ} for a discussion).
 \end{fact}
 
 \section{Martens' theorem}
@@ -543,26 +474,8 @@ If $C$ is hyperelliptic with $g^1_2 = |D|$ then $\mu(rD) \in W^r_{2r}$ and
 $$
 W^r_d(C) \supset W_{d-2r}(C) + \mu(rD).
 $$
-(and in fact this is an equality by~\ref{****} \fix{which?}). Since $W_{d-2r}(C)$ has dimension $d-2r$, we see that Martens' theorem is sharp. 
-
-% To prove the full statement of Martens' theorem---that we have strict inequality in case the curve $C$ is non-hyperelliptic---we need a stronger version of Lemma~\ref{elementary secant plane lemma} and will be proved in~\ref{Strong secant plane lemma}.
-% 
-% This will require ``borrowing" the general position lemma~\ref{general position lemma} from Chapter~\ref{Brill-Noether}; given this, we can prove the stronger
-%
-%\begin{lemma}[Strong secant plane lemma]\label{Strong secant plane lemma}
-%Let $C \subset \PP^n$ be a smooth, irreducible and nondegenerate curve. If we denote by $\Sigma \subset C_d$ the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$, then for any $d \leq n$ and $r > 0$,
-%$$
-%\dim \Sigma \leq d-r-1.
-%$$
-%\end{lemma}
-%
-%\begin{proof}
-%We set up an incidence correspondence: 
-%$$
-%\Gamma := \left\{ (D, H) \in \Sigma \times {\PP^n}^* \mid \overline D \subset H \right\}.
-%$$
-%The curve being nondegenerate, the projection map $\Gamma \to  {\PP^n}^*$ is finite. But the fibers of $\Gamma$ over $\Sigma$ have dimension at least $n-d+r$; if we had $\dim \Sigma \geq d-r$, it would follow that $\dim \Gamma \geq n$, and hence that the projection map $\Gamma \to  {\PP^n}^*$ is dominant---contradicting the general position lemma~\ref{general position lemma}.
-%\end{proof}
+(and in fact this is an equality by~\ref{RR}). Since $W_{d-2r}(C)$ has dimension $d-2r$, we see that Martens' theorem is sharp. 
+\fix{put in real ref when there is one}
 
 There are extensions of Martens' theorem to the cases $\dim(W^r_d(C)) < d-2r$ in \cite{Mumford-Prym1} \cite{Keem},
 and \cite{Coppens}.
@@ -570,12 +483,15 @@ and \cite{Coppens}.
 \section{Exercises}
 
 \begin{exercise}
- Let $G$ be a finite group acting on a quasi-projective scheme $X$. Show that there is a finite covering of $X$ by invariant open affine sets. \end{exercise}
+ Let $G$ be a finite group acting on a quasi-projective scheme $X$. Show that there is a finite covering of $X$ by invariant open affine sets. (Hint: consider the sum of the $G$-translates of a very ample divisor.)
+\end{exercise}
+
 
 \begin{exercise}\label{free actions}
 We say that a group $G$ acts freely on $X$ if $gx = gy$ only when $g =1$ or $x=y$. Show that
  if $G$ is a finite group acting freely on a smooth affine variety $X$ then the quotient $X/G$ is smooth.
 \end{exercise}
+
 
 \begin{exercise}
  \label{sym2A2} 
@@ -595,22 +511,13 @@ cartesian product $(\AA^{2})^{2}$.
 \end{enumerate}
 \end{exercise}
 
-% \begin{exercise}[The universal divisor of degree $d$]\label{universal divisor}
-%Let $C$ be a smooth projective curve, and $C^{(d)}$ its $d$th symmetric power. Show that the locus
-%$$
-%\cD := \{ (D, p) \in C^{(d)} \times C \mid p \in D \}
-%$$
-%is a closed subvariety of the product $C^{(d)} \times C$, whose fiber over any point $D \in C^{(d)}$ is the divisor $D \subset C$.
-%
-%\end{exercise}
-
-
 \begin{exercise}
 Show that if $r \geq d-g$, then $W^r_d(C) \setminus W^{r+1}_d(C)$ is dense in $W^r_d(C)$ (that is, $W^{r+1}_d(C)$ does not contain any irreducible component of $W^r_d(C)$).
+
 \end{exercise}
 
 \begin{exercise}
-Let $C \subset J(C)$ be the image of the Abel-Jacobi map $\mu_1$. Show that the self-intersection of the curve $C$ is 2,
+Let $C$ be a curve of genus 2, and let $C \subset J(C)$ be the image of the Abel-Jacobi map $\mu_1$. Show that the self-intersection of the curve $C$ is 2,
 \begin{enumerate}
 \item by applying the adjunction formula to $C \subset J(C)$; and
 \item by calculating the self-intersection of its preimage $C + p \subset C_2$ and using the geometry of the map $\mu_2$.
@@ -618,19 +525,19 @@ Let $C \subset J(C)$ be the image of the Abel-Jacobi map $\mu_1$. Show that the 
 \end{exercise}
 
 \begin{exercise}
-Consider the map $C \times C \to \Pic_0(C)$ defined by sending $(p, q)\in C \times C$ to the invertible sheaf $\cO_C(p-q)$. What is the degree of this map?
+Again, let $C$ be a curve of genus 2, and consider the map $\nu : C \times C \to \Pic_0(C)$ defined by sending $(p, q)\in C \times C$ to the invertible sheaf $\cO_C(p-q)$. What is the degree of this map?
 \end{exercise}
 
 \begin{exercise} \label{comparison with geometric RR}
-Show that the Abel-Jacobi map $C^{(d)} \to J(C)$ is an immersion on the open subset $C^{(d)} \setminus C^1_d$  and that the image of its differential at a point $D \in C^{(d)} \setminus C^1_d$ is  the plane in $\PP^{g-1}$ spanned by the divisor $D$ on the canonical curve (which has the right dimension by the geometric Riemann Roch theorem).
+Show that the image of the differential of the Abel-Jacobi map $C^{(d)} \to J(C)$ at a point of $C^{(d)} \setminus C^1_d$  corresponding to a reduced divisor is  the plane in $\PP^{g-1}$ spanned by the divisor $D$ on the canonical curve.
 \end{exercise}
-
+%\fix{can we do this for non-reduced divisors?}
 
 \begin{exercise}\label{blow-up of $J(C)$ at a point}
 Let $C$ be a curve of genus 2. The canonical map $\phi_K : C \to \PP^1$ expresses $C$ as a 2-sheeted cover of $\PP^1$, and we have correspondingly an involution $\tau : C \to C$ exchanging points in the fibers of $\phi_K$ (equivalently, for any $p \in C$, we have $h^0(K_C(-p)) = 1$; $\tau$ will send $p$ to the unique zero of the unique section $\sigma \in H^0(K_C(-p))$). Let $\Gamma \subset C \times C$ be the graph of $\tau$.
 \begin{enumerate}
-\item Find the self-intersection of $\Gamma$ in $C \times C$
-\item Show the self-intersection of the image of $\Gamma$ in $C_2$ is $-1$.
+\item Using the fact that a birational morphism of smooth surfaces must be the inverse of a sequence of blow-ups of reduced points (\cite[V.??]{H}) show the self-intersection of the image $C^1_2$ of $\Gamma$ in $C_2$ is $-1$.
+\item Find the self-intersection of $\Gamma$ in $C \times C$.
 \end{enumerate}
 \end{exercise}
 
