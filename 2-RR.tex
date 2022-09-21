@@ -28,7 +28,7 @@ if $X\subset \PP^m$, then $H^i(\sF(d)) = 0$ for all $i>0$ and $d\gg 0$.\qed
 This is a combination of Theorems \ref{Theorems III.2.7 and III.5.2}{H}, due to Grothendieck and Serre.
 \end{proof}
 
-Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d) = h^0(\sL(d)$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL = h^0(\sL) - h^1(\sL)$ as well.
+Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d) = h^0(\sL(d)$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL) = h^0(\sL) - h^1(\sL)$.
 
 \begin{theorem} (Easy Riemann-Roch)\label{easy RR}
 If $C$ is a smooth curve, and $\sL$ is an invertible sheaf on $C$, then $\chi(\sL) = \deg \sL + \chi(\sO_C)$.
@@ -39,7 +39,7 @@ If $C$ is a smooth curve, and $\sL$ is an invertible sheaf on $C$, then $\chi(\s
 divisor $D$. If $p\in C$, then writing $\kappa(p)$ for the 1-dimensional skyscraper sheaf at $p$, the long exact sequence in cohomology
 associated to the short exact sequence
 $$
-0\to \sL(-p) \to \sL \to \sL\otimes \kappa(p)
+0\to \sL(-p) \to \sL \to \sL\otimes \kappa(p)\to 0
 $$
 allows us to compute 
 $$
@@ -56,8 +56,8 @@ we now turn.
 \section{The most interesting linear series}
 
 The most important vector bundles on a manifold are the tangent and cotangent bundles. For reasons that
-will become clear, the focus in algebraic geometry is on the cotangent bundle or, equivalently, the sheaf of differential forms. On a smooth curve $C$, this is usually called the \emph{canonical sheaf} (on a smooth
-variety of dimension $n$ the canonical sheaf is the $n$-exterior power of the sheaf of differentials). A section of 
+will become clear, the focus in algebraic geometry is on the cotangent bundle or, equivalently, the sheaf of differential forms. On a smooth curve $C$, this is usually called the \emph{canonical sheaf}; on a smooth
+variety of dimension $n$ the canonical sheaf is the $n$-exterior power of the sheaf of differentials. A section of 
 $\omega_C$ is thus a differential form, and the class of the divisor
 of such a form is usually denoted $K_X$. 
 
@@ -118,7 +118,7 @@ and \emph{Hurwitz' Theorem}.
 \subsection{The Adjunction Formula}\label{Adjunction Formula}
 
 The adjunction formula describes the difference between the canonical divisor of
-a codimension 1 subvariety and the restriction of the canonical divisor of the ambient variety.
+a codimension 1 subscheme and the restriction of the canonical divisor from the ambient variety.
 
 \begin{proposition}\label{adjunction}(Adjunction Formula)
  Let $X$ be a variety that is a Cartier divisor on a variety $Y$, and let $K_{Y}$ be the canonical class of $Y$. The canonical class $K_X$ of $X$ is
@@ -131,7 +131,32 @@ This is \cite[Proposition 8.20]{H}.
 0\to  \sI_{X/Y}\mid_{X} \to \Omega_{Y}\mid _{X} \to \Omega_{X} \to 0
  $$
  where $\Omega_{X}$ is the sheaf of differential forms on $X$ (see \cite[Proposition 16.3]{Eisenbud95}), and
-$ \sI_{X/Y}\mid_{X} = \sO_{Y}(-X)\mid_{X} = \sO_{X}(-X)$. The proposition follows by taking top exterior powers.
+$ \sI_{X/Y}\mid_{X} = \sO_{Y}(-X)\mid_{X} = \sO_{X}(-X)$. The proposition follows by taking top exterior powers: 
+\begin{lemma}
+ If 
+\end{lemma}
+$$
+0\to \sE \to \sF\to \sG \to 0
+$$
+is a short exact sequence of vector bundles of ranks $e,f,g$ respectively then there is a natural
+isomorphism 
+$$
+\wedge^e\sE \otimes \wedge^g \sG \to \wedge^f\sF.
+$$
+
+We may define a map
+$
+\wedge^e\sE \otimes \wedge^g \sG \to \wedge^f\sF.
+$
+in terms of local sections as
+$$
+(\epsilon_1\wedge\cdots \wedge \epsilon_e) \otimes (\gamma_1\wedge\cdots\wedge \gamma_g)
+\mapsto \epsilon_1\wedge\cdots \wedge \epsilon_e\wedge\gamma_1\wedge\cdots\wedge \gamma_g.
+$$
+This is globally well-defined because changing one of the $\gamma_i$ by a local section of $\sE$ would not
+change the exterior product. The map is an isomorphism because locally $\sF = \sE\oplus \sG$ is
+simply a sum of free modules, and with this
+decomposition the result is obvious.
 \end{proof}
 
 \begin{corollary}\label{canonical of plane curve}
@@ -248,11 +273,10 @@ and thus $h^1(D) = h^0(K_C-D)$.
 
 For proofs see \cite[Theorem III.5.2 and III.7.6]{H}. 
 
-For example we see that $h^1 (\sO_C) = h^0(K_C) = g(C)$.   
+For example we see that if $C$ is a smooth curve then $h^1 (\sO_C) = h^0(K_C) = g(C)$ and thus $\chi(\sO_C) = 1-g(C).$   
 Using this we can recast the Easy Riemann-Roch theorem above in a more useful form. 
 
 \begin{theorem} (Riemann-Roch)
-If $C$ is a smooth curve, then $\chi(\sO_C) = 1-g(C)$.
 If $D$ is any divisor on $C$, then 
 $$
 h^0(D) - h^0(K_C -D) = \deg D - g(C) +1.
@@ -368,11 +392,11 @@ Given $C_0$ there is a birational normalization morphism $\nu: C \to C_0$, and a
 factors through $C$. Thus $C_0$ is birational to a unique
 smooth curve. The genus of $C$ is called the \emph{geometric genus} of $C_0$
 
-Most of the results of this book have analogues for singular curves, but this is a topic beyond our scope; for us, the questions are about smooth curves, with singular curves appearing as a useful adjunct, for example in Chapter~\ref{PlaneCurveChapter}.
+Most of the results of this book have analogues for singular curves, but this is a topic beyond our scope; for us, singular curves will appear as a useful adjunct to our theory, for example in Chapter~\ref{PlaneCurveChapter}.
 
 Applied to any 1-dimensional projective scheme $C_0$, the formula~\ref{pa} and the equivalent~\ref{genus Hilbert}, define
- the \emph{arithmetic genus} $p_a(C_0) = 1-\chi(\sO_{C_0})$ of $C_0$. For some examples with curves that are not
- integral, see Exercise~\ref{pa examples}.
+the \emph{arithmetic genus} $p_a(C_0) = 1-\chi(\sO_{C_0})$ of $C_0$. For some examples with curves that are not
+integral, see Exercise~\ref{pa examples}.
  
 Returning to the case where $C_0$ is reduced and irreducible, we can relate the arithmetic and geometric genera of t $C_0$ using the map of sheaves
 $$
@@ -385,22 +409,24 @@ $$
 
 The normalization map $\nu: C \to C_0$ is finite, so that the direct images $R^i\nu_*\cO_C$ vanish for $i > 0$; it follows from the Leray spectral sequence~\ref{Leray} that $\chi(\nu_*\cO_C) = \chi(\cO_C)$. Thus
 $$
-p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF);
+p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF) = \deg(\cF)
 $$ 
-in other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks of $\cF$; colloquially, it's the number of linear conditions a function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant} $\delta_p$ of the singularity; to rephrase the statement above in these terms, we have:
+since the support of $\cF$ is finite.
+In other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks of $\cF$; colloquially, it's the number of linear conditions a function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant} $\delta_p$ of the singularity; to rephrase the statement above in these terms, we have:
 $$
 p_a(C_0) - g(C) = \sum_{p \in (C_0)_{sing}} \delta_p
 $$ 
 
-\begin{fact}\label{Leray}
+\begin{proposition}\label{Leray}
  We have used an almost trivial part of the Leray spectral sequence, and we shall use it again in a few other almost equally simple cases. Suppose that $f:X\to Y$ is a morphism of varieties or schemes
  and $\sF$ is a coherent sheaf on $X$.
   It follows immediately from the definition of the push-forward that $\HH^0(\sF) \cong \HH^0(f_*(\sF))$. Replacing
   $\sF$ by an injective or flasque resolution, we get the Leray spectral sequence
   $$
-  \HH^p(R^qf_*(\sF)) \Longrightarrow \HH^{p+q}(\sF).
+  \HH^p(R^qf_*(\sF)) \Longrightarrow \HH^{p+q}(\sF)
   $$
- \end{fact}
+See~\cite[***]{H} for a proof. \qed
+ \end{proposition}
 
 The $\delta$ invariant is easy to compute in simple cases:
 \begin{enumerate}
@@ -425,36 +451,34 @@ In this case, in contrast to case of the planar triple point, the condition that
 \section{The canonical morphism}
 
  The canonical sheaf on $\PP^1$ has negative degree, so $|K_{\PP^1}| = \emptyset$. In the case $g=1$ the canonical sheaf has degree 0 and since it has nonzero global sections, 
- $\omega_C = \sO_C$, and $K_C = 0$. Thus we restrict our attention to smooth curves $C$ of genus $g\geq 2$. 
+ $\omega_C = \sO_C$, and $K_C = 0$. Thus in studying the canonical series we restrict our attention to curves $C$ of genus $g\geq 2$. 
  
- 
- that the canonical series is then base-point free, so $|K|$ defines a morphism.
-
-We will generally begin to study the invertible sheaves on a smooth curve $C$ by studying the complete linear series associated to the canonical divisor $|K|$ and, when $g\geq 2$, the \emph{canonical map}
- $\phi_K : C \to \PP^{g-1}$. 
- 
-Recall that a curve of genus $\geq 2$
-is said to be \emph{hyperelliptic} if there exists a morphism $f: C \to \PP^1$ of degree 2. 
-
-\begin{lemma}\label{deg 2 morphism}
-Let $C$ be a smooth, projective curve of genus $g\geq 2$. If $C$ has an invertible sheaf $\cL$ of degree 2 with two independent sections, then
-$|\cL|$ defines a morphism of degree 2 to $\PP^{1}$, and $C$ is hyperelliptic. In particular, if $g(C) = 2$ then the canonical series $|K_{C}|$ defines a 2 to 1 morphism to $\PP^{1}$, so $C$ is hyperelliptic.
-\end{lemma}
-
-\begin{proof}
-If $\cO_C(p+q)$ has two independent sections and has $d$ basepoints, then it defines a morphism of degree $2-d$ to $\PP^1$. Since $C$ is not rational,
-Theorem~\ref{characterization of P1} implies that $d=0$, proving the first statement. 
-\end{proof}
-
-\begin{theorem}\label{canonical series is very ample} Let $C$ be a smooth curve of genus $\geq 2$.
+ \begin{theorem}\label{canonical series is very ample} Let $C$ be a smooth curve of genus $\geq 2$.
 \begin{enumerate}
  \item $|K_C|$ is base-point free.
- \item $|K_C|$ is very ample if and only if $C$ is not hyperelliptic.
+ \item $|K_C|$ is very ample if and only if $C$ admits no map of degree 2 to $\PP^1$.
 \end{enumerate}
 \end{theorem}
 
+Recall that a curve of genus $\geq 2$
+is said to be \emph{hyperelliptic} if there exists a morphism $f: C \to \PP^1$ of degree 2. 
+It is easy to describe this in terms of linear series:
+
+\begin{lemma}\label{deg 2 morphism}
+Let $C$ be a smooth, projective curve of genus $g\geq 2$. If $C$ has an invertible sheaf $\cL$ of degree $\leq 2$ with two independent sections, then $\cL$ has degree 2, 
+$|\cL|$ defines a morphism of degree 2 to $\PP^{1}$, so if $g(C)\geq 2$ then $C$ is hyperelliptic. In particular, if $g(C) = 2$ then the canonical series $|K_{C}|$ defines a 2 to 1 morphism to $\PP^{1}$, so $C$ is hyperelliptic.
+\end{lemma}
 
 \begin{proof}
+Since $C \not\cong \PP^1$,  Theorem~\ref{characterization of P1} shows that $C$ cannot have a 1-dimensional linear series
+of degree $< 2$. Thus $\sL$ has degree exactly 2, and no base-points, so it defines a morphism of degree 2 to $\PP^1$ as claimed.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{canonical series is very ample}]If $K_C$ had a base-point then
+A point $p$ is a base-point of $|K_C|$ if and only if $h^0(K_C-p) = h^0(K_C) = g$. By the Riemann-Roch theorem,
+this is eqivalent to $h^0(p) =2$, which would imply that $C\cong \PP^1$ by Theorem~\ref{characterization of P1}. Thus $K_C$
+has no base points.
+
 By Proposition~\ref{very ample} we have to show that for any pair of points $p, q \in C$ we have
 $$
 h^0(K_C(-p-q)) = h^0(K_C)-2 = g-2.
@@ -483,10 +507,10 @@ r(D) = d - 1 - \dim \overline{ \phi_K(D)}.
 $$
 \end{corollary}
 
-When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism, and we say that $C \cong \phi(C)\subset \PP^{g-1}$ is a \emph{canonical curve}, or that it is canonically embedded. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that the dimension of the linear series $|D|$ in which  $D$ moves is equal to the number of linear relations between the points $p_i$ on the canonical curve. 
+When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism, and we say that $ \phi(C)\subset \PP^{g-1}$ is \emph{canonically embedded}. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that the dimension of the linear series $|D|$ in which  $D$ moves is equal to the number of linear relations between the points $p_i$ on the canonical curve. 
 
 \subsection{Linear series on a hyperelliptic curve}
-In the hyperelliptic case the canonical map factors:
+We can describe the canonical map of a hyperelliptic curve---and indeed all its special linear series---quite precisely:
 
 \begin{corollary}\label{canonical on hyperelliptic}
 Let $C$ be a smooth hyperelliptic curve of genus $g\geq 2$. The curve $C$ admits a unique degree 2 morphism $\pi: C\to \PP^1$,
@@ -635,9 +659,12 @@ degree $d$. In this case $C$ has degree $2d$ and genus $(d-1)^2$.
 \item The Picard group of $\PP^1\times \PP^1$ is $\ZZ\oplus \ZZ$, generated by the 
 classes of the lines $\{p\}\times \PP^1$ and $\PP^1\times \{p\}$, where $p\in \PP^1$
 is any point. These lines have self-intersection 0, and meet transversely in a point,
-so the intersection pairing is given by $(a,b)\cdot(c,d) = ad+bc$. From the adjunction formula
-applied to the classes of the lines $(1,0)$ and $(0,1)$ we that the canonical
-class is $(-2,-2)$, and thus the arithmetic genus of a curve of type $(a,b)$ is thus
+so the intersection pairing is given by $(a,b)\cdot(c,d) = ad+bc$. Let $H$ be a 2-plane in $\PP^3$.
+Treating 
+the quadric $Q$ as a divisor $2H$in $\PP^3$, we can use the adjunction formula on $\PP^3$
+to see that the canonical divisor $K_Q$ is the restriction of $-2H$ to $Q$, that is, a divisor of type $(-2,-2)$.
+Applying the adjunction formula again to a divisor $C~(a,b)$ on $Q$, we see
+that the arithmetic genus of $C$ is
 $$
 \left(((a,b)+(-2,-2))\cdot (a,b)\right)/2 +1 = (a-1)(b-1).
 $$
