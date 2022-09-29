@@ -4,14 +4,15 @@
 
 \section{Hyperelliptic Curves}\label{hyperelliptic}
  
- 
-Hyperelliptic curves are outliers: they behave differently from other curves, and the techniques used to analyze them are different from the techniques used for more general curves. Many theorems about curves contain the hypothesis ``non-hyperelliptic," with the corresponding result for hyperelliptic curves arrived at directly by ad hoc methods. Because the methods of this section will not be used in other cases, it could be skipped in first reading
+We met hyperelliptic curves in Chapter 2, and proved there that, in genus $g$, the canonical
+map has image the rational normal curve of degree $g-1$ in $\PP^{g-1}$. We used this to show that every special divisor on a hyperelliptic curve is a sum of divisors in the 
+unique $g^1_2$ plus base points. We will begin this chapter with an explicit construction of hyperelliptic curves and use it to give a very concrete computation of the canonical series, reproving what we did in Chapter 2. Then we will consider the projective embeddings of curves of genus 2 (which are all hyperelliptic) and genus 3.
  
 There will be a further discussion of hyperelliptic curves in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings; the analysis here will cover most of the questions we'll be asking about curves in general in the next four chapters. 
   
  \subsection{The equation of a hyperelliptic curve}
  
-By definition, a hyperelliptic curve $C$ a curve of genus $\geq 2$ admitting a degree two map $\pi : C \to \PP^1$. Because the degree is only 2, each point in $\PP^1$ has either two distinct preimages, or only one, a ramification point. 
+By definition, a hyperelliptic curve $C$ a curve of genus $\geq 2$ admitting a degree two map $\pi : C \to \PP^1$, and we have seen that such a map is unique. Because the degree is only 2, each point in $\PP^1$ has either two distinct preimages, or only one, a ramification point. 
 The ramification index of such a point $p$, defined as 1 less than the length of the fiber $\pi^{-1}(\pi(p)$, is 1, and there can be no higher ramification. Because at all but finitely many points $p \in C$ the map $\pi$ is a local isomorphism (``local" here in the complex analytic/classical or \'etale topology, not the Zariski topology!); at any other point $p \in C$, the map is given in terms of local analytic coordinates on $C$ and $\PP^1$ simply by $z \mapsto z^2$. In particular, both the ramification divisor and the branch divisor (as defined in Chapter~\ref{linear systems chapter}) are reduced. Thus by the Riemann-Hurwitz formula there are exactly $2g+2$ branch points $q_1,\dots,q_{2g+2} \in \PP^1$. These points determine the curve:
   
  
@@ -34,12 +35,8 @@ $$
   It's worth pointing out that $C$ is \emph{not} simply the closure of the affine curve $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$: as you can see from a direct examination of the equation, each of these closures will be singular at the (unique) point at infinity.
   
    The remainder of the proof of Theorem~\ref{hyperelliptic existence} will be done in a more general situation in Section~\ref{branched covers} below.
-   
- \begin{exercise}
-  In the case $g=1$, show that the closure $\overline{C^\circ}$ of $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$ consists of the union of $C^\circ$ with one additional point, with that point a tacnode of $\overline{C^\circ}$ in either case.
-  \end{exercise}
   
-It is also possible to give a projective model of the hyperelliptic curve $C$ with given branch divisor: if we divide the points $q_1,\dots,q_{2g+2} \in \PP^1$ into two sets of $g+1$---say, for example, $q_1,\dots,q_{g+1}$ and $q_{g+2}, \dots, q_{2g+2}$---then $C$ is the closure in $\PP^1 \times \PP^1$ of the  locus
+To give a smooth projective model of the hyperelliptic curve $C$ with given branch divisor, we divide the $2g+2$ branch points  into two sets of $g+1$---say, for example, $q_1,\dots,q_{g+1}$ and $q_{g+2}, \dots, q_{2g+2}$. We can then take $C$ to be the closure in $\PP^1 \times \PP^1$ of the  locus
   $$
   \big\{ (x,y) \in \AA^2 \; \mid \; y^2\prod_{i=1}^{g+1} (x - \lambda_i) = \prod_{i=g+2}^{2g+2} (x - \lambda_i) \big\};
   $$
@@ -47,7 +44,8 @@ It is also possible to give a projective model of the hyperelliptic curve $C$ wi
    $$
   C \; = \; \big\{ (X,Y) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
   $$
-  (No local analysis is needed to see that $C \subset \PP^1 \times \PP^1$ is smooth: it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the formula for the genus of a curve in $\PP^1 \times \PP^1$ derived in Section~\ref{rational quartics section} tells us that such a curve has arithmetic genus $g$.)
+To see that $C \subset \PP^1 \times \PP^1$ is smooth we note that it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the formula for the genus of a curve in $\PP^1 \times \PP^1$ derived in Section~\ref{rational quartics section} tells us that such a curve has arithmetic genus $g$, and thus no singular points.
+\fix{we only stated the genus formula for smooth curves on a surface in Ch 2; needs to be repaired there.}
   
  The map $\iota : C \to C$ that exchanges the two points in each reduced fiber of the map $C \to \PP^1$ and fixes the ramification points is algebraic: in terms of the last representation of $C$, it is given by $([X_0,X_1], [Y_0,Y_1]) \mapsto  ([X_0,X_1], [Y_0,-Y_1]) $). The map $\iota$ is called the \emph{hyperelliptic involution} on $C$.
 
@@ -58,28 +56,21 @@ We can give a very concrete description of the differentials, and thus the canon
 $$
 f(x,y) = y^2 - \prod_{i=1}^{2g+2} (x - \lambda_i).
 $$
-We will again denote the two points at infinity---that is, the two points of $C \setminus C^\circ$ by $r$ and $s$; for convenience, we'll denote the divisor $r+s$ by $D$.
+We will again denote the two points at infinity---that is, the two points of $C \setminus C^\circ$ by $r$ and $s$; for convenience, we'll denote the divisor $r+s$ by $D$. We write $\pi:C \to \PP^1$ for the morphism that, on $C^\circ$, sends $(x,y) \in C$ to $x$.
 
-To start, consider the differential $dx$ on $C$. (Technically, we should write this as $\pi^*dx$, since we mean the pullback to $C$ of the differential $dx$ on $\PP^1$, but for simplicity of notation we'll suppress the $\pi^*$.)  The function $x$ is regular on $C^\circ$, and is a local parameter over points other than the $\lambda_i$; from the local description of the map $\pi$, we see that $dx$ is regular on $C^\circ$  with simple zeros at the ramification points $q_i = (\lambda_i, 0)$. But it does not extend to a regular differential on all of $C$: it will have double poles at $r$ and $s$.  This can be seen directly: the differential $dx$ extends to a rational differential on $\PP^1$, and in terms of the local coordinate $w = 1/x$ around the point $x = \infty$ on $\PP^1$, we have
-$$
-dx = d\left(\frac{1}{w}\right) = \frac{-dw}{w^2}
-$$
-so $dx$ has a double pole at the point at $\infty$; since the map $\pi$ is a local isomorphism near $r$ and $s$ the pullback of $dx$ to $C$ likewise has double poles at the points $r$ and $s$. Thus the canonical
+We can construct a differential form on $C$ by following the proof of the Riemann-Hurwitz Theorem of Chapter~\ref{linear systems chapter}.
+Let $dx$ denote the usual different on $\PP^1$ having a double poll at infinity, and consider $\pi^*dx$ on $C$.  The function $x$ is regular on $C^\circ$, and is a local parameter over points other than the $\lambda_i$; from the local description of the map $\pi$, we see that $\pi^*dx$ is regular on $C^\circ$  with simple zeros at the ramification points $q_i = (\lambda_i, 0)$. Since $dx$ has a double pole at the point at $\infty\in \PP^1$ and $\pi$ is a local isomorphism near $r$ and $s$, the differential $\pi^*dx$ has double poles at the points $r$ and $s$. Thus the canonical
 divisor of $C$ is 
 $$
 K_C \sim (dx) \sim R - 2D,
 $$
-where $R$ denotes the ramification divisor, in this case the sum of the ramification points. 
-This is a special case of the Riemann-Hurwitz of Chapter~\ref{linear systems chapter}.
-
-By the Riemann-Roch Theorem, the degree of $K_C$ is $2g-2$, and this confirms the existence of
-a total of 4 poles of $dx$ at the two points at infinity. By symmetry we see again that each of those point is a double pole.
+where $R$ denotes the ramification divisor, in this case the sum of the ramification points. .
 
 How can we find differentials that are regular everywhere on $C$? If we divide $dx$ by $x^2$ (or any quadratic polynomial in $x$) to kill the poles we  introduce new poles in the finite part $C^\circ$ of $C$. 
 
 Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $q_i$.  A natural choice the reciprocal of the partial derivative $f_y := \partial f/ \partial y = 2y$, which vanishes at the points $q_i$, and has  a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$, and exchanges the points $r$ and $s$). In other words, as long as $g \geq 1$, the differential
 $$
-\omega = \frac{dx}{f_y}
+\omega = \pi^*(\frac{dx}{f_y})
 $$
 is regular, with divisor
 $$
@@ -100,19 +91,6 @@ H^0(K_C) = \langle \omega, x\omega,\dots,x^{g-1}\omega \rangle,
 $$
 we see that the canonical map $\phi : C \to \PP^{g-1}$ is given by $[1,x,\dots,x^{g-1}]$. In other words, the canonical map $\phi$ is  the composition of the map $\pi : C \to \PP^1$ with the Veronese embedding $\PP^1 \hookrightarrow \PP^{g-1}$ of $\PP^1$ into $\PP^{g-1}$ as a rational normal curve of degree $g-1$.
 
-Note that as a consequence of this fact, we see that \emph{a hyperelliptic curve $C$ has a \emph{unique} linear system $g^1_2$ of degree 2 and dimension 1}: the $g^1_2$ is characterized as the complete linear system $|D|$, where $D$ is the sum of any two points mapping to the same point under the canonical map. Equivalently, we see that $C$ admits  a unique map of degree 2 to $\PP^1$. 
-
-Finally, we can give an explicit description of special linear system on a hyperelliptic curve: if $D = \sum p_i$ is any effective divisor on $C$, we can pair up points $p_i$ that are conjugate under the involution $\iota$ exchanging sheets of the degree 2 map $C \to \PP^1$; each conjugate pair is a divisor of the unique $g^1_2$ on $C$, and so we can write
-$$
-D \sim r\cdot g^1_2 + q_1 + \dots + q_{d-2r},
-$$
-where no two of the points $q_i$ are conjugate under $\iota$. Now the geometric form of the Riemann-Roch formula tells us that the dimension $r(D)$ of the complete linear system $|D|$ is exactly $r$, so that in fact 
-$$
-|D| = |r\cdot g^1_2| + q_1 + \dots + q_{d-2r};
-$$
-that is, the points $q_i$ are base points of the linear system $|D|$.
-
-We see in particular that no special linear system on a hyperelliptic curve can be very ample: the map associated to any special system factors through the degree 2 map $C \to \PP^1$. This is in marked contrast to the case of non-hyperelliptic curves of genus $g \geq 3$, for which, as we shall see in Chapter~\ref{BNChapter}, the embeddings of minimal degree in projective space are given by special linear system.
 
    \section{Interlude: branched covers with specified branch divisor}\label{branched covers}
    
@@ -491,6 +469,13 @@ $$
 \cL_1+ \dots +\cL_4 = 2K_C.
 $$
 What this means in the specific case of genus $g=3$ is: \emph{among the 28 bitangents to a smooth plane quartic curve $C$, there will be some subsets of 4 whose eight points of tangency form the intersection of $C$ with a plane conic curve}; if we know the configuration $S^-$, we should be able to say how many. Indeed, the number was first found by Salmon; it is 315.
+
+\section{Exercises}
+ \begin{exercise}
+  In the case $g=1$, show that the closure $\overline{C^\circ}$ of $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$ consists of the union of $C^\circ$ with one additional point, with that point a tacnode of $\overline{C^\circ}$ in either case.
+  \end{exercise}
+
+
 \input footer.tex
 
 

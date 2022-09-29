@@ -20,15 +20,16 @@ By \trr, any linear series $\cL$ of degree $d$ on $C$ has $h^0\cL \geq d+1$, so 
 to conclude that $C\cong \PP^1$.
 \end{proof}
 
-Even images of genus 0 curves must have genus 0:
+Even images of genus 0 curves must have genus 0. The following proof works as well if we replace $\CC$ by any algebraically
+closed field.
 
 \begin{theorem}(\cite{Luroth})\label{Lueroth}
 \begin{enumerate}
 \item If $C\to D$ is a non-constant map of projective curves, then the geometric genus of $C$ must be at least that of $D$.
 In particular, if $C$ has geometric genus 0,  
 then $D$ has geometric genus 0.
- \item If $\CC\subsetneq K \subset \CC(x)$ and $K$ are fields,
-  then $K = \CC(f)$ for some rational function $f$. 
+ \item If $K$ is a field with $\CC \subsetneq K \subset \CC(x)$
+  then $K = \CC(y)$ for some $y \in \CC(x)$. 
 \end{enumerate}
 \end{theorem}
 
@@ -37,32 +38,32 @@ then $D$ has geometric genus 0.
 
 \medbreak
 
-\noindent 2. The second item follows from the first: First, assume that $K$ is finitely generated over $\CC$.
-If $y\in K\setminus \CC$, then $\CC(y)$ has transcendence degree 1 over $C$, so $K$ is
-a finite algebraic extension of $\CC(y)$. By the primitive element theorem(see for example~\cite[Theorem 4.6]{Lang}, we may write $K = \CC(y, g)$ for some 
-element $g$ satisfying a polynomial equation $p(g)=0$ with coefficients in $\CC(y)$. Clearing denominators, we see that
-$\CC(y)$ is the fraction field of the affine ring of a plane curve $D$. Applying part 1, we see that the normalization of $D$
-is $\PP^1$, and thus $\CC(y,y) = \CC(f)$ for some element $f$.
+\noindent 2. The second item follows from the first: 
+Let $x_1\in K\setminus \CC$ so that $\CC(x_1)$ has transcendence degree 1 over $\CC$. Thus $K$ is
+an algebraic extension of $\CC(x_1)$. If $\CC(x_1) \neq K$ we can choose $f\in K\setminus \CC(x_1)$ .
+Since $f$ is algebraic over $\CC(x_1)$, the field $\CC(x_1,f)$ is the field of fractions of a curve $D$.
+ Applying part 1, we see that the normalization of $D$
+is $\PP^1$, and thus $\CC(x_1,f) = \CC(x_2)$ for some element $x_2$.
 
-If $K$ were not finitely generated over $\CC$ then we would have an infinite tower of fields
-$\CC \subsetneq \CC(f_1)\subsetneq \CC(f_1)\dots \subsetneq \CC(f_1) \\subsetneq \CC(x)$.
-Writing $C$ for a copy of  $\PP^1$ with quotient field $\CC(x)$ and $D_i$ for a copy with quotient field
-$\CC(f_i)$, the map $C\to D_1$ factors through the maps $D_i\to D_1$, so they have bounded degree,
-and this bounds the algebraic degree of $\CC(g_i)/\CC(g_1)$, a contradiction.
+Continuing in this way we produce a tower of fields
+$\CC \subsetneq \CC(x_1)\subsetneq \CC(x_2)\cdots \subset K$. Since $\CC(x)$ is finitely generated,
+it has finite degree over $\CC(x_1)$, and this bounds the degree of $\CC(x_i)$ over $\CC(x_1)$.
+Thus the sequence of fields must terminate, and it can only terminate when $\CC(x_i) = K$.
 \end{proof}
  
 \begin{fact}
 The theorem remains true if we replace $\CC$ by any  field; see for example \cite[Section 8.13]{JacobsonII} for a elementary proof.
-There is an analogue for rational surfaces proven by Castelnuovo (see for example \cite[]{Beauville}). 
+There is an analogue for rational surfaces proven by Castelnuovo: every complex surface admitting a surjective
+map from $\PP^2$ is rational (see for example \cite[Corollary V.5]{Beauville}). 
 \end{fact}
 
 \begin{fact}
 Over a non-algebraically closed field, a curve $C$ of genus 0 need not have any points, or any line bundles of odd degree (since the canonical bundle $K_C$ has degree $-2$, there do necessarily exist line bundles of every even degree; thus an arbitrary curve of genus 0 is isomorphic to a conic plane curve). 
 The classification of curves of genus 0 over non-algebraically closed fields is a subject that goes back to Gauss.
 
-Any smooth projective curve of genus 0 over a field $k$ is a \emph{form} of $\PP^1$ in the sense that they become isomorphic after extension
+A smooth projective curve of genus 0 over a field $k$ is a \emph{form} of $\PP^1$ if it becomes isomorphic to $\PP^1$ after extension
 of scalars to
-the algebraic closure $\overline k$. The unique example with $k = \RR$ is the conic $x^2+y^2+z^2 = 0$. 
+the algebraic closure of $k$. The unique example with $k = \RR$ that is not isomorphic over $\RR$ to $\PP^1$is the conic with no $\RR$-rational points, $x^2+y^2+z^2 = 0$. 
 
 Noncommutative algebras enter the subject of forms of of $\PP^1$ (and $\PP^n$ more generally) in a surprising way: The curve $\PP_k^1$ itself may be described as the scheme of left ideals of $k$-vector-space dimension 2 in the ring of
 $2\times 2$ matrices over $k$ (such an ideal can be embedded in the matrix ring as a linear combination of the 2 columns in an appropriate sense). More generally, any scheme that is a form of $\PP^1$ over $k$
@@ -72,13 +73,14 @@ conic $x^2+y^2+z^2 = 0$ with no points over $\RR$ is the scheme of left ideals i
 
 \section{Rational Normal Curves}\label{rational normal curves section}
 
+
 \subsubsection{The equations defining a rational normal curve}
 
 Choosing a basis $s,t$ for the linear forms on $\PP^1$, we can write
 $$
 \phi_d : (s,t) \mapsto (s^d, s^{d-1}t,\dots t^d)
 $$
-from which we see that $C$ lies in the zero locus of the homogeneous quadratic polynomial $z_iz_j - z_kz_l$ for every $i+j=k+l$. As a convenient way to package these, we can realize these forms as the $2\times 2$ minors of the matrix
+from which we see that the image $C$ of $\phi_d$ lies in the zero locus of the homogeneous quadratic polynomial $x_i x_j - x_{i+1}x_{j-1}$ for every $i+j$. We can realize these quadratic forms as the $2\times 2$ minors of the matrix
 $$
 M \; = \; \begin{pmatrix}
 x_0 & x_1 & \dots & x_{d-1} \\
@@ -90,64 +92,70 @@ $$
 H^0(\cO_{\PP^1}(i)) \times H^0(\cO_{\PP^1}(d-i-1)) \to H^0(\cO_{\PP^1}(d));
 $$
 
-It is easy to see that $C$ is set-theoretically defined by the $2\times 2$ minors of $M$. Explicitly, suppose that $p = (x_0,\dots,x_d) \in \PP^d$ is any point, and all the polynomials $Q_{ijkl}$ above vanish at $p$. If $x_0 = 0$, then from the vanishing of 
-$\det \begin{pmatrix}
-x_0 & x_1  \\
-x_1 & x_2 
-\end{pmatrix}$ 
-we see that $x_1 = 0$, and similarly we have $x_2 = \dots = x_{d-1}=0$; this the point $p = (0,\dots,0,1)$, which is a point on the rational normal curve. On the other hand, if $x_0 \neq 0$, set $\lambda = x_1/x_0$; we see in turn that $x_2/x_1 = \dots = x_d/x_{d-1} = \lambda$; thus $p = (1, \lambda, \dots,\lambda^d)$, again a point of the rational normal curve.
+It is easy to see that $C$ is set-theoretically defined by the $2\times 2$ minors of $M$: the affine set $s=1$ in $\PP^1$ maps
+to the affine set $x_0 = 1$ in $\PP^d$, and the affine form of the map is $t \mapsto (t, t^2, \dots, t^d)$. But if $x_1 = t$ then from 
+the equations $x_0x_i = x_1x_{i-1}$ we see successively that $x_i = t^i$; that is, the vanishing of the minors of $M$ at a point $p$
+implies that $p$ lies on $C$.
 
-In fact a much stronger statement is true:
+A much stronger statement is true:
 
-\begin{proposition}\label{RNC generators} The homogeneous ideal of the rational normal curve $C\subset \PP^d$ of degree $d$
- is generated by the $\binom(d,2)$ quadrics that are the
- $2\times 2$ minors of $M$
+\begin{proposition}\label{RNC generators} The homogeneous ideal of the rational normal curve 
+$$
+\PP^1 \rOnto C \subset \PP^d\quad (s,t) \mapsto (s^d, s^{d-1}t, \dots t^d)
+$$ 
+ is generated by the ideal $I$ of
+ $2\times 2$ minors of $M$.
   \end{proposition}
   
+ By way of notation, we write
+ $\CC[s,t]_{(d)}$ for the subring of $\CC[s,t]$ generated by all forms whose degree is a multiple of $d$. 
+ Since any monomial of degree $nd$ is a product of $n$ monomials of degree $d$, the maps
+ $$
+ H^0(\sO_{\PP^d}(n)) \to H^0(\sO_{\PP^1}(nd)) = \CC[s,t]_{nd}
+ $$
+ corresponding to $\phi_d$ is surjective, so $\CC[s,t]_{(d)}$ is the homogeneous coordinate ring of $C$,
+ and the Proposition amounts to saying that $\CC[x_0,\dots, x_d]/I \cong \CC[s,t]_{(d)}$.
+ 
 \begin{proof}
-Let $I\subset \CC[x_0,\dots, x_3]$ be the ideal generated by the $2\times 2$ minors of $M$.
-The ideal $I$ is obviously contained in the kernel of the surjection 
-$$
-\phi: \CC[x_0, \dots, x_3]/I \to \CC[s,t]:\quad x_i\mapsto s^{d-i}t^i
-$$
-and we must show that this is a monomorphism.
+Let $I\subset \CC[x_0,\dots, x_d]$ be the ideal generated by the $2\times 2$ minors of $M$,
+and write ,
+so that $\CC[s,t]_{(d)}$ is the homogeneous coordinate ring of $C$.
 
-If $0<i,j<3$ then 
+As we have seen, $I$ is  contained in the kernel of the surjection 
+$$
+\phi: \CC[x_0, \dots, x_d]/I \rOnto \CC[s,t]_{(d)}:\quad x_i\mapsto s^{d-i}t^i
+$$
+and we must show that this is a monomorphism, or equivalently that the source of $\phi$ in degree $n$ has
+(at most) the same dimension $nd+1$ as the target of $\phi$ in degree $nd$.
+
+If $0<i\leq j<d$ then 
 $$
 x_ix_j = x_{i-1}x_{j+1} \mid \mod I.
 $$
 Thus every monomial in the $x_i$ of degree $t$ is equivalent, modulo $I$, to a monomial of the form
  $$
- x_0^ix_1^{\epsilon_1}\cdots x_{a-1}^{\epsilon_{a-1}}x_a^j\leqno(*)
+ x_0^ax_1^{\epsilon_1}\cdots x_{d-1}^{\epsilon_{d-1}}x_d^b\leqno(*)
  $$
- where each $\epsilon_i$ has the value 0 or 1.
-Under the map $\phi$, these monomials go to distinct elements of $\CC[s,t]$.
- \end{proof}
+ where at most on $\epsilon_i$ is 1, and the rest are 0. There are $n+1$ such elements of degree $n$ with all the $\epsilon_i = 0$
+ and $n(d-1)$ elements with one of the $\epsilon_i = 1$. Thus there are $nd+1$ such elements in all, proving that $\phi$ is
+ an isomorphism.
+  \end{proof}
 
-\begin{fact}
-A generalization of Proposition~\ref{points on rnc} is given, with a proof that is different
-even in our case, in \cite[Proposition 3.19]{Montreal}.  
-\end{fact}
 
 \begin{corollary}\label{forms vanishing on the RNC}
- the dimension the degree $m$ part of the homogeneous ideal is
+The dimension the degree $n$ part of the homogeneous ideal of the rational normal curve of degree $d$ is
 $$
-H^0(\sI_{C/\PP^d}(m)) = \binom{d+m}{m} - (dm+1).
+H^0(\sI_{C/\PP^d}(n)) = \binom{n+d}{n} - (nd+1).
 $$
 and in particular that the $\binom{d}{ 2}$ minors of the matrix $M$ are linearly independent.
 \end{corollary}
 
 \begin{proof}
-The restriction maps
-$$
-H^0(\cO_{\PP^d}(m)) \; \to \; H^0(\cO_{C}(m)) = H^0(\cO_{\PP^1}(dm))
-$$
-are surjective  because every monomial of degree $dm$ on $\PP^1$ is a product of $m$ monomials of degree $d$, and thus
-the homogeneous coordinate ring of the rational normal curve is the space of forms in $\CC[s,t]$ whose degree is a multiple of $d$.
-Comparing dimensions gives the result.
+The homogeneous coordinate ring of the rational normal curve is $\CC[s,t]_{(d)}\subset \CC[s,t]$. Comparing the dimension
+of $\CC[x_0,\dots,x_d]_n$ with the dimension of $\CC[s,t]_{nd}$ gives the result.
 \end{proof}
 
-This property is also extremal:
+The number of quadrics containing the rational normal curve is extremal:
 
 \begin{proposition}\label{rnc on most quadrics}
 If $C \subset \PP^d$ is any irreducible, nondegenerate curve, then
@@ -170,7 +178,7 @@ establishing the desired inequality.
 
 To prove that the equality can be achieved only with the rational normal curve, note that because  $\Gamma\subset \PP^{d-1}$
 is a general hyperplane section, it
-contains a collection of $d$  points $\Gamma'$ that span $\P^{d-1}$. Suppose that $\Gamma$ contained another point $p$.
+contains a collection of $d$  points $\Gamma'$ that span $\PP^{d-1}$. Suppose that $\Gamma$ contained another point $p$.
 It suffices to show that $p$ imposes a nontrivial vanishing condition of quadrics containing $\Gamma'$.
 The intersection of the $d$ hyperplanes in $\PP^{d-1}$ that are spanned by subsets of $d-1$ of the
 points of $\Gamma'$ is empty, so the span of one of these subsets $\Gamma''$ does not contain $p$. The union of 
@@ -178,7 +186,7 @@ the span of $\Gamma''$ with a general hyperplane containing the point $\Gamma' \
 is a quadric containing $\Gamma$ but not $p$, as required. 
 
 Thus, in the case of equality, $\Gamma$ consists of $d$ points, so $\deg C = d$.
-Proposition~\ref{minimal degree curve is rnc} implies that $C$ is the rational normal curve.
+Corollary~\ref{minimal degree curves} implies that $C$ is the rational normal curve.
 \end{proof}
 
 In fact, for each $m$, a rational normal curves lies on more hypersurfaces of each degree $m$ than any other irreducible, nondegenerate curve in $\PP^d$; see Exercise~\ref{extremal m-ics}. 
@@ -197,7 +205,7 @@ invertible sheaf of degree $d$ on $\PP^r$,  we have $\sigma^*\cO_{\PP^r}(d) = \c
 is a rational function with divisor $D$, then $\phi(\alpha) = \alpha\circ \sigma$ has divisor $\sigma^{-1}(D)$, so $\overline\phi^{-1}$ induces $\sigma$ on $\PP^r$. 
 \end{proof}
 
-The rational normal curve $C \subset \PP^r$ can  be characterized among irreducible, nondegenerate curves as the unique projectively homogeneous curve in $\PP^r$ (Corollary~\ref{uninflected curves}.
+The rational normal curve $C \subset \PP^r$ can  be characterized among irreducible, nondegenerate curves as the unique projectively homogeneous curve in $\PP^r$ (Corollary~\ref{uninflected curves}).
 
 \subsubsection{Interpolation for rational normal curves}
 
@@ -215,6 +223,12 @@ z \mapsto \left( \frac{1}{z - \nu_0}, \frac{1}{z - \nu_1} , \dots, \frac{1}{z - 
 $$
 with $\nu_0,\dots,\nu_n$ any distinct scalars. Clearing denominators, we see that the image of such a map is a rational normal curve, and it passes through the $n+1$ coordinate points of $\PP^n$, which are the images of the points $z = \nu_0, \dots, \nu_n \in \PP^1$. Moreover, the image of the point $z = \infty$ at infinity is the point $(1,1, \dots,1)$. Because the points are assumed linearly independent, the $\alpha_i$ must all be nonzero, and thus if we take  $\nu_i = -1/\alpha_i$, the image of the point $z = 0$ is $(\beta_0,\dots,\beta_n)$. This proves existence; we leave uniqueness to Exercise~\ref{Castelnuovo uniqueness}. 
 \end{proof}
+
+\begin{fact}
+A generalization of Proposition~\ref{points on rnc} is given, with a proof that is different
+even in our case, in \cite[Proposition 3.19]{Montreal}.  There is also a version replacing the set of $n+3$ distinct points by a  finite
+scheme of degree $n+3$ satsfying necessary conditions, in \cite{EHLGP}.
+\end{fact}
 
 We remark that for any family of curves in projective space $\PP^r$ (for example, a component of the family of all smooth, irreducible, nondegenerate curves of degree $d$ and genus $g$ in $\PP^r$) and any integer $m$, we can ask whether there exists a curve in the family passing through $m$ given general points of $\PP^r$. This is the only example we know of curves other than complete intersections for which there is a \emph{unique} such curve.
 
