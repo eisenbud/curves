@@ -9,7 +9,10 @@ sections we should expect an invertible sheaf to have. We will answer this in se
 of the story is the Riemann-Roch theorem.
 
 We will henceforward assume that the reader is acquainted with sheaf cohomology, at least sufficiently to write
-$H^i(X, \sF)$ without blushing. Note that if $\sF$ is a sheaf on $X$ and $X\subset Y$ then the cohomology  $H^i(X, \sF) = H^i(Y,\sF)$ canonically, so we will
+$H^i(X, \sF)$ without blushing. If $\sF$ is a sheaf on $X$ and $X\subset Y$ then we will identify $\sF$ with
+the sheaf usually written $\iota_*\sF$, where $\iota:X\to Y$ is the inclusion map,
+ and thus regard $\sF$ on as a sheaf on $Y$ as well.
+The cohomology  $H^i(X, \sF) = H^i(Y,\iota_*\sF)$ canonically, so we will
 simply and unambiguously write $H^i(\sF)$ for either of these. 
 We write $h^i(\sF)$ or (if $D$ is a divisor) $h^{i}(D)$ for $\dim_{\CC}H^i(\sF)$ or $\dim_{\CC}H^i(D)$. 
 
@@ -28,7 +31,7 @@ if $X\subset \PP^m$, then $H^i(\sF(d)) = 0$ for all $i>0$ and $d\gg 0$.\qed
 This is a combination of Theorems \ref{Theorems III.2.7 and III.5.2}{H}, due to Grothendieck and Serre.
 \end{proof}
 
-Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d) = h^0(\sL(d)$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL) = h^0(\sL) - h^1(\sL)$.
+Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d)) = h^0(\sL(d))$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL) = h^0(\sL) - h^1(\sL)$.
 
 \begin{theorem} (Easy Riemann-Roch)\label{easy RR}
 If $C$ is a smooth curve, and $\sL$ is an invertible sheaf on $C$, then $\chi(\sL) = \deg \sL + \chi(\sO_C)$.
@@ -41,7 +44,8 @@ associated to the short exact sequence
 $$
 0\to \sL(-p) \to \sL \to \sL\otimes \kappa(p)\to 0
 $$
-allows us to compute 
+together with the isomorphism $\sL\otimes \kappa(p) \cong \kappa(p)$
+and the vanishing of higher cohomology of a sheaf with zero-dimensional support allows us to compute 
 $$
 \chi(\sL) = \chi(\sL(-p)) + \chi(\kappa(p)) = \chi(\sL(-p)) + 1.
 $$
@@ -71,14 +75,14 @@ On projective space we can compute the canonical sheaf directly; other computati
  The canonical sheaf of $\PP^{r}$ is $\sO_{\PP^{r}}(-r-1)$. 
 \end{theorem}
 \begin{proof}
-Let $x_{0}, \dots, x_{r}$ be the projective coordinates on $\PP^{r}$ and let  $U = \PP^{r}\setminus H$ be the affine open set where $x_{0} \neq 0$. Thus $U \cong \AA^{r}$ with coordinates $z_{1 := }x_{1}/x_{0}, \dots, z_{r}:=x_{r}/x_{0}$. The space of $r$-dimensional differential forms on $U$ is spanned by $d(x_{1}/x_{0})\wedge\cdots\wedge d(x_{r}/x_{0})$, which is regular everywhere in $U$. In view of the formula
+Let $x_{0}, \dots, x_{r}$ be the projective coordinates on $\PP^{r}$ and let  $U = \PP^{r}\setminus H$ be the affine open set where $x_{0} \neq 0$. Thus $U \cong \AA^{r}$ with coordinates $z_{1} := x_{1}/x_{0}, \dots, z_{r}:=x_{r}/x_{0}$. The space of $r$-dimensional differential forms on $U$ is spanned by $d(x_{1}/x_{0})\wedge\cdots\wedge d(x_{r}/x_{0})$, which is regular everywhere in $U$. In view of the formula
 $$
 d\frac{x_{i}}{x_{0}} = \frac{x_{0}dx_{i}-x_{i}dx_{0}}{x_{0}^{2}}
 $$
 we get
 $$
 d(x_{1}/x_{0})\wedge\cdots\wedge d(x_{r}/x_{0}) = \frac{dx_{1}\wedge\cdots\wedge dx_{r}}{x_{0}^{r}}-
-\sum_{i=1}^{r} x_{i} \frac{ dx_{1}\wedge\cdots \wedge \widehat{d_{x_{i}}}\wedge \cdots \wedge dx_{r}}{x_{0}^{r+1}}
+\sum_{i=1}^{r} x_{i} \frac{ dx_{1}\wedge\cdots \wedge \widehat{dx_{i}}\wedge \cdots \wedge dx_{r}}{x_{0}^{r+1}}
 $$
 which has a pole of order $r+1$ along the locus $H$ defined by $x_{0}$. Thus the divisor of this differential form
 is $-(r+1)H$, and this is the canonical class.
@@ -131,8 +135,10 @@ This is \cite[Proposition 8.20]{H}.
 0\to  \sI_{X/Y}\mid_{X} \to \Omega_{Y}\mid _{X} \to \Omega_{X} \to 0
  $$
  where $\Omega_{X}$ is the sheaf of differential forms on $X$ (see \cite[Proposition 16.3]{Eisenbud95}), and
-$ \sI_{X/Y}\mid_{X} = \sO_{Y}(-X)\mid_{X} = \sO_{X}(-X)$. The proposition follows by taking top exterior powers: 
-\begin{lemma}
+$ \sI_{X/Y}\mid_{X} = \sO_{Y}(-X)\mid_{X} = \sO_{X}(-X)$. The proposition follows by taking top exterior powers, 
+as in Lemma~\ref{exterior powers}.\end{proof}
+
+\begin{lemma}\label{exterior powers}
  If 
 \end{lemma}
 $$
@@ -143,10 +149,10 @@ isomorphism
 $$
 \wedge^e\sE \otimes \wedge^g \sG \to \wedge^f\sF.
 $$
-
-We may define a map
+\begin{proof}
+ We may define a map
 $
-\wedge^e\sE \otimes \wedge^g \sG \to \wedge^f\sF.
+\wedge^e\sE \otimes \wedge^g \sG \to \wedge^f\sF
 $
 in terms of local sections as
 $$
@@ -158,6 +164,7 @@ change the exterior product. The map is an isomorphism because locally $\sF = \s
 simply a sum of free modules, and with this
 decomposition the result is obvious.
 \end{proof}
+
 
 \begin{corollary}\label{canonical of plane curve}
 If $C\subset \PP^{2}$ is a smooth plane curve of degree $d$, then $\omega_{C} = \sO_{C}(d-3)$; more generally, if
@@ -198,14 +205,14 @@ $
 Choose a rational 1-form $\omega$ on $X$, and let $\eta = f^*(\omega)$ be its pullback to $C$. For simplicity, we will assume that the zeroes and poles of $\omega$ lie outside the branch divisor $B$, so that $\omega$ will be regular and nonzero at each branch point. (Since we have the freedom to multiply by any rational function on $X$ we can certainly find such a form, and in any event the calculation goes through without this assumption, albeit with more complicated notation.) 
 
 Since the zeroes of $\omega$ lie outside the branch divisor $B$, for every zero of $\omega$ of multiplicity $m$ we have exactly $d$ zeroes of $\eta$, each with multiplicity $m$; and likewise for the poles of $\omega$. Meanwhile, at every point of $B$, the form $\omega$ is regular and nonzero. At a point $p$ where (locally) $f$ has the form $z \mapsto w = z^{e}$
-and $\omega = dw,\ \eta dz$ we have $\eta = z^{e-1}dz$; that is $\eta$ has a zero of multiplicity $\ram(f,p)$ at  $p$.
+and $\omega = dw,$ we have $\eta = z^{e-1}dz$; that is $\eta$ has a zero of multiplicity $\ram(f,p)$ at  $p$.
 Thus the divisor $K_{C}$ of $\eta$ is
 $K_{C} = f^{*}(K_{X})+R$.
 \end{proof}
 
 \begin{example}
-Let $C\subset \PP^2$ be a smooth plane curve and let $p\in \PP^2$ be a general point, with ideal
-sheaf generated by the vector space of linear forms $W = \langle x_0,x_1\rangle$. 
+Let $C\subset \PP^2$ be a smooth plane curve and let $p$ be a general point of $\PP^2$. Suppose that the coordinates on $\PP^2$ are chosen so that the ideal sheaf of $p$ is  
+ generated by the vector space of linear forms $W = \langle x_0,x_1\rangle$. 
 The linear series $(\sO_C(1), W)$ defines the projection of $C$ from $p$ to $\PP^1$, a map of degree
 $d = \deg C$.
 \fix{insert picture}. The canonical sheaf of $\PP^1$ has degree $-2$, so by Hurwitz' theorem
@@ -552,19 +559,17 @@ $$
 \end{corollary}
 
 \begin{proof}
-By Proposition~\ref{sum of linear series}
+If $\cL$ is nonspecial then, since $g=geq d/2 + 1$, we have $r(\cL) = d-g+1\leq d/2$.
+Otherwise we have
 $$
-r(\cL) + r(K_C\otimes \cL^{-1}) \geq r(K_C) = g-1.
+r(K_C\otimes \cL^{-1}) = r(\cL) +g - d - 1
 $$
-By the Riemann-Roch Theorem, we have
+by the Riemann-Roch Theorem,
+and so by Proposition~\ref{sum of linear series}
 $$
-r(K_C\otimes \cL^{-1}) = r(\cL) + g - d - 1
+g-1 = r(K_C)  \geq r(\cL) + r(K_C\otimes \cL^{-1})  \geq 2r(\cL) +g - d-1;
 $$
-so 
-$$
-g = r(K_C) + 1 \geq r(\cL) + r(K_C\otimes \cL^{-1}) + 1 \geq 2r(\cL) +g - d;
-$$
-whence $r(\cL) \leq d/2$.
+hence $r(\cL) \leq d/2$.
 \end{proof}
 
 The usual statement of Clifford's theorem includes a description of when equality can occur:
