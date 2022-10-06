@@ -283,7 +283,7 @@ For proofs see \cite[Theorem III.5.2 and III.7.6]{H}.
 For example we see that if $C$ is a smooth curve then $h^1 (\sO_C) = h^0(K_C) = g(C)$ and thus $\chi(\sO_C) = 1-g(C).$   
 Using this we can recast the Easy Riemann-Roch theorem above in a more useful form. 
 
-\begin{theorem} (Riemann-Roch)
+\begin{theorem} (Riemann-Roch)\label{RR theorem}
 If $D$ is any divisor on $C$, then 
 $$
 h^0(D) - h^0(K_C -D) = \deg D - g(C) +1.
@@ -367,6 +367,40 @@ By Theorem~\ref{Serre vanishing} we have $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $
  
 The Riemann-Roch formula does \emph{not} give us a formula for the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such divisors $D$ are called \emph{special divisors}. The existence or non-existence of divisors $D$ with given $h^{0}(D)$ and $h^{1}(D)$ often serves to distinguish one curve from another, and will be an important part of our study.
 
+\subsection{Residues, and a complex-analytic argument for the Riemann-Roch theorem.}
+
+We remarked in Chapter~\ref{} that a smooth projective curve over $\CC$ is the same thing as a compact Riemann surface. In this section, we'll adopt the complex analytic viewpoint, and give an explanation of the Riemann-Roch theorem  (Theorem~\ref{RR theorem}).
+
+The fundamental notion here is the \emph{residue} of a meromorphic 1-form on a Riemann surface $X$. If $\phi$ is a meromorphic differential with a pole at a point $p \in X$, then we can find a disc $\Delta \subset X$ containing $p$ and in which $\phi$ is holomorphic except for its pole at $p$; we define the residue ${\rm Res}_p(\phi)$ to be $1/2\pi i$ times the integral of $\phi$ along a loop in $\Delta$ having winding number 1 with respect to $p$; equivalently, if $z$ is a local coordinate on $\Delta$ zero at $p$ and we write the differential $\phi$ as
+$$
+\phi = \sum_{n=-N}^\infty a_nz^n dz
+$$
+then the residue of $\phi$ at $p$ is simply the coefficient $a_{-1}$. The key fact about residues is that if $\phi$ is a meromorphic differential on a compact Riemann surface $X$, then \emph{the sum of the residues of $\phi$ is 0}; this follows from applying Stokes' theorem to the complement of the union of small discs around each of the poles of $\phi$.
+
+Now, suppose we are given an effective  divisor $D$ on $X$; for notational simplicity we'll assume that $D$ is reduced; that is, $D = p_1 + \dots + p_d$ with $p_1,\dots, p_d \in X$ distinct. We want to know how many meromorphic functions there are on $X$ that are holomorphic on $X \setminus \{p_1,\dots, p_d\}$ and have at most a simple pole at each $p_i$. The first thing to note is that, by the maximum principle, such a function is determined up to the addition of a constant by its polar parts at the points $p_i$; thus we have immediately that $h^0(D) \leq d+1$.
+
+The question now is, when are a given collection $a_1,\dots,a_d \in \CC$ the polar parts of a global meromorphic function $f$ on $X$? We have to begin with a necessary condition: if $\phi \in H^0(K)$ is any global holomorphic differential on $X$, then we must have
+$$
+\sum {\rm Res}_{p_i}(f \cdot \phi) = 0.
+$$
+This represents $g$ linear relations on the polar parts of $f$. Of course, they may not be all linearly independent relations; if $\phi$ is a holomorphic differential vanishing at all the points $p_i$ the corresponding relation is trivial. Thus the number of linearly independent relations on the polar parts of $f$ is actually $g - h^0(K-D)$; and we arrive at an inequality
+$$
+h^0(D) \leq d + 1 - g + h^0(K-D).
+$$
+
+Again, this is a priori only an inequality; we have no assurance that a collection of polar parts satisfying the linear relations found in this way will actually be the polar parts of a global meromorphic function. But now suppose we apply the same logic to the divisor class $K-D$: we arrive at the inequality
+
+\begin{align*}
+h^0(K-D) &\leq \deg(K-D) + 1 - g + h^0(K - (K-D)) \\
+& = 2g - 2 - d + 1 - g  + h^0(D) \\
+&= g - d - 1 + h^0(D)
+\end{align*}
+
+Now, adding up our two inequalities we arrive at
+$$
+h^0(D) + h^0(K-D) \leq h^0(D) + h^0(K-D).
+$$
+Since the sum of our two inequalities is an equality, we conclude that equality must hold in each; this is the Riemann-Roch formula.
 
 \subsection{Arithmetic genus and geometric genus}
 In this section, we'll deal with a  curve $C_0$ that is reduced and irreducible, but not necessarily smooth.
