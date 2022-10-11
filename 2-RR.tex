@@ -369,17 +369,17 @@ The Riemann-Roch formula does \emph{not} give us a formula for the dimension $h^
 
 \subsection{Residues, and a complex-analytic argument for the Riemann-Roch theorem.}\label{RR by residues}
 
-We remarked at the beginning of Chapter~\ref{linear series} that a smooth projective curve over $\CC$ is the same thing as a compact Riemann surface. In this section, we'll adopt the complex analytic viewpoint, and give an explanation of the Riemann-Roch theorem  (Theorem~\ref{RR theorem}). We will use the fact that meromorphic functions on a Riemann surface are exactly the rational functions on the corresponding
-algebraic curve. Thus the Riemann-Roch theorem is equivalent to the statement:
+We remarked at the beginning of Chapter~\ref{linear series} that a smooth projective curve over $\CC$ is the same thing as a compact Riemann surface. In this section, we'll adopt the complex analytic viewpoint, and give an explanation of the Riemann-Roch theorem  (Theorem~\ref{RR theorem}) in a special case. We will use the fact that meromorphic functions on a Riemann surface are exactly the rational functions on the corresponding
+algebraic curve. We will prove:
 
 \begin{theorem}
-Let $X$ be a compact Riemann surface of genus $g$, and let $D = \sum a_i p_i$ be a divisor ($=$ formal sum of points $p_i$ with integral coefficients $a_i$) of degree $d:= \sum a_i$ on $X$.
+Let $X$ be a compact Riemann surface of genus $g$, and let $D = \sum a_i p_i$ be an effective divisor ($=$ formal sum of points $p_i$ with integral coefficients $a_i\geq 0$) of degree $d:= \sum a_i$ on $X$, and suppose that $K-D$ is also effective for some canonical divisor $K$.
 The dimension of the space $L(D)$ of meromorphic functions on $X$ with poles of order $a\leq a_i$ at $p_i$ and no other poles, is
-$d-g+1$ plus the number of holomorphic differential forms vanishing on each $p_i$ to order at least $a_i$.
+$d-g+1$ plus $L(K-D)$, the number of holomorphic differential forms vanishing on each $p_i$ to order at least $a_i$. 
 \end{theorem}
 
-We will prove this using residues, supposing for simplicity that both $D$ and $K-D$ are reduced ( $a_i=\pm 1$ for all $i$), for some
-canonical divisor $K$.
+We will prove this using residues, under the additional assumption that  $D$ and $K-D$ are both effective (that is, $D$ is both effective and \emph{special} in the sense that there are nonzero functions
+both in $L(D)$ and in $L(K-D)$.)
 
 Recall that the \emph{residue} of a meromorphic 1-form $\phi$ at a pont $p$ on $X$ is defined by an integral: choose a disc $\Delta \subset X$ containing $p$ and in which $\phi$ is holomorphic except for its pole at $p$. The residue ${\rm Res}_p(\phi)$ is $\frac{1}{2\pi i}$ times the integral of $\phi$ along the boundary of $\Delta$. If $z$ is a local coordinate on $\Delta$ zero at $p$ and we write the differential $\phi$ as
 $$
@@ -396,11 +396,9 @@ then by Cauchy's formula, the residue of $\phi$ at $p$ is the coefficient $a_{-1
 Apply Stokes' theorem to the complement of the union of small discs around each of the poles of $\phi$.
 \end{proof}
 
-Given a reduced, effective divisor  $D = p_1 + \dots + p_d$ on $X$ we will prove the Riemann-Roch formula for the dimension of the space of meromorphic functions on $X$ that are holomorphic on $X \setminus \{p_1,\dots, p_d\}$ and have at most a simple pole at each $p_i$. 
-
-Locally, a function with a simple pole at $p$ may be written in terms of a local coordinate $z$ at $p$ as $c_{-1}z^{-1} +\sum_{i=0}^\infty c_iz^i$;
-the term $c_{-1}$ is called its \emph{polar part}.
-By the maximum principle, a meromorphic function with poles only at the $p_i$ is determined, up to the addition of a constant, by its polar parts at the points $p_i$; thus we have $\dim L(D) \leq d+1$.
+Let  $D = \sum_{i=1}^s a_ip_i$ be an effective divisor on $X$, and set $d = \sum a_i =: \deg D$. Locally, a function with a pole of order at most $a_i$ at $p$ may be written in terms of a local coordinate $z$ at $p$ as $\sum_{i=-a_i}^infty c_{i}z^{i} $;
+the sum $\sum_{i=-a_i}^{-1} c_{i}z^{i}$ is called its \emph{polar part}.
+By the maximum principle, a meromorphic function in $L(D)$ is determined, up to the addition of a constant, by its polar parts at the points $p_i$;. Thus we have $\dim L(D) \leq d+1$.
 
 When is a given collection $c_1,\dots,c_d \in \CC$ the polar parts of a global meromorphic function $f$ on $X$? A necessary condition
 is that if $\phi \in L(K)$ is a holomorphic differential on $X$, then
@@ -413,8 +411,7 @@ $$
 \dim L(D) \leq d + 1 - g + \dim L(K-D).
 $$
 
-This is a priori only an inequality. But we can apply the same logic to a divisor $K-D$, where we assume for simplicity
-that this is again reduced, and we see that
+This is a priori only an inequality. But we can apply the same logic to an effective divisor $K-D$, and we see that
 \begin{align*}
 \dim L(K-D) &\leq \deg(K-D) + 1 - g + L(K - (K-D)) \\
 & = 2g - 2 - d + 1 - g  + L(D) \\
@@ -425,7 +422,8 @@ Adding the two inequalities we have
 $$
 L(D) + L(K-D) \leq L(D) + L(K-D).
 $$
-Since the sum of the inequalities is an equality, we conclude that each inequality is also an equality; this is the Riemann-Roch formula.
+Since the sum of the inequalities is an equality, we conclude that each inequality is also an equality; this is the Riemann-Roch formula
+in our special case.
 
 \subsection{Arithmetic genus and geometric genus}
 In this section, we'll deal with a  curve $C_0$ that is reduced and irreducible, but not necessarily smooth.
