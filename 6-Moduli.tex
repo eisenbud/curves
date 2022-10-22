@@ -10,17 +10,18 @@ are in natural one-to-one correspondence with the forms of degree $d$ up to (non
 of 
 $\PP^{\binom{d+2}{2}} = \PP(H^0(\sO_{\PP^2}(d)))$.
 Perhaps this is the origin of the impulse in algebraic geometry to make 
- \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll try to systematize this, giving a general framework for the notion of moduli space, introducing the main examples that we will treat in this book and their desirable or undesirable properties.
+ \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll give a general framework for the notion of moduli space, introducing the main examples that we will treat in this book and their desirable and undesirable properties.
 
 In modern terms, a \emph{moduli problem} is a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common atrributes---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
-which associates to each scheme $B$ the set of families of the given sort. As usual, some examples will make this somewhat vague notion more real. In each case, we'll discuss the notion as it applies to curves.
+which associates to each scheme $B$ the set of families of the given sort. Examples make this vague notion more real. In each case, we'll discuss the case relevant to curves.
 
 \subsection{Examples}
-
-These instances of moduli problems we'll encounter in this book:
+\fix{I'd like to reorder this chapter in order of difficulty: eff divisors, line bundles, Hilbert scheme, $M_g$; and postpone the discussion of the coarse moduli space until the $M_g$ section, perhaps adding some more details about GIT.}
 
 \begin{enumerate}\label{list of moduli problems}
-\item \emph{Curves of genus $g$}. The objects are simply (isomorphism classes of) smooth, projective curves of genus $g$. A \emph{family of curves of genus $g$} over $B$ is a smooth, projective morphism $f : \cC \to B$ whose fibers are  curves of genus $g$, and we identify two such families $f, f'$ if there is a commutative diagram
+\item \emph{Curves of genus $g$}. The objects are (isomorphism classes of) smooth, projective curves of genus $g$. A \emph{family of curves of genus $g$} over $B$ is an isomorphism class of smooth, projective morphism $f : \cC \to B$ whose fibers are  smooth curves of genus $g$. Here two such morphisms $f, f'$
+are \emph{isomorphic} if there is an isomorphism from the source of one to the source
+of the other given a commutative diagram:
 $$
 \begin{diagram}
 \cC && \rTo^\cong && \cC'\\
@@ -32,10 +33,10 @@ $$
 \item \emph{Curves of given degree $d$ and genus $g$ in $\PP^r$}. The objects are subschemes $C \subset \PP^r$ of degree $d$, isomorphic to smooth, projective curves of genus $g$. A family of such curves over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$.
 
 \item \emph{Effective divisors on a given curve}. The objects are divisors of degree $d$ on a given smooth, projective curve $C$. A family of such divisors is a subscheme $\cD \subset B \times C$, flat of relative degree $d$ over $B$. Here we are using
-the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ subschemes of the curve.
+the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ subschemes of the curve. We have already discussed this example in Section~\ref{symmetric section}.
 
 \item \emph{Line bundles on a given curve}. The objects are line bundles of degree $d$ on a given smooth, projective curve $C$. A family of line bundles over $B$ is a line bundle $\cL$ on $B \times C$, whose restriction to each fiber of $B \times C$ over $B$ has degree $d$. Here we usually identify two families $\cL$ and $\cL'$ on $B \times C$ if $\cL$ and $\cL'$ differ by a line
-bundle pulled back from $B$.
+bundle pulled back from $B$. We have already discussed this example in Section~\ref{Picard section}.
 
 \end{enumerate}
 
@@ -58,13 +59,25 @@ This can be expressed more abstractly but more succinctly by saying that there i
 $\{ B \mapsto$ families of $X$ over $B \} \cong \{ B\mapsto \rm{Mor}_{\rm Schemes}(B, M) \}.$
 }
 
-If $M$ is a fine moduli space then the identity map $M\to M$ corresponds to the ``universal family'' $\phi: \cX \to M$. The proof of the equivalence of the two formulations is Yoneda's Lemma. An advantage to this approach is that a fine moduli space
-is obviously unique up to unique isomorphism: given two avatars $M,M'$ of the fine moduli space of a given moduli problem,
-the universal family on $M$ corresponds to a map $M\to M'$, and we similarly produce a map $M'\to M$. The pullback of the universal family on $M$ by the composition of these two maps is again the universal family, so the composition is the identity map by uniqueness.
+If $M$ is a fine moduli space then the identity map $M\to M$ corresponds to the ``universal family'' $\phi: \cX \to M$. The proof of the equivalence of the two formulations is Yoneda's Lemma 
+\fix{The Yoneda's Lemma that I learned says 
+$$
+Hom_{funct}(Hom_{Schemes}( -, X), F) = F(X)
+$$ Thus any map of a representable functor to the functor of families corresponds to a family. 
+But the proof of the isomorphism we want is direct: it's built into the definition you give of the
+universal family.}
 
-Such fine moduli spaces don't exist for all the moduli problems one might wish to treat; and indeed no fine
+If a moduli space and it's universal family exist, then it is unique up to unique isomorphism: given two avatars $M,M'$ of the fine moduli space of a given moduli problem,
+the universal family on $M$ corresponds to a map $M\to M'$, and we similarly produce a map $M'\to M$. The pullback of the universal family on $M$ by the composition of these two maps is again the universal family, so the composition is the identity map.
+
+However, some moduli problems do not admit fine moduli spaces; of the examples above,
+the first does not, Such fine moduli spaces don't always exist for all the moduli problems one might wish to treat; and indeed no fine
 moduli space exists in the case of what is perhaps the most important one above, the moduli space of
-smooth curves.  There are two essentially equivalent ways out of this problem that sometimes work:
+smooth curves.  
+\fix{ the reader will want to know *why* a fine $M_g$ doesn't exist. This needs some talk about
+the tangent space/local problem and the automorphisms of the versal deformation space, I think.}
+
+There are two essentially equivalent ways out of this problem that sometimes work:
 
 First, we can weaken the definition and only requires a bijection between families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$ after finite base change. A \emph{coarse moduli space} $M$ is a space such that for every family  $\cC$ over $B$ 
 of the appropriate type there is a morphism $\phi_\cC : B \to M$ such that:
@@ -82,6 +95,10 @@ a stack $M$ and replace morphisms in the category of schemes with morphisms to a
 The moduli problem for smooth curves does have a coarse moduli space called $M_g$, to which we now turn.
 
 \section{$M_g$}
+
+\fix{ we should explain something of 
+the problem with invariants of infinite groups -- that there aren't enough of them -- and say something
+about GIT. This was actually promised when we discussed finite group quotients in Chapter 4. It might be most natural to do this with the elliptic curve example below, if we know enough to do it correctly. Since the Moduli space construction depends on the Hilbert scheme construction, this is also a reason to do that first; and then treat the elliptic curves as the simplest nontrivial example (except of course that it isn't the pluricanonical embedding.}
 
 The space $M_g$ parametrizing isomorphism classes of smooth projective curves of genus $g$---Example 1 of ~\ref{list of moduli problems}---is at the heart of the mystery that is algebraic curves. 
 Algebraic geometers of the 19th century were certainly aware that, while every smooth projective curve of genus 0 was isomorphic to the Riemann sphere, in  genus 1 and higher there are continuously varying families of non-isomorphic curves. 
@@ -105,19 +122,45 @@ with $a, b$ and $c$ general scalars.
 
 There are similarly ad-hoc ways of describing the moduli spaces $M_g$ for other small values of $g$. For example, in genus 3 we've seen that a non-hyperelliptic curve of genus 3 is embeddable as a smooth plane quartic curve $C \subset \PP^2$. Now, the space of all quartic curves is a projective space $\PP^{14}$, and---because every isomorphism between these curves extends to the whole plane---the subset of smooth curves is an open subset $U \subset \PP^{14}$. Moreover, the group $PGL_3$ of automorphisms of $\PP^2$ acts on this open set $U$, and  the moduli of (nonhyperelliptic) curves of genus 3 is --at lease set-theoretically--the quotient $U/PGL_3$.
 
-This is bogus in several respects: apart from the fact that we're excluding hyperelliptic curves, a much more serious issue is that we're taking the quotient of a variety by the positive-dimensional group $PGL_3$; and while the quotient of a variety by a finite group is always a variety, quotients by positive-dimensional groups may not be (think of $\CC^*$ acting on $\CC$ by scalar multiplication: as a topological space, the quotient has two points, one in the closure of the other. \fix{but the reader wants to know whether THIS quotient is a variety, or not!} Nonetheless, it does two things:
+These constructions exhibit a typical pattern: one first chooses some data that forms a scheme, subject to a group of automorphisms whose orbits correspond to the objects one wants to parametrize. In the cases where the group is finite, or the stabilizers of points are sufficiently nice, the quotient may be a fine moduli space, as in the case of effective divisors, above. But even in very simple cases, this may not work.
 
-One, it may serve to convince us that $M_3$ is irreducible of dimension $14-8 = 6$; and
+A rather trivial example of how this fails is given by the action of the multiplicative group $\CC^*$ on $\CC^1$, the
+affine line. There are only two orbits: one consisting of the point zero, and the other containing all nonzero points. It would thus seem natural to think that the moduli space of such points would be the disjoint union of two points. But this doesn't reflect the existence of a family, represented by the 
+identity map $\CC^1 \to \CC^1$, in which the nonzero point ``degenerates" to the zero point. Thus the moduli "space" should be an object with two points, one in the closure of the other---evidently not a scheme. The relevant ring of invariants, $\CC = \CC[x]^{\CC^*} is no use: it suggests that the quotient should be a single point (and indeed this is the best approximation among schemes).
 
-Two, it allows us to write down explicitly a ``general curve of genus 3:" this is just the curve in $\PP^2$ given by
+A much more interesting example is the classification of square matrices under the action of conjugation by an invertible matrix. As every undergraduate learns, the equivalence classes are characterized by Jordan normal forms; but the invariant polynomials on the ring of matrices are just the coefficients of the characteristic polynomial, and these distinguish only the eigenvalues. (This example is discussed further in an informative way by Mumford in \cite{Mumford-Oslo}.)
+
+In the case of curves, the data we can produce is typically a point in some projective variety together with a group of automorphisms of the projective space. Thus, for example, taking the embedding by the complete linear series $|dK|$, the $d$-th multiple of the canonical series, all smooth curves of genus $g\geq 2$ can be represented as the points of an open subscheme of the Hilbert scheme $H$ of subschemes of $\PP^{d(2g-2)-g}$ whose Hilbert polynomial is $p(t) = (d(2g-2))t+1-g$, with group action given by
+$G := PGL(d(2g-2)-g+1)$. If the group action had been finite, we would have chosen a finite cover of $H$ by invariant open affine sets, and glued together the schemes corresponding to their rings of invariants. In this case we don't have that option: the group doesn't even act naturally on the homogeneous coordinate ring
+of $H$. 
+
+In his famous monograph on ``Geometric Invariant Theory" \cite{GIT}, Mumford established a paradigm for dealing with this problem: one \emph{chooses} a lifting of the action of $PGL(5g-5)$ on $\PP^{5g-6}$, called a \emph{linearization}, and then looks at the ring of invariant homogeneous forms. Although rings of invariants of infinite groups may fail to be finitely generated, it turns out that this does not occur for the classical groups such as the general linear group, so the ring of invariants can, in this case, be
+thought of as corresponding to a projective scheme, and there is a map from $H$
+to this scheme. In general this map is one-to-one only on an open subset, called the set of 
+\emph{stable} points; and cannot be defined in a way that preserves the topology (or the maps from families) outside a slightly larger subset called the set of 
+semi-stable points. 
+
+Thus one must look for good embeddings and linearizations for which the objects one cares about---in our case perhaps the smooth curves---become stable points, and this is actually attained by choosing the multiple $d$ in the sketch above sufficiently large -- at least 5. It turns out that the 
+set of \emph{stable} curves (always of genus $\geq 2$) is then a little larger: it includes all curves with finite automorphism groups, which can be characterized as those reduced connected curves with only ordinary double points as singularities and such that any component isomorphic to $\PP^1$ meets at least three other components. In recent times people have looked at other embeddings and linearizations, leading to a different set of stable curves; see for example \cite{Schubert} and \cite{Hassett} \fix{or Smythe?}
+
+%This is bogus in several respects: apart from the fact that we're excluding hyperelliptic curves, a much more serious issue is that we're taking the quotient of a variety by the positive-dimensional group $PGL_3$; and while the quotient of a variety by a finite group is always a variety, quotients by positive-dimensional groups may not be (think of $\CC^*$ acting on $\CC$ by scalar multiplication: as a topological space, the quotient has two points, one in the closure of the other. \fix{but the reader wants to know whether THIS quotient is a variety, or not!} Nonetheless, it does two things:
+
+Even without going into details, the construction outlined above does two useful things:
+
+It shows that $M_g$ is irreducible of dimension $3g-3$; and
+
+Two, it allows us to ask questions about a ``general curve of genus 3". In particular, we may ask whether
+$M_g$ could be rationally parametrized, so that we could write down a general curve, defined over
+a field of rational functions (that is, whether $M_g$ is a rational or perhaps only a \emph{unirational} variety, or something more complicated). In this case of genus 3, for example, the general curve
+of genus 3 is a plane quartic  in $\PP^2$ with equation
 $$
 \sum_{i+j+k = 4} a_{i,j,k} X^iY^jZ^k = 0
 $$
-with $a_{i,j,k}$ general scalars.
+defined over $ $a_{i,j,k}$ general scalars.
 
 \subsection{The Deligne-Mumford paper}
 
-Though mathematicians had long accepted the idea, born of such examples, that $M_g$ would be some sort of algebraic variety, the first rigorous proof did not come until 1969, with the publication of the landmark paper \cite{Deligne-Mumford}. Two results in that paper fundamentally altered the landscape of curve theory:
+Though Riemann already (correctly) calculated the dimension of the moduli space $M_g$ as a real variety by heuristic arguments (as we did in preceding chapters), carrying out the programme outlined above for smooth curves turned out to be quite difficult. The first rigorous treatment came only in 1969, with the publication of the landmark paper \cite{Deligne-Mumford}. Two results in that paper fundamentally altered the landscape of curve theory:
 
 First, they gave a precise, rigorous construction of the moduli space $M_g$ for any $g \geq 2$ (showing in particular that it was a coarse moduli space, but that no fine moduli space can exist in the category of schemes. They also proved the existence of a fine moduli \emph{ stack} $\cM_g$.). Second, they gave a modular compactification of $M_g$ (described in Section~\ref{compactifying Mg}), denoted $\overline M_g$. 
 
@@ -268,6 +311,12 @@ and solving we see again that $\dim M_g = 3g-3$.
 Like the Hurwitz space, the Severi variety $V_{d,g}$ is irreducible for all $d$ and $g\leq \binom{d-1}{2}$, and this could be used to prove that $M_g$ is irreducible for all $g$. However it is not so easy to prove irreducibility of the Severi variety\footnote{The second author of the current volume owes his current employment to this fact.}; the fastest way to prove irreducibility of $M_g$ (in characteristic 0, at least) is still via the Hurwitz spaces.
 
 \section{Hilbert schemes}\label{hilbert scheme section}
+
+\fix{Here's a "fix" from Ch 15: Add a section on basics of the Hilbert scheme explaining why Hilbert schemes; the universal property; and the tangent space **I think this should go in Chapter 6---we should have a ``cast of characters" section there, where we introduce all the moduli spaces we'll be dealing with**}
+
+\fix{citations to add: Constructions: Grothendieck Fonde;ments; \cite[Section IV]{Grothendieck19571962}; Mumford \cite[Chapter 15]{Mumford1966}, curves on an alg surface; Homogeneous Hilbert Schemes
+\cite{MR2361849}; Iarrobino~\cite{Iarrobino1985} and/or other work on punctual Hilbert schemes. \cite{BayerThesis}, Ramkumar \cite{fiber-full} 
+}
 
 The Hilbert scheme $\cH_{d,g,r}$ parametrizes curves of given degree and arithmetic genus in $\PP^r$. For $r>2$, the theory is much more complicated.  Even if we restrict out attention to  what we might call the ``small Hilbert scheme"---the open subset corresponding to smooth, irreducible and nondegenerate curves---Hilbert schemes are truly wild. Locally, they can have arbitrarily bad singularities \cite{MR2227692}, at least for $r>3$. Furthermore, they can have many irreducible components---no one knows how many in general---of many different dimensions. We will give some nice examples, and some not-so-nice, in Chapters~\ref{HilbertSchemesChapter} and \ref{HilbertSchemesCounterexamplesChapter}.
 
