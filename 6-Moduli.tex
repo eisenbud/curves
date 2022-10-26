@@ -5,38 +5,39 @@
 
 \section{What is a moduli problem?}
 
-Affine plane curves, the original objects studied by algebraic geometry, come naturally in a family: the projective plane curves of degree $d$, with their embedding
+Plane curves, the original objects studied by algebraic geometry, come naturally in a family: the projective plane curves of degree $d$, with their embedding
 are in natural one-to-one correspondence with the forms of degree $d$ modulo the group of nonzero scalars---that is, with the points of the dual of the projective space
-$\PP^{\binom{d+2}{2}-1} = \PP(H^0(\sO_{\PP^2}(d)))$.
+$ \PP(H^0(\sO_{\PP^2}(d)))=\PP^{\binom{d+2}{2}-1} $.
 Perhaps this is the origin of the impulse in algebraic geometry to make 
  \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll give a general framework for the notion of moduli space, introducing the main examples that we will treat in this book and their desirable and undesirable properties.
 
-In modern terms, a \emph{moduli problem} is a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common atrributes---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
-which associates to each scheme $B$ the set of families of the given sort. Examples make this vague notion more real. In each case, we'll discuss the case relevant to curves.
+In modern terms, a \emph{moduli problem} is a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common attributes---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
+which associates to each scheme $B$ the set of families of the given sort. Examples will make this vague notion more concrete. In each case, we'll discuss some cases relevant to curves.
 
 \subsection{Examples}
 
-
 \begin{enumerate}\label{list of moduli problems}
 
-\item \emph{Effective divisors on a given curve}. The objects are divisors of degree $d$ on a given smooth, projective curve $C$. A family of such divisors is a subscheme $\cD \subset B \times C$, flat of relative degree $d$ over $B$. Here we are using
+\item \emph{Effective divisors on a given curve}. The objects are divisors of degree $d$ on a given smooth, projective curve $C$. A family of such divisors is a subscheme $\cD \subset B \times C$, flat of degree $d$ over $B$. Here we are using
 the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ subschemes of the curve. The result is the symmetric power $C_d$, discussed in Section~\ref{symmetric section}.
 
-\item \emph{Line bundles on a given curve}. The objects are line bundles of degree $d$ on a given smooth, projective curve $C$. A family of line bundles over $B$ is a line bundle $\cL$ on $B \times C$, whose restriction to each fiber of $B \times C$ over $B$ has degree $d$. Here we identify two families $\cL$ and $\cL'$ on $B \times C$ if $\cL$ and $\cL'$ differ by a line
+\item \emph{Line bundles on a given curve}. The objects are line bundles of degree $d$ on a given smooth projective curve $C$. A family of line bundles over $B$ is a line bundle $\cL$ on $B \times C$, whose restriction to each fiber of $B \times C$ over $B$ has degree $d$. Here we identify two families $\cL$ and $\cL'$ on $B \times C$ if $\cL$ and $\cL'$ differ by a line
 bundle pulled back from $B$. The result is the Jacobian and Picard varieties, discussed in Section~\ref{Picard section}.
 
-\item \emph{Hurwitz spaces: curves with a map to $\PP^1$} The objects here are smooth curves
-together with surjective morphisms to $\PP^1$, often with specified ramification indices.
+\item \emph{Hurwitz spaces}. The objects are curves of a given genus, together maps to $\PP^1$ of given degree, often with specified ramification indices. 
+%\fix{what's the equivalence relation? Does this really
+%fit into moduli problems? If so let's say it. Same question for Severi varieties.}
 
-\item \emph{Severi varieties: curves with a birational embedding in $\PP^2$}. The objects here are plane curves
-of given degree and \emph{geometric} genus. Thus typically the curves are singular, but are
+\item \emph{Severi varieties}. The objects are plane curves
+of given degree and geometric genus. Thus for most degrees and genera,
+the curves will all be singular, but are often
 constrained to have only mild singularities, usually only ordinary nodes.
 
-\item \emph{Hilbert schemes: Curves of given degree $d$ and genus $g$ in $\PP^r$}. The objects are subschemes $C \subset \PP^r$ of degree $d$, isomorphic to smooth, projective curves of genus $g$. A family of such curves over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$. The result is the Hilbert scheme, which we will discuss below; and we will look at two variants, the Hurwitz and Severi schemes as well.
+\item \emph{Hilbert schemes}. The objects are curves of given degree $d$ and arithmetic genus $g$ in $\PP^r$.  A family of such curves over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$. The result is the Hilbert scheme.
 
 \item \emph{Moduli of smooth curves of genus $g$}. The objects are (isomorphism classes of) smooth, projective curves of genus $g$. A \emph{family of curves of genus $g$} over $B$ is an isomorphism class of smooth, projective morphism $f : \cC \to B$ whose fibers are  smooth curves of genus $g$. Here two such morphisms $f, f'$
-are \emph{isomorphic} if there is an isomorphism from the source of one to the source
-of the other given a commutative diagram:
+are \emph{isomorphic} if there is an isomorphism from the source of $f$ to the source
+of $f'$ making the diagram
 $$
 \begin{diagram}
 \cC && \rTo^\cong && \cC'\\
@@ -44,12 +45,12 @@ $$
 &&B
 \end{diagram}
 $$
-
+commutative.
 \end{enumerate}
+Examples 3--6 will be discussed in the remaining sections of this Chapter; we will give further examples of Hilbert Schemes in the last two chapters of this book.
 
 \section{What is a solution to a moduli problem?}
 
-The elements of the situation represent a natural generalization of what we saw in the case of the symmetric product and the Jacobian:
 Given a moduli problem, we want to construct a scheme $M$ whose closed points are in natural  1-to-1 correspondence with the objects we're trying to parametrize. The word \emph{natural} appearing in that last sentence is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere a bijection between the points of $M$ and the objects to be parametrized is useless.
 
 What we really want from a moduli space $M$ is to understand \emph{all} the possible families of the objects it classifies; thus it is natural to ask their to be a \emph{universal} family $\phi: \cX\to M$ of these objects over $M$,
@@ -71,13 +72,16 @@ will be discussed at length at the end of this chapter.
 
 \section{Hurwitz Spaces}
 
-It is hard to specify an abstract curve. It is much easier if the curve $C$ comes to us with some additional structure, such as a map to projective space.
-%; for example, if the map is a birational embedding, we can specify the curve just by specifying a set of polynomial equations cutting  out the image. 
+It is hard to specify an abstract curve. It is much easier if the curve $C$ comes to us with some additional structure, such as a map to projective space
 
-For example, we can look at pairs $(C,f)$ where $f : C \to \PP^1$ is a branched cover of degree $d$; this yields various Hurwitz spaces.
+In the case of the Hurwitz spaces, we consider pairs $(C,f)$ where $C$ is a smooth curve of genus $g$ and
+ $f : C \to \PP^1$ is a branched cover of degree $d$, possibly with some further restrictions.
 %Also, we can look at pairs $(C,f)$ where $f : C \to \PP^2$ is a birational embedding of $C$ as a plane curve of degree $d$, yielding the Severi varieties (Section~\ref{severi variety}). These spaces are more readily described and better-behaved than the moduli space $M_g$ of abstract curves, or the Hilbert schemes $\cH$ of curves in higher-dimensional space. They have been useful in proving theorems about $M_g$ and $\cH$.
 %
-To describe the simplest of these, fix integers $d \geq 2$ and $g \geq 0$. By the \emph{small Hurwitz space} $\cH^\circ_{d,g}$ we will mean a space parametrizing simply branched covers $f : C \to \PP^1$ of degree $d$, with $C$ a smooth projective curve of genus $g$. Here ``simply branched" means that every fiber  either is reduced---that is, consists of $d$ reduced points---or consists of one double point and $d-2$ reduced points. If a map $f : C \to \PP^1$ is simply branched, then Hurwitz' Theorem~\ref{Hurwitz} implies that the branch divisor $B \subset \PP^1$ of the map will consist of $b = 2d+2g-2$ distinct points in $\PP^1$
+To describe the simplest setting, we fix integers $d \geq 2$ and $g \geq 0$. By the \emph{small Hurwitz space} $\cH^\circ_{d,g}$ we will mean a space parametrizing simply branched covers $f : C \to \PP^1$ of degree $d$, with $C$ a smooth projective curve of genus $g$. Here ``simply branched" means that every fiber  either is reduced---that is, consists of $d$ reduced points---or consists of one double point and $d-2$ reduced points. If a map $f : C \to \PP^1$ is simply branched, then Hurwitz' Theorem~\ref{Hurwitz} implies that the branch divisor $B \subset \PP^1$ of the map consists of $b = 2d+2g-2$ distinct points in $\PP^1$
+
+\fix{What's the equivalence relation? Does this and the Severi and variety actually fit into the moduli mold? If not, maybe this whole chapter should be "Moduli and other Parameter spaces"? If so,
+let's set the terms for the moduli problem and answer the question: Is $\cH^\circ_{d,g}$ a fine moduli space?}
 
 It is easiest to understand $\cH^\circ_{d,g}$ if we work over $\CC$ and use the classical topology. Since an effective divisor on $\PP^1$ is given by a homogeneous polynomial $F \in H^0(\cO_{\PP^1}(b))$, the space of all effective divisors is $(\PP^1)_b \cong \PP^b$, and the locus of reduced divisors---divisors consisting of $b$ distinct points---is an open subset $U \subset \PP^b$.
 %\fix{The hurwitz spaces section is all about $\cH^\circ_{d,g}$. Maybe we should say something about $\cH_{d,g}$ .}
@@ -102,13 +106,15 @@ Over $\CC$, we can describe a branched cover concretely: if we make a collection
 
 Note that the sequence $\tau_1, \tau_2, \dots, \tau_b \in S_d$ is determined by the cover $f : C \to \PP^1$ up to simultaneous conjugation in $S_d$: we can revise our labelling of the sheets, which has the effect of conjugating all the $\tau_i$ by the relabelling permutation. Conversely, any such sequence of transpositions determines a connected $d$-sheeted covering of the complement
 of the branch points, and a complex structure is determined by the fact that the covering map is a local isomorphism. One can analytically add patches of the form $z \mapsto z^2$ at the branch points to complete
-the covering to be a branched covering of $\PP^1$ by a (compact, connected) Riemann surface. It is a nontrivial result  that every  compact complex 1-manifold can be given a unique structure as algebraic curve, but is easier in this case since the covering map is already a meromorphic function.
+the covering to be a branched covering of $\PP^1$ by a (compact, connected) Riemann surface. 
 
 Thus the map $\alpha : \cH^\circ_{d,g} \to U$ is a finite covering space, which gives us a picture of the local geometry of $\cH^\circ_{d,g}$. 
-The degrees of the covering spaces $\alpha : \cH^\circ_{d,g} \to U$ are what are called \emph{Hurwitz numbers}; they arise in many contexts, and in many cases, they can be calculated \cite{Graber-Vakil}. Clebsch, Hurwitz and others analyzed the monodromy of the cover $\alpha : \cH^\circ_{d,g} \to U$, and showed that it is transitive, proving that $\cH^\circ_{d,g}$ is irreducible for all $d$ and $g$ and hence, since $\cH^\circ_{d,g}$ dominates $M_g$ for $d \gg g$, that $M_g$ is irreducible for all $g$. (Because of the reliance on the classical topology, this argument only works in characteristric 0).
+The degree of the covering space $\alpha : \cH^\circ_{d,g} \to U$ is called a \emph{Hurwitz numbers}, These arise in many contexts, and many have been calculated \cite{Graber-Vakil}. Clebsch, Hurwitz and others analyzed the monodromy of the cover $\alpha : \cH^\circ_{d,g} \to U$, and showed that it is transitive, proving that $\cH^\circ_{d,g}$ is irreducible for all $d$ and $g$ and hence, since $\cH^\circ_{d,g}$ dominates $M_g$ for $d \gg g$, that $M_g$ is irreducible for all $g$. (Because of the reliance on the classical topology, this argument only works in characteristric 0). 
+%\fix{The statement that high degree Hurwitz dominates moduli needs some
+%unpacking: existence of good projections or $g+2$ theorem, the fact that $M_g$ is not a fine modul space... .}
 
-
-The Hurwitz spaces also give us a way to estimate the dimension of the moduli space $M_g$. Since $\cH_{d,g}$ is a finite-sheeted cover of an open subset $U \subset \PP^b$, it has dimension  $b = 2d+2g-2$. To find the dimension of $M_g$, we can choose $d \gg g$ (so that $\cH_{d,g}$ dominates $M_g$), and estimate the dimension of the fibers of $\cH_{d,g}$ over $M_g$.
+The Hurwitz spaces also give us a way to estimate the dimension of the moduli space $M_g$. Since $\cH_{d,g}$ is a finite-sheeted cover of an open subset $U \subset \PP^b$, it has dimension  $b = 2d+2g-2$. 
+To find the dimension of $M_g$, we can choose $d \gg g$ (so that $\cH_{d,g}$ dominates $M_g$), and estimate the dimension of the fibers of $\cH_{d,g}$ over $M_g$.
 
 To do this, fix a curve $C$. To specify a map $f : C \to \PP^1$ we have to specify first a line bundle $L$ of degree $d$ on $C$ ($g$ parameters, as described in Chapter~\ref{new Jacobians chapter}. We then have to specify a pair of sections of $L$ (up to multiplying the pair by a scalar). By the Riemann-Roch Theorem, $h^0(L) = d-g+1$, so to specify a pair of sections (mod scalars) is $2(d-g+1)-1$ parameters. Altogether, we have
 $$
@@ -119,6 +125,7 @@ $$
 \dim M_g \; = \; 3g-3.
 $$
 
+\fix{DE rev to here 10/26}
 \section{Severi varieties}
 
 %\fix{this material is partly repeated in the plane curves chapter. Especially if this chapter comes early, we could leave it here, and 
@@ -192,7 +199,7 @@ identity map $\CC^1 \to \CC^1$, in which the nonzero point ``degenerates" to the
 %\fix{say: because maps are given by regular functions, the map to the moduli space would have
 %have to factor through the invariants}
 
-A much more interesting example is the classification of square matrices under the action of conjugation by an invertible matrix. As every undergraduate learns, the equivalence classes are characterized by Jordan normal forms; but the invariant polynomials on the ring of matrices are just the coefficients of the characteristic polynomial, and these distinguish only the eigenvalues. (This example is discussed further in an informative way by Mumford in \cite{Mumford-Oslo}.)
+A much more interesting example is the classification of square matrices under the action of conjugation by an invertible matrix. As every undergraduate learns, the equivalence classes are characterized by Jordan normal forms; but the invariant polynomials on the ring of matrices are just the coefficients of the characteristic polynomial, and these distinguish only the eigenvalues. (This example is discussed further in an informative way by Mumford in \cite{Mumford-Suominen}.)
 
 In the case of curves, the data we can produce is typically a point in some quasiprojective variety together with a group of automorphisms of the projective space. Thus, for example, taking the embedding by the complete linear series $|dK|$, the $d$-th multiple of the canonical series, all smooth curves of genus $g\geq 2$ can be represented as the points of an open subscheme of the Hilbert scheme $H$ of subschemes of $\PP^{d(2g-2)-g}$ whose Hilbert polynomial is $p(t) = (d(2g-2))t+1-g$, with group action given by
 $G := PGL(d(2g-2)-g+1)$. If the group action had been finite, we would have chosen a finite cover of $H$ by invariant open affine sets, and glued together the schemes corresponding to their rings of invariants. In this case we don't have that option: the group doesn't even act naturally on the homogeneous coordinate ring
@@ -206,17 +213,18 @@ semi-stable points, and with these the image of the objects parameterized fill t
 defined by the ring of invariants.
 
 
-Thus one must look for good embeddings and linearizations for which the objects one cares about---in our case perhaps the smooth curves---become stable points, and this is actually attained by choosing the multiple $d$ in the sketch above sufficiently large. 
-%\fix{to take into account...: look up D\&M}. 
+Thus one must look for good embeddings and linearizations for which the objects one cares about---in our case perhaps the smooth curves---become stable points, and this is attained by choosing the multiple $d=3$ in the sketch above sufficiently large. 
+%\fix{to take into account...: D\&M use the tricanonical embedding.}. 
 It turns out that the 
-set of \emph{stable} curves (always of genus $\geq 2$) is then a little larger: it includes all curves with finite automorphism groups, which can be characterized as those reduced connected curves with only ordinary double points as singularities and such that any component isomorphic to $\PP^1$ meets at least three other components. In recent times people have looked at other embeddings and linearizations, leading to a different set of stable curves; see for example \cite{Schubert} and \cite{Hassett} 
+set of \emph{stable} curves (always of genus $\geq 2$) is then a little larger: it includes all curves with finite automorphism groups, which can be characterized as those reduced connected curves with only ordinary double points as singularities and such that any component isomorphic to $\PP^1$ meets at least three other components. In recent times people have looked at other embeddings and linearizations, leading to a different set of stable curves; see for example \cite{SchubertCompactification},\cite{Hassett1}
+and \cite{Hassett2}
 %\fix{or Smythe?}
 
 %This is bogus in several respects: apart from the fact that we're excluding hyperelliptic curves, a much more serious issue is that we're taking the quotient of a variety by the positive-dimensional group $PGL_3$; and while the quotient of a variety by a finite group is always a variety, quotients by positive-dimensional groups may not be (think of $\CC^*$ acting on $\CC$ by scalar multiplication: as a topological space, the quotient has two points, one in the closure of the other. \fix{but the reader wants to know whether THIS quotient is a variety, or not!} Nonetheless, it does two things:
 
 \subsection{Coarse moduli spaces vs. fine moduli stacks}
 
-Apart from the technical difficulties of constructing a moduli space of curves, it is a fundamental fact that \emph{a fine moduli space for smooth projective curves of genus $g$ does not exist}: in other words, the moduli functor, associating to a scheme $B$ the set of families of smooth projective curves over $B$ is simply noit representable in the category of schemes. (A summary of the reasons for this may be found in~\cite{Geometry of Schemes}.)
+Apart from the technical difficulties of constructing a moduli space of curves, it is a fundamental fact that \emph{a fine moduli space for smooth projective curves of genus $g$ does not exist}: in other words, the moduli functor, associating to a scheme $B$ the set of families of smooth projective curves over $B$ is simply noit representable in the category of schemes. (A summary of the reasons for this may be found in~\cite{GeomSchemes}.)
 There are two essentially equivalent ways out of this problem that sometimes work:
 
 First, we can weaken the definition and only require a bijection between families $\cC$ over $B$ and the set of morphisms $\phi_\cC : B \to M$ after finite base change. A \emph{coarse moduli space} $M$ is a space such that for every family  $\cC$ over $B$ 
@@ -229,7 +237,7 @@ of the appropriate type there is a morphism $\phi_\cC : B \to M$ such that:
 
 A careful argument shows that a coarse moduli space, if it exists, is also uniquely defined, by the moduli problem it solves.
 
-An alternative approach to this problem is to enlarge the category of schemes to the category of  \emph{stacks}, where in fact a fine moduli space for curves of genus $g$ does exist. This is the approach taken by Deligne and Mumford in~\cite{DM}. The type of stack they introduce---now called \emph{Deligne-Mumford stacks}---have associated coarse moduli spaces, so their approach actually produces both.
+An alternative approach to this problem is to enlarge the category of schemes to the category of  \emph{stacks}, where in fact a fine moduli space for curves of genus $g$ does exist. This is the approach taken by Deligne and Mumford in~\cite{Deligne-Mumford}. The type of stack they introduce---now called \emph{Deligne-Mumford stacks}---have associated coarse moduli spaces, so their approach actually produces both.
 
 %and look for
 %a stack $M$ and replace morphisms in the category of schemes with morphisms to a stack. For this approach see~\cite{Deligne-Mumford}. 
