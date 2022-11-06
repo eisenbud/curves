@@ -401,7 +401,7 @@ Thus $W^r_d(C)$ is closed in $Jac(C)$, and is thus an algebraic variety, so     
 
 We can also introduce the corresponding subvarieties of the symmetric products $C_d$: the preimage $\mu^{-1}(W^r_d) \subset C_d$ parametrizes effective divisors $D$ with $r(D) \geq r$, and is denoted $C^r_d$.
 
-\fix{$\mu$ is being used with source $\Pic$ and also source $C_d$. we should probably distinguish.}
+%\fix{$\mu$ is being used with source $\Pic$ and also source $C_d$. we should probably distinguish.}
 
 The set $W^r_d(C)$ can be given the structure of a fine moduli space representing the functor of families of invertible sheaves with $r+1$ or more sections (that is, the functor that associates to a scheme $B$ the set of invertible sheaves $\cL$ on $B \times C$ such that the pushforward $(\pi_2)_*\cL$ has a locally free subsheaf of rank $r+1$ over every curvilinear subscheme of $B$, as always modulo tensoring with pullbacks of invertible sheaves on $B$). We will later see examples of curves $C$ genus 4 that suggest that the scheme $W^1_3(C)$ is non-reduced, and  curves $C$ of genus 6 suggesting that the scheme $W^1_4(C)$ is non-reduced (in fact isomorphic to $\Spec \CC[\epsilon]/(\epsilon^5)$). For a definition of the scheme structure, see~\cite[Section IV.3]{ACGH}. 
 
@@ -437,19 +437,28 @@ so $W^1_3$ is isomorphic to $C$. Thus $C_{3}$ is the blow-up of $J(C)$ along the
 
 \section{Martens' theorem}
 
-What is the dimension of ?  Clifford's Theorem says that if $d\leq 2g-2$ and $r \geq d/2$ then the set
- $W^r_d(C)$ is empty. Since $W^r_d(C)$ is a variety, we can strengthen this by bounding its dimension.
+Clifford's Theorem says that if $d\leq 2g-2$ and $2r>d$ then the set
+ $W^r_d(C)$ is empty. If $0\leq r\leq d-g$ then $W^r_d$ contains all  $\sL\in Pic_d(C)$ with $h^1(\sL) = 0$, 
+ and since this condition is open in $Pic_d(C)$, we have $\dim W^r_d = g$.
+ 
+ Martens' Theorem bounds the dimension of $W^r_d(C)$ in the remaining cases, $d/2 \geq r > d-g$:
  
 \begin{theorem}[Martens' theorem]\cite{Martens}
-If $C$ is a smooth projective curve of genus $g$ and $d\leq 2g-2$  then
+Let $C$ be a smooth projective curve of genus $g$. If $d/2 \geq r > d-g$, then 
 $$
 \dim(W^r_d(C)) \leq d-2r;
 $$
-moreover, equality holds for some $0\leq r \leq d/2$ if and only if $d=2g-2, r= g-1$ or
-$d=r=0$ or $C$ is hyperelliptic; and in this last case, equality holds for all $r\leq d/2$.
+moreover, equality holds for some $r$ in this range if and only if $d=2g-2$ and $r= g-1$ (in which case $W^r_d = \{omega_C\}$) or
+$d=r=0$ (in which case $W^r_d = \{\sO_C\}$) or $C$ is hyperelliptic. In the last case, equality holds for all $d$ and $r$ with $d\geq 2r > 2(d-g)$.
 \end{theorem}
 
-We will prove the inequality here, postponing the rest to Theorem~\ref{full Martens}, which we prove as a corollary of the uniform position theorem. Here we need only a weaker general position result. Given 
+The listed cases of equality are easy to verify: for example the condition $r>d-g$ implies that $W^r_d$ consists of special line bundles, and
+on a hyperelliptic curve Corollary~\ref{special on hyperelliptic} shows that such sheaves with $r(\sL) = s$ can be written $\sL_0^{\otimes s}(p_1+\cdots + p_{d-2s})$, where
+$\sL_0$ is the unique $\g^1_2$ on $C$ and the $p_i$ are base points---a family of dimension $d-2s$.
+
+We will prove the inequality here, postponing the proof that only hyperelliptic curves achieve equality nontriviallyl to Theorem~\ref{full Martens}, which we prove as a corollary of the strong general position result Theorem~\ref{uniform position}. For the inequality we need only a weaker general result:
+
+Given 
 a smooth curve $C \subset \PP^n$, we write $\Sigma^r_d \subset C_d$ for the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$. This is a closed condition, so
 $\Sigma^r_d$ is an algebraic subset.
 
@@ -461,51 +470,43 @@ $$
 \end{lemma}
 
 \begin{proof}
-Let $C^d$ be the Cartesian product and $\alpha : C^d \to C_d$ the quotient map; let $\Phi^r_d = \alpha^{-1}(\Sigma^r_d)$. Since the fibers of $\alpha$ are finite, the lemma is equivalent to the assertion that $\dim \Phi^r_d \leq d-r$; that is,  $\Phi^r_d$ has codimension $\geq r$ in $C^d$.
-%We do induction on $r$, the case $r= 0$ expressing the fact that since $C$ is nondegenerate
-%and $d\leq n$, a general set of $d$ points on $C$ is linearly independent.
-%
-%Consider the incidence correspondence 
-%$$
-%X := \{(D,\Lambda)\subset C_d\times Gr(d-r-1, \PP^n) \mid D\subset \Lambda\}
-%$$
-%where $Gr(d-r-1, \PP^n)$ is the set of $d-r-1$-planes in $\PP^n$.
-%For each $s\geq 0$ the fiber of $X$ over a point where $\overline D$ has dimension exactly
-%$d-r-1-s$ is $s$-dimensional. 
-%\fix{I presume this is supposed to be the fiber of $X$ over a point $D\in C_d$
-%where $\overline D$ has dimension exactly
-%$d-r-1-s$. But isn't this is isomorphic to the Grassmannian of $s-1$ dimensional spaces in $\PP^{n-(d-r-1-s-1}$,
-%which is a lot larger than $s$-dimensional. What am I missing??}
-%
-%By induction this set has dimension $\leq d-r-s$,
-%so $X$ has dimension at most $d-r$. Since the projection $X\to \Sigma^r_d$ is surjective,
-%$\dim \Sigma^r_d\leq d-r$ as well.
-%
-Let $\pi : C^d \to C^{d-r}$ on the first $d-r$ factors.
-\fix{I don't understand the following}
-We will proceed by induction on $d$. A general $(d-r)$-tuple of points on the curve are linearly independent, so the general fiber of the restriction $\pi_\Phi : \Phi \to C^{d-r}$ is finite \fix{ I think it's empty!}. By  induction, we may assume that the locus of $(d-r)$-tuples of points on $C$ that span only a $(d-r-1-s)$-plane has codimension at least $s$ in $C^{d-r}$. Since the fibers over this locus have dimension $s$, we conclude that $\dim \Phi \leq d-r$.
+Since $\Sigma^0_d = C^d$, the conclusion is immediate for $r=0$.
 
+Suppose that  $D\in \Sigma^r_d$ with $r>0$. The plane
+$\Lambda$ spanned by $D$ is already spanned by some divisor  $D' := D -p$ of degree $d-1$, 
+obtained by subtracting one point that is in the support of $D$.
+It follows that for points $q\notin \Lambda \cap C$, the divisor $q+D'$ spans a plane of dimension $d-r$, and thus $D$ is in the closure of the set of divisors
+$$
+\{q+D' \mid q\notin \Lambda \cap C.
+$$
+From this we see that $\Sigma^r_d$ is in the closure of  $\Sigma^{r-1}_d$. It follows that the sequence
+$$
+\dim \Sigma^0_d, \dim \Sigma^1_d,\dots, \dim \Sigma^r_d
+$$ 
+is strictly decreasing, and thus $\dim \Sigma^r_d \leq d-r$ as claimed.
 \end{proof}
 
 
-\begin{proof}[Proof of Martens' inequality]
+\begin{proof}[Proof of Martens' inequality] Since we have assumed $r>d-g$, the set $W^r_d$ contains only  sheaves.
+ $\sL$ with $h^1(\sL)\neq 0$. For such sheaves there is a one-to-one 
+correspondence $\sL \to \omega_C\otimes \sL^{-1}$ inducing an isomorphism
+$$
+\{\sL \in W^r_d(C) \mid h^1(\sL) \neq 0 \}= \{\sL \in W^{g-1-d+r}_{2g-2-d} \mid h^1(\sL) \neq 0 \}%W^{g-1-d+r}_{2g-2-d}.
+$$
 Since
-$$
-W^r_d(C) = K_C - W^{g-1-d+r}_{2g-2-d}
-$$
-and
 $$
 2g-2-d - 2(g-1-d+r) = d-2r,
 $$
 it will suffice to prove the theorem in case $d \leq g-1$.
 
 Let $C^r_d\subset C_d$ be the preimage of $W^r_d(C)$. Since the fibers of $C^r_d$ over points of
-$W^r_d$ have dimension at least $r$, Marten's inequality will follow from the corresponding inequality
+$W^r_d$ have dimension at least $r$, Marten's inequality will follow from the inequality
 $$
 \dim C^r_d \; \leq \; d-r.
 $$
-By the Geometric Riemann-Roch theorem~\ref{geometric RR}, $D\in C^r_d$ if and only if
-$\dim \overline{\phi_K(D)}\leq d-r-1$, so by  Lemma~\ref{elementary secant plane lemma} the set of such $D$ has dimension $\leq d-r$, as required.
+Let $\phi_K: C\to \PP^g-1$ be the canonical map. By the Geometric Riemann-Roch theorem~\ref{geometric RR}, $r(D) = \deg D -1 -\dim\overline{\phi_K(D)}$, 
+so $D\in C^r_d$ if and only if
+$\dim \overline{\phi_K(D)}\leq d-r-1$. Since $d\leq g-1$ we may apply  Lemma~\ref{elementary secant plane lemma}, showing that the set of such $D$ has dimension $\leq d-r$, as required.
 \end{proof}
 
 
@@ -515,7 +516,7 @@ W^r_d(C) \supset W_{d-2r}(C) + \mu(rD).
 $$
 In fact this is an equality by~\ref{special on hyperelliptic}). Since $W_{d-2r}(C)$ has dimension $d-2r$, we see that Martens' theorem is sharp. 
 
-There are extensions of Martens' theorem to the cases $\dim(W^r_d(C)) < d-2r$ in \cite{Mumford-Prym1} \cite{Keem},
+There are extensions of Martens' theorem showing that $\dim(W^r_d(C)) < d-2r$ in certain cases; see for example \cite{Mumford-Prym1} \cite{Keem},
 and \cite{Coppens}.
 
 \section{Exercises}
