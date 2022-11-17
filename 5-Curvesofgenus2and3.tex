@@ -474,15 +474,15 @@ For any positive integer $n$,
 \begin{enumerate}
 \item 
 $$
-\sum_{k=0}^n \binom{2n}{2k} \; = \; 2^{2n-1}
+\sum_{k=0}^n \binom{2n}{2k} \; = \; \sum_{k=0}^{n-1} \binom{2n}{2k+1} \; = \; 2^{2n-1}
 $$
 \item 
 $$
-\sum_{k=0}^n \binom{4n}{4k} = 2^{4n-2} - 2^{2n-1} \quad \text{and} \quad \sum_{k=0}^{n-1} \binom{4n}{4k+2} = 2^{4n-2} + 2^{2n-1}
+\sum_{k=0}^n \binom{4n}{4k} = 2^{4n-2}  + (-1)^n 2^{2n-1} \quad \text{and} \quad \sum_{k=0}^{n-1} \binom{4n}{4k+2} = 2^{4n-2} - (-1)^n  2^{2n-1}
 $$
 \item 
 $$
-\sum_{k=0}^n \binom{4n+2}{4k+1} = 2^{4n} - 2^{2n} \quad \text{and} \quad \sum_{k=0}^{n} \binom{4n}{4k+2} = 2^{4n} + 2^{2n}
+\sum_{k=0}^n \binom{4n+2}{4k+1} = 2^{4n} + (-1)^n 2^{2n} \quad \text{and} \quad \sum_{k=0}^{n-1} \binom{4n}{4k+3} = 2^{4n} - (-1)^n  2^{2n}
 $$
 \end{enumerate}
 \end{lemma}
@@ -494,7 +494,25 @@ $$
 $$
 and taking the sum and the difference of these two equations yields the desired result.
 
-The second and third follow similarly by applying the binomial theorem to the expression $(1 + i)^{4n} = (-1)^n2^{2n}$ and taking the real and imaginary parts
+The second  follows similarly by applying the binomial theorem to the expression $(1 + i)^{4n} = (-1)^n2^{2n}$. Equating the real parts, we have
+$$
+\sum_{k=0}^n \binom{4n}{4k} - \sum_{k=0}^{n-1} \binom{4n}{4k+2} = (-1)^n2^{2n}
+$$
+while by the first part of the lemma we have
+$$
+\sum_{k=0}^n \binom{4n}{4k} + \sum_{k=0}^{n-1} \binom{4n}{4k+2} = 2^{4n-1};
+$$
+taking the sum and difference of these two equations yields the desired formula.
+
+Finally, for the third we apply the binomial theorem to the expression $(1 + i)^{4n+2} = (-1)^n2^{2n+1}i$. Equating the imaginary parts, this gives
+$$
+\sum_{k=0}^n \binom{4n+2}{4k+1} - \sum_{k=0}^{n-1} \binom{4n+2}{4k+3} \; = \; (-1)^n2^{2n+1}
+$$
+whereas by the first part of the lemma,
+$$
+\sum_{k=0}^n \binom{4n+2}{4k+1} + \sum_{k=0}^{n-1} \binom{4n+2}{4k+3} \; = \; (-1)^n 2^{4n+1}
+$$
+and as before taking the sum and difference of these two yields the result.
 \end{proof}
 
 Now, let $C$ be the hyperelliptic curve of genus $g$ expressed as a 2-sheeted cover of $\PP^1$, with ramification points $p_1,\dots,p_{2g+2}$. We can count the number of theta characteristics on $C$ explicitly as follows:
