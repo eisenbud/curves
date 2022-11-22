@@ -46,7 +46,7 @@ To see that $C \subset \PP^1 \times \PP^1$ is smooth we note that it is a curve 
   
  The map $\iota : C \to C$ that exchanges the two points in each reduced fiber of the map $C \to \PP^1$ and fixes the ramification points is algebraic: in terms of the last representation of $C$, it is given by $([X_0,X_1], [Y_0,Y_1]) \mapsto  ([X_0,X_1], [Y_0,-Y_1]) $). The map $\iota$ is called the \emph{hyperelliptic involution} on $C$.
 
-  \subsection{Differentials on a hyperelliptic curve}
+  \subsection{Differentials on a hyperelliptic curve}\label{hyperelliptic differentials}
 
 We can give a pleasantly concrete description of the differentials, and thus the canonical linear system, on a hyperelliptic curve $C$ by working with the affine model $C^\circ = V(f) \subset \AA^2$, where
 $$
@@ -58,13 +58,13 @@ We can construct a differential form on $C$ by following the proof of Hurwitz' T
 Let $dx$ denote the usual different on $\PP^1$ having a double poll at infinity, and consider $\pi^*dx$ on $C$.  The function $x$ is regular on $C^\circ$, and is a local parameter over points other than the $\lambda_i$; from the local description of the map $\pi$, we see that $\pi^*dx$ is regular on $C^\circ$  with simple zeros at the ramification points $q_i = (\lambda_i, 0)$. Since $dx$ has a double pole at the point at $\infty\in \PP^1$ and $\pi$ is a local isomorphism near $r$ and $s$, the differential $\pi^*dx$ has double poles at the points $r$ and $s$. Thus the canonical
 divisor of $C$ is 
 $$
-K_C \sim (dx) \sim R - 2D,
+(*) \qquad K_C \sim (dx) \sim R - 2D,
 $$
 where $R$ denotes the ramification divisor, in this case the sum of the ramification points. .
 
 How can we find differentials that are regular everywhere on $C$? If we divide $dx$ by $x^2$ (or any quadratic polynomial in $x$) to kill the poles we  introduce new poles in the finite part $C^\circ$ of $C$. 
 
-Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but \emph{whose poles occur only at the points where $dx$ has zeroes}---that is, the points $q_i$.  A natural choice the reciprocal of the partial derivative $f_y := \partial f/ \partial y = 2y$, which vanishes at the points $q_i$, and has  a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$, and exchanges the points $r$ and $s$). In other words, as long as $g \geq 1$, the differential
+Instead, we want to multiply $dx$ by a rational function with zeros at $p$ and $q$, but whose poles occur only at the points where $dx$ has zeroes---that is, the points $q_i$.  A natural choice the reciprocal of the partial derivative $f_y := \partial f/ \partial y = 2y$, which vanishes at the points $q_i$, and has  a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$, and exchanges the points $r$ and $s$). In other words, as long as $g \geq 1$, the differential
 $$
 \omega = \pi^*(\frac{dx}{f_y})
 $$
@@ -540,7 +540,43 @@ $$
 and as before taking the sum and difference of these two yields the result.
 \end{proof}
 
-Now, let $C$ be the hyperelliptic curve of genus $g$ expressed as a 2-sheeted cover of $\PP^1$, with ramification points $p_1,\dots,p_{2g+2}$. We can count the number of theta characteristics on $C$ explicitly as follows:
+We will count the number of theta characteristics on a hyperelliptic curve in terms of sums of subsets of the ramification points, so we need to know what linear equivalences exist among sums of these subsets:
+
+\begin{lemma}\label{ramification point relations}
+Let $C$ be the hyperelliptic curve of genus $g$ expressed as a 2-sheeted cover of $\PP^1$ with ramification points $p_1,\dots,p_{2g+2}$. The divisor class of
+ any half of the ramification points is equal to the divisor class of the other half, but there are no
+ smaller relations. More precisely,
+ let $I_1,I_2$ be subsets of $\{1,\dots 2g+2\}$
+set 
+$$
+D_i = \sum_{j\in I_i} p_j.
+$$
+The divisors $D_1,D_2$ are linearly equivalent if and only they
+have the same cardinality and $I_1\cup I_2 = \{1,\dots, 2g+2\}$.\end{lemma}
+
+\begin{proof}
+Subtracting whatever points $D_1$ and $D_2$ have in common we may suppose
+that $I_1\cap I_2 = \emptyset$. If $D_1\sim D_2$, it follows at once that they have the same degree, $d\leq g+1$, and we must show that either $d=0$ or $d=g+1$.
+
+We have $D_1\sim D_2$ iff $D_1+D_2\equiv 2D_1$. If
+$d\leq g$ we have $r(2D_1) = d$: for $d<g$ this is
+the extremal case of Clifford's Theorem, while for $d = g$ this follows simply from the 
+Riemann-Roch formula. Thus every divisor in $|2D_1|$ is a sum of $d$ fibers of the 
+2 to 1 map of $C$ to $\PP^1$, and for such a divisor to be a sum of distinct points $p_i$
+must be 0.
+
+Now suppose that $d=g+1$, so that $D_1+D_2 = \sum_{j=1}^{2g+2}p_i$. Recall from equation
+$(*)$ in Section~\ref{hyperelliptic differentials} that the canonical class on $C$ is
+equivalent to $\sum_{i=1}^{2g+2}p_i-2p -2q$, where $p+q$ is a fiber of the 2 to 1 map
+from $C$ to $\PP^1$. We deduce
+$$
+D_1+D_2 = K_C+2\g^1_2 = (g+1)\g^1_2 = 2D_1,
+$$
+concluding the argument.
+\end{proof}
+
+
+Returning to the counting, let $C$ be the hyperelliptic curve of genus $g$ expressed as a 2-sheeted cover of $\PP^1$, with ramification points $p_1,\dots,p_{2g+2}$. 
 
 First of all, if we denote the class of the unique $g^1_2$ on $C$ by $E$, and $D$ is any theta characteristic, then $D+E$ will be effective, and so we can write
 $$
