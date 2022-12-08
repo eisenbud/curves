@@ -4,27 +4,16 @@
 
 \chapter{Uniform position and its applications}\label{uniform position}
 
-One way to study a curve in $\PP^n$ is to use properties of its hyperplane sections. For a start, we show that any $n$ points of a general hyperplane section are linearly independent except in a very special case. Then we will prove a much stronger general position statement in characteristic 0.
+\section{Linearly general position}
+One way to study a curve in $\PP^n$ is to use properties of its hyperplane sections. For a start, we show that any $n$ points of a general hyperplane section are linearly independent except in a very special case. Then we will prove a much stronger statement in characteristic 0,
+the \emph{uniform position lemma}.
 
 Recall that an irreducible reduced curve
 $C\subset \PP^n$, with $n\geq 2$ over an algebraically closed field $k$ is called \emph{strange} if
-all the tangent lines to $C$ meet in a point $p\in \PP^n$. Note that the projection of $C$ from $p$ is inseparable, and thus there are no strange curves in characteristic 0. The only smooth curve that is strange is the conic in characteristic 2 (but see
+all the tangent lines to $C$ meet in a point $p\in \PP^n$. Note that the projection of $C$ from $p$ is inseparable, and thus there are no strange curves in characteristic 0. Pierre Samuel showed that the only smooth curve that is strange (in any characteristic) is the conic in characteristic 2; a proof is given in \cite[Theorem IV.3.9]{Hartshorne1977} (but see
 Exercise~\ref{strange curves} for singular examples in finite characteristic.)
 
-\begin{exercise}\label{strange curves} \cite{Rathmann}. Let $k$ be an algebraically closed field of characteristic $p>0$, and let $q=p^e$ for some $e\geq 1$. Let $C\subset \PP^n$
-be the closure of the image $C_0$ of the morphism
-$$
-\AA^1 \ni t \mapsto (t, t^q, t^{q^2}, \dots , t^{q^{n}}) \in \AA^n
-$$
-where $\AA^n\subset \PP^n$ is the open set $x_0=1$.
-Show that $C$ is a complete intersection, defined by the equations
-$$
-x_0^{q-1}x_2 - x_1^q, x_0^{q-1}x_3 - x_2^q,\dots, 
-x_0^{q-1}x_n - x_{n-1}^q.
-$$
-Show that the points in the general hyperplane section of
-$C$
-\end{exercise}
+For non strange curves, general hyperplane sections consist of points in linearly general position in the following sense:
 
 \begin{proposition} \label{basic linear independence}(\cite[Lemma 1.1]{Rathmann})
 If $C\subset \PP^n$ is a nondegenerate, irreducible, reduced curve that is not strange, and
@@ -32,7 +21,23 @@ and $H$ is a general hyperplane, then every subset of $n$ points of
 $H\cap C$ is linearly independent.
 \end{proposition}
 
+\begin{proof}
+The set of hyperplanes whose intersection with $C$ is in linearly general position is open in $\PP^{n*}$ so it suffices to show that it is nonempty.
+For $2\leq r<n$
+ let $V_r$ be the set of $r$-tuples of points of $C$ that are either linearly dependent or whose span contains another point of $c$.
+We do induction on $n$ beginning with $n=3$. Since $C$ is not strange, \cite[Proposition IV.3.8]{Hartshorne1977} shows that not every secant of $C$ is a multisecant, and this takes care of the case, $n=3$. It also shows that there is a smooth point  $p\in C$ such that the projection $\pi_p$ from $p$ is birational. Let $d= \deg C$.
 
+We claim that $C'$ is not strange. By \cite[Proposition IV.3.8]{Hartshorne1977} it suffices to show that some pair of tangent lines
+to $C'$  do not meet. Choose general points $q,r\in C$, and let $V\subset \PP^n$ be the projective space spanned by the tangent lines at $q,r$, which has dimension 3 since $C$ is not strange. Since $C$ is nondegenerate and $n>3$, we may assume that the projection center
+$p$ is not in $V$. Thus projection from $p$ is an isomorphism when restricted to $V$, so the tangent lines at $\pi_p(q), \pi_p(r)$
+which are the images of the tangent lines at $q,r$, do not meet, showing that $C'$ is not strange.
+
+By induction there is a hyperplane $H'\subset \PP^{n-1}$ whose
+intersection with $C'$ consists of $d-1$ points in linearly general position. In this case the span of $H' \cup \{p\}$ is a hyperplane in
+$\PP^n$ whose points project to the points of $H'\cap C'$, together with $p$, and this is a set in linearly general position.
+\end{proof}
+
+\section{Uniform position} \label{uniformSection}
 The Uniform Position lemma deals with the \emph{monodromy group} of the points of a general hyperplane section of a curve $C \subset \PP^r$. To prove it we will use the classical topology (an equivalent definition is described in Cheerful Fact~\ref{Galois equals monodromy} below). 
 
 Suppose that $C \subset \PP^r$ is an irreducible curve, and $H_0 \subset \PP^r$ a hyperplane transverse to $C$; say the intersection $C \cap H_0 = \{p_1,\dots,p_d\}$. As we vary $H_0$ continuously along a real arc $\{H_t\}$, staying within the open subset $U \subset {\PP^r}^*$ of hyperplanes transverse to $C$, we can ``follow" each of the points $p_i(t)$ of intersection of $C$ with the hyperplane $H_t$.
@@ -41,7 +46,6 @@ Now imagine that the hyperplanes $H_t$ come back to the original $H_0$ at some t
 
 This may seem a rather esoteric construction, but as we said it is surprisingly useful. We'll start by giving a precise definition of the mondromy group in a more general setting, then prove the \emph{uniform position lemma} for the points of a general hyperplane section of a curve; the rest of the chapter will be a series of applications of this lemma.
 
-\section{Uniform position} \label{uniformSection}
 
 \subsection{The monodromy group of a generically finite morphism}
 
@@ -131,18 +135,6 @@ Corollary~\ref{hyperplane section monodromy} says that the restricted fiber powe
 Now, for each $m$ the number of conditions that $\Gamma$ imposes on forms of degree $m$ is lower semicontinuous, so it achieves its maximum on a Zariski open subset of $\tilde V^n/U$. Since $\tilde V^n/U$ is irreducible, the complement $Z$ of this open set has dimension strictly less than $\dim \tilde V^n/U = \dim U$. Thus a general hyperplane $H \in {\PP^r}^*$ will lie outside the image of $Z$, meaning that the number of conditions imposed by all the $k$-element subsets $\Gamma \subset C \cap H$ will have this maximal value.
 \end{proof}
 
-As a special case of Corollary~\ref{numerical uniform position lemma}, we can consider just the number of conditions imposed by subsets of $C \cap H$ on linear forms. Here, since $C \subset \PP^r$ is irreducible and nondegenerate, the points of a general hyperplane section $\Gamma = H \cap C$ of $C$ span the hyperplane $H \cong \PP^{r-1}$, so some subset of $r$ points of $\Gamma$ span $H$; from Corollary~\ref{numerical uniform position lemma}, then, we deduce that \emph{any} $r$ points of $\Gamma$ do. This is the classical
-
-\begin{lemma}[Linear General Position]\label{general position lemma}
-If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
-\end{lemma}
-
-
-Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are colinear. Even this case is surprisingly tricky to prove (and is false in characteristic $p$); Exercise~\ref{weak general position} sketches a proof.
-See \cite[Lemma 1.1]{Rathmann} for a fairly direct proof, valid for smooth curves in every characteristic, except for the plane conic in characteristic 2.  
-
-\fix{put in Rathmann's argument, referring as he does to H for the strange case; and also the example 1.2 in his paper to show that smooth is necessary.} 
-Remarkably, even this special case of a special case of the uniform position theorem already suffices for the proof of the Castelnuovo bound on the genus of a curve $C \subset \PP^r$, which we'll derive in Section~\ref{}.
 
 \subsection{Proof of the uniform position theorem}
 
@@ -318,6 +310,8 @@ Now, if a curve $C$ is non-hyperelliptic, we can apply the strong secant plane l
 There are extensions of Martens' theorem to the case $\dim W^r_d(C) = d-2r-1$ (Mumford) and $d-2r-2$ (Keem).
 
 \section{The $g+2$ theorem}\label{g+2 section}
+
+\fix{Joe was going to put in a $g+1$ theorem}
 
 Now that we have the strong form of Martens' theorem, we can prove the analogue of Theorem~\ref{g+3 theorem} for general linear series of degree $g+2$. This was stated in Section~\ref{g+3 section}, but we'll reproduce the statement here.
 
@@ -542,6 +536,27 @@ If $d \geq 2n+3$, then any collection of $d$ points in $\PP^n$ in linearly gener
 This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus as
 those lying in certain divisor classes on rational normal scrolls.
 \fix{We'll see how it's applied in Chapter~\ref{ScrollsChapter} if we include it}
+
+\section{Exercises}
+\begin{exercise}\label{strange curves} \cite{Rathmann}. Let $k$ be an algebraically closed field of characteristic $p>0$, and let $q=p^e$ for some $e\geq 1$. Let $C\subset \PP^n$
+be the closure of the image $C_0$ of the morphism
+$$
+\AA^1 \ni t \mapsto (t, t^q, t^{q^2}, \dots , t^{q^{n}}) \in \AA^n
+$$
+where $\AA^n\subset \PP^n$ is the open set $x_0=1$. 
+\begin{enumerate}
+\item Show that $C$ is a complete intersection, defined by the equations
+$$
+x_0^{q-1}x_2 - x_1^q, x_0^{q-1}x_3 - x_2^q,\dots, 
+x_0^{q-1}x_n - x_{n-1}^q.
+$$
+\item Show that $C$ is singular unless $q = n = 2$.
+\item Show every secant line to $C_0$ contains $q$ points of $C_0$; more generally, if
+$a_1, \dots, a_r$ are linearly independent points of $C_0$, show that the linear span of
+$a_1, \dots, a_r$ contains $q^(r-1)$ points of $C_0$.  Compare this with the configuration of
+points in affine $n$-space over a field of $q$ elements.
+\end{enumerate}
+\end{exercise}
 
 \begin{exercise}
 Show that with $C$ and $M$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
