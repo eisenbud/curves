@@ -203,7 +203,7 @@ The above is the basic construction of the Hilbert scheme. When we try to genera
 
 To deal with these issues in general, we need to begin with a fundamental lemma:
 
-\begin{lemma}
+\begin{lemma}\label{matsusaka}
 Let $p(m) \in \QQ[m]$ be a polynomial. There exists an integer $m_0$ such that
 
 \begin{enumerate}  
@@ -238,8 +238,31 @@ Let $H \subset \PP^3$ be a 2-plane; let $C \subset H$ be a plane cubic curve and
 
 Now that we have the set of subschemes $X \subset \PP^r$ with given Hilbert polynomial $p$ embedded in the Grassmannian, we want to show that it is indeed a Zariski closed subset, and give it the structure of a scheme, by describing a set of equations that cut it out. To indicate how this goes, let's return to the example of twisted cubics.
 
-We observed above that 
+\subsubsection{The twisted cubic, again}
 
+We observed above that $Q_1, Q_2$ and $Q_3$ are general quadrics, their intersection will be not a twisted cubic but simply 8 points. So a net $V$ of quadrics in $\PP^3$ can have different base loci, and what we want to know is how to tell them apart algebraically. One way to do this is to consider the multiplication map
+$$
+V \otimes H^0(\cO_{\PP^3}(1)) \to H^0(\cO_{\PP^3}(3)).
+$$
+This is a map from a 12-dimensional vector space to a 20-dimensional one, and what we've seen is that if $V$ is the net of quadrics containing a twisted cubic, it has a 2-dimensional kernel; that is, it has rank 10. But if the quadrics in $V$ intersect in eight points, the map is injective: the only relations among the $Q_i$ are the Koszul relations, and in particular there are no linear relations.
+
+So here is what we can do to generate functions on the Grassmannian that vanish on the locus of nets of quadrics containing twisted cubics  (but that are not identically zero): Let $S$ be the universal subbundle on $G = G(3, H^0(\cO_{\PP^3}(2))$, and let $H^0(\cO_{\PP^3}(d))$ denote the trivial bundle on $G$ with that fiber. The multiplication map above gives a map of vector bundles
+$$
+S \otimes H^0(\cO_{\PP^3}(1)) \to H^0(\cO_{\PP^3}(3))
+$$
+and we can take as our functions on $G$ the $11 \times 11$ minors of a matrix representative of this map. In fact, we arrive in this way at a set of generators of the ideal of the Hilbert scheme in the Grassmannian $G$: in a neighborhood of a point in $G$ corresponding to a twisted cubic, the common zero locus of these minors is exactly the locus of nets of quadrics containing a twisted cubic
+
+\subsubsection{Doing this in general}
+
+In fact, the construction of the Hilbert scheme in general is no more structurally complicated than this special case. Given a polynomial $p(m)$, we find a value of $m_0$ that satisfies the statement of Lemma~\ref{matsusaka}; we let
+$$
+G = G\big(\binom{m_0+r}{r} - p(m_0), p(m_0)\big)
+$$
+be the Grassmannian, and let $h$ be the map from the set of subschemes of $\PP^r$ with Hilbert polynomial $p$ to $G$ sending $X$ to $H^0(\cI_{X/\PP^r}(m_0))$. We then get a map of vector bundles  on $G$
+$$
+S \otimes H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{\PP^r}(m_0+1)),
+$$
+and indeed in a neighborhood of any point of $G$ in the image of $h$, the common zero locus of the minors of size $\binom{r+m_0+1}{r} - p(m_0+1)$ of a matrix representative of this map is exactly the image of $h$; and with the scheme structure on this image given by these functions, it is the Hilbert scheme.
 
 
 %The Hilbert scheme $\cH_{d,g,r}$ parametrizes curves of given degree and arithmetic genus in $\PP^r$. For $r>2$, the theory is much more complicated.  Even if we restrict our attention to  what we might call the ``small Hilbert scheme"---the open subset corresponding to smooth, irreducible and nondegenerate curves---Hilbert schemes are truly wild. Locally, they can have arbitrarily bad singularities \cite{MR2227692}, at least for $r>3$. Furthermore, they can have many irreducible components---no one knows how many in general---of ;;;;;;;5 gfvcdimensions. 
