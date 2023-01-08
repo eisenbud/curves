@@ -3,31 +3,7 @@
 \fix{notation: the normalization should always be $C$, the other models $C_0$ or...}
 \chapter{What linear series exist?}\label{Brill-Noether}\label{BNChapter}
 
-In the last few chapters, we have alternated between setting up a general description of linear series on curves, and showing how this plays out in examples. It's time to return to the general theory, and the next question to ask, naturally, is ``What linear systems exist?"
-
-\section{Clifford's theorem}
-\fix{reconcile with what's in Ch 1,2}
-For which $g, r$ and $d$ does there exist a curve $C$ of genus $g$ and a linear system $(\cL,V)$ on $C$ of degree $d$ and dimension $r$? For line bundles of large degree $d \geq 2g-1$ by the Riemann-Roch theorem: on any curve, there exists a linear series of degree $d > 2g-2$ and dimension $r$ iff $r \leq d-g$. For line bundles of degree $d \leq 2g-2$, we have:
-
-\begin{theorem}[Clifford's theorem]\label{Clifford}
-Suppose that $C$ is a smooth projective curve of genus $g\geq 2$. If $D$ is a divisor on $C$ of degree $d \leq 2g-2$, then $r(D) := h^0(D) - 1 \leq d/2$. Moreover, if equality holds then either $D\sim 0$, $D\sim K$ or
- $C$ is hyperelliptic and $D$ is a multiple of the unique $g^1_2$ on $C$.
-\end{theorem}
-
-\begin{proof} We prove the inequality, and  postpone the case of equality to give a slick characteristic 0 proof using  uniform position (Corollary~\ref{Clifford equality}). Note that the result is true in any characteristic; see for example \cite[Theorem ****]{Hartshorne1977}.
-
-When $r(K-D)\leq 1$, the inequality in Clifford's theorem is immediate from the Riemann-Roch formula. On the other hand, when $r(K-D) \geq 1$ we note that
-$$
- r(D)+r(K-D) \leq r(K) \leq g-1.
-$$
-Adding this and the Riemann-Roch formula
-$$
-r(D)-r(K-D) = d - g +1
-$$
-yields $2r(D)\leq d$ as required.
-\end{proof}
-
-Combining these statements, we have:
+If we only wish to know when a curve $C$ of genus $g$ has a $g^r_d$, then for $d>2g-2$ (or more generally nonspecial linear series) the Riemann-Roch Theorem gives a complete answer. Any special series must have $d\leq2g-2$, and in this case Clifford's Theorem gives the bound $r< d/2$, except in the case of hyperelliptic curves, where the answer is different but also completely understood. Together, these cases cover all possibilities:
 
 \begin{theorem}\label{arbitrary linear series}
 There exists a curve $C$ of genus $g$ and line bundle $\cL$ of degree $d$ on $C$ with $h^0(\cL) \geq r+1$ if and only if
@@ -40,190 +16,14 @@ d/2,  \quad \text{if } 0 \leq d \leq 2g-2.
 $$
 \end{theorem}
 
-\begin{exercise}
-Prove a slightly stronger version of Theorem~\ref{arbitrary linear series} in the range $d \leq g-1$: that under the hypotheses of Theorem~\ref{arbitrary linear series} there exists a \emph{complete} linear series of degree $d$ and dimension $r$ for any $r \leq d/2$.
-\end{exercise}
 
-\section{Castelnuovo's theorem}
+If we ask the---perhaps more interesting---question of when there can be a $g^r_d$ that is birationally
+very ample, then Castelnuovo's theorem gives a bound. 
 
-Theorem~\ref{arbitrary linear series} gives a complete and sharp answer to the question of existence.
-But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least  birational. 
-
-A classical result of Castelnuovo gives a sharp bound, which is in some sense explained by Castelnuovo's classification of the curves that achieve it. For positive integers $d$ and $r$, we write
-$$
- d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2
-$$
-and set
-$$
-\pi(d,r) = \frac{M(M-1)}{2}(r-1) + M\epsilon.
-$$
-
-\begin{theorem}[Castelnuovo's bound]\label{Castelnuovo's bound}
-If $C \subset \PP^r$ is a reduced, irreducible, nondegenerate curve of degree $d$ and arithmetic genus $p_a$, then
-$$
-p_a \leq \pi(d,r).
-$$
-\end{theorem}
-
-In our proof we will use characteristic 0, but in fact the result holds in all characteristics.
-
-We will say that a curve achieving the bound is a \emph{Castelnuovo curve}. We will see in Chapter~\ref{} that the bound is sharp: for every $r$ and $d \geq r$, there exist curves with genus exactly $\pi(d,r)$. 
-
-\begin{example}
-For plane curves, $r=2, \ \epsilon = 0, \ M = d-1$ so we recover the necessary $p = \pi(d,2) =  {d-1\choose 2}$. Thus every reduced irreducible
-plane curve is a Castelnuovo curve.
-\end{example}
-
-\begin{example}For a more typical situation, consider the case $r=3$. We have
-$$
-p_a \leq \pi(d,3) = \lfloor d^2/4 \rfloor-d+1\, .
-$$
-It is easy to check that curves on a smooth quadric surface of classes
-$(d/2, d/2)$ or $((d-1)/2, (d+1)/2)$
-achieve this bound, and a variant of this works for singular quadrics as well. The classification  explained in Chapter~\ref{ScrollsChapter}
-shows that these are the only Castelnuovo curves in $\PP^3$.
-\end{example}
-
-\begin{fact}
-A famous theorem of Gruson and Peskine~\ref{Gruson-Peskine} (see \ref{Hartshorne-report} for an exposition and also the cases of characteristic $>0$ and small fields) completes the picture of the possibilities for the degree $d$ and  genus $g$  of a smooth curve in $\PP^3$. First, if the curve does not lie on a plane or a quadric, then
-$$
-g\leq \pi_1(d,3) := \frac{d^2-3d}{6} +1
-$$
-so there are  sometimes gaps in the possible genera for a given degree: for example  $\pi_1(9,3) = 10<\pi(9,3) =12$ but there is
-no curve of degree 9 and genus 11: an irreducible curve of class $(a,b)$ on a smooth quadric has arithmetic genus $11 = (a-1)(b-1)$
-if and only if $\{a,b\} = \{2,12\}$, so such a curve must have degree 14, and a similar computation holds for a curve on a quadratic cone.
-
-On the other hand, there are smooth curves in $\PP^3$ of every genus and degree realizing $g\leq \pi_1(d)$; and these can be realized as curves
-on cubic or quartic surfaces.
-
-The case of $\PP^n$ for $n\geq 3$ remains open. 
-\end{fact}
-To prove Theorem~\ref{Castelnuovo's bound}, we will give lower bounds for the dimensions of the linear series  cut on a curve $C$ by hypersurfaces of degree $m$. For large values of $m$ the line bundle $\cO_C(m)$ is non-special and $H^1(\sI_{C/\PP^r}(m) = 0$, so a lower bound on the dimension of its space of sections translates, via the Riemann-Roch theorem, into an upper bound on the genus $g$ and this is the Castelnuovo bound.
-
-To state the proof, the following definition will be convenient:
-
-\begin{definition}
-If $\sV = (V,cL)$ is a linear system on a variety and $\Gamma$ is a subscheme then the number of conditions
-imposed by $\Gamma$ on $\sV$ is the dimension of the image of $V$ in $H^0(\sL\mid_\Gamma) = H^0(\sL \otimes \sO_\Gamma)$; or, numerically,
-$$
-\dim(V) - \dim \left(V \cap H^0(\cL\otimes \cI_{\Gamma/X}) \right).
-$$\end{definition}
-
-Thus, for example, if $\Gamma \subset \PP^r$, then the number of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$ is the value $h_\Gamma(m)$ of the Hilbert function of $\Gamma$ at $m$.
-Note that the number of conditions imposed by $\Gamma$ on a linear system $V$ is necessarily less than or equal to the degree $d$ of $\Gamma$; if it is equal we say that $\Gamma$ \emph{imposes independent conditions on $V$}.
-
-\begin{proof}[Proof of Theorem~\ref{Castelnuovo's bound}]
-Suppose that $C \subset \PP^r$ is an irreducible, nondegenerate curve, and let $\Gamma = C \cap H$ be a general hyperplane section of $C$. Let $V_m \subset H^0(\cO_C(m))$ be the linear series cut on $C$ by hypersurfaces of degree $m$ in $\PP^r$, that is, the image of the restriction map
-$$
-H^0(\cO_{\PP^r}(m)) \to H^0(\cO_C(m)).
-$$
-Since the ideal sheaf of the hyperplane section is $\cI_{\Gamma/C} = \sO_C(-1)$ we have:
-\begin{align*}
-h^0(\cO_C(m)) - h^0(\cO_C(m-1)) & \geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_C(m))$} \\
-&\geq \text{\# of conditions imposed by $\Gamma$ on $V_m$} \\
-&\geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$} \\
-&\geq h_\Gamma(m).
-\end{align*}
-Summing these relations, we see that the dimension $h^0(\cO_C(m))$ is bounded below by
-$$
-h^0(\cO_C(m)) \geq \sum_{k=0}^m h_\Gamma(k).
-$$
-
- To make use of this inequality, we need to know more about $\Gamma$.
-What we need follows from a linear independence result:
-
-\begin{lemma}[Linear General Position]\label{general position lemma}
-If $C \subset \PP^r$ is an irreducible, nondegenerate curve and $\Gamma = C \cap H$ a general hyperplane section of $C$, then the points of $\Gamma$ are in linearly general position in $H \cong \PP^{r-1}$; that is, no $r$ points of $\Gamma$ lie in a hyperplane $\PP^{r-2} \subset H$.
-\end{lemma}
-
-
-Thus, for example, if $C \subset \PP^3$ is a space curve, the general position lemma says that no three points of a general plane section $\Gamma = H \cap C$ of $C$ are colinear. Even this case is surprisingly tricky to prove (and is false in characteristic $p$); Exercise~\ref{weak general position} sketches a proof.
-See \cite[Lemma 1.1]{Rathmann} for a fairly direct proof, valid for smooth curves in every characteristic, except for the plane conic in characteristic 2. We will prove Lemma~\ref{general position lemma} in the next section as a consequence of the far stronger Uniform Position theorem. Remarkably, Lemma~\ref{general position lemma} already suffices for the necessary bound on the number of conditions imposed by hyperplane sections:
-
-\begin{proposition}\label{min hilb}
-If $\Gamma \subset \PP^n$ is a collection of $d$ points in linearly general position that span $\PP^n$, then 
-$$
-h_\Gamma(m) \geq \min\{d, mn+1\}
-$$
-\end{proposition}
-
-\begin{proof}
-Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mn+1} \in \Gamma$ be any subset of $mn+1$ points. It suffices to show that $\Gamma' = \{p_1,\dots,p_{mn+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^n}(m))$, that is, for any $p_i \in \Gamma'$ there is a hypersurface $X \subset \PP^n$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mn+1}$ but not containing $p_i$.
-
-To construct such an $X$, group the $mn$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $n$; each set $\Gamma_k$ will span a hyperplane $H_k \subset \PP^n$, and we can take $X = H_1 \cup \dots \cup H_m$. 
-
-In the case where $d<mn+1$, we add $mn+1-d$ general points; each one imposes exactly one
-additional condition on hypersurfaces of degree $m$.
-\end{proof}
-This may seem like a crude argument, but the bound derived is sharp, as shown by the example in Exercise~\ref{linear bound is sharp}.
-
-To complete the proof of Theorem~\ref{Castelnuovo's bound} all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$, so that we can write
-$$
-d = M(r-1) + 1 + \epsilon \quad \text{ with } \quad 0 \leq \epsilon \leq r-2.
-$$
-We have 
-\begin{align*}
-h^0(\cO_C(M)) &\geq \sum_{k=0}^M h^0(\cO_C(k)) - h^0(\cO_C(k-1)) \\
-&\geq  \sum_{k=0}^M k(r-1)+1 \\
-&= \frac{M(M+1)}{2}(r-1) + M + 1
-\end{align*}
-and similarly
-$$
-h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M + 1 + md.
-$$
-For sufficiently large $m$, the line bundle $\cO_C(M+m)$ will be nonspecial, so by the Riemann-Roch Theorem,
-\begin{align*}
-g &= (M+m)d - h^0(\cO_C(M+m)) + 1 \\
-&\leq (M+m)d - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 + md \bigr) \\
-& = M\bigl( M(r-1) + 1 + \epsilon \bigr) - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 \bigr) \\
-&= \frac{M(M-1)}{2}(r-1) + M\epsilon.
-\end{align*}
- \end{proof}
-
-From the proof we see that if  $C\subset \PP^r$ who degree and genus achieve equality, then all the inequalities in the proof
-must be equalities; in particular, the map $H^0(\sO_{\PP^r}(d)) \to H^0(\sO_C(d))$ is surjective for every $d$ so the curve is
-arithmetically Cohen-Macaulay in the sense of ****. \fix{give good reference for "arithmetically Cohen-Macaulay"}
-
-\begin{exercise}\label{weak general position}
-Let $C \subset \PP^3$ be an irreducible, nondegenerate space curve. Assuming characteristic 0,
-\begin{enumerate}
-\item Show that if $p, q \in C$ are general, then the tangent lines $\TT_pC$ and $\TT_qC \subset \PP^3$ do not intersect.
-\item Using this, show that for general $p, q \in C$ the line $\overline{p,q}$ is not a trisecant; that is, it does not intersect $C$ a third time.
-\item Using the irreducibility of $C \times C$, show that $C$ can have at most a 1-parameter family of trisecant lines.
-\item Deduce that a general plane $H \subset \PP^3$ does not contain three colinear points of $C$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}\label{linear bound is sharp}
-Let $D \subset \PP^n$ be a rational normal curve. If $\Gamma \subset D$ is any collection of $d$ points on $D$ (or for that matter any subscheme of $D$ of degree $d$) then the Hilbert function of $\Gamma$ is
-$$
-h_\Gamma(m) = \min\{d, mn+1\}
-$$
-\end{exercise} 
-
-Castelnuovo in fact proved a converse to this observation:
-
-\begin{fact}
-If $d \geq 2n+3$, then any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(2) = \min\{d, 2n+1\}$ must lie on a rational normal curve (and then $h_\Gamma(m) = \min\{d, mn+1\}$ for all $m$.) See~\cite[Lemma3.9]{MR685427} for a proof.
-\end{fact}
-
-This was a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus; we'll see how it's applied in Chapter~\ref{} (scrolls, if we include it). For a proof, see for example~\cite{ACGH} or~\cite{Montreal}
-
-\begin{exercise}
-Show that with $C$ and $M$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
-\end{exercise}
-
-The truth of Lemma~\ref{general position lemma} was originally asserted by Castelnuovo. It follows easily from the far stronger Uniform Position Theorem, proved in Section~\ref{uniformSection} below.
-
-
+In both these situations, the curves that achieve the bounds are quite special. Perhaps the most interesting question of all is, for which $r,d$ do \emph{all} curves of genus $g$ have a $g^r_d$, and what is the
+behavior of these series on a general curve? Brill-Noether theory provides some answers to both these questions.
 
 \section{Brill-Noether theory}
-
-\subsection{Basic questions addressed by Brill-Noether theory}
-
-In the last section, we restricted our attention to the linear series most of interest to us: those corresponding to embeddings of our curve in projective space (or at any rate birational embeddings) and their limits. But there is one other respect in which Castelnuovo theory fails to address a basic concern: the curves with linear systems achieving Castelnuovo's bound are, like hyperelliptic curves, very special. (In fact, we'll see in Exercise~\ref{rarity of Castelnuovo} that in general they are even rarer than hyperelliptic curves): even with Castelnuovo's bound, if we were to pick a curve $C$ of genus $g$ ``at random," we would still have no idea what linear systems existed on $C$ or how they behaved.
-
-Brill-Noether theory addresses this issue, asking, ``What linear series exist on a \emph{general} curve of a given genus?" When it comes to non-special linear series, of course, Riemann-Roch answers the question simply and completely, so we'll restrict our attention to special linear series (that is, with $r > d - g$). 
 
 \begin{theorem}[Basic Brill Noether]\label{basic BN}
 A general curve $C$ of genus $g$  possesses a linear series of degree $d$ and dimension $r>d-g$ if and only if
@@ -357,6 +157,11 @@ $$
 
 \item Parts~\ref{general va} and~\ref{maximal rank} describe the geometry of a general curve $C$ as embedded in projective space by a general linear series. But there are many remaining questions! One is the question of secant planes: a naive dimension count would suggest that an irreducible, nondegenerate curve $C \subset \PP^3$ will have a finite number of 4-secant lines, but no 5-secant lines. Is this true for a general curve embedded in $\PP^3$ by a general linear series?
 \end{enumerate}
+
+\section{Exercises}
+\begin{exercise}
+Prove a slightly stronger version of Theorem~\ref{arbitrary linear series} in the range $d \leq g-1$: that under the hypotheses of Theorem~\ref{arbitrary linear series} there exists a \emph{complete} linear series of degree $d$ and dimension $r$ for any $r \leq d/2$.
+\end{exercise}
 
 \begin{exercise}\label{rarity of Castelnuovo}
 We have seen that complete intersections $C = Q \cap S \subset \PP^3$ of a quadric surface $Q$ and a surface $S$ of degree $k$ achieve Castelnuovo's bound $g = \pi(2k, 3)$ on the genus of curves of degree $2k$ in $\PP^3$. In fact, we will see in Chapter~\ref{ScrollsChapter} that any curve $C \subset \PP^3$ of degree $2k$ and genus $g = \pi(2k, 3) = (k-1)^2$ is of this form.
