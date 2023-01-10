@@ -43,15 +43,16 @@ The first two terms in the ramification sequence are particularly important: $\a
 
 \subsection{The Pl\"ucker formula}
 
-In characteristic 0, a linear series on a smooth projective curve can have only finitely many inflection points (we'll prove this in Lemma~\ref{finite infections} below), and in fact the sum of the weights of all the inflection points depends only on the genus of the curve and the degree of the the linear series. The result is called the Pl\"ucker Formula:
+In characteristic 0, a linear series on a smooth projective curve can have only finitely many inflection points (we'll prove this in Lemma~\ref{finite infections} below), and in fact the sum of the weights of all the inflection points depends only on the genus of the curve and the degree and dimension of the the linear series. The result is called the Pl\"ucker Formula:
 
 \begin{theorem}\label{Plucker}
-If $C \subset \PP^r$ is a nondegenerate smooth curve of degree $d$, then
+If $C \subset \PP^r$ is a nondegenerate smooth curve of genus $g$ and $\cD$ is a
+linear series of degree $d$ and dimension $r$, then
  \begin{equation}\label{Plucker formula}
 \sum_{p \in C} w(\cD, p) \; = \; (r+1)d + r(r+1)(g-1).
 \end{equation}
 \end{theorem}
-For a proof, see for example~\cite{allthat}.
+For a proof, see for example~\cite[Theorem 7.13]{allthat}.
 
 Theorem~\ref{Plucker} also holds in positive characteristic under the hypothesis that the number of inflection points is finite (equivalently, not every point is an inflection point). This may seem like an unnecessary hypothesis---it's hard even to imagine a plane curve in which every point is a flex!---but in positive characteristic there are such curves.
 
@@ -108,7 +109,7 @@ Note that Theorem~\ref{Brill Noether Plucker} implies that on a general curve $C
 
 For example, suppose $C$ is a curve of genus 2. The canonical series on $C$ gives a map $\phi_K : C \to \PP^1$ of degree 2; the Weierstrass points of $C$ are the 6 ramification points of this map. 
 
-In genus 3, if $C$ is hyperelliptic then the Weierstrass points are exactly the 8 ramification points of the 2-sheeted cover $C \to \PP^1$, with each having weight 3. If $C$ is non-hyperelliptic, then it is a plane quartic curve. A general such curve will have 24 ordinary flexes, which will be Weierstrass points of weight 1; special quartics may have some number $\alpha$ of \emph{hyperflexes}---points where the tangent line has contact of order 4 with the curve---which will be Weierstrass points of weight 2; in this case $C$ will have $\alpha$ Weierstrass points of weight 2 and $24-2\alpha$ Weierstrass points of weight 1. (It has been shown that all values of $\alpha$ between 0 and 12 occur, except 11.)
+In genus 3, if $C$ is hyperelliptic then the Weierstrass points are exactly the 8 ramification points of the 2-sheeted cover $C \to \PP^1$, and each has weight 3. If $C$ is non-hyperelliptic, then it is a plane quartic curve. A general such curve will have 24 ordinary flexes, which will be Weierstrass points of weight 1; special quartics may have some number $\alpha$ of \emph{hyperflexes}---points where the tangent line has contact of order 4 with the curve---which will be Weierstrass points of weight 2; in this case $C$ will have $\alpha$ Weierstrass points of weight 2 and $24-2\alpha$ Weierstrass points of weight 1. (It has been shown that $\alpha$ cannot be 11, but  all  other values  between 0 and 12 occur. \fix{need citation})
 
 \subsubsection{The Weierstrass semigroup} 
 
@@ -210,60 +211,78 @@ Note: it's much less clear whether it can be the case that a general tangent lin
 
 \section{Finiteness of the automorphism group}\label{finiteness section}
 
-\fix{put in elementary finiteness pr using canonical map to write the autos as an algebraic subgroup of PGL, and non-existence of flows.}
-\fix{add the Prop that a general curve has no automorphisms, by dimension count}
 
-\fix{Neither proof in this chapter is very accessible/depends on facts beyond this course. Let's give just one of the two proofs with more details, and factify the other.}
+\begin{theorem}\label{finite autos}
+If $C$ is a smooth curve of genus $\geq 2$ then the automorphism group $\Aut(C)$ is finite.
+\end{theorem}
 
-As an application we will deduce a fundamental fact: that the automorphism group of a curve of genus $g\geq 2$ is finite. The starting idea behind the argument is simple: because the Weierstrass points of a curve $C$ are intrinsically defined, \emph{any automorphism of $C$ must carry Weierstrass points to Weierstrass points}. Since there are only finitely many Weierstrass points, then, it will suffice to show that the subgroup of $Aut(C)$ of automorphisms of $C$ that fix each  Weierstrass point is finite. The following two lemmas establish a strong version of this:
+  The idea behind the argument is simple: because the Weierstrass points of a curve $C$ are intrinsically defined, \emph{any automorphism of $C$ must carry Weierstrass points to Weierstrass points}. We will show that the subgroup of $Aut(C)$ of automorphisms of $C$ that fix each  of the finitely many Weierstrass point is either
+  trivial or, in the case of hyperelliptic curves, just the $\ZZ/2$ generated by the hyperelliptic involution.
+    
+We will study the fixed points of automorphisms by studying the intersection of the graph of
+an automorphism with the diagonal divisor in $C\times C$. For this we use
+\emph{Neron-Severi group} $N(S)$ of a surface $S$. This consists of divisors modulo \emph{numerical equivalence}---that is, in $N(S)$ we identify divisors $H, H'$ if for all divisors $D$ on $S$ we have $H\cdot D = H'\cdot D$. The group
+$N(S)$ is finitely generated for any surface---in characteristic 0 it is the quotient of the second integral homology group by the torsion elements. Its rank is called the Picard number of the surface. The result about $N(S)$ that we need is:
 
-\begin{lemma}
-Let $C$ be a smooth projective curve of genus $g \geq 2$, and $f: C \to C$ an automorphism of $C$.
+\begin{theorem}[Hodge Index theorem]\label{hodge index}
+If $H\subset S$ is an ample divisor on a smooth projective surface, and $D$ is a divisor with $D\cdot H = 0$, then 
+$D^2<0$; that is, the intersection pairing is negative definite on the orthogonal complement of an
+ample divisor.
+\end{theorem}
+\begin{proof}
+The result follows easily from the Riemann-Roch theorem for surfaces; see \cite[Theorem V.1.9]{Hartshorne1977}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{finite autos}]
+ 
+The following two lemmas prove Theorem~\ref{finite autos} in a strong form:
+
+\begin{lemma}Let $C$ be a smooth projective curve of genus $g \geq 2$, and $f: C \to C$ an automorphism of $C$.
 \begin{enumerate}
 \item If $f$ has $2g+3$ or more distinct fixed points, then $f$ is the identity; and
 \item If $f$ has $2g+2$ distinct fixed points, then either $f$ is the identity or $C$ is hyperelliptic and $f$ is the hyperelliptic involution.
 \end{enumerate}
 \end{lemma}
 
-We give two arguments, one invoking the classical topology and applying the Lefschetz fixed point formula and the other more algebro-geometric.
+%We give two arguments, one invoking the classical topology and applying the Lefschetz fixed point formula and the other more algebro-geometric.
+%
+%\begin{proof}[Proof  using the classical topology]
+%For the first, we recall the definition of the \emph{Lefschetz number} of a map $f : M \to M$ of a compact oriented real $n$-manifold $M$. This is the alternating sum of the traces of the action of $f$ on $H^i(X,\CC)$:
+%$$
+%L(f) := \sum_{i=0}^n (-1)^i{\rm Trace}\left(f^* : H^i(X,\CC) \to H^i(X,\CC)\right).
+%$$
+%The Lefschetz fixed point formula  says that if $f$ has isolated fixed points, the number of those points, properly counted, is equal to $L(f)$.
+%
+%The fixed points of a map $\phi$ of $C$ to $C$ are the intersection of the graph of $\phi$ with the diagonal in $C\times C$, and are thus a Zariski closed subset of $\phi$. It follows that any map other than the identity has isolated fixed points. Moreover, any complex analytic map is orientation-preserving \fix{somewhere we need to talk about the classical topology, and  orientation in particular} so each fixed point of an automorphism $f$ contributes positively to $L(f)$. In particular,  the number of distinct fixed points is at most $L(f)$.
+%
+%Now suppose $f: C \to C$ is any automorphism. Of necessity, $f$ acts as the identity on $H^0(C, \CC)$ and $H^2(C, \CC)$, so if we want to bound $L(f)$ we just have to say something about the action of $f$ on $H^1(C,\CC)$. To do this, note that \fix{note that the reader might not know about the Hodge decomposition!} the action of $f$ on $H^1(C,\CC)$ respects the \emph{Hodge decomposition}
+%$$
+%H^1(C,\CC)  = H^0(K_C) \oplus H^1(\cO_C).
+%$$  
+%Moreover, the action of $f$ on $H^0(K_C)$ preserves the definite Hermitian inner product
+%$$
+%H(\eta, \phi) = \int_C \eta \wedge \overline \phi,
+%$$
+%and it follows that \emph{the eigenvalues of the action of $f$ on $H^0(K_C)$ are all complex numbers of absolute value 1}, and likewise for the action on $H^1(\cO_C)$ \fix{this all needs to be spelled out} . The absolute value of the trace of $f^*: H^1(C,\CC) \to H^1(C,\CC)$ is thus at most 2g, and hence
+%$$
+%L(f) \leq 2 + 2g,
+%$$
+%proving the stated inequality in general.
+%
+%Finally, if we have equality then $f$ must act as $-1$ on $H^1(C,\CC)$, and it follows (again from Lefschetz) that $f^2$ is the identity; applying the Riemann-Hurwitz formula to the map from $C$ to the quotient $B = C/\langle f \rangle$ we may deduce that $B = \PP^1$, so $C$ is hyperelliptic and $f$ the hyperelliptic involution.
+%\end{proof}
+%
+%An alternative argument showing that if $f$ is not the identity, then it has  for the lemma may be given using the intersection pairing on the surface $S = C \times C$ and applying the index theorem for surfaces.
+% \fix{need to define N(S), state the index formula.}
+%
+\begin{proof}
+Let $S = C\times C$, and let $\Delta$ and $\Gamma \subset S$ be the diagonal and the graph of $f$ respectively, and let $\Phi_1$ and $\Phi_2 \subset S$ be fibers of the two projection maps. Let $\delta, \gamma, \varphi_1$ and $\varphi_2$ be the classes of these curves in  $N(S)$. The number of fixed points of $f$ (counted with multiplicities) is the intersection number  $b = \delta \cdot \gamma$.
 
-\begin{proof}[Proof  using the classical topology]
-For the first, we recall the definition of the \emph{Lefschetz number} of a map $f : M \to M$ of a compact oriented real $n$-manifold $M$. This is the alternating sum of the traces of the action of $f$ on $H^i(X,\CC)$:
+We know all the other pairwise intersection number of these classes: the ones involving $\varphi_1$ or $\varphi_2$ are obvious. The normal bundle of the diagonal is the tangent bundle of $C$, so
 $$
-L(f) := \sum_{i=0}^n {\rm Trace}\left(f^* : H^i(X,\CC) \to H^i(X,\CC)\right).
+\delta^2 = 2 - 2g.
 $$
-The Lefschetz fixed point formula then says that if $f$ has isolated fixed points, the number of those points, properly counted, is equal to $L(f)$.
-
-The fixed points of a map $\phi$ of $C$ to $C$ are the intersection of the graph of $\phi$ with the diagonal in $C\times C$, and are thus a Zariski closed subset of $\phi$. It follows that any map other than the identity has isolated fixed points. Moreover, any complex analytic map is orientation-preserving \fix{somewhere we need to talk about the classical topology, and  orientation in particular} so each fixed point of an automorphism $f$ contributes positively to $L(f)$. In particular,  the number of distinct fixed points is at most $L(f)$.
-
-Now suppose $f: C \to C$ is any automorphism. Of necessity, $f$ acts as the identity on $H^0(C, \CC)$ and $H^2(C, \CC)$, so if we want to bound $L(f)$ we just have to say something about the action of $f$ on $H^1(C,\CC)$. To do this, note that \fix{note that the reader might not know about the Hodge decomposition!} the action of $f$ on $H^1(C,\CC)$ respects the \emph{Hodge decomposition}
-$$
-H^1(C,\CC)  = H^0(K_C) \oplus H^1(\cO_C).
-$$  
-Moreover, the action of $f$ on $H^0(K_C)$ preserves the definite Hermitian inner product
-$$
-H(\eta, \phi) = \int_C \eta \wedge \overline \phi,
-$$
-and it follows that \emph{the eigenvalues of the action of $f$ on $H^0(K_C)$ are all complex numbers of absolute value 1}, and likewise for the action on $H^1(\cO_C)$ \fix{this all needs to be spelled out} . The absolute value of the trace of $f^*: H^1(C,\CC) \to H^1(C,\CC)$ is thus at most 2g, and hence
-$$
-L(f) \leq 2 + 2g,
-$$
-\fix{where did the 2 come from??} proving the stated inequality in general.
-
-Finally, if we have equality then $f$ must act as $-1$ on $H^1(C,\CC)$, \fix{why? How about +1?} and it follows (again from Lefschetz) that $f^2$ is the identity; applying the Riemann-Hurwitz formula to the map from $C$ to the quotient $B = C/\langle f \rangle$ we may deduce that $B = \PP^1$, so $C$ is hyperelliptic and $f$ the hyperelliptic involution.
-\end{proof}
-
-An alternative argument showing that if $f$ is not the identity, then it has  for the lemma may be given using the intersection pairing on the surface $S = C \times C$ and applying the index theorem for surfaces.
- \fix{need to define N(S), state the index formula.}
-
-\begin{proof}[Proof of 1. using intersection theory]
-Let $\Delta$ and $\Gamma \subset S$ be the diagonal and the graph of $f$ respectively, and let $\Phi_1$ and $\Phi_2 \subset S$ be fibers of the two projection maps; let $\delta, \gamma, \varphi_1$ and $\varphi_2$ be the classes of these curves in the Neron-Severi group $N(S)$  of $S$. The number of fixed points of $f$ (counted with multiplicities) is the intersection number  $b = \delta \cdot \gamma$.
-
-We know all the other pairwise intersection number of these classes: the ones involving $\varphi_1$ or $\varphi_2$ are obvious; we have
-$$
-\delta^2 = 2 - 2g
-$$
-and since the automorphism $id_C \times f : C\times C \to C \times C$ carries $\Delta$ to $\Gamma$, we see that $\gamma^2 = 2-2g$ as well.
+Since the automorphism $id_C \times f : C\times C \to C \times C$ carries $\Delta$ to $\Gamma$, we see that $\gamma^2 = 2-2g$ as well.
 
 We can now apply the index theorem for surfaces to deduce our inequality. To keep things relatively simple, let's introduce two new classes: set
 $$
@@ -310,12 +329,14 @@ where $w_p$ is the total weight of $p$ as a Weierstrass point. Since the total w
 $$
 \frac{g^3-g}{\binom{g}{2}} = 2g+2.
 $$
-Finally, by the strong form of Clifford's Theorem \ref{***}, equality here implies that the curve is hyperelliptic.\fix{still need to say why only the hyperelliptic involution fixes all the W-points.}
+Finally, by the strong form of Clifford's Theorem \ref{***}, equality implies that the curve is hyperelliptic.\end{proof}
+
+
 \end{proof}
 
-\section{Proof of (half of) the Brill-Noether theorem}
+\section{The Brill-Noether theorem}
 
-In its bare-bones form, the Brill-Noether theorem tells us exactly which linear series exist on a general curve:
+We recall the statement of the basic Brill-Noether theorem from Chapter~\ref{BNChapter}:
 
 \begin{theorem}\label{basic Brill Noether}
 Let $d,g,r$ be non-negative integers, and set 
@@ -329,24 +350,24 @@ $$
 \end{theorem}
 
 
-To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. We don't a priori know how many sections $\cL$ will have, but if we fix a divisor $D = \sum p_i$ of degree $e \geq 2g-1-d$ and set $\cM:= \cL(D)$, we do know how many sections $\cM$ will have: since it has degree $d+e > 2g-2$, Riemann-Roch tells us that
-$$
-h^0(\cM) = d + e - g + 1.
-$$
-To estimate $h^0(\cL)$, then, we can consider the restriction map
-$$
-\rho : H^0(\cM) \to H^0(\cM|_D);
-$$
-the kernel of this map is $H^0(\cL)$. Thus,
-$$
-h^0(\cL) \geq r+1 \quad \iff \quad \rank(\rho) \leq d+e-g-r.
-$$
-
-Now, let $\cL$ vary in $\Pic_d(C)$. We get a \emph{family} of maps $\rho$ between vector spaces of dimension $d + e - g + 1$ and $e$, parametrized by the Picard variety $\Pic_d(C)$. In general, given a family of maps between vector spaces of dimensions $m$ and $n$, the expected codimension of the locus where the map has rank $k$ or less is $(m-k)(n-k)$; in our present circumstances, this works out to $(r+1)(g-d+r)$. Since the Picard variety has dimension $g$, the expected dimension of $W^r_d(C)$ is then $\rho(g,r,d)$.
-
+%To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. We don't a priori know how many sections $\cL$ will have, but if we fix a divisor $D = \sum p_i$ of degree $e \geq 2g-1-d$ and set $\cM:= \cL(D)$, we do know how many sections $\cM$ will have: since it has degree $d+e > 2g-2$, Riemann-Roch tells us that
+%$$
+%h^0(\cM) = d + e - g + 1.
+%$$
+%To estimate $h^0(\cL)$ we can consider the restriction map
+%$$
+%\rho : H^0(\cM) \to H^0(\cM|_D);
+%$$
+%the kernel of this map is $H^0(\cL)$. Thus,
+%$$
+%h^0(\cL) \geq r+1 \quad \iff \quad \rank(\rho) \leq d+e-g-r.
+%$$
+%
+%Now, let $\cL$ vary in $\Pic_d(C)$. We get a \emph{family} of maps $\rho$ between vector spaces of dimension $d + e - g + 1$ and $e$, parametrized by the Picard variety $\Pic_d(C)$. In general, given a family of maps between vector spaces of dimensions $m$ and $n$, the expected codimension of the locus where the map has rank $k$ or less is $(m-k)(n-k)$; in our present circumstances, this works out to $(r+1)(g-d+r)$. Since the Picard variety has dimension $g$, the expected dimension of $W^r_d(C)$ is then $\rho(g,r,d)$.
+%
 The first part of Theorem~\ref{basic Brill Noether}, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{Kempf}) and Kleiman-Laksov (\cite{MR323792}) and \cite{MR0357398}. The proofs proceeded essentially by globalizing the construction of the preceding paragraph to express $W^r_d(C)$ as a determinantal scheme associated to a map of vector bundles on $\Pic_d(C)$, calculating the Chern classes of the bundles in question and applying the Thom-Porteous formula to deduce that the determinantal variety was nonempty. A sketch of this argument may  be found in \cite[Appendix D.3]{3264}.  
 
-The second half of Theorem~\ref{basic Brill Noether}---the ``non-existence half"---requires a completely different approach. On the one hand, the condition ``$W^r_d(C) = \emptyset$" is an open condition on $M_g$, so that to prove it one needs only exhibit a single curve with this property. On the other hand, that is easier said than done: as we discuss in Appendix~\ref{Moduli}, it's not possible to write down a general curve of large genus $g$; and the curves we can write down explicitly---hyperelliptic curves, trigonal curves, smooth plane curves---tend to be ones that violate Brill-Noether.
+The second half of Theorem~\ref{basic Brill Noether}---the ``non-existence half"---requires a completely different approach. On the one hand, the condition ``$W^r_d(C) = \emptyset$" is an open condition on $M_g$, so that to prove it one needs only exhibit a single curve with this property. However, as we discuss in Appendix~\ref{Moduli}, it's not possible to write down a general curve of large genus $g$. The curves we can write down explicitly---hyperelliptic curves, trigonal curves, smooth plane curves---tend to be ones that violate Brill-Noether.
 
 We will give here a proof of the second half of Theorem~\ref{basic Brill Noether}, using the Pl\"ucker formula as our essential tool.
 Our proof will use an ingenious construction first suggested by Castelnuovo, which is to consider a family of smooth curves specializing to a $g$-nodal curve. After all, 
@@ -381,7 +402,7 @@ For each $i$ we let $\cO_{r_i}$  be the set of germs of sections of $\cO_C$ that
 Note that $\cO_{r_i}$ has vector space codimension 1 in 
  $\cO_{C,p_i}\cap \cO_{C,q_i}$, which is the semi-localization of $R$ at
  $\gm_{C,p_i}\cap \gm_{C,q_i}$, the result of inverting every element not in the 
- union of the two maximal ideals. If $f\in R$ is a function vanishing at $p_i, q_i$ but not at $p_j$ or $p_j'$.
+ union of the two maximal ideals. If $f\in R$ is a function vanishing at $p_i, q_i$ but not at $p_j$ or $p_j'$
 then $\cO_{r_j}[f^{-1}$ is strictly bigger than
 $\cO_{r_j}$, and thus $\cO_{r_j} [f^{-1}] = \cO_{C,p_j} \cap \cO_{C,p_j'}$.
 Since localization commutes with finite intersections, we see that $R$ and $R'$
@@ -403,7 +424,7 @@ $\widehat\cO_{C', r_i} \cong k[[x,y]]/(xy)$ as required, completing the construc
 
 As a more geometric alternative to the above, we outline in the following pair of exercises a construction of the curve $C_0$ obtained by identifying $k$ pairs of points on a smooth curve $C$ of genus $h$ (we'll be applying this just in the case $C \cong \PP^1$ and $k=g$, but the construction works more generally). The construction is extremely simple: to start with, we embed the curve $C$ in projective space by the sections of a line bundle of high degree $d$, and then we project.
 
-\begin{exercise}\label{independent secants} Let $C \subset \PP^N$ be a smooth curve of genus $h$, embedded in projective space by the complete linear system associated to a line bundle $\cL$ of degree $d > 2g + 2k$. Show that \emph{any $k+1$ secant or tangent lines to $C$  having pairwise disjoint intersection with $C$ are linearly independent}; that is, they span a $\PP^{2k-1}$.
+\begin{exercise}\label{independent secants} Let $C \subset \PP^N$ be a smooth curve of genus $h$, embedded in projective space by the complete linear system associated to a line bundle $\cL$ of degree $d > 2g + 2k$. Show that any $k+1$ secant or tangent lines to $C$  having pairwise disjoint intersection with $C$ are linearly independent; that is, they span a $\PP^{2k-1}$.
 \end{exercise}
 
 Now let $p_1,\dots,p_k, q_1,\dots, q_k \in C$ be any $2k$ distinct points; let $s_i \in \overline{p_i,q_i} \subset \PP^N$ be a general point on the secant line $\overline{p_i,q_i} $, and let $\Lambda \cong \PP^{k-1}$ be the plane spanned by the points $s_1,\dots,s_k$. Let $\pi_\Lambda : \PP^N \to \PP^{N-k}$ be the projection from $\Lambda$, and let $C_0 \subset \PP^{N-k}$ the image $\pi_\Lambda(C)$, and let $r_i = \pi_\Lambda(p_i) = \pi_\Lambda(q_i) \in C_0$.
@@ -626,7 +647,7 @@ rg \leq (r+1)(d-r),
 $$
 which is exactly the condition $\rho(g,r,d) \geq 0$.
 
-We must also consider the case when the limit $\cL_0$ of the line bundles $\cL_b$ in our family is not locally free at some subset $r_1, \dots, r_\delta$ of the nodes of $C_0$. In this case, let $\widetilde C_0$ be the partial normalization of $C_0$ at these nodes, and $\widetilde \nu : \widetilde C_0 \to C_0$ the partial normalization map, so that $\widetilde C_0$ is the ($g-\delta$)-nodal curve obtained by identifying $g-\delta$ pairs of general points on $\PP^1$. The pullback $\widetilde \nu^*(\cL_0)$ is then locally free of degree $d-2\delta$ on $\widetilde C_0$, so that an $(r+1)$-dimensional space of sections of $\cL_0$ will correspond to a plane $\Lambda \cong \PP^{d-2\delta-r-1} \subset \PP^{d-2\delta}$, meeting each of $g-\delta$ general chords to a rational normal curve in $\PP^{d-2\delta}$. Again, \emph{if} the corresponding Schubert cycles intersect properly, the existence of such planes would imply that
+We must also consider the case when the limit $\cL_0$ of the line bundles $\cL_b$ in our family is not locally free at some subset $r_1, \dots, r_\delta$ of the nodes of $C_0$. In this case, let $\widetilde C_0$ be the partial normalization of $C_0$ at these nodes, and $\widetilde \nu : \widetilde C_0 \to C_0$ the partial normalization map, so that $\widetilde C_0$ is the ($g-\delta$)-nodal curve obtained by identifying $g-\delta$ pairs of general points on $\PP^1$. The pullback $\widetilde \nu^*(\cL_0)$ is  locally free of degree $d-2\delta$ on $\widetilde C_0$, so that an $(r+1)$-dimensional space of sections of $\cL_0$ will correspond to a plane $\Lambda \cong \PP^{d-2\delta-r-1} \subset \PP^{d-2\delta}$, meeting each of $g-\delta$ general chords to a rational normal curve in $\PP^{d-2\delta}$. Again, \emph{if} the corresponding Schubert cycles intersect properly, the existence of such planes would imply that
 $$
 r(g-\delta) \leq \dim\GG(d-2\delta-r-1,d-2\delta) = (r+1)(d-r-2\delta),
 $$
@@ -791,7 +812,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-The basic idea of the proof is simple: basically, we argue that if we had a $(\rho+1)$-dimensional family of $g^r_ds$ on $C$, then we could find one with nonzero ramification at $\rho+1$ general points of $C$, violating Theorem~\ref{Brill-Noether with inflection}. \fix{the equality needs this AND the other inequality, which
+The idea of the proof is simple: if we had a $(\rho+1)$-dimensional family of $g^r_ds$ on $C$, then we could find one with nonzero ramification at $\rho+1$ general points of $C$, violating Theorem~\ref{Brill-Noether with inflection}. \fix{the equality needs this AND the other inequality, which
 comes from the determinantal codimension argument}
 
 This idea is easier to implement after specializing, so once more we go back to our family $\cC \to B$ of smooth curves specializing to a $g$-cuspidal curve $C_0$, with normalization $\PP^1$. The basic lemma is:
