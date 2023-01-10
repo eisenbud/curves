@@ -1,6 +1,5 @@
 \input{header.tex}
 
-\fix{notation: the normalization should always be $C$, the other models $C_0$ or...}
 \chapter{What linear series exist?}\label{Brill-Noether}\label{BNChapter}
 
 If we only wish to know when a curve $C$ of genus $g$ has a $g^r_d$, then for $d>2g-2$ (or more generally nonspecial linear series) the Riemann-Roch Theorem gives a complete answer. Any special series must have $d\leq2g-2$, and in this case Clifford's Theorem gives the bound $r< d/2$, except in the case of hyperelliptic curves, where the answer is different but also completely understood. Together, these cases cover all possibilities:
@@ -18,12 +17,15 @@ $$
 
 
 If we ask the---perhaps more interesting---question of when there can be a $g^r_d$ that is birationally
-very ample, then Castelnuovo's theorem gives a bound. 
+very ample on a curve of genus $g$ then Castelnuovo's theorem gives a quadratic bound, roughly $d \geq \sqrt{g(2r-2)}$.
 
 In both these situations, the curves that achieve the bounds are quite special. Perhaps the most interesting question of all is, for which $r,d$ do \emph{all} curves of genus $g$ have a $g^r_d$, and what is the
 behavior of these series on a general curve? Brill-Noether theory provides some answers to both these questions.
 
 \section{Brill-Noether theory}
+
+The following result was stated by Brill and Noether in 1874, and finally proven by
+Griffiths and the second author in 1980~\cite{Griffiths-Harris-BN}.
 
 \begin{theorem}[Basic Brill Noether]\label{basic BN}
 A general curve $C$ of genus $g$  possesses a linear series of degree $d$ and dimension $r>d-g$ if and only if
@@ -38,9 +40,19 @@ of genus 100:
 
 \centerline{ \includegraphics[height=4in]{"Clifford-Castelnuovo-Brill-Noether"}}
 
-In the following sections, we'll see why we might naively expect Theorem~\ref{basic BN} to be true, and we'll also state some refinements of the theorem.   In Chapter~\ref{InflectionsChapter} we give a proof of the nonexistence part (the ``only if"). A proof of the existence half of the theorem (the ``if" part of the statement) may be found in \cite[Theorem ****]{3264}.
+Gathering the inequalities, and putting them all in terms of lower bounds on $d$ given $g, r$,
+we get \goodbreak
+%$$
+\begin{align*}
+ d &\geq \min\{r+g, 2r\} \hbox{ by the Riemann-Roch and Clifford theorems}\\
+ d &\dot\geq \sqrt{(2r-2)g} \hbox{ by an approximation to the Castelnuovo theorem}\\
+ d &\geq r+g+\frac{g}{r+1} \hbox{ for a general curve.}
+\end{align*}
+%$$
 
-The case $r=1$ is already interesting:
+In the following sections, we'll state the reasoning that led Brill and Noether to the statement of Theorem~\ref{basic BN} and we'll give some more recent refinements.   In Chapter~\ref{InflectionsChapter} we give a proof of the nonexistence part (the ``only if"). A proof of the existence half of the theorem (the ``if" part of the statement) may be found in \cite[Theorem ****]{3264}.
+
+The case $r=1$, which goes back to Riemann's paper of 1857, is already interesting:
 
 \begin{corollary}
 If $C$ is any curve of genus $g$, then $C$ admits a map of degree $d$ to $\PP^1$ for some $d \leq \lceil \frac{g+2}{2}\rceil$.
@@ -49,9 +61,12 @@ If $C$ is any curve of genus $g$, then $C$ admits a map of degree $d$ to $\PP^1$
 Thus any curve of genus 2 is hyperelliptic, any curve of genus 3 or 4 is either hyperelliptic or trigonal  (admits a 3-1 map to $\PP^1$), and so on.
 
 
-\subsection{Heuristic argument leading to the statement of Brill-Noether}
+\subsection{A Brill-Noether inequality}
 
-The proof of the Brill-Noether theorem starts with a simple dimension estimate that was first carried out by Brill and Noether almost a century and a half ago. \fix{let's say more about the history here, or at the end of this section}
+The proof of the Brill-Noether theorem starts with a dimension estimate that was first carried out by Brill and Noether in 1874 \cite{Brill-NoetherOriginal}. The estimate provides an inequality on the dimension
+of the variety $W^r_d$, and the assertion of the theorem is that this is sharp for a general curve.
+
+%From Kleiman-Laksov:  For r= 1, the matter is treated in section 4 of Riemann's " Theorie der Abel'schen Functionen" [11] (1857) and in lecture 31 of Hensel-Landsberg(1902) 1; the general case is treated in Brill-Noether [1](1874) and in lecture 57 and appendix G of Severi [13].(1921)
 
 Let $C$ be a smooth projective curve of genus $g$, and $D = p_1 + \dots + p_d$ a divisor on $C$. We'll assume here the points $p_i$ are distinct; the same argument (with  more complicated notation) can be carried out in general.
 
@@ -77,18 +92,21 @@ f_{1,d}(z_d) & f_{2,d}(z_d) & \dots & f_{g,d} (z_d)
 $$
 has rank $d-r$ or less at $(z_1,\dots,z_d) = (0,\dots,0)$.
 
-The point is, we can think of $A$ as a matrix valued function in an open set $U = U_1 \times U_2 \times \dots \times U_d \subset C_d$; and for divisors $D \in U$, we have $r(D) \geq r$ if and only if $\rank(A(D)) \leq d-r$. Now, in the space $M_{d,g}$ of $d \times g$ matrices, the subset of matrices of rank $d-r$ or less has codimension $r(g-d+r)$ (\cite[Theorem ****]{Eisenbud1995},  so if the map $A$ is dimensionally transverse to this degeneracy locus in $M_{d,g}$, we could deduce that the locus of divisors with $r(D) \geq r$ has dimension $d - r(g-d+r)$, and such divisors would exist only if
+The point is, we can think of $A$ as a matrix valued function in an open set $U = U_1 \times U_2 \times \dots \times U_d \subset C_d$; and for divisors $D \in U$, we have $r(D) \geq r$ if and only if $\rank(A(D)) \leq d-r$. Now, in the space $M_{d,g}$ of $d \times g$ matrices, the subset of matrices of rank $d-r$ or less has codimension $r(g-d+r)$ (\cite[Theorem ****]{Eisenbud1995}. 
+
+It follows 
+that if  a divisor of degree $d$ with $h^0(D) \geq r+1$ exists, then there must be at least an $\rho$-dimensional family of them. Moreover, if the map $A$ is dimensionally transverse to this degeneracy locus in $M_{d,g}$, then the locus of divisors with $r(D) \geq r$ has dimension $d - r(g-d+r)$, and such divisors could exist only if
 $$
 d - r(g-d+r) \; \geq \; r.
 $$
-At the same time, if any divisor of degree $d$ with $h^0(D) \geq r+1$ exists, then there must be at least an $r$-dimensional family of them; this is exactly the statement of the Brill-Noether Theorem.
+This is exactly the statement of the Brill-Noether Theorem.
 
 
 \subsection{Refinements of the Brill-Noether theorem}
 
-As we indicated, Theorem~\ref{basic BN} is just a starting point. It raises a slew of questions, both about the geometry of the schemes $W^r_d(C)$ parametrizing linear series on a general curve $C$ (what are their dimensions, are they irreducible, etc.), and about the geometry of the linear systems themselves (do they give embeddings; what's the Hilbert function of the image, and so on). A great deal of progress has been made on these fronts. Here are statements of some of the main results:
+Theorem~\ref{basic BN} suggests a slew of questions, both about the geometry of the schemes $W^r_d(C)$ parametrizing linear series on a general curve $C$: are they irreducible? what are their singular loci,\dots), and about the geometry of the linear systems themselves (do they give embeddings? what's the Hilbert function of the image? \dots). This is an active area of research. Here is some of what is currently known:
 
-\begin{theorem}[Brill-Noether theorem, omnibus version]\label{BN omnibus}
+\begin{theorem}\label{Wrd omnibus }
 Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, then
 \begin{enumerate}
 \item $\dim(W^r_d(C)) = \rho$;
@@ -104,36 +122,11 @@ $$
 $$
 is injective, and the Zariski tangent space to the scheme $W^r_d(C)$ at the point $L$, as a subspace
 of $H^0(\omega_C)^*$, is the annihilator of the image of $\mu$;
-\item\label{general va} if $|D|$ is a general $g^r_d$ on $C$, then
-\begin{enumerate}
-\item if $r \geq 3$ then $D$ is very ample; that is, the map $\phi_D : C \to \PP^r$   embeds $C$ in $\PP^r$;
-\item if $r=2$ the map $\phi_D : C \to \PP^2$ gives a birational embedding of $C$ as a nodal plane curve; and 
-\item if $r=1$, the map $\phi_D : C \to \PP^2$ expresses $C$ as a simply branched cover of $\PP^1$.
 \end{enumerate}
-
-\item\label{maximal rank}[The maximal rank theorem] If $L \in W^r_d(C)$ is a general point (or any point, if $\rho = 0$), then for each $m > 0$ the multiplication map
-$$
-\rho_m : \Sym^m H^0(L) \to H^0(L^m)
-$$
-has maximal rank; that is, it is either injective or surjective.
-\item\label{interpolation}[The interpolation theorem]
-Let $d, g$ and $r$
-be nonnegative integers with $\rho(d, g, r) \geq 0$. There is a general curve of degree $d$ and genus $g$ through $n$ general
-points in $\PP^r$
-if and only if
-$$
-(r-1)n \leq (r + 1)d-(r-3)(g-1)
-$$
-except in the four exceptional cases $(d, g, r) = (5, 2, 3),(6, 4, 3),(7, 2, 5)$ or $(10, 6, 5)$.
-\end{enumerate}
-
-\fix{add references, attributions, etc.}
-
 \end{theorem}
 
-A few special cases are worth noting:
+\begin{remark}
 \begin{enumerate}
-
 \item As a special case of Part~\ref{rho=0}, we see that the number of $g^1_{k+1}$s on a general curve of genus $g = 2k$ is the $k$th Catalan number 
 $$
 c_k = \frac{2k!}{k!(k+1)!}.
@@ -143,9 +136,65 @@ We have already seen this in the first case: in genus 2, it says the canonical s
 \item Part~\ref{Petri} implies Part~\ref{sing wrd}. In fact, a fairly elementary argument shows that at a point $L \in W^r_d(C) \setminus W^{r+1}_d(C)$, the tangent space to $W^r_d$ at the point $L$ is the annihilator
 in $(H^0(\omega_C))^*$ of the image of $\mu$; given that $\mu$ is injective, we can compare dimensions and deduce that $W^r_d$ is smooth at $L$.
 
-\item Part~\ref{maximal rank} is the celebrated \emph{maximal rank theorem} of Eric Larson. It answers in general a question that has come up multiple times so far in this book: every time we've asked what hypersurfaces contain a curve $C \subset \PP^r$ embedded by a linear system $|L|$, we've looked at the maps $\rho_m$. Each time, we knew the dimensions of the spaces $\Sym^m H^0(L)$ and $H^0(L^m)$, and the question was the rank of $\rho_m$; now we know the answer for a general linear system of any degree and dimension.Thus the maximal rank theorem tells us the Hilbert function of a general curve $C \subset \PP^r$ embedded by a general linear system.
+\item For any curve $C$, there exists a scheme $G^r_d(C)$ parametrizing linear series of degree $d$ and dimension $r$; that is, in set-theoretic terms,
+$$
+G^r_d = \left\{ (L, V) \mid L \in Pic^d(C), \text{ and } V \subset H^0(L) \text{ with } \dim V = r+1 \right\}.
+$$
+$G^r_d(C)$ maps to $W^r_d(C)$; the map is an isomorphism over the open subset $W^r_d(C) \setminus W^{r+1}_d(C)$ and having positive-dimensional fibers over $W^{r+1}_d(C)$. It was conjectured
+by Petri and proven in \cite{Gieseker-Petri} that , for a general curve, the scheme $G^r_d(C)$ is smooth for any $d$ and $r$.
+\end{enumerate}
+\end{remark}
 
-\item There is a possible extension of the maximal rank theorem of Part~\ref{maximal rank}. If $C \subset \PP^r$ is a general curve embedded by a general linear series, the maximal rank theorem tells us the dimension of the $m$th graded piece of the ideal of $C$, for any $m$: this is just the dimension of the kernel of $\rho_m$. But it doesn't tell us what a minimal set of generators for the homogeneous ideal of $C$ might look like. For example, if $m_0$ is the smallest $m$ for which $I(C)_m \neq 0$, or numerically the smallest $m$ such that $\binom{m+r}{r} > md-g+1$, we can ask: is the homogeneous ideal $I(C)$ generated by $I(C)_{m_0}$?
+
+Recall that  in theorems~\ref{g+1 theorem}, \ref{g+2 theorem}, \ref{g+3 theorem} we proved that
+general invertible sheaves of degrees $g+1$, $g+2$ and $g+3$ on any curve
+give the nicest possible maps to (respectively) $\PP^1, \PP^2, \PP^3.$ These
+linear series, being general, are of course nonspecial and have (respectively
+2, 3, or 4-dimensional spaces of sections). The following result shows that something
+similar is true on a general curve for general linear series with 2,3, or 4-dimensional
+spaces of sections, though they may have degrees much less than $g+1, g+2, g+3$:
+
+\begin{theorem}\label{grd omnibus}(\cite[Proposition 5.4]{Eisenbud-Harris83}
+Let $C$ be a general curve of genus $g$.
+ if $|D|$ is a general $g^r_d$ on $C$, then
+
+ \begin{enumerate}
+\item if $r \geq 3$ then $D$ is very ample; that is, the map $\phi_D : C \to \PP^r$   embeds $C$ in $\PP^r$;
+\item if $r=2$ the map $\phi_D : C \to \PP^2$ gives a birational embedding of $C$ as a nodal plane curve; and 
+\item if $r=1$, the map $\phi_D : C \to \PP^2$ expresses $C$ as a simply branched cover of $\PP^1$.
+\end{enumerate}
+\end{theorem}
+
+
+
+In the course of investigating embeddings of a curve $C\subset \PP^n$ we have again and again
+asked about the ranks of the maps $H^0(\sO_{\PP^n}(d)) \to H^0(\sO_C(d)$. In the case of
+a general curve, the following theorem of \cite{ELarson2018} gives a comprehensive answer. In particular, it gives
+ the Hilbert function of any general embedding:
+ 
+\begin{theorem} \label{maximal rank}
+If $L \in W^r_d(C)$ is a general point (or any point, if $\rho = 0$), then for each $m > 0$ the multiplication map
+$$
+\rho_m : \Sym^m H^0(L) \to H^0(L^m)
+$$
+has maximal rank; that is, it is either injective or surjective.
+\end{theorem}
+
+A key step in Larsen's proof is the following interpolation theorem:
+
+\begin{theorem}\cite{Larson-Vogt}
+Let $d, g$ and $r$
+be nonnegative integers with $\rho(d, g, r) \geq 0$. There is a general curve of degree $d$ and genus $g$ through $n$ general
+points in $\PP^r$
+if and only if
+$$
+(r-1)n \leq (r + 1)d-(r-3)(g-1)
+$$
+except in four cases $(d, g, r) = (5, 2, 3),(6, 4, 3),(7, 2, 5)$ or $(10, 6, 5)$.
+
+ \end{theorem}
+ 
+There is a possible extension of the maximal rank theorem of Part~\ref{maximal rank}. If $C \subset \PP^r$ is a general curve embedded by a general linear series, the maximal rank theorem tells us the dimension of the $m$th graded piece of the ideal of $C$, for any $m$: this is just the dimension of the kernel of $\rho_m$. But it doesn't tell us what a minimal set of generators for the homogeneous ideal of $C$ might look like. For example, if $m_0$ is the smallest $m$ for which $I(C)_m \neq 0$, or numerically the smallest $m$ such that $\binom{m+r}{r} > md-g+1$, we can ask: is the homogeneous ideal $I(C)$ generated by $I(C)_{m_0}$?
 
 To answer this question---given that we know the dimensions of $I(C)_m$ for every $m$---we would need to know the ranks of the multiplication maps
 $$
@@ -153,15 +202,9 @@ $$
 $$
 for each $m$. In particular, we may conjecture that \emph{the maps $\sigma$ have maximal rank}; if this were true we could deduce the degrees of a minimal set of generators for the homogeneous ideal $I(C)$.
 
-\item There is another object worth mentioning: for any curve $C$, there exists a scheme $G^r_d(C)$ parametrizing linear series of degree $d$ and dimension $r$; that is, in set-theoretic terms,
-$$
-G^r_d = \left\{ (L, V) \mid L \in Pic^d(C), \text{ and } V \subset H^0(L) \text{ with } \dim V = r+1 \right\}.
-$$
 
-(This requires a little more technical machinery to construct, which is why we haven't introduced it.) $G^r_d(C)$ maps to $W^r_d(C)$; the map is a birational isomorphism, being an isomorphism over the open subset $W^r_d(C) \setminus W^{r+1}_d(C)$ and having positive-dimensional fibers over $W^{r+1}_d(C)$. In fact, another version of Part~\ref{sing wrd} is the statement that \emph{for a general curve $C$, the scheme $G^r_d(C)$ is smooth for any $d$ and $r$}.
+There are many remaining questions! One is the question of secant planes: a naive dimension count would suggest that an irreducible, nondegenerate curve $C \subset \PP^3$ will have a finite number of 4-secant lines, but no 5-secant lines. Is this true for a general curve embedded in $\PP^3$ by a general linear series?
 
-\item Parts~\ref{general va} and~\ref{maximal rank} describe the geometry of a general curve $C$ as embedded in projective space by a general linear series. But there are many remaining questions! One is the question of secant planes: a naive dimension count would suggest that an irreducible, nondegenerate curve $C \subset \PP^3$ will have a finite number of 4-secant lines, but no 5-secant lines. Is this true for a general curve embedded in $\PP^3$ by a general linear series?
-\end{enumerate}
 
 \section{Exercises}
 \begin{exercise}
