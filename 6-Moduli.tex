@@ -33,7 +33,7 @@ There are at least two ways in which this possibility has been useful in algebra
 possibility in many places in this book. 
 
 The second reason that having a moduli space is important in algebraic geometry is that it allows us to speak coherently about
-families of objects; ideally, the notion of ``natural'' we will adopt means that every family of objects of a given sort
+families of objects. Ideally, the notion of ``natural'' should imply that every family of objects of a given sort
 is obtained by pullback along a map to the moduli space of such objects. 
 
 This idea was already exploited informally in the nineteenth century in the guise of ``preservation of number'', used to count configurations of points or curves with a given property by specializing the 
@@ -99,7 +99,8 @@ If a moduli space and its universal family exist, then it is unique up to unique
 the universal family on $M$ corresponds to a map $M\to M'$, and we similarly produce a map $M'\to M$. The pullback of the universal family on $M$ by the composition of these two maps is again the universal family, so the composition is the identity map.
 
 Hilbert schemes are fine moduli spaces for subschemes of a given scheme, but 
-fine moduli spaces do not exist for all moduli problems. As we'll see in Section~\ref{}, \fix{****}there does not exist a solution to the moduli problem of abstract curves of genus $g$.
+fine moduli spaces do not exist for all moduli problems. As we'll explain in Section~\ref{course moduli}, there does not exist a universal family of abstract curves of genus $g$: the moduli space of curves is
+not a fine moduli space, but has a slightly weaker property.
 
 
 %In the case of the Hurwitz spaces, we consider pairs $(C,f)$ where $C$ is a smooth curve of genus $g$ and
@@ -184,11 +185,13 @@ fine moduli spaces do not exist for all moduli problems. As we'll see in Section
 
 \section{Hilbert schemes}\label{hilbert scheme section}
 
-The Hilbert scheme is in general a way of parametrizing subschemes of projective space with given Hilbert polynomial, so that for example if we wanted to study the space of curves $C \subset \PP^r$ of degree $d$ and genus $g$, this would correspond to a subset of the Hilbert scheme parametrizing subschemes of $\PP^r$ with Hilbert polynomial $p(m) = dm - g + 1$. In this section, we'll describe how the Hilbert scheme is constructed, and what basic lemmas the construction depends on; in Chapters~\ref{} and~\ref{}, we'll describe in more detail the Hilbert schemes of curves of low degree and genus in $\PP^3$.
+The Hilbert scheme is the solution to the moduli problem of subschemes of projective space with given Hilbert polynomial; it is a fine moduli space. For example, the set of curves $C \subset \PP^r$ of degree $d$ and genus $g$ corresponds to a subset of the Hilbert scheme parametrizing subschemes of $\PP^r$ with Hilbert polynomial $p(m) = dm - g + 1$. In this section, we'll describe how the Hilbert scheme is constructed. In Chapters~\ref{HilbertSchemesChapter} and~\ref{HilbertSchemesCounterexamplesChapter}, we'll describe in more detail the Hilbert schemes of curves of low degree and genus in $\PP^3$. 
 
-We mentioned at the beginning of this chapter that since a subscheme $X \subset \PP^r$ may be specified by a finite number of polynomials, which in turn have a finite number of coefficients, that it's not unreasonable to hope that the set of all subschemes with given numerical invariants (e.g., their degree) would be parametrized by the points of a scheme. To get an idea of how we might go about doing this, and what sort of facts we need to establish to carry this out, let's start with an example: twisted cubic curves in $\PP^3$.
 
-\subsection{Parametrizing twisted cubics} As we've seen, a twisted cubic curve $C \subset \PP^3$ can be described as the zero locus of three homogeneous quadratic polynomials $Q_1, Q_2$ and $Q_3$ in the homogeneous coordinates on $\PP^3$; to specify the twisted cubic, then, we could just list the $3 \times 10 = 30$ coefficients of these. But of course we could replace the three quadrics $Q_i$ with any three independent linear combinations of them; what matters---and what is is naturally associated to $C$---is the vector space $V = \langle Q_1, Q_2, Q_3 \rangle \subset H^0(\cO_{\PP^3}(2))$ that they span. This suggests that we consider the map of sets
+
+%We mentioned at the beginning of this chapter that since a subscheme $X \subset \PP^r$ may be specified by a finite number of polynomials, which in turn have a finite number of coefficients, that it's not unreasonable to hope that the set of all subschemes with given numerical invariants (e.g., their degree) would be parametrized by the points of a scheme. To get an idea of how we might go about doing this, and what sort of facts we need to establish to carry this out, let's start with an example: twisted cubic curves in $\PP^3$.
+
+\subsection{Parametrizing twisted cubics} We  start with an example. As we've seen, a twisted cubic curve $C \subset \PP^3$ can be described as the zero locus of three homogeneous quadratic polynomials $Q_1, Q_2$ and $Q_3$ in the homogeneous coordinates on $\PP^3$; to specify the twisted cubic we could just list the $3 \times 10 = 30$ coefficients of these. But of course we could replace the three quadrics $Q_i$ with any three independent linear combinations of them; what matters---and what is is naturally associated to $C$---is the vector space $V = \langle Q_1, Q_2, Q_3 \rangle \subset H^0(\cO_{\PP^3}(2))$ that they span. This suggests that we consider the map of sets
 $$
 h : \{ \text{twisted cubic curves } C \subset \PP^3 \} \to G = G(3, H^0(\cO_{\PP^3}(2)))
 $$
@@ -199,9 +202,9 @@ In fact, we'll see in Section~\ref{} below that the image of this map is a local
 
 \subsection{Construction of the Hilbert scheme in general}
 
-The above is the basic construction of the Hilbert scheme. When we try to generalize it, however, we immediately run into difficulties, which we need some foundational lemmas to surmount. For one thing, we used that fact that all twisted cubics lie on the same number of quadrics, and that they are the intersection of those quadrics. But we've seen in examples that not all curves of a given degree and genus lie on the same number of hypersurfaces of degree $m$ for all $m$. Likewise, when we initially posed the problem, we spoke of parametrizing all subschemes $X \subset \PP^r$ with a given Hilbert polynomial; even in the case of twisted cubics there are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---but are not the intersection of the quadrics containing them.
+In general, we face additional problems. Not all curves of a given degree and genus lie on the same number of hypersurfaces of degree $m$ for all $m$. Furthermore, when we posed the problem, we spoke of parametrizing all subschemes $X \subset \PP^r$ with a given Hilbert polynomial; even in the case of twisted cubics there are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---but that are not the intersection of the quadrics containing them.
 
-To deal with these issues in general, we need to begin with a fundamental lemma:
+A fundamental result of Matsusaka provides a place to start:
 
 \begin{lemma}\label{matsusaka}
 Let $p(m) \in \QQ[m]$ be a polynomial. There exists an integer $m_0$ such that
@@ -218,13 +221,13 @@ or in other words the Hilbert function of $X$ agrees with the Hilbert polynomial
 \end{enumerate}
 \end{lemma}
 
-(Note that  for any given $X$ the existence of an $m_0$ satisfying the statement of the lemma is immediate by Serre's vanishing theorem (\ref{}); the point of the lemma is that we can find one value of $m_0$ that works for all $X$ with Hilbert polynomial $p$.)
+Note that  for any given $X$ the existence of an $m_0$ satisfying the statement of the lemma is immediate by Serre's vanishing theorem~\ref{Serre-Grothendieck vanishing}. The point of the lemma is that we can find one value of $m_0$ that works for all $X$ with Hilbert polynomial $p$.
 
-The first item allows us to define a set map
+The first item allows us to define a  map of sets
 $$
-h : \left\{ \text{subschemes $X \subset \PP^r$ with $p_x=p$} \right\}  \to G\big(\binom{m_0+r}{r} - p(m_0), p(m_0)\big)
+h : \left\{ \text{subschemes $X \subset \PP^r$ with $p_X=p$} \right\}  \to G\big(\binom{m_0+r}{r} - p(m_0), p(m_0)\big)
 $$
-by sending $X$ to $H^0(\cI_{X/\PP^r}(m_0))$; the second item assures us that this map is injective. In fact, we will give in Section~\ref{} below a set of equations on $G = G(\binom{m_0+r}{r} - p(m_0), p(m_0))$ with common zero locus the image $\im(h)$, showing that $\im(h)$ is closed and giving it the structure of a scheme; this is the Hilbert scheme we seek.
+by sending $X$ to $H^0(\cI_{X/\PP^r}(m_0))$; the second implies that this map is injective.  In Section~\ref{eqns of Hilb} we give a set of equations on $G = G(\binom{m_0+r}{r} - p(m_0), p(m_0))$ with common zero locus the image $\im(h)$, showing that $\im(h)$ is closed and giving it the structure of a scheme; this is the Hilbert scheme we seek.
 
 \begin{exercise}
 Let $H \subset \PP^3$ be a 2-plane; let $C \subset H$ be a plane cubic curve and $p \in H \setminus C$ and point in $H$ not on $C$; let $X = C \cup \{p\}$.
@@ -234,25 +237,24 @@ Let $H \subset \PP^3$ be a 2-plane; let $C \subset H$ be a plane cubic curve and
 \end{enumerate}
 \end{exercise}
 
-\subsection{Equations defining the Hilbert scheme}
-
-Now that we have the set of subschemes $X \subset \PP^r$ with given Hilbert polynomial $p$ embedded in the Grassmannian, we want to show that it is indeed a Zariski closed subset, and give it the structure of a scheme, by describing a set of equations that cut it out. To indicate how this goes, let's return to the example of twisted cubics.
-
-\subsubsection{The twisted cubic, again}
-
-We observed above that $Q_1, Q_2$ and $Q_3$ are general quadrics, their intersection will be not a twisted cubic but simply 8 points. So a net $V$ of quadrics in $\PP^3$ can have different base loci, and what we want to know is how to tell them apart algebraically. One way to do this is to consider the multiplication map
+We observed above that if $Q_1, Q_2$ and $Q_3$ were general quadrics, their intersection would be
+8 points,  not a twisted cubic. What we want to know is how to tell these cases apart algebraically. One way to do this is to consider the multiplication map
 $$
 V \otimes H^0(\cO_{\PP^3}(1)) \to H^0(\cO_{\PP^3}(3)).
 $$
-This is a map from a 12-dimensional vector space to a 20-dimensional one, and what we've seen is that if $V$ is the net of quadrics containing a twisted cubic, it has a 2-dimensional kernel; that is, it has rank 10. But if the quadrics in $V$ intersect in eight points, the map is injective: the only relations among the $Q_i$ are the Koszul relations, and in particular there are no linear relations.
+We saw in Chapter~\ref{genus0And1Chapter} that the cokernel of this map is the 10-dimensional space $H^0(\sO_{\PP^1}(9))$, so the image of this map is 10-dimensional, whereas
+3 general quadrics form a complete intersection and would have only Koszul syzygies, so
+in the case of general quadrics this map would have 12-dimensional image.
+This is a map from a 12-dimensional vector space to a 20-dimensional one, and what we've seen is that if $V$ is the net of quadrics containing a twisted cubic, it has a 2-dimensional kernel; that is, it has rank 10. 
 
-So here is what we can do to generate functions on the Grassmannian that vanish on the locus of nets of quadrics containing twisted cubics  (but that are not identically zero): Let $S$ be the universal subbundle on $G = G(3, H^0(\cO_{\PP^3}(2))$, and let $H^0(\cO_{\PP^3}(d))$ denote the trivial bundle on $G$ with that fiber. The multiplication map above gives a map of vector bundles
+Thus if $S$ is the universal subbundle on $G = G(3, H^0(\cO_{\PP^3}(2))$, and  $H^0(\cO_{\PP^3}(d))\otimes \sO_G$ is the trivial bundle, then the multiplication map above gives a map of vector bundles
 $$
-S \otimes H^0(\cO_{\PP^3}(1)) \to H^0(\cO_{\PP^3}(3))
+\mu: S \otimes H^0(\cO_{\PP^3}(1)) \to H^0(\cO_{\PP^3}(3))
 $$
-and we can take as our functions on $G$ the $11 \times 11$ minors of a matrix representative of this map. In fact, we arrive in this way at a set of generators of the ideal of the Hilbert scheme in the Grassmannian $G$: in a neighborhood of a point in $G$ corresponding to a twisted cubic, the common zero locus of these minors is exactly the locus of nets of quadrics containing a twisted cubic
+We can represent this locally as a matrix of functions, and the minors of this matrix vanish on the points of
+of the Hilbert scheme: in a neighborhood of a point in $G$ corresponding to a twisted cubic, the common zero locus of these minors is the locus of nets of quadrics containing a twisted cubic
 
-\subsubsection{Doing this in general}
+\subsection{Equations defining the Hilbert scheme}\label{eqns of Hilb}
 
 In fact, the construction of the Hilbert scheme in general is no more structurally complicated than this special case. Given a polynomial $p(m)$, we find a value of $m_0$ that satisfies the statement of Lemma~\ref{matsusaka}; we let
 $$
@@ -262,7 +264,7 @@ be the Grassmannian, and let $h$ be the map from the set of subschemes of $\PP^r
 $$
 S \otimes H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{\PP^r}(m_0+1)),
 $$
-and indeed in a neighborhood of any point of $G$ in the image of $h$, the common zero locus of the minors of size $\binom{r+m_0+1}{r} - p(m_0+1)$ of a matrix representative of this map is exactly the image of $h$; and with the scheme structure on this image given by these functions, it is the Hilbert scheme.
+and indeed in a neighborhood of any point of $G$ in the image of $h$, the common zero locus of the minors of size $\binom{r+m_0+1}{r} - p(m_0+1)$ of a matrix representative of this map is the image of $h$; and these functions define the Hilbert scheme.
 
 
 %The Hilbert scheme $\cH_{d,g,r}$ parametrizes curves of given degree and arithmetic genus in $\PP^r$. For $r>2$, the theory is much more complicated.  Even if we restrict our attention to  what we might call the ``small Hilbert scheme"---the open subset corresponding to smooth, irreducible and nondegenerate curves---Hilbert schemes are truly wild. Locally, they can have arbitrarily bad singularities \cite{MR2227692}, at least for $r>3$. Furthermore, they can have many irreducible components---no one knows how many in general---of ;;;;;;;5 gfvcdimensions. 
@@ -435,19 +437,19 @@ and indeed in a neighborhood of any point of $G$ in the image of $h$, the common
 \section{$M_g$}
 
 
-In the remainder of this chapter, we will discuss the moduli space most central to the theory of algebraic curves: the moduli space of curves of genus $g$ up to isomorphism.
+In the remainder of this chapter, we will discuss the moduli space central to the theory of algebraic curves: the moduli space of curves of genus $g$ up to isomorphism.
 
 \subsection{Genus 2}                                                                                             
 
-Let's start with an example: the moduli space of smooth projective curves of genus $2$. We have seen that the simplest way to represent a curve $C$ of genus 2 is via the canonical map $\phi_K : C \to \PP^1$, which expresses $C$ as a 2-sheeted cover of $\PP^1$ branched over 6 distinct points $p_1,\dots,p_6 \in \PP^1$. Since this expression is unique, we see that the moduli space $M_2$ of smooth curves of genus 2 is---at least set-theoretically---the set of unordered 6-tuples of distinct points in $\PP^1$, modulo the automorphism group ${\rm Aut}(\PP^1) = PGL_2$.
+Again we start with an example: the moduli space of smooth projective curves of genus $2$. We have seen that the simplest way to represent a curve $C$ of genus 2 is via the canonical map $\phi_K : C \to \PP^1$, which expresses $C$ as a 2-sheeted cover of $\PP^1$ branched over 6 distinct points $p_1,\dots,p_6 \in \PP^1$. Since this expression is unique, we see that the moduli space $M_2$ of smooth curves of genus 2 is---at least set-theoretically---the set of unordered 6-tuples of distinct points in $\PP^1$, modulo the automorphism group ${\rm Aut}(\PP^1) = PGL_2$.
 
-How can we describe this set as the set of points of an algebraic variety in a ``natural" way? If we choose an ordering of the points $p_i$, there is a unique automorphism of $\PP^1$ carrying $p_1, p_2$ and $p_3$ to $0$, $1$ and $\infty$ respectively.  The remaining three points will be sent to three distinct points in $\PP^1 \setminus \{0, 1, \infty \} $. Of course, this depends on how we order the points in the first place; at the end of the day, we see that the symmetric group $S_6$ acts on the quasi-projective variety
+ If we choose an ordering of the points $p_i$, there is a unique automorphism of $\PP^1$ carrying $p_1, p_2$ and $p_3$ to $0$, $1$ and $\infty$ respectively.  The remaining three points will be sent to three distinct points in $\PP^1 \setminus \{0, 1, \infty \} $. Of course, this depends on how we order the points in the first place; at the end of the day, we see that the symmetric group $S_6$ acts on the quasi-projective variety
 $$
 \Gamma = \left( \PP^1 \setminus \{0, 1, \infty \} \right)^3 \setminus \Delta
 $$
 (where $\Delta$ is the union of all diagonals in the triple product), and the set $M_2$ of isomorphism classes of smooth curves of genus 2 is thus identified with the points of the quotient variety $\Gamma/S_6$.
 
-There are clearly many questions to address---for example, is the variety $\Gamma/S_6$ a fine moduli space in the sense of Chapter~\ref{**}---but this construction at least does two things:
+There are many questions to address---for example, is the variety $\Gamma/S_6$ a fine moduli space in the sense that there is a universal family?---but this construction at least does two things:
 
 One, it may serve to convince us that $M_2$ is irreducible of dimension 3; and
 
@@ -455,69 +457,81 @@ Two, it allows us to write down explicitly a ``general curve of genus 2:" this i
 $$
 y^2 = x(x-1)(x-a)(x-b)(x-c)
 $$
-with $a, b$ and $c$ general scalars. We will discuss the analogous question for curves of any genus $g$ in Section~\ref{} below.
+with $a, b$ and $c$ general scalars. We will discuss the analogous question for curves of any genus $g$ in Section~\ref{Hurwitz section} below.
 
 \subsection{Higher genus}
 
-Is there an analog for curves of higher genus of the construction above for genus 2? Yes, but we have to make a number of adaptations. To begin with, in the genus 2 example, we worked with the canonical map $\phi_K$, expressing a given curve $C$ of genus 2 as a 2-sheeted cover of $\PP^1$, so that the moduli space of curves of genus 2 could be realized as the space of such double covers modulo $\PGL_2$. What if we adopted the same approach, for example, in genus 3? There, if a curve $C$ of genus 3 is non-hyperelliptic, the canonical map embeds $C$ as a smooth quartic curve in $\PP^2$; since this realization is unique up to automorphisms of $\PP^2$, we might try to realize the space $\tilde M_3$ of non-hyperelliptic curves as the quotient of the space of smooth plane quartic curves---an open subset of the $\PP^{14}$ of all quartic curves---by the action of ${\rm Aut}(\PP^2) = PGL_3$.
+In the genus 2 example, we worked with the canonical map $\phi_K$, expressing a given curve $C$ of genus 2 as a 2-sheeted cover of $\PP^1$, so that the moduli space of curves of genus 2 could be realized as the space of such double covers modulo $\PGL_2$. What if we adopted the same approach in genus 3? If a curve $C$ of genus 3 is non-hyperelliptic, the canonical map embeds $C$ as a smooth quartic curve in $\PP^2$. Since this realization is unique up to automorphisms of $\PP^2$, we could realize the space $\tilde M_3$ of non-hyperelliptic curves as the quotient of the space of smooth plane quartic curves---an open subset of the $\PP^{14}$ of all quartic curves---by the action of ${\rm Aut}(\PP^2) = PGL_3$. 
 
-There are two immediate issues to deal with. The first, that we are excluding hyperelliptic curves in this construction, has a relatively straightforward solution: instead of looking at the canonical map, we look at the bicanonical map $\phi_{2K} : C \to \PP^{3g-4}$ (or, if we want to include the case of genus 2, the tricanonical map  $\phi_{3K} : C \to \PP^{5g-6}$). This means we have to replace the relatively simple ``space of smooth plane quartic curves" (an open subset of $\PP^{14}$) with the more daunting ``locally closed subset of the Hilbert scheme of curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$," but since we've introduced and constructed the Hilbert scheme in Chapter~\ref{**} this is more a matter of comfort than rigor.
+We can include the hyperelliptic curves as well if we take the the bicanonical map $\phi_{2K} : C \to \PP^{3g-4}$ (or, if we want to include the case of genus 2, the tricanonical map  $\phi_{3K} : C \to \PP^{5g-6}$). This means we have to replace the relatively simple ``space of smooth plane quartic curves" (an open subset of $\PP^{14}$) with the more daunting ``locally closed subset of the Hilbert scheme of curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$," whose construction was given in Section~\ref{Hilbert scheme section}.
 
-The second issue is more serious: whereas in the case of genus 2 curves in the preceding section we were taking the quotient of a variety by a finite group---which we know always exists---in the proposed construction here we want to take the quotient of a subset of the Hilbert scheme by the positive-dimensional group $PGL_{5g-5}$, and the existence of this quotient is more problematic.
+In this case we want to take the quotient of a subset of the Hilbert scheme by the positive-dimensional group $PGL_{5g-5}$. Unlike of the orbit space of a finite group, the orbit space in this case cannot be realized as an algebraic variety!
 
-Indeed, the question of when quotients of algebraic varieties by (certain) positive-dimensional groups exist is the central problem of \emph{geometric invariant theory}, which was developed for this reason. In the present volume, we will treat geometric invariant theory as a black box; to describe its inputs and outputs, we will describe a relatively well-understood example.
+This is the central problem of \emph{geometric invariant theory} as developed by David Mumford in~\cite{MumfordGIT}. We will treat the theory as a black box; to explain its inputs and outputs, we will describe a relatively well-understood example.
 
 \subsection{An example: plane cubics}
 
 The simplest way to describe the moduli space of smooth curves of genus 1 is to observe that every such curve can be expressed as a 2-sheeted cover of $\PP^1$ branched over 4 points, and to construct the moduli of unordered 4-tuples of distinct points in $\PP^1$, much as we did in the case of curves of genus 2 above.
 
-But suppose we tried a different approach: suppose we observed that any curve of genus 1 can be realized as a plane cubic, and tried to construct the moduli space by taking the quotient of the space $\PP^9$ of plane cubics by the group ${\rm Aut}(\PP^2) = PGL_3$. Would this work?
+But suppose we tried a different approach: suppose we observed that any curve of genus 1 can be realized as a plane cubic, and tried to construct the moduli space by taking the quotient of the space $\PP^9$ of plane cubics---the Hilbert space---by the group ${\rm Aut}(\PP^2) = PGL_3$. 
 
-The answer is clearly ``no." For example, any $PGL_3$ orbit in $\PP^9$ contains in its closure the locus of points in $\PP^9$ corresponding to triple lines. If the quotient $\PP^9/PGL_3$ existed in the world of algebraic varieties, then, the point corresponding to triple lines would be in the closure of every other point, which can't occur. 
+Any $PGL_3$ orbit in $\PP^9$ contains in its closure the locus of points in $\PP^9$ corresponding to triple lines: supposing, as we may, that $C$ is defined by the cubic form $F(x,y,z) = x^3+$ terms in the ideal $(y,z)$,
+we consider $F(x,ty, tz)$ and let $t$ go to 0. Thus in the topological quotient $\PP^9/PGL_3$ the point corresponding to triple lines is in the closure of every other point; this could not be an algebraic variety.
 
-The same problem occurs in less obvious fashion for other orbits as well. For example, consider the orbit of cuspidal plane cubics, like the one given by $y^2-x^3=0$. Given any smooth plane cubic $C$, written in terms of suitable affine coordinates as $y^2-x^3 - ax - b$, we can look at the family of cubics
+The same problem occurs in a less obvious fashion for other orbits. For example, in suitable coordinates every smooth cubic $C$ has affine equation of the form $y^2-x^3 - ax - b$, and the family of cubics
 $$
-y^2 - x^3 - t^2ax - t^3b.
+y^2 - x^3 - t^2ax - t^3b
 $$
-For all $t \neq 0$, this cubic belongs to the orbit of $C$, but for $t=0$ it belongs to the orbit of the cuspidal cubic; thus, if a quotient existed, the point corresponding to the orbit of a cuspidal cubic would lie in the closure of every point corresponding to a smooth cubic. 
+has the cuspidal curve $y^2-x^3$ as limit.
+Thus, if a quotient existed, the point corresponding to the orbit of a cuspidal cubic would lie in the closure of every point corresponding to a smooth cubic. 
 
-A related phenomenon involves curves without any singularities other than nodes: as the reader can verify, the orbit in $\PP^9$ corresponding to irreducible cubics with a node contains in its closure the locus of reducible cubics consisting of a line and a conic meeting transversely; and this orbit contains in its closure the orbit of triangles, cubics consisting of three non-concurrent lines. Thus if the quotient existed and was separated, all three of these orbits would have to map to the same point of the quotient.
+A related phenomenon involves curves without any singularities other than nodes: as the reader can verify, the orbit in $\PP^9$ corresponding to irreducible cubics with a node contains in its closure the locus of reducible cubics consisting of a line and a conic meeting transversely; and this orbit contains in its closure the orbit of triangles, cubics consisting of three non-concurrent lines. Thus even after restricting to an open set that contains nodal cubics, any continuous map 
+to a separated space that sends orbits to points all three of these orbits must map to the same point.
+These phenomena are typical of the problems that Geometric Invariant theory solves.
 
-Geometric invariant theory, or GIT, deals with exactly this issue in general. The situation to which we apply GIT is this: we have a quasiprojective variety $X \subset \PP^N$ and a reductive subgroup $G \subset PGL_{N+1}$ that carries $X$ into itself; we want to know if we can form a quotient $X/G$, and what its properties are.
+\subsection{Stable, semistable, unstable}
 
-When we discussed the quotient of an affine variety $X$ by a finite group $G$, it was clear how we had to proceed: we took the coordinate ring $R$ of $X$, on which $G$ acted; and the quotient $X/G$ was just the spectrum $\Spec(R^G)$ of the ring of invariant functions on $X$. We can try to do a similar thing here, by letting $A$ be the homogeneous coordinate ring of $X \subset \PP^N$, and taking the quotient $X/G$ to be $\Proj(A^G)$. But there's one problem we have to deal with first: since the elements of the homogeneous coordinate ring are not functions on $X$, the group $G$ may not act on $A$. Thus, we need to start with an action of $G$ on $A$ compatible with the action of $G$ on $X$. This is called a \emph{linearization} of the action, and always exists after a Veronese re-embedding of $X$ (that is, replacing $A$ by the direct sum of the graded pieces of $A$ of degree divisible by a suitable $m$).
+In general, given a projective variety $X \subset \PP^N$ and a reductive subgroup $G \subset PGL_{N+1}$ that carries $X$ into itself, we wish to construct a map from the set of orbits
+to a projective space that preserves as much of the structure of the orbit space as possible. Thus
+the output must correspond to a graded ring, and the obvious thing to try is the ring of invariants
+of the homogeneous coordinate ring of the closure of $X$
 
-So, suppose we are given a linearization of the action of $G$ on $X$. By Hilbert's theorem, the subring $A^G \subset A$ of invariant elements is finitely generated over our ground field, and if we want to take the quotient of $X$ by $G$ our first guess would be to take $X//G := \Proj(A^G)$. The question then is, in what sense is this a quotient, and in particular
-what is the relationship between the points of $X//G$ and the orbits of $G$ acting on $X$? 
+However, unlike the affine case, the group may not act by transformations of the homogeneous coordinate ring $A$ of $X$, since the elements of $A$ are not functions on $X$. Thus, we need to lift the action of 
+$G$ to the action of a (possibly larger) group on $A$.  This is called a \emph{linearization} of the action, and in the most general setting of group actions,
+a choice of linearization matters.  But in our setting, since the kernel of the map $SL_{N+1} \to PGL_{N+1}$ consists of diagonal matrices of finite order, the kernel acts trivially on forms of degree a multiple
+of $N+1$, that is, on the homogeneous coordinate ring of the $(N+1)$-st Veronese embedding. Thus the linearization is irrelevant, and we may assume from the outset that our action lifts to the homogeneous coordinate ring $A$.
+
+By Hilbert's theorem\footnote{Hilbert's Theorem covers the action of $SL_{N+1}$ in characteristic 0, the general case of a reductive group in any characteristic is more complicated, and combines ideas of 
+Hilbert, Mumford and Haboush} the subring $A^G \subset A$ of invariant elements is finitely generated over our ground field, and the projective variety best approximating the set of orbits of $G$ on $X$ 
+is $\Proj(A^G)$, usually denoted $X//G$. In view of the example above, we must ask what might be
+the relationship between the points of $X//G$ and the orbits of $G$? 
 
 To answer this question, GIT performs a sort of triage on the set of orbits of the action of $G$ on $X$, dividing them into three classes:
 
 \begin{enumerate}
 
-\item First, there are the \emph{stable} orbits. These comprise an open subset $U \subset X$, and the quotient of $U$ by $G$ exists and is well-behaved (that is, the quotient $U/G$ is separated, and its points correspond one-to-one to the stable orbits). In the case of the action of $PGL_3$ on the $\PP^9$ of plane cubics, these are the orbits of smooth plane cubics, and the quotient is the affine $j$-line.
+\item  \emph{Stable} orbits. These comprise an open subset of $X$, and the points of an open subset of $X//G$ correspond one-to-one to the stable orbits. In the case of the action of $PGL_3$ on the $\PP^9$ of plane cubics, these are the orbits of smooth plane cubics, and the quotient is the affine $j$-line.
 
-\item Second, there are the \emph{strictly semistable} orbits. These, together with the stable orbits, comprise a larger open subset $V \subset X$, called the \emph{semistable} locus. A quotient $V/G$ exists and is separated, but the points of the quotient may not correspond one-to-one to the semistable orbits. In the example of the action of $PGL_3$ on  $\PP^9$, this would be the orbits of nodal plane cubics; that is, smooth cubics plus the three orbits consisting of irreducible cubics with a node, unions of lines and conics meeting transversely, and triangles. In the quotient, these last three orbits correspond to just one additional point, and this quotient is just the compactification of the affine line to the projective line obtained by adding one point.
+\item \emph{Strictly semistable} orbits. These, together with the stable orbits, comprise a larger open subset $V \subset X$, called the \emph{semistable} locus. There is an open subset of
+$X//G$ whose points are images of orbits in $V$, but distinct strictly semistable orbits may map to the same point. In the example of the action of $PGL_3$ on  $\PP^9$, the semistable  locus contains  the orbits of smooth and nodal plane cubics; that is, smooth cubics together with the three orbits consisting of irreducible cubics with a node, unions of lines and conics meeting transversely, and triangles. In the quotient, these last three orbits correspond to just one additional point, and this quotient is just the compactification of the affine line to the projective line obtained by adding one point.
 
-\item Lastly, there are the \emph{unstable} orbits. These are the ones that cannot be included in any quotient without resulting in a non-separated space, and thus do not correspond to points of the quotient.
+\item  \emph{Unstable} orbits. These do not correspond to any point of $X//G$; in fact, these are the ones that cannot be included in any topologically separated quotient of an open subset of $X$.
 
 \end{enumerate}
 
-One important observation here is that geometric invariant theory is more than an abstract classification theorem; it actually provides tools for determining which class a given orbit belongs to. These are crucial for the application of geometric invariant theory to specific situations; a  priori, given an action of a group $G$ on a variety $X$, we don't know that there are any stable orbits at all.
+Geometric invariant theory is more than an abstract classification theorem; it actually provides tools for determining which class a given orbit belongs to. These are crucial for the application of geometric invariant theory to specific situations; a  priori, given an action of a group $G$ on a variety $X$, we don't know that there are any stable orbits at all.
 
-\subsection{A construction of the moduli space of curves}
+\subsection{Construction of the moduli space of curves}
 
-To summarize, the tool of geometric invariant theory gives us a way of constructing a moduli space $M_g$ for smooth  curves of genus $g$. As we suggested, we start with the Hilbert scheme $\cH$ parametrizing curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$, and pass to the open subset $W \subset \cH$ of smooth curves. Within this open subset, the locus $U \subset W$ of curves embedded by their tricanonical bundles is a closed subvariety, and---once we verify that orbits in $U$ are stable, we can take the moduli space $M_g$ to be the quotient $U/PGL_{5g-5}$.
+Geometric invariant theory gives us a way of constructing a moduli space $M_g$ of smooth  curves of genus $g$. We start with the Hilbert scheme $\cH$ parametrizing curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$, and pass to the open subset $W \subset \cH$ of smooth curves. Within this open subset, the locus $U \subset W$ of curves embedded by their tricanonical bundles is a closed subvariety, invariant under the automorphism group of the ambient space, and it is a theorem of Mumford~\cite{MumfordGIT} that all that orbits in $U$ are stable. The moduli space $M_g$ is the quotient $U/PGL_{5g-5}$.
 
 \section{Compactifying moduli}
 
-We come now to a development that has played an enormous role in the history of algebraic curves: the compactification of the moduli space of curves of genus $g$.
+The power of the theory of the moduli space of curves was greatly increased when the compactification of the space was understood, first in \cite{DeligneMumford} and then, using GIT, but Knudsen and Mumford \cite{***}, leading to the proof that the compactification is a projective variety. There are two reasons why these results are so important:
 
-\subsection{Why compactify?}
+First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply a priori to projective varieties---often the most effective way of dealing with a quasi-projective variety has proved to be to realize it as the complement of a divisor in a projective variety. One example of how  a compactification of $M_g$ can play a role in analyzing the global geometry fo $M_g$ is given in Section~\ref{mgunirational} below, where we take up the question, ``can we write down a general curve of genus $g$?"
 
-Why is this an important development? There are two reasons:
-
-First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply a priori to projective varieties. Indeed, the most effective way of dealing with a quasi-projective variety has proved to be to realize it as the complement of a divisor in a projective variety. One example of how  a compactification of $M_g$ can play a role in analyzing the global geometry fo $M_g$ is given in Section~\ref{mgunirational} below, where we take up the question, ``can we write down a general curve of genus $g$?"
-
+\fix{ DE got to here Jan 11}
 The second applies to a special class of compactifications of the moduli space $M_g$, called \emph{modular compactifications}. To explain, suppose that $U$ is a moduli space for a certain class of objects. One possible way to arrive at a compactification of $U$ is to enlarge the class of objects parametrized and consider the moduli space of this enlarged class, thus adding points to the space; a compactification of this sort  is called a modular compactification.
 
 (Put somewhere: one significant example of a compactification of $M_g$ that is \emph{not} modular is the \emph{Satake compactification} $M_g^S$. Two salient facts about the Satake compactification are that it is projective and for $g \geq 3$ the boundary $M_g^S \setminus M_g$ has codimension 2. As a consequence, we may deduce that \emph{through any point $[C] \in M_g$ there exists a complete curve $B \subset M_g$}; in other words,
@@ -615,11 +629,14 @@ This method breaks down when we get to genus 6, where a canonical curve is not a
 
 It gets harder as the genus increases. Let's do one more case, genus 7, which already calls for a different approach. Here we want to argue that, by Brill-Noether theory, a general curve of genus $7$ can be realized as (the normalization of) a plane septic curve with 8 nodes $p_1,\dots,p_8 \in \PP^2$. Equivalently, if we let $S = Bl_{p_1,\dots,p_8}(\PP^2)$ be the blow-up, and let $l$ and $e_1,\dots,e_8$ be the classes of the pullback of a line and of the eight exceptional divisors respectively, a divisor of class $7l - 2 \sum e_i$ is a curve of genus 7 on $S$. Thus the curves on $S$ form a linear series, parametrized by a projective space $\PP^{11}$.
 
-The problem is, there are many such surfaces $S$; we don't have a single linear system that includes the general curve of genus 7. The good news is, that's OK because the surfaces $S$ themselves form a rationally parametrized family. Explicitly, if we look at the set $\Phi$ of pairs $(S, C)$ with $S = Bl_{p_1,\dots,p_8}(\PP^2)$  the blow-up of $\PP^2$ at eight points and $C \subset S$ a curve of class $7l - 2 \sum e_i$ on $S$, then $\Phi$ is a $\PP^{11}$-bundle over $(\PP^2)^8$, and so is again a rational variety; choosing a rational parametrization of $\Phi$ we get a family of curves of genus $7$ parametrized by $\PP^{27}$ and dominating $M_7$. As before, then, a general point in $\PP^{27}$ yields a general curve of genus 7.
+The problem is, there are many such surfaces $S$; we don't have a single linear system that includes the general curve of genus 7. The good news is, that's OK because the surfaces $S$ themselves form a rationally parametrized family. Explicitly, if we look at the set $\Phi$ of pairs $(S, C)$ with $S = Bl_{p_1,\dots,p_8}(\PP^2)$  the blow-up of $\PP^2$ at eight points and $C \subset S$ a curve of class $7l - 2 \sum e_i$ on $S$, then $\Phi$ is a $\PP^{11}$-bundle over $(\PP^2)^8$, and so is again a rational variety; choosing a rational parametrization of $\Phi$ we get a family of curves of genus $7$ parametrized by $\PP^{27}$ and dominating $M_7$. As before a general point in $\PP^{27}$ yields a general curve of genus 7.
 
-A similar approach works through genus 10, but then this approach fails as well: if we represent a general curve of genus 11 as a plane curve with nodes, the nodes are no longer general points of $\PP^2$, and the same argument doesn't work. Ad hoc (and much more difficult) arguments were given in genera 11, 12 13 and 14, but so far no-one can go further in producing general curves. 
+A similar approach works through genus 10, but fails in genus 11: the nodes are no longer general points of $\PP^2$, and the same argument doesn't work. \fix{the comment is obscure -- what degree are we talking about? the 10 nodes for degree 8? if the point of the $g=7$ example was
+nodes in general position (for a general curve), we should have explained that.} Ad hoc (and much more difficult) arguments were given in genera 11, 12 13 and 14, but so far no-one can go further in producing general curves. 
 
-One application of the construction of $\overline M_g$ was the proof that this sequence cannot go much further! To say that there exists a family $\cC \to B$ over an open subset $B \subset \AA^n$ such that the induced map $\phi_\cC : B \to M_g$ is dominant implies that $M_g$ is \emph{unirational}, an assertion that we can disprove simply by exhibiting a pluricanonical divisor on a desingularization of $\overline M_g$. This was carried out in \fix{add references)} for all genera $g \geq 23$; in a neat twist, the divisor used consisted of curves possessing a special linear system with Brill-Noether number $-1$, meaning its existence was dependent on the proof of the Brill-Noether Theorem.
+One application of the construction of $\overline M_g$ was the proof that this sequence cannot go much further! To say that there exists a family $\cC \to B$ over an open subset $B \subset \AA^n$ such that the induced map $\phi_\cC : B \to M_g$ is dominant implies that $M_g$ is \emph{unirational}, an assertion that we can disprove simply by exhibiting a pluricanonical divisor on a desingularization of $\overline M_g$. This was carried out in
+\cite{Harris-MumfordModuli}, \cite{HarrisModuli}, and \cite{Eisenbud-HarrisModuli}
+ for all genera $g \geq 23$; in a neat twist, the divisor used consisted of curves possessing a special linear system with Brill-Noether number $-1$, meaning its existence was dependent on the proof of the Brill-Noether Theorem.
 
 The existence of an effective pluricanonical divisor on $\overline M_g$ tells us even more: for example it implies that \emph{$M_g$ is not uniruled}, meaning that through a general point $[C] \in M_g$ there are no rational curves. This is because the restriction (or pullback) of a nonzero differential to such a curve would be a nonzero diferential, contradicting the fact that the canonical bundle of $\PP^1$ has  negative degree. A consequence is that the sort of descriptions of embeddings with which much of this book is concerned, where we produce a surface on which a general curve of a certain sort lies, cannot be continued to high genus:
 
@@ -633,7 +650,7 @@ The existence of an effective pluricanonical divisor on $\overline M_g$ tells us
  using the prop. that a general curve has no automorphisms.}
 \end{proof}
 
-\subsection{Coarse vs. Fine moduli spaces}
+\subsection{Coarse vs. Fine moduli spaces}\section{course moduli}
 
 We have said that there does not exist a fine moduli space for curves of genus $g$; here we'll indicate why that's the case and define the notion of a \emph{coarse moduli space}, which is the next best thing.
 
@@ -660,7 +677,7 @@ satisfying two conditions:
 
 In other words, while the definition of a fine moduli space requires that the natural transformation $\phi$ be an isomorphism, here we require only that it be a natural transformation with ``finite kernel and cokernel" In these terms, what we can say is that the moduli space $\overline M_g$ is a coarse moduli space for stable curves of genus $g$.
 
-\section{Hurwitz spaces and the dimension of $M_g$}
+\section{Hurwitz spaces and the dimension of $M_g$}\label{Hurwitz section}
 
 Recall that the third item in the list of examples of moduli problems in Section~\ref{} was \emph{Hurwitz spaces}, spaces that parametrize branched covers of $\PP^1$ of specified degree and genus. In fact, proving the existence of solutions to this moduli problem can be tricky, but in the simplest case, where we consider only simply branched covers, we can give at least a local description of these spaces. We can then use this to estimate the dimension of the moduli space $M_g$.
 
