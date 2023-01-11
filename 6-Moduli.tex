@@ -21,41 +21,51 @@
 
 \section{What is a moduli problem?}
 
-Algebraic geometry is almost unique among geometric categories in that the objects---varieties,  schemes or maps between them---can be parametrized by other varieties or schemes. Think about it: the set of submanifolds of a given manifold, or more generally of maps between two given manifolds, is just far too large to be given the structure of a manifold itself. By contrast, any algebraic variety is specified by a finite collection of polynomials, which in turn have a finite number of coefficients, so it's not too far-fetched that the collection of varieties with specified numerical invariants, or morphisms between two given varieties, could be given the structure of a variety in its own right.
+Algebraic geometry is almost unique among geometric categories in that the objects---varieties,  schemes or maps between them---can be parametrized by other varieties or schemes. The set of submanifolds of a given manifold, or more generally of maps between two given manifolds, seems too large to be given the structure of a finite-dimensional manifold itself. By contrast, any algebraic variety is specified by a finite collection of polynomials, which in turn have a finite number of coefficients, so it's not too far-fetched that the collection of all varieties with specified numerical invariants, or morphisms between two given varieties, could be given the structure of a ``moduli space'' that is a variety (or scheme or\dots) in its own right.
 
-For example, plane curves, the original objects studied by algebraic geometry, come naturally in a family: the projective plane curves of degree $d$, with their embedding
+For example, projective plane curves of degree $d$
 are in natural one-to-one correspondence with the forms of degree $d$ modulo the group of nonzero scalars---that is, with the points of the dual of the projective space
 $ \PP(H^0(\sO_{\PP^2}(d)))=\PP^{\binom{d+2}{2}-1} $.
 Perhaps this is the origin of the impulse in algebraic geometry to make 
- \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll give a general framework for the notion of moduli space, introducing the main examples that we will treat in this book and their desirable and undesirable properties.
+ \emph{moduli}, or \emph{parameter spaces}---spaces parametrizing algebro-geometric objects of a specified sort. In this chapter, we'll give a general framework for the notion of moduli space, introducing the main examples that we will treat in this book.
 
-In modern terms, a \emph{moduli problem} consists of two things: first, a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common attributes---and second a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
-which associates to each scheme $B$ the set of families of the given sort. Examples will make this vague notion more concrete. In each case, we'll discuss some cases relevant to curves.
+There are at least two ways in which this possibility has been useful in algebraic geometry. First, the existence of a moduli space that in some \emph{natural} parameterizes objects of a certain type allows us to speak of ``the general object'', meaning that we allow ourselves to avoid the ``special'' properties of objects parameterized by closed subvarieties of the moduli space. We have already used this
+possibility in many places in this book. 
 
-\subsection{Examples}
+The second reason that having a moduli space is important in algebraic geometry is that it allows us to speak coherently about
+families of objects; ideally, the notion of ``natural'' we will adopt means that every family of objects of a given sort
+is obtained by pullback along a map to the moduli space of such objects. 
+
+This idea was already exploited informally in the nineteenth century in the guise of ``preservation of number'', used to count configurations of points or curves with a given property by specializing the 
+data, and we have also exploited this idea in
+Chapter~\ref{JacobianChapter} to explain the count of odd and even theta characteristics on a a general curve by appealing to the existence of a specialization to a hyperelliptic curve.
+
+In modern terms, a \emph{moduli problem} consists of a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common attributes---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
+which associates to each scheme $B$ the set of families of the given sort. Examples will make this vague notion more concrete.
+
+\subsection{Examples of moduli problems}
 
 \begin{enumerate}\label{list of moduli problems}
 
-\item \emph{Effective divisors on a given curve}. The objects are divisors of degree $d$ on a given smooth, projective curve $C$. A family of such divisors is a subscheme $\cD \subset B \times C$, flat of degree $d$ over $B$. 
-%Here we are using
-%the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ subschemes of the curve. The result is the symmetric power $C_d$, discussed in Section~\ref{symmetric section}.
+\item \emph{Effective divisors on a given curve}. The objects are effective divisors of given degree on a given smooth, projective curve $C$. A family of such divisors is a subscheme $\cD \subset B \times C$, flat of degree $d$ over $B$. 
+Here we are using
+the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ subschemes of the curve. The result is the symmetric power $C_d$, discussed in Section~\ref{symmetric section}.
 
-\item \emph{Line bundles on a given curve}. The objects are line bundles of degree $d$ on a given smooth projective curve $C$. A family of line bundles over $B$ is an equivalence class of line bundles $\cL$ on $B \times C$ whose restriction to each fiber of $B \times C$ over $B$ has degree $d$, with the equivalence relation that two families $\cL$ and $\cL'$ on $B \times C$ are equivalent if $\cL$ and $\cL'$ differ by a line
+\item \emph{Line bundles on a given curve}. The objects are line bundles of given degree on a given smooth projective curve $C$. A family of line bundles over $B$ is an equivalence class of line bundles $\cL$ on $B \times C$ whose restriction to each fiber of $B \times C$ over $B$ has degree $d$, with the equivalence relation that two families $\cL$ and $\cL'$ on $B \times C$ are equivalent if $\cL$ and $\cL'$ differ by a line
 bundle pulled back from $B$. 
-%The result is the Jacobian and Picard varieties, discussed in Section~\ref{Picard section}.
+The result is the Jacobian and Picard varieties, discussed in Section~\ref{Picard section}.
 
-\item \emph{Hurwitz spaces}. The objects are curves of a given genus, together maps to $\PP^1$ of given degree, often with specified ramification indices. 
-%\fix{what's the equivalence relation? Does this really
-%fit into moduli problems? If so let's say it. Same question for Severi varieties.}
+\item \emph{Hurwitz spaces}. The objects are curves of a given genus, together maps to $\PP^1$ of given degree, up to isomorphism of the curves that commute with the maps. Often the allowable ramification indices are specified.
 
 \item \emph{Severi varieties}. The objects are plane curves
-of given degree and geometric genus. Thus for most degrees and genera,
-the curves will all be singular, but are often
+of given degree $d$ and geometric genus $g$. If $g \neq {d-1\choose 2}$
+the curves will necessarily be singular but are often
 constrained to have only mild singularities, usually only ordinary nodes.
 
-\item \emph{Hilbert schemes}. The objects are curves of given degree $d$ and arithmetic genus $g$ in $\PP^r$.  A family of such curves over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$. 
+\item \emph{Hilbert schemes}. The objects are curves of given degree $d$ and arithmetic genus $g$ in $\PP^r$.  A family of such curves over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$. More generally, there are Hilbert schemes
+for subschemes with any specified Hilbert polynomial or Hilbert function.
 
-\item \emph{Moduli of smooth curves of genus $g$}. The objects are isomorphism classes of smooth, projective curves of genus $g$. A \emph{family of curves of genus $g$} over $B$ is an equivalence class of smooth, projective morphism $f : \cC \to B$ whose fibers are curves of genus $g$, wheres two such families $f, f'$
+\item \emph{Moduli of smooth curves}. The objects are isomorphism classes of smooth, projective curves of genus $g$. A family over $B$ is an equivalence class of smooth, projective morphism $f : \cC \to B$ whose fibers are curves of genus $g$, wheres two such families $f, f'$
 are equated if there is an isomorphism from the source of $f$ to the source
 of $f'$ making the diagram
 $$
@@ -69,11 +79,13 @@ commutative.
 \end{enumerate}
 
 
-We have already encountered examples 1 and 2 in Chapter~\ref{}. Severi varieties will be discussed in Chapter~\ref{}; we will discuss Hurwitz spaces at the end of this chapter, in connection with basic facts about the moduli space $M_g$. Finally, Examples 5 and 6---Hilbert schemes, and the moduli space $M_g$ of abstract curves---are the most fundamental, and will be discussed in the remaining sections of this Chapter.
+We have already encountered examples 1 and 2 in Chapter~\ref{JacobianChapter}. Severi varieties will be discussed in Chapter~\ref{PlaneCurvesChapter}; we will discuss Hurwitz spaces at the end of this chapter, in connection with basic facts about the moduli space $M_g$. In this chapter we will discuss Examples 5 and 6.
+
+
 
 \section{What is a solution to a moduli problem?}
 
-Given a moduli problem, we want to construct a scheme $M$ whose closed points are in natural  1-to-1 correspondence with the objects we're trying to parametrize. The word \emph{natural} appearing in that last sentence is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere a bijection between the points of $M$ and the objects to be parametrized is useless.
+Given a moduli problem, we want to construct a scheme $M$ whose closed points are in natural  1-to-1 correspondence with the objects we're trying to parametrize. The word \emph{natural} is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere a bijection between the points of $M$ and the objects to be parametrized is useless.
 
 What we really want from a moduli space $M$ is to understand \emph{all} the possible families of the objects it classifies. Thus it is natural to ask that there be a \emph{universal} family $\phi: \cX\to M$ of these objects over $M$,
 and that every family over another base, say $B$,  be pulled back from the one on $M$ via a morphism $B\to M$ . Since we would prefer not to count families more than once, we can ask that the 
@@ -86,7 +98,8 @@ If $M$ is a fine moduli space then the identity map $M\to M$ corresponds to the 
 If a moduli space and its universal family exist, then it is unique up to unique isomorphism: given two avatars $M,M'$ of the fine moduli space of a given moduli problem,
 the universal family on $M$ corresponds to a map $M\to M'$, and we similarly produce a map $M'\to M$. The pullback of the universal family on $M$ by the composition of these two maps is again the universal family, so the composition is the identity map.
 
-Fine moduli spaces do not necessarily exist for all moduli problems. Hilbert schemes are indeed fine moduli spaces for subschemes of a given scheme, but as we'll see in Section~\ref{}, there does not exist a solution to the moduli problem of abstract curves of genus $g$.
+Hilbert schemes are fine moduli spaces for subschemes of a given scheme, but 
+fine moduli spaces do not exist for all moduli problems. As we'll see in Section~\ref{}, \fix{****}there does not exist a solution to the moduli problem of abstract curves of genus $g$.
 
 
 %In the case of the Hurwitz spaces, we consider pairs $(C,f)$ where $C$ is a smooth curve of genus $g$ and
@@ -252,7 +265,7 @@ $$
 and indeed in a neighborhood of any point of $G$ in the image of $h$, the common zero locus of the minors of size $\binom{r+m_0+1}{r} - p(m_0+1)$ of a matrix representative of this map is exactly the image of $h$; and with the scheme structure on this image given by these functions, it is the Hilbert scheme.
 
 
-%The Hilbert scheme $\cH_{d,g,r}$ parametrizes curves of given degree and arithmetic genus in $\PP^r$. For $r>2$, the theory is much more complicated.  Even if we restrict our attention to  what we might call the ``small Hilbert scheme"---the open subset corresponding to smooth, irreducible and nondegenerate curves---Hilbert schemes are truly wild. Locally, they can have arbitrarily bad singularities \cite{MR2227692}, at least for $r>3$. Furthermore, they can have many irreducible components---no one knows how many in general---of ;;;;;;;5 gfvcdimensions. 
+%The Hilbert scheme $\cH_{d,g,r}$ parametrizes curves of given degree and arithmetic genus in $\PP^r$. For $r>2$, the theory is much more complicated.  Even if we restrict our attention to  what we might call the ``small Hilbert scheme"---the open subset corresponding to smooth, irreducible and nondegenerate curves---Hilbert schemes are truly wild. Locally, they can have arbitrarily bad singularities \cite{MR2227692}, at least for $r>3$. Furthermore, they can have many irreducible components---no one knows how many in general---of ;;;;;;;5Â gfvcdimensions. 
 %
 %While the proof of existence of Hilbert schemes is highly nontrivial, a decent summary can be found in~\cite{3264}. In the present volume, we will describe a number of examples,  some nice  and some not-so-nice, in Chapters~\ref{HilbertSchemesChapter} and \ref{HilbertSchemesCounterexamplesChapter}.
 %
