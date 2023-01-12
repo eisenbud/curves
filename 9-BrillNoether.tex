@@ -108,7 +108,7 @@ This is exactly the statement of the Brill-Noether Theorem.
 
 Theorem~\ref{basic BN} suggests a slew of questions, both about the geometry of the schemes $W^r_d(C)$ parametrizing linear series on a general curve $C$ (are they irreducible? what are their singular loci,\dots), and about the geometry of the linear systems themselves (do they give embeddings? what's the Hilbert function of the image? \dots). This is an active area of research. Here is some of what is currently known, starting with results about the geometry of $W^r_d(C)$:
 
-\begin{theorem}\label{Wrd omnibus }
+\begin{theorem}\label{Wrd omnibus}
 Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, then for $d \leq g+r$,
 \begin{enumerate}
 \item $\dim(W^r_d(C)) = \rho$;
@@ -174,7 +174,7 @@ asked about the ranks of the maps $H^0(\sO_{\PP^n}(d)) \to H^0(\sO_C(d))$. In th
 a general curve, the following theorem of \cite{ELarson2018} gives a comprehensive answer. In particular, it gives
  the Hilbert function of any general embedding:
  
-\begin{theorem} \label{maximal rank}
+\begin{theorem}[Larson]\label{maximal rank}
 If $L \in W^r_d(C)$ is a general point, then for each $m > 0$ the multiplication map
 $$
 \rho_m : \Sym^m H^0(L) \to H^0(L^m)
@@ -184,7 +184,7 @@ has maximal rank; that is, it is either injective if $\binom{m+r}{r} \leq md-g+1
 
 A key step in Larson's proof is the following interpolation theorem:
 
-\begin{theorem}\cite{Larson-Vogt}
+\begin{theorem}[Larson-Vogt]\label{Larson-Vogt}
 Let $d, g$ and $r$
 be nonnegative integers with $\rho(d, g, r) \geq 0$. There is a general curve of degree $d$ and genus $g$ through $n$ general
 points in $\PP^r$
@@ -211,11 +211,35 @@ There are many remaining questions! One is the question of \emph{secant planes}:
 
 
 \section{Curves of genus 6}\label{genus 6 section}
-\fix{This will come after the plane curves: we get the 5-ic del Pezzo for free, given the "conditions of adjunction", and then
-the special cases will give us exercise in what the conditions of adjunction are.}
+%\fix{This will come after the plane curves: we get the 5-ic del Pezzo for free, given the "conditions of adjunction", and then
+%the special cases will give us exercise in what the conditions of adjunction are.}
 
 
-Throughout our analyses of curves of genus $g = 3, 4$ and 5, we have been able to analyze the geometry of the canonical model to verify the statement of the Brill-Noether theorem in each case. In genus 6, by contrast, a fundamental shift takes place: we cannot deduce the Brill-Noether theorem from studying the geometry of the canonical curve; rather, we need to use Brill-Noether to describe the canonical curve. We deal with hyperelliptic and trigonal curves elsewhere, so in this Chapter we will consider the remaining cases. The basis for what we do is the following result from~\cite{MR744297}:
+Throughout our analyses of curves of genus $g \leq 5$, we have been able to analyze the geometry of the canonical model to verify the statement of the Brill-Noether theorem in each case. In genus 6, by contrast, a fundamental shift takes place. We cannot readily deduce the Brill-Noether theorem from studying the geometry of the canonical curve---we can determine that a canonical curve $C \subset \PP^5$ of genus 6 lies on a 6-dimensional vector space of quadrics, for example, but that doesn't tell us much about its geometry. Rather, we need to use Brill-Noether to describe the canonical curve. 
+
+In this section, we'll use the full strength of the Brill-Noether theorem to describe the geometry of a general curve of genus 6. We will then go on and consider various types of special curves.
+
+\subsection{General curves of genus 6}
+
+Suppose that $C$ is a general curve of genus 6. The basic Brill-Noether theorem (Theorem~\ref{basic BN}) tells us that $C$ admits a map of degree 4 to $\PP^1$, and a map to $\PP^2$ given by a line bundle of degree 6. The more refined Theorem~\ref{Wrd omnibus} tells us a good deal more: among other things, it tells us that the maps $C \to \PP^2$ given by line bundles of degree 6 map $C$ birationally onto plane sextic curves $C_0 \subset \PP^2$ having only nodes as singularities (which by the genus formula (\ref{}) will have exactly 4 nodes; and that there are exactly 5 such maps modulo the automorphism group $PGL_3$ of $\PP^2$.
+
+In fact, once we have exhibited one birational map of $C$ to a plane sextic with nodes, we can describe all five $g^2_6$s and all five $g^1_4$s in terms of this plane model. To do this, we need to introduce one bit of terminology. Suppose $f : C \to S$ is a regular map from a smooth curve $C$ to a surface $S$. If $L$ is a line bundle on $S$ and $V \subset H^0(L)$ a vector space of sections, we can associate to them a linear system on $C$ by taking the pullback linear system $f^*V$ on $C$ and subtracting the base points; this is called the linear series \emph{cut out on $C$ by $V$}.
+
+For example, suppose $C$ is a general curve of genus 6 as above and $f : C \to \PP^2$ is a birational map onto a sextic curve $C_0$ with four nodes; let $p \in C_0$ be one of the nodes and consider the linear system $(\cO_{\PP^2}(1),V)$ of lines in $\PP^2$ through $p$. The pullback $f^*\cO_{\PP^2}(1)$ of course has degree 6, but the pullback linear series $f^*V$ has two base points, at the points $q, r \in C$ lying over $p$. The linear series cut on $C$ by $V$ is thus a $g^1_4$, and indeed we get in this way four of the five $g^1_4$s on $C$ promised by Theorem~\ref{Wrd omnibus}.
+
+For another example---and to produce the fifth and final $g^1_4$---consider the linear series cut on $C$ by conic plane curves passing through all four nodes of $C_0$. There is a pencil of such conics, and while the pullback $f^*\cO_{\PP^2}(2)$ now has degree 12, the pullback series has eight base points; thus we arrive at another $g^1_4$ on $C$.
+
+In the same vein, consider the linear system cut on $C$ by cubics passing through all four nodes. This has degree $3\cdot 6 - 8 = 10$ and dimension 6, and we can deduce that this is exactly the complete canonical series on $C$. Indeed, in Chapter~\ref{PlaneCurvesChapter} we will see directly that this is the case.
+
+Finally, we can use the same construction to locate the five $g^2_6$s on $C$ whose existence is asserted in Theorem~\ref{Wrd omnibus}. One, of course, is the $g^2_6$ giving the birational map $f : C \to C_0 \subset \PP^2$; that is, the linear series cut on $C$ by the net of all lines in the plane. As for the other four, we can use the fact that the five $g^2_6$s on $C$ are residual to the five $g^1_4$s in the canonical series; thus the four remaining $g^2_6$s are cut out on $C$ by the linear system of plane conics passing through three of the four nodes of $C_0$.
+
+There is one consequence of this description: we can deduce that \emph{the four nodes of $C_0$ are in linear general position}; that is, no three are collinear. The reason is simple: if three of the four nodes of $C_0$ were collinear, the $g^1_4$ cut on $C$ by lines through the fourth node would coincide with the $g^1_4$ cut on $C$ by conics through all four. (Indeed, in this case we can see from part ** of Theorem~\ref{Wrd omnibus} that the $g^1_4$ cut on $C$ by conics through all four nodes is a non-reduced point of the scheme $W^1_4(C)$; this is the subject of Exercise~\ref{} below. 
+
+\subsection{Special curves of genus 6}
+
+%We deal with hyperelliptic and trigonal curves elsewhere, so in this Chapter we will consider the remaining cases. The basis for what we do is the following result from~\cite{MR744297}:
+
+
 
 \begin{theorem}
 If $C\subset \PP^5$ is a general canonical curve of genus 6, then $C$ is the complete intersection of a quadric hypersurface
