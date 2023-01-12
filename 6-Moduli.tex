@@ -521,39 +521,64 @@ $X//G$ whose points are images of orbits in $V$, but distinct strictly semistabl
 
 Geometric invariant theory is more than an abstract classification theorem; it actually provides tools for determining which class a given orbit belongs to. These are crucial for the application of geometric invariant theory to specific situations; a  priori, given an action of a group $G$ on a variety $X$, we don't know that there are any stable orbits at all.
 
-\subsection{Construction of the moduli space of curves}
+\subsection{Construction and characterization of the moduli space of curves}
 
 Geometric invariant theory gives us a way of constructing a moduli space $M_g$ of smooth  curves of genus $g$. We start with the Hilbert scheme $\cH$ parametrizing curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$, and pass to the open subset $W \subset \cH$ of smooth curves. Within this open subset, the locus $U \subset W$ of curves embedded by their tricanonical bundles is a closed subvariety, invariant under the automorphism group of the ambient space, and it is a theorem of Mumford~\cite{MumfordGIT} that all that orbits in $U$ are stable. The moduli space $M_g$ is the quotient $U/PGL_{5g-5}$.
 
+The moduli space of curves is not a fine moduli space---it does not admit a universal family, for reasons discussed in Section \fix{****}. But it is a ``coarse moduli space", the best possible approximation to a fine moduli space in the category of varieties, in the following sense:
+
+\begin{definition}
+A \emph{coarse moduli space} for a moduli problem defined by a set of objects $M_0$ and a functor $F$ of families is a scheme $M$ together with 
+a natural transformation to the functor of morphisms of schemes
+$$
+\Psi: F\to \Mor(-, M)
+$$
+such that the closed points of $M$ are in one-to-one correspondence with the elements of $M_0$ and
+for every scheme $M'$ and natural transformation $\Psi': F \to \Mor(-, M')$
+there is a unique morphism $\eta: M\to M'$ so that $\Psi' = \Psi\circ \Mor(-, \eta)$.
+\end{definition}
+
+Thus, in plain language, the theorem that $M_g$ is a coarse moduli space for smooth curves of genus $g$ means: 
+\begin{enumerate}
+ \item The points of $M_g$ correspond one-to-one to isomorphism classes of smooth curves.
+ \item For every family $\cC \to B$ of smooth curves there is a map $B\to M_g$ carrying
+ each closed point  $b \in B$ to the point representing the isomorphism class of the fiber of $\cC$ over $b$
+\end{enumerate}
+all in a ``maximal'' way: there cannot be a nontrivial covering $M' \to M$ that has these same properties.
+
 \section{Compactifying moduli}
 
-The power of the theory of the moduli space of curves was greatly increased when the compactification of the space was understood, first in \cite{DeligneMumford} and then, using GIT, but Knudsen and Mumford \cite{***}, leading to the proof that the compactification is a projective variety. There are two reasons why these results are so important:
+The power of the theory of the moduli space of curves was greatly increased when compactifications of the space (there are many interesting ones) were understood. There are two reasons why these results are so important:
 
-First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply a priori to projective varieties---often the most effective way of dealing with a quasi-projective variety has proved to be to realize it as the complement of a divisor in a projective variety. One example of how  a compactification of $M_g$ can play a role in analyzing the global geometry fo $M_g$ is given in Section~\ref{mgunirational} below, where we take up the question, ``can we write down a general curve of genus $g$?"
+First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply a priori to projective varieties. An easy example uses the Satake compactification, which is a projective variety containing $M_g$ in such a way that the complement---usually referred to as the "boundary"---has codimension 2. Taking successive hyperplane sections through a given point, we see that $M_g$ there is a complete one-dimensional family of \emph{smooth} curves containing any smooth curve of genus $\geq 2$. The corresponding question for 2-dimensional families of curves is open!
 
-\fix{ DE got to here Jan 11}
-The second applies to a special class of compactifications of the moduli space $M_g$, called \emph{modular compactifications}. To explain, suppose that $U$ is a moduli space for a certain class of objects. One possible way to arrive at a compactification of $U$ is to enlarge the class of objects parametrized and consider the moduli space of this enlarged class, thus adding points to the space; a compactification of this sort  is called a modular compactification.
+Often, though, we can learn the most from a compactification where boundary is a well-behaved divisor, and this is the case for the Deligne-Mumford compactification, described below. A central example of how this is used is given in Section~\ref{mgunirational}, where we take up the question, ``can we write down a general curve of genus $g$?" 
 
-(Put somewhere: one significant example of a compactification of $M_g$ that is \emph{not} modular is the \emph{Satake compactification} $M_g^S$. Two salient facts about the Satake compactification are that it is projective and for $g \geq 3$ the boundary $M_g^S \setminus M_g$ has codimension 2. As a consequence, we may deduce that \emph{through any point $[C] \in M_g$ there exists a complete curve $B \subset M_g$}; in other words,
- if $C$ is any smooth projective curve of genus $g \geq 3$, there exists a complete one-parameter family of smooth curves $\cC \to B$, of varying moduli, including $C$ as a fiber. Possible extensions of this theorem remain open problems; for example, it's not known whether  through any point $[C] \in M_g$ there exists a complete surface $B \subset M_g$.)
+The compactification $\overline M_g$ introduced by Deligne and Mumford in their groundbreaking 1969 paper has an important extra property: it is a \emph{modular}  compactification in the sense that the points of the boundary correspond to slightly more general
+objects of the same type as the points of $M_g$. 
+Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and the automorphism group is finite.
+
+\begin{theorem}(Deligne, Mumford, Knudsen) \cite{Deligne-Mumford}, \cite{MR702954}
+$\overline M_g$ is a projective variety that is a coarse moduli space for stable curves 
+\end{theorem}
  
- The pre-eminent example of a modular compactification is the \emph{stable} compactification $\overline M_g$ of $M_g$, introduced by Deligne and Mumford in their groundbreaking 1969 paper. Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and the automorphism group is finite; in their 1969 paper Deligne and Mumford show that there exists a moduli space for stable curves, and that it is a complete variety.
  
- The moduli space of stable curves was the first modular compactification of $M_g$. But it's not the only one; others have been found by
-
-
-
-The introduction of the moduli space $\overline M_g$ of stable curves has had enormous consequences for the study of the geometry of $M_g$ and hence for curve theory in general. But its significance goes beyond even that. As a consequence, for example, we can invoke the valuative criterion for properness to deduce the fundamental theorem.
+The introduction of the moduli space $\overline M_g$ of stable curves has had enormous consequences for the study of the geometry of $M_g$ and hence for curve theory in general. The following consequence is an example; it shows that if a singular curve, no matter how complicated, is the limit of a 1-parameter family of smooth curves, then the singular curve can be replaced, in a certain sense, by a \emph{unique} stable curve. Here is a precise statement.
 
 \begin{theorem}[Stable reduction]
-If $\cC \to \Delta$ is an arbitrary family of curves over a disc $\Delta$, smooth over the complement $\Delta^* := \Delta \setminus \{0\}$, then after pulling back via the base change map $\Delta \to \Delta$ sending $z$ to $z^m$ and birational modifications we can arrive at a family $\tilde \cC \to \Delta$, all of whose fibers are stable curves; and the fiber of this new family over $0$ is unique.
+If $\cC \to \Delta$ is an arbitrary family of curves over the spectrum of a discrete valuation ring, smooth over the complement $\Delta^*$ of the closed point, then after pulling back via a ramified map of
+discrete valuation rings and a birational modification of the total space , we can arrive at a family $\tilde \cC \to \Delta'$, whose fiber over the closed point is a stable curve, uniquely determined by the original family.
 \end{theorem}
 
-\subsection{An example}
+There is of course
+\begin{proof} This follows immediately from a property of the moduli space given in ****. However, there is also a constructive proof, which we will illustrate with a simple example below.
+\end{proof}
 
-It's worth going through an example of stable reduction in the simplest nontrivial case: a family $\{C_t\}$ of curves specializing to a curve $C$ with a cusp; we'll work out such an example here.
+\subsection{A smooth curve specializing to a cusp}
 
-So: let $\Delta$ be a disc, and $\pi : \cC \to \Delta$ a family of curves such that:
+Here is  the simplest nontrivial case: of stable reduction:
+
+Let $\Delta$ be a disc, and $\pi : \cC \to \Delta$ a family of curves such that:
 \begin{enumerate}
 \item Away from the origin, the map $\pi$ is smooth; in particular, all the fibers $C_t$ with $t \neq 0$ are smooth curves;
 \item The fiber $C_0$ is reduced and irreducible, with one ordinary cusp $p$; and
