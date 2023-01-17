@@ -1,6 +1,6 @@
 \input{header.tex}
 
-\chapter{The Riemann-Roch Theorem}
+\chapter{The Riemann-Roch Theorem}\label{RiemannRochChapter}
 
 \subsection{Measuring linear series}
 
@@ -22,7 +22,7 @@ $$
 $$
 which makes sense, and even computes $h^0(\cL)$ itself in many cases, by virtue of the following result:
 
-\begin{theorem} (Vanishing Theorem)
+\begin{theorem} (Vanishing Theorem)\label{Serre-Grothendieck vanishing}
 If $\sF$ is a coherent sheaf on a scheme $X$ of dimension $n$, then for any $i$, the vector space $H^i(\sF)$ is finite dimensional, and 0 if  $i>\dim X$. Moreover,
 if $X\subset \PP^m$, then $H^i(\sF(d)) = 0$ for all $i>0$ and $d\gg 0$.\qed
 \end{theorem}
@@ -363,7 +363,16 @@ h_C(m) = \dim_{\CC} (S_{C})_{m} = \rank(\rho_m),
 $$
 where $(S_{C})_{m}$ is the degree $m$ component of the homogeneous coordinate ring of $C$ in $\PP^n$.
 
-By Theorem~\ref{Serre vanishing} we have $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, so $h_{C}(m) = h^0(\cO_C(m))$ for large $m$, which, by the Riemann-Roch theorem, equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$, establishing the characterization~(\ref{genus Hilbert}).
+By Theorem~\ref{Serre vanishing} we have $H^1(\cI_{C/\PP^r}(m)) = 0$ for large $m$, so $h_{C}(m) = h^0(\cO_C(m))$ for large $m$, which, by the Riemann-Roch theorem, equals $md-g+1$, again for large $m$. Thus, the Hilbert polynomial of $C \subset \PP^r$ is $p_C(m) = dm-g+1$. 
+More generally, we define what is called the \emph{arithmetic genus}:
+
+\begin{definition}\label{genus Hilbert}\label{pa}\label{genus formula}
+If $C\subset \PP^n$ is a purely 1-dimensional projective scheme with Hilbert polynomial
+$p_C(m) = \chi(\sO_C(m)$, the \emph{arithmetic genus} of $p_a(C)$ is $1-p_C(m)$. If $C$ is integral, then
+the \emph{geometric genus} $g(C)$ is the genus of the normalization of $C$.
+\end{definition}
+We see from the Riemann-Roch theorem that if $C$ is smooth, then $p_a(C) = g(C) = h^0(\omega_C)$, the genus of $C$. In general, we
+will see that for integral curves $p_a(C) \geq g(C)$, with equality only when $C$ is smooth.
  
 The Riemann-Roch formula does \emph{not} give us a formula for the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such divisors $D$ are called \emph{special divisors}. The existence or non-existence of divisors $D$ with given $h^{0}(D)$ and $h^{1}(D)$ often serves to distinguish one curve from another, and will be an important part of our study.
 
@@ -431,11 +440,11 @@ Given $C_0$ there is a birational normalization morphism $\nu: C \to C_0$, and a
 factors through $C$. Thus $C_0$ is birational to a unique
 smooth curve. The genus of $C$ is called the \emph{geometric genus} of $C_0$.
 
-Most of the results of this book have analogues for singular curves, but this is a topic beyond our scope; for us, singular curves will appear as a useful adjunct to our theory, for example in Chapter~\ref{PlaneCurveChapter}.
+Most of the results of this book have analogues for singular curves, but this is a topic beyond our scope; for us, singular curves will appear as a useful adjunct to our theory, for example in Chapter~\ref{PlaneCurvesChapter}. %\fix{why doesn't this ref print correctly Chapter 12?}
 
-Applied to any 1-dimensional projective scheme $C_0$, the formula~\ref{pa} and the equivalent~\ref{genus Hilbert}, define
+Applied to any 1-dimensional projective scheme $C_0$, the formula~\ref{genus Hilbert}, define
 the \emph{arithmetic genus} $p_a(C_0) = 1-\chi(\sO_{C_0})$ of $C_0$. For some examples with curves that are not
-integral, see Exercise~\ref{pa examples}.
+integral, see Exercise~\ref{pa example}.
  
 Returning to the case where $C_0$ is reduced and irreducible, we can relate the arithmetic and geometric genera of $C_0$ using the map of sheaves
 $$
@@ -575,7 +584,7 @@ Suppose that $D$ contains the sum $E$ of $s$ fibers of $\pi$ and no more; and wr
 If $\phi_K:C \to \PP^{g-1}$ is the canonical map, then $\phi_K(D')$ consists of $d-2s$ distinct points, while $\phi_K(E)$ consists of
 $s$ points. By Corollary~\ref{independence of points on a RNC} the span of $\phi_K(D)$ has dimension $\min\{g-1, d-s-1\}$, so 
 $r(D) = d-1-\min\{g-1, d-s\} = \max \{s,d-g\}$. Since $D$ is a special divisor, $r(D) > d-g$, so $r(D) = s$. 
-Since $r(E) =s$, we see that $D'$ is in the base locus of $D$.
+Since $r(E) =s$, we see that $E$ is in the base locus of $D$.
 \end{proof}
 
 \section{Clifford's theorem}
@@ -620,8 +629,9 @@ the largest possible value, then either
 \end{theorem}
 
 From Corollary~\ref{canonical on hyperelliptic} and Corollary~\ref{geometric RR} we see that the equality does indeed hold
-in each of the cases enumerated. 
-For the proof of the second half of Clifford's Theorem, we will use a basic fact about the geometry of hyperplane sections of a curve in projective space (Proposition~\ref{monodromy of hyperplane section}); we give the proof after proving that result.
+in each of the cases enumerated. Clifford's Theorem is true for smooth curves over fields of any characteristic (see for example \cite[IV.5.4]{Hartshorne1977}, but in characteristic 0 it is a simple consequence of the much more 
+Corollary~\ref{Clifford equality plus}
+that we will prove via the Uniform position lemma.
 
 
  \section{Curves on surfaces}
@@ -644,7 +654,8 @@ and the intersections can be computed in the usual way. It should be noted that 
 since they depend on the relative orientations of $D$ and $E'$ at the intersection points; this is in contrast to the case when $D$ and $E$
 themselves meet properly; in this case the fact that the complex numbers are canonically oriented makes the intersection number non-negative.
 
-The intersection product can also be defined algebraically, over any field: Setting $\sL := \sO_X(C)$ and
+The intersection product can also be defined algebraically, over any field, for the intersection of Cartier divisors,
+on any surface, even when the surface is singular: Setting $\sL := \sO_X(C)$ and
 $\sM := \sO_X(D)$ to simplify the notation, we set 
 $$
 D\cdot E = \chi(\sO_X)-\chi(\sL^{-1}) -\chi(\sM^{-1}) +\chi(\sL^{-1}\otimes \sM^{-1}) 
@@ -656,15 +667,21 @@ $\Pic(X) \times \Pic(X) \to \ZZ$ extending the case of intersections of two tran
 A frequent use of the the intersection pairing is to compute the (arithmetic) genus of a curve on a surface,
 a result called the adjunction formula.
 
-\begin{theorem}[Adjunction Formula]\label{adjunction formula}
-If $C$ is a curve lying on a smooth surface $X$ then 
+\begin{theorem}[Adjunction Formula]\label{adjunction formula} \cite[Theorem ****]{Hartshorne1977}
+If $C$ is a Cartier divisor  on a complete intersection $X\subset \PP^n$ of any dimension, then 
 $$
 \omega_C = \omega_X \otimes \sO_X(C) \otimes \sO_C;
 $$
-in particular \label{genus formula}
+in particular, 
+\begin{enumerate}
+ \item If $X\subset \PP^n$ is the complete interesection of divisors of degree $d_1, \dots, d_c$, then
+ $\omega_X = \sO_X( \sum_1^c d_i -n-1).$
+ \item If $C$ is a Cartier divisor on surface $X$ that is a complete intersection
+in $\PP^n$ then: \label{genus formula}
 $$
 p_a(C) = \frac{(K_X+C)\cdot C}{2} +1.
  $$
+\end{enumerate}
 \end{theorem}
 
 We will frequently be interested in curves on quadrics in $\PP^3$, and we can spell out the
@@ -676,9 +693,10 @@ now we sketch the situation as an example of the theory of this section.
  
 Quadric surfaces $S$ in $\PP^3$ are classified by their rank:
 \begin{itemize}
-\item A quadric of rank 2 is the union of two planes; it cannot contain an nondegenerate irreducible curve.
-\item A rank 3 quadric $S$ is a cone over a plane conic. Suppose that $C$ is a smooth,
-curve on such a quadric:
+\item A quadric of rank 1 is a double plane, defined by the square of a linear form;
+a quadric of rank 2 is the union of two planes; thus a nondegenerate irreducible curve cannot be contained in a quadric of rank 1 or 2.
+\item A rank 3 quadric $S$ is a cone over a plane conic. If $C$ is a smooth,
+curve on such a quadric, then:
 \begin{itemize}
 \item  If $C$  does
 not pass through the vertex then it is the intersection of the quadric with a hypersurface of some
@@ -687,12 +705,7 @@ degree $d$. In this case $C$ has degree $2d$ and genus $(d-1)^2$.
  genus $d(d-1)$. 
 \end{itemize}
 
-%If  it contains smooth irreducible curves that do not pass through the vertex of the cone, and smooth irreducible curves that of
-%degree $2d$ that are intersections of $S$ with hypersurfaces of degree $d$; and smooth 
-%irreducible curves of degree $2d+1$ that 
-
 \item A quadric of rank 4 is nonsingular, and is isomorphic to $\PP^1\times \PP^1$.
-
 
 \item The Picard group of $\PP^1\times \PP^1$ is $\ZZ\oplus \ZZ$, generated by the 
 classes of the lines $\{p\}\times \PP^1$ and $\PP^1\times \{p\}$, where $p\in \PP^1$

@@ -1,0 +1,488 @@
+\input{header.tex}
+
+\chapter{Linear series on general curves, and curves of genus 6}\label{Brill-Noether}\label{BNChapter}
+
+\section{What linear series exist?}
+
+If we only wish to know when a curve $C$ of genus $g$ has a $g^r_d$, then for $d>2g-2$ (or more generally nonspecial linear series) the Riemann-Roch Theorem gives a complete answer. Any special series must have $d\leq2g-2$, and in this case Clifford's Theorem gives the bound $r< d/2$, except in the case of hyperelliptic curves, where the answer is different but also completely understood. Together, these cases cover all possibilities:
+
+\begin{theorem}\label{arbitrary linear series}
+There exists a curve $C$ of genus $g$ and line bundle $\cL$ of degree $d$ on $C$ with $h^0(\cL) \geq r+1$ if and only if
+$$
+r \leq
+\begin{cases}
+d-g, \quad \text{if } d \geq 2g-1; \text{ and} \\
+d/2,  \quad \text{if } 0 \leq d \leq 2g-2.
+\end{cases}
+$$
+\end{theorem}
+
+
+If we ask the---perhaps more interesting---question of when there can be a $g^r_d$ that is birationally
+very ample on a curve of genus $g$ then Castelnuovo's theorem gives a quadratic bound, roughly $d \geq \sqrt{g(2r-2)}$.
+
+In both these situations, the curves that achieve the bounds are quite special. Perhaps the most interesting question of all is, for which $r,d$ do \emph{all} curves of genus $g$ have a $g^r_d$, and what is the
+behavior of these series on a general curve? Brill-Noether theory provides some answers to both these questions.
+
+\section{Brill-Noether theory}
+
+The following result was stated by Brill and Noether in 1874, and finally proven by
+Griffiths and the second author in 1980~\cite{Griffiths-Harris-BN}.
+
+\begin{theorem}[Basic Brill Noether]\label{basic BN}
+A general curve $C$ of genus $g$  possesses a linear series of degree $d$ and dimension $r>d-g$ if and only if
+$$
+ \rho(g,r,d) := g - (r+1)(g-d+r) \geq 0.
+$$
+\end{theorem}
+
+It is interesting to compare the values of $d,r$ that are possible on special and general curves, and see how many fewer are possible for birationally very ample series and for general curves. The graphs in the following table compare the results of 
+Clifford's theorem, Castelnuovo's theorem, and the Brill-Noether theorem applied to curves
+of genus 100:
+
+\centerline{ \includegraphics[height=4in]{"Clifford-Castelnuovo-Brill-Noether"}}
+
+Gathering the inequalities, and putting them all in terms of lower bounds on $d$ given $g, r$,
+we get \goodbreak
+%$$
+\begin{align*}
+ d &\geq \min\{r+g, 2r\} \hbox{ by the Riemann-Roch and Clifford theorems}\\
+ d &\dot\geq \sqrt{(2r-2)g} \hbox{ by an approximation to the Castelnuovo theorem}\\
+ d &\geq r+g+\frac{g}{r+1} \hbox{ for a general curve.}
+\end{align*}
+%$$
+
+In the following sections, we'll state the reasoning that led Brill and Noether to the statement of Theorem~\ref{basic BN} and we'll give some more recent refinements.   In Chapter~\ref{InflectionsChapter} we give a proof of the nonexistence part (the ``only if"), and indicate how we might deduce  the existence half of the theorem (the ``if" part of the statement) ferom the same set-up. A freestanding proof of the existence half may also be found in \cite[Theorem ****]{3264}.
+
+The case $r=1$, which goes back to Riemann's paper of 1857, is already interesting:
+
+\begin{corollary}
+If $C$ is any curve of genus $g$, then $C$ admits a map of degree $d$ to $\PP^1$ for some $d \leq \lceil \frac{g+2}{2}\rceil$.
+\end{corollary}
+
+Thus any curve of genus 2 is hyperelliptic, any curve of genus 3 or 4 is either hyperelliptic or trigonal  (admits a 3-1 map to $\PP^1$), and so on.
+
+
+\subsection{A Brill-Noether inequality}
+
+The proof of the Brill-Noether theorem starts with a dimension estimate that was first carried out by Brill and Noether in 1874 \cite{Brill-NoetherOriginal}. The estimate provides an inequality on the dimension
+of the variety $W^r_d$, and the assertion of the theorem is that this is sharp for a general curve.
+
+%From Kleiman-Laksov:  For r= 1, the matter is treated in section 4 of Riemann's " Theorie der Abel'schen Functionen" [11] (1857) and in lecture 31 of Hensel-Landsberg(1902) 1; the general case is treated in Brill-Noether [1](1874) and in lecture 57 and appendix G of Severi [13].(1921)
+
+Let $C$ be a smooth projective curve of genus $g$, and $D = p_1 + \dots + p_d$ a divisor on $C$. We'll assume here the points $p_i$ are distinct; the same argument  can be carried out in general, but requires more complicated notation.
+
+When does the divisor $D$ move in an $r$-dimensional linear series? Riemann-Roch gives an answer: it says that $h^0(D) \geq r+1$ if and only if the vector space $H^0(K-D)$ of 1-forms vanishing on $D$ has dimension at least $g-d+r$---that is, if and only if the  evaluation map
+$$
+H^0(K) \to H^0(K|_D) = \bigoplus k_{p_i}
+$$
+has rank at most $d-r$. 
+
+We can represent this map by a $g \times d$ matrix. Choose a basis $\omega_1,\dots,\omega_g$ for the space $H^0(K)$ of 1-forms on $C$; choose an analytic open neighborhood $U_j$ of each point $p_j \in D$ and choose a local coordinate $z_j$ in $U_j$ around each point $p_j$, and write
+$$
+\omega_i = f_{i,j}(z_j)dz_j
+$$
+in $U_j$. We will have $r(D) \geq r$ if and only if the  matrix-valued function
+$$
+A(z_1,\dots,z_d) = 
+\begin{pmatrix}
+f_{1,1}(z_1) & f_{2,1}(z_1) & \dots & f_{g,1}(z_1) \\
+f_{1,2}(z_2) & f_{2,2}(z_2) & \dots & f_{g,2}(z_2) \\
+\vdots & \vdots &  & \vdots \\
+f_{1,d}(z_d) & f_{2,d}(z_d) & \dots & f_{g,d} (z_d)
+\end{pmatrix}
+$$
+has rank $d-r$ or less at $(z_1,\dots,z_d) = (0,\dots,0)$.
+
+The point is, we can think of $A$ as a matrix valued function in an open set $U = U_1 \times U_2 \times \dots \times U_d \subset C_d$; and for divisors $D \in U$, we have $r(D) \geq r$ if and only if $\rank(A(D)) \leq d-r$. Now, in the space $M_{d,g}$ of $d \times g$ matrices, the subset of matrices of rank $d-r$ or less has codimension $r(g-d+r)$ (\cite[Theorem ****]{Eisenbud1995}. 
+
+It follows 
+that if  a divisor of degree $d$ with $h^0(D) \geq r+1$ exists, then there must be at least an $\rho$-dimensional family of them. Moreover, if the map $A$ is dimensionally transverse to this degeneracy locus in $M_{d,g}$, then the locus of divisors with $r(D) \geq r$ has dimension $d - r(g-d+r)$, and such divisors could exist only if
+$$
+d - r(g-d+r) \; \geq \; r.
+$$
+This is exactly the statement of the Brill-Noether Theorem.
+
+
+\subsection{Refinements of the Brill-Noether theorem}
+
+Theorem~\ref{basic BN} suggests a slew of questions, both about the geometry of the schemes $W^r_d(C)$ parametrizing linear series on a general curve $C$ (are they irreducible? what are their singular loci,\dots), and about the geometry of the linear systems themselves (do they give embeddings? what's the Hilbert function of the image? \dots). This is an active area of research. Here is some of what is currently known, starting with results about the geometry of $W^r_d(C)$:
+
+\begin{theorem}\label{Wrd omnibus}
+Let $C$ be a general curve of genus $g$. If we set $\rho = g - (r+1)(g-d+r)$, then for $d \leq g+r$,
+\begin{enumerate}
+\item $\dim(W^r_d(C)) = \rho$;
+\item\label{sing wrd} the singular locus of $W^r_d(C)$ is exactly $W^{r+1}_d(C)$;
+\item\label{irr wrd} if $\rho > 0$ then $W^r_d(C)$ is irreducible;
+\item\label{rho=0} if $\rho = 0$ then $W^r_d$ consists of a finite set of  points of cardinality
+$$
+\#W^r_d = g! \prod_{\alpha=0}^r \frac{\alpha!}{(g-d+r+\alpha)!};
+$$
+\item\label{Petri} if $L$ is any invertible sheaf on $C$, the map
+$$
+\mu : H^0(L) \otimes H^0(\omega_CL^{-1}) \rTo H^0(\omega_C)
+$$
+is injective, and the Zariski tangent space to the scheme $W^r_d(C)$ at the point $L$, as a subspace
+of $H^0(\omega_C)^*$, is the annihilator of the image of $\mu$;
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+\begin{enumerate}
+\item As a special case of Part~\ref{rho=0}, we see that the number of $g^1_{k+1}$s on a general curve of genus $g = 2k$ is the $k$th Catalan number 
+$$
+c_k = \frac{2k!}{k!(k+1)!}.
+$$
+We have already seen this in the first two cases: in genus 2, it says the canonical series $|K|$ is the unique $g^1_2$ on a curve of genus 2, and in the case of genus 4 we have already seen  that there are exactly two $g^1_3$s on a general curve of genus 4. In genus 6, it says that a general curve of genus 6 has 5 $g^1_4$s; we'll describe these in Section~\ref{} below.  In genus 8, it says that a general curve of genus 8 has 14 $g^1_5$s, but we don't know of any way of seeing this directly from the geometry of a general curve of genus 8; and we know even less for larger $g$.
+
+\item Part~\ref{Petri} implies Part~\ref{sing wrd}. In fact, a fairly elementary argument shows that at a point $L \in W^r_d(C) \setminus W^{r+1}_d(C)$, the tangent space to $W^r_d$ at the point $L$ is the annihilator
+in $(H^0(\omega_C))^*$ of the image of $\mu$; given that $\mu$ is injective, we can compare dimensions and deduce that $W^r_d$ is smooth at $L$.
+
+\item For any curve $C$, there exists a scheme $G^r_d(C)$ parametrizing linear series of degree $d$ and dimension $r$; that is, in set-theoretic terms,
+$$
+G^r_d = \left\{ (L, V) \mid L \in Pic^d(C), \text{ and } V \subset H^0(L) \text{ with } \dim V = r+1 \right\}.
+$$
+$G^r_d(C)$ maps to $W^r_d(C)$; the map is an isomorphism over the open subset $W^r_d(C) \setminus W^{r+1}_d(C)$ and has positive-dimensional fibers over $W^{r+1}_d(C)$. It was conjectured
+by Petri and proven in \cite{Gieseker-Petri} that for a general curve the scheme $G^r_d(C)$ is smooth for any $d$ and $r$.
+\end{enumerate}
+\end{remark}
+
+
+Recall that  in theorems~\ref{g+1 theorem}, \ref{g+2 theorem}, \ref{g+3 theorem} we proved that
+general invertible sheaves of degrees $g+1$, $g+2$ and $g+3$ on any curve
+give the nicest possible maps to (respectively) $\PP^1, \PP^2, \PP^3.$ These
+linear series, being general of degree $\geq g$, are  nonspecial and have respectively
+2, 3, or 4-dimensional spaces of sections. The following result shows that something
+similar is true on a general curve for general linear series with 2,3, or 4-dimensional
+spaces of sections, though they may have degrees much less than $g+1, g+2, g+3$:
+
+\begin{theorem}\label{grd omnibus}(\cite[Proposition 5.4]{Eisenbud-Harris83}
+Let $C$ be a general curve of genus $g$.
+ if $|D|$ is a general $g^r_d$ on $C$, then
+
+ \begin{enumerate}
+\item if $r \geq 3$ then $D$ is very ample; that is, the map $\phi_D : C \to \PP^r$   embeds $C$ in $\PP^r$;
+\item if $r=2$ the map $\phi_D : C \to \PP^2$ gives a birational embedding of $C$ as a nodal plane curve; and 
+\item if $r=1$, the map $\phi_D : C \to \PP^2$ expresses $C$ as a simply branched cover of $\PP^1$.
+\end{enumerate}
+\end{theorem}
+
+
+
+In the course of investigating embeddings of a curve $C\subset \PP^n$ we have again and again
+asked about the ranks of the maps $H^0(\sO_{\PP^n}(d)) \to H^0(\sO_C(d))$. In the case of
+a general curve, the following theorem of \cite{ELarson2018} gives a comprehensive answer. In particular, it gives
+ the Hilbert function of any general embedding:
+ 
+\begin{theorem}[Larson]\label{maximal rank}
+If $L \in W^r_d(C)$ is a general point, then for each $m > 0$ the multiplication map
+$$
+\rho_m : \Sym^m H^0(L) \to H^0(L^m)
+$$
+has maximal rank; that is, it is either injective if $\binom{m+r}{r} \leq md-g+1$ or surjective if $\binom{m+r}{r} \geq md-g+1$.
+\end{theorem}
+
+A key step in Larson's proof is the following interpolation theorem:
+
+\begin{theorem}[Larson-Vogt]\label{Larson-Vogt}
+Let $d, g$ and $r$
+be nonnegative integers with $\rho(d, g, r) \geq 0$. There is a general curve of degree $d$ and genus $g$ through $n$ general
+points in $\PP^r$
+if and only if
+$$
+(r-1)n \leq (r + 1)d-(r-3)(g-1)
+$$
+except in four cases $(d, g, r) = (5, 2, 3),(6, 4, 3),(7, 2, 5)$ or $(10, 6, 5)$.
+
+ \end{theorem}
+ 
+There is a possible extension of the maximal rank theorem. If $C \subset \PP^r$ is a general curve embedded by a general linear series, the maximal rank theorem tells us the dimension of the $m$th graded piece of the ideal of $C$, for any $m$: this is just the dimension of the kernel of $\rho_m$. But it doesn't tell us what a minimal set of generators for the homogeneous ideal of $C$ might look like. For example, if $m_0$ is the smallest $m$ for which $I(C)_m \neq 0$, or numerically the smallest $m$ such that $\binom{m+r}{r} > md-g+1$, we can ask: is the homogeneous ideal $I(C)$ generated by $I(C)_{m_0}$? This can't always be the case, since it's easy enough to come up with examples where, for example, the dimension of the smallest nonzero graded piece of $I(C)$ has dimension 1. But one might conjecture that $I(C)$ will always be generated by its graded pieces of degrees $m$ and $m+1$; this is an open problem.
+
+To answer this---given that we know the dimensions of $I(C)_m$ for every $m$---we would need to know the ranks of the multiplication maps
+$$
+\sigma_m : I(C)_m \otimes H^0(\cO_{\PP^r}(1)) \to I(C)_{m+1}
+$$
+for each $m$. In particular, we may conjecture that \emph{the maps $\sigma$ have maximal rank}; if this were true we could deduce the degrees of a minimal set of generators for the homogeneous ideal $I(C)$.
+
+
+There are many remaining questions! One is the question of \emph{secant planes}: a naive dimension count would suggest that an irreducible, nondegenerate curve $C \subset \PP^r$ should have an $s$-secant $t$-plane if and only if $s(r-t-1) \leq (t+1)(r-t)$
+(e.g., a curve $C \subset \PP^3$ will have 4-secant lines, but no 5-secant lines). Is this true for a general curve embedded in $\PP^r$ by a general linear series?
+
+
+
+\section{Curves of genus 6}\label{genus 6 section}
+%\fix{This will come after the plane curves: we get the 5-ic del Pezzo for free, given the "conditions of adjunction", and then
+%the special cases will give us exercise in what the conditions of adjunction are.}
+
+
+Throughout our analyses of curves of genus $g \leq 5$, we have been able to analyze the geometry of the canonical model to verify the statement of the Brill-Noether theorem in each case. In genus 6, by contrast, a fundamental shift takes place. We cannot readily deduce the Brill-Noether theorem from studying the geometry of the canonical curve---we can determine that a canonical curve $C \subset \PP^5$ of genus 6 lies on a 6-dimensional vector space of quadrics, for example, but that doesn't tell us much about its geometry. Rather, we need to use Brill-Noether to describe the canonical curve. 
+
+In this section, we'll use the full strength of the Brill-Noether theorem to describe the geometry of a general curve of genus 6. We will then go on and consider various types of special curves.
+
+\subsection{General curves of genus 6}
+
+Suppose that $C$ is a general curve of genus 6. The basic Brill-Noether theorem (Theorem~\ref{basic BN}) tells us that $C$ admits a map of degree 4 to $\PP^1$, and a map to $\PP^2$ given by a line bundle of degree 6. The more refined Theorem~\ref{Wrd omnibus} tells us a good deal more: among other things, it tells us that the maps $C \to \PP^2$ given by line bundles of degree 6 map $C$ birationally onto plane sextic curves $C_0 \subset \PP^2$ having only nodes as singularities, which by the genus formula (\ref{}) will have exactly 4 nodes; and that there are exactly 5 such maps modulo the automorphism group $PGL_3$ of $\PP^2$.
+
+In fact, once we have exhibited one birational map of $C$ to a plane sextic with nodes, we can describe all five $g^2_6$s and all five $g^1_4$s in terms of this plane model. To do this, we need to introduce one bit of terminology. Suppose $f : C \to S$ is a regular map from a smooth curve $C$ to a surface $S$. If $L$ is a line bundle on $S$ and $V \subset H^0(L)$ a vector space of sections, we can associate to them a linear system on $C$ by taking the pullback linear system $f^*V$ on $C$ and subtracting the base points; this is called the linear series \emph{cut out on $C$ by $V$}.
+
+For example, suppose $C$ is a general curve of genus 6 as above and $f : C \to \PP^2$ is a birational map onto a sextic curve $C_0$ with four nodes; let $p \in C_0$ be one of the nodes and consider the linear system $(\cO_{\PP^2}(1),V)$ of lines in $\PP^2$ through $p$. The pullback $f^*\cO_{\PP^2}(1)$ of course has degree 6, but the pullback linear series $f^*V$ has two base points, at the points $q, r \in C$ lying over $p$. The linear series cut on $C$ by $V$ is thus a $g^1_4$, and indeed we get in this way four of the five $g^1_4$s on $C$ promised by Theorem~\ref{Wrd omnibus}.
+
+For another example---and to produce the fifth and final $g^1_4$---consider the linear series cut on $C$ by conic plane curves passing through all four nodes of $C_0$. There is a pencil of such conics, and while the pullback $f^*\cO_{\PP^2}(2)$ now has degree 12, the pullback series has eight base points; thus we arrive at another $g^1_4$ on $C$.
+
+In the same vein, consider the linear system cut on $C$ by cubics passing through all four nodes. This has degree $3\cdot 6 - 8 = 10$ and dimension 6, and we can deduce that this is exactly the complete canonical series on $C$. Indeed, in Chapter~\ref{PlaneCurvesChapter} we will see directly that this is the case.
+
+Finally, we can use the same construction to locate the five $g^2_6$s on $C$ whose existence is asserted in Theorem~\ref{Wrd omnibus}. One, of course, is the $g^2_6$ giving the birational map $f : C \to C_0 \subset \PP^2$; that is, the linear series cut on $C$ by the net of all lines in the plane. As for the other four, we can use the fact that the five $g^2_6$s on $C$ are residual to the five $g^1_4$s in the canonical series; thus the four remaining $g^2_6$s are cut out on $C$ by the linear system of plane conics passing through three of the four nodes of $C_0$.
+
+There is a useful further consequence of this description: the four nodes of $C_0$ are in linear general position; that is, no three are collinear. The reason is simple: if three of the four nodes of $C_0$ were collinear, the $g^1_4$ cut on $C$ by lines through the fourth node would coincide with the $g^1_4$ cut on $C$ by conics through all four. In this case we can see from part ** \fix{which} of Theorem~\ref{Wrd omnibus} that the $g^1_4$ cut on $C$ by conics through all four nodes is a non-reduced point of the scheme $W^1_4(C)$; this is the subject of Exercise~\ref{} below. 
+
+We are almost ready to describe the geometry of the canonical model $C \subset \PP^5$ of a general curve $C$ of genus 6. To carry this out we need to have a preliminary discussion of del Pezzo surfaces.
+
+\subsubsection{Del Pezzo surfaces}
+
+By definition,
+a \emph{del Pezzo} surface is a smooth surface embedded in projective space by its anticanonical series $-K_S$. The most familiar example is the cubic surface $S \subset \PP^3$: by the adjunction formuls, $K_S = (K_{\PP^3}+S)\mid S
+= \sO_{\PP^3}(-4+3)|S$. There are only finitely many del Pezzo surfaces. Here is the classification:
+
+\begin{fact}
+If $S\subset \PP^n$ is a del Pezzo surface, then
+$3\leq n\leq 9$ and $S$ has degree $K_S^2 = n$. With the exception of the case $n=8$, such a surface is the blow-up of the plane $\PP^2$ at $9-n$ points with no three collinear and no six on a conic, 
+and the surface is the image of $\PP^2$ by  the linear series of of cubic forms containing these points. If $n=8$, the surface
+is either the blow-up of $\PP^2$  at one point or $\PP^1 \times \PP^1$, embedded by forms of bidegree $(2,2)$ (i.e., the image of a quadric surface in $\PP^3$ under the quadratic Veronese map $\nu_2 : \PP^3 \to \PP^9$). 
+
+If we include surfaces whose anticanonical bundle is ample but not very ample, there is one more class, consisting of blow-ups of the plane at seven points (again, no three collinear and no six on a conic); in this case the anticanonical map expresses the surface $S$ as a two-sheeted cover of $\PP^2$ branched in a smooth quartic curve. Such surfaces are often called \emph{quadric}, or \emph{degree 2} del Pezzos.
+
+There is a very rich theory of del Pezzo surfaces, starting with the 27 lines on a cubic surface. The
+beautiful book \cite{Manin} is an excellent reference, which also goes into some of the arithmetic theory.
+
+In the case $n=5$ of interest to us, the ideal of the del Pezzo surface 
+is generated by the $4\times 4$ Pfaffians of a $5\times 5$ skew symmetric matrix of linear forms, and is a 5-plane section of the Grassmannian of lines in $\PP^4$.
+\end{fact}
+
+
+There is a very rich theory of del Pezzo surfaces, starting with the 27 lines on a cubic surface. The basics are treated in \cite{Beauville} and \cite{Griffiths-Harris}; for more, see the
+beautiful book \cite{Manin}, which also goes into some of the arithmetic theory.
+
+There is also a notion of a \emph{weak del Pezzo} surface; this is a smooth surface whose anticanonical bundle is nef but not necessarily ample. For example, this is the case if we blow up $\PP^2$ at a configuration of points of which three are collinear; in this circumstance the anticanonical bundle on the blow-up $S$ has degree 0 on the proper transform of the line containing the three points, and this proper transform is correspondingly collapsed to a rational double point of the image $\phi_{-K}(S)$. 
+
+\subsubsection{Canonical curves of genus 6}
+
+Using the Brill-Noether theorem, we have seen that a general curve $C$ of genus 6 is the normalization of a plane sextic $C_0$ with four nodes, and that the canonical series on $C$ is cut out by cubics in the plane passing through the four nodes. Thus the canonical model lies on the surface $S \subset \PP^5$ that is the image of the plane under the (rational) map given by cubics through these four points, which we now recognize as a quintic del Pezzo surface.
+
+In fact, we can say more. The linear system of sextic plane curves double at four points has dimension $\binom{8}{2} - 4\times 3 = 16$ and is generated by pairs of cubics through these points, from which we see that the map
+$$
+\Sym^2 H^0(\cO_S(1)) \to H^0(\cO_S(2))
+$$
+is surjective with kernel of dimension 5; in other words, the del Pezzo surface $S \subset \PP^5$ lies on a five-dimensional vector space of quadrics. But we know that a canonical curve $C \subset \PP^5$ of genus 6 lies on a six-dimensional vector space of quadrics; thus there must be a quadric $Q \subset \PP^5$ such that $Q$ does not contain $S$, and $C \subset S \cap Q$---but given that $C$ has degree 10 and $S$ degree 5, this means $C = S \cap Q$. Thus we conclude:
+
+\begin{theorem}
+A general canonical curve of genus 6 is the intersection of a quintic del Pezzo surface and a quadric. 
+\end{theorem}
+
+
+
+%\subsection{Special curves of genus 6}
+%
+%%We deal with hyperelliptic and trigonal curves elsewhere, so in this Chapter we will consider the remaining cases. The basis for what we do is the following result from~\cite{MR744297}:
+%
+%
+%
+%\begin{theorem}
+%If $C\subset \PP^5$ is a general canonical curve of genus 6, then $C$ is the complete intersection of a quadric hypersurface
+%with a surface of degree 5 that is the image of $\PP^2$ under a rational map defined by a 6-dimensional linear series
+%$(V,\sO_{\PP^2}(3))$, that is, by 6 cubic forms in 3 variables. 
+%
+%The canonical map $C\to \PP^5$ is the composition
+%of the $g^2_5$ mapping $C$ birationall to the plane with a rational map from $\PP^2$ to $\PP^5$ whose image is a 
+%possibly singular del Pezzo surface as defined below.
+%\end{theorem}
+%
+%As we shall see, in the general case the 6 forms generate the ideal of 4 reduced points in the plane; the resulting rational
+%image of $\PP^2$ in $\PP^5$ is called a del Pezzo surface. 
+%
+%There are a three cases which are excluded by the word ``general'' in the theorem:
+%These are the genus 6 curves that are trigonal or isomorphic to plane quintics
+%or double covers of elliptic curves. 
+%
+%\begin{fact}
+%If $S\subset \PP^n$ is a smooth surface embedded by the complete ant-canonical linear series $|-K_S|$, then
+%$3\leq n\leq 9$ and $S$ has degree $K_S^2 = n$. Such a surface is called a 
+%del Pezzo surface.
+%
+%Any del Pezzo surface of degree $n<9$ is the blowup of $\PP^2$
+%in $9-n$ distinct points in linearly general position, 
+%and the surface is the image of $\PP^2$ by  the linear series of of cubic forms containing these points. If $n=9$, the surface
+%is either the triple Veronese embedding of $\PP^2$ (thus: $\PP^2$ blown up at 0 points), or the double Veronese embedding of
+%$\PP^1\times \PP^1$.  
+%
+%There is a very rich theory of del Pezzo surfaces, starting with the 27 lines on a cubic surface. The
+%beautiful book \cite{Manin} is an excellent reference, which also goes into some of the arithmetic theory.
+%
+%In the case $n=5$ of interest to us, the ideal of the del Pezzo surface 
+%is generated by the $4\times 4$ Pfaffians of a $5\times 5$ skew symmetric matrix of linear forms, and is a 5-plane section of the Grassmannian of lines in $\PP^4$.
+%\end{fact}
+%
+%In the remainder of this chapter we'll lay out the possibilities for canonical curves of genus 6. The Brill-Noether theorem tells us that a general canonical curve $C \subset \PP^5$ is not trigonal, but certainly trigonal curves of genus 6 exist; they lie on rational normal scrolls, and appear in the classification of curves on such surfaces given in Chapter~\ref{Scrolls Chapter}. Similarly, plane quintic curves
+%are embedded by semi-canonical series, so their canonical embeddings lie on the Veronese
+%surves in $\PP^5$, whose equations are the $2\times 2$ minors of a $3\times 3$ generic symmetric matrix.
+%Finally, genus 6 curves that are double covers of elliptic curves (``sometimes called elliptic-hyperelliptic curves'') lie on a cones over an elliptic quintic curve; this surface is also a 5-plane section of the Grassmannian, and could be considered to be a singular del Pezzo surface except that it is not birational to $\PP^2$.
+%There also 6 other special cases that do lie on possibly singular del Pezzo surfaces, and we will discuss them in turn.
+%
+%\subsection{General curves of genus 6} 
+%
+%We now return to non-trigonal curves of genus 6. As before, a canonical curve $C \subset \PP^5$ of genus 6 lies on a 6-dimensional vector space of quadrics, but this in itself tells us little about the curve. Most of the theory we have been discussing goes was known in the early 20th century but, as far as we know the structure of this set of
+%6 quadrics was discovered only in \cite{MR744297}.
+%
+%\begin{theorem}\label{general genus 6}
+%If $C$ is a curve of genus 6 that is not trigonal and not isomorphic to a plane quintic, then its canonical model is a complete intersection of an anti-canonical surface of degree 5 with a quadric.
+%\end{theorem}
+%
+%\begin{proof}
+% Brill-Noether gives us a $g^2_6$.\dots
+%\end{proof}
+%
+%\subsubsection{Quintic del Pezzos and possibly singular del Pezzos}
+%
+%By definition, a quartic del Pezzo surface is the image of $\PP^2$ under the linear system of 6
+%cubics vanishing at 4 points in linearly general position. Any such configuration of points is congruent to any other under the automorphism group $PGL_3$ of $\PP^2$; accordingly, we see that up to projective equivalence \emph{there is a unique quintic del Pezzo surface $S \subset \PP^5$}.
+%
+%Note that if $L \subset S$ is a line, then since $L \cdot K_S = -1$ we must have $L\cdot L = -1$; that is, $L$ is a $(-1)$-curve and can be blown down; conversely, a $(-1)$-curve on $S$ will be a line under the embedding $S \subset \PP^5$. In fact, there are 10 such lines/exceptional divisors on $S$: in addition to the four exceptional divisors $E_i \subset S$, there are the proper transforms $L_{i,j}$ of the lines in the plane joining the four blown-up points pairwise.
+%
+%The expression of $S$ as a blow-up of $\PP^2$ is not unique: any time we have four pairwise disjoint lines on $S$, we can blow them down and the resulting surface will be $\PP^2$. \fix{say why} In fact, there are five such configurations of four lines: in addition to the $E_i$, we have the line $E_i$ and the three lines $L_{j,k}, L_{j,l}$ and $L_{k,l}$. There are thus five different maps $S \to \PP^2$ expressing $S$ as a blow-up of the plane at four points.
+%
+%What about possibly singular del Pezzos of degree 5? These are again blow-ups of the plane at four points; but now three of the points may be colinear, and some can be `infinitely near" points, meaning that we have a sequence of four blow-ups of $\PP^2$ in which some of the points blown up lie on the exceptional divisors of previous blow-ups. In each case, this means the blown-up surface will contain rational curves of self-intersection $-2$, which will be collapsed under the anticanonical map $\phi_{-K_S} : S \to \PP^5$ and whose images will be rational double points.
+%
+%To describe the simplest of these, suppose that we vary our four distinct points  $p_i \in \PP^2$ in the plane until three of them---say, $p_1, p_2$ and $p_3$---are colinear. The anticanonical series on the resulting surface $S$ will again be given by cubics passing through the four points, but now two things are different:
+%
+%\begin{enumerate}
+%
+%\item Since three of the points $p_i$ are colinear, the anticanonical map will collapse the proper transform $L$ of the line containing $p_1, p_2$ and $p_3 \in \PP^2$; the image point $P$ will be a singular point of the image surface $S_0$. This point will be an ordinary double point of $S_0$, or what is known as an $A_1$ singularity.
+%
+%\item Since the points $p_1, p_2$ and $p_3$ are colinear, the proper transform $L$ of the line containing them is collapsed, the limit of the line $L_{1,2}$ will be the same as the limit of the line $E_3$; likewise in the limit $L_{1,3}$ will coincide with $E_2$ and $L_{2,3}$ with $E_1$. Thus the surface $S_0$, instead of having 10 lines, will have 7: three double lines (``double" here meaning that they are each the limit of two lines on the nearby smooth del Pezzo surfaces; this also reflects the multiplicities of the corresponding points on the Fano scheme of $S_0$) and four single lines, $E_4$ and $L_{i,4}$ for $i = 1, 2$ and $3$. Note that the double lines are exactly the ones passing through the singular point of $S_0$.
+%
+%\end{enumerate}
+%
+%Another simple way to construct a possibly singular del Pezzo quintic would be to have one of the points $p_i$ be infinitely near another: in other words, we blow up three distinct, non-colinear points $p_1,p_2, p_3 \in \PP^2$, then blow up a point on one of the exceptional divisors, say $E_3$. Again, we should think of this dynamically: imagine that we start with four general points $p_i$ and vary them in a one-parameter family so that in the limit $p_3$ and $p_4$ coincide.
+%
+%In this situation, the proper transform in $S$ of the exceptional divisor $E_3$ has self-intersection $-2$, and is blown down under the anticanonical map to form an ordinary double point $P \in S_0$ of the image surface. Again, we see that the surface $S_0$ has seven lines: three double (in addition to the limits of $E_3$ and $E_4$ being the same, the limits of $L_{1,3}$ and $L_{1,4}$ coincide, as do $L_{2,3}$ and $L_{2,4}$) and four simple. In fact, this is not a coincidence; the surface $S_0$ is actually the same as in the previous example, as the following exercise asks you to show:
+%
+%\begin{exercise}
+%Show that the surfaces $S_0$ constructed in the last two examples are in fact the same; that is, we can express the surface $S$ in each case either as a blow-up of $\PP^2$ at four distinct points, three of which are colinear, or at three distinct points and one infinitely near point, depending on which four lines on $S$ we blow down.
+%\end{exercise}
+%
+%We can combine these constructions to create more singular del Pezzo quintics. For example, we can blow up $\PP^2$ at three colinear points and then blow up the result at a point of the exceptional divisor $E_3$; this will yield a singular surface $S_0 \subset \PP^5$ with two ordinary double points. At the extreme, there is a maximally singular del Pezzo surface (meaning every other singular del Pezzo specializies to it: we start by choosing a point $p \in \PP^2$ and a line $L \subset \PP^2$ through it. We blow up four times:
+%
+%\begin{enumerate}
+%\item First, we blow up $p$;
+%\item Second, we blow up the point of intersection of the exceptional divisor of the first blow-up with the proper transform of the line $L$;
+%\item We then blow-up the the point of intersection of the exceptional divisor of the second blow-up with the proper transform of the line $L$; and finally
+%\item We blow up any point in the exceptional divisor of the third blow-up \emph{other than} the point of intersection  with the proper transform of the line $L$ (so we're not taking four colinear points).
+%\end{enumerate}
+%
+%\begin{exercise}
+%Show that the surface $S_0$ in the last construction has a unique singular point (of type $A_4$, if you're familiar with the classification of rational double points). How many lines does $S_0$ contain?
+%\end{exercise}
+%
+%\subsection{General canonical curves of genus 6}
+%
+%Consider now a general curve $C$ of genus 6. By the Brill-Noether theorem (Theorem~\ref{BN omnibus}), $C$ will possess a $g^2_6$ (that is, a linear system of degree 6 and dimension 2), and this linear system will give a birational embedding $C \to \PP^2$ as a plane sextic curve $C_0 \subset \PP^2$ with 4 nodes. (We'll see in the following section that if $C$ is general, no three of these nodes are collinear; alternatively, this can be deduced directly from the Brill-Noether theorem as sketched in Exercise~\ref{}.) \fix{Because such a curve is not trigonal, the singular points of the image are at most double points; but why nodes -- do we need the strong B-N for this?}
+%
+%Now let $S$ be the blow up of the plane at the four nodes of $C_0$, with exceptional divisors $E_1, \dots, E_4$, and let $C$ be the proper transform of the curve $C_0$; let $\phi_{-K_S} : S \to \PP^5$ be the embedding of $S$ as a del Pezzo surface. Letting $L$ denote the divisor class of the preimage in $S$ of a line in $\PP^2$, we see that the class of $C$ in the Picard group of $S$ is
+%$$
+%C \sim 6L - 2\sum E_i,
+%$$ 
+%and since the canonical divisor class of $S$ is $-3L + \sum E_i$,  Proposition~\ref{Adjunction Formula} shows that
+%$$
+%K_C = (3L - \sum E_i)|_C = -K_S|_C;
+%$$ 
+%in other words, the restriction to $C$ of the embedding $\phi_{-K_S} : S \to \PP^5$ is the canonical embedding of $C$. Moreover, since $\cO_S(C) = \cO_S(2)$, and the map 
+%$$
+%H^0(\cO_{\PP^5}(2)) \to H^0(\cO_S(2))
+%$$
+%is surjective \fix{this should have been included in the del Pezzo discussion}, we arrive at the conclusion that the canonical curve $C \subset \PP^5$ is the complete intersection of the del Pezzo surface $S \subset \PP^5$ with a quadric.
+%
+%Note that we started this discussion by invoking the Brill-Noether theorem to say that the curve $C$ possessed a $g^2_6$. But in fact we now see there are five of them! As we said, there are five different maps $S \to \PP^2$ expressing $S$ as the blow-up of $\PP^2$ at four points, and the restriction to $C$ of each of these is the map associated to a $g^2_6$. Alternatively, having used the $g^2_6$ to birationally embed $C$ as a plane sextic $C_0 \subset \PP^2$ with nodes at four points $p_1,\dots,p_4$, we get four additional $g^2_6$s by taking the linear system of conics passing through 3 of the four nodes of $C_0$.
+%
+%Note also that in terms of this picture we can see as well that $C$ possesses five $g^1_4$s: we have one cut on $C_0$ by the lines through any one of the four nodes $p_i$ of $C_0$, and in addition the one cut on $C_0$ by conics passing through all four.
+
+\subsection{Other canonical curves of genus 6}
+
+\fix{Might be better to organize this around: cut out by quadrics or  not.}
+
+\fix{This para is confusing: what's the minimal hypothesis for being the intersection of quintic del P and a quadric? I would think that it's just NOT being trigonal or plane quintic -- not quite the implication of Green's conj.}
+
+To begin with, there are curves $C$ of genus 6 that satisfy the dimension-theoretic statement of Brill-Noether, but not the more refined parts. That is, $C$ will have no  $g^1_3$s or $g^2_5$s, and will have a finite number of $g^1_4$s (and residually a finite number of $g^2_6$s); but the number of $g^1_4$s may be less than 5. (In other words, the scheme $W^1_4(C)$ is zero-dimensional but nonreduced.) For example, if $C_0 \subset \PP^2$ is a plane sextic with four nodes, three of which are collinear, we have seen that the normalization will have only 4 distinct $g^1_4$s. Such curves will lie on a \emph{weak del Pezzo}; and by the same logic as in the general case, we see that \emph{such a canonical curve of genus 6 is the intersection of a quintic weak del Pezzo surface and a quadric}.
+
+Then there are curves of genus 6 that violate the dimension-theoretic statement of Brill-Noether; we'll list them here. 
+
+\begin{enumerate}
+
+\item {\bf Trigonal Curves:} If $C$ is trigonal, then we will see in Chapter~\ref{Scrolls} that trigonal canonical curves lie on rational normal scrolls, . In out case, the scroll $S \subset \PP^5$, which is either $\PP^1 \times \PP^1$ embedded by the linear series of curves of bidegree $(2,1)$, or the Hirzebruch surface $\FF_2$ (that is, the blow-up of a quadric cone $Q$ at its vertex). In the first case, $C$ is a smooth curve of type $(3,4)$ on $\PP^1 \times \PP^1$; in the latter case it's residual to a line in the complete intersection of $Q$ with a quartic. (In other words, in both cases $C$ is residual to a line in the complete intersection of a quadric  and a quartic.)
+
+Note that in these cases the canonical curve is not the intersection of quadrics---every quadric containing $C \subset \PP^5$ contains the scroll---but it is the intersection of quadrics and cubics.
+
+\item Second, there are the smooth plane quintics; that is, curves $C$ with $W^2_5(C) \neq \emptyset$. Such a canonical curve lies on rthe quadratic Veronese surface $S = \nu_2(\PP^2) \subset \PP^5$. As in the preceding case, the canonical curve is not the intersection of quadrics---every quadric containing $C \subset \PP^5$ contains the Veronese surface---but it is the intersection of quadrics and cubics.
+
+\item Finally, there are curves $C$  that are not trigonal or plane quintics, but such that $W^1_4(C)$ has positive dimension. In fact, one can show (it's a good exercise) that such a curve must be a 2-sheeted cover $\pi : C \to E$ of a curve $E$ of genus 1, with the $g^1_4$s on $C$ simply the pullback of the $g^1_2$s on $E$.
+
+In this case, the canonical divisor on $C$ is the pullback of a divisor $D$ of degree 5 on $E$. By Riemann-Roch, we have $h^0(\cO_E(D)) = 5$, so that the pullback $\pi^*H^0(\cO_E(D))$ is a codimension 1 sub-series of $H^0(K_C)$. What this means is that we have a point $p \in \PP^5$ such that projection of our canonical curve from $p$ is  the composition of the map $\pi$ with the embedding of $E$ in $\PP^4$ by $\phi_D$; that is, the canonical model $C \subset \PP^5$ lies on the cone over an elliptic normal curve in $\PP^4$. Now, such a cone $S$ lies on exactly 5 quadrics (the cones over the five quadrics containing the elliptic normal curve in $\PP^4$), and as in the general case this means we have a quadric $Q \subset \PP^5$ containing $C$ but not containing $S$, and again by Bezout we can conclude that $C = S \cap Q$. In other words, emph{the canonical model of a bielliptic curve of genus 6 is the intersection of the cone over a  quintic elliptic curve with a quadric}.
+
+\end{enumerate}
+
+%To begin with, we have described a general canonical curve of genus 6 as the intersection of a del Pezzo quintic surface $S \subset \PP^5$ with a quadric $Q \subset \PP^5$; and conversely if $C = S \cap Q$ is the smooth intersection of a del Pezzo quintic and a quadric, then $C$ will be a canonical curve. If we realize $S$ as the blow-up of $\PP^2$ at four points, this gives us the plane model of $C$ as (the normalization of) a plane sextic curve with four nodes: the four exceptional divisors of the blow-up $S \to \PP^2$ appear as lines on $S \subset \PP^5$, and the quadric $Q$ will meet each of these four lines transversely in two distinct points. When we blow down the four lines to arrive at $\PP^2$, the image curve $C_0 \subset \PP^2$ will accordingly have four nodes.
+%
+%What if $Q$ is tangent to one or more of the lines being blown down? In that case, of course, the image curve $C_0 \subset \PP^2$ will have a cusp rather than a node. We see in this way that 
+%
+%\begin{exercise}
+%Let $S \subset \PP^5$ be a quintic del Pezzo surface; let $L_1,\dots,L_4 \subset S$ be four pairwise skew lines on $S$ and $\pi : S \to \PP^2$ the map blowing down the $L_i$. Let $p_1,\dots,p_4 $ be the images of the $L_i$.
+%\begin{enumerate}
+%\item Show that 
+%$$
+%h^0(\cO_{\PP^2}(6) \otimes m_{p_1}^3 \otimes \dots \otimes m_{p_4}^3) = 4,
+%$$
+%or in other words the $4 \times 6$ conditions that a plane sextic be triple at the points $p_i$ are independent.
+%\item Deduce from this that for any subset $I \subset \{1,2,3,4\}$, there is a plane sextic curve $C_0$ with a node at $p_i$ for $i \in I$ and a cusp at $p_i$ for $i \notin I$.
+%\end{enumerate}
+%\end{exercise}
+%
+%There are still other possibilities for the geometry of our canonical curve $C \subset \PP^5$, which are of the form $C = S \cap Q$ with $S$ a possibly singular del Pezzo surface. There are seven possible cases here (including the case where $S$ is del Pezzo, and six others). To describe the simplest of these, start with a configuration of four points  $p_1,\dots,p_4 \in \PP^2$ of which exactly three---say, $p_1,p_2$ and $p_3$---are collinear, and suppose $C_0$ is a plane sextic curve with nodes at the four points  $p_1,\dots,p_4$. Again, we see that we have four $g^1_4$s on the normalization $C$ of $C_0$, cut out by the lines passing through each of the nodes. But what was the fifth $g^1_4$ on $C$ in the general case---the linear series cut on $C$ by conics passing through all four---now has a fixed component, and so coincides with the series cut by lines through the fourth point $p_4$. This $g^1_4$ $\cD$ is thus the flat limit of two distinct $g^1_4$s on a general curve of genus 6 specializing to $C$---in other words, a double point of the scheme $W^1_4(C)$.
+%
+%Indeed, we can see directly that $\cD$ is a non-reduced point of $W^1_4(C)$ from the omnibus Brill-Noether theorem~\ref{}. This identifies the Zariski tangent space $T_DW^r_d$ as the annihilator of the image of the map
+%$$
+%\mu : H^0(D) \otimes H^0(K-D) \to H^0(K).
+%$$
+%Now, if $D$ is the divisor cut by lines through the point $p_4$, then $K-D$ is the divisor cut by conics through $p_1,p_2,p_3$---that is, conics containing the line $L$ through the points $p_1,p_2,p_3$. The map $\mu$ is thus in this case the multiplication map between lines through $p_4$ and all lines, and that clearly has a one-dimensional kernel: if $\sigma$ and $\tau$ are sections of $\cO_C(D)$ corresponding to two lines through $p_4$, the element $\sigma \otimes \tau - \tau \otimes \sigma \in H^0(D) \otimes H^0(K-D)$ generates the kernel.
+
+
+\section{Exercises}
+
+\begin{exercise}
+Prove a slightly stronger version of Theorem~\ref{arbitrary linear series} in the range $d \leq g-1$: that under the hypotheses of Theorem~\ref{arbitrary linear series} there exists a \emph{complete} linear series of degree $d$ and dimension $r$ for any $r \leq d/2$.
+\end{exercise}
+
+\begin{exercise}\label{rarity of Castelnuovo}
+We have seen that complete intersections $C = Q \cap S \subset \PP^3$ of a quadric surface $Q$ and a surface $S$ of degree $k$ achieve Castelnuovo's bound $g = \pi(2k, 3)$ on the genus of curves of degree $2k$ in $\PP^3$. In fact, we will see in Chapter~\ref{ScrollsChapter} that any curve $C \subset \PP^3$ of degree $2k$ and genus $g = \pi(2k, 3) = (k-1)^2$ is of this form.
+\begin{enumerate}
+\item Find the dimension of the subvariety $\Gamma \subset M_g$ consisting of Castelnuovo curves.
+\item Find the dimension of the subvariety $H \subset M_g$ of hyperelliptic curves, and compare this to the result of the first part.
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+Show that if the nodes of the curve $C_0$ are in linear general position---that is, no three collinear---then indeed the map $\mu : H^0(D) \otimes H^0(K-D) \to H^0(K)$ is an isomorphism for each of the five $g^1_4$s on $C$.
+\end{exercise}
+
+We can describe similarly curves of genus 6 with only three, two or even one $g^1_4$. The most special is the case where $C$ has only one $g^1_4$; this is the normalization of a plane sextic with a \emph{flexed hyperoscnode}---that is, a double point consisting of two smooth branches with contact of order 4 with each other, and such that both branches have contact of order 3 with their common tangent line.
+
+In general, we see that if $C$ is a non-trigonal curve of genus 6, the variety $W^1_4(C)$ is finite, and curvilinear (Zariski tangent space of dimension at most 1 at each point). There are 7 such schemes, corresponding to the number of partitions of 5, and indeed all occur.
+
+\begin{exercise}
+Find an example of a non-trigonal curve of genus 6 whose scheme $W^1_4(C)$ is isomorphic to each of the curvilinear schemes of degree 5 and dimension 0.
+\end{exercise}
+
+Indeed, the seven possibilities here correspond exactly to the seven isomorphism classes of possibly singular del Pezzo quintic surfaces. (Exercise? Cheerful fact?)
+
+
+
+
+\input footer.tex
