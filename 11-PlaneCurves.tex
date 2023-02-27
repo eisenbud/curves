@@ -19,7 +19,7 @@ $E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and No
 
 Macaulay exploited this theory of residuation  to prove what he called the ``Generalized Riemann-Roch Theorem'' (now erroneously called the ``Cayley Bacharach Theorem''.) This early work of Macaulay led directly to his definitions of  ``perfection'' (a homogeneous ideal
 $I  \subset S:= k[x_0, \dots, x_n]$ is perfect if $S/I$ is Cohen-Macaulay) and ``super-perfection'' (the case when $S/I$ is
-Gorenstein). For all this, see "\cite{Eisenbud-Gray}.
+Gorenstein). For all this, see~\cite{Eisenbud-Gray}.
 
 In the first part of this Chapter we will use ideas that go back to Brill and Noether to prove the ``completeness of the adjoint series'', giving us a recipe, using $C_0$, to find all effective divisors on $C$ equivalent on $C$ to a given (possibly) non-effective divisor. In Section~\ref{linear series on smooth plane curves} we treat the simple case of smooth plane curves, and in subsequent sections we treat the case of plane curves with nodes, and then plane curves with arbitrary singularities.
 
@@ -408,35 +408,47 @@ In general---for singularities beyond nodes or triple points---the adjoint ideal
 
 \section{The canonical sheaf of a singular curve}
 
-Possibly singular curves (and more generally all locally Cohen-Macaulay schemes) have canonical    sheaves (also called \emph{dualizing sheaves}) that play a role similar to that of the 
-sheaf of regular differential forms on a smooth curve. In particular,
-when the scheme is locally Gorenstein---as is the case with any smooth curve or any plane curve---the canonical
-sheaf is an invertible sheaf, just as in the smooth case. 
-
 Suppose again that $\nu:C\to C_0$ is the normalization of a singular curve. In order to understand the adjoint ideal, we 
 want to compare the canonical sheaf of $C$ with
-that of $C_0$. But the sheaf of differentials on $C_0$ is generally not well-behaved, not even locally free, and it does not
+that of $C_0$. But the sheaf of differentials on $C_0$ is generally not well-behaved, generally not even torsion-free,
+ and it does not
 have the properties that make the canonical sheaf useful. The canonical
-sheaf on $C_0$ is defined differently.
+sheaf on $C_0$ must be defined differently:
 
-
-\begin{definition}
-Let $C$ be a locally Gorenstein curve, and let $\rho: C\to \PP^1$ be a finite morphism. The canonical sheaf $\omega_C$
-is the sheaf $\Hom_{\PP^1}(\rho_*\sO_C, \omega_{\PP^1})$, regarded as an 
-$\sO_C = \rho^{-1}(\rho_*\sO_C)$-module.
+\begin{definition}\label{canonical as Hom}
+Let $C_0$ be a purely 1-dimensional scheme and let $\rho: C_0\to \PP^1$ be a finite morphism. The canonical sheaf $\omega_{C_0}$
+is the sheaf $\rho^{-1}\Hom_{\PP^1}(\rho_*\sO_{C_0}, \omega_{\PP^1})$ on $C_0$. 
 \end{definition}
 
 To demystify the last phrase of this definition, note that because the map
-$\rho$ is finite, the open sets $U = \rho^{-1}V$, where $V\subset \PP^1$ is open, form a basis for the open sets of $C$; and for
-such an open set $U$ the ring $\sO_C(U)$ is equal, as a set, to the ring $(\rho^{-1}(\rho_*\sO_C))(U) = 
-\rho_*(\sO_C)(V)$. Still more concretely, if $R\to S$ is a finite map of rings in the sense that
-$S$ is a finitely generated $R$-module, and $\rho: U=\Spec S \to V = \Spec R$ is the corresponding map
-of schemes, then the pushforward of any finitely generated $S$-module is set-theoretically the same module, regarded as an $R$-module via the map $R\to S$.
+$\rho$ is finite,  the open sets $U = \rho^{-1}V$, where $V\subset \PP^1$ is open, form a basis for the open sets of $C_0$; and for
+such an open set $U$ the ring $\sO_C(U)$ is equal, as a set, to 
+$(\rho_*\sO_C)(V)$. Thus if $\sL$ is any coherent sheaf on $C_0$ then $\rho_*\sL$, or more properlu $\rho^{-1}(\rho_*(\sL)$,
+may be regarded as a coherent sheaf on $C_0$.
+
+The reader may be concerned with applying the name ``canonical'' to a definition that seems to
+depend on the choice of a map $\rho$, but in fact if $\rho': C_0 \to \PP^1$ is another such map,
+there is a canonical isomorphism between the apparently different sheaves $\omega_{C_0}$ defined above.
+
+More generally:
+
+\begin{fact}
+Suppose that $X$ is a smooth projective variety and $\omega_X$ is the sheaf of differential forms of degree $\dim X$.
+If $\psi: C_0 \to X$ is any finite morphism of pure-dimensional schemes, then
+$$
+\omega_{C_0} \cong \sExt^{\dim X -\dim C_0}(\sO_{C_0}, \omega_X),
+$$
+and any two such representations are canonically isomorphic.
+\end{fact}
+
+For a proof in the case of the inclusion of a projective variety see \cite[Section III.7]{Hartshorne1977}, while for the more general assertion above see \cite{AltmanKleiman}. 
 
 \begin{example}
-Consider the case when $C$ is smooth, connected projective curve. If $\psi: C\to \PP^1$ is a finite  ($\equiv$ non-constant) morphism to $\PP^1$, then Hurwitz' Theorem asserts that the canonical sheaf on
-$C$ is $(\rho^*\omega_{\PP^1})(R)$, where $R$ is the ramification divisor.
-For example at a point  $ p\in\PP^1$ over which there are two disjoint smooth branches
+Consider the case when $C = C_0$ is smooth, connected projective curve. If $\psi: C\to \PP^1$ is a finite  ($\equiv$ non-constant) morphism to $\PP^1$, then Hurwitz' Theorem asserts that the canonical sheaf on
+$C$ is $(\rho^*\omega_{\PP^1})(R)$, where $R$ is the ramification divisor. It is not hard to show that this
+agrees with Definition~\ref{canonical as Hom}. For simplicity, suppose that the degree of the map is 2---the general case
+is virtually the same. If
+ $ p\in\PP^1$ is a point over which there are two disjoint smooth branches
 we can complete the local ring at $p$ and, after tensoring
 with $\widehat \sO_{C,p} \cong k[[x]]$, the map of rings becomes 
 $$
@@ -491,34 +503,18 @@ $$
 \frac{1}{2}y^{-1}Tr: R' = R\oplus Ry \to R
 $$
  is the second projection, and $y^{-1}Tr$ generates $\omega_{R'} = \Hom_R(R', R)$ as an $R'$-module.
-This corresponds to the fact that the local generator of the module of regular differential forms
-on $\Spec R'$ is $y^{-1}$ times the pullback of the local generator $dx$. Note that if we write
-$R' = k[[x,y]]/(f)$  with $f(x,y) = y^2-x$, then 
+
+This corresponds to the fact that a local generator of the module of regular differential forms
+on $\Spec R'$ is $y^{-1}$ times the pullback of a local generator $dx$, or equivalently
+that a differential form on $C'$ must be multiplied by $y$ to ensure that it ``descends'' to a regular differential
+form on $\PP^1$. Note that if we write
+$R' = k[[x,y]]/(f)$  with $f(x,y) = y^2-x$, then we have written the regular differential form on $C$
 $$
 y^{-1}dx = \frac{dx}{\partial f/\partial y}
 $$
 a formula we have seen before.
 \end{example}
  
-
-The reader may be concerned with applying the name ``canonical'' to a definition that seems to
-depend on the choice of a map $\rho$, but in fact if $\rho': C \to \PP^1$ is another such map,
-there is a canonical isomorphism between the apparently different sheaves $\omega_C$ defined above.
-
-
-More generally:
-
-\begin{fact}
-If $\omega_X$ is a canonical sheaf on a $\psi: C \to X$ is any finite morphism of pure-dimensional schemes, then there is a canonical isomorphism
-$$
-\omega_C \cong \sExt^{\dim X -\dim C}(\sO_C, \omega_X).
-$$
-\end{fact}
-For a proof in the case of the inclusion of a projective variety see \cite[Section III.7]{Hartshorne1977}, while for the more general assertion above the
-reader may consult \cite{AltmanKleiman}. Note that this result is independent of whether
-or not $C$ is smooth. The difference is that when $C$ is not smooth, the canonical
-sheaf is \emph{not} the sheaf of global differential forms (though it can be identified with
-a certain subsheaf of the sheaf of rational differential forms.)
 
 \begin{example}
  If $C$ is a plane curve of degree $d$, then 
@@ -533,10 +529,10 @@ $$
 of $\sO_C$ as a sheaf on $\PP^2$. 
 \end{example}
 
-Using this theory we can give a formula for the adjoint ideal of any curve singularity.
+Using Definition~\ref{canonical as Hom} we can give a formula for the adjoint ideal of any curve singularity.
 
 \begin{theorem}\label{general adjoint}
-If $\nu: C \to C_0$ is the normalization of a reduced irreducible projective curve then the 
+If $\nu: C \to C_0$ is the normalization of a reduced connected projective curve then the 
 adjoint ideal 
 $$
 \fA_{C/C_0} :=\ann_{\sO_{C_0}}\frac{\omega_{C_0}}{\nu_* \omega_C}
@@ -554,24 +550,25 @@ $$
 Here $\delta(C_0)$ is the ``deficiency'' or the ``number of nodes equivalent to the singularities of $C_0$'' as
 explained in Chapter~\ref{RiemannRochChapter}. The notation $\mathfrak f$ for the conductor comes from the german term \emph{F\"uhrer}. The property in the last statement of the
 Theorem  was first noted (for plane curves) in Daniel Gorenstein's thesis under Oscar Zariski\footnote{Gorenstein is better remembered for his work on the classification of finite simple groups.}. This is the
-reason why the name ``Gorenstein" was given to Cohen-Macaulay rings of having a cyclic canonical 
-module. Indeed, the property in the last statement holds whenever $C_0$ is locally Gorenstein.
+reason why Grothendieck gave the name ``Gorenstein" to Cohen-Macaulay rings that have cyclic canonical 
+modules--see~\cite{Bass}. 
 
-Note that the use made of the adjoint ideal in the previous chapter---as a condition on a polynomial
-$e$ for $e\phi$ to belong to $\omega_C$ is always sufficient, but may be necessary only
+In the previous chapter we used the adjoint ideal as a condition on a polynomial
+$e$ to multiply differential forms on $C$ for $e\phi$ to belong to $\omega_C$ is always sufficient, but may be necessary only
 when $\omega_{C_0}$ is cyclic---which is equivalent to the statement that $C_0$ is locally
-Gorenstein. Fortunately this condition is always satisfied for plane curve singularities. See Example~\ref{nongorenstein} for a case that behaves differently.
+Gorenstein. This condition is always satisfied for singularities of curves in the plane.
+See Example~\ref{nongorenstein} for a singularity that is not locally planar, and behaves differently.
 
 
 \begin{proof}[Proof of Theorem~\ref{general adjoint}]
   Let 
-$\rho: C_0 \to \PP^1$ be a nonconstant homomorphism. Both $\rho_*\nu_*\sO_C$ and $\rho_*\sO_{C_0}$
-are torsion free coherent sheaves over $\sO_{\PP^1}$, and are thus locally free. Moreover, since $\nu$
-is birational, the inclusion $\sO_{C_0} \subset \nu_*\sO_C$ pushes forward to an inclusion
+$\rho: C_0 \to \PP^1$ be a finite morphism. Both $\rho_*\nu_*\sO_C$ and $\rho_*\sO_{C_0}$
+are torsion free coherent sheaves over $\sO_{\PP^1}$, and are thus locally free. Since $\rho_*$ is left-exact,
+the inclusion $\sO_{C_0} \subset \nu_*\sO_C$ pushes forward to an inclusion
 $$
 \alpha: \rho_*\sO_{C_0} \hookrightarrow \rho_*\nu_*\sO_C
 $$
-that is generically an isomorphism, so $\coker \alpha$ has finite length; indeed, it is supported at the 
+and since $\sO_C$ is equal to $\sO_{C_0}$ generically on $\PP^1$, the cokernel $\coker \alpha$ has finite length; indeed, it is supported on the 
 image of the singular locus of $C_0$. Since the maps $\nu$ and $\rho$ are finite, we may harmlessly think of both 
 $\sO_{C_0}$ and $\sO_C$ as coherent sheaves on $\PP^1$, and we will simplify the notation by dropping $\nu_*$ and $\rho_*$.
 Taking duals into $\sO_{\PP^1}$ and defining
@@ -594,9 +591,9 @@ $$
 \end{diagram}
 $$
 Since $\coker \alpha$ has finite support, $ \Hom_{\PP^1}(\coker \alpha,\sO_{\PP^1}) = 0$ and
-$\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})$ is has the same length and the same annihilator
+$\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})$ has the same length and the same annihilator
 as $\coker \alpha$. Furthermore, because $\sO_C$ is locally free as an $\sO_{\PP^1}$-module, the term
-$\sExt^1_{\PP^1}(\rho_*\nu_*\sO_C, \sO_{\PP^1})$ vanishes, and we get the more manageable exact sequence
+$\sExt^1_{\PP^1}(\sO_C, \sO_{\PP^1})$ vanishes, and we get the more manageable exact sequence
 $$
 \begin{diagram}
  0&\rTo&
@@ -609,20 +606,22 @@ $$
 0
 \end{diagram}
 $$
-It follows that the sheaves $\nu_*\sO_C/\sO_{C_0}$ and $\omega_{C_0}/\omega_C$ have the same
+It follows that the sheaves $\nu_*\sO_C/\sO_{C_0}$ and $\omega_{C_0}/\nu_*\omega_C$ have the same
 length $\delta(C_0)$. Note that the \emph{conductor} $\mathfrak f_{C/C_0}$ of $C/C_0$, which is defined to be the annihilator of $\sO_C/\sO_{C_0}$ 
-in $\sO_{C_0}$, is at the same time an ideal sheaf of $\sO_{C_0}$ and an ideal sheaf of $\sO_C$ via the inclusion $\sO_{C_0}\subset \sO_C$. The argument above shows that $\mathfrak f_{C/C_0}$ is also the annihilator ideal of $\omega_{C_0}/\omega_C$, the adjoint ideal of $C_0$ proving the first statement
+in $\sO_{C_0}$, is at the same time an ideal sheaf of $\sO_{C_0}$ and an ideal sheaf of $\sO_C$ via the inclusion $\sO_{C_0}\subset \sO_C$. The argument above shows that $\mathfrak f_{C/C_0}$ is also the annihilator ideal of $\omega_{C_0}/\omega_C$. By definition, this is the adjoint ideal of $C_0$, proving the first statement
 of the Theorem.
 
-A further simplification occurs when $C_0\subset \PP^2$ is a plane curve, or more generally any
-locally Gorenstein curve. If the defining equation of 
+A further simplification occurs when $C_0\subset \PP^2$ is a plane curve, or more generally any 
+curve such that the canonical module of $C_0$ is an invertible sheaf (this is the definition of the Gorenstein property).
+If the defining equation of 
 $C_0$ is the form $F$ of degree $d$, then there is a locally free resolution of  $\sO_C$ of the form
 $$
 0\rTo \sO_{\PP^2}(-d) \rTo^F \sO_{\PP^2} \rTo \sO_C \rTo 0
 $$
 and thus $\omega_C \cong \sExt^1_{\PP^2}(\sO_{C_0}, \omega_{\PP^2})$
 is cokernel of the map $\sO_{\PP^2}(-3) \to \sO_{\PP^2}(d-3)$ given by multiplication by $F$. Thus
-$\omega_{C_0}$ is locally cyclic, and  since its support is finite, it is also globally cyclic, that is,
+$\omega_{C_0}$ is locally cyclic, and  since the support of $\omega_{C_0}/\omega_C$ is finite, this module is
+ globally cyclic, so
 $\omega_{C_0}/\omega_C \cong \sO_{C_0}/\mathfrak f_{C/C_0}$.
 Since the length of $\omega_{C_0}/\omega_C$ is equal to the length of 
 $\sO_{C}/\sO_{C_0}$, the last statement of the Theorem follows.
@@ -669,7 +668,7 @@ We showed earlier that the adjoint ideal of a planar triple point is the square 
  the conductor is given by $\ff_{R/R_0} = (x,y,z)R = (x,y,z)R_0$.
  
  The ring $R$ is also finite over $S := k[[x,y,z]]$, and is isomorphic as such to 
- $S/(x,y)\oplus S/(x,z) \oplus S/(y,z)$, so we can compute it's canonical module from the
+ $S/(x,y)\oplus S/(x,z) \oplus S/(y,z)$, so we can compute its canonical module from the
  resolution that is the direct sum of the three Koszul complexes resolving these summands, and 
  as such the canonical module $\omega_R = \Ext^2(R,S)$ is isomorphic to $R$ as an $S$-module.
  
@@ -700,20 +699,12 @@ a module requiring 2 generators.
 \end{example}
 The inclusion $\omega_{R} \subset \omega_{R_0}$ is thus induced by the 
 dual of the last map in a comparison map between the two resolutions. Computation
-confirms the conclusion of Theorem~\ref{general adjoint} that $\fA_{R/R_0} = \ff_{R/R_0} = (x,y,z)$. However, the length of $R/R_0$ is 2, and the length of $R_0/\ff_{R/R_0} = R_0/(x,y,z) = 1$, so the
-last conclusiong of Theorem~\ref{general adjoint} fails, along with its hypothesis.
+confirms the conclusion of Theorem~\ref{general adjoint} that $\fA_{R/R_0} = \ff_{R/R_0} = (x,y,z)$. However, the length of $R/R_0$ is 2, and the length of $R_0/\ff_{R/R_0} = R_0/(x,y,z)$ is  1, so the
+last conclusion of Theorem~\ref{general adjoint} fails, along with its hypothesis.
 
 \section{Severi varieties}\label{severi variety}
 
-%As we said at the outset of this chapter, there is a trade-off when we go from studying curves in $\PP^3$ and higher-dimensional projective space to studying plane curves. On the one hand, a curve $C \subset \PP^n$ with $n \geq 3$ is defined by a collection of polynomials, which in turn (unless the curve is a complete intersection) have to satisfy non-trivial syzygies. It's thus not a priori clear how we can vary the coefficients of these polynomials without losing the syzygies they satisfy; as a consequence, things like the dimension of the family of such curves can be obscure.
-%
-%A plane curve $C_0 \subset \PP^2$, by contrast, is simply the zero locus of a single polynomial, and we can vary the coefficients of that polynomial arbitrarily to arrive at a family of curves. But as we said, there's a trade-off: unless we're dealing with the very special case of curves of degree $d$ and geometric genus $g = \binom{d-1}{2}$, the plane model of a curve $C$ of genus $g$ will be singular; and it's not so clear how we can vary the coefficients of its defining polynomial so as to preserve those singularities and arrive at a family of curves of degree $d$ and geometric genus $g$.
-%
-%In this section, we'll address exactly this question. 
-
-%The set of plane curves of given degree is naturally an algebraic variety---the projective space of forms of that degree. The idea of varying a plane curve by varying the coefficients of its defining equation was exploited from the very beginning of the subject in the vague ``principle of conservation of number''. Perhaps this obvious family of curves is what originally suggested a key feature of algebraic geometry, that sets of ``similar'' algebraic varieties, or vector bundles, or still more complicated objects, often can be made into algebraic varieties in a natural way---the various sorts of moduli, of which several are addressed in this book.
-
-Despite its antiquity, many questions about the family of plane curves, such as which ones degenerated into which others, and in what way, remain open. All plane curves of degree $d$ have the same Hilbert function, and thus the same arithmetic genus
+Despite its antiquity, many questions about the family of plane curves, such as which ones degenerate into which others, and in what way, remain open. All plane curves of degree $d$ have the same Hilbert function, and thus the same arithmetic genus
 $\binom{d-1}{2}$, but since curves of degree $d$ can have different sorts and numbers of singularities, they can have geometric genera from 0 to $\binom{d-1}{2}$. In this section we will explore the subset of of (reduced, irreducible) curves of degree $d$ with a fixed geometric genus. We will focus on the open set consisting of curves with only nodes as singularities, which we call \emph{nodal curves}, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
 
 Let $\PP^N := \PP^{{d_1+2\choose 2} - 1}$ be the projective space parametrizing plane curves of degree $d$.
