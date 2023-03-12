@@ -98,7 +98,90 @@ We'll analyze $\Phi$ by considering the projection maps to $\cH^\circ$ and $\GG(
 Consider first the projection map $\pi_2 : \Phi \to \GG(1,3)$ on the second factor. By what we just said, the fiber over any point $L \in \GG(1,3)$ is an open subset of $\PP^6 \times \PP^6$, where $\PP^6$ is the space of quadrics containing $L$; it follows that $\Phi$ is irreducible of dimension $4 + 2\times 6 = 16$. Going down the other side, we see that the map $\pi_1 : \Phi \to \cH^\circ$ is surjective, with fiber over every curve $C$ an open subsets of $\PP^2 \times \PP^2$, where $\PP^{2}$ is the projective space of quadrics containing $C$; we conclude that $\cH^\circ$ is irreducible of dimension 12.
 \end{proof}
 
-In Chapters~\ref{HilbertSchemesI} and \ref{HibertSchemes2} we see several more instances of the application of liaison to the study of curves in $\PP^3$. The method is largely limited to curves in $\PP^3$ (and subvarieties $X \subset \PP^r$ of codimension 2 in general); for example, you can't use it to do Exercise~\ref{rational normal hilbert} for $r \geq 4$.
+section{Linkage} \label{SLinkage}\label{linkage section}
+
+As the second proof of Proposition~\ref{hilb of twisted cubics} suggests, when the union of two curves $C$ and $D$ forms a complete intersection we can use this fact to relate the geometry of their respective Hilbert schemes. This is a technique we'll use repeatedly. We prove it first in a special case, in which little more
+than the adjunction formula is needed, and then consider a natural
+generalization to purely 1-dimensional subschemes.
+
+\begin{theorem}\label{liaison genus formula-first version} Let $C, D\subset \PP^3$ smooth irreducible curves of  of degrees $c,d$ whose union is the complete intersections of two surfaces $S,T$, with $S$ smooth. If the degrees of $S,T$ are $s,t$ respectively, then $c+d = st$ and 
+ $$
+ g(C) - g(D) = \frac{s+t-4}{2}(c-d).
+ $$
+\end{theorem}
+In words, the difference between the genera of $C$ and $D$ is proportional to the difference in their degrees, with constant of proportionality $(s+t-4)/2$.
+
+\begin{proof}
+ B\'ezout's Theorem tells us that $c+d = st$; we want a formula relating the genera $g = p_a(C)$ and $h = p_a(D)$ of $C$ and $D$. For this we use
+ the intersection theory of divisors on $S$.
+
+By the adjunction formula (Theorem ****), the canonical divisor class of $S$ is $K_S = (s - 4)H$, where $H$ denotes the hyperplane class on $S$. Using adjunction 
+again, we see that
+$$
+2g-2 = (C\cdot C) + (K_S\cdot C) = C\cdot C + (s-4)c, 
+$$
+or in other words,
+$$
+(C \cdot C) = 2g-2 - (s-4)c.
+$$
+Next, since $C \cup D$ is a complete intersection of $S$ with a surface of degree $t$, we have $C + D\sim tH$. Thus 
+$$
+(C \cdot D) = (C \cdot (tH - C)) = tc - (C \cdot C) = tc - 2g + 2 + (s-4)c
+$$
+and similarly
+$$
+(D \cdot D) = (D \cdot (tH - C)) = td - tc + 2g - 2 - (s-4)c. 
+$$
+Finally, we can apply the adjunction formula to $D$ to arrive at
+$$
+2h - 2 = (D \cdot D) + (K_S \cdot D) = (s-4)d  + td - tc + 2g - 2 - (s-4)c.
+$$
+Collecting terms, we can write this in the convenient form
+\begin{equation}\label{linked genus formula}
+h - g = \frac{s+t-4}{2}(d-c);
+\end{equation}
+ \end{proof}
+
+The first step in dealing with a more general case, where $C,D$ may not be reduced or irreducible, and my share components, is to agree
+on the analogue of the statement $C\cup D = S\cap T$. Writing $F,G$ for the defining equations of $S,T$ respectively,
+In the simple case above, the primary decomposition of the ideal $(F,G)$ was the intersection of two prime ideals $I_C+I_D$. From this description it
+follows that
+$$
+(F,G):I_C := \{H \mid HI_C \subset (F,G)\} = I_D
+$$
+By analogy, we will say that two purely 1-dimensional subschemes of $\PP^3$ are \emph{directly linked} by surfaces $S: \{F = 0\}$ and $T:  \{F = 0\}$ if
+the two equations above are satisfied. This relation turns out to be symmetric, and the degrees and (arithmetic) genera are related as in the simple case above:
+
+\begin{theorem}\label{liaison-full version}
+If purely one-dimensional subschemes $C,D\subset \PP^3$ of degrees $c,d$ are directly linked by surfaces of degrees $s,t$, then 
+$c+d = st$ and 
+ \begin{equation}\label{linked genus formula}
+p_a(C) - p_a(D) = \frac{s+t-4}{2}(c-d);
+\end{equation}
+
+\end{theorem}
+ 
+
+We will see this formula used repeatedly in this chapter, and as we indicated it will be discussed as part of the larger theory of liaison for space curves in Chapter~\ref{LinkageChapter}. For now, you should just take a moment and reassure yourself that the right hand side of~(\ref{linked genus formula}) is indeed an integer!
+
+%We will generalize the technique used in second proof of Proposition~\ref{hilb of twisted cubics}. Will do first for $C, D$ smooth; at the end, have discussion of full definition and theorem.
+%
+%To be done: First, derive formula for genus of linked curves via intersection theory of a (presumably smooth) surface containing the curves. Similarly introduce the Rao module and show that Rao modules of linked curves are dual (with a twist) via cohomology groups of line bundles on this surface and Serre duality. Unirationality of one Hilbert scheme equiv. to unirationality of the other; discussion of historical significance and ref. to result that general curves are not linked to anything simpler.
+%
+%References to Chapter 10, where the 
+%
+%Question: Is the Hilbert scheme of twisted cubics rational?
+%
+%\subsection{formulas for degree and genus of linked curves}
+%
+%\subsection{Cheerful facts: Hartshorne-Rao; smoothness of residual curve when $I_C$ generated in degree $d$ (Prop. 5.6 in 3264)}
+%
+%\subsection{Unirationality of Hilbert schemes}
+
+
+
+In Chapters~\ref{HilbertSchemesI} and \ref{HibertSchemes2} we will see several more instances this technique. The method is largely limited to curves in $\PP^3$ (and subvarieties $X \subset \PP^r$ of codimension 2 in general); for example, you can't use it to do Exercise~\ref{rational normal hilbert} for $r \geq 4$.
+
 
 
 %We have two cases in mind: curves of  (relatively) high degree, and canonical curves.
