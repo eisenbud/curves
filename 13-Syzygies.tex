@@ -1,9 +1,9 @@
 \input{header}
 
-\chapter{Syzygies of canonical curves and curves of high degree}
+\chapter{Syzygies  of curves and general linkage}
 \label{SyzygiesChapter}
 
-
+%Useful for drawing betti tables:
 %$$
 %\vbox{\offinterlineskip %\baselineskip=15pt
 %\halign{\strut\hfil# \ \vrule\quad&# \ &# \ &# \ &# \ &# \ &# \ 
@@ -19,8 +19,6 @@
 %\noalign{\smallskip}
 %}}
 %$$
-%
-%
 %
 %
 %\centerline{\scriptsize
@@ -41,10 +39,11 @@
 %\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
 %\end{matrix}
 %$$         
-%
+%%
 %
 \def\length{{\rm length}}
-\fix{This section needs to be revised slightly in light of the new appendix 18}
+%\fix{This section needs to be revised slightly in light of the new appendix 18}
+
 \section{Introduction} 
 
 %Motivation: canonical embedding turns intrinsic invariants into projective invariants. Hilbert Function. Projective Normality; Canonical Module.
@@ -54,7 +53,55 @@
 %Hilbert Syzygy theorem, Hilbert function derivation, Unique minimal resolution, Betti table, 
 %\fix{ introduce tools as they are used}
 
-In this Chapter we will study  invariants associated to a free resolution, or syzygies, of the homogeneous coordinate ring of a curve in projective space, with an emphasis on their relation to the varieties (or schemes) containing the curve. We have two cases in mind: curves of  (relatively) high degree, and canonical curves.
+\fix{Adding general linkage we can measure the failure of CM for various curves in P3, making the theorems about canonical and
+high degree more interesting. We might need local duality for this. Revisit $g+3$ in this context, using maximal rank, too. This all suggests putting linkage in $\PP^3$ before the general talk of canonical curves, factorization of line bundles, high degree.}
+
+
+In this Chapter we will study  invariants associated to a free resolution, or syzygies, of the homogeneous coordinate ring of a curve in projective space, with an emphasis on their relation to the varieties (or schemes) containing the curve. 
+In studying the embeddings of a curve $C\subset \PP^r$  we have again and again estimated the number of
+forms of degree $d$ in the ideal of the curve using the sequence
+$$
+0\to H^0(\sI_C(d)) \to H^0(\sO_{\PP^r}(d))\to  H^0(\sO_C(d)) \to H^1(\sI_C(d))\to 0
+$$
+which is exact because (since $r$ must be $\geq 2$ in any interesting case) $H^1(\sO_{\PP^r}(d))= 0$.
+In the interesting case $r=3$ the theory of linkage (often called by its French name liaison and free resolutions give us an opportunity
+to understand the significance of the spaces $H^1(\sI_C(d)$ in a new way. 
+
+\section{Linkage of curves in $\PP^3$}
+
+In Chapter~\ref{ModuliChapter} we considered the Hilbert scheme of twisted cubics, and proved that the open set consisting of 
+smooth irreducible nondegenerate cubic curves in $\PP^3$---that is, twisted cubics---is irreducible of
+dimension 12. As a first illustration of the technique of linkage, we begin with a second proof of this fact:
+
+\begin{proof}[Second proof of Proposition~\ref{hilb of twisted cubics}]
+Let $C\subset \PP^3$ be a twisted cubic. In Chapter~\ref{linear series chapter} we used the sequence
+$$
+0\to H^0(\sI_C(2)) 
+\to H^0(\sO_{\PP^3}(2) 
+\to H^0(\sO_C)
+$$
+Two deduce that $C$ lies on at least 2 quadrics. But the intersection of any two distinct quadrics $Q, Q' \supset C$ containing a twisted cubic curve $C$ has degree 4 and is unmixed; therefore it is the union of $C$ and a line $L \subset \PP^3$.
+
+Conversely, suppose that $L \subset \PP^3$ is any line and  $Q, Q'$ two general quadrics containing $L$; write the intersection $Q \cap Q'$ as a union $L \cup C$. Since smooth quadrics contain lines a general quadric containing $L$ is smooth. The quadric $Q'$ will intersect it in a curve of type $(2,2)$, so the curve $C$ will have class $(2,1)$ or $(1,2)$. The quadrics $Q'$ containing $L$ cut out on $Q$ the complete linear system of curves of type $(2,1)$, which has no base locus, so Bertini's theorem tells us that $C$ will be smooth, so that the intersection $Q \cap Q' = L \cup C$ will be the union of $L$ and a twisted cubic. This suggests that we set up an incidence correspondence: let $\PP^9$ denote the projective space of quadrics in $\PP^3$, and consider
+$$
+\Phi = \{ (C, L, Q, Q') \in \cH^\circ \times \GG(1,3) \times \PP^9 \times \PP^9 \; \mid \; Q \cap Q' = C \cup L \}.
+$$
+
+We'll analyze $\Phi$ by considering the projection maps to $\cH^\circ$ and $\GG(1,3)$; that is, by looking at the diagram
+
+\begin{diagram}
+& &  \Phi & & \\
+& \ldTo^{\pi_1} & & \rdTo^{\pi_2} & \\
+\cH^\circ & & & & \GG(1,3)
+\end{diagram}
+
+Consider first the projection map $\pi_2 : \Phi \to \GG(1,3)$ on the second factor. By what we just said, the fiber over any point $L \in \GG(1,3)$ is an open subset of $\PP^6 \times \PP^6$, where $\PP^6$ is the space of quadrics containing $L$; it follows that $\Phi$ is irreducible of dimension $4 + 2\times 6 = 16$. Going down the other side, we see that the map $\pi_1 : \Phi \to \cH^\circ$ is surjective, with fiber over every curve $C$ an open subsets of $\PP^2 \times \PP^2$, where $\PP^{2}$ is the projective space of quadrics containing $C$; we conclude that $\cH^\circ$ is irreducible of dimension 12.
+\end{proof}
+
+In Chapters~\ref{HilbertSchemesI} and \ref{HibertSchemes2} we see several more instances of the application of liaison to the study of curves in $\PP^3$. The method is largely limited to curves in $\PP^3$ (and subvarieties $X \subset \PP^r$ of codimension 2 in general); for example, you can't use it to do Exercise~\ref{rational normal hilbert} for $r \geq 4$.
+
+
+%We have two cases in mind: curves of  (relatively) high degree, and canonical curves.
 
 \section{How syzygies can reflect geometry}\label{syzy and geom}
 
@@ -386,7 +433,6 @@ We next show by induction on $n$ that  $I_{2}(M)$ is prime. In the case $n=2$ we
 Now suppose that $n>2$, and let $M'$ be the matrix $M$ with the first column omitted. we know by induction that $I_{2}(M')$ is prime of codimension $n-2$. Since $I:=I_{2}(M)$ does not have the maximal ideal as an associated prime, it is saturated. The ideal $I_{2}(M)+x_{0}$ properly contains $I_{2}(M')$ and thus has codimension $\geq n-1$ in $S/x_{0}$, whence we see that every component of $I_{2}(M)$ meets the open set
 $x_{0} = 1$. Restricting to this open set \fix{complete the proof}
 \end{proof}
-
 
 The first non-trivial example of a finite free resolution is the Koszul complex on 3 variables, which is the minimal $S = k[x,y,z]$-free resolution of the module $S/(x,y,z)$:
 $$
