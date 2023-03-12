@@ -82,6 +82,18 @@ If $M$ is a fine moduli space then the identity map $M\to M$ corresponds to the 
 If a moduli space and its universal family exist, then it is unique up to unique isomorphism: given two avatars $M,M'$ of the fine moduli space of a given moduli problem,
 the universal family on $M$ corresponds to a map $M\to M'$, and we similarly produce a map $M'\to M$. The pullback of the universal family on $M$ by the composition of these two maps is again the universal family, so the composition is the identity map.
 
+\def\eps{{\epsilon}}
+One of the useful features of a solution to a Moduli problem is that it lends itself to the computation of the tangent spaces
+of the moduli space. The reason is that, for local ring $(R,\gm)$ containing $\CC = R/\gm$,
+ the maps $R \to \CC[\eps]/(\eps)^2)$ inducing the identity on $\CC$ are in one-to-one correspondence
+ with the linear functionals on $\gm/\gm^2$, so for any scheme $M$ over $\CC$ and closed point $p$, we have
+$$
+T_{M,p} = \bigl\{\phi: \Spec(\CC[\eps]/(\eps)^2) \to M \mid \phi_{|\Spec (\CC)} \hbox{ factors through } p\bigr\}
+$$
+Thus if $M$ is a fine moduli space for a functor $F$ with $F(B)$ the set of families of a certain kind of fiber over $B$,
+ then the tangent space to $M$ at a point corresponding to a particular fiber  may be expressed as the 
+ set of families over $\Spec(\CC[\eps]/(\eps)^2)$ the the given fiber as restriction to $\Spec C$. 
+
 Hilbert schemes are fine moduli spaces for subschemes of a given scheme, but 
 fine moduli spaces do not exist for all moduli problems. As we'll explain in Section~\ref{coarse moduli}, there does not exist a universal family of abstract curves of genus $g$: the moduli space of curves is
 not a fine moduli space, but has a slightly weaker property.
@@ -100,9 +112,27 @@ obtained by associating to a twisted cubic $C$ the second graded piece of its ho
 We should point out one respect in which this differs from the example of plane curves given at the beginning of this chapter: there, the objects to be parametrized were the zero locus of a single polynomial, and we could vary those coefficients arbitrarily and still have a plane curve; thus, the image of the analogous map was open in the projective space $\PP^N$. In the present situation, though, if we vary the coefficients of the three quadratic polynomials $Q_i$ generally, the resulting quadrics will no longer intersect in a twisted cubic curve, but rather in eight points in $\PP^3$. Thus the image of the map $h$ is more complicated.
 In fact, we'll see in Section~\ref{*****} below that the image of this map is a locally closed subvariety $U$ of the Grassmannian (we'll give the equations cutting it out in $G$), and the image can lay claim to being the moduli space of twisted cubics in $\PP^3$.
 
+In the meantime, we can analyze the open subset of the Hilbert scheme consisting of twisted cubics as follows:
+
+\begin{proposition}\label{hilb of twisted cubics}
+The open subset $\cH^\circ$ of the Hilbert scheme $Hilb_{3m+1}(\PP^3)$ parametrizing twisted cubics is irreducible of dimension 12.
+\end{proposition}
+
+\begin{proof}  Let $C_0 \subset \PP^3$ be a twisted cubic, and consider the family of translates of $C_0$ by automorphisms $A \in \PGL_4$ of $\PP^3$: that is, the family
+$$
+\cC = \{ (A, p) \in \PGL_4 \times \PP^3 \; \mid \; p \in A(C_0) \}.
+$$
+Via the projection $\pi : \cC \to \PGL_4$, this is a family of twisted cubics, and so it induces a map
+$$
+\phi : \PGL_4 \to \cH^\circ.
+$$
+Since every twisted cubic is a translate of $C_0$, this is surjective, with fibers isomorphic to the stabilizer of $C_0$, that is, the subgroup of $\PGL_4$ of automorphisms of $\PP^3$ carrying $C_0$ to itself. By the discussion in Section~\ref{linear series 1}, every automorphism of $C_{0}$ is induced by an automorphism of $\PP^{3}$, so the stabilizer is isomorphic to $\PGL_2$ and  thus has dimension 3. Since $\PGL_4$ is irreducible of dimension 15, we conclude that \emph{$\cH^\circ$ is irreducible of dimension 12}.
+\end{proof}
+
+
 \subsection{Construction of the Hilbert scheme in general}
 
-In general, we face additional problems. Not all curves of a given degree and genus lie on the same number of hypersurfaces of degree $m$ for all $m$. Furthermore, when we posed the problem, we spoke of parametrizing all subschemes $X \subset \PP^r$ with a given Hilbert polynomial; even in the case of twisted cubics there are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---but that are not the intersection of the quadrics containing them. (See Exercises \ref{characterization of degree} and Exercise~\ref{deg of disjoint union}). 
+The Hilbert scheme as a whole is more complicated, even for the Hilbert polynomial $3m+1$. Not all curves of a given degree and genus lie on the same number of hypersurfaces of degree $m$ for all $m$. Furthermore, when we posed the problem, we spoke of parametrizing all subschemes $X \subset \PP^r$ with a given Hilbert polynomial; even in the case of twisted cubics there are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---but that are not the intersection of the quadrics containing them. (See Exercises \ref{characterization of degree} and Exercise~\ref{deg of disjoint union}). 
 %\begin{fact}
 % \fix{State Murphy's law. Mention that we don't know about curves in P3.}
 %\end{fact}
@@ -125,8 +155,31 @@ or in other words the Hilbert function of $X$ agrees with the Hilbert polynomial
 \end{enumerate}
 \end{lemma}
 %\fix{a much stronger result is true: these forms generate the truncation of the saturated ideal. Mention Gotzmann?
-Note that  for any given $X$ the existence of an $m_0$ satisfying the statement of the lemma is immediate by Serre's vanishing theorem~\ref{Serre-Grothendieck vanishing}. The point of the lemma is that we can find one value of $m_0$ that works for all $X$ with Hilbert polynomial $p$.
+Note that  for any given $X$ the existence of an $m_0$ satisfying the statement of the lemma is immediate by Serre's vanishing theorem~\ref{Serre-Grothendieck vanishing}. The point of the lemma is that we can find one value of $m_0$ that works for all $X$ with Hilbert polynomial $p$. The following result of Gotzmann provides a method for determining $m_0$. 
 
+\begin{theorem}
+The Hilbert polynomial  of the homogeneous coordinate ring of any scheme $X\subset \PP^r$ can be written uniquely in the form
+$$
+\chi(\sO_X(m) = {m+a_1\choose a_1}+ {m+a_2 -1\choose a_2}+ \cdots+{m+a_s -(s-1)\choose a_s},
+$$
+with 
+$$
+a_1\geq \cdots \geq a_s \geq 0
+$$
+where the binomial coefficients are interpreted as polynomials in $m$. Moreover, the homogeneous ideal of $X$ is
+then generated in degrees $\leq s$, and one can take $m_0 = s$ in the construction of the Hilbert Scheme, above.
+\end{theorem}
+See~\cite{MR1023391} %Green-Gotzmann
+for an exposition and a proof. From the coefficients $a_j$ one can read off uniform vanishing theorems for $H^i(\sI_X)$
+ as well.
+ 
+ For example, the Hilbert polynomial $3m+1$ of the twisted cubic may be written as
+ $$
+ 3m+1 =  {m+1\choose 1}+ {m+1 -1\choose 1}+{m+1 -2\choose 1}+ \cdots+{m+0 -(3)\choose 0},
+ $$
+ Here $s=4$, and indeed the homogeneous ideal of the union of a plane cubic with a point, also in the plane,
+ requires equations of degree 4.
+ 
 The first item allows us to define a  map of sets
 $$
 h : \left\{ \text{subschemes $X \subset \PP^r$ with $p_X=p$} \right\}  \to G\big(\binom{m_0+r}{r} - p(m_0), p(m_0)\big)
@@ -163,12 +216,13 @@ S \otimes H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{\PP^r}(m_0+1)),
 $$
 and indeed in a neighborhood of any point of $G$ in the image of $h$, the common zero locus of the minors of size $\binom{r+m_0+1}{r} - p(m_0+1)$ of a matrix representative of this map is the image of $h$; and these functions define the Hilbert scheme.
 
+\fix{add the tangent space to the Hilbert scheme}
+
 \subsection{Subschemes of a given scheme}
 
 Though the Hilbert scheme is a priori about subschemes of projective space, it is easy to see that if $X\subset \PP^n$,
 then the family of subschemes $Y$ of $X$ with given Hilbert function $p$ is a closed subscheme of $Hilb_p(\PP^n)$: we simply
 add the condition that the vector space of forms of high degree defining $Y$  contain the vector space defining $X$---this is also a determinantal condition.
-
 
 \section{$M_g$}
 
@@ -184,7 +238,8 @@ $$
 $$
 (where $\Delta$ is the union of all diagonals in the triple product), and the set $M_2$ of isomorphism classes of smooth curves of genus 2 is thus identified with the points of the quotient variety $\Gamma/S_6$.
 
-There are many questions to address---for example, is the variety $\Gamma/S_6$ a fine moduli space in the sense that there is a universal family?---but this construction at least does two things:
+There are many questions to address---for example, is the variety $\Gamma/S_6$ a fine moduli space in the sense that there is a universal family?---but this construction at least does two things: 
+%\fix{ say that it is a fine moduli space -- see Harris-Marrison thm 1.53, p. 33}
 
 One, it may serve to convince us that $M_2$ is irreducible of dimension 3; and
 
@@ -198,7 +253,9 @@ with $a, b$ and $c$ general scalars. We will discuss the analogous question for 
 
 In the genus 2 example, we worked with the canonical map $\phi_K$, expressing a given curve $C$ of genus 2 as a 2-sheeted cover of $\PP^1$, so that the moduli space of curves of genus 2 could be realized as the space of such double covers modulo $\PGL_2$. What if we adopted the same approach in genus 3? If a curve $C$ of genus 3 is non-hyperelliptic, the canonical map embeds $C$ as a smooth quartic curve in $\PP^2$. Since this realization is unique up to automorphisms of $\PP^2$, we could realize the space $\tilde M_3$ of non-hyperelliptic curves as the quotient of the space of smooth plane quartic curves---an open subset of the $\PP^{14}$ of all quartic curves---by the action of ${\rm Aut}(\PP^2) = PGL_3$. 
 
-We can include the hyperelliptic curves as well if we take the the bicanonical map $\phi_{2K} : C \to \PP^{3g-4}$ (or, if we want to include the case of genus 2, the tricanonical map  $\phi_{3K} : C \to \PP^{5g-6}$). This means we have to replace the relatively simple ``space of smooth plane quartic curves" (an open subset of $\PP^{14}$) with the more daunting ``locally closed subset of the Hilbert scheme of curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$," whose construction was given in Section~\ref{Hilbert scheme section}.
+We can include the hyperelliptic curves as well if we take the the bicanonical map $\phi_{2K} : C \to \PP^{3g-4}$ (or, if we want to include the case of genus 2, the tricanonical map  $\phi_{3K} : C \to \PP^{5g-6}$). This means we have to replace the relatively simple ``space of smooth plane quartic curves" (an open subset of $\PP^{14}$) with the more daunting ``locally closed subset of the Hilbert scheme of curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$,"
+%\fix{why not open?}
+ whose construction was given in Section~\ref{Hilbert scheme section}.
 
 In this case we want to take the quotient of a subset of the Hilbert scheme by the positive-dimensional group $PGL_{5g-5}$. Unlike of the orbit space of a finite group, the orbit space in this case cannot be realized as an algebraic variety!
 
@@ -215,14 +272,15 @@ Consider $F(x,ty, tz)$, and let $t$ go to 0. Thus in the topological quotient $\
 
 The same problem occurs in a less obvious fashion for other orbits. For example, in suitable coordinates every smooth cubic $C$ has affine equation of the form $y^2-x^3 - ax - b$, and the family of cubics
 $$
-y^2 - x^3 - t^2ax - t^3b
+y^2 - x^3 - t^2ax - t^3b %\fix{multiply z by t, y by 1/t, x by 1}
 $$
-has the cuspidal curve $y^2-x^3$ as limit. \fix{what's the simplest way to see this?}
-$$y^2 = x(x-1)(x-\lambda)$$
-$x -> x-\lambda/3$.
+has the cuspidal curve $y^2-x^3$ as limit. 
+%\fix{what's the simplest way to see this?}
+%$y^2 = x(x-1)(x-\lambda)$
+%$x \to x-\lambda/3$ %\fix{maybe $x' = x+(1+\lambda)/3$ -- Tschirnhausen transformation
 Thus, if a quotient existed, the point corresponding to the orbit of a cuspidal cubic would lie in the closure of every point corresponding to a smooth cubic. 
 
-A related phenomenon involves curves without any singularities other than nodes: as the reader can verify, the orbit in $\PP^9$ corresponding to irreducible cubics with a node contains in its closure the locus of reducible cubics consisting of a line and a conic meeting transversely; and this orbit contains in its closure the orbit of triangles, cubics consisting of three non-concurrent lines. Thus even after restricting to an open set that contains nodal cubics, any continuous map 
+A related phenomenon involves curves with nodes: as the reader can verify, the orbit in $\PP^9$ corresponding to irreducible cubics with a node contains in its closure the locus of reducible cubics consisting of a line and a conic meeting transversely; and this orbit contains in its closure the orbit of triangles, cubics consisting of three non-concurrent lines. Thus even after restricting to an open set that contains nodal cubics, any continuous map 
 to a separated space that sends orbits to points all three of these orbits must map to the same point.
 These phenomena are typical of the problems that Geometric Invariant theory solves.
 
@@ -236,27 +294,28 @@ of the homogeneous coordinate ring of the closure of $X$
 However, unlike the affine case, the group may not act by transformations of the homogeneous coordinate ring $A$ of $X$, since the elements of $A$ are not functions on $X$. Thus, we need to lift the action of 
 $G$ to the action of a (possibly larger) group on $A$.  This is called a \emph{linearization} of the action, and in the most general setting of group actions,
 a choice of linearization matters.  But in our setting, since the kernel of the map $SL_{N+1} \to PGL_{N+1}$ consists of diagonal matrices of finite order, the kernel acts trivially on forms of degree a multiple
-of $N+1$, that is, on the homogeneous coordinate ring of the $(N+1)$-st Veronese embedding. Thus the linearization is irrelevant, and we may assume from the outset that our action lifts to the homogeneous coordinate ring $A$.
+of $N+1$, and thus
+on the homogeneous coordinate ring of the $(N+1)$-st Veronese embedding. Thus the linearization is irrelevant, and we may assume from the outset that our action lifts to the homogeneous coordinate ring $A$.
 
 By Hilbert's theorem\footnote{Hilbert's Theorem covers the action of $SL_{N+1}$ in characteristic 0, the general case of a reductive group in any characteristic is more complicated, and combines ideas of 
-Hilbert, Mumford and Haboush} the subring $A^G \subset A$ of invariant elements is finitely generated over our ground field, and the projective variety best approximating the set of orbits of $G$ on $X$ 
+Hilbert, Mumford and Haboush} the subring $A^G \subset A$ of invariant elements is finitely generated over the ground field, and the projective variety best approximating the set of orbits of $G$ on $X$ 
 is $\Proj(A^G)$, usually denoted $X//G$. In view of the example above, we must ask what might be
 the relationship between the points of $X//G$ and the orbits of $G$? 
 
-To answer this question, GIT performs a sort of triage on the set of orbits of the action of $G$ on $X$, dividing them into three classes:
+To answer this question, GIT performs a sort of triage on the points of $X$ (or their orbits), dividing them into three classes:
 
 \begin{enumerate}
 
-\item  \emph{Stable} orbits. These comprise an open subset of $X$, and the points of an open subset of $X//G$ correspond one-to-one to the stable orbits. In the case of the action of $PGL_3$ on the $\PP^9$ of plane cubics, these are the orbits of smooth plane cubics, and the quotient is the affine $j$-line.
+\item  \emph{Stable} points. These are the points whose orbits are closed. They comprise an open subset $X^s \subset X$, and the points of an open subset of $X//G$ correspond one-to-one to the stable orbits, that is, an open subset that is set-theoretically $X^s/G$. In the case of the action of $PGL_3$ on the $\PP^9$ of plane cubics, the stable points are the smooth plane cubics, and the quotient is the affine $j$-line.
 
-\item \emph{Strictly semistable} orbits. These, together with the stable orbits, comprise a larger open subset $V \subset X$, called the \emph{semistable} locus. There is an open subset of
-$X//G$ whose points are images of orbits in $V$, but distinct strictly semistable orbits may map to the same point. In the example of the action of $PGL_3$ on  $\PP^9$, the semistable  locus contains  the orbits of smooth and nodal plane cubics; that is, smooth cubics together with the three orbits consisting of irreducible cubics with a node, unions of lines and conics meeting transversely, and triangles. In the quotient, these last three orbits correspond to just one additional point, and this quotient is just the compactification of the affine line to the projective line obtained by adding one point.
+\item \emph{Strictly semistable} points. These are the points $p$ such that there exists an invariant form not vanishing at $p$.  Together with the stable points, comprise a larger open subset $X^{ss} \subset X$, called the \emph{semistable} locus. Two  semistable points $p,q$ map to the same point in $X//G$ if and only if $\overline{Gp}\cap \overline{Gq} \neq \emptyset$. In the example of the action of $PGL_3$ on  $\PP^9$, the semistable  locus contains  the orbits of smooth and nodal plane cubics; that is, smooth cubics together with the three orbits consisting of irreducible cubics with a node, unions of lines and conics meeting transversely, and triangles. In the quotient, these last three orbits correspond to just one additional point, and this quotient is just the compactification of the affine line to the projective line obtained by adding one point.
 
-\item  \emph{Unstable} orbits. These do not correspond to any point of $X//G$; in fact, these are the ones that cannot be included in any topologically separated quotient of an open subset of $X$.
+\item  \emph{Unstable} orbits. These are the points $p$ on which all invariant polynomials vanish, so that the induced map
+$\Proj A \to \Proj (A^G)$ is not even defined at $p$. Thus unstable points do not correspond to any points of $X//G$; in fact, they cannot be included in any topologically separated quotient of an open subset of $X$.
 
 \end{enumerate}
 
-Geometric invariant theory is more than an abstract classification theorem; it actually provides tools for determining which class a given orbit belongs to. These are crucial for the application of geometric invariant theory to specific situations; a  priori, given an action of a group $G$ on a variety $X$, we don't know that there are any stable orbits at all.
+Geometric invariant theory provides tools for determining this stratification. These are crucial for the application of geometric invariant theory to specific situations; a  priori, given an action of a group $G$ on a variety $X$, we don't know that there are any stable orbits at all.
 
 \subsection{Construction and characterization of the moduli space of curves}
 
@@ -275,7 +334,7 @@ for every scheme $M'$ and natural transformation $\Psi': F \to \Mor(-, M')$
 there is a unique morphism $\eta: M\to M'$ so that $\Psi' = \Psi\circ \Mor(-, \eta)$.
 \end{definition}
 
-%\fix{ Uniqueness?? else we'd have maps M\to M' \to M, compositions identity on closed points.; so what??}
+%\fix{ Uniqueness: we'd have maps M\to M' \to M \to M', compositions identity on closed points.}
 
 Thus, in plain language, the theorem that $M_g$ is a coarse moduli space for smooth curves of genus $g$ means: 
 \begin{enumerate}
@@ -443,16 +502,16 @@ of $\wedge^{\dim M_g}\Omega_{M_g}$ and the pull-back of this section section to 
 
 \subsection{$M_g$ is not a fine moduli space}\label{coarse moduli}
 
-Let $B$ be a curve with a fixed-point free involution $\tau$; equivalently, let $B \to B_0$ be a map of smooth curves of degree 2, with no branching. It is easy to construct such a map starting with any curve $B_0$ of genus $\geq 1$ by homotopy theory. 
+Let $B$ be a curve with a fixed-point free involution $\sigma$; equivalently, let $B \to B_0$ be a map of smooth curves of degree 2, with no branching. It is easy to construct such a map starting with any curve $B_0$ of genus $\geq 1$ by homotopy theory. 
 To show that no fine moduli space of smooth curves can exist, we will construct two non-isomorphic families over $B$ that
 would both correspond to the same map $B_0\to M_g$. Another somewhat different obstruction to the existence is given in 
 \cite[Chapter 6]{DE-JH-schemes}
 
-Let $C$ be any smooth curve of genus $g$ with an involution $\sigma : C \to C$, and let 
+Let $C$ be any smooth curve of genus $g$ with an involution $\tau : C \to C$, and let 
 $$
-S := B \times C/\langle (\tau, \sigma) \rangle \to B_0 := B/\langle \tau \rangle.
+S := B \times C/\langle (\sigma, \tau) \rangle \to B_0 := B/\langle \sigma \rangle.
 $$
-For each $b \in B$ we are identifying the fiber of $B \times C$ over $b$ with the fiber over $\sigma(b)$ via the map $\tau$. Since $\sigma$ has no fixed points, neither does the involution $(\tau, \sigma)$ of $B \times C$; so that the map $S \to B_0$ is a family of smooth curves of genus $g$.
+For each $b \in B$ we are identifying the fiber of $B \times C$ over $b$ with the fiber over $\sigma(b)$ via the map $\tau$. Since $\sigma$ has no fixed points, neither does the involution $(\sigma, \tau)$ of $B \times C$; so that the map $S \to B_0$ is a family of smooth curves of genus $g$.
 
 All the fibers of $S \to B_0$ are isomorphic to $C$. Thus if $M$ were a fine moduli space for curves of genus $g$,
  the induced map $B_0 \to M$ would be the constant map sending $B_0$ to the point $[C] \in M_g$. This would be the
@@ -464,7 +523,7 @@ All the fibers of $S \to B_0$ are isomorphic to $C$. Thus if $M$ were a fine mod
 Recall that the \emph{Hurwitz spaces},  parametrize branched covers of $\PP^1$ of specified degree and genus. In the simplest case, where we consider only simply branched covers, we can give at least a local description of these spaces. We will use this to estimate the dimension of the moduli space $M_g$.
 
 We start by recalling from Chapter~\ref{genus 2 and 3 chapter} the description of connected, simply branched covers of $\PP^1$: given $b = 2d + 2g - 2$ distinct points $p_1,\dots,p_b \in \PP^1$, we have a natural bijection between the set of maps $C \to \PP^1$ of degree $d$ simply branched over the points $p_i$ and unramified elsewhere; and the set of $b$-tuples $\tau_1, \dots, \tau_b \in S_d$ of transpositions in the symmetric group $S_d$
-satisfying the conditions that the product $\tau_1\cdot \dots \cdot tau_b = e$ is the identity, and $\tau_1, \dots, \tau_b$ generate a transitive subgroup of $S_d$, modulo simultaneous conjugation by elements of $S_d$. 
+satisfying the conditions that the product $\tau_1\cdot \dots \cdot \tau_b = e$ is the identity, and $\tau_1, \dots, \tau_b$ generate a transitive subgroup of $S_d$, modulo simultaneous conjugation by elements of $S_d$. 
 
 Now suppose we allow the points $p_i$ to vary in $(\PP^1)^{2g+2} \setminus \Delta$, where $\Delta$ is the union of the 
 diagonals $p_i=p_j$. Locally, the same correspondence between branched covers and $b$-tuples of transpositions can be carried out simultaneously and consistently. Thus, if we let $U = (\PP^1)^b \setminus \Delta$ be the complement of the big diagonal in $(\PP^1)^b$---that is, the space of ordered $b$-tuples of points in $\PP^1$, the set
@@ -478,7 +537,7 @@ to estimate the dimension of the moduli space $M_g$.
 
 To set this up, consider the map $\rho : H \to M_g$, in which we forget everything except the domain $C$ of the map $f$. For $d \gg g$, this map is surjective (this follows, for example from the $g+1$ theorem of Chapter~\ref{JacobianChapter}). Thus it suffices to know the dimension of the general fiber: how many simply branched maps $f : C \to \PP^1$ are there?
 
-Aa map $f : C \to \PP^1$ is given by a rational function on $C$, whose polar divisor $D = f^{-1}(\infty)$ can be any divisor of degree $d$ on $C$ if $d$ is large. Moreover, once we specify $D$, we know by Riemann-Roch (again, for large $d$) that the space of rational functions with polar divisor $D$ is a subset of a vector space of dimension $d-g+1$. Thus the fibers of the map $\rho$ have dimension $2d-g+1$; and since the space $H$ has dimension $b = 2d+2g-2$, we conclude that
+A map $f : C \to \PP^1$ is given by a rational function on $C$, whose polar divisor $D = f^{-1}(\infty)$ can be any divisor of degree $d$ on $C$ if $d$ is large. Moreover, once we specify $D$, we know by Riemann-Roch (again, for large $d$) that the space of rational functions with polar divisor $D$ is a subset of a vector space of dimension $d-g+1$. Thus the fibers of the map $\rho$ have dimension $2d-g+1$; and since the space $H$ has dimension $b = 2d+2g-2$, we conclude that
 $$
 \dim M_g = (2d+2g-2)-(2d-g+1) = 3g-3.
 $$
@@ -549,6 +608,10 @@ Let $H \subset \PP^3$ be a 2-plane; let $C \subset H$ be a plane cubic curve and
 \item Show that the Hilbert polynomial of $X$ is $p_X(m) = 3m+1$.
 \item Show that the smallest value of $m_0$ satisfying the statement of Lemma~\ref{} is 4.
 \end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{rational normal hilbert}
+Use an  argument like that of Proposition~\ref{hilb of twisted cubics} to show that the restricted Hilbert scheme $\cH^\circ \subset \cH_{0,r,r}$ of rational normal curves $C \subset \PP^r$ is irreducible of dimension $r^2+2r-3$.
 \end{exercise}
 
 
