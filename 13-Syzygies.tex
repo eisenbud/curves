@@ -182,24 +182,70 @@ However, having a definition may be comforting.
 Let $X$ be a projective scheme over of pure dimension $d$. A \emph{canonical sheaf} for $X$ is a coherent sheaf $\omega$ 
 with a map $\eta: H^d(\omega) \to \CC$ such that for every coherent sheaf  $\sF$ the map
 $$
-H^p(\sF) \times \Hom(\sF, \omega) \to H^d(\omega) \rTo^\eta \CC
+H^a(\sF) \times Ext_X^{d-a}(\sF, \omega) \to H^d(\omega) \rTo^\eta \CC
 $$
-is a perfect pairing.
+is a perfect pairing for $a=d$.
 \end{definition}
 
+If $X$ is Cohen-Macaulay, then the duality holds for all $a$ (in the non-Cohen-Macaulay case a similar result is true if we replace $\omega$ by a dualizing complex
+and work in the derived category.)
+
 \begin{fact}
-Not every local Cohen-Macaulay ring posesses a canonical module, but, as the name suggests, any two are isomorophic in a way compatible with the
+As the name suggests, any two canonical sheaves are isomorophic in a way compatible with the
 residue maps; see for example \cite{AltmanKleiman}. If $X$ is smooth then the top degree differential forms $\omega_X :=\wedge^d(\Omega_X)$,
 together with the classical residue (see for example~\cite[p. 648, 708]{Griffiths-Harris1978}), is a dualizing sheaf, as implied by Serre duality. Moreover, one can construct the dualizing sheaf on a scheme
-$X$ by comparing it with any scheme $Y$ that has a dualizing sheaf, in the following sense:
+$X$ by comparing it with any scheme $Y$ whose dualizing sheaf is known, in the following sense:
 
-\begin{theorem}
+\begin{theorem}\label{omega}
 Suppose that $f: X\to Y$ is a finite morphism between projective schemes $X,Y$ of pure dimensions $d,e$. If $Y$ has a dualizing sheaf $\omega_Y$,
-then $\omega := \sExt(f_*\sO_X,  \omega_Y)$, regarded as a sheaf on $X$ is a dualizing sheaf for $X$ in a way compatible with the residue maps.
+then $\omega := \sExt(f_*\sO_X,  \omega_Y)$, regarded as a sheaf on $X$ is a dualizing sheaf for $X$ in a way compatible with the residue maps.\qed
 \end{theorem}
+
+In the situation of a direct link, this will allow us to prove Theorem~\ref{liaison}
 \end{fact}
 
 \begin{proof}[Proof of Theorem~\ref{liaison}]
+Let $Z$ be the complete intersection of surfaces of degrees $s,t$ containing $X$, and let $S_Z = S/(F,G)$ be its homogeneous coordinate ring, where
+$S = \CC[x_0,\dots,x_3]$ is the homogeneous coordinate ring of $\PP^3$.
+From the free resolution
+$$
+0\rTo S(-s-t) \rTo^{
+\begin{pmatrix}
+ G \\ -F
+\end{pmatrix}}
+ S(-s)\oplus S(-t) \rTo^{
+\begin{pmatrix}
+ F & G
+\end{pmatrix}}
+ S \rTo S/(F,G) \rTo 0
+$$
+ and Theorem~\ref{omega} we see that
+ $$
+\omega_Z =  \sExt^2_X(\sO_Z, \omega_{\PP^3}) =\sExt^2(\sO_Z, \sO_{\PP^3}(-4)) = \sO_Z(a+b-4).
+ $$
+Note that for any ideals $J\subset I$ in a ring $A$ we have $Hom_A(A/I, A/J) \cong (J:I)/J$, where the isomorphism
+sends a homomorphism $\phi$ to the element $\phi(1)$. Again from Theorem~\ref{omega} we have 
+$$
+\omega_X = \Hom_Z(\sO_X, \omega_Z) = \Hom_Z(\sO_X, \sO_Z)(a+b-4) = (\sI_Z:\sI_X)(a+b-4),
+$$
+where we have identified $\sO_X$ with its pushforward under the inclusion map $X\to Z$. 
+
+Since $X$ is purely 1-dimensional it is Cohen-Macaulay, so
+by duality we have 
+$$
+h^0(\omega_X(a)) = \dim_\CC Hom_X(\sO_X(-a), \omega_X) = h^{1}(\sO_X(-a)).
+$$ 
+But for $a>0$
+$h^0(\sO_X(-a) = 0$ since $X$ is purely 1-dimensional, and thus
+the value of the Hilbert polynomial of $X$ at $-a$ is
+$$
+\chi(\sO_X(-a)) = (\deg X)(-a)+1-p_a(X) = h^1(\sO_X(-a)).
+$$
+Thus the degree of $\omega_X$, which is the leading coefficient of the Hilbert polynomial of $\omega_X$, is $\deg X$.
+
+With the identifications above we have $\sO_Y = \sO_Z/(\omega_X(-a-b+4))$, whence $st = \deg Z = \deg X+\deg Y$, proving the
+first part of theTheorem.
+
 
 \end{proof}
 
