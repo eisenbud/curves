@@ -98,7 +98,178 @@ We'll analyze $\Phi$ by considering the projection maps to $\cH^\circ$ and $\GG(
 Consider first the projection map $\pi_2 : \Phi \to \GG(1,3)$ on the second factor. By what we just said, the fiber over any point $L \in \GG(1,3)$ is an open subset of $\PP^6 \times \PP^6$, where $\PP^6$ is the space of quadrics containing $L$; it follows that $\Phi$ is irreducible of dimension $4 + 2\times 6 = 16$. Going down the other side, we see that the map $\pi_1 : \Phi \to \cH^\circ$ is surjective, with fiber over every curve $C$ an open subsets of $\PP^2 \times \PP^2$, where $\PP^{2}$ is the projective space of quadrics containing $C$; we conclude that $\cH^\circ$ is irreducible of dimension 12.
 \end{proof}
 
-In Chapters~\ref{HilbertSchemesI} and \ref{HibertSchemes2} we see several more instances of the application of liaison to the study of curves in $\PP^3$. The method is largely limited to curves in $\PP^3$ (and subvarieties $X \subset \PP^r$ of codimension 2 in general); for example, you can't use it to do Exercise~\ref{rational normal hilbert} for $r \geq 4$.
+section{Linkage} \label{SLinkage}\label{linkage section}
+
+As the second proof of Proposition~\ref{hilb of twisted cubics} suggests, when the union of two curves $C$ and $D$ forms a complete intersection we can use this fact to relate the geometry of their respective Hilbert schemes. This is a technique we'll use repeatedly. We prove it first in a special case, in which little more
+than the adjunction formula is needed, and then consider a natural
+generalization to purely 1-dimensional subschemes.
+
+\begin{theorem}\label{liaison genus formula-first version} Let $C, D\subset \PP^3$ smooth irreducible curves of  of degrees $c,d$ whose union is the complete intersections of two surfaces $S,T$, with $S$ smooth. If the degrees of $S,T$ are $s,t$ respectively, then $c+d = st$ and 
+ $$
+ g(C) - g(D) = \frac{s+t-4}{2}(c-d).
+ $$
+\end{theorem}
+In words, the difference between the genera of $C$ and $D$ is proportional to the difference in their degrees, with constant of proportionality $(s+t-4)/2$.
+
+\begin{proof}
+ B\'ezout's Theorem tells us that $c+d = st$; we want a formula relating the genera $g = p_a(C)$ and $h = p_a(D)$ of $C$ and $D$. For this we use
+ the intersection theory of divisors on $S$.
+
+By the adjunction formula (Theorem ****), the canonical divisor class of $S$ is $K_S = (s - 4)H$, where $H$ denotes the hyperplane class on $S$. Using adjunction 
+again, we see that
+$$
+2g-2 = (C\cdot C) + (K_S\cdot C) = C\cdot C + (s-4)c, 
+$$
+or in other words,
+$$
+(C \cdot C) = 2g-2 - (s-4)c.
+$$
+Next, since $C \cup D$ is a complete intersection of $S$ with a surface of degree $t$, we have $C + D\sim tH$. Thus 
+$$
+(C \cdot D) = (C \cdot (tH - C)) = tc - (C \cdot C) = tc - 2g + 2 + (s-4)c
+$$
+and similarly
+$$
+(D \cdot D) = (D \cdot (tH - C)) = td - tc + 2g - 2 - (s-4)c. 
+$$
+Finally, we can apply the adjunction formula to $D$ to arrive at
+$$
+2h - 2 = (D \cdot D) + (K_S \cdot D) = (s-4)d  + td - tc + 2g - 2 - (s-4)c.
+$$
+Collecting terms, we can write this in the convenient form
+\begin{equation}\label{linked genus formula}
+h - g = \frac{s+t-4}{2}(d-c);
+\end{equation}
+ \end{proof}
+
+The first step in dealing with a more general case, where $C,D$ may not be reduced or irreducible, and my share components, is to agree
+on the analogue of the statement $C\cup D = S\cap T$. Writing $F,G$ for the defining equations of $S,T$ respectively,
+In the simple case above, the primary decomposition of the ideal $(F,G)$ was the intersection of two prime ideals $I_C+I_D$. From this description it
+follows that
+$$
+(F,G):I_C := \{H \mid HI_C \subset (F,G)\} = I_D
+$$
+Constructions of this type were understood by Macaulay in his great paper~\cite{Macaulay1913} or \cite{Eisenbud-Gray} for ideals in polynomial rings. For the modern theory, as
+well as some of the history, see~\cite{MR0364271}.
+By analogy, we will say that two purely 1-dimensional subschemes of $\PP^3$ are \emph{directly linked} by surfaces $S: \{F = 0\}$ and $T:  \{F = 0\}$ if
+the equation above is satisfied, and we say that they are linked if they are connected by a chain of direct linkages. The degrees and (arithmetic) genera 
+of directly linked schemes are related exactly as in the simple case above:
+
+\begin{theorem}\label{liaison}
+If purely one-dimensional subschemes $C,D\subset \PP^3$ of degrees $c,d$ are directly linked by surfaces of degrees $s,t$, then 
+$c+d = st$ and 
+ \begin{equation}\label{linked genus formula}
+p_a(C) - p_a(D) = \frac{s+t-4}{2}(c-d);
+\end{equation}
+Moreover, the relation of direct linkage is symmetric.
+\end{theorem}
+ 
+Recall that a Noetherian local ring $(R,\gm)$ of (Krull) dimension $d$ is said to be Cohen-Macaulay if there are elements $f_1,\dots,f_d\in \gm$ such that
+$f_i$ is a nonzerodivisor modulo $(f_1,\dots,f_{i-1})$ for $i =1,\dots,d$, and a Noetherian ring is Cohen-Macaulay if each of its localizations at maximal ideals
+is Cohen-Macaulay. Thus, for example every unmixed ring of dimension 0 or 1 is Cohen-Macaulay, and every purely 1-dimensional scheme is locally Cohen-Macaulay,
+making the condition relevant in the situation of Theorem~\ref{liaison-full version}. 
+
+Before proving Theorem~\ref{liaison}, we recall some facts about canonical sheaves, in a more general context than that of smooth varieties
+(recall that in Chapter~\ref{RR} we claimed that the canonical sheaf of a smooth curve---the sheaf of differential forms---was ``the most important invertible sheaf'' after the structure sheaf.)
+
+The definition of the canonical module is not very illuminating; what is useful is how it is constructed and is cohomological properties relating to duality.
+However, having a definition may be comforting. 
+%Note that for any coherent sheaves $\sF, \sG$ on a quasiprojective  scheme $X$ there is are natural maps
+%$H^p(\sF) \times \Ext^q(\sF, \sG) \to H^{p+q)(\sG)$ (Construction: An element of $\Ext^q(\sF, \sG)$ may be represented by an exact sequence starting from
+%$\sG$ and ending with $\sF$. Break this into short exact sequences and use the connecting homomorphisms in the long exact sequences for cohomology.)
+
+\begin{definition}
+Let $X$ be a projective scheme over of pure dimension $d$. A \emph{canonical sheaf} for $X$ is a coherent sheaf $\omega$ 
+with a map $\eta: H^d(\omega) \to \CC$ such that for every coherent sheaf  $\sF$ the map
+$$
+H^a(\sF) \times Ext_X^{d-a}(\sF, \omega) \to H^d(\omega) \rTo^\eta \CC
+$$
+is a perfect pairing for $a=d$.
+\end{definition}
+
+If $X$ is Cohen-Macaulay, then the duality holds for all $a$ (in the non-Cohen-Macaulay case a similar result is true if we replace $\omega$ by a dualizing complex
+and work in the derived category.)
+
+\begin{fact}
+As the name suggests, any two canonical sheaves are isomorophic in a way compatible with the
+residue maps; see for example \cite{AltmanKleiman}. If $X$ is smooth then the top degree differential forms $\omega_X :=\wedge^d(\Omega_X)$,
+together with the classical residue (see for example~\cite[p. 648, 708]{Griffiths-Harris1978}), is a dualizing sheaf, as implied by Serre duality. Moreover, one can construct the dualizing sheaf on a scheme
+$X$ by comparing it with any scheme $Y$ whose dualizing sheaf is known, in the following sense:
+
+\begin{theorem}\label{omega}
+Suppose that $f: X\to Y$ is a finite morphism between projective schemes $X,Y$ of pure dimensions $d,e$. If $Y$ has a dualizing sheaf $\omega_Y$,
+then $\omega := \sExt(f_*\sO_X,  \omega_Y)$, regarded as a sheaf on $X$ is a dualizing sheaf for $X$ in a way compatible with the residue maps.\qed
+\end{theorem}
+
+In the situation of a direct link, this will allow us to prove Theorem~\ref{liaison}
+\end{fact}
+
+\begin{proof}[Proof of Theorem~\ref{liaison}]
+Let $Z$ be the complete intersection of surfaces of degrees $s,t$ containing $X$, and let $S_Z = S/(F,G)$ be its homogeneous coordinate ring, where
+$S = \CC[x_0,\dots,x_3]$ is the homogeneous coordinate ring of $\PP^3$.
+From the free resolution
+$$
+0\rTo S(-s-t) \rTo^{
+\begin{pmatrix}
+ G \\ -F
+\end{pmatrix}}
+ S(-s)\oplus S(-t) \rTo^{
+\begin{pmatrix}
+ F & G
+\end{pmatrix}}
+ S \rTo S/(F,G) \rTo 0
+$$
+ and Theorem~\ref{omega} we see that
+ $$
+\omega_Z =  \sExt^2_X(\sO_Z, \omega_{\PP^3}) =\sExt^2(\sO_Z, \sO_{\PP^3}(-4)) = \sO_Z(a+b-4).
+ $$
+Note that for any ideals $J\subset I$ in a ring $A$ we have $Hom_A(A/I, A/J) \cong (J:I)/J$, where the isomorphism
+sends a homomorphism $\phi$ to the element $\phi(1)$. Again from Theorem~\ref{omega} we have 
+$$
+\omega_X = \Hom_Z(\sO_X, \omega_Z) = \Hom_Z(\sO_X, \sO_Z)(a+b-4) = (\sI_Z:\sI_X)(a+b-4),
+$$
+where we have identified $\sO_X$ with its pushforward under the inclusion map $X\to Z$. 
+
+Since $X$ is purely 1-dimensional it is Cohen-Macaulay, so
+by duality we have 
+$$
+h^0(\omega_X(a)) = \dim_\CC Hom_X(\sO_X(-a), \omega_X) = h^{1}(\sO_X(-a)).
+$$ 
+But for $a>0$
+$h^0(\sO_X(-a) = 0$ since $X$ is purely 1-dimensional, and thus
+the value of the Hilbert polynomial of $X$ at $-a$ is
+$$
+\chi(\sO_X(-a)) = (\deg X)(-a)+1-p_a(X) = h^1(\sO_X(-a)).
+$$
+Thus the degree of $\omega_X$, which is the leading coefficient of the Hilbert polynomial of $\omega_X$, is $\deg X$.
+
+With the identifications above we have $\sO_Y = \sO_Z/(\omega_X(-a-b+4))$, whence $st = \deg Z = \deg X+\deg Y$, proving the
+first part of theTheorem.
+
+
+\end{proof}
+
+
+We will see this formula used repeatedly in this chapter, and as we indicated it will be discussed as part of the larger theory of liaison for space curves in Chapter~\ref{LinkageChapter}. For now, you should just take a moment and reassure yourself that the right hand side of~(\ref{linked genus formula}) is indeed an integer!
+
+%We will generalize the technique used in second proof of Proposition~\ref{hilb of twisted cubics}. Will do first for $C, D$ smooth; at the end, have discussion of full definition and theorem.
+%
+%To be done: First, derive formula for genus of linked curves via intersection theory of a (presumably smooth) surface containing the curves. Similarly introduce the Rao module and show that Rao modules of linked curves are dual (with a twist) via cohomology groups of line bundles on this surface and Serre duality. Unirationality of one Hilbert scheme equiv. to unirationality of the other; discussion of historical significance and ref. to result that general curves are not linked to anything simpler.
+%
+%References to Chapter 10, where the 
+%
+%Question: Is the Hilbert scheme of twisted cubics rational?
+%
+%\subsection{formulas for degree and genus of linked curves}
+%
+%\subsection{Cheerful facts: Hartshorne-Rao; smoothness of residual curve when $I_C$ generated in degree $d$ (Prop. 5.6 in 3264)}
+%
+%\subsection{Unirationality of Hilbert schemes}
+
+
+
+In Chapters~\ref{HilbertSchemesI} and \ref{HibertSchemes2} we will see several more instances this technique. The method is largely limited to curves in $\PP^3$ (and subvarieties $X \subset \PP^r$ of codimension 2 in general); for example, you can't use it to do Exercise~\ref{rational normal hilbert} for $r \geq 4$.
+
 
 
 %We have two cases in mind: curves of  (relatively) high degree, and canonical curves.
