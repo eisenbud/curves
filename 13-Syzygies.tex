@@ -64,10 +64,68 @@ $$
 0\to H^0(\sI_C(d)) \to H^0(\sO_{\PP^r}(d))\to  H^0(\sO_C(d)) \to H^1(\sI_C(d))\to 0
 $$
 which is exact because (since $r$ must be $\geq 2$ in any interesting case) $H^1(\sO_{\PP^r}(d))= 0$.
-In the interesting case $r=3$ the theory of linkage (often called by its French name liaison and free resolutions give us an opportunity
+In the interesting case $r=3$ the theory of linkage (often called by its French name, liaison) and free resolutions give us an opportunity
 to understand the significance of the spaces $H^1(\sI_C(d)$ in a new way. 
 
-\section{Linkage of curves in $\PP^3$}
+\section{A quick tour of homological commutative algebra}
+This section contains no proofs; but all of the material may be found in~\cite{Eisenbud1995}.
+
+Let $(R,\gm, k)$ be a local ring and let $M$ be a finitely generated module. A \emph{free resolution} of $M$ is an exact complex
+$$
+\FF: \cdots \rTo F_s \rTo^{\phi_s} F_{s-1} \rTo^{\phi_{s-1}} \cdots \rTo F_1 \rTo^{\phi_1}  F_0 \rTo M \rTo 0.
+$$
+The resolution is \emph{minimal} if a minimal set of generators of $F_i$ maps to a minimal set of generators of the kernel of the following map,
+or equivalently (by Nakayama's Lemma) the maps in $FF\otimes_R k$ are all 0.
+
+Minimal free resolutions of $M$ are all isomorphic, and the \emph{projective dimension}  of $M$ is their length, the number of nonzero
+maps (possibly infinity). Equivalently, 
+$$
+\pd M = \max\{s \mid \Ext^s(M,k) \neq 0.
+$$
+Fundamental
+results of Auslander, Buchsbaum and Serre say that if $R$ is \emph{regular}---that is, the Krull dimension of $R$ is equal to the minimal number
+of generators of $\gm$---if and only if the free resolution of every module is finite.
+
+A sequence of elements $f_1,\dots, f_t\in \gm$ is a \emph{regular sequence} on $M$ if $f_i$ is a nonzerodivisor on $M/(f_1, \dots, f_{i-1})M$
+for $i = 1,\dots,t$. 
+%\begin{proposition}
+%If $R$ is a regular local ring, then
+%$$
+%\depth M = \max\{s \mid \Ext^{\dim R -s}(M,R) \neq
+%$$
+%\end{proposition}
+All maximal regular sequences on $M$ have the same length, called the \emph{depth}  $\depth M$, and 
+$\depth M + \pd M = \dim R$. The depth of $M$ is always $\leq \dim M$, and in the case of equality $M$ is said to be a Cohen-Macaulay module. Every
+localization of a Cohen-Macaulay module is also Cohen-Macaulay. If $M$ is and $R$-algebra, then the depth of $M$ is independent
+of $R$, and if $M$ is Cohen-Macaulay we say simply that it is a Cohen-Macaulay ring. For example, any 0-dimensional module is Cohen-Macaulay,
+and a 1-dimensional module is Cohen-Macaulay if and only if $\gm$ is not an associated prime of $0\subset M$; that is, if and only if $M$ is purely 1-dimensional.
+
+Analogous results hold over a positively graded polynomial ring such us the homogeneous coordinate ring $S = \CC[x_0,\dots,x_r]$ of $\PP^r$ when
+only graded modules are considered and all elements are taken to be homogeneous. Most interesting for the purposes of this book are the
+homogeneous coordinate rings $S_X$ and local rings $\sO_{X,p}$ of projective schemes $X$. If all the $\sO_X$ are Cohen-Macaulay rings then we say that
+$X$ is a Cohen-Macaulay scheme. If $S_X$ is Cohen-Macaulay then we say that $X$ is \emph{arithmetically Cohen-Macaulay}. Since the $\sO_{X,p}$ can be obtained as localizations of $S_X$ the scheme, this is a stronger condition than $X$ being Cohen-Macaulay:
+\begin{proposition}
+If $X\subset \PP^r$ is a projective scheme then $X$ is Cohen-Macaulay if and only if 
+$$
+H^i(\sO_X(m))= 0
+$$
+for all $0<i<dim X$ and all $m\in \ZZ$; and in this case
+ $X$ is arithmetically Cohen-Macaulay if and only if, in addition
+$H^1(\sI_X(m))$ = 0 for all $m$.
+\end{proposition}
+
+By Serre's Vanishing theorem $H^1(\sI_X(m)) = 0$ for $m\gg 0$ in any case; and if $X$ has
+no 0-dimensional component then, since $H^1(\sI_X(m))$ is the cokernel of the natural map $H^0(\sO_{\PP^r}(m) \to H^0(\sO_{X}(m)$,
+it vanishes for $m<0$. Thus, assuming that  $X$
+no 0-dimensional component, the sum $D(X) := \oplus_{m\in \ZZ} H^1(\sI_X(m))$ is a graded $S$-module that
+is a finite dimensional vector space called the \emph{deficiency module} of $X$.
+
+Finally, we will use an elementary part of duality theory: if $S$ is a regular local ring and $R = S/(f_1,\dots, f_c)$, 
+has dimension $e = \dim S-c$, so that $R$ is a complete intersection, then any $R$-module $M$ of finite length is reflexive
+in the sense that there is a natural isomorphism
+$M \to \Ext^e(\Ext^e(M, R), R).$
+
+\section{Linkage of curves in $\PP^3$}\label{SLinkage}\label{linkage section}
 
 In Chapter~\ref{ModuliChapter} we considered the Hilbert scheme of twisted cubics, and proved that the open set consisting of 
 smooth irreducible nondegenerate cubic curves in $\PP^3$---that is, twisted cubics---is irreducible of
@@ -80,7 +138,7 @@ $$
 \to H^0(\sO_{\PP^3}(2) 
 \to H^0(\sO_C)
 $$
-Two deduce that $C$ lies on at least 2 quadrics. But the intersection of any two distinct quadrics $Q, Q' \supset C$ containing a twisted cubic curve $C$ has degree 4 and is unmixed; therefore it is the union of $C$ and a line $L \subset \PP^3$.
+To deduce that $C$ lies on at least 2 quadrics. But the intersection of any two distinct quadrics $Q, Q' \supset C$ containing a twisted cubic curve $C$ has degree 4 and is unmixed; therefore it is the union of $C$ and a line $L \subset \PP^3$.
 
 Conversely, suppose that $L \subset \PP^3$ is any line and  $Q, Q'$ two general quadrics containing $L$; write the intersection $Q \cap Q'$ as a union $L \cup C$. Since smooth quadrics contain lines a general quadric containing $L$ is smooth. The quadric $Q'$ will intersect it in a curve of type $(2,2)$, so the curve $C$ will have class $(2,1)$ or $(1,2)$. The quadrics $Q'$ containing $L$ cut out on $Q$ the complete linear system of curves of type $(2,1)$, which has no base locus, so Bertini's theorem tells us that $C$ will be smooth, so that the intersection $Q \cap Q' = L \cup C$ will be the union of $L$ and a twisted cubic. This suggests that we set up an incidence correspondence: let $\PP^9$ denote the projective space of quadrics in $\PP^3$, and consider
 $$
@@ -98,7 +156,6 @@ We'll analyze $\Phi$ by considering the projection maps to $\cH^\circ$ and $\GG(
 Consider first the projection map $\pi_2 : \Phi \to \GG(1,3)$ on the second factor. By what we just said, the fiber over any point $L \in \GG(1,3)$ is an open subset of $\PP^6 \times \PP^6$, where $\PP^6$ is the space of quadrics containing $L$; it follows that $\Phi$ is irreducible of dimension $4 + 2\times 6 = 16$. Going down the other side, we see that the map $\pi_1 : \Phi \to \cH^\circ$ is surjective, with fiber over every curve $C$ an open subsets of $\PP^2 \times \PP^2$, where $\PP^{2}$ is the projective space of quadrics containing $C$; we conclude that $\cH^\circ$ is irreducible of dimension 12.
 \end{proof}
 
-section{Linkage} \label{SLinkage}\label{linkage section}
 
 As the second proof of Proposition~\ref{hilb of twisted cubics} suggests, when the union of two curves $C$ and $D$ forms a complete intersection we can use this fact to relate the geometry of their respective Hilbert schemes. This is a technique we'll use repeatedly. We prove it first in a special case, in which little more
 than the adjunction formula is needed, and then consider a natural
@@ -149,6 +206,9 @@ follows that
 $$
 (F,G):I_C := \{H \mid HI_C \subset (F,G)\} = I_D
 $$
+Since the associated primes of $(F,G):I_C$ are among the associated primes of $(F,G)$, 
+$D$ is again a purely 1-dimensional scheme. 
+
 Constructions of this type were understood by Macaulay in his great paper~\cite{Macaulay1913} or \cite{Eisenbud-Gray} for ideals in polynomial rings. For the modern theory, as
 well as some of the history, see~\cite{MR0364271}.
 By analogy, we will say that two purely 1-dimensional subschemes of $\PP^3$ are \emph{directly linked} by surfaces $S: \{F = 0\}$ and $T:  \{F = 0\}$ if
