@@ -3,9 +3,8 @@
 \chapter{Inflection points}\label{inflections chapter}
 \label{InflectionsChapter}
 
-\fix{Last section -- prf of BN -- needs work. Add proposition explaining the limit of line bundles better. Add (somewhere) $Pic_d$ in families, and use it to prove the existence half of BN.}
 
-In this chapter, we will introduce the \emph{inflection points} of a linear system, and use them to give a proof of one implication in the statement of the Brill-Noether theorem.
+In this chapter, we will introduce the \emph{inflection points} of a linear system. This is a fascinating topic in its own right; in addition, it will provide the tools to give a proof of the Brill-Noether theorem in the following chapter.
 
 Just as a point $p \in C$ on a smooth plane curve $C \subset \PP^2$ is called a \emph{flex point} if there is a line $L \subset \PP^2$ having contact of order 3 or more with $C$ at $p$, a point on a smooth, nondegenerate curve $C \subset \PP^r$ will be called an \emph{inflection point} if there is a hyperplane $H \subset \PP^r$ having contact of order $r+1$ or more with $C$ at $p$. This notion can be extended to arbitrary linear series on smooth curves (as opposed to very ample ones); we'll see below that (in characteristic 0) every linear series has finitely many inflection points, and how to count them.
 
@@ -327,7 +326,7 @@ $$
 Note that in this sequence, each term is either equal to the preceding one, or of dimension 1 greater; the former will occur $d-k$ times, and the latter $k+1$ times. For a general $(k+1)$-plane $\Lambda$, the jumps occur at the end; that is, we have $\Lambda \cap V_{d-k} = 0$, and thereafter the dimension of the intersection goes up by 1 each time. For any sequence $a_1,\dots, a_{k+1}$, accordingly, we consider the locus of planes $\Lambda$ for which the $i$th jump occurs $a_i$ steps early; unwinding this, we arrive at the
 
 \begin{definition}
-Let ${\bf a} = (a_1,\dots,a_{k+1})$ be a sequence of integers with $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$
+Let ${\bf a} = (a_1,\dots,a_{k+1})$ be a sequence of integers with $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$.
 The \emph{Schubert cycle $\Sigma_{\bf a}({\cal V}) \subset G$} is defined to be
 $$
 \Sigma_{\bf a}({\cal V}) \; := \; \left\{ \Lambda \in G \mid \dim(\Lambda \cap V_{d-k+i-a_i}) \geq i \; \forall i \right\}
@@ -343,7 +342,7 @@ By way of language, a sequence ${\bf a} = (a_1,\dots,a_{k+1})$ of integers with 
 One more thing to observe is that we have a natural isomorphism $\phi$ between the Grassmannian $G(k+1, V)$ of $(k+1)$-planes in a $(d+1)$-dimensional vector space $V$, and the Grassmannian  $G(d-k, V^*)$ of $(d-k)$-planes in  the dual vector space $V^*$, sending a subspace $\Lambda \subset V$ to its annihilator in $V^*$. This isomorphism carries Schubert cycles in $G(k+1, V)$ defined relative to a flag $\cal V$ to Schubert cycles in $G(d-k, V^*)$ defined relative to the dual flag ${\cal V}^*$, but with different indices.
 
 To describe the correspondence between Schubert indices,
-suppose that ${\bf a} = (a_1,\dots, a_{k+1})$ is a Schubert index in $G(k+1, V)$; that is, we have $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$. We define the \emph{transpose} Schubert index to be the sequence ${\bf b} = (b_1,\dots, b_{n-k})$ by setting
+suppose that ${\bf a} = (a_1,\dots, a_{k+1})$ is a Schubert index in $G(k+1, V)$; that is, we have $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$. We define the \emph{transpose} Schubert index to be the sequence ${\bf b} = (b_1,\dots, b_{n-k})$ given by 
 $$
 b_j \; := \; \#\{ i \mid a_i \geq j \};
 $$
@@ -358,14 +357,14 @@ we'll write ${\bf a}^*$ for the transpose Schubert index of $\bf a$.
 (Of course, the first two parts follow from the third; think of the first two as warmups.)
 \end{exercise}
 
- $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$
+% $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$
+%
+%or any Schubert index ${\bf a} = (a_1,\dots,a_{k+1})$ in $G(k+1, V)$, the Schubert cycle $\Sigma_{\bf a}({\cal V})$ is carried into the Schubert cycle $\Sigma_{\bf b}({\cal V}^*)$, where $\bf b$ is what's called the \emph{transpose} Schubert index of $\bf a$; this can be defined by
+%$$
+%b_i = \#\{ j : a_j \geq i \}
+%$$
 
-or any Schubert index ${\bf a} = (a_1,\dots,a_{k+1})$ in $G(k+1, V)$, the Schubert cycle $\Sigma_{\bf a}({\cal V})$ is carried into the Schubert cycle $\Sigma_{\bf b}({\cal V}^*)$, where $\bf b$ is what's called the \emph{transpose} Schubert index of $\bf a$; this can be defined by
-$$
-b_i = \#\{ j : a_j \geq i \}
-$$
-
-There are a couple immediate observations. First, since the set of all flags $\cal V$ is a rational variety, the class of $\Sigma_{\bf a}({\cal V})$ in either the Chow ring or the cohomology ring of the Grassmannian $G$ (they're the same) does not depend on $\cal V$; this class is typically denoted $\sigma_{\bf a}$. Second, and less obviously, \emph{the classes $\sigma_{\bf a}$ form a basis for the Chow ring of $G$}. Thus a complete description of the Chow ring of $G$ is given by expressing the product $\sigma_{\bf a} \cdot \sigma_{\bf b}$ as a linear combination of Schubert classes; this is called the \emph{Schubert calculus}. We will give one example of this in \emph{Pieri's formula} (Theorem~\ref{} below); for Schubert calculus in general, the literature is vast.
+There are a couple immediate observations. First, since the set of all flags $\cal V$ is a rational variety, the class of $\Sigma_{\bf a}({\cal V})$ in either the Chow ring or the cohomology ring of the Grassmannian $G$ (they're the same) does not depend on $\cal V$; this class is typically denoted $\sigma_{\bf a}$. Second, and less obviously, \emph{the classes $\sigma_{\bf a}$ form a basis for the Chow ring of $G$}. Thus a complete description of the Chow ring of $G$ is given by expressing the product $\sigma_{\bf a} \cdot \sigma_{\bf b}$ as a linear combination of Schubert classes; this is called the \emph{Schubert calculus}. We will give one example of this in \emph{Pieri's formula} (Proposition~\ref{Pieri} below); for Schubert calculus in general, the literature is vast.
 
 
 
@@ -415,7 +414,7 @@ $$
 $$
 and pick out exactly the terms whose dimension is strictly greater than the preceding one; we arrive in this way at the full flag
 $$
-\{p\} \subset \overline{b_2p} \subset \overline{b_3p} \subset \dots \subset \overline{b_{(d+1)}p} = \PP^d
+\{p\} \subset \overline{b_2p} \subset \overline{b_3p} \subset \dots \subset \overline{b_{d+1}p} = \PP^d
 $$
 Note that if the point $p$ is not an inflectionary point, this is just the flag $\{\overline{mp}\}_{m=1}^d$; in general, we have the 
 
@@ -427,7 +426,7 @@ Let's now see what all this says about inflectionary behavior of $g^r_d$s on $\P
 
 Now let $p \in C$ be any point, and let $\cal V$ be the osculating flag to $C$ at $p$. It is reasonable to expect that the ramification sequence of the linear series $V_\Lambda$ at $p$ is related to whether $\Lambda$ lies in a Schubert cycles relative to the osculating flag to $C$ at $p$, and indeed the relationship is simple:
 
-\begin{proposition}
+\begin{proposition}\label{ramification}
 Let ${\bf a}$ be a Schubert index in the Grassmannian $G(d-r, d+1)$; that is ${\bf a} = (a_1, \dots a_{d-r})$ with $r+1 \geq a_1 \geq \dots \geq a_{d-r} \geq 0$, and let ${\bf a}^*$ be the transpose Schubert index. If $\cal V$ is the osculating flag to the rational normal curve $C \subset \PP^d$ at a point $p$,
 then for any $(d-r-1)$-plane $\Lambda \subset \PP^d$, 
 $$
@@ -439,8 +438,76 @@ In other words, the ramification sequence $\alpha(V_\Lambda, p)$ of the linear s
 
 \subsection{Conclusions}
 
-\begin{theorem}
-Let $p_1,\dots, p_\delta \in \PP^1$ be any (distinct) points, and for each $j = 1,\dots, \delta$ let $0 \leq a^j_1 \leq a^j_2 \leq \dots \leq a^j_r \leq d-r$ be any  decreasing sequence. There exists a $g^r_d$ on $\PP^1$ with ramification sequence $a^j$ at $p_j$ if and only if 
+The assertions made in the last section may seem like elementary restatements of obvious facts. But when we combine them with the Pl\"ucker formula, we can derive some fairly striking results, both about the existence (or non-existence) of linear series with specified ramification, and about the transversality of intersection of Schubert cycles in the Grassmannian.
+
+The first theorem is a direct consequence of the Pl\"ucker formula:
+
+\begin{theorem}\label{osculating intersection}
+Let $p_1,\dots,p_\delta \in C$ be any points on a rational normal curve $C \subset \PP^d$, and ${\cal V}^1, \dots, {\cal V}^\delta$ the corresponding osculating flags. If ${\bf a}^1, \dots, {\bf a}^\delta$ are any $\delta$ Schubert indices, the Schubert cycles $\Sigma_{{\bf a}^1}({\cal V}^1), \dots, \Sigma_{{\bf a}^\delta}({\cal V}^\delta) \subset G(d-r, d+1)$ intersect properly.
 \end{theorem}
+
+Note that this does not depend on the choice of points $p_i$!
+
+\begin{proof}
+We start with the case
+$$
+\sum_{i=1}^\delta |{\bf a}^i| \; > \; (r+1)(d-r) = \dim G(d-r, d+1);
+$$
+in this case we have to show the intersection of the Schubert cycles $\Sigma_{{\bf a}^i}({\cal V}^i)$ is empty. But now suppose we had a $(d-r-1)$-plane 
+$$
+\Lambda \; \in \; \bigcap_{i=1}^\delta \Sigma_{{\bf a}^i}({\cal V}^i),
+$$
+and consider the linear series $V_\Lambda$ cut by hyperplanes containing $\Lambda$. By Proposition~\ref{ramification}, the weight of $p_i$ as an inflectionary point of $V_\Lambda$ is at least $|{\bf a}^i|$, so that the sum of the weights of the points $p_1,\dots,p_\delta$ is strictly greater than $(r+1)(d-r)$ by hypothesis. But the Pl\"ucker formula says that the sum of the weights of $V_\Lambda$ at \emph{all} inflectionary points of $C$ is equal to  $(r+1)(d-r)$, so we have a contradiction.
+
+Next, we can deduce the general case from the above. To do this, we make use of the fact that the Schubert cycle $\Sigma_1$ is a hyperplane section of the Grassmannian $G(d-r, r+1)$, so that if $\Phi \subset G$ is any subvariety of dimension $m$, its intersection with $m$ Schubert cycles $\Sigma_1$ is nonempty. Thus, if the intersection
+$$
+\bigcap_{i=1}^\delta \Sigma_{{\bf a}^i}({\cal V}^i)
+$$
+had dimension strictly bigger than the expected
+$$
+\rho \; := \; (r+1)(d-r) - \sum_{i=1}^\delta |{\bf a}^i|,
+$$
+we could simply choose $\rho + 1$ additional points $q_1,\dots,q_{\rho + 1}$ on $C$, with osculating flags ${\cal W}^1, \dots, {\cal W}^{\rho + 1}$ and throw in the Schubert cycles $\Sigma_1({\cal W}^i)$. We would then have a nonempty intersection of Schubert cycles defined relative to osculating flags to $C$ and having total codimension strictly greater than $(r+1)(d-r)$, contradicting the first part.
+\end{proof}
+
+We will use this to prove a sort of converse, asserting the existence of linear series on $\PP^1$ with specified ramification, but first we want to mention one consequence of Theorem~\ref{osculating intersection}. First, a definition: given a curve $C \subset \PP^d$, we say that a \emph{secant flag} in $\PP^d$ is a flag
+$$
+0 \subset V_1 \subset V_2 \subset \dots \subset V_{d-1} \subset V_d = \PP^d
+$$
+where each $V_i$ is spanned by its (scheme-theoretic) intersection with $C$. In other words, there is a sequence of points $p_1, p_2, \dots, p_{d+1} \in C$ such that
+$$
+V_i \; = \; \overline{p_1+p_2+ \dots + p_{i+1}}
+$$
+(An osculating flag is just the special case where all $p_i$ are equal.) Since any secant flag can specialize to an osculating flag, we can deduce the
+
+\begin{corollary}
+Schubert cycles defined relative to \emph{general} secant flags to a rational normal curve intersect properly.
+\end{corollary} 
+
+\begin{exercise}
+Show by example that Schubert cycles defined relative to arbitrary secant flags to a rational normal curve may fail to intersect properly. (Hint: it's enough to look at the case $d=2$ and $r=1$.)
+\end{exercise}
+
+Finally, we can use all of the above to answer the question of existence of $g^r_d$s on $\PP^1$ with specified ramification. To state it, suppose we are given a collection of distinct points $p_1,\dots,p_\delta \in \PP^1$, and for each point $p_i$ a possible ramification sequence
+$$
+\alpha^i = (\alpha^i_0, \alpha^i_1, \dots, \alpha^i_r) \quad \text{with} \quad 0 \leq \alpha^i_0 \leq \alpha^i_1 \leq \dots \leq \alpha^i_r \leq d-r.
+$$
+Let ${\bf a}^i$ be this sequence in reverse (and relabelled); that is
+$$
+{\bf a}^i \; = \; (\alpha^i_r, \alpha^i_{r-1}, \dots, \alpha^i_1, \alpha^i_0)
+$$
+and finally let ${\bf b}^i$ be the transpose of the Schubert index ${\bf a}^i$. We have then the
+
+\begin{theorem}
+There exists a $g^r_d$ on $\PP^1$ with ramification sequence at $p_i$ equal to $(\alpha^i_0, \alpha^i_1, \dots, \alpha^i_r)$ if and only if 
+$$
+\prod_{i=0}^\delta  \sigma_{{\bf b}^i} \; \neq \; 0 \quad \text{in} \quad A^*(G(d-r, r+1)).
+$$
+\end{theorem}
+
+\begin{proof}
+Our arguments so far show the existence of a $g^r_d$ on $\PP^1$ with ramification sequence greater than or equal to $\alpha^i$ at $p_i$. But by Theorem~\ref{osculating intersection}, the ones with ramification strictly greater than $\alpha^i$ form a family of strictly smaller dimension.
+\end{proof}
+
 
 \input{footer}
