@@ -81,7 +81,7 @@ or equivalently (by Nakayama's Lemma) the maps in $FF\otimes_R k$ are all 0.
 Minimal free resolutions of $M$ are all isomorphic, and the \emph{projective dimension}  of $M$ is their length, the number of nonzero
 maps (possibly infinity). Equivalently, 
 $$
-\pd M = \max\{s \mid \Ext^s(M,k) \neq 0.
+\pd\ M = \max\{s \mid \Ext^s(M,k) \neq 0.
 $$
 Fundamental
 results of Auslander, Buchsbaum and Serre say that if $R$ is \emph{regular}---that is, the Krull dimension of $R$ is equal to the minimal number
@@ -119,7 +119,8 @@ By Serre's Vanishing theorem $H^1(\sI_X(m)) = 0$ for $m\gg 0$ in any case; and i
 no 0-dimensional component then, since $H^1(\sI_X(m))$ is the cokernel of the natural map $H^0(\sO_{\PP^r}(m) \to H^0(\sO_{X}(m)$,
 it vanishes for $m<0$. Thus, assuming that  $X$
 no 0-dimensional component, the sum $D(X) := \oplus_{m\in \ZZ} H^1(\sI_X(m))$ is a graded $S$-module that
-is a finite dimensional vector space called the \emph{deficiency module} of $X$.
+is a finite dimensional vector space called the \emph{Hartshorne-Rao invariant} or \emph{deficiency module} of $X$.
+
 
 Finally, we will use an elementary part of duality theory: if $S$ is a regular local ring and $R = S/(f_1,\dots, f_c)$, 
 has dimension $e = \dim S-c$, so that $R$ is a complete intersection, then any $R$-module $M$ of finite length is reflexive
@@ -163,42 +164,43 @@ As the second proof of Proposition~\ref{hilb of twisted cubics} suggests, when t
 than the adjunction formula is needed, and then consider a natural
 generalization to purely 1-dimensional subschemes.
 
-\begin{theorem}\label{liaison genus formula-first version} Let $C, {C'}\subset \PP^3$ smooth irreducible curves of  of degrees $c,d$ whose union is the complete intersections of two surfaces $S,T$, with $S$ smooth. If the degrees of $S,T$ are $s,t$ respectively, then $c+d = st$ and 
+\begin{theorem}\label{liaison genus formula-first version} Let $C, {C'}\subset \PP^3$ smooth irreducible curves of  of degrees $c,d$ whose union is the complete intersections of two surfaces $S,T$, with $S$ smooth. If the degrees of $S,T$ are $s,t$ respectively, then $\deg C+\deg C' = st$ and the genera of $C,C'$ are
+related by
  $$
- g(C) - g({C'}) = \frac{s+t-4}{2}(c-d).
+ g(C) - g({C'}) = \frac{s+t-4}{2}(\deg C-\deg {C'}).
  $$
 \end{theorem}
 In words, the difference between the genera of $C$ and ${C'}$ is proportional to the difference in their degrees, with constant of proportionality $(s+t-4)/2$.
 
 \begin{proof}
- B\'ezout's Theorem tells us that $c+d = st$; we want a formula relating the genera $g = p_a(C)$ and $h = p_a({C'})$ of $C$ and ${C'}$. For this we use
+B\'ezout's Theorem tells us that $\deg C+\deg {C'} = st$; we want a formula relating the genera $g(C)$ and $g({C'})$ of $C$ and ${C'}$. For this we use
  the intersection theory of divisors on $S$.
 
 By the adjunction formula (Theorem ****), the canonical divisor class of $S$ is $K_S = (s - 4)H$, where $H$ denotes the hyperplane class on $S$. Using adjunction 
 again, we see that
 $$
-2g-2 = (C\cdot C) + (K_S\cdot C) = C\cdot C + (s-4)c, 
+2g(C)-2 = (C\cdot C) + (K_S\cdot C) = C\cdot C + (s-4)\deg C, 
 $$
 or in other words,
 $$
-(C \cdot C) = 2g-2 - (s-4)c.
+(C \cdot C) = 2g(C)-2 - (s-4)\deg C.
 $$
 Next, since $C \cup {C'}$ is a complete intersection of $S$ with a surface of degree $t$, we have $C + {C'}\sim tH$. Thus 
 $$
-(C \cdot {C'}) = (C \cdot (tH - C)) = tc - (C \cdot C) = tc - 2g + 2 + (s-4)c
+(C \cdot {C'}) = (C \cdot (tH - C)) = t\deg C - (C \cdot C) = t\deg C - 2g(C) + 2 + (s-4)\deg C
 $$
 and similarly
 $$
-({C'} \cdot {C'}) = ({C'} \cdot (tH - C)) = td - tc + 2g - 2 - (s-4)c. 
+({C'} \cdot {C'}) = ({C'} \cdot (tH - C)) = t\deg {C'} - t\deg C + 2g - 2 - (s-4)\deg C. 
 $$
 Finally, we can apply the adjunction formula to ${C'}$ to arrive at
 $$
-2h - 2 = ({C'} \cdot {C'}) + (K_S \cdot {C'}) = (s-4)d  + td - tc + 2g - 2 - (s-4)c.
+2g(C') - 2 = ({C'} \cdot {C'}) + (K_S \cdot {C'}) = (s-4)\deg {C'}  + t\deg {C'} - t\deg C + 2g(C) - 2 - (s-4)\deg C.
 $$
 Collecting terms, we can write this in the convenient form
-\begin{equation}\label{linked genus formula}
-h - g = \frac{s+t-4}{2}(d-c);
-\end{equation}
+$$
+g(C)-g(C') = \frac{s+t-4}{2}(\deg {C}-\deg C').
+$$
  \end{proof}
 
 The first step in dealing with a more general case, where $C,{C'}$ may not be reduced or irreducible, and my share components, is to agree
@@ -370,7 +372,7 @@ $$
 $$
 where we have identified $\sO_C$ with its pushforward under the inclusion map $C\to X$. 
 
-Since $C$ is purely 1-dimensional it is Cohen-Macaulay, and thus
+Since $C$ is purely 1-dimensional it is Cohen-Macaulay, so
 $\chi(\omega_C(m)) = -\chi(\sO_C(-m))$. It follows that the degree of $\omega_C$, which is the leading coefficient of the Hilbert polynomial of $\omega_C$, is 
 equal to $\deg C$, and 
 $$
@@ -384,7 +386,7 @@ From Theorem~\ref{omega} we see that $\chi(\sO_X) = st(4-s-t)/2$. Since $\sO_{C'
 $(\sI_X : \sI_C)/(\sI_X) = \omega_C(4-s-t)$ we have
 $$
 \begin{aligned}
--\frac{(s+t-4)}{2} (\deg C + \deg C') &= -\frac{(s+t-4)}{2}st \\
+-\frac{(s+t-4)}{2} (\deg C +& \deg C') \\&= -\frac{(s+t-4)}{2}st \\
 &= \chi(\sO_X) \\&=  \chi(\sO_{C'})+\chi(\omega_C(4-s-t)) \\&= \chi(\sO_{C'})-\chi(\sO_C(s+t-4)) \\&= \chi(\sO_{C'})-(s+t-4)\deg C-\chi(\sO_C)
 \\&= (1-p_a(\sO_{C'})) - (1-p_a(\sO_C) -(s+t-4)\deg C,
 \end{aligned}
@@ -397,7 +399,7 @@ $$
 
 Linkage behaves in a simple way with respect to deficiency modules:
 
-\begin{theorem}
+\begin{theorem}\label{HR}
 If $C,C'$ are purely 1-dimensional subschemes of $\PP^3$ that are directly linked by a complete intersection of degrees $s,t$ then
 $$
 D(C') = Hom_\CC(D(C), \CC) (-s-t+4).
@@ -405,8 +407,8 @@ $$
 as graded modules over the homogeneous coordinate ring of $\PP^3$.
 \end{theorem}
 
-For example, the deficiency module of the union $C$ of two skew lines in $\PP^3$ is easily seen to be the residue field in degree 0. There are
-two quadrics containing $C$, and the link with respect to these two is the union of two other skew lines, again with deficiency module
+For example, the Hartshorne-Rao module of the union $C$ of two skew lines in $\PP^3$ is easily seen to be the residue field in degree 0. There are
+two quadrics containing $C$, and the link with respect to these two is the union of two other skew lines, again with Hartshorne-Rao module
 $k$ in degree 0.
 
 \begin{proof}
@@ -414,7 +416,7 @@ Suppose that the homogeneous ideal of $C$ is generated by forms of degree $a_i, 
 the local rings $\sO_{C,p}$ have projective dimension 2 as modules over $\sO_{\PP^3, p}$, and $\sI_{C,p}$ has projective dimension 1.
 Thus we have an exact sequence
 $$
-0\to \sE \to \oplus_i\sO_{\PP^3}(-a_i) \to \sI_C to 0.
+0\to \sE \to \oplus_i\sO_{\PP^3}(-a_i) \to \sI_C \to 0.
 $$
 Since the first and second cohomology groups of the twists of $\sO_{\PP^3}$ vanish, we deduce an isomorphism
 $$
@@ -431,7 +433,7 @@ $$
 \end{diagram}
 $$
 We dualize this diagram, form the mapping cone, and twist by $-s-t$. Note that $\Hom_{\PP^3}(\sO_C, \sO_{\PP^3}) = 0$. 
-Also, since the map $\sO_{\PP^3}\to \sO_{\PP^3}$ on the right
+Also, since the vertical map $\sO_{\PP^3}\to \sO_{\PP^3}$ on the right
 is an isomorphism we may cancel these terms. Noting that $\omega_C = \Ext^2(\sO_C, \sO_{\PP^3}(-4))$ we get the diagram with 
 exact rows:
 $$
@@ -462,12 +464,55 @@ and since Serre duality is functorial, the isomorphism holds not only as graded 
 
 To prove that the relation of direct linkage is symmetric, we can repeat this argument starting from the locally free
 resolution of $C'$, above, using the same forms of degree $s,t$ and we see that  direct link of $C'$ is $C$.
-
 \end{proof}
 
-The reward for this homological work is the theorem of Hartshorne and Rao ***, which we will not prove:
-\fix{state H-R theorem as a fact}.
+\begin{corollary}[Corollary of the proof of Theorem~\ref{HR}]
+If $C$ is a purely 1-dimensional subscheme of $\PP^3$ with homogeneous ideal $I = I_C$ then 
+$$
+D(C) \cong Hom_\CC (Ext^3(S/I, S), \CC)(-4), \CC)
+$$
+as graded modules over the homogeneous coordinate ring $S$ of $\PP^3$.
+\end{corollary}
 
+\begin{proof}
+We may choose a surjection  $\psi:  \oplus_iS(-a_i)\rTo I$, and choose the map
+$\phi: \oplus_i\sO_{\PP^3}(-a_i)\rTo\sI_C$
+in the proof of Theorem~\ref{HR}
+to be the corresponding map of sheaves, so that
+$\sE$ is the sheafification of the graded module $E = \ker \psi$.
+
+Since $I$ is a saturated ideal,
+ the depth of $S/I$ is at least 1, so $\pd\ S/I\leq 3$, and $I$ has a free resolution of the form
+$$
+0\rTo G \rTo F \rTo \oplus_iS(-a_i)  \rTo S\rTo S/I \rTo 0.
+$$
+where $G\to F$ is a free presentation of $E$. and there is an exact sequence
+$$
+0 \to E^* \to F^* \to G^* \to Ext^3_S(S/I, S) \to 0.
+$$
+Since $\sO_C$ is Cohen-Macaulay the sheafification of $Ext^3_S(S/I, S)$ is 0; that is,
+$Ext^3_S(S/I, S)$ has finite length, and writing $\widetilde{(\phantom{-})}$ for the sheafification functor,
+we have a short exact sequence of sheaves 
+$$
+0\to \sE^* \to \widetilde{F^*} \to \widetilde{G^*}\to 0.
+$$
+From this we see that 
+$$
+Ext^3_S(S/I,S) = H^1_*(\sE^*) = Hom_\CC( H^2_*(\sE(-4)),\CC) = H^1_*(\sI)(-4),
+$$
+proving the assertion.
+\end{proof}
+
+The reward for this homological work is the great theorem of Hartshorne and Rao:
+\begin{theorem}
+Two curves $C,C'$ are linked by an even length chain of direct linkages if and only if 
+the Hartshorne-Rao modules $D(C)$ and $D(C')$ are isomorphic up to a shift in grading.
+\end{theorem}
+
+\begin{proof}
+The necessity of the condition follows at once from Theorem~\ref{HR}. To prove the sufficience...
+ \fix{add something, or make a fact?}
+\end{proof}
 %We will generalize the technique used in second proof of Proposition~\ref{hilb of twisted cubics}. Will do first for $C, D$ smooth; at the end, have discussion of full definition and theorem.
 %
 %To be done: First, derive formula for genus of linked curves via intersection theory of a (presumably smooth) surface containing the curves. Similarly introduce the Rao module and show that Rao modules of linked curves are dual (with a twist) via cohomology groups of line bundles on this surface and Serre duality. Unirationality of one Hilbert scheme equiv. to unirationality of the other; discussion of historical significance and ref. to result that general curves are not linked to anything simpler.
@@ -1105,4 +1150,31 @@ different; and the hyperelliptic cases are included. Maybe retype in normal nota
 
 \includepdf{"SyzygiesGupto8"}
 %\section{Low degree}
+
+\section{Exercises}
+\begin{exercise}
+Let $C$ be the disjoint union of 3 skew lines. 
+\begin{enumerate}
+ \item prove that $C$ lies on a unique quadric, and that $H^2(\sI_C) = 0$
+ \item compute the Hartshorne-Rao module $D(C)$.
+ \item show that if $\Gamma$ is the union of 3 points in $\PP^3$ then
+ $H^1\sI(\Gamma) = 0$ iff the three points are colinear.
+ \item Using the exact sequence in cohomology coming from the short exact sequence
+$$
+0\to \sI_C \rTo^{\ell} \sI_C(1) \to \sI_\Gamma(1) \to 0
+$$
+where $\ell$ is a linear form, show that the map of vector spaces
+$$
+H^1(\sI_C) \rTo^{\ell} H^1\sI_C(1))
+$$
+has rank<2 if and only if $\ell$ vanishes on 3 collinear points on the three lines (including the case when $\ell$ vanishes identically on one of the lines).
+Conclude that if a different union $C'$ of 3 skew lines is linked to $C$, then $C'$ lies on the same quadric as $C$.
+\end{enumerate}
+See~\cite{Migliore} for more examples of this type.
+\end{exercise}
+
+\begin{exercise} (Liaison addition)
+(From the unpublished Brandeis thesis of Phillip Schwartau): Show that if $(f, g)\subset I\cap J$ is a regular sequence,
+ then $f I \cap gJ = (fg)$, and conclude that $D(fI+gJ) = D(I)+D(J)$
+\end{exercise}
 \input{footer}
