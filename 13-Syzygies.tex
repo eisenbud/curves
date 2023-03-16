@@ -221,9 +221,9 @@ of directly linked schemes are related exactly as in the simple case above:
 \begin{theorem}\label{direct linkage}
 If $C\subset \PP^3$ is a purely 1-dimensional subscheme, and ${C'}$ is directly linked to $C$, then $C$ is directly linked to ${C'}$.
 If $C,{C'}\subset \PP^3$ of degrees $c,d$ are directly linked by surfaces of degrees $s,t$, then 
-$c+d = st$ and 
+$\deg C+\deg C' = st$ and 
  \begin{equation}\label{linked genus formula}
-p_a(C) - p_a({C'}) = \frac{s+t-4}{2}(c-d);
+p_a(C) - p_a({C'}) = \frac{s+t-4}{2}(\deg C - \deg C');
 \end{equation}
 \end{theorem}
 
@@ -291,7 +291,7 @@ residue maps. If $X$ is smooth then the top degree differential forms $\omega_X 
 together with the classical residue (see for example~\cite[p. 648, 708]{Griffiths-Harris1978}), is a dualizing sheaf, as implied by Serre duality. Moreover, one can construct the dualizing sheaf on a scheme
 $X$ by comparing it with any scheme $Y$ whose dualizing sheaf is known, in the following sense:
 
-\begin{theorem}\label{omega}
+\begin{theorem}\label{omega}\label{general adjunction}
 Suppose that $f: X\to Y$ is a finite morphism between projective schemes $X,Y$ of pure dimensions $d,e$. If $Y$ has a dualizing sheaf $\omega_Y$,
 then $\omega := \sExt_Y^{e-d}(f_*\sO_X,  \omega_Y)$, regarded as a sheaf on $X$ is a dualizing sheaf for $X$ in a way compatible with the residue maps.
 Moreover, if $Y$ is smooth, then $X$ is Cohen-Macaulay if and only if $ \sExt_Y^{e-d}(f_*\sO_X,  \omega_Y)= 0$ for all $m\neq e-d$.\qed
@@ -300,27 +300,6 @@ Moreover, if $Y$ is smooth, then $X$ is Cohen-Macaulay if and only if $ \sExt_Y^
 For all this see for example \cite{AltmanKleiman}.
 \end{fact}
 
-We will use a fact about the dualizing
-\begin{lemma}\label{restricting omega} If $C$ is a purely 1-dimensional projective scheme and $H$ is a general hyperplane,
-then $\omega_{C\cap H} = \omega_C(1) \mid_H$.
-\end{lemma}
-
-\begin{proof}
-Suppose  that $C\subset \PP^n$ and write $h=0$ for the equation of $H$. Since $H$ is general there is an exact sequence
-$$
-0\rTo \sO_C(-1) \rTo^h\sO_C\rTo \sO_{C\cap H} \rTo 0
-$$
-from which we get the long exact sequence containing
-$$\
-\begin{aligned}
- \cdots &\rTo \Ext^{n-1}(\sO_{C\cap H}, \omega_{\PP^n}) \rTo \omega_C \rTo^h\omega_C(1)\rTo \omega_{C\cap H}\\ 
- &\rTo 
-\Ext^{n}(\sO_{C}, \omega_{\PP^n}) \rTo \cdots
-\end{aligned}
-$$
-Since  $\sO_{C\cap H}$ is Cohen-Macaulay of codimension $n$ and $\sO_C$ is Cohen-Macaulay of codimension $n-1$,
-both $\Ext^{n-1}(\sO_{C\cap H}, \omega_{\PP^n})$ and $\Ext^{n}(\sO_{C}, \omega_{\PP^n})$ vanish, yielding the desired relation.
-\end{proof}
 
 Continuation of the Proof of Theorem~\ref{direct linkage}
 
@@ -343,6 +322,27 @@ Continuation of the Proof of Theorem~\ref{direct linkage}
 %and $\sO_{X\cap H}$ is 0-dimensional and Gorenstein, we have $\deg \omega_\Gamma = \deg \sO_\Gamma$, whence
 %$\deg \sO_{\Gamma'}+\deg \sO_\Gamma = st$ as required.
 %
+%We will use a fact about the dualizing
+%\begin{lemma}\label{restricting omega} If $C$ is a purely 1-dimensional projective scheme and $H$ is a general hyperplane,
+%then $\omega_{C\cap H} = \omega_C(1) \mid_H$.
+%\end{lemma}
+%
+%\begin{proof}
+%Suppose  that $C\subset \PP^n$ and write $h=0$ for the equation of $H$. Since $H$ is general there is an exact sequence
+%$$
+%0\rTo \sO_C(-1) \rTo^h\sO_C\rTo \sO_{C\cap H} \rTo 0
+%$$
+%from which we get the long exact sequence containing
+%$$\
+%\begin{aligned}
+% \cdots &\rTo \Ext^{n-1}(\sO_{C\cap H}, \omega_{\PP^n}) \rTo \omega_C \rTo^h\omega_C(1)\rTo \omega_{C\cap H}\\ 
+% &\rTo 
+%\Ext^{n}(\sO_{C}, \omega_{\PP^n}) \rTo \cdots
+%\end{aligned}
+%$$
+%Since  $\sO_{C\cap H}$ is Cohen-Macaulay of codimension $n$ and $\sO_C$ is Cohen-Macaulay of codimension $n-1$,
+%both $\Ext^{n-1}(\sO_{C\cap H}, \omega_{\PP^n})$ and $\Ext^{n}(\sO_{C}, \omega_{\PP^n})$ vanish, yielding the desired relation.
+%\end{proof}
 
 \subsubsection{\it Degrees of directly linked curves:}
 Let $X$ be the complete intersection of surfaces of degrees $s,t$ containing $C$, and let $S_X = S/(F,G)$ be its homogeneous coordinate ring, where
@@ -377,6 +377,22 @@ $$
 st = \deg \sO_X =\deg \sO_{C'}+\deg \omega_C = \deg \sO_{C'}+\deg \sO_C
 $$
 as required.
+
+\subsubsection{\it Arithmetic genera of directly linked curves:}
+
+From Theorem~\ref{omega} we see that $\chi(\sO_X) = st(4-s-t)/2$. Since $\sO_{C'} = \sO_{\PP^3}/(\sI_X : \sI_C)$ and
+$(\sI_X : \sI_C)/(\sI_X) = \omega_C(4-s-t)$ we have
+$$
+\begin{aligned}
+-\frac{(s+t-4)}{2} (\deg C + \deg C') &= -\frac{(s+t-4)}{2}st \\
+&= \chi(\sO_X) \\&=  \chi(\sO_{C'})+\chi(\omega_C(4-s-t)) \\&= \chi(\sO_{C'})-\chi(\sO_C(s+t-4)) \\&= \chi(\sO_{C'})-(s+t-4)\deg C-\chi(\sO_C)
+\\&= (1-p_a(\sO_{C'})) - (1-p_a(\sO_C) -(s+t-4)\deg C,
+\end{aligned}
+$$
+whence 
+$$
+p_a(\sO_C) -p_a(\sO_{C'} = \frac{(s+t-4)}{2} (\deg C - \deg C'). 
+$$
  \end{proof}
 
 Linkage behaves in a simple way with respect to deficiency modules:
