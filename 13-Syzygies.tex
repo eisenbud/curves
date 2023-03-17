@@ -53,10 +53,6 @@
 %Hilbert Syzygy theorem, Hilbert function derivation, Unique minimal resolution, Betti table, 
 %\fix{ introduce tools as they are used}
 
-\fix{Adding general linkage we can measure the failure of CM for various curves in P3, making the theorems about canonical and
-high degree more interesting. We might need local duality for this. Revisit $g+3$ in this context, using maximal rank, too. This all suggests putting linkage in $\PP^3$ before the general talk of canonical curves, factorization of line bundles, high degree.}
-
-
 In this Chapter we will study  invariants associated to a free resolution, or syzygies, of the homogeneous coordinate ring of a curve in projective space, with an emphasis on their relation to the varieties (or schemes) containing the curve. 
 In studying the embeddings of a curve $C\subset \PP^r$  we have again and again estimated the number of
 forms of degree $d$ in the ideal of the curve using the sequence
@@ -64,7 +60,11 @@ $$
 0\to H^0(\sI_C(d)) \to H^0(\sO_{\PP^r}(d))\to  H^0(\sO_C(d)) \to H^1(\sI_C(d))\to 0
 $$
 which is exact because (since $r$ must be $\geq 2$ in any interesting case) $H^1(\sO_{\PP^r}(d))= 0$. In words: 
-$H^1(\sI_C(d))$ measures the failure of hypersurfaces of degree $d$ to cut out a complete linear series on $C$.
+$H^1(\sI_C(d))$ measures the failure of hypersurfaces of degree $d$ to cut out a complete linear series on $C$. Curves for which
+$H^1(\sI_C(d))=0$ for all $d$ are said to be \emph{arithmetically Cohen-Macaulay}; Theorem~\ref{canonical curves are ACM} shows that
+all canonical curves have this property, and Theorem~\ref{high degree ACM} shows that any curve of genus $g$ embedded by a
+ complete linear series of degree $\geq 2g+1$ does too.
+  
 In the interesting case $r=3$ the theory of linkage (often called by its French name, liaison) and free resolutions give us an opportunity
 to understand the significance of the spaces $H^1(\sI_C(d)$ in a new way. 
 
@@ -474,6 +474,7 @@ $$
 as graded modules over the homogeneous coordinate ring $S$ of $\PP^3$.
 \end{corollary}
 
+This is a special case of the local duality isomorphism between local cohomology and the dual of Ext; see for example \cite[Theorem A.1.9]{MR2103875}.
 \begin{proof}
 We may choose a surjection  $\psi:  \oplus_iS(-a_i)\rTo I$, and choose the map
 $\phi: \oplus_i\sO_{\PP^3}(-a_i)\rTo\sI_C$
@@ -503,16 +504,48 @@ $$
 proving the assertion.
 \end{proof}
 
-The reward for this homological work is the great theorem of Hartshorne and Rao:
-\begin{theorem}
+As an immediate consequence of Theorem~\ref{HR} we have:
+\begin{corollary}(Hartshorne)
+ If two curves $C,C'$ are linked by an even length chain of direct linkages, then 
+ $D(C)$ and $D(C')$ are isomorphic up to a shift in grading.
+\end{corollary}
+
+Remarkably, the converse is also true: the Hartshorne-Rao modules, up to shift in grading, provide a complete invariant of
+linkage: 
+\begin{fact}
+\begin{theorem}\cite{MR520926}
 Two curves $C,C'$ are linked by an even length chain of direct linkages if and only if 
 the Hartshorne-Rao modules $D(C)$ and $D(C')$ are isomorphic up to a shift in grading.
 \end{theorem}
 
-\begin{proof}
-The necessity of the condition follows at once from Theorem~\ref{HR}. To prove the sufficience...
- \fix{add something, or make a fact?}
-\end{proof}
+Even more precise results are known (and the characteristic 0 hypothesis is largely unnecessary); here is a sample:
+
+\begin{theorem}
+Let $S = \CC[x_0, \dots, x_3]$ be the homogeneous coordinate ring of $\PP^3$, and let $M$ be a graded $S$-module of finite length.
+\begin{enumerate}
+\item There is a smooth curve $C$ with $D(C) = M(m)$ for some integer $m$.
+\item There is a minimum value of $m$ such that $M(m) = D(C_0)$ for some purely one-dimensional scheme $C_0$.
+\item Every curve that is evenly linked to $C_0$ is obtained from $C_0$ by deformation and a process called
+\end{enumerate}
+\end{theorem}
+
+Moreover, each Liaison class has a relatively simple structure, known as the \emph{Lazarsfeld-Rao property}.
+We say that $C'$ is obtained from $C$ by an \emph{ascending double link} if $I_{C'} = fI_C+(g)$ for some regular sequence
+contained in $I_C$---see Exercise~\ref{Basic double links}. 
+
+\begin{theorem}\cite{MR1087803}\label{LR property}
+Let $M = D(C_0)$ the the Hartshorne Rao invariant of a purely 1-dimensional subscheme of $\PP^3$, and suppose that
+$M$ is minimal in the sense that no $M(m)$ is the invariant of a purely 1-dimensional scheme. 
+\begin{enumerate}
+ \item Every curve $C$ in $\PP^3$ with $D(C) = M$ is a deformation of $C_0$ through curves with invariant $M$.
+ \item Every curve in the even linkage class of $C_0$ is the result of a series of ascending double links followed by a deformation.
+\end{enumerate}
+\end{theorem}
+
+In \cite{MR714753} it is shown that general curves of reasonably large degree in $\PP^3$ and many others have the property in the hypothesis
+of  Theorem~\ref{LR property}.
+\end{fact}
+
 %We will generalize the technique used in second proof of Proposition~\ref{hilb of twisted cubics}. Will do first for $C, D$ smooth; at the end, have discussion of full definition and theorem.
 %
 %To be done: First, derive formula for genus of linked curves via intersection theory of a (presumably smooth) surface containing the curves. Similarly introduce the Rao module and show that Rao modules of linked curves are dual (with a twist) via cohomology groups of line bundles on this surface and Serre duality. Unirationality of one Hilbert scheme equiv. to unirationality of the other; discussion of historical significance and ref. to result that general curves are not linked to anything simpler.
@@ -853,7 +886,6 @@ set-theoretically by $I_{2}(M)$.
 It now follows from Theorem~\ref{WMACE} that all the $X_{i}$ are equal, so $EN(M)$ is 
 acyclic if and only if $EN(M)^{*}$ is acyclic. 
 
-
 Since $M$ is 1-generic the entries of of the second row of $M$ are linearly independent, and since the dimension of the span of all the linear forms is at least $n+1$, some element in the first row is outside the span of the the elements in the second. After a permutation of columns we may assume that $l_{1,1}, l_{2,1}, l_{2,2},\dots l_{2,n}$ are linearly independent, and we may take them to be a subset of the variables, say $x_{0},\dots x_{n+1}$
 
 We next show by induction on $n$ that  $I_{2}(M)$ is prime. In the case $n=2$ we have $I_{2}(M) =  (x_{0}x_{2}-x_{1}l_{1,2})$ which obviously does not factor. 
@@ -982,7 +1014,6 @@ $$
 where the right hand map is multiplication and the left hand map sends
 $s_{1}\wedge s_{2}\otimes \sigma$ to $s_{1}\sigma-s_{2}\sigma$ for any local section $\sigma$.
 The sequence is exact because the sections $s_{1},s_{2}$ that span $V$ never vanish simultaneously except on the $p_{i}$, and has image  consisting of sections that vanish on the points $p_{i}$
-
 \end{proof}
 
 \begin{corollary}\label{canonical hilbert function}
@@ -1005,6 +1036,46 @@ By Theorem~\ref{canonical curves are ACM} implies, in particular, that the homog
 \fix{We need to add the regularity of the canonical curve = 3; that plus Gorenstein, self-dual resolution,
 gives the shape of the Betti table in which you could look for invariants. Gorenstein comes from the $H^{1}I$
 computation. In the homol alg appendix we should explain the resolution duality, apply it here.}
+
+\section{Curves of high degree}
+Let $C$ be a smooth curve of  genus $g$. We have seen that every invertible sheaf of degree $d \geq 2g+1$ is very ample. We will now show that
+such a curve,  embedded by the corresponding complete linear series, is arithmetically Cohen-Macaulay.
+\begin{theorem}\label{high degree ACM}
+If $C$ is a reduced irreducible projective curve, embedded by a complete linear series $D$ of degree $\geq 2p_a(C)+1$, then
+$H^1(\sI_C(d) = 0$ for all $d\in \ZZ$.
+\end{theorem}
+
+\begin{proof} We do induction on $d$, noting that
+For $d\leq 1$ the conclusion is immediate. Note that the complete linear series
+embeds $C$ in $\PP^{d-g}$. 
+
+The case $d=2$ requires a special argument: By Theorem~\ref{linearly general position} the $d$ points $\Gamma = C\cap H$ of a
+general hyperplane section are in linearly general position, and thus impose independent conditions on quadrics
+(Reason: $d\leq (2(d-g)-1)$, and if we take any point $p$ away from $\Gamma$, then the remaining points lie in a
+quadric which is the union of two planes and does not contain $p$.) This implies that
+the restriction map $H^0(\sO_H(2)) \to H^0(\sO_\Gamma(2))$ is surjective, whence $H^1(\sI_\Gamma(2)) = 0.$
+Applying $H^1$ to exact sequence 
+$$
+0\to \sI_C(1) \to \sI_C(2) \to \sI_\Gamma(2) \to 0
+$$
+we see that $H^1(\sI_C(2))=0$.
+
+For $d>2$ we will show that the multiplication map
+$$
+H^0(\sO_C(1) \otimes H^0(\sO_C(d-1)\to H^0(\sO_{C}(d))
+$$
+is surjective. Since the corresponding map for $\PP^3$ is surjective, this implies that
+the restriction map
+$H^0(\sO_{\PP^3}(d)\to H^0(\sO_{C}(d))$
+is surjective, whence $H^1(\sI_{C}(d)) = 0$.
+
+For this we will use the \emph{base-point-free pencil trick}, just as in the proof of Theorem~\ref{canonical curves are ACM}:
+Let $V$ be a pair of sections of $H^0(\sO_{\PP^3}(1) = H^0(\sO_C(1)$, and consider the exact sequence
+$$
+0\to \wedge^2V \otimes \sO_C(d-2) \to V\otimes \sO_{C}(d-1))\to \sO_{C}(d))\to 0.
+$$
+Applying $H^0$ and using the fact that $H^1(\sO_C(d-2)) = 0$ completes the proof.
+\end{proof}
 
 \section{Syzygies and the Clifford index}
 
@@ -1173,8 +1244,27 @@ Conclude that if a different union $C'$ of 3 skew lines is linked to $C$, then $
 See~\cite{Migliore} for more examples of this type.
 \end{exercise}
 
-\begin{exercise} (Liaison addition)
+\begin{exercise} (Liaison addition)\label{Liaison addition}
 (From the unpublished Brandeis thesis of Phillip Schwartau): Show that if $(f, g)\subset I\cap J$ is a regular sequence,
- then $f I \cap gJ = (fg)$, and conclude that $D(fI+gJ) = D(I)+D(J)$
+ then $f I \cap gJ = (fg)$, and conclude that if $I,J$ are purely codimension 2 ideals
+ defining purely 1-dimensional schemes $C,C'$ in $\PP^3$
+ then  $(fI+gJ)$ defines a scheme $C''$ with $D(C'') = D(C) \oplus D(C')$.
+\end{exercise}
+
+\begin{exercise}(Basic double links)\label{Basic double links}
+The special case of the construction in Exercise~\ref{Liaison addition} in which $C'$ is trivial is already interesting. 
+
+\begin{enumerate}
+ \item Show that if $I$ is a purely codimension 2 ideal
+ defining a purely 1-dimensional scheme $C$ in $\PP^3$
+ and $(f, g)\subset I$ is a regular sequence, then
+ then  $(fI+g)$ defines a scheme $C'$ with $D(C') = D(C)(-g)$.
+
+ \item Show directly that, with notation as above, $C'$ is directly linked to $C$
+ in two steps. Since the degrees of the generators of $D(C')$ are more positive, this
+ is sometimes called an \emph{ascending double link}. Geometrically it amounts to taking the
+ union of $C$ with some  components that are complete intersections.
+ \end{enumerate}
+
 \end{exercise}
 \input{footer}
