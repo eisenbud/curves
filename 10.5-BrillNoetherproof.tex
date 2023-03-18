@@ -200,11 +200,11 @@ Now that we have our family $\cC \to \Delta$ of curves, specializing from a smoo
 
 \subsection{The Picard variety of a cuspidal curve}
 
-(will show: $\Pic(C_0) \cong \AA^g$ (or at least that it's $g$-dimensional)
+(will show: $\Pic(C_0) \cong \AA^g$ (or at least that it's $g$-dimensional))
 
 \subsection{The relative Picard variety}
 
-(will show/assert: the Picard varieties $\Pic(C_t)$ form a family over $\Delta$; the varieties $W^r_d(C_t)$ dform a subfamily; and, crucially, the codimension of the latter in the former is $\leq (r+1)(g-d+r)$ everywhere (we need this for regeneration)
+(will show/assert: the Picard varieties $\Pic(C_t)$ form a family over $\Delta$; the varieties $W^r_d(C_t)$ form a subfamily; and, crucially, the codimension of the latter in the former is $\leq (r+1)(g-d+r)$ everywhere (we need this for regeneration)
 
 \subsection{Limits of line bundles}
 
@@ -472,16 +472,9 @@ $$
 %$$
 %and our contradiction is even more of a contradiction!
 
-\section{Corollaries and extensions of our proof}
+\section{Brill-Noether with inflection}
 
- In the final section of this chapter, we'll see how we can deduce stronger forms of Brill-Noether using the ideas above.
-
-\subsection{Brill-Noether with inflection}
-
-\fix{this section is clearly left over from when Joe hoped to smooth cusps directly;
-and the level of breeziness is pretty high. needs to be fixed to get rid of this anachronism; and possibly some of it should be ``factified"}
-
-An easy modification of the argument above tells us something about the inflection points of linear series on a general curve $C$. We start with a definition.
+The approach we've taken here to the proof of Brill-Noether is particularly well-suited to analyzing the inflectionary behavior of linear series on a general curve; indeed, a small modification of the argument above allows us to prove a stronger form of the Brill-Noether statement. We start with a definition.
 
 \begin{definition}
 Let $C$ be a smooth curve of genus $g$ and $p_1,\dots,p_n \in C$ distinct points of $C$. If $\cD = (L,V)$ is a linear system on $C$ of degree $d$ and dimension $r$, we define the \emph{adjusted Brill-Noether number} of $\cD$ relative to the points $p_k$ to be
@@ -490,12 +483,15 @@ $$
 $$
 \end{definition}
 
+In these terms, our goal will be to prove the following stronger form of Brill-Noether
+
 \begin{theorem}\label{Brill-Noether with inflection}
 Let $(C;p_1,\dots,p_n)$ be a general $n$-pointed curve of genus $g$ (that is, let $C$ be a general curve and $p_1,\dots,p_n \in C$ general points; equivalently, let $(C;p_1,\dots,p_n)$ correspond to a general point of $M_{g,n}$). If $\cD$ is any linear system on $C$, then
 $$
 \rho(\cD; p_1,\dots,p_k) \geq 0.
 $$
 \end{theorem}
+
 
 \begin{proof}
 To start, let $\cC \to B$ be a family of curves as in the proof of Lemma~\ref{cusp smoothing lemma}. Let $\sigma_1, \dots, \sigma_n : B \to \cC$ be sections of $\cC \to B$ with $\sigma_k(0)$ a smooth point of $C_0$ for all $k$ (such sections can always be found after passing to an \'etale open neighborhood of $0 \in B$). Exactly as in the proof of Lemma~\ref{BN in family}, if the general curve $C_b$ in our family admits a $g^r_d$ $\cD$ with
@@ -526,47 +522,51 @@ $$
 a contradiction.
 \end{proof}
 
-\subsection{Brill-Noether with dimension}
+Note that the statement of Theorem~\ref{Brill-Noether with inflection} is an extension of the ``nonexistence" part of Brill-Noether. It raises the question of a converse: if $(C;p_1,\dots,p_n)$ is a general $n$-pointed curve of genus $g$, and we specify ramification sequences $\alpha^1, \dots, \alpha^n$, can we say that there exists a $g^r_d$ $\cD$ on $C$ with $\alpha_i(\cD, p_k) \geq \alpha^k_i$ for $k=1,\dots,n$ and $i = 0, \dots, r$? The answer is that it depends on a Schubert calculus calculation: if the product of the corresponding Schubert classes in $G(d-r, d+1)$ is nonzero, we can indeed assert the existence of such a linear series; and if the product is 0, we can deduce that no such linear series exists.
 
-Theorem~\ref{Brill-Noether with inflection} might at first glance seem relevant only to problems involving inflection, but in fact in can be used to prove results that have nothing to do with inflection points. For example, one consequence is the stronger form of Brill-Noether:
+Here is one way to state what we know without getting lost in the thicket of Schubert calculus:
 
-\begin{theorem}\label{BN with dimension}
-If $C$ is a general curve of genus $g$, then for any $d$ and $r$ with $\rho(g,r,d) \geq 0$,
-$$
-\dim W^r_d(C) = \rho(g,r,d).
-$$
-\end{theorem}
-
-\begin{proof}
-The idea of the proof is simple: if we had a $(\rho+1)$-dimensional family of $g^r_ds$ on $C$, then we could find one with nonzero ramification at $\rho+1$ general points of $C$, violating Theorem~\ref{Brill-Noether with inflection}. \fix{the equality needs this AND the other inequality, which
-comes from the determinantal codimension argument}
-
-This idea is easier to implement after specializing, so once more we go back to our family $\cC \to B$ of smooth curves specializing to a $g$-cuspidal curve $C_0$, with normalization $\PP^1$. The basic lemma is:
-
-\begin{lemma}\label{forced ramification}
-Let $\Sigma$ be a complete curve and let $\{ \cD_\lambda \}_{\lambda \in \Sigma}$ be a (nonconstant) family of $g^r_ds$ on $\PP^1$ parametrized by $\Sigma$. If $p \in \PP^1$ is any fixed point, then for at least one $\lambda \in \Sigma$ we have $w(\cD_\lambda,p)>0$.
-\end{lemma}
-
-\begin{proof}
-Embed $\PP^1$ in $\PP^d$ as a rational normal curve of degree $d$. Given a $(d-r-1)$-plane $\Lambda \subset \PP^d$, the hyperplanes in $\PP^d$ containing $\Lambda$ cut out a $g^r_d$ $\cD_\Lambda$ on $\PP^1$, and indeed every $g^r_d$ on $\PP^1$ can be described in this way for a unique $\Lambda$. The $g^r_d$s on $\PP^1$ are thus parametrized by the Grassmannian $\GG(d-r-1,d)$, and we can think of $\Sigma$ as a complete curve in $\GG(d-r-1,d)$.
-
-Consider now the hyperplanes $H \subset \PP^d$ such that the divisor $H \cap \PP^1$ has multiplicity $\geq r+1$ at $p$. These correspond to points in a linear space of codimension $r+1$ in $(\PP^d)^*$; in particular, their intersection is an $r$-plane $\Omega \subset \PP^d$, called the \emph{osculating plane} to the rational normal curve at $p$. The condition that a  $g^r_d$ $\cD_\Lambda$ have non-zero ramification at $p$---in other words, that $\cD_\Lambda$ contains a divisor with multiplicity $\geq r+1$ at $p$---is simply that $\Lambda \cap \Omega \neq \emptyset$. But the set of such $\Lambda$ is a hyperplane section of $\GG(d-r-1,d)$ under trhe Pl\"ucker embedding; in particular, any complete curve $\Sigma \subset \GG(d-r-1,d)$ must intersect it.
-\end{proof}
-
-Given this lemma, the proof of Theorem~\ref{BN with dimension} proceeds as follows. We know from the basic dimension estimates of Chapter~\ref{} that $\dim W^r_d(C) \geq \rho(g,r,d)$ for any $C$ \fix{this needs the existence theorem}; we have to show that we cannot have $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$. We argue as follows:
-
-First: if it were the case that $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$, we would have, after specializing and pulling back to $\PP^1$, at least a $(\rho + 1)$-dimensional family of $g^r_d$s on $\PP^1$, all of which had ramification weight at least $r$ at the points $q_i$ of $\PP^1$ lying over the cusps of $C_0$. 
-
-Secondly, we pick any $\rho + 1$ points $r_k \in \PP^1$ other than the $q_i$. Applying Lemma~\ref{forced ramification} repeatedly, we find that there is at least a $\rho$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$, a $(\rho - 1)$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$ and $p_2$, and so on; ultimately, we conclude that there is a $g^r_d$ $\cD$ on $\PP^1$ with ramification index at least $r$ at each $q_i$ and nonzero ramification index at each $r_k$. 
-
-Finally, we observe that the linear series $\cD$ has total ramification at least
-$$
-rg + \rho + 1 = (r+1)(d-r)+1
-$$
-at the points $q_i$ and $r_k$, once more violating the Pl\"ucker formula.
-\end{proof}
-
-We can combine Theorem~\ref{BN with dimension} and Theorem~\ref{Brill-Noether with inflection} into one theorem, more complicated but more inclusive:
+%%\subsection{Brill-Noether with dimension}
+%%
+%%Theorem~\ref{Brill-Noether with inflection} might at first glance seem relevant only to problems involving inflection, but in fact in can be used to prove results that have nothing to do with inflection points. For example, one consequence is the stronger form of Brill-Noether:
+%%
+%%\begin{theorem}\label{BN with dimension}
+%%If $C$ is a general curve of genus $g$, then for any $d$ and $r$ with $\rho(g,r,d) \geq 0$,
+%%$$
+%%\dim W^r_d(C) = \rho(g,r,d).
+%%$$
+%%\end{theorem}
+%%
+%%\begin{proof}
+%%The idea of the proof is simple: if we had a $(\rho+1)$-dimensional family of $g^r_ds$ on $C$, then we could find one with nonzero ramification at $\rho+1$ general points of $C$, violating Theorem~\ref{Brill-Noether with inflection}. \fix{the equality needs this AND the other inequality, which
+%%comes from the determinantal codimension argument}
+%%
+%%This idea is easier to implement after specializing, so once more we go back to our family $\cC \to B$ of smooth curves specializing to a $g$-cuspidal curve $C_0$, with normalization $\PP^1$. The basic lemma is:
+%%
+%%\begin{lemma}\label{forced ramification}
+%%Let $\Sigma$ be a complete curve and let $\{ \cD_\lambda \}_{\lambda \in \Sigma}$ be a (nonconstant) family of $g^r_ds$ on $\PP^1$ parametrized by $\Sigma$. If $p \in \PP^1$ is any fixed point, then for at least one $\lambda \in \Sigma$ we have $w(\cD_\lambda,p)>0$.
+%%\end{lemma}
+%%
+%%\begin{proof}
+%%Embed $\PP^1$ in $\PP^d$ as a rational normal curve of degree $d$. Given a $(d-r-1)$-plane $\Lambda \subset \PP^d$, the hyperplanes in $\PP^d$ containing $\Lambda$ cut out a $g^r_d$ $\cD_\Lambda$ on $\PP^1$, and indeed every $g^r_d$ on $\PP^1$ can be described in this way for a unique $\Lambda$. The $g^r_d$s on $\PP^1$ are thus parametrized by the Grassmannian $\GG(d-r-1,d)$, and we can think of $\Sigma$ as a complete curve in $\GG(d-r-1,d)$.
+%%
+%%Consider now the hyperplanes $H \subset \PP^d$ such that the divisor $H \cap \PP^1$ has multiplicity $\geq r+1$ at $p$. These correspond to points in a linear space of codimension $r+1$ in $(\PP^d)^*$; in particular, their intersection is an $r$-plane $\Omega \subset \PP^d$, called the \emph{osculating plane} to the rational normal curve at $p$. The condition that a  $g^r_d$ $\cD_\Lambda$ have non-zero ramification at $p$---in other words, that $\cD_\Lambda$ contains a divisor with multiplicity $\geq r+1$ at $p$---is simply that $\Lambda \cap \Omega \neq \emptyset$. But the set of such $\Lambda$ is a hyperplane section of $\GG(d-r-1,d)$ under trhe Pl\"ucker embedding; in particular, any complete curve $\Sigma \subset \GG(d-r-1,d)$ must intersect it.
+%%\end{proof}
+%%
+%%Given this lemma, the proof of Theorem~\ref{BN with dimension} proceeds as follows. We know from the basic dimension estimates of Chapter~\ref{} that $\dim W^r_d(C) \geq \rho(g,r,d)$ for any $C$ \fix{this needs the existence theorem}; we have to show that we cannot have $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$. We argue as follows:
+%%
+%%First: if it were the case that $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$, we would have, after specializing and pulling back to $\PP^1$, at least a $(\rho + 1)$-dimensional family of $g^r_d$s on $\PP^1$, all of which had ramification weight at least $r$ at the points $q_i$ of $\PP^1$ lying over the cusps of $C_0$. 
+%%
+%%Secondly, we pick any $\rho + 1$ points $r_k \in \PP^1$ other than the $q_i$. Applying Lemma~\ref{forced ramification} repeatedly, we find that there is at least a $\rho$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$, a $(\rho - 1)$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$ and $p_2$, and so on; ultimately, we conclude that there is a $g^r_d$ $\cD$ on $\PP^1$ with ramification index at least $r$ at each $q_i$ and nonzero ramification index at each $r_k$. 
+%%
+%%Finally, we observe that the linear series $\cD$ has total ramification at least
+%%$$
+%%rg + \rho + 1 = (r+1)(d-r)+1
+%%$$
+%%at the points $q_i$ and $r_k$, once more violating the Pl\"ucker formula.
+%%\end{proof}
+%
+%We can combine Theorem~\ref{BN with dimension} and Theorem~\ref{Brill-Noether with inflection} into one theorem, more complicated but more inclusive:
 
 \begin{theorem}\label{BN with inflection and dimension}
 Let $C$ be a smooth curve of genus $g$ and $p_1,\dots,p_n \in C$ distinct points; for $k = 1,\dots,n$ let $\alpha^k = (\alpha^k_0,\dots\alpha^k_r)$ be a nondecreasing sequence of nonnegative integers, and let
