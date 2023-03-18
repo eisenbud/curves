@@ -40,21 +40,21 @@ It was Altman and Kleiman who first proposed that Castelnuovo's approach to the 
 
 This is the approach to the study of linear series on a general curve we'll adopt here, with some modifications. For one thing, the relative strength of Theorem~\ref{} and Corollary~\ref{secant schubert proper} suggests that specializing to a $g$-cuspidal curve $C_0$ rather than a $g$-nodal one might produce stronger results, and that is what we will do here.
 
-
-\section{The Brill-Noether theorem}
-
-We recall the statement of the basic Brill-Noether theorem from Chapter~\ref{BNChapter}:
-
-\begin{theorem}\label{basic Brill Noether}
-Let $d,g,r$ be non-negative integers, and set 
-$$
-\rho =\rho(g,r,d) := g - (r+1)(g-d+r).
-$$
- \begin{enumerate}
-\item If $\rho \geq 0$, then every curve $C$ of genus $g$ possesses a $g^r_d$.
-\item If $\rho < 0$ then a general curve of genus $g$ does not possess a $g^r_d$.
-\end{enumerate}
-\end{theorem}
+%
+%\section{The Brill-Noether theorem}
+%
+%We recall the statement of the basic Brill-Noether theorem from Chapter~\ref{BNChapter}:
+%
+%\begin{theorem}\label{basic Brill Noether}
+%Let $d,g,r$ be non-negative integers, and set 
+%$$
+%\rho =\rho(g,r,d) := g - (r+1)(g-d+r).
+%$$
+% \begin{enumerate}
+%\item If $\rho \geq 0$, then every curve $C$ of genus $g$ possesses a $g^r_d$.
+%\item If $\rho < 0$ then a general curve of genus $g$ does not possess a $g^r_d$.
+%\end{enumerate}
+%\end{theorem}
 
 %
 %%To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. We don't a priori know how many sections $\cL$ will have, but if we fix a divisor $D = \sum p_i$ of degree $e \geq 2g-1-d$ and set $\cM:= \cL(D)$, we do know how many sections $\cM$ will have: since it has degree $d+e > 2g-2$, Riemann-Roch tells us that
@@ -92,10 +92,25 @@ Our first goal is to find a family $\{C_t\}$ of curves of arithmetic genus $g$, 
 This will be a special case of a general construction, informally called ``crimping." We can state the result as
 
 \begin{proposition}
-Let $C$ be any curve and $p \in C$ a smooth point. There exists a curve $C_0$ and a map $f : C \to C_0$
+Let $C$ be any curve and $p \in C$ a smooth point. There exists a curve $C_0$ and a map $f : C \to C_0$ such that the image $r=f(p) \in C_0$ is a cusp of $C_0$; and $f$ maps $C \setminus \{p\}$ isomorphically to $C_0 \setminus \{r\}$.
 \end{proposition}
 
-\subsection{Smoothing a cuspidal curve}
+Thus, if we start with $\PP^1$, pick any $g$ points $p_1,\dots, p_g \in \PP^1$ and crimp at each $p_i$, we arrive at a $g$-cuspidal curve $C_0$.
+
+\begin{proof}
+We can construct $C_0$ explicitly as a topological space with a structure sheaf.
+First, $C_0$ will be homeomorphic to $C$, so that's our topological space. And second, the structure sheaf $\cO_{C_0}$ will be the subsheaf of $\cO_C$ consisting of functions on $C$ whose derivative at $p$ is 0.
+\end{proof}
+
+\subsection{Smoothing a cuspidal curve}  We claim now that if $C_0$ is a curve with a finite number of cusps and no other singularities, then we can smooth $C_0$; that is, we can find a proper flat family $\cC \to \Delta$ with special fiber $C_0$ and all other fibers smooth. 
+
+To begin with, we can do this locally in the complex analytic setting: if $p \in C_0$ is a cusp, we can find an analytic neighborhood of $p$ in which $C_0$ is given by the equation $y^2 = x^3$; we can smooth this by taking the family
+$$
+y^2 = x^3 + a(t)x + b(t)
+$$
+where $a$ and $b$ are analytic functions of $t$ with $b'(0) \neq 0$.
+
+The next step is to argue that we can glue together these local smoothings to obtain a proper family $\cC \to \Delta$, and this is where we need to invoke a theorem from deformation theory. 
 
 
 %
@@ -153,21 +168,21 @@ Let $C$ be any curve and $p \in C$ a smooth point. There exists a curve $C_0$ an
 %$\widehat\cO_{C', r_i} \cong k[[x,y]]/(xy)$ as required, completing the construction.
 %\end{proof}
 %
-
-\subsubsection{Step 2: Castelnuovo's specialization}
-
-Next, Castelnuovo proposed analyzing a family of smooth curves specializing to a $g$-nodal one; in order to use this construction in a proof of Brill-Noether, we have to prove that such families exist. We'll state the lemma we need here:
-
-\begin{lemma}\label{specialization to nodal curve}
-Let $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ be distinct points, and $C_0$ the curve obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family of curves $\pi : \cC \to B$, where
-\begin{enumerate}
-\item $B$ is a smooth curve, with distinguished point $0 \in B$;
-\item for all $b \neq 0 \in B$, the fiber $C_b = \pi^{-1}(b)$ is a smooth, projective curve of genus $g$;  and
-\item the fiber over $0$ is the curve $C_0$.
-\end{enumerate}
-\end{lemma}
-
-This lemma will follow from the local geometry of Severi varieties, as worked out in Chapter~\ref{PlaneCurvesChapter}, and we defer the proof to that chapter.
+%
+%\subsubsection{Step 2: Castelnuovo's specialization}
+%
+%Next, Castelnuovo proposed analyzing a family of smooth curves specializing to a $g$-nodal one; in order to use this construction in a proof of Brill-Noether, we have to prove that such families exist. We'll state the lemma we need here:
+%
+%\begin{lemma}\label{specialization to nodal curve}
+%Let $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ be distinct points, and $C_0$ the curve obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family of curves $\pi : \cC \to B$, where
+%\begin{enumerate}
+%\item $B$ is a smooth curve, with distinguished point $0 \in B$;
+%\item for all $b \neq 0 \in B$, the fiber $C_b = \pi^{-1}(b)$ is a smooth, projective curve of genus $g$;  and
+%\item the fiber over $0$ is the curve $C_0$.
+%\end{enumerate}
+%\end{lemma}
+%
+%This lemma will follow from the local geometry of Severi varieties, as worked out in Chapter~\ref{PlaneCurvesChapter}, and we defer the proof to that chapter.
 
 %\begin{lemma}\label{BN in family}
 %If $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ are general points and $\cC \to B$ is a family of curves as described in Lemma~\ref{specialization to nodal curve} above, then for general $b \in B$ the fiber $C_b$ does not possess a $g^r_d$ with $\rho < 0$.
@@ -178,6 +193,34 @@ This lemma will follow from the local geometry of Severi varieties, as worked ou
 %\begin{theorem}\label{bare-bones BN}
 %A general curve $C$ of genus $g$ does not possess a $g^r_d$ with $\rho(g,r,d) < 0$.
 %\end{theorem}
+
+\section{The family of Picard varieties}
+
+Now that we have our family $\cC \to \Delta$ of curves, specializing from a smooth curve of genus $g$ to a $g$-cuspidal curve, the next step in our proof of Brill-Noether will be to relate linear series on the general fiber of our family to their limits on $C_0$.
+
+\subsection{The Picard variety of a cuspidal curve}
+
+(will show: $\Pic(C_0) \cong \AA^g$ (or at least that it's $g$-dimensional)
+
+\subsection{The relative Picard variety}
+
+(will show/assert: the Picard varieties $\Pic(C_t)$ form a family over $\Delta$; the varieties $W^r_d(C_t)$ dform a subfamily; and, crucially, the codimension of the latter in the former is $\leq (r+1)(g-d+r)$ everywhere (we need this for regeneration)
+
+\subsection{Limits of line bundles}
+
+We need to establish that the limit of a family of line bundles on $C_t$ for $t \neq 0$ has a torsion free sheaf of rank 1 as its limit, and describe torsion free sheaves of rank 1 on cuspidal curves.
+
+\section{Putting it all together}
+
+\subsection{Non-existence}
+
+Here we use Theorem~\ref{osculating intersection} from the last chapter to give the upper bound on the dimension of $W^r_d(C_0)$ (and hence, using our description of limits of $g^r_d$s on $C_t$ as linear series on partial normalizations of $C_0$, on the dimension of $W^r_d(C_t)$.
+
+\subsection{Existence}
+
+Now we use Corollary~\ref{intersection with sigma nonzero} from the last chapter to show that $W^r_d(C_0) \neq \emptyset$, and use  regeneration to deduce the existence part of Brill-Noether.
+
+\fix{The next few pages are a hodgepodge of bits and pieces of arguments that were relevant at some point. I'm keeping them around on the off-chance that some of them may be useful, but basically it all need to be rewritten in the context of the argument sketched in the section headings above}
 
 \subsubsection{Step 3: The Altman-Kleiman analysis}
 
