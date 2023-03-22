@@ -17,109 +17,204 @@ In this section we will allow our algebraically closed ground field to have arbi
 
 An irreducible and reduced curve
 $C\subset \PP^n$ over an algebraically closed field $k$, other than a line, is called \emph{strange} if
-all the tangent lines at smooth points of $C$ meet in a point $p\in \PP^n$. If this seems somewhat, well, strange, that may be because no such curves exist in characteristic 0: if it were the case that all the tangent lines at smooth points of $C$ met in a point, then the projection of $C$ from that point would have derivative 0 everywhere. But strange curves do exist in characteristic $p > 0$, albeit rarely: Pierre Samuel showed that the only \emph{smooth} curve that is strange (in any characteristic) is the conic in characteristic 2; a proof is given in \cite[Theorem IV.3.9]{Hartshorne1977}. Without the smoothness hypothesis there are other examples.
+all the tangent lines at smooth points of $C$ meet in a point $p\in \PP^n$. If this conditions seems somewhat, well, strange, that may be because no such curves exist in characteristic 0: if it were the case that all the tangent lines at smooth points of $C$ met in a point, then the projection of $C$ from that point would have derivative 0 everywhere. But strange curves do exist in characteristic $p > 0$, albeit rarely: Pierre Samuel showed that the only \emph{smooth} curve that is strange (in any characteristic) is the conic in characteristic 2; a proof is given in \cite[Theorem IV.3.9]{Hartshorne1977}. Without the smoothness hypothesis, however there are other examples; see Exercise~ref{strange curves}.
 
 Given this language, we can state our first result. Recall that if $C\subset \PP^n$ is a reduced curve then, by Bertini's theorem, a general hyperplane
-section of $C$ consists of smooth points. We have then
+section of $C$ consists of smooth points. 
 
 \begin{theorem} \label{basic linear independence}(\cite[Lemma 1.1]{Rathmann})\label{linear general position}
-If $C\subset \PP^n$ is a nondegenerate, irreducible, reduced curve that is not strange,
+Suppose that $n\geq 3$. If $C\subset \PP^n$ is a nondegenerate irreducible, reduced curve, that is not neither strange
 and $H$ is a general hyperplane, then any $n$ points of $H\cap C$ are
 linearly independent.
 \end{theorem}
 
-The following result is a step in the proof that is useful in other contexts too. 
-A \emph{multiple secant} or \emph{multisecant} line to a curve $C\subset \PP^n$ is a line whose
-scheme-theoretic intersection with $C$ has length $\geq 3$.  A \emph{stationary
-secant} is a line joining two smooth points $r,s\in C$ such that the tangent lines
-to $C$ at $r$ and $s$ meet. For example, if $C$ is planar then every line in the plane
-spanned by $C$ is a stationary secant; if $\deg C\geq 3$ then every
-line in the plane is a multisecant as well. 
-
-\begin{lemma}\label{incident tangents}
-If $C\subset \PP^n$ is a non-strange, non-planar reduced irreducible curve, then
-a general secant line is neither multiple nor stationary.
-\end{lemma}
-
-\begin{proof}
- By projection we may reduce to the case $n=3$. Consider a projection $\pi_p$
-from a general point $p\in C\subset \PP^3$, with image $C'\subset \PP^2$. If the projection were inseparable, then
-every tangent line to $C$ at a smooth point would pass through $p$, so $C$ would be strange.
-Thus if $q\in C'$ is a general point, then $\pi_p$ is unramified at $q$,
-and the secant line corresponding to $q$ meets $C$ in distinct smooth points $r,s$
-in addition to $p$.
-
-Arguing by contradiction, suppose first that every secant is a multi-secant.
-Since the tangent lines at $r,s$ both map to the tangent line at $q$,
-they span a plane, and thus intersect
-in a point. It follows that for an open set of pairs of points
-$(r,s)\in C\times C$, the tangent lines at $r$ and $s$ intersect. 
-
-Any three lines in $\PP^3$ that meet each other pairwise must all pass through
-a single point or all lie in a plane. Since each pair of tangent lines at general points meet, they must all pass through
-a single point, the intersection of any two, or lie in a single plane, the span of any two. Thus if all pairs of tangent lines to $C$ at smooth points intersect, then all either
-pass through a common point or all lie in a common plane. In the first case the curve would be strange,
-while in the second case the curve would be planar, contradicting our hypotheses. \end{proof}
-
-The family of secant lines is naturally an algebraic variety, and the stationary and multiple secant lines are subvarieties: let $C\subset \PP^n$ be a reduced irreducible curve. Since $C$ has only finitely many singular points, we may ignore them, and let $C_0$ be its smooth locus. Consider first the ``universal secant''
+For example, the theorem says that for $C \subset \PP^3$, the general hyperplane section does not contain a line
+that meets $C$ 3 or more times---a \emph{multisecant}. Another special configuration which is not present, as it turns out,
+is any pair of points $p\neq q$ on $C$ such that the the tangent lines $T_p(C), T_q(C)$ to $C$ at $p$ and $q$ intersect---what was classically
+called a \emph{staionary secant}. More formally we define two subsets of the symmetric square $C_2$ of $C$:
 $$
-I := \{((p,q), r)\in C_0^{(2)}\times \PP^n \mid r\in \overline{p,q}\}
+\begin{aligned}
+ mult(C) &:=\{(p,q) \in C_2 \mid \overline{p,q} \hbox{meets $C$ in a scheme of length $\geq 3$}\};\\
+stat(C) &:= \{(p,q) \in C_2\setminus \Delta \mid  \hbox{meets $C$ in a scheme of length $\geq 3$}\},
+\end{aligned}
 $$
-where $C_0^{(2)}$ denotes the symmetric square of $C_0$, and $\overline{p,q}\cong \PP^1$ denotes the linear span of $p,q$.
-The fibers of the projection $I \to C_0^{(2)}$ are all isomorphic to $\PP^1$,
-so $I$ is smooth and irreducible of dimension 3. Stationary secants
-make sense only for secants at pairs of distinct points, so we 
-also consider $C_0^{(2)}\setminus \Delta$, where $\Delta$ denotes the diagonal.
+where $\overline{p,q}$ denotes the secant line through $p,q$ (or the tangent line if $p=q$ and $\Delta\subset C_2$
+is the diagnal.
+Clearly if $C$ is strange or planar then $stat(C) = C_2$. If $C$ is planar with $\deg C>2$ then $mult(C) = C_2$ as well.
+It turns out that these are the only cases:
 
-\begin{proposition}
-With notation above, subset of $C_0^{(2)}$ corresponding to 
-multiple secants  is closed, and the subset of 
-$C_0^{(2)}\setminus \Delta$ corresponding to stationary secants is also closed. 
+\begin{proposition}\label{mult and stat}
+ If $C\subset \PP^n$ is a reduced, irreducible, curve that is neither planar nor strange, the $mult(C)\subset C_2$
+ and $stat(C)\subset C_2\setminus \Delta$ are closed subsets of dimension $\leq 1$.
 \end{proposition}
 
 \begin{proof}
-To deal with multisecants, we consider the projection 
+To show that $mult(C)$ is closed, consider the finite morphism 
 $$
-\rho: I\cap C_0^{(2)}\times C \to C_0^{(2)}.
+\{((p,q), r) \in C_2\times \PP^n \mid r \in \overline{p,q}\} \to C : ((p,q),r)\mapsto r.
 $$
-The map is projective, and the preimage of a point $(p,q)\in C_0^{(2)}$ is the scheme-theoretic intersection of $\overline{p,q}$ with
-$C$, which is finite, so the map is finite. The degree of the fibers is therefore semicontinuous (it is the local number of generators of the pushforward of
-the structure sheaf of the intersection), and thus the set of multisecants, which is the set of points of $C_0^{(2)}$ where the length of the 
-fiber is $>2$, which is closed.
+By the semicontinuity of the degree of fiber dimension, the set of points lying in fibers
+of length $\geq 3$ is closed, and $mult(C)$ is the image of this set. Because the map is finite, this shows that
+$mult(C)$  is closed as well.
 
-To treat the case of stationary tangents, let  
+Similarly since 
 $$
-I' := \{((p,q), r)\in (C_0^{(2)}\setminus \Delta)\times \PP^n \mid r \in T_p(C) \cap T_q(C)\}.
+\{((p,q), r) \in C_2\setminus \Delta\times \PP^n \mid r \in T_p(C)\cup T_q(C) \}
 $$
-which is clearly a closed subset of $((p,q), r)\in (C_0^{(2)}\setminus \Delta)\times \PP^n.$
-Since the projection to $(C_0^{(2)}\setminus \Delta)$ is a projective map,
-the image, which corresponds to the set of stationary tangents, is closed
-in $(C_0^{(2)}\setminus \Delta)$
+is closed in $C_2\setminus Delta\times \PP^n$, its image under the first projection,
+which is $stat(C)$, is closed in $C_2\setminus \Delta$
+
+Suppose, contrary to the Proposition, that $\dim stat(C) >1$. Since $stat(C)$ is a closed subset of the irreducible variety $C_2\setminus \Delta$ it
+follows that $stat(C) = C_2\setminus \Delta$. Now any three
+lines that meet pairwise must be either coplanar or meet in a point. Thus if $C$ is not strange,
+the all all the tangents to $C$ lie in a common plane, and $C$ planar, contradicting our hypothesis
+and proving that $\dim stat(C)\leq 1$.
+
+Finally, suppose, contrary to the Proposition,  that $\dim mult(C)>1$. As in the previous argument, this
+implies that every secant is a multisecant.  We will show in this case that $\dim stat(C) =2$, a contradiction. 
+
+To this end, consider the incidence correspondence
+$$
+\begin{diagram}
+I := \{(p,r,r')\in C^3 \mid p,r,r' \hbox{ are distinct smooth points of $C$} \\
+\hbox{such that $\pi_p(r) = \pi_p(r')$ is a smooth point of $\pi_p(C)$.}\},
+\end{diagram}
+$$
+where $\pi_p$ denotes the projection of $C$ from $p$.
+The tangent lines $T_r(C)$ and $T_{r'}(C)$ both project from $p$ to the tangent line $T_{\pi_p(r)}(\pi_C)$,
+and thus they line in the 2-plane spanned by $p$ and this line; thus $(r,r') \in stat(C)$.
+The projection $(p,r,r') \mapsto (r,r')$ is finite since the secant line $\overline{r,r'}$ meets $C$ in only finitely many points, 
+so $\dim I \leq \dim stat(C)$. If the projection from some point $p$ were everywhere ramified,
+then all tangents to $C$ would pass through $p$, and $C$ would be strange.
+Since also every secant to $C$ is a multisecant it follows that  for every smooth point $p\in C$ there is an open set of points $q\in \pi_p(C)$ such that
+the fiber $\pi_p^{-1}(q)$ contains two distinct points of $C$. Thus the projection of $I$ to the first factor $p$ maps
+$I$ onto $C$, with 1-dimensional fibers, so $I$ and thus also $stat(C)$ has dimension 2. \end{proof}
+
+
+\begin{proof}[Proof of Theorem~\ref{linear general position}]
+First suppose that $n=3$, and consider the incidence correspondence
+$$
+I := \{ ((p,q), H) \in mult(C) \times \PP^{3\vee} \mid \overline{p,q}\in H\}.
+$$
+Since $\dim \overline{p,q} = 1$, the fibers of the projection of $I$ to $mult(C)$ have dimension 1,
+so $\dim I = 1+\dim mult(C)  \leq 2$. Consequently the image of  the projection of $I$ to $\PP^{3\vee}$ has
+dimension $\leq 2$, so there is an open set of planes that contain no multisecants, proving the Theorem in this case.
+
+We next do induction on $n\geq 4$.We will show first that the image $C$ of
+$C$ under the projection $\pi_p: C\to C'$ from a general point of $C$ is not strange.
+By Proposition~\ref{mult and stat} we may choose two smooth points
+$r,r'\in C\subset \PP^n$ such that $T_r(C)\cap T_{r'}(C) = \emptyset$, so 
+$T_r(C)$ and $T_{r'}(C)$ together span a 3-plane $L$. Since $C$ is nondegenerate we may
+choose a point $p\in C$ outside $L$, and it follows that $\pi_p$ restricted to $L$ is an isomorphism.
+Thus $T_{\pi_p(r)}(C') \cap T_{\pi_p({r'})}(C') = \emptyset$, so $C'$ is not strange, 
+and since $n\geq 4$ the curve $C'$ is not planar either.
+
+Consider the varieties
+$$
+\begin{aligned}
+I_1 &= \{(p,H) \in C \times \PP^{n*} \mid p\in H \hbox{ and some subset of $n$ points of $H\cap C$
+that contains $p$ is dependent}\}\\
+\subset 
+I &= \{(p,H) \in C \times \PP^{n*} \mid p\in H \hbox{ and some subset of $n$ points of $H\cap C$ is dependent}\}.
+\end{aligned}
+$$
+Suppose that the general hyperplane in $\PP^n$---and therefore every hyperplane in $\PP^n$---contains 
+a dependent set of $n$ points. It follows that the first projection of $I$ is surjective, with all fibers
+isomorphic to $\PP^{n-1}$, so $I$ is irreducible of dimension $n$. But the projection of $I_1$ to $\PP^{n*}$ is also
+surjective, so $\dim I_1 = \dim I$, and $I_1$ is closed in $I$, 
+%\fix{say why}
+so they are equal, and $p$ is part of a dependent set
+$\{p, p_2,\dots, p_n\}$ in every hyperplane containing $p$. 
+%\fix{this seems to be a weak form of the uniform position lemma -- without char 0}
+
+Let $H'$ be a general hyperplane in $\PP^{n-1}$
+and let $H = \pi_p^{-1}(H')$, which is a general hyperplane containing $p$. The intersection $H\cap C$
+contains $n$ dependent points $\{p, p_2,\dots, p_n\}$, and it follows that $\pi_p(p_2,\dots \pi_p(p_n)$
+are dependent points of $H'\cap C'$, contradicting the induction hypothesis, and proving that
+the general hyperplane section of $C$ is in linearly general position.
 \end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{basic linear independence}]
-The set of hyperplanes in $\PP^n$ whose intersection with $C$ is in linearly general position is open in $\PP^{n*}$ so it suffices to show that this set is nonempty. 
-
-If $n=3$ consider the projection $\Gamma = \{ ((p,q), H) \in C_2 \times {\PP^3}^\vee \mid p,q \in H\} \to C_2$.
-Since the set of $(p,q)$ definining a multisecant has dimension $\leq 2$, not every plane in $\PP^3$
-contains a multi-secant, as required.
-
-Thus we may suppose $n\geq 4$, and do induction on $n$.
-
-Choose general points $q,r\in C$, and let $V\subset \PP^n$ be the projective space spanned by the tangent lines at $q,r$. Since $C$ is not strange, $V$ is 3 dimensional.
-Let $p\in C$ be a general point; since $C$ is nondegenerate and $n\geq 4$, the point $p$ is not in $V$. 
-
-Since not every secant is a multisecant and $p\in C$ is general,
-projection $\pi_p$ from $p$ is birational onto its
- image $C'\subset \PP^{n-1}$. Because $p\notin V$, the restriction of $\pi_p$ to $V$
- is an isomorphism, so the image of the tangent lines at $q$ and $r$, which are
- the tangent lines to $C'$ at $\pi_p(q)$ and $\pi_p(r)$, do not meet. Thus
- $C'$ is not strange. 
-
-Let $d= \deg C$. By induction there is a hyperplane $H'\subset \PP^{n-1}$ whose
-intersection with $C'$ consists of $d-1$ points in linearly general position. In this case the span of $H' \cup \{p\}$ is a hyperplane in
-$\PP^n$ whose points project to the points of $H'\cap C'$, together with $p$ and, because $p$ is not in the span of $C'$, this is a set in linearly general position.
-\end{proof}
+ 
+ 
+ 
+% 
+% By projection we may reduce to the case $n=3$. Consider a projection $\pi_p$
+%from a general point $p\in C\subset \PP^3$, with image $C'\subset \PP^2$. If the projection were inseparable, then
+%every tangent line to $C$ at a smooth point would pass through $p$, so $C$ would be strange.
+%Thus if $q\in C'$ is a general point, then $\pi_p$ is unramified at $q$,
+%and the secant line corresponding to $q$ meets $C$ in distinct smooth points $r,s$
+%in addition to $p$.
+%
+%Arguing by contradiction, suppose first that every secant is a multi-secant.
+%Since the tangent lines at $r,s$ both map to the tangent line at $q$,
+%they span a plane, and thus intersect
+%in a point. It follows that for an open set of pairs of points
+%$(r,s)\in C\times C$, the tangent lines at $r$ and $s$ intersect. 
+%
+%Any three lines in $\PP^3$ that meet each other pairwise must all pass through
+%a single point or all lie in a plane. Since each pair of tangent lines at general points meet, they must all pass through
+%a single point, the intersection of any two, or lie in a single plane, the span of any two. Thus if all pairs of tangent lines to $C$ at smooth points intersect, then all either
+%pass through a common point or all lie in a common plane. In the first case the curve would be strange,
+%while in the second case the curve would be planar, contradicting our hypotheses. \end{proof}
+%
+%The family of secant lines is naturally an algebraic variety, and the stationary and multiple secant lines are subvarieties: let $C\subset \PP^n$ be a reduced irreducible curve. Since $C$ has only finitely many singular points, we may ignore them, and let $C_0$ be its smooth locus. Consider first the ``universal secant''
+%$$
+%I := \{((p,q), r)\in C_0^{(2)}\times \PP^n \mid r\in \overline{p,q}\}
+%$$
+%where $C_0^{(2)}$ denotes the symmetric square of $C_0$, and $\overline{p,q}\cong \PP^1$ denotes the linear span of $p,q$.
+%The fibers of the projection $I \to C_0^{(2)}$ are all isomorphic to $\PP^1$,
+%so $I$ is smooth and irreducible of dimension 3. Stationary secants
+%make sense only for secants at pairs of distinct points, so we 
+%also consider $C_0^{(2)}\setminus \Delta$, where $\Delta$ denotes the diagonal.
+%
+%\begin{proposition}
+%With notation above, subset of $C_0^{(2)}$ corresponding to 
+%multiple secants  is closed, and the subset of 
+%$C_0^{(2)}\setminus \Delta$ corresponding to stationary secants is also closed. 
+%\end{proposition}
+%
+%\begin{proof}
+%To deal with multisecants, we consider the projection 
+%$$
+%\rho: I\cap C_0^{(2)}\times C \to C_0^{(2)}.
+%$$
+%The map is projective, and the preimage of a point $(p,q)\in C_0^{(2)}$ is the scheme-theoretic intersection of $\overline{p,q}$ with
+%$C$, which is finite, so the map is finite. The degree of the fibers is therefore semicontinuous (it is the local number of generators of the pushforward of
+%the structure sheaf of the intersection), and thus the set of multisecants, which is the set of points of $C_0^{(2)}$ where the length of the 
+%fiber is $>2$, which is closed.
+%
+%To treat the case of stationary tangents, let  
+%$$
+%I' := \{((p,q), r)\in (C_0^{(2)}\setminus \Delta)\times \PP^n \mid r \in T_p(C) \cap T_q(C)\}.
+%$$
+%which is clearly a closed subset of $((p,q), r)\in (C_0^{(2)}\setminus \Delta)\times \PP^n.$
+%Since the projection to $(C_0^{(2)}\setminus \Delta)$ is a projective map,
+%the image, which corresponds to the set of stationary tangents, is closed
+%in $(C_0^{(2)}\setminus \Delta)$
+%\end{proof}
+%
+%\begin{proof}[Proof of Theorem~\ref{basic linear independence}]
+%The set of hyperplanes in $\PP^n$ whose intersection with $C$ is in linearly general position is open in $\PP^{n*}$ so it suffices to show that this set is nonempty. 
+%
+%If $n=3$ consider the projection $\Gamma = \{ ((p,q), H) \in C_2 \times {\PP^3}^\vee \mid p,q \in H\} \to C_2$.
+%Since the set of $(p,q)$ definining a multisecant has dimension $\leq 2$, not every plane in $\PP^3$
+%contains a multi-secant, as required.
+%
+%Thus we may suppose $n\geq 4$, and do induction on $n$.
+%
+%Choose general points $q,r\in C$, and let $V\subset \PP^n$ be the projective space spanned by the tangent lines at $q,r$. Since $C$ is not strange, $V$ is 3 dimensional.
+%Let $p\in C$ be a general point; since $C$ is nondegenerate and $n\geq 4$, the point $p$ is not in $V$. 
+%
+%Since not every secant is a multisecant and $p\in C$ is general,
+%projection $\pi_p$ from $p$ is birational onto its
+% image $C'\subset \PP^{n-1}$. Because $p\notin V$, the restriction of $\pi_p$ to $V$
+% is an isomorphism, so the image of the tangent lines at $q$ and $r$, which are
+% the tangent lines to $C'$ at $\pi_p(q)$ and $\pi_p(r)$, do not meet. Thus
+% $C'$ is not strange. 
+%
+%Let $d= \deg C$. By induction there is a hyperplane $H'\subset \PP^{n-1}$ whose
+%intersection with $C'$ consists of $d-1$ points in linearly general position. In this case the span of $H' \cup \{p\}$ is a hyperplane in
+%$\PP^n$ whose points project to the points of $H'\cap C'$, together with $p$ and, because $p$ is not in the span of $C'$, this is a set in linearly general position.
+%\end{proof}
 
 
 \section{Existence of good projections}\label{projection section}\label{good projections}
@@ -166,7 +261,7 @@ Theorem~\ref{basic linear independence}  allows us to analyze the case of equali
 (Theorem~\ref{Martens' inequality}.
 To start, recall the statement:
 
-\begin{theorem}[Martens' theorem]\label{full Martens}
+\begin{theorem}(Martens)\label{full Martens}
 If $C$ is any smooth projective curve of genus $g$, then for any $r>d-g$ we have
 $$
 \dim W^r_d(C) \leq d-2r.
@@ -178,7 +273,7 @@ a single point.
 
 Note that the inequality $\dim W^r_d(C) \leq d-2r$ is equivalent to the inequality $\dim C^r_d \; \leq \; d-r$, which is what we actually showed in Chapter~\ref{new Jacobians chapter}. This in turn followed by combining the geometric form of Riemann-Roch with an elementary bound on the dimension of the variety of secant planes to a curve in projective space:
 
-\begin{lemma}[elementary secant plane lemma]
+\begin{lemma}(Elementary secant plane lemma)
 Let $C \subset \PP^n$ be a smooth, irreducible and nondegenerate curve. If we denote by $\Sigma \subset C_d$ the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$, then for any $d \leq n$ and $r > 0$,
 $$
 \dim \Sigma \leq d-r.
@@ -187,7 +282,7 @@ $$
 
 Theorem~\ref{basic linear independence} allows us to do exactly one better: 
 
-\begin{lemma}[strong secant plane lemma]\label{Strong secant plane lemma}
+\begin{lemma}(strong secant plane lemma)\label{Strong secant plane lemma}
 Let $C \subset \PP^n$ be a smooth, irreducible and nondegenerate curve. If we denote by $\Sigma^r_d \subset C_d$ the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$, then for any $d \leq n$ and $r > 0$,
 $$
 \dim \Sigma^r_d \leq d-r-1.
@@ -202,7 +297,7 @@ $$
 The curve being nondegenerate, the projection map $\Gamma \to  {\PP^n}^*$ is finite. But the fibers of $\Gamma$ over $\Sigma^r_d$ have dimension at least $n-d+r$; if we had $\dim \Sigma^r_d \geq d-r$, it would follow that $\dim \Gamma \geq n$, and hence that the projection map $\Gamma \to  {\PP^n}^*$ is dominant---contradicting Theorem~\ref{basic linear independence}.
 \end{proof}
 
-\begin{proof}[Proof of the case of equality in Martens' theorem]
+\begin{proof}[Proof of the case of equality in Martens theorem]
  Now, if a curve $C$ is non-hyperelliptic, we can apply the strong secant plane lemma to the canonical curve. Except for the trivial cases $d=r=0$ and $d=2g-2, r=g-1$,
  we can apply Lemma~\ref{Strong secan plane lemma} to conclude that $\dim W^r_d(C) \leq d-2r-1$; it follows that if we have $\dim W^r_d(C) = d-2r$ the curve $C$ in question must be hyperelliptic.
 \end{proof}
