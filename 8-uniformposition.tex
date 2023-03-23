@@ -4,13 +4,51 @@
 
 \chapter{Hyperplane sections of a curve}\label{uniform position}
 
-One way to study a curve in $\PP^n$ is to use properties of its hyperplane sections. In this chapter, we will take up the question: if $C \subset \PP^n$ is a reduced, irreducible and nondegenerate curve, what can we say about the geometry of a general hyperplane section $\Gamma = C \cap H$ of $C$?
+One way to study a curve in $\PP^n$ is to use properties of its hyperplane sections. In this chapter, we will take up the question: if $C \subset \PP^n$ is a reduced, irreducible and nondegenerate curve, what can we say about the geometry of the points in the  hyperplane section $\Gamma = C \cap H$ of $C$ of a curve, and what more can we say about a general hyperplane section?
 
-In the first section, we prove a result originally due to Castelnuovo, that any $n$ points of $\Gamma$ are linearly independent. Our proof also allows us to deduce the statement in arbitrary characteristic, if we add the hypothesis that $C$ is smooth (but see Exercise~\ref{strange curves} for
-interesting singular examples in positive characteristic). 
+We begin by showing that the points in every hyperplane section span the hyperplane. Then, in the second section, we prove a result originally due to Castelnuovo, that in the case of a general hyperplane section, \emph{every} substset of $n$ points in a spans the hyperplane; that is, any $n$ points of $\Gamma$ are linearly independent. (This 
+holds for smooth curves in arbitrary characteristic (but see Exercise~\ref{strange curves} for
+interesting counterexamples of singular examples in positive characteristic). 
 
 In the following sections we give a series of applications of this result. Then, in Section~\ref{uniform position section} we return to the characteristic 0 case to prove the much stronger \emph{uniform position lemma}. Finally we give some applications
 of this stronger result.
+\section{Arbitrary hyperplane sections}
+
+\begin{proposition}\label{arbitrary hyperplane}
+If $C\subset \PP^r$ is a nondegenerate, reduced, irreducible curve, and $H$ is a hyperplane, then the subscheme
+$\Gamma := H\cap C$ spans $H$; that is, $H^0(\sI_{\Gamma/H}(1)) = 0$.
+\end{proposition}
+
+See Exercise~\ref{arbitrary hyperplane examples} for the necessity of the hypotheses.
+
+Geometrically: since $C$ is nondegenerate, reduced, and irreducible, every hyperplane meets $C$ in a finite subscheme.
+if $\Gamma$ spanned only a codimension 2 plane $\Lambda$, then in the family of hyperplanes
+containing $\Lambda$ there would be some meeting $C$ in a finite scheme of degree more than $\deg \Gamma = \deg C$
+points, a contradiction. Here is a more formal argument:
+
+\begin{proof}
+Write $h\in H^0\sO_{\PP^n}(1)$ for the linear form vanishing on $H$.
+Because $C$ is reduced irreducible and nondegenerate,
+$h$ is a nonzerodivisor modulo $\sI_C$, and thus
+we have 
+$$
+\begin{aligned}
+\sI_{C/\PP^n}/h\sI_{C/\PP^n} &= \sI_{C/\PP^n}/h\sI_{C/\PP^n} \\
+&= \sI_{C/\PP^n}/((h)\cap\sI_{C/\PP^n})\\
+ &=(\sI_{C/\PP^n}+(h))/(h)\\
+ &= \sI_{\Gamma/H}.
+\end{aligned}
+ $$
+ Frrom this equality we get an exact sequence
+ $$
+0\to \sI_C \rTo^h \sI_C(1)\to \sI_\Gamma(1)\to 0.
+$$
+Again because $C$ is reduced and irreducible, $H^0\sO_C$ contains only the constant function, so the map $H^0(\sO_{\PP^n}) \to H^0(\sO_C)$ is surjective, 
+from which it follows that $H^1(\sI_{C/\PP^n}) = 0.$ 
+Thus the restriction map $H^0(\sI_C(1))\to H^0(\sI_\Gamma(1))$ is surjective. Since
+$C$ is nondegenerate, $H^0(\sI_C(1)) = 0$, and the desired result follows.
+\end{proof}
+
 
 \section{Linearly general position}
 In this section we will allow our algebraically closed ground field to have arbitrary characteristic. 
@@ -400,8 +438,6 @@ p_a \leq \pi(d,r).
 $$
 \end{theorem}
 
-In our proof we will use characteristic 0, but in fact the result holds in all characteristics.
-
 We will say that a curve achieving the bound is a \emph{Castelnuovo curve}. We will see in Chapter~\ref{} that the bound is sharp: for every $r$ and $d \geq r$, there exist curves with genus exactly $\pi(d,r)$. 
 
 \begin{example}
@@ -420,7 +456,7 @@ shows that these are the only Castelnuovo curves in $\PP^3$.
 \end{example}
 
 \begin{fact}
-A famous theorem of Gruson and Peskine~\ref{Gruson-Peskine} (see \ref{Hartshorne-report} for an exposition and also the cases of characteristic $>0$ and small fields) completes the picture of the possibilities for the degree $d$ and  genus $g$  of a smooth curve in $\PP^3$. First, if the curve does not lie on a plane or a quadric, then
+A famous theorem of Gruson and Peskine~\ref{Gruson-Peskine} (see \ref{Hartshorne-report} for an exposition and also the cases of characteristic $>0$ and small fields) completes the picture of the possibilities for the degree $d$ and  genus $g$  of a smooth curve in $\PP^3$. If the curve does not lie on a plane or a quadric, then
 $$
 g\leq \pi_1(d,3) := \frac{d^2-3d}{6} +1
 $$
@@ -439,7 +475,7 @@ To prove Theorem~\ref{Castelnuovo's bound}, we will give lower bounds for the di
 For the proof, the following definition will be convenient:
 
 \begin{definition}
-If $\sV = (V,\cL)$ is a linear system on a variety and $\Gamma$ is a subscheme then the number of conditions
+If $\sV = (V,\cL)$ is a linear system on a variety $X$ and $\Gamma$ is a subscheme then the number of conditions
 imposed by $\Gamma$ on $\sV$ is the dimension of the image of $V$ in $H^0(\sL\mid_\Gamma) = H^0(\sL \otimes \sO_\Gamma)$; or, numerically,
 $$
 \dim(V) - \dim \left(V \cap H^0(\cL\otimes \cI_{\Gamma/X}) \right).
@@ -455,10 +491,10 @@ H^0(\cO_{\PP^r}(m)) \to H^0(\cO_C(m)).
 $$
 Since the ideal sheaf of the hyperplane section is $\cI_{\Gamma/C} = \sO_C(-1)$ we have:
 \begin{align*}
-h^0(\cO_C(m)) - h^0(\cO_C(m-1)) & \geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_C(m))$} \\
+h^0(\cO_C(m)) - h^0(\cO_C(m-1)) & = \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_C(m))$} \\
 &\geq \text{\# of conditions imposed by $\Gamma$ on $V_m$} \\
-&\geq \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$} \\
-&\geq h_\Gamma(m).
+&= \text{\# of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$} \\
+&= h_\Gamma(m).
 \end{align*}
 Summing these relations, we see that the dimension $h^0(\cO_C(m))$ is bounded below by
 $$
@@ -745,8 +781,13 @@ divisors equivalent to $D$ are sums of the fibers of the map given by $|K|$.
 
 
 \section{Exercises}
+\begin{exercise}\label{{arbitrary hyperplane examples}}
+Let $C_1$ be the union of two skew lines in $\PP^3$, and let $C_2$ be the double line on a smooth quadric in $\PP^3$.
+Show that there are hyperplane sections of $C_1$ and of $C_2$ that violate the conclusion of Proposition~\ref{arbitrary hyperplane}.
+\end{exercise}
 
 \begin{exercise}
+
 Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\widetilde C = \nu_m(C)$ be image of $C$. Prove:
 
 \begin{proposition}[Proposition~\ref{nodal projection} in characteristic $p$]\label{positive characteristic nodes}
