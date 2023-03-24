@@ -1,6 +1,6 @@
 \input header.tex
 
-\chapter{Jacobians}\label{Jacobians chapter}\label{new Jacobians chapter}
+\chapter{Jacobians}\label{Jacobians chapter}\label{new Jacobians chapter}\label{JacobianChapter}
 
 
 An essential construction in studying a curve $C$ is the association to a divisor  of an invertible sheaf---in other words, the map
@@ -23,8 +23,10 @@ the 20th century, and was the reshaped by Grothendieck and his school. The inter
 modern theory of the scheme of divisors and the Picard scheme in the exposition~\cite{Kleiman-PicardScheme}. We will give
 more specific references to this text as we go, and the reader will find extensive references to the original literature there.
 
-As an application of the mere existence of the spaces $C_d$ and $\Pic_d$, we show in Theorem~\ref{g+3 theorem} that a general divisor of degree $g+3$ on any curve of genus $g$ gives rise to an embedding in $\PP^3$ as a curve of degree $g+3$. Similar techniques, in Section~\ref{g+2 section} show that a general divisor of degree $g+2$ on any curve gives a birational morphism to a plane curve of degree $g+2$. Moreover, if the curve is not hyperelliptic then its image in $\PP^2$ has  only nodes
-as singularities, while in the hyperelliptic case its only singularity is one ordinary $g$-fold point. 
+As an application of the mere existence of the spaces $C_d$ and $\Pic_d$, we show in Section~\ref{g+3 section} that a general divisor of degree $g+3$ on any curve of genus $g$ gives rise to an embedding in $\PP^3$ as a curve of degree $g+3$, and there are related results for general divisors of degree $g+2$ and $g+1$. 
+
+%Similar techniques, in Section~\ref{g+2 section} show that a general divisor of degree $g+2$ on any curve gives a birational morphism to a plane curve of degree $g+2$. Moreover, if the curve is not hyperelliptic then its image in $\PP^2$ has  only nodes
+%as singularities, while in the hyperelliptic case its only singularity is one ordinary $g$-fold point. 
 
 \section{Symmetric products and the universal divisor}\label{symmetric section}
 
@@ -51,13 +53,15 @@ From the universal property it is clear that a fine moduli space for divisors of
 If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. The following result shows that this definition reflects the desired geometry: 
 
 \begin{theorem}\label{finite invariant theory}
+
  The map $\pi: X\to X/G$ induced by the inclusion of rings is finite. If $X$ is a normal variety, then the fibers of $\pi$  are the orbits of $G$.
+ 
 \end{theorem}
 For a proof, see for example \cite[Proposition 13.10]{Eisenbud1995}).  
 
 Since the map $X\to X/G$ is finite, we have $\dim X/G = \dim X$. 
 
-The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and in particular to projective schemes (Exercise~\ref{quotient of projective})---as well.
+The construction commutes with the passage to $G$-invariant open affine sets, and thus passes to more general schemes---and to projective schemes as well (Exercise~\ref{quotient of projective}), though not to arbitrary schemes (see~\cite[Example 5.3.2]{Olsson-Stacks}).
 
 When the group $G$ is infinite, the situation becomes much more complex---see Chapter~\ref{ModuliChapter} for some  idea of what can and cannot be done.
 
@@ -77,7 +81,7 @@ that polynomial, we may identify $X^{(d)}$ with the affine space of monic polyno
 Next consider $X = \PP^1$ and the product $(\PP^1)^d$. Taking the homogeneous coordinates of the
 $i$-th copy of $\PP^1$ to be $(s_i,t_i)$, the $d+1$ multilinear symmetric functions of degree $d$,
 $$
-t_1t_2\cdots t_d,\ s_1t_2\cdots t_d,\ \dots,\ s_1\cdots s_d
+t_1t_2\cdots t_d,\ \sum_i s_it_1\cdots\hat t_i\cdots t_d,\ \dots,\ s_1\cdots s_d
 $$
 are the coefficients of the polynomial
 $$
@@ -118,7 +122,7 @@ If $C$ is a smooth projective curve, then the $d$th symmetric power $C^{(d)}$ of
 \end{theorem}
 
 For a proof in the analytic category, see \cite[]{ACGH}; for the algebraic fact, see \cite[Remark 9.3.9]{Kleiman-PicardScheme}.
-Henceforward we will write $C_d$ in place of $C^(d)$.
+Henceforward we will write $C_d$ in place of $C^{(d)}$.
 
 
 %Finally we come to the definition of the universal family:
@@ -345,11 +349,47 @@ In particular, the Gauss map applied to the curve $(\mu_1)(C)$ is the canonical 
 
 \section{The $g+3$ theorem}\label{g+3 section}
 
-Even with the description of the Picard varieties $\Pic_d(C) \cong J(C)$ in the last section, the Picard varieties are mysterious objects.  But even the facts that there exists a  moduli space for invertible sheaves of degree $d$ on $C$, and that this space is irreducible of dimension $g$ suffice to prove a non-trivial theorem: 
+Even with the description of the Picard varieties $\Pic_d(C) \cong J(C)$ in the last section, the Picard varieties are mysterious objects.  But even the facts that there exists a  moduli space for invertible sheaves of degree $d$ on $C$, and that this space is irreducible of dimension $g$ suffice to prove non-trivial results: 
 
-\begin{theorem}\label{g+3 theorem}
+%\fix{the following could be an exercise, best stated after the $g+3$ theorem.}
+\begin{theorem}[$g+1$ theorem]\label{g+1 theorem} 
+Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+1}$ is a general effective divisor of degree $g+1$ on $C$, then 
+$D$ is base-point free and defines a  map to $\PP^1$ that has only simple ramification, with $2g+2$ distinct  branch points.
+\end{theorem}
+
+\begin{proof}
+A general divisor of degree $\geq g+1$ is nonspecial, so $h^0(\sO_C(D)) = (g+1)-g+1 = 2$.To say that the linear series $|D|$ has no base points means that $D$ is not equivalent to a divisor of the form
+$D'+p$, where $h^0(D')$ has degree $g$ and two independent sections. By the Riemann-Roch theorem, $h^0(D') = 1+h^0(K-D')$, so the condition on $D'$ means that $K-D'$ is effective. But $K-D'$ is a general divisor of degree $g-2$, and
+the set of classes of effective divisors, the image of $C_{g-2}$, has dimension only $g-2$. 
+Thus the set of divisors of the form $D'+p$ with $h^0(D') \geq 2$ has dimension only $g -2 +1$
+so a general divisor $D$ of degree $g+1$ is base-point-free and defines a map $C\to \PP^1$. 
+
+By Hurwitz' theorem the total ramification of such a map is $2g+2$. The divisors with points of ramification
+index 2 or more are linearly equivalent to divisors of the form $D'+3p$, and the divisors that have two ramification
+points mapping to the same point are equivalent to divisors of the form $D''+2p+2q$. Each of these sets
+of divisors fills only a $g-1$-dimensional family of equivalence classes, the images of 
+$C_{g-2}\times C$ or $C_{g-3}\times C_2$ respectively; so not every divisor $D$ is of this form.
+\end{proof}
+
+It would be natural to hope that a general divisor of degree $g+2$ defines a map to $\PP^2$ whose
+image has only ordinary nodes as singularities, but this is not quite true. Here is the correct result,
+whose proof we postpone until Section~\ref{g+2 section} because it depends on a general position result that we have not yet proven.
+
+\begin{theorem}[$g+2$ theorem]\label{g+2 theorem}
+Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
+\begin{enumerate}
+\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
+\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
+\end{enumerate}
+\end{theorem}
+
+We proved in Theorem~\ref{very ample} that every divisor of degree $\geq 2g+1$ is very ample, and this is sharp: the canonical divisor plus 2 points is never very ample. Using the Abel-Jacobi maps we get a better result for a general divisor:
+
+\begin{theorem}[$g+3$ theorem]\label{g+3 theorem}
 Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+3}$ is a general effective divisor of degree $g+3$ on $C$, then 
-$D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$.
+$D$ is very ample. In particular, every curve of genus $g$ may be embedded in $\PP^{3}$ as a curve of degree $g+3$. 
+
+Moreover, if $g\geq 2$ and $C$ is hyperelliptic, then no invertible sheaf of degree $\leq g+2$ is very ample on $C$.
 \end{theorem}
 
 \begin{proof}
@@ -372,15 +412,19 @@ where the $+$ and $-$ on the right refer to the group law on $J(C)$.
 
 By what we have just said and Abel's theorem, the divisor $D$ fails to be very ample only if
 $\mu(D) \in {\rm Im}(\nu)$. But the source $C_{g-3} \times C_{2}$ of $\nu$ has dimension $g-3+2 = g-1$, and so its image in $J(C)$ is a proper subvariety. Since $\mu_{g+3}$ is surjective, the image of a general divisor $D \in C_{g-3}$ is a general point of $J(C)$ and thus will not lie in ${\rm Im}(\nu)$. 
+
+To prove that $g+3$ is sharp for hyperelliptic curves, note first that no hyperelliptic curve of genus $\geq 2$ can
+be embedded in the plane: by the formula for the genus of a plane curve, the degree of the curve would be $d \geq 4$, and the canonical series would be cut out by curves of degree $d-3\geq 1$; thus the canonical series would be very ample.
+
+Thus a very ample divisor $D$ on a hyperelliptic curve would have $h^0(D) \geq 3$, so if $\deg D \leq g+2$
+then $D$ is a special divisor. By Corollary \ref{special on hyperelliptic}, $D$ would have the form
+$rD_0$, where $D_0$ is the $g^1_2$, the unique divisor of degree 2 with 2 independent sections,
+and $r \leq (g+2)/2$. But the smallest multiple of the $D_0$ that is very ample is $(g+1)D_0$, and
+since $g\geq 2$ we have $(g+2)/2 < g+1$ so $D$ is not very ample.
 \end{proof}
 
-In Chapter~\ref{uniformpositionchapter} we will prove similar maps for degree $g+1$ and $g+2$: 
-A general effective divisor of degree $g+1$ corresponds to a map $C\to \PP^1$ with only
-simple ramification; and a general divisor of degree $g+2$ correspods to a birational  map to $\PP^2$, onto a curve that has $\binom{g}{2}$ ordinary nodes and no other singularities unless $C$
-is hyperelliptic, in which case the image has an ordinary $g$-fold point and no other singularities.
-
-We proved in Theorem~\ref{very ample} that every divisor of degree $\geq 2g+1$ is very ample, and this is sharp: the canonical divisor plus 2 points is never very ample. In Theorem~\ref{g+3 theorem}
-we get a lower degree embedding by taking a general divisor. This result is also sharp: a hyperelliptic curve of genus $g$ cannot be embedded in any projective space as a curve of degree $<g+3$, as we'll see in Chapter~\ref{ScrollsChapter}. %\fix{I don't think that's there yet}.
+%\fix{we should speculate on the ``$g+n$" theorem. ramification will be proven, I guess, in that section. general position
+% of all subschemes of length $n-1$ ? some $k$-normality?}
 
 If we consider only general divisors on \emph{general} curves, we can do still better: Theorem~\ref{BN omnibus}) shows that``most" curves of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$.
 
@@ -437,13 +481,14 @@ so $W^1_3$ is isomorphic to $C$. Thus $C_{3}$ is the blow-up of $J(C)$ along the
 
 \section{Martens' theorem}
 
-Clifford's Theorem says that if $d\leq 2g-2$ and $2r>d$ then the set
+Clifford's Theorem says that, for a curve $C$ of genus $g$,  if $d\leq 2g-2$ and $d/2 < r$ then the set
  $W^r_d(C)$ is empty. If $0\leq r\leq d-g$ then $W^r_d$ contains all  $\sL\in Pic_d(C)$ with $h^1(\sL) = 0$, 
  and since this condition is open in $Pic_d(C)$, we have $\dim W^r_d = g$.
  
- Martens' Theorem bounds the dimension of $W^r_d(C)$ in the remaining cases, $d/2 \geq r > d-g$:
+ If $D$ is a divisor on $C$ with  $r(D)>\deg D - g$, then $D$ must be special, so in particular $d\leq 2g-2$. 
+ Thus the only remaining case of interest is when $d/2 \geq r > d-g$, and Martens' Theorem bounds the dimension of $W^r_d(C)$ in this situation:
  
-\begin{theorem}[Martens' theorem]\cite{Martens}
+\begin{theorem}[Martens' theorem]\cite{Martens}\label{Martens' inequality}
 Let $C$ be a smooth projective curve of genus $g$. If $d/2 \geq r > d-g$, then 
 $$
 \dim(W^r_d(C)) \leq d-2r;
@@ -452,11 +497,10 @@ moreover, equality holds for some $r$ in this range if and only if $d=2g-2$ and 
 $d=r=0$ (in which case $W^r_d = \{\sO_C\}$) or $C$ is hyperelliptic. In the last case, equality holds for all $d$ and $r$ with $d\geq 2r > 2(d-g)$.
 \end{theorem}
 
-The listed cases of equality are easy to verify: for example the condition $r>d-g$ implies that $W^r_d$ consists of special line bundles, and
-on a hyperelliptic curve Corollary~\ref{special on hyperelliptic} shows that such sheaves with $r(\sL) = s$ can be written $\sL_0^{\otimes s}(p_1+\cdots + p_{d-2s})$, where
+The listed cases of equality are easy to verify: for example on a hyperelliptic curve Corollary~\ref{special on hyperelliptic} shows that a special invertible sheaf with  $r(\sL) = s$ can be written $\sL_0^{\otimes s}(p_1+\cdots + p_{d-2s})$, where
 $\sL_0$ is the unique $\g^1_2$ on $C$ and the $p_i$ are base points---a family of dimension $d-2s$.
 
-We will prove the inequality here, postponing the proof that only hyperelliptic curves achieve equality nontriviallyl to Theorem~\ref{full Martens}, which we prove as a corollary of the strong general position result Theorem~\ref{uniform position}. For the inequality we need only a weaker general result:
+We will prove the inequality here, postponing the case of equality to Theorem~\ref{full Martens}, which we prove as a corollary of Theorem~\ref{uniform position}. For the inequality we need only a weaker general result:
 
 Given 
 a smooth curve $C \subset \PP^n$, we write $\Sigma^r_d \subset C_d$ for the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$. This is a closed condition, so
@@ -487,7 +531,7 @@ is strictly decreasing, and thus $\dim \Sigma^r_d \leq d-r$ as claimed.
 \end{proof}
 
 
-\begin{proof}[Proof of Martens' inequality] Since we have assumed $r>d-g$, the set $W^r_d$ contains only  sheaves.
+\begin{proof}[Proof of Martens' inequality] Since we have assumed $r>d-g$, the set $W^r_d$ contains only  sheaves
  $\sL$ with $h^1(\sL)\neq 0$. For such sheaves there is a one-to-one 
 correspondence $\sL \to \omega_C\otimes \sL^{-1}$ inducing an isomorphism
 $$
@@ -579,5 +623,10 @@ Let $C$ be a curve of genus 2. The canonical map $\phi_K : C \to \PP^1$ expresse
 \end{enumerate}
 \end{exercise}
 
+%\begin{exercise}\label{g+1 theorem}($g+1$-theorem)
+%Show that if $D$ is a general divisor of degree $g+1$ on a smooth projective curve of genus $g$,  then $|D|$ defines a morphism to $\PP^1$ such that
+%all ramification points are simple (2 branches coming together) and no two ramification points have the same 
+%image. 
+%\end{exercise}
 \input footer.tex
 

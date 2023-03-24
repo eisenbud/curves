@@ -1,6 +1,6 @@
 \input{header.tex}
 
-\chapter{The Riemann-Roch Theorem}
+\chapter{The Riemann-Roch Theorem}\label{RiemannRochChapter}
 
 \subsection{Measuring linear series}
 
@@ -22,13 +22,13 @@ $$
 $$
 which makes sense, and even computes $h^0(\cL)$ itself in many cases, by virtue of the following result:
 
-\begin{theorem} (Vanishing Theorem)
+\begin{theorem} (Vanishing Theorem)\label{Serre-Grothendieck vanishing}
 If $\sF$ is a coherent sheaf on a scheme $X$ of dimension $n$, then for any $i$, the vector space $H^i(\sF)$ is finite dimensional, and 0 if  $i>\dim X$. Moreover,
 if $X\subset \PP^m$, then $H^i(\sF(d)) = 0$ for all $i>0$ and $d\gg 0$.\qed
 \end{theorem}
 
 \begin{proof}
-This is a combination of Theorems \ref{Theorems III.2.7 and III.5.2}{H}, due to Grothendieck and Serre.
+This is a combination of Theorems \cite[Theorems III.2.7 and III.5.2]{Hartshorne1977}, due to Grothendieck and Serre.
 \end{proof}
 
 Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d)) = h^0(\sL(d))$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL) = h^0(\sL) - h^1(\sL)$.
@@ -63,7 +63,7 @@ The most important vector bundles on a manifold are the tangent and cotangent bu
 will become clear, the focus in algebraic geometry is on the cotangent bundle or, equivalently, the sheaf of differential forms. On a smooth curve $C$, this is usually called the \emph{canonical sheaf}; on a smooth
 variety of dimension $n$ the canonical sheaf is the $n$-exterior power of the sheaf of differentials. A section of 
 $\omega_C$ is thus a differential form, and the class of the divisor
-of such a form is usually denoted $K_X$. 
+of such a form is usually denoted $K_C$. 
 
 \begin{fact}
 A famous result asserted by Franchetta and proved in~\cite{Harer} (see also~\cite{MR895568} and~\cite{MR1984659}) states that the canonical sheaf (and its powers) are the \emph{only} invertible sheaves that can be chosen uniformly on all, or even almost all, smooth curves. 
@@ -368,7 +368,7 @@ More generally, we define what is called the \emph{arithmetic genus}:
 
 \begin{definition}\label{genus Hilbert}\label{pa}\label{genus formula}
 If $C\subset \PP^n$ is a purely 1-dimensional projective scheme with Hilbert polynomial
-$p_C(m) = \chi(\sO_C(m)$, the \emph{arithmetic genus} of $p_a(C)$ is $1-p_C(m)$. If $C$ is integral, then
+$p_C(m) = \chi(\sO_C(m))$, the \emph{arithmetic genus} of $p_a(C)$ is $1-p_C(0)$. If $C$ is integral, then
 the \emph{geometric genus} $g(C)$ is the genus of the normalization of $C$.
 \end{definition}
 We see from the Riemann-Roch theorem that if $C$ is smooth, then $p_a(C) = g(C) = h^0(\omega_C)$, the genus of $C$. In general, we
@@ -556,7 +556,7 @@ r(D) = d - 1 - \dim \overline{ \phi_K(D)}.
 $$
 \end{corollary}
 
-When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism, and we say that $ \phi_K(C)\subset \PP^{g-1}$ is \emph{canonically embedded}. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that the dimension of the linear series $|D|$  is equal to the number of linear relations between the points $p_i$ on the canonical curve. 
+When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism onto its image in $\PP^{g-1}$, and we say that $ \phi_K(C)\subset \PP^{g-1}$ is \emph{canonically embedded}. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that the dimension of the linear series $|D|$  is equal to the number of linear relations between the points $p_i$ on the canonical curve. 
 
 \subsection{Linear series on a hyperelliptic curve}
 We can describe the canonical map of a hyperelliptic curve---and indeed all its special linear series---quite precisely:
@@ -583,7 +583,7 @@ Suppose that $D$ contains the sum $E$ of $s$ fibers of $\pi$ and no more; and wr
  
 If $\phi_K:C \to \PP^{g-1}$ is the canonical map, then $\phi_K(D')$ consists of $d-2s$ distinct points, while $\phi_K(E)$ consists of
 $s$ points. By Corollary~\ref{independence of points on a RNC} the span of $\phi_K(D)$ has dimension $\min\{g-1, d-s-1\}$, so 
-$r(D) = d-1-\min\{g-1, d-s\} = \max \{s,d-g\}$. Since $D$ is a special divisor, $r(D) > d-g$, so $r(D) = s$. 
+$r(D) = d-1-\min\{g-1, d-s-1\} = \max \{s,d-g\}$. Since $D$ is a special divisor, $r(D) > d-g$, so $r(D) = s$. 
 Since $r(E) =s$, we see that $D'$ is in the base locus of $D$.
 \end{proof}
 
@@ -629,8 +629,9 @@ the largest possible value, then either
 \end{theorem}
 
 From Corollary~\ref{canonical on hyperelliptic} and Corollary~\ref{geometric RR} we see that the equality does indeed hold
-in each of the cases enumerated. 
-For the proof of the second half of Clifford's Theorem, we will use a basic fact about the geometry of hyperplane sections of a curve in projective space (Proposition~\ref{monodromy of hyperplane section}); we give the proof after proving that result.
+in each of the cases enumerated. Clifford's Theorem is true for smooth curves over fields of any characteristic (see for example \cite[IV.5.4]{Hartshorne1977}, but in characteristic 0 it is a simple consequence of the much more 
+Corollary~\ref{Clifford equality plus}
+that we will prove via the Uniform position lemma.
 
 
  \section{Curves on surfaces}
@@ -694,7 +695,7 @@ Quadric surfaces $S$ in $\PP^3$ are classified by their rank:
 \begin{itemize}
 \item A quadric of rank 1 is a double plane, defined by the square of a linear form;
 a quadric of rank 2 is the union of two planes; thus a nondegenerate irreducible curve cannot be contained in a quadric of rank 1 or 2.
-\item A rank 3 quadric $S$ is a cone over a plane conic. If $C$ is a smooth,
+\item A rank 3 quadric $S$ is a cone over a plane conic. If $C$ is a smooth
 curve on such a quadric, then:
 \begin{itemize}
 \item  If $C$  does
@@ -782,6 +783,21 @@ If $E\subset X$ is a curve on a smooth projective surface $X$ and
 
 \section{Exercises}
 
+
+\begin{exercise}\label{characterization of degree}
+\begin{enumerate}
+\item The degree of a zero-dimensional subscheme $X\subset \PP^r$ is by definition the value of the Hilbert polynomial of $X$, which is a constant. Show that
+this is the sum of the lengths of the components of $X$. (Hint: use Serre's vanishing theorem.)
+
+\item The degree of a projective subscheme $X\subset \PP^r$ of dimension $n$ is defined to be the degree of the $0$-dimensional scheme
+that is the intersection of $X$ with a general plane of degree $r-n$. Prove that this is the leading coefficient of the Hilbert polynomial, multiplied
+by $(dim X)!$.
+
+\item If $C\subset \PP^r$ is a smooth curve of genus $g$ and degree $d$, show that the Hilbert polynomial of $C$ is $H_C(m) = dm-g+1$.
+ 
+\end{enumerate}
+\end{exercise}
+
 In the following series of exercises, we are going to be working with smooth projective curves associated to a given affine curve $C^\circ := V(f(x,y)) \subset \AA^2$; this is the unique smooth projective curve containing the normalization of $C^\circ$ as a Zariski dense open subset.
 
 \begin{exercise}
@@ -828,8 +844,7 @@ Let $D$ be the divisor $D = p + q + r_0 + r_3$
 \item Find the equation of the image curve $\phi_{|D|}(C) \subset \PP^2$, and describe its singularities.
 \end{enumerate}
 \end{exercise}
-
-The following exercises deal with the curve 
+ 
 \begin{exercise}
 Let $C$ be the smooth projective curve associated to the affine curve $y^3 = x^5 -1$. Note that the map $\pi : C \to \PP^1$ given by the function $x$ expresses $C$ as a cyclic, 3-sheeted cover of $\PP^1$, branched over the 5th roots of unity and the point at $\infty$. By way of notation, if we take $\eta = e^{2\pi i/5}$ a primitive 5th root of unity, we'll denote by $r_\alpha$ the point $(\eta^\alpha, 0) \in C$ lying over $\eta^\alpha$, and by $p$ the point lying over $\infty \in \PP^1$.
 

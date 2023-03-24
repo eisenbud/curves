@@ -1,0 +1,628 @@
+\input{header}
+
+\chapter{Proof of the Brill Noether Theorem}\label{Brill Noether proof chapter}
+\label{BrillNoetherproofChapter}
+
+Our goal in this chapter is to give as self-contained as possible a proof of the Brill-Noether theorem. We will focus on proving what we call the ``Basic Brill-Noether" theorem (Theorem~\ref{basic BN}) of Chapter~\ref{Brill-Noether}), which we reproduce here for convenience:
+
+\begin{theorem}[Basic Brill Noether]
+If $r\geq 0$ and
+ $$
+ \rho(g,r,d) := g - (r+1)(g-d+r) \geq 0.
+$$
+then every smooth projective curve of genus $g$  possesses a $g^r_d$. Conversely, if $\rho < 0$ then a general curve $C$ of genus $g$ will not possess a $g^r_d$.
+\end{theorem}
+
+In fact, a closer examination of our proof will yield some if not all of the assertions of the stronger Theorems~\ref{Wrd omnibus} and~\ref{grd omnibus}, as well as additional results on the existence of linear series with specified inflectionary behavior; we will discuss these at the end of the current chapter.
+
+One caveat at the outset: we said that our aim was to give a self-contained proof, and we will fall short of that goal in two respects. One, our proof is based on Theorem~\ref{osculating intersection} of the last chapter, which involves some elementary intersection theory. And in order to apply Theorem~\ref{osculating intersection}, we need to assert the existence of families of curves specializing from a smooth curve of genus $g$ to a $g$-cuspidal rational curve, which requires us to invoke some elementary deformation theory. 
+
+\section{Castelnuovo's construction}
+
+The idea behind our current proof goes back to Castelnuovo in~\cite{zbMATH02692307}. Castelnuovo's goal was not to prove Brill-Noether, which was considered established at the time (or at least not in need of further demonstration); rather, he asked a follow-up question. If indeed a general curve $C$ of genus $g = 2d-2$ has a finite number of $g^1_d$s, as Brill-Noether suggests, Castelnuovo wanted to know: how many? Note that we have answered this question in cases $g = 2, 4$ and 6, and these cases were certainly known to Castelnuovo, but the case of higher $g$ was unknown.
+
+Castelnuovo's approach to this problem was simple and beautiful, and has informed the proofs of Brill Noether almost a century later. His idea was to specialize a general curve $C$ of genus $g$ to a general $g$-nodal rational curve; that is, a curve $C_0$ with $g$ nodes whose normalization is $\PP^1$, and count the number of $g^1_d$ on that curve. By way of notation, we'll call the nodes of $C_0$ $r_1,\dots,r_g$, and let $p_i, q_i \in \PP^1$ be the two points lying over $r_i$.
+
+Castelnuovo was able to count the $g^1_d$s on $C_0$ by observing that any pencil on $C_0$ can be pulled back to a pencil on the normalization $\PP^1$; if we embed $\PP^1$ in $\PP^d$ as a rational normal curve of degree $d$, such a pencil corresponds to a $(d-2)$-plane $\Lambda \subset \PP^d$. Moreover, to say that such a pencil is a pullback from $C_0$ means that every divisor of the pencil that contains $p_i$ contains $q_i$ and vice versa; since the pencil is cut out by hyperplanes in $\PP^d$ containing $\Lambda$, this condition amounts to saying that $\Lambda \cap \overline{p_i,q_i} \neq \emptyset$.
+
+In the Grassmannian $G(d-1, d+1)$ of $(d-2)$-planes in $\PP^d$, the locus of those that meet the line $L_i = \overline{p_i,q_i}$ is what we called the Schubert cycle $\Sigma_1(L_i)$. In these terms, then, the set of $g^1_d$s on our curve $C_0$ is just the intersection
+$$
+W^1_d(C_0) \; = \; \bigcap_{i=1}^{2d-2} \Sigma_1(L_i).
+$$
+
+Now, we saw in Corollary~\ref{secant schubert proper} that if the points $p_i, q_i$ are general, then the Schubert cycles $\Sigma_1(L_i)$ intersect properly; if we assume in addition that they intersect transversely, then the cardinality of this intersection is the power $\sigma_1^{2d-2}$ in the Chow ring $A(G(d-1, d+1))$. Castelnuovo evaluated this power\footnote{Indeed, reading between the lines of Castelnuovo's paper, it appears he had just learned about Schubert calculus and was looking for an application of this powerful new tool}, and came to the conclusion that a general curve $C$ of genus $g=2d-2$ has 
+$$
+\#W^1_{k+1}(C) \; = \; \frac{(2d-2)!}{(d-1)!d!}
+$$
+pencils of degree $d$.
+
+It was Altman and Kleiman\fix{maybe Kleiman-Laksov? and Kempf?} who first proposed that Castelnuovo's approach to the study of linear series on a general curve could be used to give a proof of Brill-Noether, if enough care was taken with the specialization arguments; they carried this out in~\cite{}\fix{}, and succeeded in reducing the basic Brill-Noether theorem to a special case of Corollary~\ref{secant schubert proper}; this was then proved in~\cite{Griffiths-Harris-BN}.
+
+This is the approach to the study of linear series on a general curve we'll adopt here, with some modifications. For one thing, the relative strength of Theorem~\ref{} and Corollary~\ref{secant schubert proper} suggests that specializing to a $g$-cuspidal curve $C_0$ rather than a $g$-nodal one might produce stronger results, and that is what we will do here.
+
+%
+%\section{The Brill-Noether theorem}
+%
+%We recall the statement of the basic Brill-Noether theorem from Chapter~\ref{BNChapter}:
+%
+%\begin{theorem}\label{basic Brill Noether}
+%Let $d,g,r$ be non-negative integers, and set 
+%$$
+%\rho =\rho(g,r,d) := g - (r+1)(g-d+r).
+%$$
+% \begin{enumerate}
+%\item If $\rho \geq 0$, then every curve $C$ of genus $g$ possesses a $g^r_d$.
+%\item If $\rho < 0$ then a general curve of genus $g$ does not possess a $g^r_d$.
+%\end{enumerate}
+%\end{theorem}
+
+%
+%%To understand where the number $\rho$ comes from, consider an invertible sheaf $\cL$ of degree $d$ on a curve $C$ of genus $g$. We don't a priori know how many sections $\cL$ will have, but if we fix a divisor $D = \sum p_i$ of degree $e \geq 2g-1-d$ and set $\cM:= \cL(D)$, we do know how many sections $\cM$ will have: since it has degree $d+e > 2g-2$, Riemann-Roch tells us that
+%%$$
+%%h^0(\cM) = d + e - g + 1.
+%%$$
+%%To estimate $h^0(\cL)$ we can consider the restriction map
+%%$$
+%%\rho : H^0(\cM) \to H^0(\cM|_D);
+%%$$
+%%the kernel of this map is $H^0(\cL)$. Thus,
+%%$$
+%%h^0(\cL) \geq r+1 \quad \iff \quad \rank(\rho) \leq d+e-g-r.
+%%$$
+%%
+%%Now, let $\cL$ vary in $\Pic_d(C)$. We get a \emph{family} of maps $\rho$ between vector spaces of dimension $d + e - g + 1$ and $e$, parametrized by the Picard variety $\Pic_d(C)$. In general, given a family of maps between vector spaces of dimensions $m$ and $n$, the expected codimension of the locus where the map has rank $k$ or less is $(m-k)(n-k)$; in our present circumstances, this works out to $(r+1)(g-d+r)$. Since the Picard variety has dimension $g$, the expected dimension of $W^r_d(C)$ is then $\rho(g,r,d)$.
+%%
+%The first part of Theorem~\ref{basic Brill Noether}, often called the ``existence half" of Brill-Noether, was originally proved by Kempf (\cite{Kempf}) and Kleiman-Laksov (\cite{MR323792}) and \cite{MR0357398}. The proofs proceeded essentially by globalizing the construction of the preceding paragraph to express $W^r_d(C)$ as a determinantal scheme associated to a map of vector bundles on $\Pic_d(C)$, calculating the Chern classes of the bundles in question and applying the Thom-Porteous formula to deduce that the determinantal variety was nonempty. A sketch of this argument may  be found in \cite[Appendix D.3]{3264}.  
+%
+%The second half of Theorem~\ref{basic Brill Noether}---the ``non-existence half"---requires a completely different approach. On the one hand, the condition ``$W^r_d(C) = \emptyset$" is an open condition on $M_g$, so that to prove it one needs only exhibit a single curve with this property. However, as we discuss in Appendix~\ref{Moduli}, it's not possible to write down a general curve of large genus $g$. The curves we can write down explicitly---hyperelliptic curves, trigonal curves, smooth plane curves---tend to be ones that violate Brill-Noether.
+%
+%We will give here a proof of the second half of Theorem~\ref{basic Brill Noether}, using the Pl\"ucker formula as our essential tool.
+%Our proof will use an ingenious construction first suggested by Castelnuovo, which is to consider a family of smooth curves specializing to a $g$-nodal curve. After all, 
+%a ``general curve of genus $g$" may be a mysterious object for large $g$, but we can construct nodal curves of arithmetic genus $g$ readily: we just start with $\PP^1$, pick $2g$ distinct points $p_1,\dots,p_g, q_1,\dots,q_g \in \PP^1$, and identify each pair of points $p_i, q_i$ to form a $g$-nodal curve $C_0$. We will see below that there exists a family of smooth curves of genus $g$ specializing to such a curve, and we can analyze linear series on the general member of such a family by considering how they specialize to $C_0$.
+%
+%Interestingly, Castelnuovo introduced this construction not to prove the Brill-Noether theorem---then considered as established---but to answer an enumerative question: Castelnuovo asked, if a general curve of genus $g = 2k$ has a finite number of $g^1_{k+1}$s, what is the number? As we've seen, for genera $g = 2, 4$ and 6 the answers are 1, 2 and 5 respectively; Castelnuovo used his construction to find the number in general, as we'll describe below. In~\cite{MR435071} it was first proposed that Castelnuovo's construction could be used to prove the Brill-Noether theorem, and carried out the reduction given in Proposition~\ref{} below.
+%
+
+\section{Specializing to a $g$-cuspidal curve}
+
+Our first goal is to find a family $\{C_t\}$ of curves of arithmetic genus $g$, with $C_t$ smooth for $t \neq 0$ and $C_0$ a rational curve with $g$ cusps. This can be done in two steps: we show the existence of a rational curve $C_0$ with $g$ cusps; and then we assert that it can be deformed to a smooth curve.
+
+\subsection{Existence of a rational curve $C_0$ with $g$ cusps}
+
+This will be a special case of a general construction, informally called ``crimping." We can state the result as
+
+\begin{proposition}
+Let $C$ be any curve and $p \in C$ a smooth point. There exists a curve $C_0$ and a map $f : C \to C_0$ such that the image $r=f(p) \in C_0$ is a cusp of $C_0$; and $f$ maps $C \setminus \{p\}$ isomorphically to $C_0 \setminus \{r\}$.
+\end{proposition}
+
+Thus, if we start with $\PP^1$, pick any $g$ points $p_1,\dots, p_g \in \PP^1$ and crimp at each $p_i$, we arrive at a $g$-cuspidal curve $C_0$.
+
+\begin{proof}
+We can construct $C_0$ explicitly as a topological space with a structure sheaf.
+First, $C_0$ will be homeomorphic to $C$, so that's our topological space. And second, the structure sheaf $\cO_{C_0}$ will be the subsheaf of $\cO_C$ consisting of functions on $C$ whose derivative at $p$ is 0.
+\end{proof}
+
+\subsection{Smoothing a cuspidal curve}  We claim now that if $C_0$ is a curve with a finite number of cusps and no other singularities, then we can smooth $C_0$; that is, we can find a proper flat family $\cC \to \Delta$ with special fiber $C_0$ and all other fibers smooth. 
+
+To begin with, we can do this locally in the complex analytic setting: if $p \in C_0$ is a cusp, we can find an analytic neighborhood of $p$ in which $C_0$ is given by the equation $y^2 = x^3$; we can smooth this by taking the family
+$$
+y^2 = x^3 + a(t)x + b(t)
+$$
+where $a$ and $b$ are analytic functions of $t$ with $b'(0) \neq 0$.
+
+The next step is to argue that we can glue together these local smoothings to obtain a proper family $\cC \to \Delta$, and this is where we need to invoke a theorem from deformation theory. 
+
+
+%
+%\subsection{$g$-nodal curves}
+%Step 1 is to describe ``the curve obtained by identifying pairs of points on $\PP^1$'':
+%
+%\begin{proposition} \label{Constructing nodal curves}
+% Given a (possibly singular) curve $C$ and a pair of distinct smooth points $p,q\in C$, there is a map
+% $C\to C_0$ that is an isomorphism away from $p,q$ and identifies $p,q$ in such a way
+% that the tangent lines to $C_0$ at $p,q$ are distinct.
+%\end{proposition}
+%
+%\begin{proof}
+%We follow the treatment of \cite{Serre1979}
+% where a slightly more general case is treated.
+% 
+%Suppose that $\{ p_1,\dots, p_g, q_1,\dots, q_g  \}$ is a set of $2g$ distinct smooth points on a curve $C$, and let $\pi: C \to C':=C/\sim$ be the set-theoretic quotient of $C$ by the equivalence relation
+% $p_i\sim q_i$ for each $i$. Let $r_i\in C'$ be the common image of $p_i, q_i$. We claim that $C'$ can be given the structure of an  algebraic curve with nodes at the points $r_i$, in the sense that the completion satisfies
+%$$
+%\widehat\cO_{C', r_i} \cong k[[x,y]]/(xy).
+%$$
+% To prove this we may suppose that the curve $C$ is affine, with coordinate ring $R$.
+%For each $i$ we let $\cO_{r_i}$  be the set of germs of sections of $\cO_C$ that are
+% defined at both $p_i$ and $q_i$, and have the same value. Thus, regarding everything
+% as subsets of the quotient field of $R$, 
+% $$
+% \cO_{r_i} = k+(\gm_{R,p_i} \cap \gm_{R,q_i}) \subset \cO_{C,p_i}\cap \cO_{C,q_i}.
+% $$
+% Finally, we set 
+% $$
+% R' = R \bigcap_{i=1}^g \cO_{r_i}.
+% $$
+%
+%Note that $\cO_{r_i}$ has vector space codimension 1 in 
+% $\cO_{C,p_i}\cap \cO_{C,q_i}$, which is the semi-localization of $R$ at
+% $\gm_{C,p_i}\cap \gm_{C,q_i}$, the result of inverting every element not in the 
+% union of the two maximal ideals. If $f\in R$ is a function vanishing at $p_i, q_i$ but not at $p_j$ or $p_j'$
+%then $\cO_{r_j}[f^{-1}$ is strictly bigger than
+%$\cO_{r_j}$, and thus $\cO_{r_j} [f^{-1}] = \cO_{C,p_j} \cap \cO_{C,p_j'}$.
+%Since localization commutes with finite intersections, we see that $R$ and $R'$
+%coincide away from the points $p_i,q_i$, and the local ring $\cO_{C',r_i}$ of $C'$ at $r_i$ is
+%equal to $\cO_{r_i}$.
+%
+%Since $\cO_{C,p_i}\cap \cO_{C,q_i}$ is a finite algebra over $\cO_{C', r_i}$,
+%the exact sequence of $\cO_{C', r_i}$-modules
+%$$
+%0\to \cO_{C', r_i} \to cO_{C,p_i}\cap \cO_{C,q_i} \to k \to 0
+%$$
+%completes to the exact sequence
+%$$
+%0\to \widehat\cO_{C', r_i} \to k[[x]]\times k[[y]] \to k \to 0
+%$$
+%where the last map is the difference of the natural projections
+%$k[[x]] \to k$ and $k[[y]] \to k$. Thus
+%$\widehat\cO_{C', r_i} \cong k[[x,y]]/(xy)$ as required, completing the construction.
+%\end{proof}
+%
+%
+%\subsubsection{Step 2: Castelnuovo's specialization}
+%
+%Next, Castelnuovo proposed analyzing a family of smooth curves specializing to a $g$-nodal one; in order to use this construction in a proof of Brill-Noether, we have to prove that such families exist. We'll state the lemma we need here:
+%
+%\begin{lemma}\label{specialization to nodal curve}
+%Let $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ be distinct points, and $C_0$ the curve obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family of curves $\pi : \cC \to B$, where
+%\begin{enumerate}
+%\item $B$ is a smooth curve, with distinguished point $0 \in B$;
+%\item for all $b \neq 0 \in B$, the fiber $C_b = \pi^{-1}(b)$ is a smooth, projective curve of genus $g$;  and
+%\item the fiber over $0$ is the curve $C_0$.
+%\end{enumerate}
+%\end{lemma}
+%
+%This lemma will follow from the local geometry of Severi varieties, as worked out in Chapter~\ref{PlaneCurvesChapter}, and we defer the proof to that chapter.
+
+%\begin{lemma}\label{BN in family}
+%If $p_1,\dots,p_g, q_1,\dots, q_g \in \PP^1$ are general points and $\cC \to B$ is a family of curves as described in Lemma~\ref{specialization to nodal curve} above, then for general $b \in B$ the fiber $C_b$ does not possess a $g^r_d$ with $\rho < 0$.
+%\end{lemma}
+%
+%From this, we deduce the basic
+%
+%\begin{theorem}\label{bare-bones BN}
+%A general curve $C$ of genus $g$ does not possess a $g^r_d$ with $\rho(g,r,d) < 0$.
+%\end{theorem}
+
+\section{The family of Picard varieties}
+
+Now that we have our family $\cC \to \Delta$ of curves, specializing from a smooth curve of genus $g$ to a $g$-cuspidal curve, the next step in our proof of Brill-Noether will be to relate linear series on the general fiber of our family to their limits on $C_0$.
+
+\subsection{The Picard variety of a cuspidal curve}
+
+(will show: $\Pic(C_0) \cong \AA^g$ (or at least that it's $g$-dimensional))
+
+\subsection{The relative Picard variety}
+
+(will show/assert: the Picard varieties $\Pic(C_t)$ form a family over $\Delta$; the varieties $W^r_d(C_t)$ form a subfamily; and, crucially, the codimension of the latter in the former is $\leq (r+1)(g-d+r)$ everywhere (we need this for regeneration)
+
+\subsection{Limits of line bundles}
+
+We need to establish that the limit of a family of line bundles on $C_t$ for $t \neq 0$ has a torsion free sheaf of rank 1 as its limit, and describe torsion free sheaves of rank 1 on cuspidal curves.
+
+\section{Putting it all together}
+
+\subsection{Non-existence}
+
+Here we use Theorem~\ref{osculating intersection} from the last chapter to give the upper bound on the dimension of $W^r_d(C_0)$ (and hence, using our description of limits of $g^r_d$s on $C_t$ as linear series on partial normalizations of $C_0$, on the dimension of $W^r_d(C_t)$.
+
+\subsection{Existence}
+
+Now we use Corollary~\ref{intersection with sigma nonzero} from the last chapter to show that $W^r_d(C_0) \neq \emptyset$, and use  regeneration to deduce the existence part of Brill-Noether.
+
+\fix{The next few pages are a hodgepodge of bits and pieces of arguments that were relevant at some point. I'm keeping them around on the off-chance that some of them may be useful, but basically it all need to be rewritten in the context of the argument sketched in the section headings above}
+
+\subsubsection{Step 3: The Altman-Kleiman analysis}
+
+The analysis proposed by Altman and Kleiman considers the question: given a family $\pi : \cC \to B$, and a family $\{ \cD_b = (L_b, V_b)\}_{b \neq 0 \in B}$ of linear series on the curves $C_b$ with $b \neq 0$, how can we describe the ``limit" of the linear series $\cD_b$ as $b \to 0$? 
+
+To set this up, suppose now we have a family $\pi : \cC \to B$ as in Lemma~\ref{specialization to nodal curve}, and suppose that the general curve $C_b$ in the family does have a line bundle $\cL_b$ of degree $d$ with $r+1$ sections. Finally, let 
+$$
+\pi^\circ: \cC^\circ := \cC \setminus C_0\to B^\circ := B\setminus 0.
+$$
+and suppose that the line bundles $\cL_b$ fit together to form a line bundle on $\cC^\circ$; that is, there exists a line bundle $\cL^\circ$ on $\cC^\circ$ with $h^0(\cL^\circ|_{C_b}) = r+1$ for each $b \neq 0 \in B$. 
+
+The next step is to try to extend the line bundle $\cL^\circ$ on $\cC^\circ$ to a line bundle on all of $\cC$. We can't necessarily do this, but we do have a ``next best" thing: we can extend $\cL^\circ$  to a torsion-free sheaf on all of $\cC$.
+
+
+
+\begin{lemma}
+There exists a torsion-free sheaf $\cL$ of rank 1 on all of $\cC$ such that $\cL|_{\cC^\circ} \cong \cL^\circ$.
+\end{lemma}
+
+\begin{proof} To start, we choose an auxiliary line bundle $\cM$ on $\cC$ with relative degree $e > d + 2g$ and let $\cM^\circ$ be the restriction of $\cM$ to $\cL^\circ$. Consider the line bundle 
+$$
+\cN^\circ = (\cL^\circ)^* \otimes \cM^\circ.
+$$
+%The bundle $\cN^\circ$ has lots of sections: the direct image, as a sheaf on $B$, is locally free of rank $e-g+1 > 0$, and after restricting to an open neighborhood of $0 \in B$ we can assume it's generated by them \fix{This seems to require that the
+%original fibers had exactly $r+1$ independent sections. Also, we are still in a punctured neighborhood of $b$, so this might need some further argument}. 
+Choose a section $\sigma$ of $\cN^\circ$; let $D^\circ \subset \cC^\circ$ be its divisor of zeros, and let $D \subset \cC$ be the closure of $D^\circ$ in $\cC$. Now, away from $C_0$ we can write
+$$
+\cL^\circ = (\cN^\circ)^* \otimes \cM^\circ = \cI_{D^\circ/\cC^\circ} \otimes \cM^\circ
+$$
+and accordingly the sheaf
+$$
+\cL := \cI_{D/\cC} \otimes \cM
+$$
+is the desired sheaf. 
+\end{proof}
+
+%Even if the family we originally started with had smooth total space, the base change called for in the first step would yield a family $\cC$ with  total space singular at the nodes of $C_0$. If $D$ passes through any of these points it need not be Cartier, 
+%so $\cL|_{C_0}$, though torsion-free, may not be invertible.
+%
+%In sum, if the general fiber $C_b$ of our family has a $g^r_d$, we can conclude that the special fiber $C_0$ has a torsion-free sheaf $\cL_0$ with 
+%$$
+%c_1(\cL_0) = d;
+%$$
+%\fix{where did the reader learn about Chern classes of torsion-free sheaves?? Might be better to say degree and explain what that means for a torsion-free sheaf.}
+%and, by upper-semicontinuity of cohomology,
+%$$
+%h^0(\cL_0) \geq r+1.
+%$$
+
+Thus the ``limit" of the line bundles $\cL_b$ may not be an invertible sheaf, but only a torsion-free sheaf of rank 1. Fortunately the torsion-free sheaves on nodal curves have a simple structure. The reason lies in the relation of $R$ to its integral closure:
+
+\begin{definition}
+The \emph{conductor} of an integral domain $R$ is the annihilator of the $R$-module
+$\widetilde R/R$, where $\widetilde R$ is the integral closure of $R$.
+\end{definition}
+
+It follows at once from the definition that the conductor of $R$ is also an ideal of $\widetilde R$, and that it is the largest such ideal.
+
+\begin{proposition}
+If $R$ is the local ring of an ordinary node or ordinary cusp singularity of a curve, then  $\widetilde R/R \cong k$, the residue field of $R$, and thus the conductor of $R$ is the
+maximal ideal. 
+\end{proposition}
+
+\begin{proof} These properties can be verified after completing at the maximal ideal of $R$.
+To say that $R$ has an ordinary node singularity means that the completion of $R \subset \widetilde R$ at the maximal ideal $\gm$ of $R$ is $k[[x,y]]/(xy)\subset k[[x]]\times k[[y]]$, and 
+the annihilator of $k[[x]]\times k[[y]]/k[[x,y]]/(xy) \cong k$ is clearly $(x,y)$, the ideal generated by $\gm$.
+
+Similarly, to say that $R$ has an ordiinary cusp singularity means that the completion of 
+$R \subset \widetilde R$ is $k[[x^2,x^3]]\subset k[[x]]$, and again the quotient is $k$.
+\end{proof}
+
+\begin{lemma}\label{torsion free at node}
+Let $p$ be an ordinary node or ordinary cusp of a curve $C$. Let $R = \sO_{C,p}$ be the local ring of the singular point,
+and let $\tilde R$ be the normalization.  If $\cF$ is a torsion-free sheaf on $C$, then in a neighborhood of $p$ in $C$ the sheaf $\cF$ is either locally free or locally isomorphic to the ideal sheaf $\cI_{p/C}$ of $p$ in $C$.
+In the latter case, the pullback to the normalization is isomorphic to $\tilde R\oplus \kappa(p) \oplus \kappa(q)$.
+\end{lemma}
+
+\begin{proof} We may work over the local ring $R := \cO_{C,p}$, and replace $\cF$ with 
+its localization $I\subset R$ at $p$ as well. We write
+$\gm$ for the maximal ideal of $R$
+
+Consider the endomorphism ring of $I$, and note that it is commutative and integral over $R$ so 
+$$
+R \subset \End I \subset \widetilde R.
+$$
+Since
+$\widetilde R/R \cong k$, the ring $\End(I)$ is equal to either 
+$R$ or $\widetilde R$. 
+
+First, suppose
+$\End(I)=\widetilde R$, which is a discrete valuation ring.
+ As an 
+$\widetilde R$-module, $I$ is free of rank 1.  The conductor
+$\ann(\widetilde R/R)$ is $\gm$.
+Since the conductor is also an ideal of $\widetilde R$, and thus isomorphic to $\widetilde R$
+as $\widetilde R$-module,
+we see that $I \cong \gm$ as $R$-modules.
+
+Now suppose
+$\End(I)=R$, and consider the inclusions
+$$
+\gm I \subset I \subset \widetilde R I.
+$$
+Since $\gm$ is the conductor of $R$, it is also an ideal of $\widetilde R$, so
+$\gm I = \gm \widetilde R I$. On the other hand, $\widetilde R I$ is an ideal of $\widetilde R$,
+and as such is principal, so it is isomorphic as an $R$-module to $\widetilde R$. Thus, up to 
+isomorphism, the inclusions above become
+$$
+\gm I = \gm \widetilde R \subset I \subset \widetilde R.
+$$
+The left and right hand modules both have endomorphism ring $\widetilde R$,
+so both containments must be strict. Since $\widetilde R/\gm$ has length 2,
+we see that $I/\gm I$ is principal, so $I\cong R$.
+\end{proof}
+
+To summarize the situation so far: if we assume that the general curve $C_b$ of our family has a $g^r_d$, we may conclude that the $g$-nodal curve $C_0$ has a torsion-free sheaf $\cL_0$ of degree $d$ with at least $r+1$ sections. Moreover, at each node $r_i$ of $C_0$, $\cL_0$ is either locally free or isomorphic to the maximal ideal. 
+
+%Finally, suppose that $\cL_0$ is locally free at the nodes $r_1,\dots, r_{g'}$ and isomorphic to the maximal ideal at the nodes $r_{g'+1},\dots,r_g$. In this case, we can pull $\cL_0$ back to the partial normalization $\tilde C$ of $C_0$ at the nodes $r_{g'+1},\dots,r_g$; in this case we arrive at an invertible sheaf of degree $d-(g-g')$ on the $g'$-nodal curve $\tilde C$ having at least $r+1$ sections.
+
+%\begin{exercise}
+% The proof above works whenever $R$ is a local domain with integral closure $\widetilde R$ and the conductor
+% $\ann \widetilde R/R = \gm$,
+% the maximal ideal of $R$. Show that this is the case for ordinary nodes and cusps, but not for any other curve singularities.
+%\end{exercise}
+
+%\begin{exercise}
+%\begin{enumerate}
+%\item Show  that the conclusion of Lemma~\ref{torsion free at node} holds in case $p$ is a node of $C$
+%\item Show by example that the conclusion of Lemma~\ref{torsion free at cusp} is false in case $p$ is either a tacnode or a triple point of $C$.
+%\end{enumerate}
+%\end{exercise}
+%
+
+
+\subsubsection{Step 4: The reduction to Schubert calculus}
+
+The point of the argument thus far has been to reduce a problem involving linear series on a smooth curve---that is, a line bundle of degree $d$ with $r+1$ global sections---to one involving sections of a torsion-free sheaf on a $g$-nodal curve. Why is this an improvement? 
+
+The answer is, if we have a linear system on a $g$-nodal curve $C_0$, we can look at its pullback to the normalization $\PP^1$ of $C_0$, where we understand the geometry of linear systems much better. To see how this goes, suppose that as above we have a family $\cC \to B$ of curves specializing from a smooth curve of genus $g$ to a $g$-nodal curve $C_0$. Suppose  that we have a linear series $\cD_b = (\cL_b, V_b)$ of degree $d$ and dimension $r$ on the smooth fibers $C_b$. In addition, suppose for the moment that the family of line bundles $\cL_b$ extends to a line bundle on all of $\cC$. (Of course, once we've done this we'll double back and consider what happens if the limit of $\cL_b$ is torsion-free but not locally free.) What has this reduction bought us?
+
+Quite a lot, actually. The point is, if $\cL_0$ is a line bundle of degree $d$ on the $g$-nodal curve $C_0$, and $\nu : \PP^1 \to C_0$ the normalization map, the pullback $\nu^*\cL$ is the line bundle $\cO_{\PP^1}(d)$; and if $V_0 \subset H^0(\cL_0)$ is an $(r+1)$-dimensional vector space of sections of $\cL_0$, then the pullback $\nu^*(V_0)$ is  an $(r+1)$-dimensional subspace of $H^0(\cO_{\PP^1}(d))$. There are of course a lot of these---if we imagine $\PP^1$ as embedded in $\PP^d$ by the complete linear series $|\cO_{\PP^1}(d)|$, they correspond exactly to linear spaces $\Lambda \cong \PP^{d-r-1} \subset \PP^d$, so that we have a Grassmannian of them. The question is, \emph{when is the $g^r_d$ on $\PP^1$ associated to a linear space $\Lambda \subset \PP^d$ the pullback of a $g^r_d$ on $C_0$}?
+
+The answer is straightforward: in order for a linear series on $\PP^1$ to be the pullback of a linear series on $C_0$, it has to be the case that for each $i = 1,\dots, g$, every divisor of the linear series containing $p_i$ must also contain $q_i$ and vice versa. In terms of the geometry of the linear space $\Lambda \subset \PP^d$, this is tantamount to saying that \emph{$\Lambda$ must intersect the secant line $\overline{p_i,q_i}$ to the rational normal curve $\PP^1 \subset \PP^d$ for each $i=1,\dots,g$}.
+
+Do we expect there to exist linear spaces $\Lambda \cong \PP^{d-r-1} \subset \PP^d$ meeting each of $g$ general chords to a rational normal curve? To answer this, we can make a dimension count. To start, the Grassmannian $\GG(d-r-1,d)$ has dimension $(r+1)(d-r)$. Next, for a given line $L \subset \PP^d$, the locus of $(d-r-1)$-planes $\Lambda \subset \PP^d$ meeting $L$ is a Schubert cycle, denoted $\Sigma_r(L)$; it has codimension $r$ in $\GG(d-r-1,d)$. \emph{If}  the Schubert cycles $\Sigma_r(\overline{p_i,q_i})$ associated to $g$ general chords to the rational normal curve in $\PP^d$ intersect dimensionally transversely, this will be the case only if
+$$
+rg \leq (r+1)(d-r),
+$$
+which is exactly the condition $\rho(g,r,d) \geq 0$.
+
+We must also consider the case when the limit $\cL_0$ of the line bundles $\cL_b$ in our family is not locally free at some subset $r_1, \dots, r_\delta$ of the nodes of $C_0$. In this case, let $\widetilde C_0$ be the partial normalization of $C_0$ at these nodes, and $\widetilde \nu : \widetilde C_0 \to C_0$ the partial normalization map, so that $\widetilde C_0$ is the ($g-\delta$)-nodal curve obtained by identifying $g-\delta$ pairs of general points on $\PP^1$. The pullback $\widetilde \nu^*(\cL_0)$ is  locally free of degree $d-2\delta$ on $\widetilde C_0$, so that an $(r+1)$-dimensional space of sections of $\cL_0$ will correspond to a plane $\Lambda \cong \PP^{d-2\delta-r-1} \subset \PP^{d-2\delta}$, meeting each of $g-\delta$ general chords to a rational normal curve in $\PP^{d-2\delta}$. Again, \emph{if} the corresponding Schubert cycles intersect properly, the existence of such planes would imply that
+$$
+r(g-\delta) \leq \dim\GG(d-2\delta-r-1,d-2\delta) = (r+1)(d-r-2\delta),
+$$
+which amounts to the inequality $\rho \geq \delta \geq 0$. 
+
+In sum, we have established the 
+
+\begin{theorem}[Altman-Kleiman] If $\rho(g,r,d)<0$ and 
+the Schubert cycles $\Sigma_r(\overline{p_i,q_i})$ associated to $g$ general chords to a rational normal curve of degree $d$ are dimensionally transverse, then a general curve of genus $g$ will possess no $g^r_d$.
+\end{theorem}
+
+In other words, we have reduced the nonexistence half of classical Brill-Noether to an assertion about general chords to a rational normal curve. This is exactly how
+the Brill-Noether theorem was originally proven, in \cite{Griffiths-Harris-BN}. The proof given there is
+complicated, because the assertion about dimensional transversality
+is \emph{not} true without the hypothesis that the points $p_i,q_i$ are general. For example, if $C$ is a plane conic, and $g=3$, then it is clear that 3 general chords do not meet (and this shows that a general curve of genus 3 is not hyperelliptic!); but there are plenty of triples of concurrent chords---just take three lines through a point off the conic. Fortunately there is an easier way, which we will now explain.
+
+\
+
+\noindent {\bf Step 5: Applying the Pl\"ucker formula}
+
+When trying to prove a statement in algebraic geometry about ``general'' objects of some kind, specialization can sometimes eliminate the hypothesis of generality.
+Though there are triples of concurrent chords to a conic are not concurrent, three tangent lines can never be concurrent! There are many ways to see this, but the one most relevant to our present circumstances is: if the tangent lines to a plane conic $C \subset \PP^2$ met at a point $r \in \PP^2$, then the projection map $\pi_r : C \to \PP^1$ would be a degree 2 map with three or more ramification points, a violation of the Riemann-Hurwitz formula.
+
+This suggests both the statement we should be proving, and how to prove it. 
+
+\begin{lemma}
+Let $C \cong \PP^1 \subset \PP^d$ be a rational normal curve, and $p_1,\dots,p_g \in C$ any $g$ points of $\PP^1$. If $L_i = \overline{2p_i}$ is the tangent line to $C$ at $p_i$, then the Schubert cycles $\Sigma_r(L_i)$ intersect properly; in particular, if $rg > (r+1)(d-r)$, then the intersection $\cap \Sigma_r(L_i)$ is empty.
+\end{lemma}
+
+Note that since tangent lines to a curve are specializations of secant lines, this implies that for $g$ general chords $L_i$ to a rational normal curve, the corresponding Schubert cycles $\Sigma_r(L_i)$ will intersect properly. 
+%\fix{we are using the semicontinuity of fiber dimension in a complete family. Since we seem to be talking to people who don't already know about specialization, we should say a little more about this.} 
+Thus, once we establish the lemma we will have completed the proof of the nonexistence half of Brill Noether.
+
+\begin{proof}
+We will just prove the ``in particular" part here; the more general statement will follow, as we'll indicate in Exercise~\ref{} below.
+
+Suppose $\Lambda \cong \PP^{d-r-1} \subset \PP^d$ is a linear space meeting each of the tangent lines $L_i$, and consider the linear series cut on $\PP^1$ by hyperplanes containing $\Lambda$. The condition that $\Lambda \cap \overline{2p_i} \neq \emptyset$ means exactly that no hyperplane containing $\Lambda$ is transverse to $C$ at $p_i$, or in other words that the linear series $\cD$ cut on $\PP^1$ by hyperplanes containing $\Lambda$ will have ramification sequence at least $(0, 1, 1,\dots,1)$ at $p_i$. Thus the sum of the weights of $\cD$ at the points $p_1,\dots,p_g$ is at least $rg$, and applying the Pl\"ucker formula we arrive at the inequality
+$$
+rg \leq (r+1)(d-r).
+$$
+\end{proof}
+
+
+%
+%Now, back to our family $\pi : \cC \to B$ of curves. We have assumed that for some $d$ and $r$ with $\rho(g,r,d) < 0$ the general curve $C_b$ has a $g^r_d$, and deduced that the special fiber $C_0$ has a rank 1 torsion-free sheaf $\cL_0$ of degree $d$ with at least $r+1$ sections; we now have to derive from this a contradiction.
+%
+%To see most clearly where this contradiction comes from, let's start with the simplest case: where $\cL_0$ is indeed locally free. In this case, let $\nu :  C^\nu \cong \PP^1 \to C$ be the normalization of $C$ and let $q_1,\dots, q_g \in \PP^1$ be the points lying over the cusps of $C_0$. We have
+%$$
+%\nu^*(\cL) \cong \cO_{\PP^1}(d)
+%$$  
+%and 
+%$$
+%V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
+%$$
+%is an $(r+1)$-dimensional space of sections. (If $H^0(\cL_0) > r+1$, just choose any $(r+1)$-dimensional subspace.) 
+%
+%Now, given that any section $\sigma \in V \subset H^0(\cO_{\PP^1}(d))$ is pulled back from the cuspidal curve $C$, we see that \emph{$\sigma$ cannot vanish to order exactly 1 at the point $q_i \in \PP^1$ lying over any of the cusps of $C_0$}. It follows that for each $i$ the ramification index 
+%$$
+%\alpha_1(V,q_i) \geq 1 
+%$$
+%and hence in  general $\alpha_1(q_i,V) \geq 1$ for all $i \geq 1$. In particular, the weight of the inflection point $q_i$ for the linear series $V$ satisfies
+%$$
+%w(V, q_i) \geq r
+%$$
+%and correspondingly
+%$$
+%\sum_{i=1}^g w(V, q_i) \geq rg
+%$$
+%But the Pl\"ucker formula~\ref{} tells us that the total weight of all inflection points for the series $V$ is
+%$$
+%\sum_{p \in \PP^1} w(V,p) = (r+1)(d-r)
+%$$
+%and there's our contradiction: by the hypothesis that 
+%$$
+%\rho(g,r,d) := g - (r+1)(g-d+r) < 0
+%$$
+%we have $rg > (r+1)(d-r)$.
+%
+%Finally, the case where $\cL_0$ is not locally free is if anything even easier. Suppose now that the sheaf $\cL$ fails to be locally free at $l$ of the cusps of $C_0$, say $\nu(p_1),\dots,\nu(p_l)$. Again, we can pull $\cL$ back to $\PP^1$; again we have
+%$$
+%\nu^*(\cL_0) \cong \cO_{\PP^1}(d);
+%$$  
+%and again we pull back section of $\cL$ to arrive at a linear system
+%$$
+%V = \nu^*(H^0(\cL_0)) \subset H^0(\cO_{\PP^1}(d))
+%$$
+%of degree $d$ and genus $g$ on $\PP^1$. The only difference here is that sections of $V$ all vanish at $p_1,\dots,p_l$, so that we have
+%$$
+%w(V,p_k) \geq 
+%\begin{cases}
+%r+1 &\text{ if } k \leq l; \text{ and} \\
+%r  &\text{ if } k > l.
+%\end{cases}
+%$$
+%so that
+%$$
+%\sum_{k=1}^g w(V, p_k) \geq rg + l
+%$$
+%and our contradiction is even more of a contradiction!
+
+\section{Brill-Noether with inflection}
+
+The approach we've taken here to the proof of Brill-Noether is particularly well-suited to analyzing the inflectionary behavior of linear series on a general curve; indeed, a small modification of the argument above allows us to prove a stronger form of the Brill-Noether statement. We start with a definition.
+
+\begin{definition}
+Let $C$ be a smooth curve of genus $g$ and $p_1,\dots,p_n \in C$ distinct points of $C$. If $\cD = (L,V)$ is a linear system on $C$ of degree $d$ and dimension $r$, we define the \emph{adjusted Brill-Noether number} of $\cD$ relative to the points $p_k$ to be
+$$
+\rho(\cD; p_1,\dots,p_k) := g - (r+1)(g-d+r) - \sum_{k=1}^n w(\cD,p_k).
+$$
+\end{definition}
+
+In these terms, our goal will be to prove the following stronger form of Brill-Noether
+
+\begin{theorem}\label{Brill-Noether with inflection}
+Let $(C;p_1,\dots,p_n)$ be a general $n$-pointed curve of genus $g$ (that is, let $C$ be a general curve and $p_1,\dots,p_n \in C$ general points; equivalently, let $(C;p_1,\dots,p_n)$ correspond to a general point of $M_{g,n}$). If $\cD$ is any linear system on $C$, then
+$$
+\rho(\cD; p_1,\dots,p_k) \geq 0.
+$$
+\end{theorem}
+
+
+\begin{proof}
+To start, let $\cC \to B$ be a family of curves as in the proof of Lemma~\ref{cusp smoothing lemma}. Let $\sigma_1, \dots, \sigma_n : B \to \cC$ be sections of $\cC \to B$ with $\sigma_k(0)$ a smooth point of $C_0$ for all $k$ (such sections can always be found after passing to an \'etale open neighborhood of $0 \in B$). Exactly as in the proof of Lemma~\ref{BN in family}, if the general curve $C_b$ in our family admits a $g^r_d$ $\cD$ with
+$$
+\rho(\cD;\sigma_1(b),\dots,\sigma_n(b)) < 0
+$$
+we can choose a family $\{\cD_b\}$ of such linear series on the fibers $C_b$ for $b \neq 0$ and, taking limits, we arrive at a $g^r_d$ $\cD_0$ on $\PP^1$ with
+$$
+w(\cD_0, q_i) \geq r
+$$
+for each of the $g$ points $q_i \in \PP^1$ lying over the cusps of $C_0$, and in addition
+$$
+w(\cD_0, r_k) \geq w(\cD_b,\sigma_k(b))
+$$
+where $r_k \in \PP^1$ is the point in $\PP^1$ lying over $\sigma_k(0) \in C_0$. Adding up, we have
+\begin{align*}
+\sum_{i=1}^g w(\cD_0, q_i) + \sum_{k=1}^n w(\cD_0, r_i) &\geq rg + \sum_{k=1}^n w(\cD_b,\sigma_k(b)) \\
+&> rg + g - (r+1)(g-d+r) = (r+1)(d-r)
+\end{align*}
+since we assumed that 
+$$
+\rho(\cD_b;\sigma_1(b),\dots,\sigma_n(b)) = g - (r+1)(g-d+r) - \sum_{k=1}^n w(\cD_b,\sigma_k(b)) < 0.
+$$
+But as before the Pl\"ucker formula for $\PP^1$ tells us that
+$$
+\sum_{p \in \PP^1} w(\cD_0, p) = (r+1)(d-r),
+$$
+a contradiction.
+\end{proof}
+
+Note that the statement of Theorem~\ref{Brill-Noether with inflection} is an extension of the ``nonexistence" part of Brill-Noether. It raises the question of a converse: if $(C;p_1,\dots,p_n)$ is a general $n$-pointed curve of genus $g$, and we specify ramification sequences $\alpha^1, \dots, \alpha^n$, can we say that there exists a $g^r_d$ $\cD$ on $C$ with $\alpha_i(\cD, p_k) \geq \alpha^k_i$ for $k=1,\dots,n$ and $i = 0, \dots, r$? The answer is that it depends on a Schubert calculus calculation: if the product of the corresponding Schubert classes in $G(d-r, d+1)$ is nonzero, we can indeed assert the existence of such a linear series; and if the product is 0, we can deduce that no such linear series exists.
+
+Here is one way to state what we know without getting lost in the thicket of Schubert calculus:
+
+%%\subsection{Brill-Noether with dimension}
+%%
+%%Theorem~\ref{Brill-Noether with inflection} might at first glance seem relevant only to problems involving inflection, but in fact in can be used to prove results that have nothing to do with inflection points. For example, one consequence is the stronger form of Brill-Noether:
+%%
+%%\begin{theorem}\label{BN with dimension}
+%%If $C$ is a general curve of genus $g$, then for any $d$ and $r$ with $\rho(g,r,d) \geq 0$,
+%%$$
+%%\dim W^r_d(C) = \rho(g,r,d).
+%%$$
+%%\end{theorem}
+%%
+%%\begin{proof}
+%%The idea of the proof is simple: if we had a $(\rho+1)$-dimensional family of $g^r_ds$ on $C$, then we could find one with nonzero ramification at $\rho+1$ general points of $C$, violating Theorem~\ref{Brill-Noether with inflection}. \fix{the equality needs this AND the other inequality, which
+%%comes from the determinantal codimension argument}
+%%
+%%This idea is easier to implement after specializing, so once more we go back to our family $\cC \to B$ of smooth curves specializing to a $g$-cuspidal curve $C_0$, with normalization $\PP^1$. The basic lemma is:
+%%
+%%\begin{lemma}\label{forced ramification}
+%%Let $\Sigma$ be a complete curve and let $\{ \cD_\lambda \}_{\lambda \in \Sigma}$ be a (nonconstant) family of $g^r_ds$ on $\PP^1$ parametrized by $\Sigma$. If $p \in \PP^1$ is any fixed point, then for at least one $\lambda \in \Sigma$ we have $w(\cD_\lambda,p)>0$.
+%%\end{lemma}
+%%
+%%\begin{proof}
+%%Embed $\PP^1$ in $\PP^d$ as a rational normal curve of degree $d$. Given a $(d-r-1)$-plane $\Lambda \subset \PP^d$, the hyperplanes in $\PP^d$ containing $\Lambda$ cut out a $g^r_d$ $\cD_\Lambda$ on $\PP^1$, and indeed every $g^r_d$ on $\PP^1$ can be described in this way for a unique $\Lambda$. The $g^r_d$s on $\PP^1$ are thus parametrized by the Grassmannian $\GG(d-r-1,d)$, and we can think of $\Sigma$ as a complete curve in $\GG(d-r-1,d)$.
+%%
+%%Consider now the hyperplanes $H \subset \PP^d$ such that the divisor $H \cap \PP^1$ has multiplicity $\geq r+1$ at $p$. These correspond to points in a linear space of codimension $r+1$ in $(\PP^d)^*$; in particular, their intersection is an $r$-plane $\Omega \subset \PP^d$, called the \emph{osculating plane} to the rational normal curve at $p$. The condition that a  $g^r_d$ $\cD_\Lambda$ have non-zero ramification at $p$---in other words, that $\cD_\Lambda$ contains a divisor with multiplicity $\geq r+1$ at $p$---is simply that $\Lambda \cap \Omega \neq \emptyset$. But the set of such $\Lambda$ is a hyperplane section of $\GG(d-r-1,d)$ under trhe Pl\"ucker embedding; in particular, any complete curve $\Sigma \subset \GG(d-r-1,d)$ must intersect it.
+%%\end{proof}
+%%
+%%Given this lemma, the proof of Theorem~\ref{BN with dimension} proceeds as follows. We know from the basic dimension estimates of Chapter~\ref{} that $\dim W^r_d(C) \geq \rho(g,r,d)$ for any $C$ \fix{this needs the existence theorem}; we have to show that we cannot have $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$. We argue as follows:
+%%
+%%First: if it were the case that $\dim W^r_d(C) > \rho(g,r,d)$ for a general curve $C$, we would have, after specializing and pulling back to $\PP^1$, at least a $(\rho + 1)$-dimensional family of $g^r_d$s on $\PP^1$, all of which had ramification weight at least $r$ at the points $q_i$ of $\PP^1$ lying over the cusps of $C_0$. 
+%%
+%%Secondly, we pick any $\rho + 1$ points $r_k \in \PP^1$ other than the $q_i$. Applying Lemma~\ref{forced ramification} repeatedly, we find that there is at least a $\rho$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$, a $(\rho - 1)$-dimensional subfamily of $g^r_d$s having nonzero ramification at $p_1$ and $p_2$, and so on; ultimately, we conclude that there is a $g^r_d$ $\cD$ on $\PP^1$ with ramification index at least $r$ at each $q_i$ and nonzero ramification index at each $r_k$. 
+%%
+%%Finally, we observe that the linear series $\cD$ has total ramification at least
+%%$$
+%%rg + \rho + 1 = (r+1)(d-r)+1
+%%$$
+%%at the points $q_i$ and $r_k$, once more violating the Pl\"ucker formula.
+%%\end{proof}
+%
+%We can combine Theorem~\ref{BN with dimension} and Theorem~\ref{Brill-Noether with inflection} into one theorem, more complicated but more inclusive:
+
+\begin{theorem}\label{BN with inflection and dimension}
+Let $C$ be a smooth curve of genus $g$ and $p_1,\dots,p_n \in C$ distinct points; for $k = 1,\dots,n$ let $\alpha^k = (\alpha^k_0,\dots\alpha^k_r)$ be a nondecreasing sequence of nonnegative integers, and let
+$$
+G^r_d(p_1,\dots,p_n; \alpha^1,\dots,\alpha^n) = \{\cD \in G^r_d(D) \mid \alpha_i(\cD, p_k) \geq \alpha^k_i \}.
+$$
+If $(C, p_1,\dots,p_n)$ is a general $n$-pointed curve, then either $G^r_d(p_1,\dots,p_n; \alpha^1,\dots,\alpha^n)$ is empty or
+$$
+\dim G^r_d(p_1,\dots,p_n; \alpha^1,\dots,\alpha^n) = \rho(g,r,d) - \sum_{k+1}^n \sum_{i=0}^r \alpha^k_i.
+$$
+\end{theorem}
+
+Finally, we can combine this last theorem with a little dimension-counting to deduce a simple fact:
+
+\begin{theorem}
+If $\cD$ is a general $g^r_d$ on a general curve, then $\cD$ has only simple ramification; that is,
+$$
+w(\cD, p) \leq 1 \quad \text{for all } p \in C.
+$$
+\end{theorem}
+
+Note that applying this in case $d=2g-2$ and $r = g-1$, we arrive at the statement made earlier: that a general curve $C$ of genus $g$ has only normal Weierstrass points!
+
+\section{Exercises}
+\begin{exercise}\label{Hessian exercise}
+ inflections of a plane curve are the Hessian intersections ($3d(d-2)$)
+\end{exercise}
+
+\begin{exercise}
+Show that in case $r=1$, Theorem~\ref{Plucker} is equivalent to the Riemann-Hurwitz formula for branched covers of $\PP^1$.
+\end{exercise}
+
+\begin{exercise}(Buchweitz, unpublished)
+Show that there is no curve $C$ (necessarily of genus 16) with a point whose Weierstrasss semigroup
+is generated by
+$W =\{0,1,2,3,4,5,6,7,8,9,10,11, 18,20,23,24\}$
+by showing that the cardinality of $W+W$ is larger than $h^0(2K_C)$.
+\end{exercise}
+
+As a more geometric alternative to Proposition~\ref{Constructing nodal curves}, we outline in the following pair of exercises a construction of the curve $C_0$ obtained by identifying $k$ pairs of points on a smooth curve $C$ of genus $h$ (we'll be applying this just in the case $C \cong \PP^1$ and $k=g$, but the construction works more generally). The construction is extremely simple: to start with, we embed the curve $C$ in projective space by the sections of a line bundle of high degree $d$, and then we project.
+
+\begin{exercise}\label{independent secants} Let $C \subset \PP^N$ be a smooth curve of genus $h$, embedded in projective space by the complete linear system associated to a line bundle $\cL$ of degree $d > 2g + 2k$. Show that any $k+1$ secant or tangent lines to $C$  having pairwise disjoint intersection with $C$ are linearly independent; that is, they span a $\PP^{2k-1}$.
+\end{exercise}
+
+Now let $p_1,\dots,p_k, q_1,\dots, q_k \in C$ be any $2k$ distinct points; let $s_i \in \overline{p_i,q_i} \subset \PP^N$ be a general point on the secant line $\overline{p_i,q_i} $, and let $\Lambda \cong \PP^{k-1}$ be the plane spanned by the points $s_1,\dots,s_k$. Let $\pi_\Lambda : \PP^N \to \PP^{N-k}$ be the projection from $\Lambda$, and let $C_0 \subset \PP^{N-k}$ the image $\pi_\Lambda(C)$, and let $r_i = \pi_\Lambda(p_i) = \pi_\Lambda(q_i) \in C_0$.
+
+\begin{exercise}
+Using Exercise~\ref{independent secants}, show that 
+\begin{enumerate}
+\item $\Lambda \cap C = \emptyset$:
+\item The map $\pi_\Lambda$ gives an isomorphism between $C \setminus \{p_1,\dots,p_k, q_1,\dots, q_k\}$ and $C_0 \setminus \{r_1,\dots,r_k\}$ (so in particular, $C_0$ is smooth away from the points $r_i$); and
+\item The $r_i$ are nodes on $C_0$.
+\end{enumerate}
+\end{exercise}
+
+Thus $C_0$ is the curve constructed above.
+
+
+\input{footer}
