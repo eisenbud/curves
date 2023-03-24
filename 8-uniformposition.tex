@@ -355,14 +355,26 @@ Now that we have the strong form of Martens' theorem, we can prove the analogue 
 
 \begin{theorem}
 Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
+The complete linear series $|D|$ is base-point free of dimension 2, and thus defines a map $\phi_D: C\to \PP^2$
+which is birational onto its image $C_0$. Moreover, no two branches of $C_0$ share a tangent line. Furthermore,
+
 \begin{enumerate}
-\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
-\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
-\end{enumerate}
+\item If $C$ is non-hyperelliptic, then $C_0$ has only $\binom{g}{2}$ ordinary nodes and no other singularities; and
+\item If $C$ is hyperelliptic,  $C_0$ has only one singular point, which is an ordinary $g$-fold point.\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-We start by proving that $\phi_D$ is birational onto its image in any case. We do this much as in the proof of Theorem~\ref{g+3 theorem}. Since $D$ is general, we know that $h^0(D) = 3$. To say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$   means that $h^0(D-p-q) = 2$. This implies that $D-p-q = K-E$ for some effective divisor $E$ of degree $g-2$; in other words, to say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$ means that $\mu(D)$ is in the image of the map
+\begin{itemize}
+\item (Dimension) Since $D$ is general, its points impose independent conditions on the $g$-dimensional space $H^0(K_C)$,
+so $D$ is nonspecial, whence $h^0(D) = (g+2)-g+1 = 3.$
+
+\item (No base points) If $|D|$ had a base point $p\in C$, then $3=h^0(D) = h^0(D-p) = (g+1)-g+1+h^0(K_C-D+p)$,
+so $K_C-D$ is effective of degree $2g-2-(g+1) =g-3$; thus the family of such $D$ depends on only $g-3+1$ parameters,
+and $D$ would lie in a proper subvariety of $Pic_{g+2}(C).$
+
+\item (Birationality)
+ To say that $\phi_D(p) = \phi_D(q)$ for some pair of points $p, q \in C$   means that $h^0(D-p-q) = 2$. By the Riemann-Roch
+ theorem, $D-p-q = K-E$ for some effective divisor $E$ of degree $g-2$; Thus $\sO_C(D)$ is in the image of the map
 $$
 \nu : C_2 \times C_{g-2} \to \Pic_{g+2}(C)
 $$
@@ -371,33 +383,34 @@ sending $(p+q, E)$ to $K_C - E + p + q$.
 The map $\nu$ is 
 the composition of two surjective maps, $C_2 \times C_{g-2} \to C_g$ and $C_g\to Pic_g \to Pic_{g+2}$ by duality. Since the source and target of $\nu$ have the same dimension, the general fiber of $\nu$ is finite. Thus for general $D$ we  there are only finitely many pairs $p, q \in C$ such that $\phi_D(p) = \phi_D(q)$; it follows that $\phi_D$ is birational onto its image.
 
-Let's now suppose that $C$ is non-hyperelliptic and $D$ is a general divisor of degree $g+2$ on $C$. To prove the theorem in this case, we have to show  three things: that the image $C_0 = \phi_D(C)$ does not have cusps; that it does not have triple points, and that it does not have tacnodes. (The fact that $|D|$ is base point free  will follow from the first of these arguments, as noted below.) We'll take these assertions in turn:
+Let's now suppose that $C$ is non-hyperelliptic and $D$ is a general divisor of degree $g+2$ on $C$. To prove the theorem in this case, we have to show  three things: that the image $C_0 = \phi_D(C)$ does not have cusps or triple points.
 
-\begin{enumerate}\label{needed for nodes}
-
-
-\item Cusps: to say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by Riemann-Roch, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
+\item (No cusps) To say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by Riemann-Roch, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
 $$
 \mu(D) \in 2W_1 + K_C - W_{g-2},
 $$
 and since the locus on the right has dimension at most $g-1$, a general point of $J(C)$ will not lie in it. Note that this subsumes the fact that $|D|$ has no base points.
 
-\item Triple points: to say that $C_0$ has a triple point means that for some divisor $E = p+q+r$ of degree 3, $h^0(D-E) \geq 1$; thus we must have 
+\item (no Triple points) To say that $C_0$ has a triple point means that for some divisor $E = p+q+r$ of degree 3, $h^0(D-E) \geq 1$; thus we must have 
 $$
 \mu(D) \in W_3 + W^1_{g-1}
 $$
 Now, to argue that this is not the case, we need to know that $\dim W^1_{g-1} \leq g-4$. Here we have to invoke Marten's theorem, which says that $\dim W^1_{g-1} \leq g-4$ if $C$ is non-hyperelliptic; given this, we conclude that $C_0$ has no triple points.
 
-\item Tacnodes:  To say that a pair of points $p, q \in C$ map to a tacnode of $C_0$ means two things: that $h^0(D-p-q) \geq 2$; and that $h^0(D-2p-2q) \geq 1$. If this is the case, set $E = D - 2p - 2q$;  the condition $h^0(D-2p-2q) \geq 1$ is simply that $E$ is an effective divisor, and by the geometric Riemann-Roch the condition $h^0(D-p-q) \geq 2$ says that in terms of the canonical embedding of $C$, the secant line $\overline{p,q}$ meets the $g-3$-plane $\overline E$ spanned by $E$. Now, not every secant line to $C$ can meet a linear subspace $\Lambda \cong \PP^{g-3}$ of dimension $g-3$---the projection $\pi_\Lambda : C \to \PP^1$ would be constant---so we see that $\mu(D)$ would have to lie on the image of a proper subvariety of $C_{g-2} \times C_2$ under the map 
-$$
-(E, p+q) \mapsto E+2p+2q.
-$$
-By a dimension count it follows that $D$ cannot be a general divisor of degree $g+2$.
-
-\end{enumerate}
+%\item Tacnodes:  To say that a pair of points $p, q \in C$ map to a tacnode of $C_0$ means two things: that $h^0(D-p-q) \geq 2$; and that $h^0(D-2p-2q) \geq 1$. If this is the case, set $E = D - 2p - 2q$;  the condition $h^0(D-2p-2q) \geq 1$ is simply that $E$ is an effective divisor, and by the geometric Riemann-Roch the condition $h^0(D-p-q) \geq 2$ says that in terms of the canonical embedding of $C$, the secant line $\overline{p,q}$ meets the $g-3$-plane $\overline E$ spanned by $E$. Now, not every secant line to $C$ can meet a given linear subspace $\Lambda \subset \PP^{g-1}$ of dimension $g-3$--- otherwise, the projection $\pi_\Lambda : C \to \PP^1$ would be constant---so we see that $\mu(D)$ would have to lie on the image of a proper subvariety of $C_{g-2} \times C_2$ under the map 
+%$$
+%\{E,(p,q)\mid \overline E \cap \overline{p,q} \neq \emptyset \hbox{in the canonical embedding}\} \to \Pic_{g+2}(C): (E, p+q) \mapsto E+2p+2q.
+%$$
+%Since the dimension of the source is $<g$ we see that if $C'$ has
+%a point at which two branches are tangent, then $\sO_C(D)$ lies in a proper subvariety of $\Pic_{g+2}(C)$. Since
+%the Abel-Jacobi map $C_{g+2} \to Pic_{g+2}(C)$ is surjective,
+% $D$ would not be general. 
+% 
+% Note that this
+%argument also applies to the hyperelliptic case.
 
 Thus, in the non-hyperelliptic case, the image curve $C_0 = \phi_D(C)$ has only nodes as singularities; the fact that there are exactly $\binom{g}{2}$ of them follows from the genus formula.
-
+\end{itemize}
 
 This concludes the proof in the non-hyperelliptic case. Now suppose that $C$ is hyperelliptic, and let $|E|$ be the (unique) $g^1_2$ on $C$. If  $D$ is any divisor of degree $g+2$, the divisor $D - E$ will have degree $g$, and so be effective; thus we can write
 $$
@@ -409,8 +422,10 @@ Now, the fact that
 $$
 h^0(D - p_1 - \dots - p_g) = h^0(E) = 2 = h^0(D) - 1
 $$
-says that $\phi_D$ maps all the points $p_i$ to the same point! The image curve $C_0$ thus has a point of multiplicity at least $g$, with at least $g$ branches; by the genus formula, we see that this is an ordinary $g$-fold point of $C_0$ and that $C_0$ can have no other singularities.
-
+says that $\phi_D$ maps all the points $p_i$ to the same point!.The image curve $C_0$ thus has a point of multiplicity at least $g$, with at least $g$ branches. Since these branches cannot share a tangent line,
+they are smooth and their tangents are distinct; that is, the point is an ordinary multiple point. By the adjunction
+formula $p_a(C) = binomial{g+1}{2}$ and since $C$ has genus $g$ the singularity must have $\delta$ invariant
+$binom{g+1}{2} -g = \binom{g}{2}$, so the singularity cannot have multiplicity $>g$, and is an ordinary $g$-fold point. Since the $\delta$-invariant of such a point is $\binom{g}{2}$ \fix{give a ref to the plane curve chapter} there can be no other singularities of $C_0$.
 \end{proof}
 
 
@@ -528,18 +543,18 @@ $$
 We have 
 \begin{align*}
 h^0(\cO_C(M)) &\geq \sum_{k=0}^M h^0(\cO_C(k)) - h^0(\cO_C(k-1)) \\
-&\geq  \sum_{k=0}^M k(r-1)+1 \\
-&= \frac{M(M+1)}{2}(r-1) + M + 1
+&\geq  \sum_{k=0}^M k(r-1)\\%+1 \\
+&= \frac{M(M+1)}{2}(r-1) + M% + 1
 \end{align*}
 and similarly
 $$
-h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M + 1 + md.
+h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M  + md.%+ 1
 $$
 For sufficiently large $m$, the line bundle $\cO_C(M+m)$ will be nonspecial, so by the Riemann-Roch Theorem,
 \begin{align*}
 g &= (M+m)d - h^0(\cO_C(M+m)) + 1 \\
 &\leq (M+m)d - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 + md \bigr) \\
-& = M\bigl( M(r-1) + 1 + \epsilon \bigr) - \bigl(  \frac{M(M+1)}{2}(r-1) + M + 1 \bigr) \\
+& = M\bigl( M(r-1) + 1 + \epsilon \bigr) - \bigl(  \frac{M(M+1)}{2}(r-1) + M  \bigr) \\%there was an extra+ 1
 &= \frac{M(M-1)}{2}(r-1) + M\epsilon.
 \end{align*}
  \end{proof}
