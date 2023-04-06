@@ -115,51 +115,60 @@ allowing the completion of section 1.6.}
 \section{Curves of high degree}
 Let $C$ be a smooth curve of  genus $g$. We have seen that every invertible sheaf of degree $d \geq 2g+1$ is very ample. We will now show that
 such a curve,  embedded by the corresponding complete linear series, is arithmetically Cohen-Macaulay.
+
 \begin{theorem}\label{high degree ACM}
-If $C$ is a reduced irreducible projective curve, embedded by a complete linear series $D$ of degree $\geq 2p_a(C)+1$, then
-$H^1(\sI_C(d) = 0$ for all $d\in \ZZ$.
+If $C\subset \PP^r$ is a reduced irreducible projective curve, embedded by a complete linear series $|D|$ of degree $d\geq 2p_a(C)+1$, then
+the restriction maps 
+$$
+H^0(\sO_{\PP^{r}}(m)) \to H^0(\sO_C(m))
+$$
+ are surjective for all $m$. Equivalently, $H^1(\sI_C(m)) = 0$ for all $m$.
 \end{theorem}
 
-\begin{proof} We do induction on $d$, noting that
-For $d\leq 1$ the conclusion is immediate. Note that the complete linear series
-embeds $C$ in $\PP^{d-g}$. 
+\begin{proof} We do induction on $m$, noting that
+For $m\leq 1$ the conclusion is immediate. 
 
-The case $d=2$ requires a special argument: By Theorem~\ref{linearly general position} the $d$ points $\Gamma = C\cap H$ of a
-general hyperplane section are in linearly general position, and thus impose independent conditions on quadrics
-(Reason: $d\leq (2(d-g)-1)$, and if we take any point $p$ away from $\Gamma$, then the remaining points lie in a
-quadric which is the union of two planes and does not contain $p$.) This implies that
-the restriction map $H^0(\sO_H(2)) \to H^0(\sO_\Gamma(2))$ is surjective, whence $H^1(\sI_\Gamma(2)) = 0.$
+The case $m=2$ requires a special argument. Note that the complete linear series
+embeds $C$ in $\PP^{r}$.  Let $H$ be a general hyperlane in $\PP^{r}$.
+ By Theorem~\ref{linear general position} the $d$ points $\Gamma = C\cap H$ are in linearly general position. By Proposition~\ref{arbitrary hyperplane} they span $H \cong \PP^{r}$.
+ 
+By the Riemann-Roch theorem $r = d-p_a$. The inequality $d\geq 2p_a+1$ is equivalent to the statement that $d\leq 2(r-1)+1$ so by Lemma~\ref{min hilb} the points of $\Gamma$ impose $d$ conditions on quadrics.
+This implies that
+the restriction map $H^0(\sO_{\PP^{r}}(2))\to H^0(\sO_H(2)) \to H^0(\sO_\Gamma(2))$ is surjective, whence $H^1(\sI_\Gamma(2)) = 0.$
+
 Applying $H^1$ to exact sequence 
 $$
-0\to \sI_C(1) \to \sI_C(2) \to \sI_\Gamma(2) \to 0
+0\to \sI_C(1) \to \sI_C(2) \to \sI_{\Gamma/H}(2) \to 0
 $$
+of Proposition~\ref{arbitrary hyperplane}
 we see that $H^1(\sI_C(2))=0$.
 
-For $d>2$ we will show that the multiplication map
+Now suppose that  $m>2$. By induction, it suffices to show that the multiplication map
 $$
-H^0(\sO_C(1) \otimes H^0(\sO_C(d-1)\to H^0(\sO_{C}(d))
+H^0(\sO_C(1) \otimes H^0(\sO_C(m-1)\to H^0(\sO_{C}(m))
 $$
-is surjective. Since the corresponding map for $\PP^3$ is surjective, this implies that
-the restriction map
-$H^0(\sO_{\PP^3}(d)\to H^0(\sO_{C}(d))$
-is surjective, whence $H^1(\sI_{C}(d)) = 0$.
+is surjective.
 
-For this we will use what David Mumford refers to as the \emph{base-point-free pencil trick}:
-Let $V$ be a pair of sections of $H^0(\sO_{\PP^3}(1) = H^0(\sO_C(1)$, and consider the exact sequence
+For this we use what David Mumford has called the \emph{base-point-free pencil trick}:
+Let $V$ be a pair of sections of $H^0(\sO_{\PP^{d-g}}(1)) = H^0(\sO_C(1))$ that do not intersect anywhere on $C$ (and thus define a base-point-free pencil on $C$).
+Since $V\sO_C = \sO_C$, it follows that the Koszul complex
 $$
-0\to \wedge^2V \otimes \sO_C(d-2) \to V\otimes \sO_{C}(d-1))\to \sO_{C}(d))\to 0.
+0\to \wedge^2V \otimes \sO_C(m-2) \to V\otimes \sO_{C}(m-1)\to \sO_{C}(m)\to 0
 $$
-Applying $H^0$ and using the fact that $H^1(\sO_C(d-2)) = 0$ completes the proof.
+is exact.
+
+Since $m\geq 3$ we have $\deg(\sO_C(m-2)) \geq d > 2p_a-2$, so $H^1(\sO_C(m-2)) =0$, and it follows that the map $V\otimes H^0(\sO_{C}(m-1))\to H^0(\sO_{C}(m))$
+is surjective. Thus  
+$H^0(\sO_C(1))\otimes H^0(\sO_{C}(m-1))\to H^0(\sO_{C}(m))$
+is surjective, completing the proof.
 \end{proof}
 
 
-
 \section{Canonical Curves}
-A variation of the same argument will show that
-canonical curves are arithmetically Cohen-Macaulay, and thus that smooth canonical curves are projectively normal,
-a result of Max Noether that we have been using ever since Section~\ref{Noether theorem section}.
+A slightly more subtle argument will show that
+canonical curves are arithmetically Cohen-Macaulay, a result (in the smooth case) of Max Noether~\cite{Max Noether} that we have been using ever since Section~\ref{Noether theorem section}.
 The necessary modification is to replace the base-point-free pencil with one having many base points.
-We follow the treatment in \cite{Schreyer}.
+We follow the treatment in \cite{Schreyer}, which allows us to treat a rather general case:
  
 We define a \emph{canonical curve} in $\PP^{g-1}$ to be a purely one-dimensional, nondegenerate closed subscheme  such that
 $$
@@ -167,56 +176,44 @@ $$
 $$
 
 Note that the first of these hypotheses implies that $C$ is connected, and the last shows that
-$C$ is (locally) Gorenstein---that is, the dualizing sheaf $\omega|_C$ is invertible.
+$C$ is (locally) Gorenstein---that is, the dualizing sheaf $\omega|_C$ is invertible. Thus the Riemann-Roch theorem and duality work as expected. 
+In particular, since $h^0(\sO_C) = 1$ and $h^0(\omega_C) = g$,  duality gives
+$\chi(\sO_C) = 1 - h^0(\omega_C)= 1-g$ and thus $\chi(\omega_C) = g-1$.  Using this we get
+$g-1 = \chi(\omega_C) = \deg \omega_C + 1-g$, so $\deg \omega_C = \deg C = 2g-2$, just as in the smooth case.
 
 If $C$ is a reduced and irreducible curve then by Theorem~\ref{linear general position} a general hyperplane $H\subset \PP^{g-1}$
 meets $C$ transversely in a set of points in linearly general position. Any subset $\Gamma$ of $g-2$ of these points will span a $g-3$-plane $\Lambda$
 meeting $C$ transversely in $\Gamma$, and we call $\Lambda$ a \emph{simple $(g-2)$-secant $(g-3)$-plane}. To include more general cases we make this part of the hypothesis:
 
-%A \emph{simple}  $m$ secant to a scheme $C\subset \PP^r$ is an $(m-1)$-dimensional plane $\Lambda\subset \PP^r$ whose intersection with
-%$C$ consists of $m$ reduced points. It follows that the the hyperplanes containing $\Lambda$ then intersect the curve in an additional base-point-free pencil. In characteristic 0, such secant planes always exist for reduced, irreducible curves. More generally:
-%
-%\begin{lemma}
-% If $C\subset \PP^n$ is a reduced, irreducible, nondegenerate curve, and $m\leq n-2$, then the linear span $L := \overline{p_1,\dots, p_m}$
-% of $m$ general points of $C$ is a simple $m$-secant; that is, a plane of dimension $m-1$ such that
-% $C\cap L = \{p_1,\dots,p_m\}$ scheme-theoretically.
-% \end{lemma}
-% 
-% 
-%\begin{proof}
-%The plane $L$ is contained in a hyperplane $H$, and since the points are general, we may take this to be a general hyperplane. By Bertini's Theorem, $C\cap H$ is reduced, so $C\cap L$ is also reduced.
-% If $C\cap L$ had length $>m$, then by Theorem~\ref{uniform position??}\fix{in ch 8-BrillNoether} every set of $m+1$ points of $C\cap H$ would be dependent,
-% and the span of $C\cap H$ would thus have dimension $\leq m-1<n-1$, and we could choose a hyperplane section $C\cap H'$ with more points than $C\cap H$, which is absurd.
-%\end{proof}
-%
-\begin{theorem}[Max Noether]\label{canonical curves are ACM}
+\begin{theorem}\label{canonical curves are ACM}
 A canonical curve in $\PP^{g-1}$ has degree $2g-2$ and arithmetic genus $g$. If the curve has a simple
-$g-2$ secant $(g-3)$-plane, then it is arithmetically Cohen-Macaulay; that is,
-$\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m\in \ZZ$.
+$g-2$ secant $(g-3)$-plane, then
+$$
+\HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m));
+$$
+is  surjective for all $m$; equivalently,
+$\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m$.
 \end{theorem}
   
 \begin{proof} 
 %The Hilbert polynomial $\chi_{C}(t) = h^{0}\sO(t)-\h^{1}\sO(t)$ of $C$ has degree equal to
 %$\dim C = 1$, so it is determined by two values.
 
-To show that
-$C$ is arithmetically Cohen-Macaulay we
-must show that the natural maps 
-$$
-\HH^{0}(\sO_{\PP^{n}}(m)) \to \HH^{0}(\sO_{C}(m))
-$$
-are surjective for all $m\in \ZZ$. For $m=0,1$ this is immediate from the hypothesis.
+For $m = 0,1$ the conclusion is immediate.
 
-For $m<0$ we must show that $H^0(\sO_C(m)=0$. Let $D$ be the intersection of $C$
-with a hypersurface of degree $-m$, so that $\sO_C(-m)$ is the ideal sheaf of
-$D$. By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
-restrict non-trivially to $\sO_{D}$, so the kernel, $\HH^{0}(\sO_{C}(-m))$, is 0 as claimed.
+For $m>0$ we must show that $H^0(\sO_C(-m)=0$. Let $D$ be the intersection of $C$
+with a hypersurface of degree $m$, so that there is a left exact sequence
+$$
+0\to H^0(\sO_C(-m)) \to H^0(\sO_C) \to H^0(\sO_D).
+ $$ 
+ By hypothesis, the vector space $\HH^{0}\sO_{C}$ is spanned by the constant functions, and these
+restrict non-trivially to $\sO_{D}$, so $\HH^{0}(\sO_{C}(-m))$, is 0 as claimed.
 
 By induction on $m$ it now suffices to prove the surjectivity of
 $$
-\HH^{0}(\sO_{C}(H)) \otimes \HH^{0}(\sO_{C}(mH)) \to \HH^{0}(\sO_{C}((m+1)H))
+\HH^{0}(\sO_{C}(H)) \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH))
 $$
-for $m\geq 1$, where $H$ is the hyperplane divisor on $C$.
+for $m\geq 2$, where $H$ is the hyperplane divisor on $C$.
 
 %In the left-exact sequence
 %$$
@@ -249,45 +246,44 @@ for $m\geq 1$, where $H$ is the hyperplane divisor on $C$.
 %\to \HH^{0}(\sO_{D}) \to \cdots.
 %$$
  
-Let $\Gamma = \sum_{i=0}^{g-3}p_i$ be the $g-2$ points of the
-simple $(g-1)$-secant $(g-3)$-plane, andLet $V$ be the span of the two sections of $\omega_C = \sO_C(1)$
-vanishing on $\Gamma$. Since the points $\Gamma$
+Let $\Gamma = \{p_0,\dots, p_{g-3}$ be the $g-2$ points in which a
+simple $(g-1)$-secant $(g-3)$-plane $\Lambda$ meets $C$, and let $V$ be the span of the two sections of $\omega_C = \sO_C(1)$
+vanishing on $\Gamma$. Note that since $\Gamma$ is a union of components of a hyperplane section of $C$, it is a Cartier divisor on $C$.
+
+Since the points of $\Gamma$
 are linearly independent, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
 $x_{i}(p_{j}) \neq 0$ if and only if $i = j$. It follows that the sections
 $x_{i}^{m}$ of $\sO_{C}(m)$ span $\HH^{0}(\sO_{C}(m)|_{\Gamma})$. 
-
 Thus 
 it suffices to prove the surjectivity of
 $$
-\HH^{0}(\sO_{C}(mH-\Gamma)) \otimes \HH^{0}(\sO_{C}(mH)) \to \HH^{0}(\sO_{C}((m+1)H-\Gamma))
+\HH^{0}(\sO_{C}(H-\Gamma)) \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH-\Gamma))
 $$
-for  $m\geq 1$.
+for  $m\geq 2$.
 
 Now let
 $V\subset \HH^{0}(\sO_{C}(H))$ be the two-dimensional subspace of linear forms vanishing on
 $\Lambda$, and thus on the $p_{i}$. 
-
 Since $H-\Gamma$ is base-point free away from $\Gamma$, the two sections of $V$
-define a short exact sequence of sheaves
+define a surjective map $V\otimes \sO_C \to  \sO_{C}(H-\Gamma))$ and thus a short exact sequence of sheaves
 $$
-0\to\wedge^2 V\otimes \sO_{C}((m-1)H+\Gamma)  \to V\otimes \sO_C(mH) \to  \sO_{C}((m+1)H-\Gamma)) \to 0
+(*) \quad 0\to \sL  \to V\otimes \sO_C((m-1)H) \to  \sO_{C}(mH-\Gamma)) \to 0
 $$
-and we must show that the right-hand map is surjective on global sections for $m\geq 1$.
+for some invertible sheaf $\sL$, and we must show that the right-hand map is surjective on global sections for $m\geq 2$.
 
-For $m\geq 2$ the divisor $(m-1)H+\Gamma$ has degree $>\deg \omega$, so
-$H^1(\sO_{C}((m-1)H+\Gamma)) = 0$, and the surjectivity is immediate (this is
-essentially what we did when using the ``base-point-free pencil trick'' in the proof of Theorem~\ref{high degree ACM}).
+From the exact sequence it follows that
+$$
+\sL\otimes \sO_{C}(mH-\Gamma)) \cong  \sO_C(2(m-1)H) 
+$$
+so $\sL \cong \sO_C(m-2)H+\Gamma.$ 
+Thus it suffices to show that $H^1(\sO_C(m-2)H+\Gamma) = 0$ for $m\geq 2$.
 
-We begin by computing the dimensions of the cohomology of the three sheaves in the case $m=1$.
 
-By hypothesis
-we have $h^0(\sO_C) = 1$ and $h^0(\omega_C) = g$, so by duality
-$\chi(\sO_C) = 1 - h^0(\omega_C)= 1-g$ and thus $\chi(\omega_C) = g-1$ Using this and the Riemann-Roch theorem we get
-$g-1 = \chi(\omega_C) = \deg \omega_C + 1-g$, so $\deg \omega_C = \deg C = 2g-2$, just as in the smooth case.
+To deal with the case $m=2$ we compute the dimensions of the cohomology of the three sheaves in the exact squence (*).
 
 Since $C$ is 1-dimensional the Hilbert polynomial $p(m) := \chi(\sO_C(m))$ is linear and is determined by the values
-$p(0) = 1-g$ and $p(1) = g-1$ just determined, so $p(m) = (2g-2)m+1-g$. Since the points of $\Gamma$ impose
-independent conditions we have 
+$p(0) = 1-g$ and $p(1) = g-1$, so $p(m) = (2g-2)m+1-g$. Since the points of $\Gamma$ impose
+independent conditions on forms of every degree we have 
 $$
 h^0(\sO_C(2H-\Gamma)) = 3g-3 - (g-2) = 2g-1.
 $$ 
@@ -297,17 +293,20 @@ h^0(\sO_C(\Gamma)))=\deg \Gamma -g+1+h^0(H-\Gamma) = -1 + h^0(\sO_C(H-\Gamma)) =
 $$
 and 
 $$
-\dim V \otimes H^0(\sO_C(H)) = 2g
+\dim V \otimes H^0(\sO_C(H)) = 2g.
 $$
-so
+Thus
 $$
-0\to H^0(\sO_{C}(\Gamma)  \to V\otimes H^0(\sO_C(H)) \to H^0( \sO_{C}((2)H-\Gamma))) 
+0\to H^0(\sO_{C}(\Gamma)  \to V\otimes H^0(\sO_C(H)) \to H^0( \sO_{C}(2H-\Gamma))) 
 $$
-is right exact, as required for the case $m=1$.
+is right exact, as required for the case $m=2$.
+
+For $m\geq 3$ the divisor $(m-1)H+\Gamma$ has degree $>2g-2$, so
+$H^1(\sO_{C}((m-1)H+\Gamma)) = 0$ as required.
 \end{proof}
 
 \begin{corollary}\label{canonical hilbert function}
-If $C\subset \PP^{g-1}$ is a canonical curve with a simple $g-3$-secant, then the Hilbert function of the homogeneous coordinate ring $S_{C}$ of  $C$ depends only on $g$, and is given by:
+If $C\subset \PP^{g-1}$ is a canonical curve with a simple $g-2$-secant $g-3$-plane, then the Hilbert function of the homogeneous coordinate ring $S_{C}$ of  $C$ depends only on $g$, and is given by:
 $$
 \dim({S_{C}})_{d} = h^{0}(\cO_{C}(d)) = 
 \begin{cases}
