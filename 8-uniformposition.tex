@@ -20,43 +20,50 @@ of this stronger result.
 
 
 \begin{proposition}\label{arbitrary hyperplane}
-If $C\subset \PP^r$ is a nondegenerate, reduced, irreducible curve, and $h$ is a linear form defining
+If $X\subset \PP^r$ is a nondegenerate, reduced, irreducible variety, and $h$ is a linear form defining
 the hyperplane $H$, then the natural
 sequence
 $$
-0\to \sI_C \rTo^h \sI_C(1)\to \sI_{H\cap C}(1)\to 0.
+0\to \sI_{X/\PP^r} \rTo^h \sI_{X/\PP^r}(1)\to \sI_{(H\cap X)/H}(1)\to 0.
 $$
 is exact, and the subscheme
-$H\cap C$ spans $H$; that is, $H^0(\sI_{(H\cap C)/H}(1)) = 0$.
+$H\cap X$ spans $H$; that is, $H^0(\sI_{(H\cap X)/H}(1)) = 0$.
 \end{proposition}
 
 See Exercise~\ref{arbitrary hyperplane examples} for the necessity of the hypotheses
-and Exercise~\ref{restriction of ideals} for a generalization.
+and Exercise~\ref{restriction of ideals} for a generalization. Note that
+${H\cap X}$ could have embedded components of dimension $<\dim X -1$, though in the case where $X$ is a curve
+this is obviously impossible. 
 
-Geometrically: since $C$ is nondegenerate, reduced, and irreducible, every hyperplane meets $C$ in a finite subscheme $\Gamma := {H\cap C}$.
-if $\Gamma$ spanned only a codimension 2 plane $\Lambda$, then in the family of hyperplanes
-containing $\Lambda$ there would be some meeting $C$ in a finite scheme of degree more than $\deg \Gamma = \deg C$
-points, a contradiction. Here is a more formal argument:
+\begin{fact}
+Given any reduced scheme $X\subset \PP^r$, there are a finite number of subvarieties $\{X_i\subset X\}$ such that
+$I_X +(h)$ is the saturated ideal of $X\cap H$ if and only if $H$ intersects each $X_i$ properly. Thus if $H$ is general
+then $X\cap H$ has no embedded projective subvarieties (though the irrelevant ideal may be associated). 
+This may be regarded as a version of Bertini's theorem. See for example~\cite{WMACE}.
+\end{fact}
 
 \begin{proof}
-Because $C$ is reduced irreducible and nondegenerate,
-$h$ is a nonzerodivisor modulo $\sI_C$, and thus, setting $\Gamma = {H\cap C}$ we have
+Because $X$ is reduced irreducible and nondegenerate,
+$h$ is a nonzerodivisor modulo $\sI_{X/\PP^r}$. Thus, setting $\Gamma = {H\cap X}$ we have
 we have 
 $$
 \begin{aligned}
-\sI_{C/\PP^n}/h\sI_{C/\PP^n} &= \sI_{C/\PP^n}/h\sI_{C/\PP^n} \\
-&= \sI_{C/\PP^n}/((h)\cap\sI_{C/\PP^n})\\
- &=(\sI_{C/\PP^n}+(h))/(h)\\
- &= \sI_{\Gamma/H}.
+\sI_{X/\PP^r}(1)/h\sI_{X/\PP^r} &= \sI_{X/\PP^r}(1)/((h)\cap\sI_{X/\PP^r})\\
+ &=(\sI_{X/\PP^r}(1)+(h))/(h)\\
+ &= \sI_{\Gamma/H}(1).
 \end{aligned}
  $$
  From which the exactness assertion follows.
  
- Again because $C$ is reduced and irreducible, $H^0(\sO_C)$ contains only the constant function, so the map $H^0(\sO_{\PP^n}) \to H^0(\sO_C)$ is surjective, 
-from which it follows that $H^1(\sI_{C/\PP^n}) = 0.$ From the long exact sequence in cohomology it follows that
- the restriction map $H^0(\sI_C(1))\to H^0(\sI_{\Gamma/H}(1))$ is surjective. Since
-$C$ is nondegenerate, $H^0(\sI_C(1)) = 0$, and the desired result follows.
+ Again because $X$ is reduced and irreducible, $H^0(\sO_X)$ contains only the constant function, so the map $H^0(\sO_{\PP^r}) \to H^0(\sO_X)$ is surjective, 
+from which it follows that $H^1(\sI_{X/\PP^r}) = 0.$ From the long exact sequence in cohomology it follows that
+ the restriction map $H^0(\sI_{X/\PP^r}(1))\to H^0(\sI_{\Gamma/H}(1))$ is surjective. Since
+$X$ is nondegenerate, $H^0(\sI_{X/\PP^r}(1)) = 0$, and the desired result follows.
 \end{proof}
+
+Note that the sequence of saturated homogeneous ideals corresponding to that of the proposition may not be exact: 
+The homogeneous ideal $I_X(1)+(h)$
+defines $X\cap H$, but may be properly contained in the saturated ideal of $X\cap H$. See Exercise~\ref{bad restriction} for an example. 
 
 
 \section{Linearly general position}
@@ -680,19 +687,26 @@ $r(p)\geq 1$, so $C\cong \PP^1.$
 
 
 \section{Exercises}
-\begin{exercise}\label{{arbitrary hyperplane examples}}
+\begin{exercise}\label{arbitrary hyperplane examples}
 Let $C_1$ be the union of two skew lines in $\PP^3$, and let $C_2$ be the double line on a smooth quadric in $\PP^3$.
 Show that there are hyperplane sections of $C_1$ and of $C_2$ that violate the conclusion of Proposition~\ref{arbitrary hyperplane}.
 \end{exercise}
 
-\begin{exercise}
 
 \begin{exercise}\label{restriction of ideals}
 Suppose that $X\subset \PP^r$ is a subscheme and  $Z$ is the subscheme of $\PP^r$ defined by a hypersurfact $F\in H^0(\sO_{\PP^r}(m)$. If the restriction of $F$ is a nonzerodivisor in $\sO_X(m)$  then there are short exact sequences
 $\sI_X(d-m) \rTo^F \sI_X(m) \rTo \sI_{X\cap Z}(m) \to 0$.
 \end{exercise}
 
+\begin{exercise}\label{bad restriction}
+Let $C\subset \PP^3$ be the smooth rational quartic (or any smooth curve embedded by an incomplete linear series), and let $h$ be a linear form defining the hyperplane $H$.Show that
+the the irrelevant ideal is associated to the 
+homogeneous ideal $I_C+(h)$, and thus $I_C(1)/hI_c$ is not the saturated homogeneous ideal of the finite
+set $C\cap H$. 
+\end{exercise}
 
+
+\begin{exercise}
 Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\widetilde C = \nu_m(C)$ be image of $C$. Prove:
 
 \begin{proposition}[Proposition~\ref{nodal projection} in characteristic $p$]\label{positive characteristic nodes}
