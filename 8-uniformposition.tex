@@ -12,49 +12,58 @@ We begin by showing that the points in every hyperplane section span the hyperpl
 holds for smooth curves in arbitrary characteristic (but see Exercise~\ref{strange curves} for
 interesting counterexamples of singular examples in positive characteristic). 
 
-In the following sections we give a series of applications of this result. Then, in Section~\ref{uniform position section} we return to the characteristic 0 case to prove the much stronger \emph{uniform position lemma}. Finally we give some applications
+In the following sections of this chapter we give a series of applications of this result, and in Sections~\ref{high degree ACM} and
+\ref{canonical ACM} we further apply the result to show that canonical curves and curves of high degree are
+arithmetically Cohen-Macaulay. In Section~\ref{uniform position section} we return to the characteristic 0 case to prove the much stronger \emph{uniform position lemma}. Finally we give some applications
 of this stronger result.
 \section{Arbitrary hyperplane sections}
 
 
 \begin{proposition}\label{arbitrary hyperplane}
-If $C\subset \PP^r$ is a nondegenerate, reduced, irreducible curve, and $h$ is a linear form defining
+If $X\subset \PP^r$ is a nondegenerate, reduced, irreducible variety, and $h$ is a linear form defining
 the hyperplane $H$, then the natural
 sequence
 $$
-0\to \sI_C \rTo^h \sI_C(1)\to \sI_{H\cap C}(1)\to 0.
+0\to \sI_{X/\PP^r} \rTo^h \sI_{X/\PP^r}(1)\to \sI_{(H\cap X)/H}(1)\to 0.
 $$
 is exact, and the subscheme
-$H\cap C$ spans $H$; that is, $H^0(\sI_{(H\cap C)/H}(1)) = 0$.
+$H\cap X$ spans $H$; that is, $H^0(\sI_{(H\cap X)/H}(1)) = 0$.
 \end{proposition}
 
 See Exercise~\ref{arbitrary hyperplane examples} for the necessity of the hypotheses
-and Exercise~\ref{restriction of ideals} for a generalization.
+and Exercise~\ref{restriction of ideals} for a generalization. Note that
+${H\cap X}$ could have embedded components of dimension $<\dim X -1$, though in the case where $X$ is a curve
+this is obviously impossible. 
 
-Geometrically: since $C$ is nondegenerate, reduced, and irreducible, every hyperplane meets $C$ in a finite subscheme $\Gamma := {H\cap C}$.
-if $\Gamma$ spanned only a codimension 2 plane $\Lambda$, then in the family of hyperplanes
-containing $\Lambda$ there would be some meeting $C$ in a finite scheme of degree more than $\deg \Gamma = \deg C$
-points, a contradiction. Here is a more formal argument:
+\begin{fact}
+Given any reduced scheme $X\subset \PP^r$, there are a finite number of subvarieties $\{X_i\subset X\}$ such that
+$I_X +(h)$ is the saturated ideal of $X\cap H$ if and only if $H$ intersects each $X_i$ properly. Thus if $H$ is general
+then $X\cap H$ has no embedded projective subvarieties (though the irrelevant ideal may be associated). 
+This may be regarded as a version of Bertini's theorem. See for example~\cite{WMACE}.
+\end{fact}
 
 \begin{proof}
-Because $C$ is reduced irreducible and nondegenerate,
-$h$ is a nonzerodivisor modulo $\sI_C$, and thus, setting $\Gamma = {H\cap C}$ we have
+Because $X$ is reduced irreducible and nondegenerate,
+$h$ is a nonzerodivisor modulo $\sI_{X/\PP^r}$. Thus, setting $\Gamma = {H\cap X}$ we have
 we have 
 $$
 \begin{aligned}
-\sI_{C/\PP^n}/h\sI_{C/\PP^n} &= \sI_{C/\PP^n}/h\sI_{C/\PP^n} \\
-&= \sI_{C/\PP^n}/((h)\cap\sI_{C/\PP^n})\\
- &=(\sI_{C/\PP^n}+(h))/(h)\\
- &= \sI_{\Gamma/H}.
+\sI_{X/\PP^r}(1)/h\sI_{X/\PP^r} &= \sI_{X/\PP^r}(1)/((h)\cap\sI_{X/\PP^r})\\
+ &=(\sI_{X/\PP^r}(1)+(h))/(h)\\
+ &= \sI_{\Gamma/H}(1).
 \end{aligned}
  $$
  From which the exactness assertion follows.
  
- Again because $C$ is reduced and irreducible, $H^0(\sO_C)$ contains only the constant function, so the map $H^0(\sO_{\PP^n}) \to H^0(\sO_C)$ is surjective, 
-from which it follows that $H^1(\sI_{C/\PP^n}) = 0.$ From the long exact sequence in cohomology it follows that
- the restriction map $H^0(\sI_C(1))\to H^0(\sI_{\Gamma/H}(1))$ is surjective. Since
-$C$ is nondegenerate, $H^0(\sI_C(1)) = 0$, and the desired result follows.
+ Again because $X$ is reduced and irreducible, $H^0(\sO_X)$ contains only the constant function, so the map $H^0(\sO_{\PP^r}) \to H^0(\sO_X)$ is surjective, 
+from which it follows that $H^1(\sI_{X/\PP^r}) = 0.$ From the long exact sequence in cohomology it follows that
+ the restriction map $H^0(\sI_{X/\PP^r}(1))\to H^0(\sI_{\Gamma/H}(1))$ is surjective. Since
+$X$ is nondegenerate, $H^0(\sI_{X/\PP^r}(1)) = 0$, and the desired result follows.
 \end{proof}
+
+Note that the sequence of saturated homogeneous ideals corresponding to that of the proposition may not be exact: 
+The homogeneous ideal $I_X(1)+(h)$
+defines $X\cap H$, but may be properly contained in the saturated ideal of $X\cap H$. See Exercise~\ref{bad restriction} for an example. 
 
 
 \section{Linearly general position}
@@ -62,13 +71,13 @@ In this section we will allow our algebraically closed ground field to have arbi
 
 An irreducible and reduced curve
 $C\subset \PP^n$ over an algebraically closed field $k$, other than a line, is called \emph{strange} if
-all the tangent lines at smo gitoth points of $C$ meet in a point $p\in \PP^n$. If this conditions seems somewhat, well, strange, that may be because no such curves exist in characteristic 0: if it were the case that all the tangent lines at smooth points of $C$ met in a point, then the projection of $C$ from that point would have derivative 0 everywhere. But strange curves do exist in characteristic $p > 0$, albeit rarely: Pierre Samuel showed that the only \emph{smooth} curve that is strange (in any characteristic) is the conic in characteristic 2; a proof is given in \cite[Theorem IV.3.9]{Hartshorne1977}. Without the smoothness hypothesis, however there are other examples; see Exercise~ref{strange curves}.
+all the tangent lines at smooth points of $C$ meet in a point $p\in \PP^n$. If this conditions seems somewhat, well, strange, that may be because no such curves exist in characteristic 0: if it were the case that all the tangent lines at smooth points of $C$ met in a point, then the projection of $C$ from that point would have derivative 0 everywhere. But strange curves do exist in characteristic $p > 0$, albeit rarely: Pierre Samuel showed that the only \emph{smooth} curve that is strange (in any characteristic) is the conic in characteristic 2; a proof is given in \cite[Theorem IV.3.9]{Hartshorne1977}. Without the smoothness hypothesis, however there are other examples; see Exercise~ref{strange curves}.
 
 Given this language, we can state our first result. Recall that if $C\subset \PP^n$ is a reduced curve then, by Bertini's theorem, a general hyperplane
 section of $C$ consists of smooth points. 
 
 \begin{theorem} \label{basic linear independence}(\cite[Lemma 1.1]{Rathmann})\label{linear general position}
-Suppose that $n\geq 3$. If $C\subset \PP^n$ is a nondegenerate irreducible, reduced curve, that is not neither strange
+Suppose that $n\geq 3$. If $C\subset \PP^n$ is a nondegenerate irreducible, reduced curve, that is neither strange
 and $H$ is a general hyperplane, then any $n$ points of $H\cap C$ are
 linearly independent.
 \end{theorem}
@@ -79,8 +88,8 @@ is any pair of points $p\neq q$ on $C$ such that the the tangent lines $T_p(C), 
 called a \emph{staionary secant}. More formally we define two subsets of the symmetric square $C_2$ of $C$:
 $$
 \begin{aligned}
- mult(C) &:=\{(p,q) \in C_2 \mid \overline{p,q} \hbox{meets $C$ in a scheme of length $\geq 3$}\};\\
-stat(C) &:= \{(p,q) \in C_2\setminus \Delta \mid  \hbox{meets $C$ in a scheme of length $\geq 3$}\},
+ mult(C) &:=\{(p,q) \in C_2 \mid \overline{p,q} \hbox{ meets $C$ in a scheme of length $\geq 3$}\};\\
+stat(C) &:= \{(p,q) \in C_2\setminus \Delta \mid  \hbox{the tangent lines to $C$ at $p,q$ have nonempty intersection}\},
 \end{aligned}
 $$
 where $\overline{p,q}$ denotes the secant line through $p,q$ (or the tangent line if $p=q$ and $\Delta\subset C_2$
@@ -444,7 +453,7 @@ $$
 \end{proposition}
 
 One way to understand the bound $mn+1$ is to realize that if $\Gamma$ is any finite subscheme of a rational normal curve $C\subset\PP^n$ of degree $n$, 
-then $h_\Gamma(m) = min(\deg \Gamma, mn+1$ for every $m$ (Exercise~\ref{linear bound is sharp}).
+then $h_\Gamma(m) = \min\{\deg \Gamma, mn+1\}$ for every $m$ (Exercise~\ref{linear bound is sharp}).
   Thus the bound in Proposition~\ref{min hilb} is best possible.
 On the other hand, sets of points on a rational normal curve are almost the only sets for which the bound is sharp:
 
@@ -678,19 +687,26 @@ $r(p)\geq 1$, so $C\cong \PP^1.$
 
 
 \section{Exercises}
-\begin{exercise}\label{{arbitrary hyperplane examples}}
+\begin{exercise}\label{arbitrary hyperplane examples}
 Let $C_1$ be the union of two skew lines in $\PP^3$, and let $C_2$ be the double line on a smooth quadric in $\PP^3$.
 Show that there are hyperplane sections of $C_1$ and of $C_2$ that violate the conclusion of Proposition~\ref{arbitrary hyperplane}.
 \end{exercise}
 
-\begin{exercise}
 
 \begin{exercise}\label{restriction of ideals}
 Suppose that $X\subset \PP^r$ is a subscheme and  $Z$ is the subscheme of $\PP^r$ defined by a hypersurfact $F\in H^0(\sO_{\PP^r}(m)$. If the restriction of $F$ is a nonzerodivisor in $\sO_X(m)$  then there are short exact sequences
 $\sI_X(d-m) \rTo^F \sI_X(m) \rTo \sI_{X\cap Z}(m) \to 0$.
 \end{exercise}
 
+\begin{exercise}\label{bad restriction}
+Let $C\subset \PP^3$ be the smooth rational quartic (or any smooth curve embedded by an incomplete linear series), and let $h$ be a linear form defining the hyperplane $H$.Show that
+the the irrelevant ideal is associated to the 
+homogeneous ideal $I_C+(h)$, and thus $I_C(1)/hI_c$ is not the saturated homogeneous ideal of the finite
+set $C\cap H$. 
+\end{exercise}
 
+
+\begin{exercise}
 Let $C\subset \PP^n$ be a smooth curve. If we re-embed $C$ by a Veronese map of sufficiently high degree---that is, we let $\nu_m : \PP^n \to \PP^N$ be the $m$th Veronese map, and let $\widetilde C = \nu_m(C)$ be image of $C$. Prove:
 
 \begin{proposition}[Proposition~\ref{nodal projection} in characteristic $p$]\label{positive characteristic nodes}
@@ -759,7 +775,7 @@ Consider the map $\phi : C \to \PP^1 \times \PP^1$ given as the product of the m
 \end{exercise}
 
 \begin{exercise}
-Show that with $C$ and $M$ as above, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
+Show that with $C$ and $M$ as in Castelnuovo's theorem, the line bundle $\cO_C(M)$ is nonspecial. (We will see in Section~\ref{} that this is sharp; that is, there exist curves $C \subset \PP^r$ with $\cO_C(M-1)$ special).
 \end{exercise}
 
 \begin{exercise}\label{extremal m-ics}
