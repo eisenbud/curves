@@ -37,7 +37,7 @@ $$
 $$
 pencils of degree $d$.
 
-It was Kleiman who first proposed that Castelnuovo's approach to the study of linear series on a general curve could be used to give a proof of Brill-Noether, if enough care was taken with the specialization arguments; he carried this out in~\cite{r-special}, and succeeded in reducing the basic Brill-Noether theorem to a special case of Corollary~\ref{secant schubert proper}; this was then proved in~\cite{Griffiths-Harris-BN}.
+It was Kleiman who first proposed that Castelnuovo's approach to the study of linear series on a general curve could be used to give a proof of Brill-Noether, if enough care was taken with the specialization arguments. He carried this out in~\cite{r-special}, and succeeded in reducing the basic Brill-Noether theorem to a special case of Corollary~\ref{secant schubert proper}; this was then proved in~\cite{Griffiths-Harris-BN}.
 
 This is the approach to the study of linear series on a general curve we'll adopt here, with some modifications. For one thing, the relative strength of Theorem~\ref{} and Corollary~\ref{secant schubert proper} suggests that specializing to a $g$-cuspidal curve $C_0$ rather than a $g$-nodal one might produce stronger results, and that is what we will do here.
 
@@ -223,16 +223,41 @@ The next step is to argue that we can glue together these local smoothings to ob
 
 Now that we have our family $\cC \to \Delta$ of curves, specializing from a smooth curve of genus $g$ to a $g$-cuspidal curve, the next step in our proof of Brill-Noether will be to relate linear series on the general fiber of our family to their limits on $C_0$.
 
-\subsection{The Picard variety of a cuspidal curve}
+\subsection{The Picard variety of a nodal or cuspidal curve}
 
 An essential part of our construction is the existence of Picard varieties $\pic_d(C_0)$ for curves with relatively mild singularities like nodes and cusps. As we indicated, we're going to want to apply this to a $g$-cuspidal curve, but it's true for curves with both nodes and cusps; here we'll describe the Picard variety of an irreducible curve $C_0$ with a total of $g$ nodes and cusps (so that the geometric genus of the normalization $C = \tilde C_0$ is $\PP^1$).
 
+Let's start with the case of a node. To set up, let $C$ be a curve with a node $p$, and $\tilde C \rTo^\nu C$ the normalization of $C$ at $p$; we'll denote by $q,r \in \tilde C$ the points lying over $p$. If $\cL$ is an invertible sheaf on $C$, and $\nu^*(\cL)$ the pullback of $\cL$ to $\tilde C$, then $\nu^*(\cL)$ is an invertible sheaf on $\tilde C$, and its fibers over $q$ and $r$ are both identified with the fiber $\cL_p$ of $\cL$ at $p$, and hence with each other. Conversely, given an invertible sheaf $\cM$ on $\tilde C$ and an identification of the fibers $\cM_q$ and $\cM_r$, we can form an invertible sheaf $\cL$ on $C$ by taking the subsheaf of $\nu_*\cM$ whose sections ``agree" at $q$ and $r$, in terms of the identification. Thus the family of invertible sheafs $\cL$ on $C$ whose pullback is isomorphic to a given $\cM$ may be identified with the set of isomorphisms $\cM_q \cong \cM_r$ of the two one-dimensional vector spaces $\cM_q$ and $\cM_r$, so that  we have an exact sequence of groups
+$$
+0 \rTo \pic_0(\tilde C) \rTo^{\nu^*} \pic_0(C) \rTo \CC^* \rTo 0
+$$
+and similarly for $\pic_d$ for any degree $d$.
+
+To give the analogous statement for a curve $C$ with a cusp at $p$, the right way to think of the identification $\cM_q \cong \cM_r$ above as an equivalence class of trivialization of the invertible sheaf $\cM$ over the preimage $\nu^{-1}(p) \subset \tilde C$, where two trivializations are equivalent if they differ by multiplication by a constant. Stated that way, the same conclusion holds if $\nu : \tilde C \to C$ is the normalization of a curve $C$ at a cusp $p$; the difference is that the preimage $\nu^{-1}(p)$ is a nonreduced scheme isomorphic to $\Spec \CC[\epsilon]/(\epsilon^2)$ rather than two reduced points. In this case, the family of equivalence classes of trivializations of $\cM$ over $\nu^{-1}(p)$ is a copy of $\CC$ rather than $\CC^*$, and we have correspondingly an exact sequence 
+$$
+0 \rTo \pic_0(\tilde C) \rTo^{\nu^*} \pic_0(C) \rTo \CC \rTo 0.
+$$
+
+To express this result for the curves we'll be dealing with, we can say that for a $g$-cuspidal curve $C_0$,
+$$
+\pic_0(C_0) \; \cong \CC^g
+$$
+and for a $g$-nodal curve, 
+$$
+\pic_0(C_0) \; \cong (\CC^*)^g.
+$$
+
+Note that both of these are irreducible of dimension $g$, just like the Picard variety of a smooth curve of genus $g$. But note also that in both cases $\pic_d(C)$ is not proper, which we'll have to deal with in Section~\ref{line bundle limits} below.
 
 \subsection{The relative Picard variety}
 
-(will show/assert: the Picard varieties $\Pic(C_t)$ form a family over $\Delta$; the varieties $W^r_d(C_t)$ form a subfamily; and, crucially, the codimension of the latter in the former is $\leq (r+1)(g-d+r)$ everywhere (we need this for regeneration)
+As before, let $\pi : \cC \to \Delta$ be a family of curves of arithmetic genus $g$, with fiber $C_t = \pi^{-1}(t)$ a smooth curve of genus $g$ and $C_0$ a $g$-cuspidal curve. The basic fact here is that the Picard varieties $\Pic(C_t)$ form a family $\pic(\cC/\Delta)$, and that the varieties $W^r_d(C_t)$ form a subfamily $\cW^r_d(\cC/\Delta)$; and, crucially, the codimension of $\cW^r_d(\cC/\Delta) \subset \pic(\cC/\Delta)$ is $\leq (r+1)(g-d+r)$ everywhere (we need this for regeneration)
 
-\subsection{Limits of line bundles}
+But if our goal is to say something about the varieties $W^r_d(C_t)$ by studying the fiber of $\cW^r_d(\cC/\Delta)$ over $t=0$, we have a problem: as we've noted, the map $\cW^r_d(\cC/\Delta) \to \Delta$ is not proper, so it is a priori possible that the fiber of $\cW^r_d(\cC/\Delta)$ over $t=0$ is empty, whatever the geometry of $W^r_d(C_t)$ for $t \neq 0$. In other words,  if we're going to analyze linear series on the general curve of our family $\{C_t\}$ of smooth curves specializing to a $g$-cuspidal or $g$-nodal curve by taking limits, we have to describe the possible limits of linear series on $C_t$ as $t\to 0$; we will take this up in the next section.
+
+
+
+\subsection{Limits of line bundles}\label{line bundle limits}
 
 We now want to address the question: given a family $\pi : \cC \to B$, and a family $\{ \cD_b = (L_b, V_b)\}_{b \neq 0 \in B}$ of linear series on the curves $C_b$ with $b \neq 0$, how can we describe the ``limit" of the linear series $\cD_b$ as $b \to 0$? The answer is largely the same whether the special fiber $C_0$ has nodes or cusps, so we'll give the answer in both cases. 
 
