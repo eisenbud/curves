@@ -113,122 +113,128 @@ If the union of two smooth curves in $\PP^3$ is a complete intersection of surfa
 of the curves are related. The relation is true much more generally, as we shall see in the next section, but the special
 case is already useful and attractive:
 
-\begin{theorem}\label{liaison genus formula-first version} Let $C, {C'}\subset \PP^3$ smooth irreducible curves of  of degrees $c,d$ whose union is the complete intersections of two surfaces $S,T$, with $S$ smooth. If the degrees of $S,T$ are $s,t$ respectively, then $\deg C+\deg C' = st$ and the genera of $C,C'$ are
-related by
- $$
- g(C) - g({C'}) = \frac{s+t-4}{2}(\deg C-\deg {C'}).
+\begin{theorem}\label{liaison genus formula-first version} Let $C, {C_2}\subset \PP^3$ smooth irreducible curves of  of degrees $c,d$ whose union is the complete intersections of two surfaces $S,T$, with $S$ smooth. If the degrees of $S,T$ are $s,t$ respectively, then
+$$
+\begin{aligned}
+&\deg C+\deg C_2 = st\\
+&g(C) - g({C_2}) = \frac{s+t-4}{2}(\deg C-\deg {C_2}).
+\end{aligned}
  $$
 \end{theorem}
-In words, the difference between the genera of $C$ and ${C'}$ is proportional to the difference in their degrees, with constant of proportionality $(s+t-4)/2$. Note that in the case of the complete intersection of two quadrics, the multiplier $(s+t-4)/2 = 0$, and indeed the line and the twisted cubic have the same genus.
+In words, the difference between the genera of $C$ and ${C_2}$ is proportional to the difference in their degrees, with constant of proportionality $(s+t-4)/2$. Note that in the case of the complete intersection of two quadrics, the multiplier $(s+t-4)/2 = 0$, and indeed the line and the twisted cubic have the same genus.
 
 \begin{proof}
+B\'ezout's Theorem implies that the degree of $S\cap T = C_1\cup C_2$ is $st$, whence the first formula.
+
 By the adjunction formula in $\PP^3$ the canonical divisor of $S$ has class $K_S = (s-4)H$. Thus, from the 
-adjunction formua
+adjunction formula on the surface $S$ we get
+$$
+g(C_i) = \frac{C_i^2+C_i\cdot K_S}{2}+1 = \frac{C_i^2+(s-4) \deg C_i}{2}+1
+$$
+and thus, subtracting,
+$$
+g(C_1)-g(C_2) = \frac{C_1^2-C_2^2+(s-4) (\deg C_1-\deg C_2)} {2}.
+$$
+Because $C_1+C_2$ is in the class $tH$ on $S$ we have
+$$
+C_1^2-C_2^2 = (C_1-C_2)(C_1+C_2) = t(\deg C_1-\deg C_2)
+$$
+and substituting this into the previous formula we get the second formula of the theorem.
 \end{proof}
 
-\fix{Add prop that double linkage on $S$ is linear equivalence. MAYBE add computation of the canonical module
-in terms of linkage in this special case -- or put that with the general case, later.}
+\begin{remark}
+Linkage is closely related to linear equivalence; here is a special case:
+Suppose that $S$ is a smooth surface in $\PP^3$, and $C\subset S$ is a curve. If $T$ is a sufficiently general surface of degree $t$
+containing $C$ then the curve $C'$ that is the link of $C$ with respect to $S,T$ lies in the class $tH-C$. If we link again with
+respect to an other surface $T'$ of degree $t'$ we thus arrive at $C'' = C+(t-t')H$. Thus if $t=t'$ we get a curve in the same 
+linear equivalence class as $C$. Moreover, since every rational function on $S$ is the restriction to $S$ of the ratio of two forms of the same degree on $\PP^3$,
+the set of curves on $S$ that can be obtained from $C$ by two linkages with surfaces $T, T'$ of the same degree is exactly the 
+linear series $|C|$ on $S$.
+\end{remark}
 
-\section{Linkage of more general curves in $\PP^3$}
-To say that the union of distinct smooth irreducible curves $C, C'$ without common components is a complete intersection $X$ means that 
-the ideal $I_X$ of the complete intersection is the intersection $I_C\cap I_{C'}$. Since this ideal contains $I_CI_{C'}$, the ideal quotient
-$I_X:I_C:= \{F \mid FI_C\subset I_X$
-contains $I_{C'}$. On the other hand, if $F \notin I_{C'}$ and we choose $G\in I_C\setminus I_{C'}$, then $FG\notin I_{C'}$, so in fact
-$I_X:I_C = I_{C'}$. It turns out that this relationship is the key to the formulas connecting the degrees and genera of $C,C'$, which hold 
-for arbitrary purely 1-dimensional subschemes of $\PP^3$, as we shall see in Theorem~\ref{direct linkage}. This suggests the definition
-of direct linkage for such subschemes:
 
-\begin{definition}
-Let $C,C'$ be purely 1-dimensional subschemes of $\PP^3$. We say that $C'$ is \emph{directly linked} to $C$ if there is a complete
-intersection $X$ containing $C,C'$ and $I_X:I_C = I_{C'}$. We say that $C'$ is \emph{linked} to $C$ if they are connected by a chain of such
-direct linkages, and we say that $C'$ is \emph{evenly linked} to $C$ if the chain involves an even number of steps.
-\end{definition}
+%\section{Linkage of more general curves in $\PP^3$}
 
-It turns out that the relationship of linkage is symmetric: as in the case of smooth curves above, if 
-$C'$ is directly linked to $C$, then $C$ is directly linked to $C'$ as well (Theorem~\ref{general linkage}).
-Thus
-linkage is an equivalence relation (often referred to by its French name, Liaison).
+%
+%It may seem from this definition that it would be difficult to check whether two curves in $\PP^3$---even smooth ones---are linked, but
+%a remarkable result of Hartshorne and Rao makes it relatively easy. If $C$ is any subscheme of $\PP^3$ the multiplication map
+%induces a map
+%$H^0(\sO_{P^3}(1) \otimes H^1(I_C(m)) \to H^1(I_C(m+1))$, making the direct sum
+%$$
+%D(C) := H^1_*\sI_C := \oplus_{m\in \ZZ} H^1(\sI_C(m)
+%$$
+%into a module over the homogeneous coordinate ring of $\PP^3$. If $C$ has no zero-dimensional components then $H^1\sI_C(m))$ vanishes
+%for $m<0$, and by Theorem~\ref{Serre} it vanishes for $m>>0$, so, as a vector space, $D(C)$ a finite dimensional in this case.
+%In our case, when $C$ is a purely 1-dimensional subscheme of $\PP^3$ we call $D(C)$ the \emph{Hartshorne-Rao module} of $C$.
+%
+%Theorem~\ref{HR} of Hartshorne, which we will prove below,
+%says that if $C$ is directly linked to $C'$ then $D(C')$ is, up to a shift in grading, the dual of $D(C)$. The Thesis of Rao completed the picture:
+%
+%\begin{theorem}\cite{MR520926}\label{Rao}
+%Two curves $C,C'$ are linked by an even length chain of direct linkages if and only if 
+%the Hartshorne-Rao modules $D(C)$ and $D(C')$ are isomorphic up to a shift in grading.
+%\end{theorem}
+%
+%For example, the Hartshorne-Rao module of the union $C$ of two skew lines in $\PP^3$ is easily seen to be the residue field in degree 0. There are
+%two quadrics containing $C$, and the link with respect to these two is the union of two other skew lines, again with Hartshorne-Rao module
+%$k$ in degree 0. 
+%
+%Perhaps the simplest case of Theorem~\ref{Rao} occurs when $C$ is arithmetically Cohen-Macaulay, so that $D(C) = 0$: it says simply that all 
+%arithmetically Cohen-Macaulay curves are linked to one another, and thus to complete intersections\footnote{Curves in the {\underline l}inkage 
+%{\underline c}lass of a {\underline c}omplete {\underline i}intersection (in any projective space) are sometimes said to be \emph{licci}, usually
+%pronounced as if in Italian as ``leechy''}. In this special case Theorem~\ref{Rao} was first proven in~\cite{Gaeta}, and we sketch the
+% proof as a good warmup for the general case.
+%The first step is to invoke the following result, a special case of the Hilbert-Burch Theorem~\cite[Section 20.4]{Eisenbud1995}:
+%
+%\begin{theorem}\label{Hilbert-Burch Theorem}
+%If $C$ is an arithmetically Cohen-Macaulay curve in $\PP^3$ then the homogeneous coordinate ring $S_C$ of $C$ has a homogeneous
+%minimal free resolution of the form
+%$$
+%0\rTo S^{n-1} \rTo^A S^n \rTo^\phi S \rTo S_C \rTo 0;
+%$$
+%where $S$ is the homogeneous coordinate ring of $\PP^3$ and, for simplicity, we have suppressed the twists associated to the summands of the
+%free modules in the resolution. Moreover, $\phi = \wedge^{n-1}A^*$ times a unit of $S$; that is, $I_C$ is minimally generated by the 
+%$(n-1)\times (n-1)$ minors of $A$.
+%\end{theorem}
+%
+%\begin{proof}[Proof sketch of Theorem~\ref{Rao} when $D(C)=0$] 
+%Possibly after a change of basis in $S^n$ we may assume that the first two generators $F_1, F_2$ of $I_C$, corresponding to the minors of $A$
+%omitting the first and second columns, form a regular sequence. The inclusion of ideals $(F_1, F_2) \subset I_C$ induces a map of free resolutions:
+%$$
+%\begin{diagram}[small]
+%0&\rTo& S^{n-1} &\rTo& S^n &\rTo&S&\rTo &S_C &\rTo& 0\\
+%&&\uTo&&\uTo&&\uTo&&\uTo\\
+%0&\rTo& S &\rTo& S^2&\rTo& S&\rTo& S/(F,G) &\rTo& 0\\
+%\end{diagram},
+%$$
+%where, as before, we have suppressed all the twists.
+%We dualize this diagram and form the mapping cone.
+%Since the vertical map $\sO_{\PP^3}\to \sO_{\PP^3}$ on the right
+%is an isomorphism we may cancel these terms, and since we have taken $F_1, F_2$ to be two of the minimal generators of $I$ the 
+%second vertical map is a split inclusion, so we may cancel the $S^{2*}$ against two of the generators of $S^n$, obtaining a map
+%of (very short) complexes:
+%$$
+%\begin{diagram}[small]
+% 0&\lTo&\omega_C&\lTo&S^{n*} &\lTo& S^{n-1*}&\lTo&  0\\
+% &&\dTo^\phi&&\dTo&&\dTo\\
+% 0&\lTo&S/(F_1,F_2)&\lTo&S &\lTo&0\\
+%% &&\dTo\\
+%% &&\sO_{C'}\\
+%% &&\dTo\\
+%% && 0
+%\end{diagram},
+%$$
+%Where we have written $\omega_C$ for $Ext^2_S(S/I_C, S)$; we shall see later that this is the dualizing module of $S/I_C$ (again
+%we have suppressed the twists), and that $\omega_C = (I_C:(F_1, F_2))/(F_1,F_2).$
+%Thus the cokernel of $\phi$ is $S/(I_C:(F_1, F_2))$. Because $I_C$ has codimension 2, the modules $Ext_S^i(S/I,S)$ vanish for $i<2$,
+%and it follows that the right-hand square of the diagram provides a free resolution 
+%$$
+%0\lTo S/(I_C:(F_1, F_2)) \lTo S\lTo S^{n-1*} \lTo S^{n-2*}\lTo 0
+%$$
+%From this we see that $S/I_C$ is linked to an arithmetically Cohen-Macaulay curve whose ideal $I_C:(F_1, F_2)$
+%has just $n-1$ generators. Continuing in this way, we arrive at a curve whose ideal has just 2 generators---a complete intersection.
+%\end{proof} 
 
-It may seem from this definition that it would be difficult to check whether two curves in $\PP^3$---even smooth ones---are linked, but
-a remarkable result of Hartshorne and Rao makes it relatively easy. If $C$ is any subscheme of $\PP^3$ the multiplication map
-induces a map
-$H^0(\sO_{P^3}(1) \otimes H^1(I_C(m)) \to H^1(I_C(m+1))$, making the direct sum
-$$
-D(C) := H^1_*\sI_C := \oplus_{m\in \ZZ} H^1(\sI_C(m)
-$$
-into a module over the homogeneous coordinate ring of $\PP^3$. If $C$ has no zero-dimensional components then $H^1\sI_C(m))$ vanishes
-for $m<0$, and by Theorem~\ref{Serre} it vanishes for $m>>0$, so, as a vector space, $D(C)$ a finite dimensional in this case.
-In our case, when $C$ is a purely 1-dimensional subscheme of $\PP^3$ we call $D(C)$ the \emph{Hartshorne-Rao module} of $C$.
-
-Theorem~\ref{HR} of Hartshorne, which we will prove below,
-says that if $C$ is directly linked to $C'$ then $D(C')$ is, up to a shift in grading, the dual of $D(C)$. The Thesis of Rao completed the picture:
-
-\begin{theorem}\cite{MR520926}\label{Rao}
-Two curves $C,C'$ are linked by an even length chain of direct linkages if and only if 
-the Hartshorne-Rao modules $D(C)$ and $D(C')$ are isomorphic up to a shift in grading.
-\end{theorem}
-
-For example, the Hartshorne-Rao module of the union $C$ of two skew lines in $\PP^3$ is easily seen to be the residue field in degree 0. There are
-two quadrics containing $C$, and the link with respect to these two is the union of two other skew lines, again with Hartshorne-Rao module
-$k$ in degree 0. 
-
-Perhaps the simplest case of Theorem~\ref{Rao} occurs when $C$ is arithmetically Cohen-Macaulay, so that $D(C) = 0$: it says simply that all 
-arithmetically Cohen-Macaulay curves are linked to one another, and thus to complete intersections\footnote{Curves in the {\underline l}inkage 
-{\underline c}lass of a {\underline c}omplete {\underline i}intersection (in any projective space) are sometimes said to be \emph{licci}, usually
-pronounced as if in Italian as ``leechy''}. In this special case Theorem~\ref{Rao} was first proven in~\cite{Gaeta}, and we sketch the
- proof as a good warmup for the general case.
-The first step is to invoke the following result, a special case of the Hilbert-Burch Theorem~\cite[Section 20.4]{Eisenbud1995}:
-
-\begin{theorem}\label{Hilbert-Burch Theorem}
-If $C$ is an arithmetically Cohen-Macaulay curve in $\PP^3$ then the homogeneous coordinate ring $S_C$ of $C$ has a homogeneous
-minimal free resolution of the form
-$$
-0\rTo S^{n-1} \rTo^A S^n \rTo^\phi S \rTo S_C \rTo 0;
-$$
-where $S$ is the homogeneous coordinate ring of $\PP^3$ and, for simplicity, we have suppressed the twists associated to the summands of the
-free modules in the resolution. Moreover, $\phi = \wedge^{n-1}A^*$ times a unit of $S$; that is, $I_C$ is minimally generated by the 
-$(n-1)\times (n-1)$ minors of $A$.
-\end{theorem}
-
-\begin{proof}[Proof sketch of Theorem~\ref{Rao} when $D(C)=0$] 
-Possibly after a change of basis in $S^n$ we may assume that the first two generators $F_1, F_2$ of $I_C$, corresponding to the minors of $A$
-omitting the first and second columns, form a regular sequence. The inclusion of ideals $(F_1, F_2) \subset I_C$ induces a map of free resolutions:
-$$
-\begin{diagram}[small]
-0&\rTo& S^{n-1} &\rTo& S^n &\rTo&S&\rTo &S_C &\rTo& 0\\
-&&\uTo&&\uTo&&\uTo&&\uTo\\
-0&\rTo& S &\rTo& S^2&\rTo& S&\rTo& S/(F,G) &\rTo& 0\\
-\end{diagram},
-$$
-where, as before, we have suppressed all the twists.
-We dualize this diagram and form the mapping cone.
-Since the vertical map $\sO_{\PP^3}\to \sO_{\PP^3}$ on the right
-is an isomorphism we may cancel these terms, and since we have taken $F_1, F_2$ to be two of the minimal generators of $I$ the 
-second vertical map is a split inclusion, so we may cancel the $S^{2*}$ against two of the generators of $S^n$, obtaining a map
-of (very short) complexes:
-$$
-\begin{diagram}[small]
- 0&\lTo&\omega_C&\lTo&S^{n*} &\lTo& S^{n-1*}&\lTo&  0\\
- &&\dTo^\phi&&\dTo&&\dTo\\
- 0&\lTo&S/(F_1,F_2)&\lTo&S &\lTo&0\\
-% &&\dTo\\
-% &&\sO_{C'}\\
-% &&\dTo\\
-% && 0
-\end{diagram},
-$$
-Where we have written $\omega_C$ for $Ext^2_S(S/I_C, S)$; we shall see later that this is the dualizing module of $S/I_C$ (again
-we have suppressed the twists), and that $\omega_C = (I_C:(F_1, F_2))/(F_1,F_2).$
-Thus the cokernel of $\phi$ is $S/(I_C:(F_1, F_2))$. Because $I_C$ has codimension 2, the modules $Ext_S^i(S/I,S)$ vanish for $i<2$,
-and it follows that the right-hand square of the diagram provides a free resolution 
-$$
-0\lTo S/(I_C:(F_1, F_2)) \lTo S\lTo S^{n-1*} \lTo S^{n-2*}\lTo 0
-$$
-From this we see that $S/I_C$ is linked to an arithmetically Cohen-Macaulay curve whose ideal $I_C:(F_1, F_2)$
-has just $n-1$ generators. Continuing in this way, we arrive at a curve whose ideal has just 2 generators---a complete intersection.
-\end{proof} 
-
-\section{Degree and genus of linked curves}
 
 %
 %\begin{theorem}\label{liaison genus formula-first version} Let $C_1,C_2\subset \PP^3$ smooth irreducible curves  whose union is the complete intersection of surfaces $S,T$ of degrees $s,t$ respectively. Assuming that $S$ is smooth,
@@ -267,65 +273,89 @@ has just $n-1$ generators. Continuing in this way, we arrive at a curve whose id
 %as required
 % \end{proof}
 %
-%%\section{Linkage of purely 1-dimensional schemes in $\PP^3$}
+
+\section{Linkage of purely 1-dimensional schemes in $\PP^3$}
+
+%The first step in dealing with a more general case, where $C,{C'}$ may not be reduced or irreducible, and my share components, is to agree
+%on the analogue of the statement $C\cup {C'} = S\cap T$. Writing $F,G$ for the defining equations of $S,T$ respectively,
+%In the simple case above, the primary decomposition of the ideal $(F,G)$ was the intersection of two prime ideals $I_C+I_{C'}$. From this description it
+%follows that
+%$$
+%(F,G):I_C := \{H \mid HI_C \subset (F,G)\} = I_{C'}
+%$$
+%Since the associated primes of $(F,G):I_C$ are among the associated primes of $(F,G)$, 
+%${C'}$ is again a purely 1-dimensional scheme. 
 %
-%%The first step in dealing with a more general case, where $C,{C'}$ may not be reduced or irreducible, and my share components, is to agree
-%%on the analogue of the statement $C\cup {C'} = S\cap T$. Writing $F,G$ for the defining equations of $S,T$ respectively,
-%%In the simple case above, the primary decomposition of the ideal $(F,G)$ was the intersection of two prime ideals $I_C+I_{C'}$. From this description it
-%%follows that
-%%$$
-%%(F,G):I_C := \{H \mid HI_C \subset (F,G)\} = I_{C'}
-%%$$
-%%Since the associated primes of $(F,G):I_C$ are among the associated primes of $(F,G)$, 
-%%${C'}$ is again a purely 1-dimensional scheme. 
-%%
-%%Constructions of this type were understood by Macaulay in his great paper~\cite{Macaulay1913} or \cite{Eisenbud-Gray} for ideals in polynomial rings. For the modern theory, as
-%%well as some of the history, see~\cite{MR0364271}.
-%%By analogy, we will say that two purely 1-dimensional subschemes of $\PP^3$ are \emph{directly linked} by surfaces $S: \{F = 0\}$ and $T:  \{F = 0\}$ if
-%%the equation above is satisfied, and we say that they are \emph{linked} if they are connected by a chain of direct linkages; the equivalence relation
-%%defined in this way is called \emph{liaison}. 
-%%
-%%Historically, the first case to be understood was that of arithmetically Cohen-Macaulay curves in $\PP^3$.
+%Constructions of this type were understood by Macaulay in his great paper~\cite{Macaulay1913} or \cite{Eisenbud-Gray} for ideals in polynomial rings. For the modern theory, as
+%well as some of the history, see~\cite{MR0364271}.
+%By analogy, we will say that two purely 1-dimensional subschemes of $\PP^3$ are \emph{directly linked} by surfaces $S: \{F = 0\}$ and $T:  \{F = 0\}$ if
+%the equation above is satisfied, and we say that they are \emph{linked} if they are connected by a chain of direct linkages; the equivalence relation
+%defined in this way is called \emph{liaison}. 
 %
-%
+%Historically, the first case to be understood was that of arithmetically Cohen-Macaulay curves in $\PP^3$.
+
+
+
+To say that the union of distinct smooth irreducible curves $C, C'$ without common components is a complete intersection $X$ means that 
+the ideal $I_X$ of the complete intersection is the intersection $I_C\cap I_{C'}$. Since this ideal contains $I_CI_{C'}$, the ideal quotient
+$I_X:I_C:= \{F \mid FI_C\subset I_X$
+contains $I_{C'}$. On the other hand, if $F \notin I_{C'}$ and we choose $G\in I_C\setminus I_{C'}$, then $FG\notin I_{C'}$, so in fact
+$I_X:I_C = I_{C'}$. It turns out that this relationship is the key to the formulas connecting the degrees and genera of $C,C'$, which hold 
+for arbitrary purely 1-dimensional subschemes of $\PP^3$, as we shall see in Theorem~\ref{direct linkage}. This suggests the definition
+of direct linkage for such subschemes:
+
+\begin{definition}
+Let $C,C'$ be purely 1-dimensional subschemes of $\PP^3$. We say that $C'$ is \emph{directly linked} to $C$ if there is a complete
+intersection $X$ containing $C,C'$ and $I_X:I_C = I_{C'}$. We say that $C'$ is \emph{linked} to $C$ if they are connected by a chain of such
+direct linkages, and we say that $C'$ is \emph{evenly linked} to $C$ if the chain involves an even number of steps.
+\end{definition}
+
+As in the smooth case treated above, direct linkage is a symmetric relationship:
+\begin{proposition}
+Let $C_1\subset \PP^3$ be a purely 1-dimensional subscheme with saturated homogeneous ideal $I_1$ and suppose that $C_1$ is contained in a complete intersection of
+hypersurfaces $S\cap T$. The ideal $I_2 = I_{S\cap T}:I_1$ is a saturated ideal, defining a purely 1-dimensional subscheme and 
+$I_1 = I_{S\cap T}: I_2$ as well.
+\end{proposition}
+ 
+\begin{proof}
+Since $S\cap T$ is a complete intersection, the ideal $I_{S\cap T}$ is unmixed of codimension 2, and it follows
+that $I_2 = I_{S\cap T}:I_1$ is unmixed of codimension 2 as well (and thus, in particular, saturated).
+Tnus it suffices to prove that $I_1 = I_{S\cap T}: I_2$ after localizing at a codimension 2 prime $P$
+that contains $I_{S\cap T}$. 
+
+Write $R$ for the localization at $P$ of the homogeneous coordinate ring of $S\cap T$. 
+Because $I_{S\cap T}$ is a complete intersection, the ring $R$ is
+ is zero-dimensional and Gorenstein.
+By \cite[***]{Eisenbud1995}, every finitely generated $R$-module is reflexive. Since 
+$$
+I_{C_2}R= \ann_{R}(I_{C_1}R \cong Hom_R(R/I_{C_1}R, R)
+$$
+the proposition follows.
+\end{proof}
+
+Iterating direct links we thus define the equivalence relation of \emph{linkage} among purely 1-dimensional subschemes
+of $\PP^3$.
+
+\section{Degree and genus of linked curves}
 
 The degrees and (arithmetic) genera 
 of directly linked schemes are related exactly as in the simple case above:
 
-\begin{theorem}\label{direct linkage}
-If $C\subset \PP^3$ is a purely 1-dimensional subscheme, and ${C'}$ is directly linked to $C$, then $C$ is directly linked to ${C'}$.
-If $C,{C'}\subset \PP^3$ of degrees $c,d$ are directly linked by surfaces of degrees $s,t$, then 
-$\deg C+\deg C' = st$ and 
- \begin{equation}\label{linked genus formula}
-p_a(C) - p_a({C'}) = \frac{s+t-4}{2}(\deg C - \deg C');
-\end{equation}
+\begin{theorem}\label{direct linkage}\label{linked genus formula}
+If $C,{C'}\subset \PP^3$ are purely 1-dimensional schemes that are directly linked by surfaces $S,T$ of degrees $s,t$  then 
+$$
+\begin{aligned}
+&\deg C+\deg C_2 = st\\
+&g(C) - g({C_2}) = \frac{s+t-4}{2}(\deg C-\deg {C_2}).
+\end{aligned}
+ $$
 \end{theorem}
 
-\begin{proof}
- 
-\subsubsection{\it Proof that direct linkage is symmetric:}
+Since we have left the realm of smooth curves and surfaces, we will need a more sophisticated duality theory, and we
+postpone the proof to explain the necessary ideas.
 
-Finally, we will use an elementary part of duality theory: if $S$ is a regular local ring of dimension $d$
-with residue field $k$ and $R = S/(f_1,\dots, f_d)$, 
-so that $R$ is a 0-dimensional complete intersection, then $R$ is injective as an $R$-module (that is, $R$ is 0-dimensional  and Gorenstein).
-It follows that for any ideal $J\subset R$ we have $\ann J = Hom(R/J, R)$ and every $R$-module is reflexive,
-so $\ann(\ann J) = J$.
-
-Let $X\subset \PP^3$ be the subscheme defined by the complete intersection $I_X := (F,G)$.
-To prove that the relation of linkage is symmetric we work with
-the homogeneous ideals $I_C$ and $I_{C'} = I_X: I_C$. 
-Since $I_X$ is a complete intersection, it is unmixed of codimension 2, and it
-follows that $I_{C'}$ is unmixed of codimension 2 as well.
-It is clear from the definition that
-$$
-I_C \subset I_X:(I_X:I_C) = I_X:I_{C'}.
-$$
-Since $I_C$ is unmixed of codimension 2, it is enough to check the equality
-after localizing at each prime $P\subset S$ of codimension 2.
-Moreover, both sides contain $(I_X)_P$, so we may pass to the ring $R = S_P/(I_X)_P$.
-However, this is a zero-dimensional complete intersection so $\ann_R\ann_R(J) = J$.
-
-\subsection{Dualizing modules}\label{duality}
+\section{Dualizing modules}\label{duality}
+Having
 To go further, we will use some facts about the dualizing modules of Cohen-Macaulay rings that generalize this
 property, which comes from the fact that a Gorenstein ring is its own dualizing module; we digress from the 
 proof of Theorem{direct linkage} to establish the necessary facts.
@@ -382,7 +412,7 @@ For all this see for example \cite{AltmanKleiman}.
 \end{fact}
 
 
-\subsection{Continuation of the Proof of Theorem~\ref{direct linkage}}
+\subsection{Proof of Theorem~\ref{direct linkage}}
 
 %\subsubsection{\it Degrees of directly linked curves:}
 %Let $H$ be a general hyperplane in $\PP^3$ with equation $h=0$. The degrees of $C$ and $C'$ are equal to the degrees of the finite schemes $\Gamma := C\cap H$ and
@@ -425,8 +455,8 @@ For all this see for example \cite{AltmanKleiman}.
 %both $\Ext^{n-1}(\sO_{C\cap H}, \omega_{\PP^n})$ and $\Ext^{n}(\sO_{C}, \omega_{\PP^n})$ vanish, yielding the desired relation.
 %\end{proof}
 
-\subsubsection{\it Degrees of directly linked curves:}
-Let $X$ be the complete intersection of surfaces of degrees $s,t$ containing $C$, and let $S_X = S/(F,G)$ be its homogeneous coordinate ring, where
+\begin{proof}
+ Let $X$ be the complete intersection of surfaces of degrees $s,t$ containing $C$, and let $S_X = S/(F,G)$ be its homogeneous coordinate ring, where
 $S = \CC[x_0,\dots,x_3]$ is the homogeneous coordinate ring of $\PP^3$.
 From the free resolution
 $$
@@ -457,9 +487,7 @@ equal to $\deg C$, and
 $$
 st = \deg \sO_X =\deg \sO_{C'}+\deg \omega_C = \deg \sO_{C'}+\deg \sO_C
 $$
-as required.
-
-\subsubsection{\it Arithmetic genera of directly linked curves:}
+as required by the formula for the sum of the degrees.
 
 From Theorem~\ref{omega} we see that $\chi(\sO_X) = st(4-s-t)/2$. Since $\sO_{C'} = \sO_{\PP^3}/(\sI_X : \sI_C)$ and
 $(\sI_X : \sI_C)/(\sI_X) = \omega_C(4-s-t)$ we have
