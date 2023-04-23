@@ -84,47 +84,74 @@ the universal family on $M$ corresponds to a map $M\to M'$, and we similarly pro
 
 \def\eps{{\epsilon}}
 One of the useful features of a solution to a Moduli problem is that it lends itself to the computation of the tangent spaces
-of the moduli space. The reason is that, for local ring $(R,\gm)$ containing $\CC = R/\gm$,
- the maps $R \to \CC[\eps]/(\eps)^2)$ inducing the identity on $\CC$ are in one-to-one correspondence
- with the linear functionals on $\gm/\gm^2$, so for any scheme $M$ over $\CC$ and closed point $p$, we have
-$$
-T_{M,p} = \bigl\{\phi: \Spec(\CC[\eps]/(\eps)^2) \to M \mid \phi_{|\Spec (\CC)} \hbox{ factors through } p\bigr\}
-$$
-Thus if $M$ is a fine moduli space for a functor $F$ with $F(B)$ the set of families of a certain kind of fiber over $B$,
- then the tangent space to $M$ at a point corresponding to a particular family  may be expressed as the 
- set of families over $\Spec(\CC[\eps]/(\eps)^2)$ having the given family as restriction to $\Spec C$. 
+of the moduli space. Recall that if $(R,\gm)$ is the local ring at a point $m$ on a variety $\cM$ then the (Zariski) tangent
+space to $M$ at $m$ is the vector space of linear functionals $Hom_{R/\gm}(\gm/\gm^2, R/\gm)$.   Assuming that
+$R$ contains its residue field $R/\gm$, such functionals
+are precisely the restrictions to $\gm/\gm^2$ of the ring homomorphisms $R \to R/\gm[\eps]/(\eps^2)$ inducing the identity
+$R/\gm \to R/\gm$. 
+ If $\cM$ is a fine moduli space for some functor $F$, then such maps are in one-to-one correspondence
+with the set $F(E)$ of families over $E := \Spec(R/\gm[\eps]/(\eps^2))$. 
 
-Hilbert schemes are fine moduli spaces for subschemes of a given scheme, but 
-fine moduli spaces do not exist for all moduli problems. As we'll explain in Section~\ref{coarse moduli}, there does not exist a universal family of abstract curves of genus $g$: the moduli space of curves is
-not a fine moduli space, but has a slightly weaker property.
+Under the mild
+ assumption that $F$ preserves products, which is necessary for the existence of a moduli space, 
+ the vector space structure on the tangent space is immediately available from this description; for example the
+ sum of two tangent vectors, represented by families $X_i \to E$ is the restriction to the diagonal
+ $E \subset E\times E$
+ of the product family $X \times X \to E\times E$.
+This often allows one to compute the tangent space to a moduli space without knowing that the moduli space exists!
+
+%Hilbert schemes are fine moduli spaces for subschemes of a given scheme, but 
+%fine moduli spaces do not exist for all moduli problems. As we'll explain in Section~\ref{coarse moduli}, there does not exist a universal family of abstract curves of genus $g$: the moduli space of curves is
+%not a fine moduli space, but has a slightly weaker property.
 
 \section{Hilbert schemes}\label{hilbert scheme section}
 
-The Hilbert scheme is the solution to the moduli problem of subschemes of projective space with given Hilbert polynomial; it is a fine moduli space. For example, the set of curves $C \subset \PP^r$ of degree $d$ and genus $g$ corresponds to a subset of the Hilbert scheme parametrizing subschemes of $\PP^r$ with Hilbert polynomial $p(m) = dm - g + 1$. In this section, we'll describe how the Hilbert scheme is constructed. For a rigorous treatment of the construction covering Hilbert
+The Hilbert scheme is a fine moduli space solution to the moduli problem of subschemes of projective space with given Hilbert polynomial; it is a fine moduli space. For example, the set of curves $C \subset \PP^r$ of degree $d$ and genus $g$ corresponds to a subset of the Hilbert scheme parametrizing subschemes of $\PP^r$ with Hilbert polynomial $p(m) = dm - g + 1$. In this section, we'll describe how the Hilbert scheme is constructed. For a rigorous treatment of the construction covering Hilbert
 schemes in other settings as well, see~\cite{HomogHilbert}. In Chapters~\ref{HilbertSchemesChapter} and~\ref{HilbertSchemesCounterexamplesChapter}, we'll describe  the Hilbert schemes of curves of low degree and genus in $\PP^3$ in more detail. 
 
 \subsection{The tangent space to the Hilbert scheme}
 
-As explained above for fine moduli spaces in general, the tangent space to a Hilbert scheme $Hilb_p(m)(\PP^r)$ parameterizing subschemes of $\PP^r$ with Hilbert polynomial $p(m)$
-at the point $[X]$ representing a subscheme $X$ can be identified with the set of flat families $\sX\to \Spec \CC[\eps]/(\eps^2)$ specializing to $X$ over the closed point defined by $(\eps)$.
+Following the general recipe for tangent spaces to fine moduli spaces, we need to understand flat families
+of projective schemes over $E := \Spec \CC[\eps/(\eps^2)$:
 
 \begin{theorem}
 Let $X\subset \PP^r$ be a projective variety with Hilbert polynomial $p(m)$. The flat families 
-$\sX\to \Spec \CC[\eps]/(\eps^2)$ specializing to $X$ over the closed point defined by $(\eps)$
+$\sX \subset \PP^r\times E$ specializing to $X$ at the closed point defined by $(\eps)$
 are in natural one-to-one correspondence with the vector space $Hom_{\PP^r}(\sI_{X/\PP^r}, \sO_X)$, which is thus the tangent space to the Hilbert scheme $Hilb_{p(m)}(\PP^r)$ at $[X]$.
 \end{theorem}
 
 \begin{proof}
-We will actually treat the analogous result for an affine scheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above.
+We will actually treat the analogous result for an affine scheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2).$
+A $U$-module $M$ is flat if and only if $Tor_1^U(\CC,M) = 0$. 
+Since the free resolution of $\CC$ as a $U$-module has the form
+$$
+\cdots \rTo^\eps U \rTo^\eps U \rTo^\eps U \rTo \CC \rTo 0
+$$
+we have $Tor_1^U(\CC,M)$ if and only if the submodule of $M$ annihilated by $\eps$ is $\eps M$.
 
 We first construct a flat family from a homomorphism:
 Let $I = (g_1,\dots, g_t)\subset S = \CC[x_1,\dots, x_r]$ be the ideal defining $X$, and suppose that $\phi: I\to S/I$ is a homomorphism. Lift the elements $\phi(g_i)$ in any way to elements
-$h_i \in S.$ We claim that the ideal
+$h_i \in S.$ The ideal
 $\tilde I := (g_1+\eps h_1,\dots, g_t+\eps h_t)\subset S[\eps]/(\eps^2)$
-defines a scheme that is flat over $\CC[\eps]/(\eps^2)$ that retricts to $I$ modulo $(\eps)$ and is independent of the lifting chosen. \fix{complete this}
+defines a scheme over $E$ which restricts to $I$ modulo $(\eps)$. 
 
-Finally, we must construct a homomorphism from a flat family over $\CC[\eps]$ in a way inverse to the construction above: Given the ideal $\tilde I subset S[\eps]/(\eps)^2 = S\oplus S\eps$,
-let $J$ be the image of $\tilde I$ in $S\oplus S\eps/I\eps$. We claim that $J$ is the graph of a homomorphism $\phi: I \to  S\eps/I\eps \cong S/I$.\fix{complete this}
+To see that $\tilde I$ is 
+independent of the lifting chosen, suppose that $k_1,\dots,k_t\in I$ so that $g_i+\eps(h_i+k_i)$ are a different lifting,
+generating an ideal $\tilde I'$.
+Writing $k_i = \sum r_{i,j}g_j$ we have $g_i+\eps(h_i+k_i) = g_i+\eps h_i+ \sum \eps r_ij(g_i+\eps h_i)$, so 
+$\tilde I' \subset \tilde I$, and symmetrically $\tilde I \subset \tilde I'$.
+
+We have $S[\eps]/(\eps^2) = S \oplus \eps S$, and the projection of $\tilde I$ to the first factor has image $I$
+if an element $\sum (r_i+\eps t_i)(g_i+\eps h_i)$ is annihilated by $\eps$, then $\sum r_i\g_i$ must be 0. But
+since $\phi$ is a homomorphism of $S$-modules, this implies that $\sum r_i h_i = 0$ as well, and thus
+$\sum (r_i+\eps t_i)(g_i+\eps h_i)$ is a multiple of $\eps$ as required for flatness.
+
+Finally, we must construct a homomorphism from a flat family over $\CC[\eps]$ in a way inverse to the construction above: Given the ideal $\tilde I subset S[\eps]/(\eps)^2 = S\oplus \eps S\eps$,
+let $J$ be the image of $\tilde I$ in $S\oplus S\eps/I\eps$. We claim that $J$ is the graph of a homomorphism $\phi: I \to  S\eps/I\eps \cong S/I$; that is, $J$ projects isomorphically onto $I$ in the first factor. The fact that $\tilde I$ restricts to
+$I$ modulo $\eps$ show that at least the image of $J$ in the first factor is $I$. The kernel of the projection is
+the intersection of $J$ with the second factor $(\eps S)/(\eps I)$. However, an element of this intersection
+would represent an element of $S[\eps]/((\eps^2)+\tilde I)$ that is killed by $\eps$ but is not in $\eps S/\tilde I = (\eps S)/(\eps I)$
+\fix{complete this}
 
 \end{proof}
 
