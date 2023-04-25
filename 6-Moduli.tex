@@ -110,10 +110,10 @@ The Hilbert scheme is a fine moduli space representing the functor of flat famil
 that is, the functor that takes a scheme $S$ over $\CC$ to the set of subschemes $\sX \subset S\times \PP^r$
 that are flat over $S$. 
 
-\begin{example}
+\begin{example}\label{Hilb for plane curves}
  For a simple example, consider the family of degree $d$ schemes $X$ in the plane
 $Hilb_p(m)(\PP^2)$
-having the Hilbert polynomial $p(m) = dm+{d-1\choose 2}$ of a plane curve of degree $d$. Since 
+having the Hilbert polynomial $p(m) = dm+1-{d-1\choose 2}$ of a plane curve of degree $d$. Since 
 $\dim X = \deg p$, $X$ has at least a component that is 1-dimensional, and this component must have degree
 equal to $d$, the leading coefficient of $p$. Since the Hilbert polynomial  of this component is already equal
 to $p(m)$ we see that $X$ is in fact a plane curve of degree $d$. Note that any such curve has Hilbert polynomial 
@@ -141,31 +141,28 @@ $$
 \sN_{X/\PP^r} := \sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X).
 $$
 
-\begin{theorem}
+\begin{theorem}\label{tangent space of Hilb}
 Let $X\subset \PP^r$ be a projective variety with Hilbert polynomial $p(m)$. The flat families 
 $\sX \subset \PP^r\times E$ specializing to $X$ at the closed point defined by $(\eps)$
 are in natural one-to-one correspondence with the vector space $Hom_{\PP^r}(\sI_{X/\PP^r}, \sO_X) = H^0(\sN_{X/\PP^r})$, which is thus the tangent space to the Hilbert scheme $Hilb_{p(m)}(\PP^r)$ at $[X]$.
 \end{theorem}
 
-\begin{example}
-If $C$ is a plane curve of degree $d$, then the tangent space to 
-\end{example}
-
 \begin{proof}
-We will actually treat the analogous result for an affine scheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2)$,
-and $E:= \Spec U$.
-A $U$-module $M$ is flat  over $U$ if and only if $Tor_1^U(\CC,M) = 0$. 
+We will actually treat the analogous result for an affine scheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2)$, 
+and $T = \CC[\eps]/(\eps^2) = S \oplus \eps S$.
+
+A $U$-module $M$ is flat  over $U$ if and only if $\Tor_1^U(\CC,M) = 0$. 
 Since the free resolution of $\CC$ as a $U$-module has the form
 $$
 \cdots \rTo^\eps U \rTo^\eps U \rTo^\eps U \rTo \CC \rTo 0
 $$
-we have $Tor_1^U(\CC,M)$ if and only if the submodule of $M$ annihilated by $\eps$ is $\eps M$.
+we have $\Tor_1^U(\CC,M)=0$ if and only if the submodule of $M$ annihilated by $\eps$ is $\eps M$.
 
 We first construct a flat family from a homomorphism: Let $I = (g_1,\dots, g_t)\subset S = \CC[x_1,\dots, x_r]$ be the ideal defining $X$. 
-Note that $Hom_S(I/I^2, S/I) = Hom_S(I,S/I)$. Let $\phi: I\to S/I$ is a homomorphism. Lift the elements $\phi(g_i)$ in any way to elements
-$h_i \in S.$ The ideal
+Note that $Hom_S(I/I^2, S/I) = Hom_S(I,S/I)$. Let $\phi: I\to S/I$ be a homomorphism, and let $h_i\in S$ be
+any element reducing to $\phi(g_i)$ modulo $I$.  The ideal
 $\tilde I := (g_1+\eps h_1,\dots, g_t+\eps h_t)\subset S[\eps]/(\eps^2)$
-defines a scheme over $E$ which restricts to $X$ modulo $(\eps)$. 
+defines a scheme over $\Spec U$ which restricts to $X$ modulo $(\eps)$; that is, $I' +(\eps) = I$. 
 
 To see that $\tilde I$ is 
 independent of the lifting chosen, suppose that $k_1,\dots,k_t\in I$ so that $g_i+\eps(h_i+k_i)$ are a different lifting,
@@ -173,27 +170,42 @@ generating an ideal $\tilde I'$.
 Writing $k_i = \sum r_{i,j}g_j$ we have $g_i+\eps(h_i+k_i) = g_i+\eps h_i+ \sum \eps r_ij(g_i+\eps h_i)$, so 
 $\tilde I' \subset \tilde I$, and symmetrically $\tilde I \subset \tilde I'$.
 
-We have $S[\eps]/(\eps^2) = S \oplus \eps S$, and the projection of $\tilde I$ to the first factor has image $I$
-if an element $\sum (r_i+\eps t_i)(g_i+\eps h_i)$ is annihilated by $\eps$, then $\sum r_i\g_i$ must be 0. But
-since $\phi$ is a homomorphism of $S$-modules, this implies that $\sum r_i h_i = 0$ as well, and thus
-$\sum (r_i+\eps t_i)(g_i+\eps h_i)$ is a multiple of $\eps$ as required for flatness.
+To prove flatness, suppose that $a\in T$ and  $\eps a  \in I'$. 
+This means that, in  $\eps a= \sum(r_i+\eps s_i)(g_i+\eps h_i) \in T$.
+It follows that 
+$\sum r_i\g_i = 0$ Since $\phi$ is a homomorphism this implies that $\sum r_i h_i \in I.$ Thus
+$\eps a \in  \eps I\subset T$, whence $a\in I$.  Writing $a = p_i g_i$ 
+we have $a \equiv \eps p_i h_i \hbox{ mod } I'$, as required.
 
-Finally, we must construct a homomorphism from a flat family over $\CC[\eps]$ in a way that is inverse to the construction above: Given the ideal $\tilde I \subset S[\eps]/(\eps)^2 = S\oplus S\eps$,
-let $J$ be the image of $\tilde I$ in $S':= S\oplus S\eps/I\eps$. We claim that $J$ is the graph of a homomorphism $\phi: I \to  S/I$
-composed with the isomorphism $S/I \to S\eps/I\eps$; equivalently, the subspace $J$ projects isomorphically onto $I$ in the first factor. 
+Finally, we must construct a homomorphism from a flat family over $U$ in a way that is inverse to the construction above: Given an ideal $\tilde I \subset T$ such that $T/\tilde I$ is flat over $U$
+let $J$ be the image of $\tilde I$ in $S':= S\oplus S\eps/I\eps$. We claim that $J$ is the graph of a homomorphism $\phi: I \to  S/\eps I$. Equivalently, we claim that the subspace $J$ projects isomorphically onto $I$ in the first factor. 
 
-By hypothesis, $\tilde I + S\eps = I +S\eps$, so the projection  to the first  summand of $S'$ maps $J$ onto $I$. The kernel of this projection is
-the intersection of $J$ with the second factor $(S\eps )/(I\eps )$. To show that this is 0 we must show that
-if $r\in S$ and $r\eps \in \tilde I$ then $r\eps \in I\eps$. Since $r\eps \in \tilde I$, the condition of flatness implies
-that the image of $r$ is in $\eps(S[\eps]/((\eps^2)+\tilde I)$, which is to say that $r \in \tilde I + S\eps$.
-Thus $r \in  I + S\eps,$ whence $r\eps \in I\eps$ as required.
+By hypothesis, $\tilde I + \eps S = I +\eps S$, so the projection  to the first  summand of $S'$ maps $J$ onto $I$. The kernel of this projection is
+the intersection of $J$ with the second factor $(S )/(\eps I )$. To show that this is 0 we must show that
+if $r\in S$ and $\eps r \in \tilde I$ then $\eps r \in \eps I$. Since $\eps r \in \tilde I$, the condition of flatness implies
+that the image of $r$ in $T/\tilde I$ is in $\eps(T/\tilde I)$, which is to say that $r \in \tilde I + \eps S = I +\eps S$.
+Thus $r \in  I + \eps S,$ whence $\eps  r \in \eps I$ as required.
 
 Thus
 $J$ defines a homomorphism $\phi$ as claimed, which means that
- $\tilde I = \{g+\phi g\mid g\in I\}$.
+ $\tilde I$ is generated by $\{g+\phi g\mid g\in I\}$.
 \end{proof}
 
+\begin{example}\label{Hilb for plane curves-continued}
+If $C$ is the plane curve of degree $d$ defined by a form $F$, then the ideal sheaf of $C$ is $\sO_{\PP^2}(-d)$, and thus
+$$
+\sI_{C/\PP^2}/\sI_{C/\PP^2}^2 = \sO_{\PP^2}(d)\mid_C = \sO_C(d).
+$$
+From the exact sequence 
+$$
+0\rTo\sO_{\PP^2}\rTo^F\sO_{\PP^2}(d) \rTo\sO_C(d)\rTo 0
+$$
+we deduce that the dimension of the tangent space to $Hilb_{p(m)}(\PP^2)=\PP^d$  at $C$
+with $p(m) = dm+1-{d-1\choose 2}$,
+is $h^0(\sO_C(d)) = h^0(\sO_{\PP^2}(d))-1 = \dim \PP^d$, as expected.
+\end{example}
 
+\
 
 \subsection{Parametrizing twisted cubics} We  start with an example. As we've seen, a twisted cubic curve $C \subset \PP^3$ can be described as the zero locus of three homogeneous quadratic polynomials $Q_1, Q_2$ and $Q_3$ in the homogeneous coordinates on $\PP^3$; to specify the twisted cubic we could just list the $3 \times 10 = 30$ coefficients of these. But of course we could replace the three quadrics $Q_i$ with any three independent linear combinations of them; what matters---and what is is naturally associated to $C$---is the vector space $V = \langle Q_1, Q_2, Q_3 \rangle \subset H^0(\cO_{\PP^3}(2))$ that they span. This suggests that we consider the map of sets
 $$
