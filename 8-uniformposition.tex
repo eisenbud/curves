@@ -387,7 +387,7 @@ plane curve is a Castelnuovo curve.
 
 \begin{example}If $r=3$ then
 $$
-\pi(d,3) = \lfloor d^2/4 \rfloor-d+1\, .
+\pi(d,3) = \lfloor d^2/4 \rfloor-d+1 = \lfloor (d-2)^2/4\rfloor\, .
 $$
 It is easy to check that curves on a smooth quadric surface in each of the classes
 $(d/2, d/2)$ or $((d-1)/2, (d+1)/2)$
@@ -457,14 +457,6 @@ then $h_\Gamma(m) = \min\{\deg \Gamma, mn+1\}$ for every $m$ (Exercise~\ref{line
   Thus the bound in Proposition~\ref{min hilb} is best possible.
 On the other hand, sets of points on a rational normal curve are almost the only sets for which the bound is sharp:
 
-\begin{fact}
-If $d \geq 2n+3$, then any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(2) = 2n+1$ must lie on a rational normal curve. See~\cite[Lemma 3.9]{MR685427} for a proof.
-%\fix{true for any subscheme in lgp, or just points?}
- This is a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus as
-those lying in certain divisor classes on rational normal scrolls.
-We'll see how it's applied in Chapter~\ref{ScrollsChapter}.
-\end{fact}
-
 
 \begin{proof}
 Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mn+1} \in \Gamma$ be any subset of $mn+1$ points. It suffices to show that $\Gamma' = \{p_1,\dots,p_{mn+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^n}(m))$, that is, for any $p_i \in \Gamma'$ there is a hypersurface $X \subset \PP^n$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mn+1}$ but not containing $p_i$.
@@ -474,6 +466,15 @@ To construct such an $X$, group the $mn$ points of $\Gamma' \setminus \{p_i\}$ i
 In the case where $d<mn+1$, we add $mn+1-d$ general points; each one imposes exactly one
 additional condition on hypersurfaces of degree $m$.
 \end{proof}
+
+\begin{fact}
+If $d \geq 2n+3$, then any collection of $d$ points in $\PP^n$ in linearly general position with Hilbert function $h_\Gamma(2) = 2n+1$ must lie on a rational normal curve. See~\cite[Lemma 3.9]{MR685427} for a proof.
+%\fix{true for any subscheme in lgp, or just points?}
+ This is a key ingredient in Castelnuovo's theorem characterizing curves of maximal genus as
+those lying in certain divisor classes on rational normal scrolls.
+We'll see how it's applied in Chapter~\ref{ScrollsChapter}.
+\end{fact}
+
 
 To complete the proof of Theorem~\ref{Castelnuovo's bound} all that remains is to add up the lower bounds in the proposition. To this end, let $C \subset \PP^r$ be as above an irreducible, nondegenerate curve of degree $d$, and again set 
 $M = M(d,r) = \lfloor{\frac{d-1}{r-1}}\rfloor$.
@@ -538,7 +539,25 @@ The theory of finite coverings of algebraic varieties is not only analogous to G
 \end{fact}
 
 Since we assumed that $X$ is irreducible, the space $U$ is (path) connected, and it follows that the monodromy group is transitive if and only if the space $V$ is (path) connected. But $V$ is a smooth
-variety, so this is the case if and only if $V$ is irreducible.
+variety, so this is the case if and only if $V$ is irreducible. For example, the monodromy in the family
+of smooth quadric surfaces in $\PP^3$ interchanges the two rulings:
+
+\begin{example}\label{monodromy of rulings}
+Consider the family 
+$$
+X := \{(p,Q) \mid p\in Q\hbox{ a point on a smooth quadric surface in $\PP^3$}\}
+$$
+of pointed smooth quadric surfaces in $\PP^3$ and the double covering by the 
+$$
+V: \{((p,Q), L)\mid (p,Q)\in X,\ L \hbox{ a line with $p \in L\subset Q$}\}.
+$$
+The variety $V$ is irreducible: if we project $V$ to the (irreducible) variety of lines in $\PP^3$, 
+the fiber consists of a point on the line and quadric containing the line---that is, the product
+of $\PP^1$ and the projective space
+on the space of quadratic forms in the ideal of the line. Thus the monodromy of the family
+is transitive, and exchanges the two lines through the point.
+\end{example}
+
 
 We will next compute the monodromy group of the  universal hyperplane section of a curve, constructed as follows:
 Let $C \subset \PP^r$ be an irreducible, nondegenerate curve of degree $d$, and let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$. We define the \emph{universal hyperplane section of $C$} to be the projection  $f: Y\to {\PP^r}^*$ of the incidence variety
