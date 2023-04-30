@@ -97,7 +97,7 @@ Under the mild
  the vector space structure on the tangent space is immediately available from this description; for example the
  sum of two tangent vectors, represented by families $X_i \to E$ is the restriction to the diagonal
  $E \subset E\times E$
- of the product family $X \times X \to E\times E$.
+ of the product family $X_1 \times X_2 \to E\times E$.
 This often allows one to compute the tangent space to a moduli space without knowing that the moduli space exists!
 
 %Hilbert schemes are fine moduli spaces for subschemes of a given scheme, but 
@@ -158,8 +158,18 @@ $$
 $$
 we have $\Tor_1^U(\CC,M)=0$ if and only if the submodule of $M$ annihilated by $\eps$ is $\eps M$.
 
-We first construct a flat family from a homomorphism: Let $I = (g_1,\dots, g_t)\subset S = \CC[x_1,\dots, x_r]$ be the ideal defining $X$. 
-Note that $Hom_S(I/I^2, S/I) = Hom_S(I,S/I)$. Let $\phi: I\to S/I$ be a homomorphism, and let $h_i\in S$ be
+%The algebra $T/I'$ is flat over $U$ if and only if $\Tor_1^U(T/I', \CC) = 0$.
+%Let 
+%$$
+%F_2 \to F_1 \to T \to T/I' \to 0
+%$$
+%be the beginning of a $T$-free resolution of $T/I'$. Since $-\otimes_U\CC$ is right exact, 
+%$\Tor_1^U(T/I', \CC)$  is the kernel of $F_1 \otimes \CC \to I$ modulo the image of
+%$F_2 \otimes \CC \to F_1\otimes C$. Thus $\Tor_1^U(T/I', \CC) = 0$ if and only if
+%all the relations on generators of $I$ can be lifted to relations on generators of $I'$.
+
+We now construct a flat family from a homomorphism: Let $I = (g_1,\dots, g_t)\subset S = \CC[x_1,\dots, x_r]$ be the ideal defining $X$. 
+Note that $Hom_S(I/I^2, S/I) = Hom_S(I,S/I)$.Let $\phi: I\to S/I$ be a homomorphism, and let $h_i\in S$ be
 any element reducing to $\phi(g_i)$ modulo $I$.  The ideal
 $\tilde I := (g_1+\eps h_1,\dots, g_t+\eps h_t)\subset S[\eps]/(\eps^2)$
 defines a scheme over $\Spec U$ which restricts to $X$ modulo $(\eps)$; that is, $I' +(\eps) = I$. 
@@ -170,25 +180,30 @@ generating an ideal $\tilde I'$.
 Writing $k_i = \sum r_{i,j}g_j$ we have $g_i+\eps(h_i+k_i) = g_i+\eps h_i+ \sum \eps r_ij(g_i+\eps h_i)$, so 
 $\tilde I' \subset \tilde I$, and symmetrically $\tilde I \subset \tilde I'$.
 
-To prove flatness, suppose that $a\in T$ and  $\eps a  \in I'$. 
-This means that, in  $\eps a= \sum(r_i+\eps s_i)(g_i+\eps h_i) \in T$.
+To prove flatness, suppose that $a\in T$ and  $\eps a  \in I'$,
+so that we can write  $\eps a= \sum(r_i+\eps s_i)(g_i+\eps h_i) \in T$.
 It follows that 
-$\sum r_i\g_i = 0$ Since $\phi$ is a homomorphism this implies that $\sum r_i h_i \in I.$ Thus
-$\eps a \in  \eps I\subset T$, whence $a\in I$.  Writing $a = p_i g_i$ 
-we have $a \equiv \eps p_i h_i \hbox{ mod } I'$, as required.
+$\sum r_i\g_i = 0$. Since $\phi$ is a homomorphism this implies $\sum r_i h_i \in I.$ Thus
+$\eps a \in  \eps I\subset T$, whence $a\in I + (\eps)$.  Writing $a =\sum p_i g_i+\eps b'$
+and using the relations $g_i \equiv \eps h_i \hbox{ mod } I'$ we get
+ $a \equiv \eps (\sum p_i h_i+b') \hbox{ mod } I'$, as required.
 
-Finally, we must construct a homomorphism from a flat family over $U$ in a way that is inverse to the construction above: Given an ideal $\tilde I \subset T$ such that $T/\tilde I$ is flat over $U$
-let $J$ be the image of $\tilde I$ in $S':= S\oplus S\eps/I\eps$. We claim that $J$ is the graph of a homomorphism $\phi: I \to  S/\eps I$. Equivalently, we claim that the subspace $J$ projects isomorphically onto $I$ in the first factor. 
+Finally, we must construct a homomorphism from a flat family over $U$ in a way that is inverse to the construction above: Given an ideal $\tilde I \subset T$ such that $T/\tilde I$ is flat over $U$ and $\tilde I + (\eps) = I +\eps$, 
+let $J$ be the image of $\tilde I$ in $T/(\eps I) = S \oplus (\eps S)/(\eps I)$. We claim that $J$ is the graph of a homomorphism $\phi: I \to  (\eps S)/(\eps I) \cong S/I$. 
 
-By hypothesis, $\tilde I + \eps S = I +\eps S$, so the projection  to the first  summand of $S'$ maps $J$ onto $I$. The kernel of this projection is
-the intersection of $J$ with the second factor $(S )/(\eps I )$. To show that this is 0 we must show that
-if $r\in S$ and $\eps r \in \tilde I$ then $\eps r \in \eps I$. Since $\eps r \in \tilde I$, the condition of flatness implies
+Since $\tilde I + \eps S = I +\eps S$,  the projection  to the first  summand of $S'$ maps $J$ onto $I$. 
+To prove that $J$ is the graph of a homomorphism, it suffices to show that this projection is an isomorphism.
+The kernel is
+the intersection of $J$ with the second factor $(\eps S)/(\eps I )$, so we must show that
+if $r\in S$ and $\eps r \in \tilde I$ then $\eps r \in \eps I$. 
+
+Since $\eps r \in \tilde I$, the condition of flatness implies
 that the image of $r$ in $T/\tilde I$ is in $\eps(T/\tilde I)$, which is to say that $r \in \tilde I + \eps S = I +\eps S$.
 Thus $r \in  I + \eps S,$ whence $\eps  r \in \eps I$ as required.
 
 Thus
 $J$ defines a homomorphism $\phi$ as claimed, which means that
- $\tilde I$ is generated by $\{g+\phi g\mid g\in I\}$.
+ $\tilde I$ is generated by $\{g+\phi g\mid g\in I\}$, so the two constructions are inverse to one another.
 \end{proof}
 
 \begin{example}\label{Hilb for plane curves-continued}
@@ -236,10 +251,8 @@ Since every twisted cubic is a translate of $C_0$, this is surjective, with fibe
 
 \subsection{Construction of the Hilbert scheme in general}
 
-The Hilbert scheme as a whole is more complicated, even for the Hilbert polynomial $3m+1$. Not all curves of a given degree and genus lie on the same number of hypersurfaces of degree $m$ for all $m$. Furthermore, when we posed the problem, we spoke of parametrizing all subschemes $X \subset \PP^r$ with a given Hilbert polynomial; even in the case of twisted cubics there are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---but that are not the intersection of the quadrics containing them. (See Exercises \ref{characterization of degree} and Exercise~\ref{deg of disjoint union}). 
-%\begin{fact}
-% \fix{State Murphy's law. Mention that we don't know about curves in P3.}
-%\end{fact}
+The Hilbert scheme as a whole is more complicated, even for the Hilbert polynomial $3m+1$. Not all curves of a given degree and genus lie on the same number of hypersurfaces of degree $m$ for all $m$. Furthermore, when we posed the problem, we spoke of parametrizing all subschemes $X \subset \PP^r$ with a given Hilbert polynomial; even in the case of twisted cubics there are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---but that are not the intersection of the quadrics containing them. (See Exercises \ref{characterization of degree} and Exercise~\ref{deg of disjoint union}). In Chapters~\ref{HilbertSchemesChapter}
+and \ref{HilbertSchemesCounterexamplesChapter} we will discuss many more components of Hilbert schemes.
 
 A fundamental result of~\cite{Matsusaka} provides a place to start:
 
@@ -340,7 +353,6 @@ $$
 (where $\Delta$ is the union of all diagonals in the triple product), and the set $M_2$ of isomorphism classes of smooth curves of genus 2 is thus identified with the points of the quotient variety $\Gamma/S_6$.
 
 There are many questions to address---for example, is the variety $\Gamma/S_6$ a fine moduli space in the sense that there is a universal family?---but this construction at least does two things: 
-%\fix{ say that it is a fine moduli space -- see Harris-Marrison thm 1.53, p. 33}
 
 One, it may serve to convince us that $M_2$ is irreducible of dimension 3; and
 
@@ -696,8 +708,6 @@ $X$ is the sum of the Hilbert polynomials of $Y$ and $Z$. What statement can you
 More generally, suppose that a scheme $X\subset \PP^n$ is the union of subschemes $Y,Z$. Show that the Hilbert polynomial of
 $X$ is the sum of the Hilbert polynomials of $Y$ and $Z$ minus the Hilbert polynomial of $Y\cap Z$. 
 \end{exercise}
-
-%\fix{ insert exercises about wild components of the Hilbert scheme. Start with a funny 0-scheme (Iarrobino). refer to the "fact" about Murphy's law }
 
 \begin{exercise}
 Let $H \subset \PP^3$ be a 2-plane; let $C \subset H$ be a plane cubic curve and $p \in H \setminus C$ and point in $H$ not on $C$; let $X = C \cup \{p\}$.
