@@ -23,9 +23,11 @@ $$
 which makes sense, and even computes $h^0(\cL)$ itself in many cases, by virtue of the following result:
 
 \begin{theorem} (Vanishing Theorem)\label{Serre-Grothendieck vanishing}
-If $\sF$ is a coherent sheaf on a scheme $X$ of dimension $n$, then for any $i$, the vector space $H^i(\sF)$ is finite dimensional, and 0 if  $i>\dim X$. Moreover,
+If $\sF$ is a coherent sheaf on a projective scheme $X$ of dimension $n$, then for any $i$, the vector space $H^i(\sF)$ is finite dimensional, and 0 if  $i>\dim X$. Moreover,
 if $X\subset \PP^m$, then $H^i(\sF(d)) = 0$ for all $i>0$ and $d\gg 0$.\qed
 \end{theorem}
+
+%\fix{I added the word ``projective" in the above. If you had something else in mind, you can change it.}
 
 \begin{proof}
 This is a combination of Theorems \cite[Theorems III.2.7 and III.5.2]{Hartshorne1977}, due to Grothendieck and Serre.
@@ -110,6 +112,8 @@ In particular, the canonical module $\omega_{\PP^r} = \bigwedge^r(\Omega_{\PP^{r
 $(r+1)$-st syzygy, $S(-r-1)$.
 \end{fact}
 
+%\fix{Does the reader know what a syzygy is at this point, or the Koszul complex? (We specify Hartshorne as a prerequisite, but Robin doesn't mention syzygies.) I know it's a cheerful fact, where different rules apply, but this could be daunting to a reader unfamiliar with the set-up.}
+
 The most important invariant of a smooth curve can be defined in terms of the canonical sheaf:
 
 \begin{definition}
@@ -174,11 +178,12 @@ $\omega_{X} = \sO_{X}(\sum_{i}d_{i }-r-1).$
 
 \subsection{Hurwitz' Theorem}
  Given a (nonconstant) morphism $f : C \to X$ of smooth projective curves, the Riemann-Hurwitz formula computes the canonical sheaf  $C$ in terms of that of  $X$ and the local geometry of $f$. To do this we define the
-\emph{ramification index} of $f$ at $p$,  denoted $\ram(f,p)$. In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $X$ around $f(p)$, we can write the morphism as $z \mapsto w = z^m$ for some integer $m > 0$, and $\ram(f,p) = m-1$. We could also define the ramification indices
+\emph{ramification index} of $f$ at $p$,  denoted $\ram(f,p)$. In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $X$ around $f(p)$, we can write the morphism as $z \mapsto w = z^m$ for some integer $m > 0$, and we define $\ram(f,p) = m-1$. We could also define the ramification indices
 by the formula of divisors
 $$
- f^{-1}(f(q)) = \sum_{p\in C \mid f(p)=f(q)} (\ram(f,p)+1)\cdot p.
+ f^{-1}(q) = \sum_{p\in C \mid f(p)=q} (\ram(f,p)+1)\cdot p
  $$
+ for any point $q \in X$.
 It follows from complex analysis (or the separability of field extensions in characteristic 0) that there are only finitely many
 points on $C$ where $\ram(f,p) \neq 0$. Thus we can define the \emph{ramification divisor} of $f$ to be the divisor
  $$
@@ -392,12 +397,12 @@ both in $L(D)$ and in $L(K-D)$.)
 
 Recall that the \emph{residue} of a meromorphic 1-form $\phi$ at a pont $p$ on $X$ is defined by an integral: choose a disc $\Delta \subset X$ containing $p$ and in which $\phi$ is holomorphic except for its pole at $p$. The residue ${\rm Res}_p(\phi)$ is $\frac{1}{2\pi i}$ times the integral of $\phi$ along the boundary of $\Delta$. If $z$ is a local coordinate on $\Delta$ zero at $p$ and we write the differential $\phi$ as
 $$
-\phi = \sum_{n=-N}^\infty a_nz^n dz
+\phi = \sum_{i=-n}^\infty a_iz^i dz
 $$
 then by Cauchy's formula, the residue of $\phi$ at $p$ is the coefficient $a_{-1}$. 
 
 \begin{proposition}\label{residue sum}
- if $\phi$ is a meromorphic differential on a compact Riemann surface $X$, then the sum of the residues of $\phi$
+ If $\phi$ is a meromorphic differential on a compact Riemann surface $X$, then the sum of the residues of $\phi$
  at all the poles of $\phi$ is 0.
  \end{proposition}
  
@@ -405,9 +410,9 @@ then by Cauchy's formula, the residue of $\phi$ at $p$ is the coefficient $a_{-1
 Apply Stokes' theorem to the complement of the union of small discs around each of the poles of $\phi$.
 \end{proof}
 
-Let  $D = \sum_{i=1}^s a_ip_i$ be an effective divisor on $X$, and set $d = \sum a_i =: \deg D$. Locally, a function with a pole of order at most $a_i$ at $p$ may be written in terms of a local coordinate $z$ at $p$ as $\sum_{i=-a_i}^infty c_{i}z^{i} $;
-the sum $\sum_{i=-a_i}^{-1} c_{i}z^{i}$ is called its \emph{polar part}.
-By the maximum principle, a meromorphic function in $L(D)$ is determined, up to the addition of a constant, by its polar parts at the points $p_i$;. Thus we have $\dim L(D) \leq d+1$.
+Let  $D = \sum a_ip_i$ be an effective divisor on $X$, and set $d = \sum a_i = \deg D$. Locally, a function with a pole of order at most $n$ at $p$ may be written in terms of a local coordinate $z$ at $p$ as $\sum_{i=-n}^\infty a_{i}z^{i} $;
+the sum $\sum_{i=-n}^{-1} a_{i}z^{i}$ is called its \emph{polar part}.
+By the maximum principle, a meromorphic function in $L(D)$ is determined, up to the addition of a constant, by its polar parts at the points $p_i$. Thus we have $\dim L(D) \leq d+1$.
 
 When is a given collection $c_1,\dots,c_d \in \CC$ the polar parts of a global meromorphic function $f$ on $X$? A necessary condition
 is that if $\phi \in L(K)$ is a holomorphic differential on $X$, then
@@ -435,7 +440,12 @@ Since the sum of the inequalities is an equality, we conclude that each inequali
 in our special case.
 
 \subsection{Arithmetic genus and geometric genus}
-In this section, we'll deal with a  curve $C_0$ that is reduced and irreducible, but not necessarily smooth.
+
+Throughout this book, we will be primarily concerned with the geometry of smooth curves. Of course singular curves will arise---for example, as images of curves under maps associated to non-very ample linear series---but when they do we'll tend to think of them in terms of their normalizations. 
+
+There is one circumstance, however, in which we want to do geometry on singular curves: when we have a \emph{family} of curves $\{C_t\}$, for example, whose general member is smooth but that may include singular curves $C_0$ as well. In this case, the  normalization $\tilde C_0$ of $C_0$ will not fit into a family with the nearby smooth curves $C_t$; among other things, (as we'll indicate below) it will have strictly smaller genus than the $C_t$. In this case, we will want to see how many of the elements in our analysis of smooth curves carry over in this more general setting. We'll start here by comparing the two notions of genus for singular curves.
+
+So: in this section, we'll deal with a  curve $C_0$ that is reduced and irreducible, but not necessarily smooth.
 Given $C_0$ there is a birational normalization morphism $\nu: C \to C_0$, and any map of a smooth ($=$normal) curve to $C_0$
 factors through $C$. Thus $C_0$ is birational to a unique
 smooth curve. The genus of $C$ is called the \emph{geometric genus} of $C_0$.
@@ -478,7 +488,7 @@ $$
 
 The normalization map $\nu: C \to C_0$ is finite, so that the direct images $R^i\nu_*\cO_C$ vanish for $i > 0$; it follows from the Leray spectral sequence~\ref{Leray} that $\chi(\nu_*\cO_C) = \chi(\cO_C)$. Thus
 $$
-p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF) = \deg(\cF)
+p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF) 
 $$ 
 since the support of $\cF$ is finite.
 In other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks of $\cF$; colloquially, it's the number of linear conditions a function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant} $\delta_p$ of the singularity; to rephrase the statement above in these terms, we have:
@@ -486,17 +496,27 @@ $$
 p_a(C_0) - g(C) = \sum_{p \in (C_0)_{\rm sing}} \delta_p
 $$ 
 
-\begin{proposition}\label{Leray}
- We have used an almost trivial part of the Leray spectral sequence, and we shall use it again in a few other almost equally simple cases. Suppose that $f:X\to Y$ is a morphism of varieties or schemes
- and $\sF$ is a coherent sheaf on $X$.
-  It follows immediately from the definition of the push-forward that $\HH^0(\sF) \cong \HH^0(f_*(\sF))$. Replacing
-  $\sF$ by an injective or flasque resolution, we get the Leray spectral sequence
+We should take a moment here and explain the use of the Leray spectral sequence. In general, the Leray spectral sequence addresses the situation where we have  a morphism $f:X\to Y$ of varieties or schemes, 
+ and a coherent sheaf $\sF$  on the source $X$; it says in this circumstance that we have a spectral sequence
   $$
-  \HH^p(R^qf_*(\sF)) \Longrightarrow \HH^{p+q}(\sF)
+  \HH^p(R^qf_*(\sF)) \Longrightarrow \HH^{p+q}(\sF).
   $$
-This is a special case of the spectral sequence for the derived functors of a composite functor ($H^0$ composed with $f_*$);
-see~\cite[II.4.17.1]{Godement} or \cite[Section III.7]{Gelfand-Manin} for proofs. \qed
- \end{proposition}
+(This is a special case of the spectral sequence for the derived functors of a composite functor ($H^0$ composed with $f_*$);
+see~\cite[II.4.17.1]{Godement} or \cite[Section III.7]{Gelfand-Manin} for proofs.)
+
+In the present circumstance---where the morphism $f$ is the normalization $\nu : C \to C_0$ of a possibly singular curve, and the sheaf $\cF$ is the structure sheaf $\cO_C$---the situation is particularly simple: since the map $\nu$ is finite, there are no higher direct images, and so the Leray theorem says simply that the Euler characteristics $\chi(\cO_{C_0}) = \chi(\nu_*\cO_C)$.
+
+%\begin{proposition}\label{Leray}
+% We have used an almost trivial part of the Leray spectral sequence, and we shall use it again in a few other almost equally simple cases. Suppose that $f:X\to Y$ is a morphism of varieties or schemes
+% and $\sF$ is a coherent sheaf on $X$.
+%  It follows immediately from the definition of the push-forward that $\HH^0(\sF) \cong \HH^0(f_*(\sF))$. Replacing
+%  $\sF$ by an injective or flasque resolution, we get the Leray spectral sequence
+%  $$
+%  \HH^p(R^qf_*(\sF)) \Longrightarrow \HH^{p+q}(\sF)
+%  $$
+%This is a special case of the spectral sequence for the derived functors of a composite functor ($H^0$ composed with $f_*$);
+%see~\cite[II.4.17.1]{Godement} or \cite[Section III.7]{Gelfand-Manin} for proofs. \qed
+% \end{proposition}
 
 The $\delta$ invariant is easy to compute in simple cases:
 \begin{enumerate}
@@ -577,7 +597,7 @@ r(D) = d - 1 - \dim \overline{ \phi_K(D)}.
 $$
 \end{corollary}
 
-When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism onto its image in $\PP^{g-1}$, and we say that $ \phi_K(C)\subset \PP^{g-1}$ is \emph{canonically embedded}. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that the dimension of the linear series $|D|$  is equal to the number of linear relations between the points $p_i$ on the canonical curve. 
+When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism onto its image in $\PP^{g-1}$, and we say that $ \phi_K(C)\subset \PP^{g-1}$ is \emph{canonically embedded}. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that \emph{the dimension of the linear series $|D|$  is equal to the number of linear relations among the points $p_i$ on the canonical curve}. Thus, for example, a divisor given as the sum $D = p+q+r$ of three points will move in a pencil if and only if the three points are colinear on the canonical model.
 
 \subsection{Linear series on a hyperelliptic curve}
 We can describe the canonical map of a hyperelliptic curve---and indeed all its special linear series---quite precisely:
@@ -722,9 +742,11 @@ curve on such a quadric, then:
 \item  If $C$  does
 not pass through the vertex then it is the intersection of the quadric with a hypersurface of some
 degree $d$. In this case $C$ has degree $2d$ and genus $(d-1)^2$. 
- \item If $C$ passes through the vertex, then $C$ lies in the divisor class of a line through the origin plus the intersection of $S$ with a hypersurface of some degree $d$. In this case $C$ has degree $2d+1$ and 
+ \item If $C$ passes through the vertex, then $C$ lies in the divisor class of a line through the vertex plus the intersection of $S$ with a hypersurface of some degree $d$. In this case $C$ has degree $2d+1$ and 
  genus $d(d-1)$. 
 \end{itemize}
+
+%\fix{Does the reader know what we mean by ``divisor class" on a singular surface?}
 
 \item A quadric of rank 4 is nonsingular, and is isomorphic to $\PP^1\times \PP^1$.
 
