@@ -169,27 +169,31 @@ There are two results concerning the inflectionary behavior of a curve in projec
 
 \begin{lemma}\label{finite inflections}
 If $r>1$ and $C \subset \PP^r$ is a smooth, irreducible and nondegenerate curve, then not every point of $C$ is an inflectionary point.
-More generally, if $0\in D\rTo^v \CC^{r}$ is the germ of a curve defined on a disk $D\subset \CC$, and every point $v(t)$ is a flex point, then $v(D)$ lies in a hyperplane.
+More generally, if $0\in D\rTo^v \PP^{r}$ is the germ of a curve defined on a disk $D\subset \CC$, and every point $v(t)$ is a flex point, then $v(D)$ lies in a hyperplane.
 \end{lemma}
 
 The proof applies to any linear series on a curve.
 
 \begin{proof}
-To say that $v(t)$ is an inflection point is to say that the vectors $v(t), v'(t), \dots, v^{(r)}(t)$ are linearly dependent. If this holds for all $t \in D$ then
+We begin by lifting $v(t)$ to an arc $\tilde v (t)$ in $\CC^{r+1}$, so that the tangent line at $v(0)$ in projective space
+is represented by the span of $\tilde v(0), \tilde v'(0) \in \CC^{r+1}$. To say that $v(t)$ is an inflection point is to say that the 
+$r+1$ vectors $\tilde v, \tilde v(t), \tilde v'(t), \dots,\tilde v^{(r)}(t)$ lie in a hyperplane $\tilde \Lambda \subset \CC^{r+1}$. If this holds for all $t \in D$ then
 $$
-v(t) \wedge v'(t) \wedge \dots \wedge v^{(r)}(t) \; \equiv \; 0.
+\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(r)}(t) \; \equiv \; 0.
 $$
-Now let $k$ be the smallest integer such that
-$$
-v(t) \wedge v'(t) \wedge \dots \wedge v^{(k)}(t) \; \equiv \; 0,
-$$
-so that the vectors $v(t), v'(t), \dots, v^{(k-1)}(t)$ span a $k$-plane $\Lambda \subset \CC^{r+1}$, and $v^{(k)}(t) \in \Lambda$.
+%fix{I suppressed the minimal plane spanned -- seemed not to matter.
+%Now let $k$ be the smallest integer such that
+%$$
+%\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(k)}(t) \; \equiv \; 0,
+%$$
+%so that the vectors $\tilde v(t), \tilde v'(t), \dots, \tilde v^{(k-1)}(t)$ span a $k$-plane $\Lambda \subset \CC^{r+1}$, and $\tilde v^{(k)}(t) \in \Lambda$.
 
-When we take the derivative of the wedge product $v(t) \wedge v'(t) \wedge \dots \wedge v^{(k)}(t)$ by applying the product rule we see that the first $k$ terms are zero because they contain a repeated factor; it follows that
+When we take the derivative of the wedge product $\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(r)}(t)$ by applying the product rule we see that the first $r$ terms are zero because they contain a repeated factor; it follows that
 $$
-v(t) \wedge v'(t) \wedge \dots \wedge v^{(k-1)}(t)\wedge v^{(k+1)}(t) \equiv 0,
+\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(k-1)}(t)\wedge \tilde v^{(r+1)}(t) \equiv 0,
 $$
-so that $v^{(k+1)}(t) \in \Lambda$ as well. Indeed, as we continue to take derivatives, we see in each case that all but one term is zero, and we deduce that $v^{(l)}(p) \in \Lambda$ for all $l$. Thus $v(D)$  lies in $\Lambda$.
+so that $\tilde v^{(r+1)}(t) \in \Lambda$ as well. Indeed, as we continue to take derivatives, we see in each case that all but one term is zero, and we deduce that $\tilde v^{(l)}(p) \in \Lambda$ for all $l$. Thus $v(D)$  lies in the hyperplane in $\PP^r$ corresponding
+to $\Lambda$.
 \end{proof}
 
  \subsection{Not every tangent is bitangent}
@@ -200,21 +204,27 @@ so that $v^{(k+1)}(t) \in \Lambda$ as well. Indeed, as we continue to take deriv
  Let $C \subset \PP^r$ be a smooth, irreducible, nondegenerate curve, with $r > 1$. If $p \in C$ is a general point, then the tangent line $\TT_p(C) \subset \PP^r$ is not tangent to $C$ at any other point.
  \end{lemma}
  
- \begin{proof} Again the result is local, this time with a pair of germs $D\rTo^v \CC^r, \  D\rTo^w \CC^r,$ neither of which is contained in a line. Let $C_1, C_2$ be the images of $v,w$ respectively
+ \begin{proof} Again the result is local, this time with a pair of germs $D\rTo^v \PP^r$ and $D\rTo^w \PP^r$. If every
+ tangent line to the two curves is a bitangent, we will show that they are both contained in a line.
+ 
+  Let $C_1, C_2$ be the images of $v,w$ respectively, and let $\tilde v, \tilde w$ be lifts to $\CC^{r+1}$.
  Let  
  $$
- \Sigma := \{ (p,q) \in D \times D \mid \text{ and }\TT_{v(p)}(C_1) = \TT_{w(q}(C) \}
+ \Sigma := \{ (p,q) \in D \times D \mid \text{ and }\TT_{v(p)}(C_1) = \TT_{w(q)}(C_2) \}
  $$
- be the variety parametrizing bitangents to the two germs. Our goal is to say that the projection maps $\Sigma \to D$ are not surjective.
- Suppose instead that they are, and let $(p,q) \in \Sigma$ be a general point. 
+ be the variety parametrizing bitangents to the two germs. 
+ 
  
  %Since $\Sigma$ cannot contain an open subset of a fiber, a local coordinate $t$ on $\Sigma$ at the point $(p,q)$ will serve as a local coordinate on $C$ at both $p$ and $q$; that is, we can write neighborhoods of $p$ and $q \in C$ parametrically via vector-valued functions $v(t)$ and $w(t) \in \CC^{r+1}$. 
  
- The statement that the tangent lines to $C$ at the points $v(t)$ and $w(t)$ are equal then says that the vectors $v(t), v'(t), w(t)$ and $w'(t)$ all lie in a 2-dimensional subspace of $\CC^{r+1}$; in particular,
+ The statement that the tangent lines to $C$ at the points $v(t)$ and $w(t)$ are equal then says that the vectors $\tilde v(t), \tilde v'(t),\tilde w(t)$ and $\tilde w'(t)$ all lie in a 2-dimensional subspace $\Lambda \subset \CC^{r+1}$; in particular,
  $$
- v(t) \wedge v'(t) \wedge w(t) \equiv 0 \quad \text{and likewise} \quad v(t) \wedge w(t) \wedge w'(t) \equiv 0
+ \tilde v(t) \wedge \tilde v'(t) \wedge \tilde w(t) \equiv 0 \quad \text{and likewise} \quad \tilde v(t) \wedge \tilde w(t) \wedge \tilde w'(t) \equiv 0
  $$
-We proceed now exactly as in the proof of Lemma~\ref{finite inflections}: taking derivatives, we see that \emph{all derivatives of $v(t)$ at $t=0$ lie in a subspace $\Lambda$}, and hence $C_1$ is a straight line.
+ 
+We proceed now exactly as in the proof of Lemma~\ref{finite inflections}: taking derivatives, we see that all derivatives of $\tilde v(t)$
+and $\tilde w$ at $t=0$ lie in $\Lambda$
+and hence $C_1$ and $C_1$ are both contained in the line in $\PP^r$ corresponding to $\Lambda$.
  \end{proof}
 
 Note: it's much less clear whether it can be the case that a general tangent line to $C$ can intersect $C$ in a point other than $p$, except of course in case $r=2$. %See~\cite{} for results on this question.
@@ -227,13 +237,13 @@ Note: it's much less clear whether it can be the case that a general tangent lin
 If $C$ is a smooth curve of genus $\geq 2$ then the automorphism group $\Aut(C)$ is finite.
 \end{theorem}
 
-  The idea behind the argument is simple: because the Weierstrass points of a curve $C$ are intrinsically defined, \emph{any automorphism of $C$ must carry Weierstrass points to Weierstrass points}. We will show that the subgroup of $Aut(C)$ of automorphisms of $C$ that fix each  of the finitely many Weierstrass point is either
-  trivial or, in the case of hyperelliptic curves, just the $\ZZ/2$ generated by the hyperelliptic involution.
+  The idea behind the argument is simple: because the Weierstrass points of a curve are intrinsically defined, any automorphism must carry Weierstrass points to Weierstrass points. We will show that the subgroup of $Aut(C)$ of automorphisms that fix each  of the finitely many Weierstrass point is either
+ trivial or, in the case of hyperelliptic curves, just the $\ZZ/2$ generated by the hyperelliptic involution.
     
 We will study the fixed points of automorphisms by studying the intersection of the graph of
 an automorphism with the diagonal divisor in $C\times C$. For this we use
 \emph{Neron-Severi group} $N(S)$ of a surface $S$. This consists of divisors modulo \emph{numerical equivalence}---that is, in $N(S)$ we identify divisors $H, H'$ if for all divisors $D$ on $S$ we have $H\cdot D = H'\cdot D$. The group
-$N(S)$ is a  finitely generated free abelian group for any surface---in characteristic 0 it is a subgroup of the quotient of the second integral homology group by the torsion elements. Its rank is called the \emph{Picard number} of the surface. The result about $N(S)$ that we need is:
+$N(S)$ is a  finitely generated free abelian group for any surface---in characteristic 0 it is a subgroup of the quotient of the second integral homology group by its torsion elements. The rank of $N(S)$ is called the \emph{Picard number} of $S$. 
 
 \begin{theorem}[Hodge Index theorem]\label{hodge index}
 If $H\subset S$ is an ample divisor on a smooth projective surface, and $D \neq 0 \in N(S)$ is a divisor class with $D\cdot H = 0$, then 
@@ -258,7 +268,7 @@ The following two lemmas prove Theorem~\ref{finite autos} in a strong form:
 \begin{proof}
 Let $S = C\times C$, and let $\Delta$ and $\Gamma \subset S$ be the diagonal and the graph of $f$ respectively, and let $\Phi_1$ and $\Phi_2 \subset S$ be fibers of the two projection maps. Let $\delta, \gamma, \varphi_1$ and $\varphi_2$ be the classes of these curves in  $N(S)$. The number of fixed points of $f$ (counted with multiplicities) is the intersection number  $b = \delta \cdot \gamma$.
 
-We know all the other pairwise intersection number of these classes: the ones involving $\varphi_1$ or $\varphi_2$ are obvious. The normal bundle of the diagonal is the tangent bundle of $C$, so
+We know all the other pairwise intersection numbers of these classes: the ones involving $\varphi_1$ or $\varphi_2$ are obvious. The normal bundle of the diagonal is the tangent bundle of $C$, so
 $$
 \delta^2 = 2 - 2g.
 $$
@@ -532,12 +542,11 @@ Our arguments so far show the existence of a $g^r_d$ on $\PP^1$ with ramificatio
 Let $k$ be a field of characteristic $p$. Show that every point of the affine curve $y = x^{p+1}+1$ over $k$ is a flex point.
  
 \end{exercise}
-\fix{add more!}
 
 \begin{exercise}\label{Hessian exercise} 
 Let $p\in C$ be a smooth point of a  plane curve with equation $F(x_0,x_1,x_2) = 0$ of degree $d>1$. Show that the tangent line to $C$ at $p$ meets
 $C$ is a scheme of order $m+2$ if and only if the determinant of the Hessian matrix vanishes
-along $C$ to order $m$ as is done in \cite[pp. 84--85 in the German edition]{Kunz}:
+along $C$ to order $m$ as is done in \cite[pp. 84--85]{Kunz}:
 
 \begin{enumerate}
 \item Assume that $p = (0,0)\in \AA^2\subset \PP^2$, where $\AA^2$ is the locus $x_0\neq 0$, 
