@@ -328,62 +328,71 @@ Finally, by the strong form of Clifford's Theorem \ref{***}, equality implies th
 
 We are in a position to describe all possible inflectionary behavior of linear series on $\PP^1$. We will do this both because it's a natural question to ask, and because it will provide the essential ingredient in our proof of the Brill-Noether theorem in the next chapter.
 
-If we embed $\PP^1$ in $\PP^d$ as a rational normal curve $C$, any $g^r_d$ on $\PP^1$ will be the linear system cut out on $C$ by hyperplanes containing a fixed $(d-r-1)$-plane $\Lambda$, and the inflectionary behavior of the $g^r_d$ is determined by how $\Lambda$ intersects the flag of \emph{osculating spaces}  to $C$ at a point, which we will define below.
-
-In general the set of planes $\Lambda$ meeting  the subspaces of a given flag in certainof Grassmannians that are central to our discussion. We'll do that in the following section; then, once we've established the  definitions of and basic facts about Schubert cycles we will come back and use this to answer almost completely the question of inflectionary behavior of linear series on $\PP^1$.
+If we embed $\PP^1$ in $\PP^d$ as a rational normal curve $C$, any $g^r_d$ on $\PP^1$ will be the linear system cut out on $C$ by hyperplanes containing a fixed $(d-r-1)$-plane $\Lambda$, and the inflectionary behavior of the $g^r_d$ is determined by how $\Lambda$ intersects the flag of \emph{osculating spaces}  to $C$ at a point, which we will define below. 
 
 \subsection{Schubert cycles}
 
-Let $G = \GG(k, d)$ be the Grassmannian of $k$-planes $\PP^k \subset \PP^d$, or equivalent the Grassmannian $G(k+1,d+1)$ of $(k+1)$-dimensional subspaces of a $(d+1)$-dimensional vector space $V$.
-(In the applications, we will want to think of it in the projective setting, but for now it will be clearer to work in the context  of vector spaces.) We start with a basic definition:
+In this section we review the definition and a few facts about the subvarieties of the Grassmanian called Schubert cycles.
+See for example~\cite[Chapters *** and ***]{3264} for a full exposition.
+
+The set of planes $\Lambda \subset \PP^d$ meeting  the subspaces of a given flag in (at least) certain dimensions
+is a subvariety of the Grassmannian called a Schubert cycle, and these will be central to our discussion.
+
+Let $G = \GG(k, d)$ be the Grassmannian of $k$-planes $\PP^k \subset \PP^d$, or equivalently the Grassmannian $G(k+1,d+1)$ of $(k+1)$-dimensional subspaces of a $(d+1)$-dimensional vector space $V$.
+To simplify the notation, we will write $\ell := k+1, e:= d+1$.
+Our application, will use the projective setting, but for now it will be clearer to work in the context  of vector spaces.
 
 \begin{definition}
-By a \emph{flag} $\cal V$  in $V$ we will mean a nested sequence of vector spaces
+A \emph{complete flag} $\cal V$  in an $e$-dimensional vector space $V$ is a nested sequence of vector spaces
 $$
-0 \subset V_1 \subset V_2 \subset \dots \subset V_d \subset V_{d+1} = V.
+0 \subset V_1 \subset V_2 \subset \dots \subset V_d \subset V_{e} = V.
 $$
 with $\dim V_i = i$.
 \end{definition}
 
-Now, suppose we are given a flag in $V$. If $\Lambda \subset V$ is any $(k+1)$-plane, we can associate to it a nested sequence of $d+1$ subspaces of $\Lambda$:
+Given a flag in $V$ and any  $\ell$-plane $\Lambda \subset V$, we can derive the nested sequence of $e$ subspaces of $\Lambda$:
 $$
-0 \; \subset \; \Lambda \cap V_1 \; \subset \;  \Lambda \cap V_2 \; \subset \;  \dots \; \subset \;  \Lambda \cap V_d \; \subset \;  \Lambda \cap V_{d+1} = \Lambda
+0 \; \subset \; \Lambda \cap V_1 \; \subset \;  \Lambda \cap V_2 \; \subset \;  \dots \; \subset \;  \Lambda \cap V_d \; \subset \;  \Lambda \cap V_{e} = \Lambda
 $$
-Note that in this sequence, each term is either equal to the preceding one, or of dimension 1 greater; the former will occur $d-k$ times, and the latter $k+1$ times. For a general $(k+1)$-plane $\Lambda$, the jumps occur at the end; that is, we have $\Lambda \cap V_{d-k} = 0$, and thereafter the dimension of the intersection goes up by 1 each time. For any sequence $a_1,\dots, a_{k+1}$, accordingly, we consider the locus of planes $\Lambda$ for which the $i$th jump occurs $a_i$ steps early; unwinding this, we arrive at the
+Each term in this sequence is either equal to the preceding one, or of dimension 1 greater; the former will occur $e-\ell$ times, and the latter $\ell$ times. For a general $\ell $-plane $\Lambda$, the jumps occur at the end; that is, we have $\Lambda \cap V_{e-\ell} = 0$, and thereafter the dimension of the intersection goes up by 1 each time. This makes it natural
+to describe the special position of a given $\ell $-plane by how early the $i$-th jump occurs: 
 
 \begin{definition}
-Let ${\bf a} = (a_1,\dots,a_{k+1})$ be a sequence of integers with $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$.
-The \emph{Schubert cycle $\Sigma_{\bf a}({\cal V}) \subset G$} is defined to be
+A \emph{Schubert index} for $G(\ell, e)$ is a sequence ${\bf a} = (a_1,\dots,a_{\ell})$ of integers with $e-\ell \geq a_1 \geq a_2 \geq \dots \geq a_{\ell} \geq 0$.
+The \emph{Schubert cycle $\Sigma_{\bf a}({\cal V}) \subset G$} associated to a complete flat $\sV$ in $\CC^e$ and
+Schubert index $\bf a$  is 
 $$
-\Sigma_{\bf a}({\cal V}) \; := \; \left\{ \Lambda \in G \mid \dim(\Lambda \cap V_{d-k+i-a_i}) \geq i \; \forall i \right\}
+\Sigma_{\bf a}({\cal V}) \; := \; \left\{ \Lambda \in G \mid \dim(\Lambda \cap V_{e-\ell+i-a_i}) \geq i \; \forall i \right\}
 $$
+When $\cal V$ is clear from context (or immaterial) we sometimes drop it and write $\Sigma_{\bf a}$.
 \end{definition}
+Thus the variety  $\Sigma_{\bf a}({\cal V})$ is the set of $\ell $-planes $\Lambda$ for which the $i$-th jump in the sequence of intersections $\Lambda \cap V_{e-\ell} = 0$ occurs
+$a_i$ steps earlier than for the general $\ell $-plane. 
 
-One note about notation: in general, the definition of the Schubert cycle $\Sigma_{\bf a}({\cal V}) \subset G$ involves only a subset of the linear spaces $V_i$ in the flag $\cal V$; in many instances, it involves only one element $V_i$ of the flag. In such a case, we will sometimes write $\Sigma_{\bf a}(V_i)$ in place of $\Sigma_{\bf a}({\cal V})$.
+%Alternately, since a generic $\ell $-plane meets $V_s$ in dimension $\max\{0, \ell  - (d+1-s) = k-d+s\}$,  
+%$\Sigma_{\bf a}({\cal V})$ is the set of $\ell $-planes that meet $V_s$ in dimension $\geq k-d+s + a_
 
-\begin{exercise}
-Show that the codimension of $\Sigma_{\bf a}({\cal V})$ in $G$ is equal to $\sum a_i$.
-\end{exercise}
+ 
+For example, the Schubert cycle $\Sigma_{0\dots,0}$ is the whole Grassmannian, 
+and $\Sigma_{1,0\dots,0}(\cal V)$ is the set of $\ell$-planes that meet $V_{e-\ell}$ nontrivially, which is
+the hyperplane section of the Grassmannian in its Pl\"ucker embedding.
+If
+${\bf a} = (t^m,0^{\ell-m}): = (t,\dots, t,0,\dots,0)$ with the number of $t$s equal to $m$, then
+$\Sigma_{\bf a}(\cal V)$, is the set of $\ell $-planes that intersect $V_{e-\ell+i-t}$ in dimension $\geq i$ for all $i\leq m$ and are otherwise general. This condition is implied by the single condition $V\cap V_{e-\ell+m-t} \geq m$, and we will 
+therefore write $\Sigma_{\bf a}(\cal V)$
+as $\Sigma_m(V_{e-\ell+m-t})$. 
 
-By way of language, a sequence ${\bf a} = (a_1,\dots,a_{k+1})$ of integers with $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$ is called a \emph{Schubert index}. The codimension $\sum a_i$ of $\Sigma_{\bf a}({\cal V})$ in $G$ is denoted $|{\bf a}|$.
+ The codimension $\sum a_i$ of $\Sigma_{\bf a}({\cal V})$ in $G$ is $\sum_i a_i$ denoted $|{\bf a}|$ (Exercise~\ref{codim Schubert}).
 
-One more thing to observe is that we have a natural isomorphism $\phi$ between the Grassmannian $G(k+1, V)$ of $(k+1)$-planes in a $(d+1)$-dimensional vector space $V$, and the Grassmannian  $G(d-k, V^*)$ of $(d-k)$-planes in  the dual vector space $V^*$, sending a subspace $\Lambda \subset V$ to its annihilator in $V^*$. This isomorphism carries Schubert cycles in $G(k+1, V)$ defined relative to a flag $\cal V$ to Schubert cycles in $G(d-k, V^*)$ defined relative to the dual flag ${\cal V}^*$, but with different indices.
+The natural isomorphism $\phi$ between the Grassmannian $G(\ell, V)$ of $\ell$-planes in an $e$-dimensional vector space $V$, and the Grassmannian  $G(e-\ell, V^*)$ of $(e-\ell)$-planes in  the dual vector space $V^*$, sends a subspace $\Lambda \subset V$ to its annihilator in $V^*$. This isomorphism carries Schubert cycles in $G(\ell, V)$ defined relative to a flag $\cal V$ to Schubert cycles in $G(e-\ell, V^*)$ defined relative to the dual flag ${\cal V}^*$, but with different indices.
 
 To describe the correspondence between Schubert indices,
-suppose that ${\bf a} = (a_1,\dots, a_{k+1})$ is a Schubert index in $G(k+1, V)$; that is, we have $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$. We define the \emph{transpose} Schubert index to be the sequence ${\bf b} = (b_1,\dots, b_{n-k})$ given by 
+suppose that ${\bf a} = (a_1,\dots, a_{\ell})$ is a Schubert index in $G(\ell, V)$, so that $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$. The \emph{transpose} Schubert index to be the sequence ${\bf a}^*:  (b_1,\dots, b_{n-k})$ given by 
 $$
-b_j \; := \; \#\{ i \mid a_i \geq j \};
+ b_j \; := \; \#\{ i \mid a_i \geq j \}
 $$
-we will write ${\bf a}^*$ for the transpose Schubert index of $\bf a$.
+For the properties of this operation, see Exercise~\ref{Schubert duality}.
 
-\begin{exercise} If ${\bf a}^*$ is the transpose Schubert index to $\bf a$,
-\begin{enumerate}
-\item  Show that $|{\bf a}^*| = |{\bf a}|$
-\item Show that $({\bf a}^*)^* = {\bf a}$
-\item Show that the isomorphism $\phi : G(k+1, V) \rTo^\cong G(n-k, V^*)$ carries the Schubert cycle $\Sigma_{\bf a}({\cal V})$ to the Schubert cycle $\Sigma_{{\bf a}^*}({\cal V}^*)$.
-\end{enumerate}
-(Of course, the first two parts follow from the third; think of the first two as warmups.)
-\end{exercise}
 
 % $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$
 %
@@ -392,21 +401,25 @@ we will write ${\bf a}^*$ for the transpose Schubert index of $\bf a$.
 %b_i = \#\{ j : a_j \geq i \}
 %$$
 
-There are a couple immediate observations. First, since the set of all flags $\cal V$ is a rational variety, the class of $\Sigma_{\bf a}({\cal V})$ in either the Chow ring or the cohomology ring of the Grassmannian $G$ (they're the same) does not depend on $\cal V$; this class is typically denoted $\sigma_{\bf a}$. Second, and less obviously, \emph{the classes $\sigma_{\bf a}$ form a basis for the Chow ring of $G$}. Thus a complete description of the Chow ring of $G$ is given by expressing the product $\sigma_{\bf a} \cdot \sigma_{\bf b}$ as a linear combination of Schubert classes; this is called the \emph{Schubert calculus}. We will give one example of this in \emph{Pieri's formula} (Proposition~\ref{Pieri} below); for Schubert calculus in general, the literature is vast.
-
+\begin{fact}
+The variety of complete flags in $\CC^e$ is rational, and it follows that the class of $\Sigma_{\bf a}({\cal V})\subset G$
+in the cohomology ring $H^*(G, \ZZ)$ of the Grassmanian $G = G(\ell, e)$ (or the Chow ring, which is the same in this case) is independent
+of the flag $\sV$, and is typically denoted $\sigma_{\bf a}$. Moreover, the classes $\sigma_{\bf a}$ form a basis for the Chow ring of $G$. Thus the product $\sigma_{\bf a} \cdot \sigma_{\bf b}$ is a linear combination of Schubert classes,
+given combinatorially by the \emph{Littlewood-Richardson formula}, the center of the \emph{Schubert calculus}, which
+is the subject of a vast literature. We will explain an important special case of the Littlewood-Richardson formula called \emph{Pieri's formula} in Proposition~\ref{Pieri} below. For the general case, see for example~\cite{Vakil ****}.
+\end{fact}
 
 
 \subsection{Special Schubert cycles and Pieri's formula}
 
-To give an example of the Schubert calculus, and also for applications in the next chapter, we mention one classical formula.
-
-To begin with, a \emph{special Schubert cycle} is a Schubert cycle of the form $\Sigma_{\bf a}({\cal V})$ with 
-$a_2=\dots = a_{k+1} = 0$; that is
+A \emph{special Schubert cycle} is a Schubert cycle of the form 
 $$
-\Sigma_a({\cal V})  \; := \; \left\{ \Lambda \in G \mid \Lambda \cap V_{n-k+1-a} \neq 0 \right\}
+\Sigma_{a, 0,\dots 0}({\cal V}) = \left\{ \Lambda \in G \mid \Lambda \cap V_{e-l+1-a} \neq 0 \right\}
 $$
 
-Pieri's formula is an explicit formula for the product of an arbitrary Schubert class with a special Schubert class; to wit,
+Pieri's formula is an explicit formula for the intersection product in the cohomology ring $H^*(G(\ell, e)$ of an arbitrary Schubert class with a special Schubert class:
+
+\begin{fact}
 \begin{proposition}\label{Pieri}
 If $\sigma_a$ is a special Schubert class and $\sigma_{\bf b}$ is an arbitrary Schubert class, then
 $$
@@ -418,10 +431,16 @@ $$
 $$
 \end{proposition}
 
+For a proof, see for example \cite[****]{3264}.
+\end{fact}
 To understand what this is saying, imagine we represent the Schubert class $\sigma_{\bf b}$ by stacks of coins, with $b_1$ coins in the first stack, $b_2$ coins in the second stack, and so on. We now want to add a total of $a$ coins to the stacks; we can add any number of them to any stack (including a stack that was previously empty), with the one condition that the new height of each stack can't be larger than the previous height of the stack to its left. This interpretation makes the following corollary clear:
 
 \begin{corollary}\label{intersection with sigma nonzero}
-If $\sigma_a$ is any special Schubert class  and $\sigma_{\bf b}$ any Schubert class with $l a + \sum b_i \leq \dim G$, the product  $(\sigma_a)^l \cdot \sigma_{\bf b} \neq 0$.
+If $\sigma_a$ is any special Schubert class, $\sigma_{\bf b}$ is any Schubert class,
+and $m\geq 0$ is an integer with $m a + \sum b_i \leq \dim G(\ell, e) = \ell(e-\ell)$, then   
+$$
+(\sigma_a)^l \cdot \sigma_{\bf b} \neq 0 \in H^*(G(\ell, e), \ZZ).
+$$
 \end{corollary}
 
 This is all the Schubert calculus we will need for the applications we have in mind. For an account of basic Schubert calculus, see~\cite{3264}.
@@ -587,6 +606,19 @@ Note that $x$ is a local parameter at $p$. Using the form of $f$ above, show tha
 and no term vanishing to lower order there.
 \item
 \end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{codim Schubert}
+Show that the codimension of $\Sigma_{\bf a}({\cal V})$ in $G$ is equal to $\sum a_i$.
+\end{exercise}
+\begin{exercise}\label{Schubert duality}
+ If ${\bf a}^*$ is the transpose Schubert index to $\bf a$,
+\begin{enumerate}
+\item  Show that $|{\bf a}^*| = |{\bf a}|$
+\item Show that $({\bf a}^*)^* = {\bf a}$
+\item Show that the isomorphism $\phi : G(k+1, V) \rTo^\cong G(n-k, V^*)$ carries the Schubert cycle $\Sigma_{\bf a}({\cal V})$ to the Schubert cycle $\Sigma_{{\bf a}^*}({\cal V}^*)$.
+\end{enumerate}
+(Of course, the first two parts follow from the third; think of the first two as warmups.)
 \end{exercise}
 
 \begin{exercise}\fix{add}
