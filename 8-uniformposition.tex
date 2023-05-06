@@ -8,16 +8,18 @@ One way to study a curve in $\PP^n$ is to use properties of its hyperplane secti
 
 %\fix{which of our applications is good for integral curves, not just smooth ones?}
 
-We begin by showing that the points in every hyperplane section span the hyperplane. Then, in the second section, we prove a result originally due to Castelnuovo, that in the case of a general hyperplane section, \emph{every} subset of $n$ points in a spans the hyperplane; that is, any $n$ points of $\Gamma$ are linearly independent. (This 
+The first half of the chapter proves and applies a result originally due to Castelnuovo, every subset of $n$ points in a
+general hyperplane section of $C$ spans the hyperplane; that is, any $n$ points of $\Gamma$ are linearly independent. This 
 holds for smooth curves in arbitrary characteristic (but see Exercise~\ref{strange curves} for
-interesting counterexamples of singular examples in positive characteristic). 
+interesting counterexamples of singular examples in positive characteristic). This is followed by a series of applications,
+including the famous theorem of Castelnuovo bounding the genus of a curve in terms of its degree. Later in this
+book (Sections~\ref{high degree ACM} and \ref{canonical ACM}) we will apply this result to prove that canonical curves and 
+curves ``of high degree'' are arithmetically Cohen-Macaulay.
 
-In the following sections of this chapter we give a series of applications of this result, and in Sections~\ref{high degree ACM} and
-\ref{canonical ACM} we further apply the result to show that canonical curves and curves of high degree are
-arithmetically Cohen-Macaulay. In Section~\ref{uniform position section} we return to the characteristic 0 case to prove the much stronger \emph{uniform position lemma}. Finally we give some applications
-of this stronger result.
+Starting in Section~\ref{uniform position section} we explain and prove a still stronger general position result, which requires characteristic 0. We give applications to the irreducibility of fiber products, to the Hilbert functions of subsets of the
+general hyperplane section, and to sums of linear series.
+
 \section{Arbitrary hyperplane sections}
-
 
 \begin{proposition}\label{arbitrary hyperplane}
 If $X\subset \PP^r$ is a nondegenerate, reduced, irreducible variety, and $h$ is a linear form defining
@@ -66,7 +68,7 @@ The homogeneous ideal $I_X(1)+(h)$
 defines $X\cap H$, but may be properly contained in the saturated ideal of $X\cap H$. See Exercise~\ref{bad restriction} for an example. 
 
 
-\section{Linearly general position}
+\section{Linear general position}
 In this section we will allow our algebraically closed ground field to have arbitrary characteristic. 
 
 An irreducible and reduced curve
@@ -182,8 +184,9 @@ the general hyperplane section of $C$ is in linearly general position.
 \end{proof}
  
  
+\section{Applications of linear general position}
 
-\section{Existence of good projections}\label{projection section}\label{good projections}
+\subsection{Existence of good projections}\label{projection section}\label{good projections}
 
 We can use Theorem~\ref{basic linear independence} to show that every smooth curve $C$ is birational to a nodal plane curve $C_0 \subset \PP^2$, in many ways.
 
@@ -221,7 +224,7 @@ Since the family of all secant lines is irreducible of dimension 2,  it will suf
 \end{proof}
 
 
-\section{The case of equality in Martens' theorem}
+\subsection{The case of equality in Martens' theorem}
 
 Theorem~\ref{basic linear independence}  allows us to analyze the case of equality in Martens' theorem bounding the dimension of the variety $W^r_d(C)$ parametrizing divisor classes of degree $d$ on a curve $C$ with $r(D) \geq r$
 (Theorem~\ref{Martens' inequality}.
@@ -277,7 +280,7 @@ is $\geq 0$, and we have a case of equality in Martens' theorem.
 \end{proof}
 
 
-\section{The $g+2$ theorem}\label{g+2 section}
+\subsection{The $g+2$ theorem}\label{g+2 section}
 
 Now that we have the strong form of Martens' theorem, we can prove the analogue of Theorem~\ref{g+3 theorem} for general linear series of degree $g+2$. This was stated in Section~\ref{g+3 section}, but we'll reproduce the statement here.
 
@@ -360,7 +363,7 @@ $binom{g+1}{2} -g = \binom{g}{2}$. Such a singularity cannot have multiplicity $
 
 
 
-\section{Castelnuovo's theorem}
+\subsection{Castelnuovo's theorem}
 
 Clifford's theorem gives a complete and sharp answer to the question, ``what linear series can exist on a curve of genus $g$?
 But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least  birational. 
@@ -665,8 +668,78 @@ $M$ is $n$ times transitive if and only if the restricted fiber power $\tilde Y^
 If we restrict ourselves to open subsets $U \subset X$ and $V = f^{-1}(U) \subset Y$ such that $U$ and $V$ are smooth and the restriction $f|_V : V \to U$ is a covering space map in the classical topology, then the restricted fiber powers are unions of connected component of the usual fiber power $Y^n/X$. The condition that the monodromy if $n$-times transitive is equivalent to the condition that the restricted fiber power $\tilde Y^n/X$ is connected; since the fiber powers are all smooth, this is equivalent to $\tilde Y^n/X$ being irreducible.
 \end{proof}
 
+\section{Flexes and bitangents are isolated}\label{isolated flexes and bitangents}
 
-\subsection{Proof of the uniform position theorem}
+There are  further general position results that we need for the proof of the uniform position lemma.  We have separated
+them from the results on linear general position because these require characteristic 0; they are really local analytic
+statements.
+
+\subsection{Not every tangent line is a flex}\label{isolated tangents and bitangents}
+
+\begin{lemma}\label{finite inflections}
+If $r>1$ and $C \subset \PP^r$ is a smooth, irreducible and nondegenerate curve, then not every point of $C$ is an inflectionary point.
+More generally, if $0\in D\rTo^v \PP^{r}$ is the germ of a curve defined on a disk $D\subset \CC$, and every point $v(t)$ is a flex point, then $v(D)$ lies in a hyperplane.
+\end{lemma}
+
+The proof applies to any linear series on a curve.
+
+\begin{proof}
+We begin by lifting $v(t)$ to an arc $\tilde v (t)$ in $\CC^{r+1}$, so that the tangent line at $v(0)$ in projective space
+is represented by the span of $\tilde v(0), \tilde v'(0) \in \CC^{r+1}$. To say that $v(t)$ is an inflection point is to say that the 
+$r+1$ vectors $\tilde v, \tilde v(t), \tilde v'(t), \dots,\tilde v^{(r)}(t)$ lie in a hyperplane $\tilde \Lambda \subset \CC^{r+1}$. If this holds for all $t \in D$ then
+$$
+\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(r)}(t) \; \equiv \; 0.
+$$
+%fix{I suppressed the minimal plane spanned -- seemed not to matter.
+%Now let $k$ be the smallest integer such that
+%$$
+%\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(k)}(t) \; \equiv \; 0,
+%$$
+%so that the vectors $\tilde v(t), \tilde v'(t), \dots, \tilde v^{(k-1)}(t)$ span a $k$-plane $\Lambda \subset \CC^{r+1}$, and $\tilde v^{(k)}(t) \in \Lambda$.
+
+When we take the derivative of the wedge product $\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(r)}(t)$ by applying the product rule we see that the first $r$ terms are zero because they contain a repeated factor; it follows that
+$$
+\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(k-1)}(t)\wedge \tilde v^{(r+1)}(t) \equiv 0,
+$$
+so that $\tilde v^{(r+1)}(t) \in \Lambda$ as well. Indeed, as we continue to take derivatives, we see in each case that all but one term is zero, and we deduce that $\tilde v^{(l)}(p) \in \Lambda$ for all $l$. Thus $v(D)$  lies in the hyperplane in $\PP^r$ corresponding
+to $\Lambda$.
+\end{proof}
+
+ \subsection{Not every tangent is bitangent}
+ 
+ This statement seems even more obvious than Lemma~\ref{finite inflections} above, but---like that lemma---is false in characteristic $p$! \fix{put an example in the exercises?}
+ 
+ \begin{lemma}\label{tangent not bitangent}
+ Let $C \subset \PP^r$ be a smooth, irreducible, nondegenerate curve, with $r > 1$. If $p \in C$ is a general point, then the tangent line $\TT_p(C) \subset \PP^r$ is not tangent to $C$ at any other point.
+ \end{lemma}
+ 
+ \begin{proof} Again the result is local, this time with a pair of germs $D\rTo^v \PP^r$ and $D\rTo^w \PP^r$. If every
+ tangent line to the two curves is a bitangent, we will show that they are both contained in a line.
+ 
+  Let $C_1, C_2$ be the images of $v,w$ respectively, and let $\tilde v, \tilde w$ be lifts to $\CC^{r+1}$.
+ Let  
+ $$
+ \Sigma := \{ (p,q) \in D \times D \mid \text{ and }\TT_{v(p)}(C_1) = \TT_{w(q)}(C_2) \}
+ $$
+ be the variety parametrizing bitangents to the two germs. 
+ 
+ 
+ %Since $\Sigma$ cannot contain an open subset of a fiber, a local coordinate $t$ on $\Sigma$ at the point $(p,q)$ will serve as a local coordinate on $C$ at both $p$ and $q$; that is, we can write neighborhoods of $p$ and $q \in C$ parametrically via vector-valued functions $v(t)$ and $w(t) \in \CC^{r+1}$. 
+ 
+ The statement that the tangent lines to $C$ at the points $v(t)$ and $w(t)$ are equal then says that the vectors $\tilde v(t), \tilde v'(t),\tilde w(t)$ and $\tilde w'(t)$ all lie in a 2-dimensional subspace $\Lambda \subset \CC^{r+1}$; in particular,
+ $$
+ \tilde v(t) \wedge \tilde v'(t) \wedge \tilde w(t) \equiv 0 \quad \text{and likewise} \quad \tilde v(t) \wedge \tilde w(t) \wedge \tilde w'(t) \equiv 0
+ $$
+ 
+We proceed now exactly as in the proof of Lemma~\ref{finite inflections}: taking derivatives, we see that all derivatives of $\tilde v(t)$
+and $\tilde w$ at $t=0$ lie in $\Lambda$
+and hence $C_1$ and $C_1$ are both contained in the line in $\PP^r$ corresponding to $\Lambda$.
+ \end{proof}
+
+Note: it's much less clear whether it can be the case that a general tangent line to $C$ can intersect $C$ in a point other than $p$, except of course in case $r=2$. %See~\cite{} for results on this question.
+%\fix{Joe will write to Noam to ask for a reference.}
+
+\section{Proof of the uniform position theorem}
 
 Let $C \subset \PP^r$ be an irreducible, nondegenerate curve of degree $d$ and $f : Y \subset {\PP^r}^* \times C \to  X = {\PP^r}^*$ its universal hyperplane section; let $U \subset {\PP^r}^*$ be the open subset of hyperplanes transverse to $C$ and $V = f^{-1}(U)$; let $M \subset S_d$ be the monodromy group of $V$ over $U$.
 To show that  $M$ is the full symmetric group, it suffices to show that $M$ contains all transpositions, for this it is enough to show that $M$ is doubly transitive and contains one transposition.
@@ -706,20 +779,20 @@ Let $p' \in A \cap U$. Two of the $d$ points of $f^{-1}(p')$ will lie in the com
 \begin{remark}
  The fact that not every tangent line is bitangent is true
 even for holomorphic arcs. Using the theory of correspondences it is possible to show that
-a general tangent line to $C$ does not meet $C$ at any further points; but
+a general tangent line to a non-planar curve $C$ does not meet $C$ at any further points; but
 this is not true of analytic arcs.
 \end{remark}
 
  \section{Applications of uniform position}
-
-Applying this to the universal hyperplane section of a curve $C \subset \PP^r$, a consequence of the Uniform Position Theorem is an irreducibility result:
+\subsection{Irreducibility of fiber powers}
+If we apply the uniform position lemma to the universal hyperplane section of a curve $C \subset \PP^r$ we get an irreducibility result:
 
 \begin{corollary}\label{hyperplane section monodromy} If $C\subset \PP^r$ is a smooth curve of degree $d$, then 
 for $k\leq d$, the restricted fibered powers $\tilde Y^k/X$  of the universal hyperplane section 
 of $C$ are irreducible.
 \end{corollary}
 
-
+\subsection{Numerical uniform position}
 \begin{corollary}[numerical uniform position lemma]\label{numerical uniform position lemma}
 Let $C\subset \PP^r$ be an irreducible curve, and let $\Gamma = H\cap C$ be a general hyperplane section. Any two subsets of $\Gamma$ with the same cardinality impose the same number of conditions on forms of any degree; that is, any two subsets of the same cardinality have the same Hilbert function.
 \end{corollary}
@@ -734,7 +807,7 @@ This result may be seen as an important strengthening of Theorem~\ref{basic line
 be true for every subset of $n$ points of every general hyperplane section, 
 which reproves Theorem~\ref{basic linear independence}, though only in characteristic 0. 
 
-\section{Sums of linear series}
+\subsection{Sums of linear series}
 
 Another consequence of the uniform position lemma is a result about sums of linear series.
 Recall that if $D$ is a divisor on a curve $C$ we write $r(D) = \dim |D| = h^0(\cO_C(D))-1$.
