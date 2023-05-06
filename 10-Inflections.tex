@@ -330,10 +330,10 @@ We are in a position to describe all possible inflectionary behavior of linear s
 
 If we embed $\PP^1$ in $\PP^d$ as a rational normal curve $C$, any $g^r_d$ on $\PP^1$ will be the linear system cut out on $C$ by hyperplanes containing a fixed $(d-r-1)$-plane $\Lambda$, and the inflectionary behavior of the $g^r_d$ is determined by how $\Lambda$ intersects the flag of \emph{osculating spaces}  to $C$ at a point, which we will define below. 
 
-\subsection{Schubert cycles}
+\subsection{Schubert cycles}\label{Schubert1}
 
-In this section we review the definition and a few facts about the subvarieties of the Grassmanian called Schubert cycles.
-See for example~\cite[Chapters *** and ***]{3264} for a full exposition.
+In this section and the next we will review the definition and a few facts about the subvarieties of the Grassmanian called Schubert cycles.
+See for example~\cite[Chapters 3 and 4]{3264} for a full exposition.
 
 The set of planes $\Lambda \subset \PP^d$ meeting  the subspaces of a given flag in (at least) certain dimensions
 is a subvariety of the Grassmannian called a Schubert cycle, and these will be central to our discussion.
@@ -345,7 +345,7 @@ Our application, will use the projective setting, but for now it will be clearer
 \begin{definition}
 A \emph{complete flag} $\cal V$  in an $e$-dimensional vector space $V$ is a nested sequence of vector spaces
 $$
-0 \subset V_1 \subset V_2 \subset \dots \subset V_d \subset V_{e} = V.
+0 \subset V_1 \subset V_2 \subset \dots  \subset V_{e} = V.
 $$
 with $\dim V_i = i$.
 \end{definition}
@@ -375,12 +375,14 @@ $a_i$ steps earlier than for the general $\ell $-plane.
  
 For example, the Schubert cycle $\Sigma_{0\dots,0}$ is the whole Grassmannian, 
 and $\Sigma_{1,0\dots,0}(\cal V)$ is the set of $\ell$-planes that meet $V_{e-\ell}$ nontrivially, which is
-the hyperplane section of the Grassmannian in its Pl\"ucker embedding.
-If
-${\bf a} = (t^m,0^{\ell-m}): = (t,\dots, t,0,\dots,0)$ with the number of $t$s equal to $m$, then
-$\Sigma_{\bf a}(\cal V)$, is the set of $\ell $-planes that intersect $V_{e-\ell+i-t}$ in dimension $\geq i$ for all $i\leq m$ and are otherwise general. This condition is implied by the single condition $V\cap V_{e-\ell+m-t} \geq m$, and we will 
-therefore write $\Sigma_{\bf a}(\cal V)$
-as $\Sigma_m(V_{e-\ell+m-t})$. 
+the hyperplane section of the Grassmannian in its Pl\"ucker embedding. More generally, the
+\emph{special Schubert cycle} 
+$\Sigma_a(\sV) := \Sigma_{a,0,\dots, 0}(\sV)$ 
+is the set of $\ell$-planes
+meeting  $V_{e-\ell - a+1}$ nontrivially.
+Since this condition really involves only the single space $W = V_{e-\ell-a+1}$, we sometimes 
+ write it
+as $\Sigma_a(W)$. 
 
  The codimension $\sum a_i$ of $\Sigma_{\bf a}({\cal V})$ in $G$ is $\sum_i a_i$ denoted $|{\bf a}|$ (Exercise~\ref{codim Schubert}).
 
@@ -391,33 +393,24 @@ suppose that ${\bf a} = (a_1,\dots, a_{\ell})$ is a Schubert index in $G(\ell, V
 $$
  b_j \; := \; \#\{ i \mid a_i \geq j \}
 $$
+For example, the transpose of the special Schubert cycle
+$\Sigma_{a,0,\dots,0}(\sV)$ is 
+$\Sigma_{1,1,\dots,1,0,\dots,0}(\sV)$ with $a$ 1s.
 For the properties of this operation, see Exercise~\ref{Schubert duality}.
 
 
-% $n-k \geq a_1 \geq a_2 \geq \dots \geq a_{k+1} \geq 0$
-%
-%or any Schubert index ${\bf a} = (a_1,\dots,a_{k+1})$ in $G(k+1, V)$, the Schubert cycle $\Sigma_{\bf a}({\cal V})$ is carried into the Schubert cycle $\Sigma_{\bf b}({\cal V}^*)$, where $\bf b$ is what's called the \emph{transpose} Schubert index of $\bf a$; this can be defined by
-%$$
-%b_i = \#\{ j : a_j \geq i \}
-%$$
+
+\subsection{Special Schubert cycles and Pieri's formula}
 
 \begin{fact}
 The variety of complete flags in $\CC^e$ is rational, and it follows that the class of $\Sigma_{\bf a}({\cal V})\subset G$
 in the cohomology ring $H^*(G, \ZZ)$ of the Grassmanian $G = G(\ell, e)$ (or the Chow ring, which is the same in this case) is independent
 of the flag $\sV$, and is typically denoted $\sigma_{\bf a}$. Moreover, the classes $\sigma_{\bf a}$ form a basis for the Chow ring of $G$. Thus the product $\sigma_{\bf a} \cdot \sigma_{\bf b}$ is a linear combination of Schubert classes,
-given combinatorially by the \emph{Littlewood-Richardson formula}, the center of the \emph{Schubert calculus}, which
-is the subject of a vast literature. We will explain an important special case of the Littlewood-Richardson formula called \emph{Pieri's formula} in Proposition~\ref{Pieri} below. For the general case, see for example~\cite{Vakil ****}.
+given combinatorially by the \emph{Littlewood-Richardson rule}, the center of the \emph{Schubert calculus}. See for example~\cite{MR2247964}.
 \end{fact}
 
-
-\subsection{Special Schubert cycles and Pieri's formula}
-
-A \emph{special Schubert cycle} is a Schubert cycle of the form 
-$$
-\Sigma_{a, 0,\dots 0}({\cal V}) = \left\{ \Lambda \in G \mid \Lambda \cap V_{e-l+1-a} \neq 0 \right\}
-$$
-
-Pieri's formula is an explicit formula for the intersection product in the cohomology ring $H^*(G(\ell, e)$ of an arbitrary Schubert class with a special Schubert class:
+In the description of the possible osculating behavior of rational curves we will use \emph{Pieri's formula}, the special
+case of the Littlewood-Richardson rule that expresses the product in the cohomology ring $H^*(G(\ell, e)$ of an arbitrary Schubert class with a special Schubert class:
 
 \begin{fact}
 \begin{proposition}\label{Pieri}
@@ -431,7 +424,7 @@ $$
 $$
 \end{proposition}
 
-For a proof, see for example \cite[****]{3264}.
+For a proof, see for example \cite[Section 4.2.4]{3264}.
 \end{fact}
 To understand what this is saying, imagine we represent the Schubert class $\sigma_{\bf b}$ by stacks of coins, with $b_1$ coins in the first stack, $b_2$ coins in the second stack, and so on. We now want to add a total of $a$ coins to the stacks; we can add any number of them to any stack (including a stack that was previously empty), with the one condition that the new height of each stack can't be larger than the previous height of the stack to its left. This interpretation makes the following corollary clear:
 
@@ -443,45 +436,69 @@ $$
 $$
 \end{corollary}
 
-This is all the Schubert calculus we will need for the applications we have in mind. For an account of basic Schubert calculus, see~\cite{3264}.
+\subsection{Osculating flags of a rational normal curve}
 
-\subsection{Osculating flags}
+To relate the discussion above to inflection points of linear series on $\PP^1$ we introduce the notion of the \emph{osculating flag} to a curve at a point.
 
-We now want to relate the discussion above to inflection points of linear series on $\PP^1$.  To start with, let's introduce the notion of the \emph{osculating flag} to a curve at a point.
-
-We'll do this first for a rational normal curve $C \subset \PP^d$. Here things are straightforward: for any point $p \in C$ and any $m \leq d+1$, we've seen that the span $\overline{mp}$ is an $(m-1)$-plane in $\PP^d$; thus we have a flag of linear subspaces
+If $C\subset \PP^d$ is a rational normal curve of degree $d$ and $p \in C$ is a point on $C$ then by Corollary~\ref{independence of points on a RNC} the span $\overline{mp}$ is an $(m-1)$-plane in $\PP^d$.
+Thus we have a complete flag of linear subspaces:
 $$
 \{p\} \subset \overline{2p} \subset \overline{3p} \subset \dots \subset \overline{dp} \subset \overline{(d+1)p} = \PP^d
 $$
 which we call the \emph{osculating flag} to $C$ at $p$. Note that the second term $\overline{2p}$ is the tangent line to $C$ at $p$; in general, the $k$-plane $\overline{(k+1)p}$ is called the \emph{osculating $k$-plane to $C$ at $p$}.
 
-Though we will only be using this construction on rational normal curves, it's worth pointing out that we can define the osculating flag to any nondegenerate curve $C \subset \PP^d$ at any smooth point. Here it may no longer be the case that $\overline{mp}$ is an $(m-1)$-plane, but we can look at the nested sequence of subspaces
-$$
-\{p\} \subset \overline{2p} \subset \overline{3p} \subset \dots 
-$$
-and pick out exactly the terms whose dimension is strictly greater than the preceding one; we arrive in this way at the full flag
-$$
-\{p\} \subset \overline{b_2p} \subset \overline{b_3p} \subset \dots \subset \overline{b_{d+1}p} = \PP^d
-$$
-Note that if the point $p$ is not an inflectionary point, this is just the flag $\{\overline{mp}\}_{m=1}^d$; in general, we have the 
-
-\begin{exercise}
-Show that the sum $\sum b_i - i$ is equal to the weight of the point $p$ as an inflectionary point of the hyperplane series.
-\end{exercise}
-
-Let's now see what all this says about inflectionary behavior of $g^r_d$s on $\PP^1$. To set this up, first embed $\PP^1$ in $\PP^d$ as a rational normal curve $C \subset \PP^d$. For any $(d-r-1)$-plane $\Lambda \subset \PP^d$, let $V_\Lambda$ be the linear series cut on $C$ by hyperplanes in $\PP^d$ containing $\Lambda$. (Note that if $\Lambda \cap C \neq \emptyset$, the linear series $V_\Lambda$ will have base points; we do not throw those away, since we want $V_\Lambda$ to always be a $g^r_d$.) All $g^r_d$s on $\PP^1$ are given in this way.
-
-Now let $p \in C$ be any point, and let $\cal V$ be the osculating flag to $C$ at $p$. It is reasonable to expect that the ramification sequence of the linear series $V_\Lambda$ at $p$ is related to whether $\Lambda$ lies in a Schubert cycles relative to the osculating flag to $C$ at $p$, and indeed the relationship is simple:
+For any $(d-r-1)$-plane $\Lambda \subset \PP^d$, let $(\sO_C(d), V_\Lambda)$ be the linear series cut on $C$ by hyperplanes in $\PP^d$ containing $\Lambda$. (Note that if $\Lambda \cap C \neq \emptyset$, the linear series $V_\Lambda$ will have base points; we do not throw those away, since we want $V_\Lambda$ to always be a $g^r_d$.) All $g^r_d$s on $\PP^1$ are given in this way.
 
 \begin{proposition}\label{ramification}
-Let ${\bf a}$ be a Schubert index in the Grassmannian $G(d-r, d+1)$; that is ${\bf a} = (a_1, \dots a_{d-r})$ with $r+1 \geq a_1 \geq \dots \geq a_{d-r} \geq 0$, and let ${\bf a}^*$ be the transpose Schubert index. If $\cal V$ is the osculating flag to the rational normal curve $C \subset \PP^d$ at a point $p$,
-then for any $(d-r-1)$-plane $\Lambda \subset \PP^d$, 
+Let $(V_\Lambda, \sO_C(d))$ be the $g^r_d$ on $\PP^1$ obtained as the projection from a rational normal curve $C\subset \PP^d$
+from a plane $\Lambda \subset \PP^d$ of dimension $d-r-1$, and write $\sV = 0\subset V_1\subset \cdots \subset V_d = \PP^d$ for the osculating flag of $C$ at $p$. The ramification sequence $\alpha(V_\Lambda, p)$
+is determined by the formula
+%
+%Let ${\bf a}$ be a Schubert index in the Grassmannian $G(d-r, d+1)$; that is ${\bf a} = (a_1, \dots a_{d-r})$ with $r+1 \geq a_1 \geq \dots \geq a_{d-r} \geq 0$, and let ${\bf a}^*$ be the transpose Schubert index. If $\cal V$ is the osculating flag to the rational normal curve $C \subset \PP^d$ at a point $p$,
+%then for any $(d-r-1)$-plane $\Lambda \subset \PP^d$, 
 $$
-\Lambda \in \Sigma_{\bf a}({\cal V}) \; \iff \; \alpha_i(V_\Lambda, p) \geq {\bf a}^*_{r+1-i}.
+\Lambda \in \Sigma_{\bf a}({\cal V}) \; \iff \; \alpha_i(V_\Lambda, p) \geq {\bf a}^*_{r+1-i} = \#\{j\mid a_j\geq r+1-i\}.
 $$
 \end{proposition} 
+\def\tL{{\widetilde \Lambda}}
+\def\tsV{{\widetilde \sV}}
+\def\tV{{\widetilde V}}
+In other words, the ramification sequence $\alpha(V_\Lambda, p)$ of the linear series $V_\Lambda$ at $p$ is exactly the reverse of the transpose of the Schubert index of the smallest Schubert cycle containing $\tL$, the vector
+space associated to $\Lambda$, in  $G(d-r, d+1)$.
 
-In other words, the ramification sequence $\alpha(V_\Lambda, p)$ of the linear series $V_\Lambda$ at $p$ is exactly the transpose of the Schubert index of the smallest Schubert cycle containing $\Lambda \in G(d-r, d+1)$, in reverse order.
+%\fix{ $$van = (\nu_0< \dots< \nu_r);$$
+%$$\alpha = (\alpha_0\leq \dots\leq \alpha_r);$$
+%$$ {\bf a} = (r+1 \geq a_1\geq \cdots \geq a_{d-r});$$
+%$$  {\bf a}^* = (d-r\geq b_1\geq\cdots \geq b_{r+1})$$
+%}
+
+
+\begin{proof}
+To keep the notation of Section~\ref{Schubert1}, we work with the affine versions
+$\tL, \tsV = (\tV_1, \dots, \tV_{d+1})$ of the projection center and the osculating flag at $p$, respectively,
+so that, for example $\dim \tL = d-r$. Note that the space $\tV_\Lambda$ of the linear series 
+denoted $(V_\Lambda, \sO_{\PP^1}(d))$ the space $V_\Lambda$
+is already a vector space, but for consistency of notation we will write $\tV_\tL$ anyway.
+
+The condition $\tL \in \Sigma_{\bf a}({\tsV})$
+ means that 
+$$
+\dim \tL \cap \tV_{r+1+i-a_i} \geq i
+$$
+for each $i$. It follows that, 
+in the space of hyperplanes containing $\tL$, it is $\leq r-a_i+1$ further conditions to contain $\tV_{r+i-a_i}$. Equivalently,
+since the projective space correspondin to $\tV_{r+i-a_i}$ is the linear span of the divisor $(r+i-a_i+1)p\subset C$
+a codimension $\leq r-a_i+1$ space of sections of $\tV_\tL$ will vanish to order $\geq r -a_i+1+i$ at $p$. 
+
+If we write the distinct orders of vanishing of the sections in $\tV_\tL$ as
+$b_0 < b_1<  \cdots < b_r$, we see that $\tL \in \Sigma_{\bf a}$  if and only if
+$a_i$ of the $b_j$ are $\geq r+i+a_i+1$, that is,
+$b_{r-a_i+1}\geq r-a_i+1+i$ or equivalently $\alpha_{r-a_i+1}\geq i$ for each $i$.
+Since $\alpha_i\leq \alpha_{i+1} \leq \alpha_r$,
+this is equivalent to saying that the number of $\alpha_i \geq r+1-a_i$ is at least $a_i$.
+ 
+ \fix{ finish the proof!}
+\end{proof}
 
 \subsection{Conclusions}
 
@@ -619,6 +636,18 @@ Show that the codimension of $\Sigma_{\bf a}({\cal V})$ in $G$ is equal to $\sum
 \item Show that the isomorphism $\phi : G(k+1, V) \rTo^\cong G(n-k, V^*)$ carries the Schubert cycle $\Sigma_{\bf a}({\cal V})$ to the Schubert cycle $\Sigma_{{\bf a}^*}({\cal V}^*)$.
 \end{enumerate}
 (Of course, the first two parts follow from the third; think of the first two as warmups.)
+\end{exercise}
+
+\begin{exercise}
+Though we will only use the osculating flag for rational normal curves, we can define the osculating flag to any nondegenerate curve $C \subset \PP^d$ at any smooth point $p$. If $p$ is an inflection point then $\overline{mp}$ may not be an $(m-1)$-plane, but we can look at the nested sequence of subspaces
+$$
+\{p\} \subset \overline{2p} \subset \overline{3p} \subset \dots 
+$$
+and pick out exactly the terms whose dimension is strictly greater than the preceding term; this gives a complete flag
+$$
+\{p\} \subset \overline{b_2p} \subset \overline{b_3p} \subset \dots \subset \overline{b_{d+1}p} = \PP^d
+$$
+Show that the sum $\sum b_i - i$ is equal to the weight of the point $p$ as an inflection point of the hyperplane series.
 \end{exercise}
 
 \begin{exercise}\fix{add}
