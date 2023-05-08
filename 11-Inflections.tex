@@ -4,15 +4,14 @@
 \label{InflectionsChapter}
 
 
-In this chapter, we will introduce the \emph{inflection points} of a linear system. \fix{the first phrase of the next sentence seems to me weak. Maybe replace it with ``We love this topic for its echos of classical algebraic geometry;"} This is a fascinating topic in its own right and it will provide the tools to give a proof of the Brill-Noether theorem in the following chapter.
-
-Just as a point $p \in C$ on a smooth plane curve $C \subset \PP^2$ is called a \emph{flex point} if there is a line $L \subset \PP^2$ having contact of order 3 or more with $C$ at $p$, a point on a smooth, nondegenerate curve $C \subset \PP^r$ will be called an \emph{inflection point} if there is a hyperplane $H \subset \PP^r$ having contact of order $r+1$ or more with $C$ at $p$. This notion can be extended to arbitrary linear series on smooth curves (as opposed to very ample ones). In characteristic 0 every linear series has finitely many inflection points, and the number of these properly counted, depends only on the genus of the curve and the degree of the linear series.
-
+Generalizing the ramification points of the two-to-one map of a hyperelliptic curve to $\PP^1$, there are finitely
+many ``special'' points determined by any linear series on any curve, the \emph{inflection points}.
+We love this topic for its echos of classical algebraic geometry and it will provide the tools to give a proof of the Brill-Noether theorem in the following chapter. In characteristic 0 every linear series has finitely many inflection points, and the number of these properly counted, depends only on the genus of the curve and the degree of the linear series.
 
 \section{Inflection points,  Pl\"ucker formulas and Weierstrass points}
 
 \subsection{Definitions}
-To define the inflection points of a linear series $\sD = (\sL, V)$ on a curve $C$, we will use the following result:
+To characterize the inflection points of a linear series $\sD = (\sL, V)$ on a curve $C$, we will use the following result:
 
 \begin{proposition}\label{vanishing sequence} Let $V$ be a vector space of global sections of an invertible sheaf $\sL$ on a smooth curve $C$, and let $p \in C$ be a point. There exists a basis $\sigma_0, \dots, \sigma_r$ of $V$ consisting of sections vanishing to different orders at $p$. Thus the set
 $$
@@ -44,10 +43,10 @@ The first two terms in the ramification sequence are particularly important: $\a
 
 \subsection{The Pl\"ucker formula}
 
-A linear series on a smooth projective curve can have only finitely many inflection points (we will prove this in Lemma~\ref{finite inflections} below), and in fact the sum of the weights of all the inflection points depends only on the genus of the curve and the degree and dimension of the the linear series. The result is called the Pl\"ucker xormula:
+A linear series on a smooth projective curve can have only finitely many inflection points (we will prove this in Lemma~\ref{finite inflections} below), and in fact the sum of the weights of all the inflection points depends only on the genus of the curve and the degree and dimension of the the linear series. The result is called the Pl\"ucker formula:
 
 \begin{theorem}\label{Plucker}
-If $C \subset \PP^r$ is a nondegenerate smooth curve of genus $g$ and $\cD$ is a
+If $C$ be a smooth curve of genus $g$ and $\cD$ is a
 linear series of degree $d$ and dimension $r$, then
  \begin{equation}\label{Plucker formula}
 \sum_{p \in C} w(\cD, p) \; = \; (r+1)d + r(r+1)(g-1).
@@ -78,9 +77,14 @@ But if $C \subset \PP^r$ is any smooth, irreducible, nondegenerate curve other t
 Recall that $C\subset \PP^r$ is \emph{projectively homogeneous} if the automorphisms of $\PP^r$ fixing
 $C$ act transitively on $C$.  Proposition~\ref{Veronese is projectively homogeneous} shows that the rational normal curve has this property, and now we can see that it's the only irreducible, nondegenerate curve that does: if $C \subset \PP^r$ is any curve and $\phi : \PP^r \to \PP^r$ any automorphism carrying $C$ to itself, $\phi$ will carry inflection points of $C$ to inflection points of $C$, so that a curve with a finite nonzero number of inflection points cannot be projectively homogeneous.
 
-The Pl\"ucker formula leaves many questions about the possible configurations of flex points unanswered. To take the simplest:
-no-one knows for which degrees $d$ there is a plane curve with the maximum number ${d-1\choose 2}$ of ordinary cusps (ramification
-sequence $(0,1,1)$). \fix{Joe, can you refine this? Should we call it ``Zariski's problem''?} One thing we do know is the behavior of the inflection points for a general linear series; we will state this here and prove it as a corollary to the proof of the Brill-Noether theorem later in this chapter.
+The Pl\"ucker formula leaves many questions about the possible configurations of flex points unanswered. 
+For example, how many cusps can there be on a plane curve of geometric genus $g$ and degree $d$? 
+The answer is known only up to degree 8: \cite{Zariski} proves that a plane curve of degree 8 can have 15 but not 16 cusps.
+See \cite{Calabri} and \cite{Kulikov} for recent contributions. 
+
+\fix{add picture of quartic with 3 cusps, if they can all be made real, else just the usual 1. I'll write to Sottile and see if he has one}
+
+One thing we do know is the behavior of the inflection points for a general linear series; we will state this here and prove it as a corollary to the proof of the Brill-Noether theorem in Chapter~\ref{BrillNoetherProof}:
 
 \begin{theorem}\label{Brill Noether Plucker}
 If $C$ is a general curve of genus $g$, $L \in W^r_d(C) \subset \pic_d(C)$ a general line bundle of degree $d$ with $h^0(L) = r+1$ and $V = H^0(L)$, then every inflection point of the linear series $\cD = (L, V)$ has weight 1 and hence ramification sequence $(0, \dots, 0, 1)$.
@@ -130,7 +134,7 @@ Note that Theorem~\ref{Brill Noether Plucker} implies that on a general curve $C
 
 For example, suppose $C$ is a curve of genus 2. The canonical series on $C$ gives a map $\phi_K : C \to \PP^1$ of degree 2; the Weierstrass points of $C$ are the 6 ramification points of this map. 
 
-In genus 3, if $C$ is hyperelliptic then the Weierstrass points are exactly the 8 ramification points of the 2-sheeted cover $C \to \PP^1$, and each has weight 3. If $C$ is non-hyperelliptic, then it is a plane quartic curve. A general such curve will have 24 ordinary flexes, which will be Weierstrass points of weight 1; special quartics may have some number $\alpha$ of \emph{hyperflexes}---points where the tangent line has contact of order 4 with the curve---which will be Weierstrass points of weight 2; in this case $C$ will have $\alpha$ Weierstrass points of weight 2 and $24-2\alpha$ Weierstrass points of weight 1. (It has been shown that $\alpha$ cannot be 11, but  all  other values  between 0 and 12 occur. \fix{need citation})
+In genus 3, if $C$ is hyperelliptic then the Weierstrass points are exactly the 8 ramification points of the 2-sheeted cover $C \to \PP^1$, and each has weight 3. If $C$ is non-hyperelliptic, then it is a plane quartic curve. A general such curve will have 24 ordinary flexes, which will be Weierstrass points of weight 1; special quartics may have some number $\alpha$ of \emph{hyperflexes}---points where the tangent line has contact of order 4 with the curve---which will be Weierstrass points of weight 2; in this case $C$ will have $\alpha$ Weierstrass points of weight 2 and $24-2\alpha$ Weierstrass points of weight 1. (It has been shown that $\alpha$ cannot be 11, but  all  other values  between 0 and 12 occur. \fix{Vermuelen, unpublished thesis})
 
 \subsubsection{The Weierstrass semigroup} 
 
@@ -160,78 +164,6 @@ In English: there exists a rational function on $C$, regular on $C \setminus \{p
 
 There is still much we don't know about Weierstrass points in general. Most notably, we don't know what semigroups of finite index in $\NN$ occur as Weierstrass semigroups; an example of Buchweitz shows that not all semigroups occur, but there are also positive results, such as the statement ([EH]) that every semigroup of weight $w \leq g/2$ occurs, and its refinement and strengthening in~\cite{MR3892968}).
 
-\fix{The following section seems out of place. These two pages could be moved to Ch8 at the bginning of the uniform position section. In that case maybe split the chapter into linear general and uniform.}
-
-%\section{Flexes and bitangents are isolated}\label{isolated flexes and bitangents}
-
-%\fix{THIS SECTION MOVED TO CH 8}
-%
-%There are two results concerning the inflectionary behavior of a curve in projective space that we needed for the proof of the uniform position lemma in Chapter~\ref{uniform position}; we will prove them here.
-%
-%\subsection{Not every tangent line is a flex}\label{isolated tangents and bitangents}
-%
-%\begin{lemma}\label{finite inflections}
-%If $r>1$ and $C \subset \PP^r$ is a smooth, irreducible and nondegenerate curve, then not every point of $C$ is an inflectionary point.
-%More generally, if $0\in D\rTo^v \PP^{r}$ is the germ of a curve defined on a disk $D\subset \CC$, and every point $v(t)$ is a flex point, then $v(D)$ lies in a hyperplane.
-%\end{lemma}
-%
-%The proof applies to any linear series on a curve.
-%
-%\begin{proof}
-%We begin by lifting $v(t)$ to an arc $\tilde v (t)$ in $\CC^{r+1}$, so that the tangent line at $v(0)$ in projective space
-%is represented by the span of $\tilde v(0), \tilde v'(0) \in \CC^{r+1}$. To say that $v(t)$ is an inflection point is to say that the 
-%$r+1$ vectors $\tilde v, \tilde v(t), \tilde v'(t), \dots,\tilde v^{(r)}(t)$ lie in a hyperplane $\tilde \Lambda \subset \CC^{r+1}$. If this holds for all $t \in D$ then
-%$$
-%\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(r)}(t) \; \equiv \; 0.
-%$$
-%%fix{I suppressed the minimal plane spanned -- seemed not to matter.
-%%Now let $k$ be the smallest integer such that
-%%$$
-%%\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(k)}(t) \; \equiv \; 0,
-%%$$
-%%so that the vectors $\tilde v(t), \tilde v'(t), \dots, \tilde v^{(k-1)}(t)$ span a $k$-plane $\Lambda \subset \CC^{r+1}$, and $\tilde v^{(k)}(t) \in \Lambda$.
-%
-%When we take the derivative of the wedge product $\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(r)}(t)$ by applying the product rule we see that the first $r$ terms are zero because they contain a repeated factor; it follows that
-%$$
-%\tilde v(t) \wedge \tilde v'(t) \wedge \dots \wedge \tilde v^{(k-1)}(t)\wedge \tilde v^{(r+1)}(t) \equiv 0,
-%$$
-%so that $\tilde v^{(r+1)}(t) \in \Lambda$ as well. Indeed, as we continue to take derivatives, we see in each case that all but one term is zero, and we deduce that $\tilde v^{(l)}(p) \in \Lambda$ for all $l$. Thus $v(D)$  lies in the hyperplane in $\PP^r$ corresponding
-%to $\Lambda$.
-%\end{proof}
-%
-% \subsection{Not every tangent is bitangent}
-% 
-% This statement seems even more obvious than Lemma~\ref{finite inflections} above, but---like that lemma---is false in characteristic $p$! \fix{put an example in the exercises?}
-% 
-% \begin{lemma}\label{tangent not bitangent}
-% Let $C \subset \PP^r$ be a smooth, irreducible, nondegenerate curve, with $r > 1$. If $p \in C$ is a general point, then the tangent line $\TT_p(C) \subset \PP^r$ is not tangent to $C$ at any other point.
-% \end{lemma}
-% 
-% \begin{proof} Again the result is local, this time with a pair of germs $D\rTo^v \PP^r$ and $D\rTo^w \PP^r$. If every
-% tangent line to the two curves is a bitangent, we will show that they are both contained in a line.
-% 
-%  Let $C_1, C_2$ be the images of $v,w$ respectively, and let $\tilde v, \tilde w$ be lifts to $\CC^{r+1}$.
-% Let  
-% $$
-% \Sigma := \{ (p,q) \in D \times D \mid \text{ and }\TT_{v(p)}(C_1) = \TT_{w(q)}(C_2) \}
-% $$
-% be the variety parametrizing bitangents to the two germs. 
-% 
-% 
-% %Since $\Sigma$ cannot contain an open subset of a fiber, a local coordinate $t$ on $\Sigma$ at the point $(p,q)$ will serve as a local coordinate on $C$ at both $p$ and $q$; that is, we can write neighborhoods of $p$ and $q \in C$ parametrically via vector-valued functions $v(t)$ and $w(t) \in \CC^{r+1}$. 
-% 
-% The statement that the tangent lines to $C$ at the points $v(t)$ and $w(t)$ are equal then says that the vectors $\tilde v(t), \tilde v'(t),\tilde w(t)$ and $\tilde w'(t)$ all lie in a 2-dimensional subspace $\Lambda \subset \CC^{r+1}$; in particular,
-% $$
-% \tilde v(t) \wedge \tilde v'(t) \wedge \tilde w(t) \equiv 0 \quad \text{and likewise} \quad \tilde v(t) \wedge \tilde w(t) \wedge \tilde w'(t) \equiv 0
-% $$
-% 
-%We proceed now exactly as in the proof of Lemma~\ref{finite inflections}: taking derivatives, we see that all derivatives of $\tilde v(t)$
-%and $\tilde w$ at $t=0$ lie in $\Lambda$
-%and hence $C_1$ and $C_1$ are both contained in the line in $\PP^r$ corresponding to $\Lambda$.
-% \end{proof}
-%
-%Note: it's much less clear whether it can be the case that a general tangent line to $C$ can intersect $C$ in a point other than $p$, except of course in case $r=2$. %See~\cite{} for results on this question.
-%%\fix{Joe will write to Noam to ask for a reference.}
 
 \section{Finiteness of the automorphism group}\label{finiteness section}
 
@@ -379,8 +311,6 @@ $a_i$ steps earlier than for the general $\ell $-plane.
 For example, the Schubert cycle $\Sigma_{0\dots,0}$ is the whole Grassmannian, 
 and $\Sigma_{1,0\dots,0}(\cal V)$ is the set of $\ell$-planes that meet $V_{e-\ell}$ nontrivially, which is
 a hyperplane section of the Grassmannian in its Pl\"ucker embedding. 
-\fix{I suggest explaining why this is a hyperplane section -- easy-- and then dropping the special Schubert cycle material
-here and in the next section completely.}
 More generally, the
 \emph{special Schubert cycle} 
 $\Sigma_a(\sV) := \Sigma_{a,0,\dots, 0}(\sV)$ 
@@ -417,7 +347,7 @@ given combinatorially by the \emph{Littlewood-Richardson rule}, the center of th
 
 In the description of the possible osculating behavior of rational curves we will use \emph{Pieri's formula}, the special
 case of the Littlewood-Richardson rule that expresses the product in the cohomology ring $H^*(G(\ell, e)$ of an arbitrary Schubert class with a special Schubert class: 
-\fix{we actually use only intersections with the hyperplane class; do we need all this? It's never mentioned even within Ch 10 except in this section. Likewise special Schubert never appears again.}
+\fix{replace this with a ref to how it's used in BN existence. Consider adding the proof!}
 
 \begin{fact}
 \begin{proposition}\label{Pieri}
@@ -510,7 +440,7 @@ decreasing, so $\alpha'$ is termwise $\geq {\bf a'}$.
 
 \subsection{Conclusions}
 
-Using these ideas we can completely characterize the sets of ramification indices that can occur for a given
+Using these ideas we can completely characterize the sets of ramification indices that can occur at specified points for a given
 linear series on $\PP^1$. 
 
 \begin{theorem}\label{osculating intersection}
@@ -554,7 +484,7 @@ This contradicts the Pl\"ucker formula, Theorem~\ref{Plucker}.
 \end{proof}
 
 Using Proposition~\ref{ramification} this result becomes a characterization of the sets of possible ramification
-sequences for linear series on $\PP^1.$
+sequences for linear series at specified points on $\PP^1.$
  Explicitly, suppose we are given a collection of distinct points $p_1,\dots,p_\delta \in \PP^1$, and for each point $p_i$ a ramification sequence
 $$
 \alpha^i = (\alpha^i_0, \alpha^i_1, \dots, \alpha^i_r) \quad \text{with} \quad 0 \leq \alpha^i_0 \leq \alpha^i_1 \leq \dots \leq \alpha^i_r \leq d-r.
@@ -643,7 +573,6 @@ f_x^2f_{yy}+f_y^2f_{xx}-2f_xf_yf_{xy}.
 $$
 Note that $x$ is a local parameter at $p$. Using the form of $f$ above, show that there is a unique term vanishing to order $m$ at $p$,
 and no term vanishing to lower order there.
-\item
 \end{enumerate}
 \end{exercise}
 
@@ -676,7 +605,14 @@ Show that the sum $\sum b_i - i$ is equal to the weight of the point $p$ as an i
 Show by example that Schubert cycles defined relative to arbitrary secant flags to a rational normal curve may fail to intersect properly. (Hint: it's enough to look at the case $d=2$ and $r=1$.)
 \end{exercise}
 
-\begin{exercise}\fix{add}
- Inflections of an ell normal curve...
+\begin{exercise}
+The Pl\"ucker formula shows that an elliptic normal curve $E\subset P^{n-1}$ has $n^2$ inflection points. Show that they are
+all simple, and that if you choose one as the origin for the group law on $E$, then 
+then they are the $n$-torsion points of  $E \cong Jac(E)$.
 \end{exercise}
+
+\input{footer}\begin{exercise}\fix{add}
+ Buchweitz' example
+ \end{exercise}
+
 \input{footer}
