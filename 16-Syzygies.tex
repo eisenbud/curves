@@ -51,7 +51,7 @@
 %\fix{ introduce tools as they are used}
 
 
-In Chapter~\ref{linkageChapter} we studied the resolutions of curves in $\PP^3$ understanding them through their Hartshorne-Rao modules. The
+In Chapter~\ref{linkageChapter} we used the resolutions of curves in $\PP^3$ to their Hartshorne-Rao modules. The
 simplest case was that in which the Hartshorne-Rao module vanishes, that is, the case of arithmetically Cohen-Macaulay curves.
 In this chapter we will show that curves embedded by complete linear series of high degree, and also canonical curves, are arithmetically
 Cohen-Macaulay. We will then introduce the Eagon-Northcott complexes, and use them to study the resolutions of canonical curves
@@ -68,8 +68,9 @@ $$
 The resolution is \emph{minimal} if a minimal set of generators of $F_i$ maps to a minimal set of generators of the kernel of the following map,
 or equivalently (by Nakayama's Lemma) the maps in $\FF\otimes_R k$ are all 0.
 
-The first examples of a minimal free resolution are the Koszul complexes. If $I = (f_1,\dots, f_t)$
-is a complete intersection, then For $t = 2,3$ these look like
+The first examples of a minimal free resolution are the Koszul complexes, which resolve $R/I$ when
+ $I = (f_1,\dots, f_t)$
+is a complete intersection, that is, $f_1,\dots, f_t$ is a regular sequence.  For $t = 2,3$ these look like
 $$
 \begin{aligned}
  0\rTo &R \rTo^{
@@ -108,7 +109,7 @@ results of Auslander, Buchsbaum and Serre say that if $R$ is \emph{regular}---th
 of generators of $\gm$---if and only if the minimal free resolution of the residue field is finite, in which case
 the minimal free resolution of every module is finite.
 
-As the theory of linkage in $\PP^3$ shows, a curve $C\subset \PP^3$ is linked to a complete intersection
+As we showed in Chapter~\ref{linkageChapter}, a curve $C\subset \PP^3$ is linked to a complete intersection
 if and only if  that $H^1(\sI_C(m)) = 0$ for all $m$. This important condition is generalized to all dimensions and
 codimensions as follows:
 we say that a subscheme $X\subset \PP^r$ is \emph{arithmetically Cohen-Macaulay}
@@ -122,7 +123,7 @@ Let $C$ be a smooth curve of  genus $g$. We have seen that every invertible shea
 such a curve,  embedded by the corresponding complete linear series, is arithmetically Cohen-Macaulay.
 
 \begin{theorem}\label{high degree ACM}
-If $C\subset \PP^r$ is a smooth projective curve, embedded by a complete linear series $|D|$ of degree $d\geq 2p_a(C)+1$, then
+If $C\subset \PP^r$ is an integral projective curve, embedded by a complete linear series $|D|$ of degree $d\geq 2p_a(C)+1$, then
 the restriction maps 
 $$
 H^0(\sO_{\PP^{r}}(m)) \to H^0(\sO_C(m))
@@ -157,11 +158,15 @@ is surjective.
 For this we use what David Mumford has called the \emph{base-point-free pencil trick}:
 Let $V$ be a pair of sections of $H^0(\sO_{\PP^{d-g}}(1)) = H^0(\sO_C(1))$ that do not intersect anywhere on $C$ (and thus define a base-point-free pencil on $C$).
 Since $V\otimes \sO_{C}(m-1)\to \sO_{C}(m)$ it follows that the kernel $\sL$ is an invertible sheaf,
-and from the formula
+and from the exact sequence
 $$
-\sO_C(2m-2) \cong \wedge^2(V\otimes \sO_{C}(m-1))\cong \sL \otimes \sO_{C}(m)
+0\to \sL \to V\otimes \sO_{C}(m-1) \to \sO_{C}(m) \to 0
 $$
-it follows that $\sL \cong \sO_C(m-2)$.
+we see that
+$$
+\sL \otimes \sO_{C}(m) \cong  \wedge^2(V\otimes \sO_{C}(m-1))\cong \sO_C(2m-2),
+$$
+so $\sL \cong \sO_C(m-2)$.
 Though not necessary for the argument, we note that we have essentially described a Koszul complex
 $$
 0\to \wedge^2V \otimes \sO_C(m-2) \to V\otimes \sO_{C}(m-1)\to \sO_{C}(m)\to 0.
@@ -180,7 +185,7 @@ canonical curves are arithmetically Cohen-Macaulay, a result (in the smooth case
 The necessary modification is to replace the base-point-free pencil with one having many base points in a controlled way.
 We follow the treatment in \cite{Schreyer}. 
 
-If $C$ is a reduced and irreducible curve then by Theorem~\ref{linear general position} a general hyperplane $H\subset \PP^{g-1}$
+If $C$ is an integral curve then by Theorem~\ref{linear general position} a general hyperplane $H\subset \PP^{g-1}$
 meets $C$ transversely in a set of points in linearly general position. Any subset $\Gamma$ of $g-2$ of these points will span a $g-3$-plane $\Lambda$
 meeting $C$ transversely in $\Gamma$, and we call $\Lambda$ a \emph{simple $(g-2)$-secant $(g-3)$-plane}. 
 
@@ -210,7 +215,11 @@ Since the points of $\Gamma$
 are linearly independent, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
 $x_{i}(p_{j}) \neq 0$ if and only if $i = j$. It follows that the sections
 $x_{i}^{m}$ of $\sO_{C}(m)$ span $\HH^{0}(\sO_{C}(m)|_{\Gamma})$. 
-Thus 
+From the left exact sequence 
+$$
+0\to H^0(\sO_C(mH-\Gamma)) \to H^0(\sO_C(mH)) \to \HH^{0}(\sO_{C}(m)|_{\Gamma})
+$$
+we see that
 it suffices to prove the surjectivity of
 $$
 \HH^{0}(\sO_{C}(H-\Gamma)) \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH-\Gamma))
@@ -229,7 +238,7 @@ for some invertible sheaf $\sL$. We must show that the right-hand map is surject
 
 From the exact sequence it follows that
 $$
-\sL\otimes \sO_{C}(mH-\Gamma) \cong  \sO_C(2(m-1)H) 
+\sL\otimes \sO_{C}(mH-\Gamma) \cong  \wedge^2(V\otimes \sO_C((m-1)H) ) \cong \sO_C(2(m-1)H) 
 $$
 so $\sL \cong \sO_C((m-2)H+\Gamma).$ 
 
