@@ -203,7 +203,8 @@ $\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m$.
 %$\dim C = 1$, so it is determined by two values.
 
 For $m = 0,1$ the conclusion is immediate. Let $H$ be a general hyperplane in $\PP^{g-1}$, 
-and let $\Lambda \subset H$ be a simple $(g-2)$-secant $(g-3)$-plane to $C$. Set $\Gamma = \Lambda \cap C$.
+and let $\Lambda \subset H$ be a simple $(g-2)$-secant $(g-3)$-plane to $C$. Set $\Gamma = \Lambda \cap C$,
+which consists of $g-2$ linearly independent reduced points.
 
 By induction on $m$ it suffices to prove the surjectivity of
 $$
@@ -213,30 +214,33 @@ for $m\geq 2$, where $H$ is the hyperplane divisor on $C$.
 
 Since the points of $\Gamma$
 are linearly independent, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
-$x_{i}(p_{j}) \neq 0$ if and only if $i = j$. It follows that the sections
-$x_{i}^{m}$ of $\sO_{C}(m)$ span $\HH^{0}(\sO_{C}(m)|_{\Gamma})$. 
-From the left exact sequence 
+$x_{i}(p_{j}) \neq 0$ if and only if $i = j$. 
+and $H^0(\sO_C(1))$ is the direct sum of the 2-dimensional
+space $V:= \HH^{0}(\sO_{C}(H-\Gamma))$ and the space $X := \langle x_1,\dots, x_{g-2}\rangle$ spanned by the $x_i$.
+Furthermore, the image of 
 $$
-0\to H^0(\sO_C(mH-\Gamma)) \to H^0(\sO_C(mH)) \to \HH^{0}(\sO_{C}(m)|_{\Gamma})
+V \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH))
 $$
-we see that
+is contained in $\HH^{0}(\sO_{C}(mH-\Gamma))$, which is disjoint from the space
+$X_m:= \langle x_1^m,\dots, x_{g-2}^m\rangle$. Since $X_m$ surjects onto
+$$
+H^0(\sO_C(mH|_\Gamma) = H^0(\sO_C(mH)/H^0(\sO_C(mH(-\Gamma)),
+$$
 it suffices to prove the surjectivity of
 $$
-\HH^{0}(\sO_{C}(H-\Gamma)) \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH-\Gamma))
+V \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH-\Gamma))
 $$
 for  $m\geq 2$.
 
-Let
-$V\subset \HH^{0}(\sO_{C}(H))$ be the two-dimensional subspace of linear forms vanishing on
-$\Lambda$, and thus on the $p_{i}$. 
-Since $H-\Gamma$ is base-point free away from $\Gamma$, the two sections of $V$
+
+Since $V$ is base-point free away from $\Gamma$, the two sections of $V$
 define a surjective map $V\otimes \sO_C \to  \sO_{C}(H-\Gamma)$ and thus a short exact sequence of sheaves
 $$
 (*) \quad 0\to \sL  \to V\otimes \sO_C((m-1)H) \to  \sO_{C}(mH-\Gamma)\to 0
 $$
 for some invertible sheaf $\sL$. We must show that the right-hand map is surjective on global sections for $m\geq 2$.
 
-From the exact sequence it follows that
+From the exact sequence $(*)$ it follows that
 $$
 \sL\otimes \sO_{C}(mH-\Gamma) \cong  \wedge^2(V\otimes \sO_C((m-1)H) ) \cong \sO_C(2(m-1)H) 
 $$
@@ -262,8 +266,8 @@ $$
 $$
 is also right exact, as required for the case $m=2$.
 
-For $m\geq 3$ the divisor $(m-1)H+\Gamma$ has degree $>2g-2$, so
-$H^1(\sO_{C}((m-1)H+\Gamma)) = 0$, which implies that the sequence $(*)$ is
+For $m\geq 3$ the divisor $(m-2)H+\Gamma$ has degree $>2g-2$. Consequently
+$H^1(\sO_{C}((m-2)H+\Gamma)) = 0$, which implies that the sequence $(*)$ is
 exact on global sections, as required.
 \end{proof}
 
@@ -342,7 +346,7 @@ x_0&x_1&x_2\\
 x_1&x_2&x_3 
 \end{pmatrix}.
 $$
-We have $I_2(M) = I_C$, and the same idea works for any Veronese or Segre variety.
+We have $I_2(M) = I_C$, and the same idea works for any Veronese or Segre variety (For the rational normal curves see Proposition~\ref{RNC generators}; the more general cases are similar).
 \end{example}
 
 In case $C$ is reduced and irreducible the matrix above has a special property: $\kappa $ is a domain, so no product of a nonzero
@@ -356,7 +360,6 @@ $M$ is \emph{1-generic} if there are no invertible matrices $A,B$ such that  $AM
 
 The case $m=2$, leading to a $2\times m$ matrix is the most interesting, because, as shown in Chapter~\ref{scrolls}, the ideal $I_2(M)$ of a 1-generic matrix of linear forms is the homogeneous ideal of a rational normal 
 scroll a variety of of codimension $n-1$ and degree $n$. 
-
 Moreover, the minimal free resolution of $I_2(M)$ has a special form called the 
 Eagon-Northcott complex (Theorem~\ref{Eagon-Northcott}), which will appear as a subcomplex of the minimal free resolution of $I_C$. The presence of such a variety containing $C$ or
 a subcomplex of this special form in the minimal free resolution of $C$ is thus necessary for the 
@@ -387,7 +390,7 @@ S \lTo{\bigwedge^2 M}
 \begin{proof} We first show that $r\geq n$; more precisely, we show that the span of the entries of $M$ has dimension $\geq n+1$. As noted above, to say that the $2\times n$ matrix of linear forms $M$ is 1-generic means that
 the kernel of the corresponding map $ \phi: k^2\otimes k^n \to S_1$ contains no pure tensors. In the projective
 space $\PP^{2n-1} = \PP(k^2\otimes k^n)$ the pure tensors form a variety isomorphic to $\PP^1\times \PP^{n-1}$, and thus of dimension $n$. Consequently the kernel of $\phi$ can have dimension at most $n-1$, whence the image of $\phi$ 
-in $S_1 = k^{r+1}$ has dimension at least $2n-(n-1) = n+1$. 
+in $S_1 = k^{r+1}$ has dimension  $\geq 2n-(n-1) = n+1$. 
 
 We begin the discussion of $EN(M)$ by defining the maps $\delta_i$ and and proving that the given sequence is indeed a complex---that is, consecutive maps compose to 0. For simplicity of notation, we choose a generator of $\wedge^2 S^2$
  and identify it with $S$, which gives a sense to the map labeled $\bigwedge^2M$.
@@ -407,16 +410,18 @@ in this sense, its square is 0.
 
 To show that $(\bigwedge^2 M)\circ \delta_2$ is zero, it is simplest to choose a matrix representing $M$.
 Direct computation using only the usual expansion of a determinant
-along a row shows that, up to sign,
+along a row shows that, up to sign, the
 pure basis vector $e\otimes f_i\wedge f_j\wedge f_k$ of $G^*\otimes \bigwedge^3 F$
 maps under the composition $(\bigwedge^2) M\circ \delta_2$ to the determinant
 of the $3\times 3$ matrix obtained from $M$ by repeating the row corresponding to $e$ and
 the columns $i,j,k$. This determinant is 0 because it has a repeated row.
 
-We next prove the split exactness of a complex of the form $EN(M')$ where $M'$ is surjective, so that we
-may write $F = G\oplus F'$ and the map $M': G\oplus F' \to G$ as projection on the first factor. 
-Of course
-it suffices to prove the split exactness of the dual sequence, $EN(M')^*$:
+We next prove that if a map $M': F\to G$ is surjective, then the complex of the form $EN(M')$
+is split exact.. Such a map $M'$ must split, so
+may write $F = G\oplus F'$ in such a way that the map $M': G\oplus F' \to G$ is the projection onto the first factor. 
+
+It will be more convenient to prove the equivalent statement that 
+the dual sequence,  
 \begin{align*}
 EN(M')^* := 
 S \rTo{\bigwedge^2 M'^*} 
@@ -429,12 +434,11 @@ S \rTo{\bigwedge^2 M'^*}
 \Sym^{n-2}G\otimes\bigwedge^nF^* 
  \rTo 0.
 \end{align*}
-In this case the proof
-is an exercise in multilinear algebra. 
-We begin by proving split exactness at the 
-positions $\Sym^{i} G \otimes \bigwedge^{i+2}  F^*$ where $i\geq 1$.
+is split exact.
 
-The module
+We begin by proving split exactness at  
+ $\Sym^{i} G \otimes \bigwedge^{i+2}  F^*$ where $i\geq 1$.
+The rank of $G$ is 2, so the module
 $ \Sym^{i} G \otimes \bigwedge^{i+2}  F^*$
 decomposes as
 \begin{align*}
@@ -475,9 +479,9 @@ $$
 S \rTo{\bigwedge^2 M'^*} 
  \bigwedge^2 F^*
  \rTo^{-\wedge \mu'}
-G\otimes \bigwedge^3 F^*
+G\otimes \bigwedge^3 F^*,
 $$
-which, in our case, may be written:
+which in our case may be written:
 %$$
 %\wedge^2 F^* = \bigwedge^2 G^* \oplus (G^*\otimes F'^*) \oplus \bigwedge^2 F'*
 %$$
@@ -524,9 +528,9 @@ for all $i>0$. Moreover, $X_{0}\supseteq X_{1}\supseteq \cdots \supseteq X_{n}$
 \end{theorem}
 
 For example, Nakayama's Lemma implies that $X_{0}$ is the support of $\coker \phi_{1}$; thus $X_{0}$ is the set defined by the $\rank F_{0}$-sized minors of $\phi_{1}$. Similarly, 
-and that $X_{n}$ is the support of the cokernel of the dual of $\phi_{n}$. 
+$X_{n}$ is the support of the cokernel of the dual of $\phi_{n}$. 
 
-Also, if $n=1$, the theorem simply says that a map $F_1\to F_0$ is a monomorphism iff it becomes a monomorphism after tensoring with the field of rational functions $K$, which follows from the flatness of
+A familiar case occurs when  $n=1$. In this case the theorem says that a map $F_1\to F_0$ is a monomorphism iff it becomes a monomorphism after tensoring with the field of rational functions $K$, which follows from the flatness of
 localization and the fact that $F_1$ is torsion-free, so that
 $F_1 \subset F_1 \otimes K$. 
 
@@ -648,7 +652,43 @@ then $EN(M)$ is acyclic.
 % presented in his famous paper \cite{Hilbert1890}. 																											
 %\fix{END COMMENTED OUT MATERIAL}
 
-\section{Betti tables of canonical curves}
+\section{How to look at a resolution}
+In this section we collect some definitions and results from \cite{Eisenbud1995} that will help to understand the exposition of Green's conjecture, which occupies the last section of this chapter.
+
+If $N$ is a finitely generated graded module over $S = \CC[x_0,\dots, x_r]$, then there is a minimal graded free resolution $\FF$
+of $N$ that we can write in the form
+$$
+0\lTo N \lTo^\epsilon \oplus_jS(-j)^{\beta_{0,j}} \lTo^{\phi_1} \cdots \lTo^{\phi_t}\oplus_jS(-j)^{\beta_{t,j}}\lTo 0,
+$$
+where it is understood that each direct sum has only finitely many nonzero terms.
+To construct this, suppose that a minimal homogeneous set of generators of $N$
+contains $\beta_{1,j}$ generators of degree $j$ for each $j$; this defines a degree 0 map $\epsilon$
+from 
+$
+\oplus_jS(-j)^{\beta_{0,j}}
+$
+onto $N$. We proceed similarly with the kernel of $\epsilon$, and continue to construct the whole resolution.
+Hilbert's syzygy theorem \cite[***]{Eisenbud1995} implies that the process ends after $t\leq n$ steps with a map $\phi_t$ whose
+kernel is 0. The number $t$ is then the projective dimension of $N$. It follows from the Auslander-Buchsbaum
+theorem~\cite[***]{Eisenbud1995} that $t \geq \codim \ann_S(N)$, the codimension of the support of $N$.
+
+Since we choose a minimal set of generators at each stage, the matrices of the $\phi_i$ have entries in the maximal
+ideal $(x_0,\dots x_r)$, and thus each $\beta_{i+1, j}$ must be strictly greater than some $\beta_{i,j}$. For this reason it
+is more convenient to tabulate the numbers $\beta_{i,j}-i$, and this tabulation is called the \emph{betti table} of $\FF$.
+For example the Koszul complex that resolves the homogeneous coordinate ring of 8 general points in $\PP^3$ has
+betti table: \fix{get good code for betti tables}
+%$$
+%$$
+and if $M:F\to G$ is represented by an $2\times f$ matrix of linear forms with $f>2$, then  the betti table of $EN(M)$
+has the form
+%$$
+%$$
+
+An important special case occurs when  $\codim \ann_S(N) = t$, the maximal possible value. In the notation of~\ref{WMACE}, this is the condition that $\codim X_0 = t$, and it follows that $\codim X_i \geq t$
+for all $i$. Using Theorem~\ref{WMACE} we see that the dual complex is exact as well, and that this condition
+is equivalent to the condition $\ann_S(N) \geq t$.
+
+we choose homogeneous generators of 
 \fix{We need to add the regularity of the canonical curve = 3; that plus Gorenstein, self-dual resolution,
 gives the shape of the Betti table in which you could look for invariants. Gorenstein comes from the $H^{1}I$
 computation. In the homol alg appendix we should explain the resolution duality, apply it here.}
@@ -662,7 +702,7 @@ vanishing on a canonical curve is independent of the curve; for example, for $d=
 $
 \dim ({I_{C}})_{2} = {g-2\choose 2}
 $
-The next question one might ask is whether or not these quadric generate the ideal $I_{C}$, and (much) more generally, what is the 
+The next question one might ask is whether or not $I_{C}$, is generated by $(I_{C})_{2}$ and (much) more generally, what is the 
 Betti table of the homogeneous coordinate ring of $C$.
 
  For example,
