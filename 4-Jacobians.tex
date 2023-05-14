@@ -23,7 +23,8 @@ the 20th century, and then reshaped by Grothendieck and his school. The interest
 modern theory of the scheme of divisors and the Picard scheme in the exposition~\cite{Kleiman-PicardScheme}. We will give
 more specific references to this text as we go, and the reader will find extensive references to the original literature there.
 
-It's worth remarking that one consequence of the modern theory is to extend the construction of the Picard scheme to singular curves as well as smooth ones. This won't come up often in the present text, where we view singular curves as images of their normalizations and analyze them in those terms; but even here the notion of the Picard scheme of a singular curve does arise: in Chapter~ref{Brill Noether proof chapter}, we'll have occasion to describe the Picard schemes of $g$-nodal and $g$-cuspidal curves.
+It's worth remarking two consequences of the modern theory. One is that we can extend the construction of the Picard scheme to singular curves as well as smooth ones. The other is that when we have a family $\pi : \cC \to B$ of curves we have a corresponding family of Picard schemes $\pic_d(\cC/B) \to B$, whose fiber over a closed point $b\in B$ is the Picard scheme $\pic_d(C_b)$ of the corresponding curve $C_b$ in our family.
+These won't come up often in the present text: here we view singular curves as images of their normalizations and analyze them in those terms, and for the most part consider such curves one at a time. But even in the present text the notions of the Picard scheme of a singular curve, and the relative Picard scheme, do arise: in Chapter~\ref{Brill Noether proof chapter}, we'll have occasion to describe the Picard schemes of $g$-nodal and $g$-cuspidal curves, and to see how these fit into families with Picard schemes of smooth curves.
 
 As an application of the mere existence of the spaces $C_d$ and $\Pic_d$, we show in Section~\ref{g+3 section} that a general divisor of degree $g+3$ on any curve of genus $g$ gives rise to an embedding in $\PP^3$ as a curve of degree $g+3$, and there are related results for general divisors of degree $g+2$ and $g+1$. 
 
@@ -52,7 +53,6 @@ From the universal property it is clear that a fine moduli space for divisors of
 
 \subsection{Finite group quotients}
 
-\fix{would it make sense to mention the functorial characterization of quotients? That is, a map $f : X/G \to Z$ is a map $\tilde f : X \to Z$ such that $f\circ g = f$ for all $g$?}
 
 If $G$ is a finite group acting by automorphisms on an affine scheme $X:=\Spec A$ then $X/G$ is by definition $\Spec(A^G)$, the spectrum of the ring $A^G$ of invariant elements of $A$. The following result shows that this definition reflects the desired geometry: 
 
@@ -128,6 +128,7 @@ If $C$ is a smooth projective curve, then the $d$th symmetric power $C^{(d)}$ of
 For a proof in the analytic category, see \cite[]{ACGH}; for the algebraic fact, see \cite[Remark 9.3.9]{Kleiman-PicardScheme}.
 Henceforward we will write $C_d$ in place of $C^{(d)}$.
 
+
 \fix{seems a pity not to prove this -- we prove so little in this Chapter Kleiman's reference are to Deligne and the book by Bosch et al on Neron-Severi.}
 
 \section{The Picard varieties}\label{Picard section}
@@ -164,9 +165,10 @@ We define the functor
  $Pic_0$ factors through the category of abelian groups. These functors are representable by schemes:
   
  \begin{fact}\cite[Theorem 9.4.8]{Kleiman-PicardScheme}
- There exists a fine moduli space $\Pic_d(C)$ for invertible sheaves of degree $d$ on $C$; that is, a scheme $\Pic_d(C)$ and a family of invertible sheaves $\cP$ of degree $d$ on $\Pic_d(C)$, such that for any scheme $B$ there is a natural bijection between families of invertible sheaves of degree $d$ over $B$, modulo invertible sheaves on $B$, and morphisms $B \to \Pic_d(C)$, defined by pulling back $\cP$. The tensor product of invertible sheaves makes $\Pic_0(C)$ an algebraic group, which acts on each $\Pic_d(C)$. The sheaf $\cP$ is called a \emph{Poincar\'e sheaf} for $C$.
-\fix{add families}
+ There exists a fine moduli space $\Pic_d(C)$ for invertible sheaves of degree $d$ on $C$; that is, a scheme $\Pic_d(C)$ and an invertible sheaf $\cP$ of degree $d$ on $\Pic_d(C) \times C$, such that for any scheme $B$ there is a natural bijection between families of invertible sheaves of degree $d$ over $B$, modulo invertible sheaves on $B$, and morphisms $B \to \Pic_d(C)$, defined by pulling back $\cP$. The tensor product of invertible sheaves makes $\Pic_0(C)$ an algebraic group, which acts on each $\Pic_d(C)$. The sheaf $\cP$ is called a \emph{Poincar\'e sheaf} for $C$.
  \end{fact}
+ 
+ It should be noted here that the construction of the Poincar\'e sheaf on $\pic_d(C) \times C$ relies on the existence of a point on $C$, so that it may not apply to families of curves unless the family has a section.
  
 If $\sL$ is any invertible sheaf of degree $e$ on $C$, we can define a bijection between families of invertible sheaves of degree $d$ over $B$ and families of invertible sheaves of degree $d+e$ over $B$, uniformly for all $B$, by tensoring with the pullback $\pi_2^*\sL$. Thus $\Pic_d(C) \cong \Pic_{d+e}(C)$ (but not canonically, since the isomorphism depends on the choice of $\sL$).
  
@@ -347,39 +349,42 @@ In particular, the Gauss map applied to the curve $(\mu_1)(C)$ is the canonical 
 
 \section{The $g+3$ theorem}\label{g+3 section}
 
-Even with the description of the Picard varieties $\Pic_d(C) \cong J(C)$ in the last section, the Picard varieties are mysterious objects.  But even the facts that there exists a  moduli space for invertible sheaves of degree $d$ on $C$, and that this space is irreducible of dimension $g$ suffice to prove non-trivial results: 
 
-\fix{the following could be an exercise, best stated after the $g+3$ theorem. We will lead with $g+3$!}
-\begin{theorem}[$g+1$ theorem]\label{g+1 theorem} 
-Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+1}$ is a general effective divisor of degree $g+1$ on $C$, then 
-$D$ is base-point free and defines a  map to $\PP^1$ that has only simple ramification, with $2g+2$ distinct  branch points.
-\end{theorem}
+The Picard varieties are mysterious objects.  But even the facts that there exists a  moduli space for invertible sheaves of degree $d$ on $C$, and that this space is irreducible of dimension $g$ suffice to prove non-trivial results: 
 
-\begin{proof}
-A general divisor of degree $\geq g+1$ is nonspecial, so $h^0(\sO_C(D)) = (g+1)-g+1 = 2$. To say that the linear series $|D|$ has no base points means that $D$ is not equivalent to a divisor of the form
-$D'+p$, where $h^0(D')$ has degree $g$ and two independent sections. By the Riemann-Roch theorem, $h^0(D') = 1+h^0(K-D')$, so the condition on $D'$ means that $K-D'$ is effective. But $K-D'$ is a general divisor of degree $g-2$, and
-the set of classes of effective divisors, the image of $C_{g-2}$, has dimension only $g-2$. 
-Thus the set of divisors of the form $D'+p$ with $h^0(D') \geq 2$ has dimension only $g -2 +1$
-so a general divisor $D$ of degree $g+1$ is base-point-free and defines a map $C\to \PP^1$. 
-
-By Hurwitz' theorem the total ramification of such a map is $2g+2$. The divisors with points of ramification
-index 2 or more are linearly equivalent to divisors of the form $D'+3p$, and the divisors that have two ramification
-points mapping to the same point are equivalent to divisors of the form $D''+2p+2q$. Each of these sets
-of divisors fills only a $g-1$-dimensional family of equivalence classes, the images of 
-$C_{g-2}\times C$ or $C_{g-3}\times C_2$ respectively; so not every divisor $D$ is of this form.
-\end{proof}
-
-It would be natural to hope that a general divisor of degree $g+2$ defines a map to $\PP^2$ whose
-image has only ordinary nodes as singularities, but this is not quite true. Here is the correct result,
-whose proof we postpone until Section~\ref{g+2 section} because it depends on a general position result that we have not yet proven.
-
-\begin{theorem}[$g+2$ theorem]\label{g+2 theorem}
-Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
-\begin{enumerate}
-\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
-\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
-\end{enumerate}
-\end{theorem}
+%\fix{the following could be an exercise, best stated after the $g+3$ theorem. We will lead with $g+3$!}
+%\begin{theorem}[$g+1$ theorem]\label{g+1 theorem} 
+%Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+1}$ is a general effective divisor of degree $g+1$ on $C$, then 
+%$D$ is base-point free and defines a  map to $\PP^1$ that has only simple ramification, with $2g+2$ distinct  branch points.
+%\end{theorem}
+%
+%\begin{proof}
+%A general divisor of degree $\geq g+1$ is nonspecial, so $h^0(\sO_C(D)) = (g+1)-g+1 = 2$. To say that the linear series $|D|$ has no base points means that $D$ is not equivalent to a divisor of the form
+%$D'+p$, where $h^0(D')$ has degree $g$ and two independent sections. By the Riemann-Roch theorem, $h^0(D') = 1+h^0(K-D')$, so the condition on $D'$ means that $K-D'$ is effective. But $K-D'$ is a general divisor of degree $g-2$, and
+%the set of classes of effective divisors, the image of $C_{g-2}$, has dimension only $g-2$. 
+%Thus the set of divisors of the form $D'+p$ with $h^0(D') \geq 2$ has dimension only $g -2 +1$
+%so a general divisor $D$ of degree $g+1$ is base-point-free and defines a map $C\to \PP^1$. 
+%
+%By Hurwitz' theorem the total ramification of such a map is $2g+2$. The divisors with points of ramification
+%index 2 or more are linearly equivalent to divisors of the form $D'+3p$, and the divisors that have two ramification
+%points mapping to the same point are equivalent to divisors of the form $D''+2p+2q$. Each of these sets
+%of divisors fills only a $g-1$-dimensional family of equivalence classes, the images of 
+%$C_{g-2}\times C$ or $C_{g-3}\times C_2$ respectively; so not every divisor $D$ is of this form.
+%\end{proof}
+%
+%It would be natural to hope that a general divisor of degree $g+2$ defines a map to $\PP^2$ whose
+%image has only ordinary nodes as singularities, but this is not quite true. Here is the correct result,
+%whose proof we postpone until Section~\ref{g+2 section} because it depends on a general position result that we have not yet proven.
+%
+%\begin{theorem}[$g+2$ theorem]\label{g+2 theorem}
+%Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
+%\begin{enumerate}
+%\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
+%\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
+%\end{enumerate}
+%\end{theorem}
+%
+Even with the description of the Picard varieties $\Pic_d(C) \cong J(C)$ in the last section, the Picard varieties are mysterious objects.  But just the fact that there exists a  moduli space for invertible sheaves of degree $d$ on $C$, and that this space is irreducible of dimension $g$, suffices to prove non-trivial results; we give one example here.
 
 We proved in Theorem~\ref{very ample} that every divisor of degree $\geq 2g+1$ is very ample, and this is sharp: the canonical divisor plus 2 points is never very ample. Using the Abel-Jacobi maps we get a better result for a general divisor:
 
@@ -421,10 +426,19 @@ and $r \leq (g+2)/2$. But the smallest multiple of the $D_0$ that is very ample 
 since $g\geq 2$ we have $(g+2)/2 < g+1$ so $D$ is not very ample.
 \end{proof}
 
-\fix{we should speculate on the ``$g+n$" theorem. ramification will be proven, I guess, in that section. general position
-of all subschemes of length $n-1$ ? some $k$-normality?}
+It would be natural to speculate that a general divisor of degree $g+2$ defines a map to $\PP^2$ whose
+image has only ordinary nodes as singularities, but this is not quite true. Here is the correct result,
+whose proof we postpone until Section~\ref{g+2 section} because it depends on a general position result that we have not yet proven.
 
-It should be said that this is not the final word on low-degree embeddings of curves: Theorem~\ref{grd omnibus}) shows that a general curve of genus $g$ can in fact be embedded in $\PP^{3}$ as curves of degree $d = \lceil 3g/4 \rceil + 3$.
+\begin{theorem}[$g+2$ theorem]\label{g+2 theorem}
+Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
+\begin{enumerate}
+\item If $C$ is non-hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with exactly $\binom{g}{2}$ nodes and no other singularities; and
+\item If $C$ is hyperelliptic, the map $\phi_D : C \to \PP^2$ is birational onto its image $C_0$, and $C_0$ is a plane curve of degree $g+2$ with one ordinary $g$-fold point and no other singularities.
+\end{enumerate}
+\end{theorem}
+
+This is not the final word on low-degree embeddings of curves: Theorem~\ref{grd omnibus}) shows that a general curve of genus $g$ can in fact be embedded in $\PP^{3}$ as a curve of degree $d = \lceil 3g/4 \rceil + 3$, and can be birationally embedded in $\PP^2$ as a nodal curve of degree $d = \lceil 2g/3 \rceil + 2$.
 
 \section{The schemes $W^r_d(C)$}
 
@@ -463,6 +477,7 @@ $g^1_2$; see Exercise~\ref{blow-up of $J(C)$ at a point}.
 \subsection{Genus 3}
 \begin{fact}
  Let $C$ be a curve of genus 3. The geometry of the map $\mu_2$ depends on whether or not $C$ is hyperelliptic. If it is, $\mu_2$ will collapse the locus in $C_2$ of divisors of the hyperelliptic $g^1_2$ to a point, but is otherwise one-to-one, and $W_2(C)$ is singular.  If $C$ is not hyperelliptic, by contrast, $\mu_2$ is an embedding, and $W_2(C)$ is smooth. 
+
  \fix{Can we find a reference with a proof? Mumford just states this.}
 
 Furthermore, the birational surjection $\mu_3 = \mu_g$ is the blow-up of $J(C) \cong \Pic_3(C)$ along the locus $W^1_3(C)$. At the same time, we know that
@@ -589,6 +604,13 @@ cartesian product $(\AA^{2})^{2}$.
 \end{enumerate}
 \end{exercise}
 
+\begin{exercise}[$g+1$ theorem]\label{g+1 theorem} 
+Let $C$ be a smooth projective curve of genus $g$. If $D \in C_{g+1}$ is a general effective divisor of degree $g+1$ on $C$, then 
+$D$ is base-point free and defines a  map to $\PP^1$ that has only simple ramification, with $2g+2$ distinct  branch points.
+\end{exercise}
+
+
+
 \begin{exercise}
 Show that if $r \geq d-g$, then $W^r_d(C) \setminus W^{r+1}_d(C)$ is dense in $W^r_d(C)$ (that is, $W^{r+1}_d(C)$ does not contain any irreducible component of $W^r_d(C)$).
 
@@ -608,6 +630,7 @@ Let $C$ be a curve of genus 2, and consider the map $\nu : C \times C \to \Pic_0
 
 \begin{exercise} \label{comparison with geometric RR}
 Show that the image of the differential of the Abel-Jacobi map $C_{d} \to J(C)$ at a point of $C_{d} \setminus C^1_d$  corresponding to a reduced divisor is  the plane in $\PP^{g-1}$ spanned by the divisor $D$ on the canonical curve.
+
 \fix{it seems that the argument needed shows more: as long as $D$ is reduced, the image of
 the tangent map at D is the span of $D$ in canonical space, and thus the differential drops rank
 exactly on $C^1_d$. Worth adding?}
