@@ -5,7 +5,7 @@
 \section{Hyperelliptic Curves}\label{hyperelliptic}
  
 We met hyperelliptic curves in Chapter 2, and proved there that, in genus $g \geq 2$, the canonical
-map is two to one onto the rational normal curve of degree $g-1$ in $\PP^{g-1}$. We used this to show that every special divisor on a hyperelliptic curve is a sum of divisors in the 
+map is two to one onto the rational normal curve of degree $g-1$ in $\PP^{g-1}$. We used this to show that every special linear series on a hyperelliptic curve is a sum of a multiple of  the 
 unique $g^1_2$ plus base points. We will begin this chapter with an explicit construction of hyperelliptic curves and use it to give a very concrete computation of the canonical series, reproving what we did in Chapter 2. Then we will consider the projective embeddings of curves of genus 2 (which are all hyperelliptic) and genus 3.
  
 There will be a further discussion of hyperelliptic curves in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings. 
@@ -43,6 +43,15 @@ To give a smooth projective model of the hyperelliptic curve $C$ with given bran
   C \; = \; \big\{ (X,Y) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
   $$
 To see that $C \subset \PP^1 \times \PP^1$ is smooth we note that it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the formula for the genus of a curve in $\PP^1 \times \PP^1$ derived in Example~\ref{Div of quadric} tells us that such a curve has arithmetic genus $g$, and thus no singular points.
+
+As one consequence of this model, we note the following (which we'll use later in this chapter):
+
+\begin{corollary}\label{relation on ramification points}
+If $C$ is a hyperelliptic curve  and $p_1,\dots,p_{2g+2} \in C$ the ramification points of the unique degree 2 map $C \to \PP^1$, then 
+$$
+p_1+\dots + p_{g+1} \; \sim \; p_{g+2} + \dots + p_{2g+2}.
+$$
+\end{corollary}
   
  The map $\iota : C \to C$ that exchanges the two points in each reduced fiber of the map $C \to \PP^1$ and fixes the ramification points is algebraic: in terms of the last representation of $C$, it is given by $([X_0,X_1], [Y_0,Y_1]) \mapsto  ([X_0,X_1], [Y_0,-Y_1]) $). The map $\iota$ is called the \emph{hyperelliptic involution} on $C$.
 
@@ -55,12 +64,12 @@ $$
 We will again denote the two points at infinity---that is, the two points of $C \setminus C^\circ$ by $r$ and $s$; for convenience, we'll denote the divisor $r+s$ by $D$. We write $\pi:C \to \PP^1$ for the morphism that, on $C^\circ$, sends $(x,y) \in C$ to $x$.
 
 We can construct a differential form on $C$ by following the proof of Hurwitz' Theorem of Chapter~\ref{linear systems chapter}.
-Let $dx$ denote the usual different on $\PP^1$ having a double poll at infinity, and consider $\pi^*dx$ on $C$.  The function $x$ is regular on $C^\circ$, and is a local parameter over points other than the $\lambda_i$; from the local description of the map $\pi$, we see that $\pi^*dx$ is regular on $C^\circ$  with simple zeros at the ramification points $q_i = (\lambda_i, 0)$. Since $dx$ has a double pole at the point at $\infty\in \PP^1$ and $\pi$ is a local isomorphism near $r$ and $s$, the differential $\pi^*dx$ has double poles at the points $r$ and $s$. Thus the canonical
+Let $dx$ denote the usual different on $\PP^1$ having a double pole at infinity, and consider $\pi^*dx$ on $C$.  The function $x$ is regular on $C^\circ$, and is a local parameter over points other than the $\lambda_i$; from the local description of the map $\pi$, we see that $\pi^*dx$ is regular on $C^\circ$  with simple zeros at the ramification points $q_i = (\lambda_i, 0)$. Since $dx$ has a double pole at the point at $\infty\in \PP^1$ and $\pi$ is a local isomorphism near $r$ and $s$, the differential $\pi^*dx$ has double poles at the points $r$ and $s$. Thus the canonical
 divisor of $C$ is 
 $$
 (*) \qquad K_C \sim (dx) \sim R - 2D,
 $$
-where $R$ denotes the ramification divisor, in this case the sum of the ramification points. .
+where $R$ denotes the ramification divisor, in this case the sum of the ramification points. 
 
 How can we find differentials that are regular everywhere on $C$? If we divide $dx$ by $x^2$ (or any quadratic polynomial in $x$) to kill the poles we  introduce new poles in the finite part $C^\circ$ of $C$. 
 
@@ -210,7 +219,7 @@ to $\PP^1$.
 
 \subsection{Maps of $C$ to $\PP^2$} 
 Next consider maps of $C$ of genus 2 to the plane. By theRiemann-Roch theorem, an invertible sheaf $L$ of degree 4 on $C$ will have $h^0(L) = 3$ and is basepoint free by Corollary~\ref{degree 2g+1 embedding} so the linear system $|L|$  gives a morphism $\phi_L : C \to \PP^2$. The invertible sheaf $\sL\otimes \omega_C^{-1}$ is either
-$\omega_C$ or nonspecial; in either case, by the Riemann-Roch theorem, it has at least one sections, 
+$\omega_C$ or nonspecial; in either case, by the Riemann-Roch theorem, it has at least one section, 
 so we may write $\sL\otimes \omega_C^{-1} = \sO_C(p+q)$ for some points $p,q$. There are two possibilities:
 
 \begin{enumerate}
@@ -255,16 +264,16 @@ for some point $p \in C$; in this case, the point $p$ is the vertex of $Q$.
 \end{proposition}
 
 Note that the variety $\pic^5(C)$ has dimension 2, while the sheaves of the form $K^2(p)$ form a one-dimensional subfamily. Thus in general $Q$ will be smooth; the set of invertible sheaves $L$
-for which the quadric is singular is 1-dimesnional, and thus of codimension one.
+for which the quadric is singular is 1-dimensional, and thus of codimension one.
 
 \begin{proof}
 First, suppose that the invertible sheaf $L \cong K^2(p)$ for some $p \in C$. Then $L(-p) \cong K^2$, so that the map $\pi : C \to \PP^2$ given by projection from $p$ is the map $\phi_{K^2} : C \to \PP^2$ given by the square of the canonical sheaf. As we've seen, the map $\phi_{K^2}$ is two-to-one onto a conic $E \subset \PP^2$, so that the curve $C$ lies on the cone $Q$ over $E$ with vertex $p$, and this is the unique quadric surface containing $C$.
 
 If $L$ is not of the form $K^2(p)$, then we can write
 $$
-L = \omega \otimes M,
+L = K \otimes M,
 $$
-where by hypothesis $M$ is not of the form $\omega(p)$. As we saw in Section~\ref{genus 2 pencil}, this means that the pencil $|M|$ gives a degree 3 map $C \to \PP^1$.
+where by hypothesis $M$ is not of the form $K(p)$. As we saw in Section~\ref{genus 2 pencil}, this means that the pencil $|M|$ gives a degree 3 map $C \to \PP^1$.
 
 This gives us a way of factoring the map $\phi_L : C \to \PP^3$: we have maps $\phi_K : C \to \PP^1$ of degree 2 and $\phi_M : C \to \PP^1$ of degree 3, and we can compose their product with the Segre embedding $\sigma : \PP^1 \times \PP^1 \to \PP^3$:
 \begin{diagram}
@@ -286,16 +295,16 @@ Since the dimensions of these spaces are 20 and $15-2+1 = 14$ respectively, we s
 
 We can identify these cubics geometrically. Suppose first that $Q$ is smooth, so that $C$ is a curve of type $(2,3)$ on $Q$. In that case, if $L \subset Q$ is any line of the first ruling, the sum $C+L$ is the complete intersection of $Q$ with a cubic $S_L$, unique modulo the ideal of $Q$; conversely, if $S$ is any cubic containing $C$ but not containing $S$, the intersection $S \cap Q$ will be the union of $C$ and a line $L$ of the first ruling; thus, mod $I(Q)$, $S = S_L$. A similar argument applies in case $Q$ is a cone, and $L$ is any line of the (unique) ruling of $Q$. In Exercise~\ref{ideal of genus 2 degree 5} you may show that there are no more cubics containing C
 
-\subsection{The dimension of the families of genus 2 curves}
+\subsection{The dimension of the family of genus 2 curves}
 
 Each of the types of maps that we described from a curve $C$ of genus 2 to projective space suggests
-a computation of a 3-dimensional family of genus 2 curves, and indeed, as we willl explain in Chapter~\ref{ModuliChapter}, there is a moduli space of this dimension.
+a way to compute the dimension of the family of genus 2 curves, and indeed, as we will explain in Chapter~\ref{ModuliChapter}, there is a moduli space of this dimension.
 
-Since every curve of genus 2 is uniquely expressible as a double cover of $\PP^1$ branched at six points, modulo the group $PGL_2$ of automorphisms of $\PP^1$. The space of such double covers has dimension 6, and $\dim(PGL_2) = 3$, and since the group acts with finite stabilizers this gives a family of dimension $6-3 = 3$.
+First, since every curve of genus 2 is uniquely expressible as a double cover of $\PP^1$ branched at six points, modulo the group $PGL_2$ of automorphisms of $\PP^1$. The space of such double covers has dimension 6, and $\dim(PGL_2) = 3$, and since the group acts with finite stabilizers this gives a family of dimension $6-3 = 3$.
 
-Also, each curve  of genus 2 is expressible as a 3-sheeted cover of $\PP^1$ (with eight branch points) in a 2-dimensional family of ways. As we saw in Section~\ref{branched covers}, such a triple cover is determined up to a finite number of choices by its branch divisor, so the space of such triple covers has dimension 8; modulo $PGL_2$ it has dimension 5, and since every curve is expressible as a triple cover in a two-dimensional family of ways, we arrive again at a family of dimenision $ 5-2 = 3$.
+Also, each curve  of genus 2 is expressible as a 3-sheeted cover of $\PP^1$ (with eight branch points) in a 2-dimensional family of ways. As we saw in Section~\ref{branched covers}, such a triple cover is determined up to a finite number of choices by its branch divisor, so the space of such triple covers has dimension 8; modulo $PGL_2$ it has dimension 5, and since every curve is expressible as a triple cover in a two-dimensional family of ways, we arrive again at a family of dimension $ 5-2 = 3$.
 
-We've also seen that each curve of genus 2 can be realized as (the normalization of) a plane quartic  with a node in a 2-dimensional family of ways. The space of plane quartics has dimension 14; the family of those with a node has codimension one (Section~\ref{local severi geometry}) and hence dimension 13. In It is a fact that the automorphism group of any curve of genus $\geq 2$ is finite, and since  the automorphism group $PGL_3$ of $\PP^2$ has dimension 8, this suggests that that the family of nodal plane quartics modulo $PGL_3$ has dimension 5, and since every curve of genus 2 corresponds to a 2-parameter family of such curves, this again suggests a family of dimension $ 5-2=3$.
+We've also seen that each curve of genus 2 can be realized as (the normalization of) a plane quartic  with a node in a 2-dimensional family of ways. The space of plane quartics has dimension 14; the family of those with a node has codimension one (Section~\ref{local severi geometry}) and hence dimension 13. It is a fact that the automorphism group of any curve of genus $\geq 2$ is finite, and since  the automorphism group $PGL_3$ of $\PP^2$ has dimension 8, this suggests that that the family of nodal plane quartics modulo $PGL_3$ has dimension 5, and since every curve of genus 2 corresponds to a 2-parameter family of such curves, this again suggests a family of dimension $ 5-2=3$.
 
 Finally, a curve of genus 2 may be realized as a quintic curve in $\PP^3$ in a two-parameter family of ways. To count the dimension of the family of such curves, note that each one lies on a unique quadric $Q$, and is of type $(2,3)$ on $Q$. Thus to specify such a curve we have to specify $Q$ (9 parameters) and then a bihomogeneous polynomial of bidegree $(2,3)$ on $Q \cong \PP^1 \times \PP^1$ up to scalars; these have $3\cdot 4 - 1 = 11$ parameters. Thus there is a 20-dimensional family of such divisors; modulo the automorphism group $PGL_4$ of $\PP^3$, this is a 5-dimensional family. Again, every abstract curve $C$ of genus 2 corresponds to a 2-parameter family of these curves modulo $PGL_4$, so once more this suggests a family of dimension $ 5 - 2 = 3$.
 
@@ -322,7 +331,7 @@ There is thus a 1-dimensional family of representations of $C$ as a 3-sheeted co
 There are other representations of $C$ as the normalization of a plane curve. By the Riemann-Roch Theorem, $C$ has no $g^2_3$, and the canonical system is the only $g^2_4$, but there are plenty of models as plane quintic curves: by Proposition~\ref{very ample}, if $L$ is any invertible sheaf of degree 5, the linear system $|L|$ will be a basepoint free $g^2_5$ as long as $L$ is not of the form $K+p$, so that $\phi_L$ maps $C$ birationally onto a plane quintic curve $C_0 \subset \PP^2$. These can also be described geometrically in terms of the canonical model: any such invertible sheaf $L$ is of the form $2K-p-q-r$ for some trio of  points $p, q, r \in C$ that are not colinear in the canonical model, and we see  that $C_0$ is obtained from the canonical model of $C$ by applying a Cremona transform with respect to the points $p, q$ and $r$, that is, by applying the birational transformation
 of the plane defined by the linear series of conics through $p,q,r$.
 
-Since curves of genus 3 cannot be embedded in the plane, the lowest possible degree of an embedding is 6. Proposition~\ref{very ample} implies that a divisor $D$ of degree 6 is very ample if and only if it is not of the form $K+p+q$ for any $p, q \in C$ and Theorem~\ref{g+3 theorem} assures us that indeed a general invertible sheaf of degree 6 is very ample.  
+Since curves of genus 3 cannot be embedded in the plane, the lowest possible degree of an embedding is 6. Proposition~\ref{very ample} implies that a divisor $D$ of degree 6 is very ample if and only if it is not of the form $K+p+q$ for any $p, q \in C$ and since the family of invertible sheaves on $C$ has dimension 3,  we see that a general invertible sheaf of degree 6 is very ample (indeed, this is a simple case of Theorem~\ref{g+3 theorem}).  
 
 If $C\subset \PP^3$ is a curve of genus 3 embedded as a curve of degree 6, then $C$ cannot lie on a singular quadric since by Example~\ref{Div of quadric} it would
 have to be a complete intersection of the quadric with cubic, and then such a curve has genus 4. If $C$ lies on a smooth quadric
@@ -427,13 +436,9 @@ To state this, suppose that $V$ is a complex vector space of dimension $2n$ and 
 \begin{fact}
  \begin{enumerate}
 \item The maximal isotropic subspaces for $Q$ have dimension $n$;
-<<<<<<< HEAD
-\item The set of maximal isotropic subspaces for $Q$ is a subvariety of the Grassmannian $G(n,V)$, of dimension $\binom{n}{2}$ that has exactly two connected components (the ``rulings" of $Q$); and
-||||||| b569dad
-\item The set of maximal isotropic subspaces for $Q$ is a subvariety of the Grassmannian $G(n,V)$, or dimension $\binom{n}{2}$ that has exactly two connected components (the ``rulings" of $Q$); and
-=======
+
 \item The set of maximal isotropic subspaces for $Q$ is a subvariety of the Grassmannian $G(n,V)$, of dimension $\binom{n}{2}$, that has exactly two connected components (the ``rulings" of $Q$); and
->>>>>>> bcb8bc885e69d3d694f6044ff18b0558f3236939
+
 \item If $\Lambda, \Lambda' \subset V$ are any two maximal isotropic subspaces, then
 $$
 \dim(\Lambda \cap \Lambda') \equiv n \text{ (mod 2)} \quad \iff \quad \Lambda, \Lambda' \text{ belong to the same ruling.}
@@ -457,7 +462,7 @@ correspond to linear subspaces of dimension 3 in $\CC^6$, which are the isotropi
 \end{itemize}
 \end{example}
 
-%\fix{is each of these families parametrized by a projective space also in higher dim?
+Note: the variety parametrizing the isotropic planes of each ruling are in general quotients of the Lie group $SO(2n)$ by the maximal parabolic subgroups corresponding to the vertices of the Dynkin diagram at the ``forked" end. While in the two examples above they are projective spaces, this is due to coincidences of low-dimensional Lie groups ($PSO_4 \cong PSL_2 \times PSL_2$ and $PSO_6 \cong PSL_4$); they are not projective spaces when $n > 3$.
 
 Now suppose that $C$ is a smooth curve of genus $g$, and $\cL$ an invertible sheaf on $C$ with $\cL^2 \cong K_C$; that is, a theta characteristic. Choose a divisor $D = p_1 + \dots + p_n$ of degree $n> g-1$ consisting of distinct points, and let $V$ be the $2n$-dimensional vector space
 $$
@@ -478,17 +483,15 @@ This is isotropic because the product $\sigma\tau$ of two elements of $\Lambda$ 
 $$
 \Lambda' := \im\left( H^0(\cL(D)) \to H^0( \cL(D) / \cL(-D) ) \right)
 $$
-Since the $H^0(\cL(-D)) = 0$, the map is injective and according to Riemann-Roch, $h^0(\cL(D)) = n$, so this is again an $n$-dimensional subspace of $V$; it's isotropic because the sum of the residues of a global rational differential on $C$ is 0. Finally, 
+Since  $H^0(\cL(-D)) = 0$, the map is injective and according to Riemann-Roch, $h^0(\cL(D)) = n$, so this is again an $n$-dimensional subspace of $V$; it's isotropic because the sum of the residues of a global rational differential on $C$ is 0. Finally, 
 $$
 H^0(\cL) \cong \Lambda \cap \Lambda',
 $$
 and Theorem~\ref{locally constant sign} follows.
 
-%As for Theorem~\ref{number of theta characteristics}, it is possible to describe the configurations of odd and even theta characteristics as subsets of the set $S$ of all theta characteristics, which as we've seen is a principle homogeneous space for the group $\Jac(C)_2 \cong (\ZZ/2\ZZ)^{2g}$ of points of order 2 on the Jacobian \cite{JHPaper}. However, we can instead
-%Theorem~\ref{locally constant sign} and the fact that there exists an irreducible family of 
-%curves and their Jacobians connecting an arbitrary curve to a hyperelliptic curve, to use reduce to the hyperelliptic case; the necessary result in that case is expressed (in the genus 2 case) in
-%Exercise~\ref{theta char on genus 2}.
-%% \fix{we will have theta on all hyperelliptic directly}
+As for proving Theorem~\ref{number of theta characteristics}, it is possible to describe the configurations of odd and even theta characteristics as subsets of the set $S$ of all theta characteristics, which as we've seen is a principle homogeneous space for the group $\Jac(C)_2 \cong (\ZZ/2\ZZ)^{2g}$ of points of order 2 on the Jacobian \cite{JHPaper}. However, we can instead use
+Theorem~\ref{locally constant sign} and the fact that there exists an irreducible family of 
+curves and their Jacobians connecting an arbitrary curve to a hyperelliptic curve, to reduce to the hyperelliptic case; we will do this below.
 
 There is more to say about the configuration of theta characteristics. For example:
 \begin{fact}
@@ -563,27 +566,20 @@ $$
 D_i = \sum_{j\in I_i} p_j.
 $$
 The divisors $D_1,D_2$ are linearly equivalent if and only they
-have the same cardinality and $I_1\cup I_2 = \{1,\dots, 2g+2\}$.\end{lemma}
+have the same cardinality $g+1$ and $I_1\cup I_2 = \{1,\dots, 2g+2\}$.\end{lemma}
 
 \begin{proof}
-Subtracting whatever points $D_1$ and $D_2$ have in common we may suppose
+Note that the ``if" part is simply Corollary~\ref{relation on ramification points} above.
+
+For the ``only if" part, subtracting whatever points $D_1$ and $D_2$ have in common we may suppose
 that $I_1\cap I_2 = \emptyset$. If $D_1\sim D_2$, it follows at once that they have the same degree, $d\leq g+1$, and we must show that either $d=0$ or $d=g+1$.
 
 We have $D_1\sim D_2$ iff $D_1+D_2\equiv 2D_1$. If
 $d\leq g$ we have $r(2D_1) = d$: for $d<g$ this is
 the extremal case of Clifford's Theorem, while for $d = g$ this follows simply from the 
-Riemann-Roch formula. Thus every divisor in $|2D_1|$ is a sum of $d$ fibers of the 
+Riemann-Roch formula. Thus in case $d \leq g$ every divisor in $|2D_1|$ is a sum of $d$ fibers of the 
 2 to 1 map of $C$ to $\PP^1$, and for such a divisor to be a sum of distinct points $p_i$
-must be 0.
-
-Now suppose that $d=g+1$, so that $D_1+D_2 = \sum_{j=1}^{2g+2}p_i$. Recall from equation
-$(*)$ in Section~\ref{hyperelliptic differentials} that the canonical class on $C$ is
-equivalent to $\sum_{i=1}^{2g+2}p_i-2p -2q$, where $p+q$ is a fiber of the 2 to 1 map
-from $C$ to $\PP^1$. We deduce
-$$
-D_1+D_2 = K_C+2\g^1_2 = (g+1)\g^1_2 = 2D_1,
-$$
-concluding the argument.
+the degree $d$ must be 0, concluding the argument.
 \end{proof}
 
 
@@ -593,7 +589,7 @@ First of all, if we denote the class of the unique $g^1_2$ on $C$ by $E$, and $D
 $$
 D \sim mE + F
 $$
-with $-1 \leq m \leq \frac{g-1}{2}$ and $F$ the sum of $g-1-2m$ distinct points $p_i$. Moreover, this representation is unique, except in case $m=-1$ \fix{It seems you mean the case of the sum $F$ of $g+1$ branch points, not $F-E$.} in that case, we note that the sum of $g+1$ of the branch points of $C$ is linearly equivalent to the sum of the other $g+1$ \fix{explain why}. Thus the total number of theta characteristics is a sum of binomial coefficients; if $g$ is odd, it is
+with $-1 \leq m \leq \frac{g-1}{2}$ and $F$ the sum of $g-1-2m$ distinct points $p_i$. Moreover, this representation is unique, except in case $m=-1$; in that case, we note that the sum of $g+1$ of the branch points of $C$ is linearly equivalent to the sum of the other $g+1$ by Corollary~\ref{relation on ramification points}. Thus the total number of theta characteristics is a sum of binomial coefficients; if $g$ is odd, it is
 $$
 \binom{2g+2}{0} + \binom{2g+2}{2} + \binom{2g+2}{4} + \dots + \binom{2g+2}{g-1} + \frac{1}{2}\binom{2g+2}{g+1}
 $$ 
