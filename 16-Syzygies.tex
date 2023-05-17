@@ -118,7 +118,9 @@ the minimal free resolution of every module is finite.
 The Auslander-Buchsbaum formula expresses the projective dimension of a module in the case where the projective dimension is finite. We will restrict to the case of most interest to us, that of a graded module $M$ over a polynomial ring $S$; but the
 theory for a regular local ring is exactly parallel, and the theorem is true over an arbitrary local ring if we restrict to modules of finite projective dimension.
 
- the \emph{depth of $M$} is the maximal length of sequence of homogeneous polynomials $f_1,\dots,f_m \in S$ of positive degree such that $f_1$ is a nonzerodivisor on $M$, $f_2$ is a nonzerodivisor on $M/(f_1M)$, and so on. 
+\begin{definition}
+ The \emph{depth of $M$} is the maximal length of sequence of homogeneous polynomials $f_1,\dots,f_m \in S$ of positive degree such that $f_1$ is a nonzerodivisor on $M$, $f_2$ is a nonzerodivisor on $M/(f_1M)$, and so on. 
+\end{definition}
 
 \begin{theorem}[Auslander-Buchsbaum formula]\label{AB formula}
 If $M$ is a finitely generated graded module over $S = \CC[x_0,\dots, x_r]$  then
@@ -134,11 +136,11 @@ of $M$ is equal to the codimension of $M$; In this case we say that $M$ is a
 module is again Cohen-Macaulay.
 
 As we showed in Chapter~\ref{linkageChapter}, a curve $C\subset \PP^3$ is linked to a complete intersection
-if and only if  $H^1_*(\sI_C) := H^1(\sI_C(m)) = 0$ for all $m$, in which case $C$ is said to be is arithmetically Cohen-Macaulay. Here is the connection between these notions: 
+if and only if  $H^1_*(\sI_C) := \oplus_{m\in \ZZ} H^1(\sI_C(m)) = 0$, in which case $C$ is said to be is arithmetically Cohen-Macaulay. Here is the connection between these notions: 
 
 \begin{proposition}\label{meaning of ACM}
 A projective curve $C \subset \PP^r$  has $H^1_*(\sI_C) = 0$ if and only if the homogeneous coordinate ring of $C$
-is Cohen-Macaulay or, equivalently, the depth of the homogeneous coordinate ring  coordinate ring is 2.
+is Cohen-Macaulay or, equivalently, the depth of the homogeneous  coordinate ring of $C$ is 2.
 \end{proposition}
 
 \begin{proof}
@@ -146,9 +148,10 @@ is Cohen-Macaulay or, equivalently, the depth of the homogeneous coordinate ring
 $$
 0\to I_C \to S \to S/I_C \to  H^0_*( \sO_C) \to H^1_*(\sI_C) \to 0,
 $$
-we see that $H^1_*(\sI_C) = 0$ if and only if $S/I_C\cong H^0_*(\sO_C)$.  
-Moreover, for any purely 1-dimensional projective scheme $C$ the $S$-module $H^0_*(\sO_C)$ has depth 2; this follows because
-a general form $f_1$ will not vanish on an component of $C$, and modulo $f_1$ we get $H^0_*(\sO_\Gamma)$, where $\Gamma$ is the intersction of $C$ with the vanishing locus of $f_1$. Moreover  $H^0_*(\sO_\Gamma)$ has depth
+we see that $H^1_*(\sI_C) = 0$ if and only if the natural map $S/I_C\to H^0_*(\sO_C)$ is an isomorphism. 
+Moreover, for any purely 1-dimensional projective scheme $C$ the $S$-module $H^0_*(\sO_C)$ is finitely generated and
+a has depth 2; this follows because
+a general form $f_1$ does not vanish identically on any component of $C$, and modulo $f_1$ we get a submodule of $H^0_*(\sO_\Gamma)$, where $\Gamma$ is the intersction of $C$ with the vanishing locus of $f_1$. Moreover any submodule of $H^0_*(\sO_\Gamma)$ has depth
 1 because any form that is nonzero at every point of the (finite) support of $\Gamma$ is a nonzerodivisor.
 
 Conversely, if $S/I\neq H^0_*( \sO_C)$, then since $H^0_*( \sO_C)/(S/I)$ has finite length, this quotient has depth 0,
@@ -161,8 +164,14 @@ and this is equivalent to the Cohen-Macaulay property of $S/(I_X)$. As with the 
 the condition that $H^1(\sI_{X/\PP^r}(m)) = 0$ 
 is strongly dependent on the embedding. Using Theorem~\ref{WMACE} below one can show
 that $X$ is arithmetically Cohen-Macaulay if and only if the dual of the minimal $S$-free resolution
-of $S/I_X$ it the minimal $S$-free resolution of $\omega_{S/I_X}$, where as usual $S$ is the
+of $S/I_X$ is the minimal $S$-free resolution of $\omega_{S/I_X}$, where as usual $S$ is the
 homogeneous coordinate ring of $\PP^r$.
+
+\begin{exercise}
+Prove that if $X\subset \PP^r$ is arithmetically Cohen-Macaulay then the dual of the minimal free resolution of $S/I_X$
+is the minimal free resolution of $\omega_X$. Hint:Use Theorem~\ref{WMACE} and the characterization of $\omega_{S/I_X}$
+as an Ext module.
+\end{exercise}
 
 By contrast, the condition
 that $H^i(\sO_X(m)) = 0$ for all $m$ and all $0<i<\dim X$, which is in any case trivial for curves, is 
@@ -185,22 +194,32 @@ is a short exact sequence of finitely generated modules over a local or positive
 \end{enumerate}
 \end{lemma}
 
+\begin{exercise}
+ Prove Lemma~\ref{depth lemma} for modules over a regular local ring.  Hint: use the characterization of depth
+ via projective dimension.
+\end{exercise}
+
 \subsection{The Gorenstein property} 
 Another important homological condition is the condition that $\omega_X$ is an invertible sheaf; when this holds, $X$ is \emph{quasi-Gorenstein}. When, in addtition, $X$ is Cohen-Macaulay we say that $X$ is \emph{Gorenstein}. Any scheme that is locally a complete intersection, such as any smooth scheme and any plane curve, is Gorenstein. Since the restriction
 of $\sO_{\PP^r}(1)$ to a subvariety is always invertible, saying that a scheme $X$ is canonically embedded implies that
-$X$ is at least quasi-Gorenstein. Again, we say that a projective scheme $X$ is \emph{arithmetically Gorenstein}
-if it's homogeneous coordinate ring is Gorenstein. 
+$X$ is at least quasi-Gorenstein. As with the Cohen-Macaulay property, the Gorenstein property is interpreted locally
+on a scheme. We say that a projective scheme $X$ is \emph{arithmetically Gorenstein}
+if it's homogeneous coordinate ring is Gorenstein, and it follows that $\omega_{S/I} \cong S/I(a)$ for some integer $a = a(X)$.
 
 If $X$ is arithmetically Cohen-Macaulay, so that
 $\pd(X) = codim(X)$,  then since 
 $$
-\omega_{S/I_X} = \Ext^{\codim X}(S/I, S)(-r-1),
+(S/I)(a) \cong \omega_{S/I_X} \cong \Ext^{\codim X}(S/I, S)(-r-1),
 $$
 it follows that if $X$ is arithmetically Cohen-Macaulay, then $X$ is  \emph{arithmetically Gorenstein} if and only if
-the  minimal free resolution of $S/I$ is isomorphic to its own dual. We have seen an example already
+the  minimal free resolution of $S/I$ is isomorphic, up to shift, to its own dual. We have seen an example already
 in the Koszul complex (a complete intersection is Gorenstein) and we will see more examples
 below.
 
+\begin{exercise}
+In dealing with arithmetically Gorenstein schemes, we used the fact that if $\omega_{S/I}$ is an invertible
+sheaf (over $\Spec(S/I)$) then it is isomorphic to $S/I(a)$ for some $a$. Why is this true?
+\end{exercise}
 
 \section{Curves of high degree}\label{high degree ACM}
 Let $C$ be a smooth curve of  genus $g$. We have seen that every invertible sheaf of degree $d \geq 2g+1$ is very ample. We will now show that
@@ -214,6 +233,13 @@ H^0(\sO_{\PP^{r}}(m)) \to H^0(\sO_C(m))
 $$
  are surjective for all $m$. Equivalently, $H^1(\sI_C(m)) = 0$ for all $m$.
 \end{theorem}
+
+\begin{exercise}
+Find a degree 6 embedding of a curve of genus 3 that is not arithmetically Cohen-Macaulay, and another that is.
+Hint: Show that the $3\times 3$ minors of a general matrix of linear forms defines a Cohen-Macaulay curve
+of genus 3. \fix{What's the best way to find a nonCM example? How about $K-p +q+r$ for general $p,q,r$?
+Does this need computation?}
+\end{exercise}
 
 \begin{proof} We do induction on $m$, noting that
 For $m\leq 1$ the conclusion is immediate. 
@@ -241,20 +267,21 @@ is surjective.
 
 For this we use what David Mumford has called the \emph{base-point-free pencil trick}:
 Let $V$ be a pair of sections of $H^0(\sO_{\PP^{d-g}}(1)) = H^0(\sO_C(1))$ that do not intersect anywhere on $C$ (and thus define a base-point-free pencil on $C$).
-Since $V\otimes \sO_{C}(m-1)\to \sO_{C}(m)$ it follows that the kernel $\sL$ is an invertible sheaf,
-and from the exact sequence
+Since $V\otimes \sO_{C}(m-1)\to \sO_{C}(m)$ is an epimorphism, it follows that the kernel $\sL$ is an invertible sheaf.
+From the exact sequence
 $$
 0\to \sL \to V\otimes \sO_{C}(m-1) \to \sO_{C}(m) \to 0
 $$
 we see that
 $$
-\sL \otimes \sO_{C}(m) \cong  \wedge^2(V\otimes \sO_{C}(m-1))\cong \sO_C(2m-2),
+\sL \otimes \sO_{C}(m) \cong  \wedge^2(V\otimes \sO_{C}(m-1))\cong \sO_C(2m-2).
 $$
-so $\sL \cong \sO_C(m-2)$.
-Though not necessary for the argument, we note that we have essentially described a Koszul complex
+Thus $\sL \cong \sO_C(m-2)$.
+Though not necessary for the argument, we note that we have described a Koszul complex
 $$
-0\to \wedge^2V \otimes \sO_C(m-2) \to V\otimes \sO_{C}(m-1)\to \sO_{C}(m)\to 0.
+0\to \wedge^2V \otimes \sO_C(m-2) \to V\otimes \sO_{C}(m-1)\to \sO_{C}(m)\to 0,
 $$
+and we could have argued directly from criteria for the exactness of such sequences.
 
 Since $m\geq 3$ we have $\deg(\sO_C(m-2)) \geq d > 2p_a-2$, so $H^1(\sO_C(m-2)) =0$, and it follows that the map $V\otimes H^0(\sO_{C}(m-1))\to H^0(\sO_{C}(m))$
 is surjective. Thus  
@@ -270,7 +297,7 @@ The necessary modification is to replace the base-point-free pencil with one hav
 We follow the treatment in \cite{Schreyer}. 
 
 If $C$ is an integral curve then by Theorem~\ref{linear general position} a general hyperplane $H\subset \PP^{g-1}$
-meets $C$ transversely in a set of points in linearly general position. Any subset $\Gamma$ of $g-2$ of these points will span a $g-3$-plane $\Lambda$
+meets $C$ transversely in a set of points in linearly general position. Any subset $\Gamma$ of $g-2$ of these points will span a $(g-3)$-plane $\Lambda$
 meeting $C$ transversely in $\Gamma$, and we call $\Lambda$ a \emph{simple $(g-2)$-secant $(g-3)$-plane}. 
 
 \begin{theorem}\label{canonical curves are ACM}
@@ -279,7 +306,7 @@ $$
 \HH^{0}(\sO_{\PP^{g-1}}(m)) \to \HH^{0}(\sO_{C}(m));
 $$
 is  surjective for all $m$; equivalently,
-$\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m$.
+$\HH^{1}_*(\sI_{C/\PP^{g-1}}) = 0$.
 \end{theorem}
   
 \begin{proof} 
@@ -287,14 +314,14 @@ $\HH^{1}(\sI_{C/\PP^{g-1}}(m)) = 0$ for all $m$.
 %$\dim C = 1$, so it is determined by two values.
 
 For $m = 0,1$ the conclusion is immediate. Let $H$ be a general hyperplane in $\PP^{g-1}$, 
-and let $\Lambda \subset H$ be a simple $(g-2)$-secant $(g-3)$-plane to $C$. Set $\Gamma = \Lambda \cap C$,
-which consists of $g-2$ linearly independent reduced points.
+and let $\Gamma$ be a set of
+ of $g-2$ points of $H\cap C$ (so that the linear span $\overline \Gamma$ is a simple $(g-2)$-secant $(g-3)$-plane).
 
 By induction on $m$ it suffices to prove the surjectivity of
 $$
 \HH^{0}(\sO_{C}(H)) \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH))
 $$
-for $m\geq 2$, where $H$ is the hyperplane divisor on $C$.
+for all $m$, where $H$ is the hyperplane divisor on $C$. The cases $m=0,1$ are immediate.
 
 Since the points of $\Gamma$
 are linearly independent, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
@@ -358,12 +385,12 @@ exact on global sections, as required.
 \begin{corollary}\label{canonical hilbert function}
 If $C\subset \PP^{g-1}$ is a canonical curve with a simple $g-2$-secant $g-3$-plane, then the Hilbert function of the homogeneous coordinate ring $S_{C}$ of  $C$ depends only on $g$, and is given by:
 $$
-\dim({S_{C}})_{d} = h^{0}(\cO_{C}(d)) = 
+\dim({S_{C}})_{n} = h^{0}(\cO_{C}(n)) = 
 \begin{cases}
  0 &\mbox {if } d<0\\
  1 & \mbox {if }  d=0\\
  g & \mbox {if }  d=1\\
- (2n-1)g+1 & \mbox {if }  d>1\\
+ (2g-2)n + 1 - g & \mbox {if }  d>1\\
 \end{cases}
 $$
 \end{corollary}
@@ -382,17 +409,17 @@ $$
 and having a simple $(g-2)$-secant $(g-3)$-plane.
 \end{fact}
  
- As noted about, the homogeneous coordinate ring $S/I_C$ of an arithmetically Cohen-Macaulay curve $C\subset \PP^r$ is isomorphic
+ As noted above, the homogeneous coordinate ring $S/I_C$ of an arithmetically Cohen-Macaulay curve $C\subset \PP^r$ is isomorphic
  to $H^0_*(\sO_C)$. In the same way, the canonical module $\omega_{S/I} \cong \Ext_S^{r-1}(S/I_C, S(-r-1))$ of an arithmetically Gorenstein curve satisfies
  $\omega_{S/I} = H^0_*(\omega_C)$.  If the last free module in the minimal resolution of $S/I$ is $S(-a-r-1)$,
  then $\Ext_S^{r-1}(S/I_C, S(-r-1)) = S/I(a)$, and the number $a$ is (unimaginatively) called the $a$-invariant
- of the ring $S/I$.
+ of the ring $S/I$. \fix{I'm eternally confused about the sign: should this be $-a$?}
  
  In the case of a canonically embedded curve $C\subset \PP^{g-1}$ we have $\omega_C = \sO_C(1))$, 
- so $\omega_C(-1) = \sO_C$ so $\omega_{S/I}$ is generated in degree $-1$, so the  the last
- free module in the minimal free resolution $\FF$ of $S/I$ is $S(-r)$. Since the resolution is minimal,
+ so  $\omega_{S/I}= H^0_*(\omega_C)$ is generated in degree $-1$. Thus the  the last
+ free module in the minimal free resolution $\FF$ of $S/I$ is $S(-r-2)$. Since the resolution is minimal,
  the minimal  twist in $F_{i+1}$ must be $\leq$ the minimal twist in $F_i$; since the dual is also a minimal resolution,
- it follows that both the minimal and maximal twists of $F{i+1}$ are $\leq$ the minimal and maximal twists of $F_i$, respectively.
+ it follows that both the minimal and maximal twists of $F_{i+1}$ are $\leq$ the minimal and maximal twists of $F_i$, respectively.
  Since there are no linear forms in the ideal, and the resolution is self-dual, we see that the betti table of $\FF$ has the form
  \centerline{\scriptsize
 \begin{tabular}{r|cccccc} 
@@ -407,8 +434,26 @@ $j\backslash i$&0&1&2&$\cdots$&$r-2$&$r-1$\\
 
 
  
-\section{How syzygies can reflect geometry}\label{syzy and geom}
+\section{Some subvarieties that contain a curve}\label{syzy and geom}
 
+Suppose that $C\subset \PP^r$ is a curve embedded by a complete linear series $|H|$, and that we are given a divisor $D\subset C$ such that $|D| = \{D_\lambda\}$ is a linear series of dimension at least 1. The linear span $\overline D_\lambda$ is the intersection of all the hyperplanes containing $D_\lambda$, and thus has dimension $h^0(\sO_C(H-D_\lambda),$ 
+which is independent of $\lambda$. This suggests that the set 
+$$
+\bigcup_\lambda
+$$ 
+is an object of dimension $\dim \overline D + r(D) = r-h^0(\sO_C(H-D_\lambda)+r(D)$, and we shall prove that this is
+an algebraic variety, defined by the vanishing of $2\times 2$ minors of a certain matrix of linear forms. For example, when
+$\overline D$ and $r(D)$ are 1-dimensional, this is a ruled surface of a kind that is easy to understand, and
+its free resolution, an Eagon-Northcott complex described below, is termwise a direct summand of the resolution
+of the homogeneous coordinate ring of $C$.
+
+To prove these things we proceed more abstractly. Let 
+$$
+\mu: H^0(\sO_C(D)) \otimes H^0(\sO_C(H-D)) \to H^0(\sO_C(H))
+$$
+be the multiplication map corresponding to this factorization of $\sO_C(H) = \sO_C(1)$.
+
+\fix{stopped here}
 One of the main ways in which syzygies can be seen to reflect the geometry of a scheme $C\subset \PP^r$
 depends on the possibility of factoring the line bundle $\sO_C(1)$ as the tensor product of two bundles on $C$
 both of which have at least two independent global sections. Suppose for example that $C$ is nondegenerate, 
