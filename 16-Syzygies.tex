@@ -1021,14 +1021,16 @@ then the Clifford index of $C$ is $\leq c$ if and only if $\beta_{c,c-2}(S/I_C))
 
 The conjecture was made for curves over a field of characteristic 0, and is known in many cases, though it is also known to fail in small finite characteristics (see~\cite{Bopp-Schreyer} for an amended conjecture that may hold in all characteristics.)
 In \cite{MR1941089} and \cite{MR2157134} the conjecture was proven for generic curves of each Clifford index.  See~\cite{MR4022070} for the currently simplest
-proof. The conjecture is also is known for plane curves, and in a number of other special cases. 
+proof. As of this writing the conjecture is also is known up to genus 9,  for plane curves, and in a number of other special cases.
+See for example \cite{Farkas-progress-on-syzygies} for a survey on this and related topics.
 
 \subsection{Low genus canonical embeddings} 
-In his 1983 Brandeis thesis, Frank Schreyer analyzed all the possibilities for resolutions of smooth canonical curves up to genus 8; the results are summarized in the table below, taken from the published version \cite{Schreyer-canonical} of the thesis.
+In his 1983 Brandeis thesis \cite{Schreyer-canonical}, Frank Schreyer analyzed all the possibilities for resolutions of smooth canonical curves up to genus 8. The project was carried further to genus 9 in a Saarbr\"ucken thesis \cite{Sagraloff}  of a student of Schreyer. The results are summarized in the tables below.
 \fix{M2 notation is
 different; and the hyperelliptic cases are included. Maybe retype in normal notation?}
 
-\includepdf[pages=1]{"SyzygiesGupto8"}
+\includepdf[pages=1, scale=.8]{"SyzygiesGupto8"}
+\includegraphics[scale = .35]{"genus 9 Sagraloff"}
 %\includepdf[scale=.8]{"SyzygiesGupto8"}
 %\section{Low degree}
 
@@ -1053,12 +1055,11 @@ sheaf (over $\Spec(S/I)$) then it is isomorphic to $S/I(a)$ for some $a$. Why is
 \begin{exercise}
 Find a degree 6 embedding of a curve of genus 3 that is not arithmetically Cohen-Macaulay, and another that is.
 Hint: Show that the $3\times 3$ minors of a general $4\times 3$matrix of linear forms defines a Cohen-Macaulay curve
-of genus 3. 
-%\fix{What's the best way to find a nonCM example? Does this need computation?}
+of genus 3. Show that a curve of type $(2,4)$ on a smooth quadric in $\PP^3$ is not arithmetically Cohen-Macaulay.
 \end{exercise}
 
 \begin{exercise}
-referring to the betti table of a canonical curve just before Section~\ref{EN section}, give a formula
+Referring to the betti table of a canonical curve just before Section~\ref{EN section}, give a formula
 for the differences $b_i- b_{g-i-1}$ that depends only on $i$ and $g$.
 \end{exercise}
 
@@ -1076,6 +1077,64 @@ for the differences $b_i- b_{g-i-1}$ that depends only on $i$ and $g$.
 Which sets of 4 distinct points in $\PP^2$ are arithmetically Gorenstein? Which sets of 5 points? Which sets of 6 points?
 \end{exercise}
 
-Give an example of a set of points in $\PP^3$ that is arithmetically Gorenstein but not a complete intersection. Hint: take the 
+\begin{exercise}
+ Give an example of a set of points in $\PP^3$ that is arithmetically Gorenstein but not a complete intersection. Hint: take the 
 hyperplane section of a trigonal canonical curve of genus 5.
+\end{exercise}
+
+\begin{exercise}
+ Let $Q\subset \PP^3$ be the quadric defined by the determinant of the $2\times 2$ matrix 
+ $$
+q := F \rTo^{\begin{pmatrix}
+ x_0&x_1\\
+ x_2&x_3
+\end{pmatrix}}
+G
+$$
+where $F = S^2(-1)$ and $G = S^2$.
+\begin{enumerate}
+
+\item Show that the sheafification of the graded module $M := \coker q$ is $\sO_Q(1,0)$ and the sheafification
+of $\coker transpose q$ is $\sO_Q(0,1)$ by computing the vanishing locus
+of the two sections corresponding to the generators of the module.
+
+\item Show that the sheafification of $\Sym^a(M)$ is $\sO_Q(a,0)$. Conclude that
+ if $a\leq b$ then the relative ideal sheaf $\sI_{C/Q} = \sO(-a,-b)$ of a curve $C$ of type $(a,b)$
+is the sheafification of the module $Sym^{b-a}(M)(-b)$.
+
+\item Let $S = \CC[x_0,\dots, x_3]$. Show that the minimal $S$-free resolution of $\Sym^a(M)$ 
+has the form 
+\begin{small}
+$$
+0 \rTo \wedge^2 F \otimes \Sym^{a-2} G(-2)\rTo F\otimes \Sym^{a-1} G(-1)\rTo \Sym^a G%\rTo \Sym^a(M)\rTo 0
+$$
+\end{small}
+
+\item Show that if $C\subset \PP^3$ is a curve of type $(a, b)$ with $a\leq b$ then
+ there is a free resolution of a module
+whose sheafification is $\sI_{C/\PP^3}$ that is a mapping cone of the map of complexes: 
+\begin{tiny}
+$$
+\begin{diagram}[size=2em]
+                                                       0&\rTo&0&\rTo& \wedge^2 F &\rTo^{\wedge^2 q}&\wedge^2 G\\
+ &&\uTo&&\uTo&&\uTo\\
+ 0 &\rTo& \wedge^2 F \otimes \Sym^{b-a-2} G(-b-2) &\rTo &F\otimes \Sym^{b-a-1} G(-b-1) &\rTo& \Sym^{b-a} G(-b)
+\end{diagram}
+$$
+\end{tiny}
+
+\item Conclude that the deficiency module of a curve of type $(a, b)$ with $a\leq b$ is the cokernel of a map
+$$
+\wedge^2 F^* \otimes \Sym^{b-a-2} (G^*)(b+2) \lTo F^*\otimes \Sym^{b-a-1} G^*(b+1)
+$$
+and thus, after choosing a basis of $F = S^2$, may be identified as the sheafification of the cokernel of
+$$
+\Sym^{b-a-2} (G^*)(b+2) \lTo F\otimes \Sym^{b-a-1} G^*(b+1)
+$$
+where the map is the action of $F$ on $\wedge G^*$ via the map $q: F\to G$.
+\end{enumerate}
+ Hint: Show that the sheafification of the graded module $\coker q$ is $\sO_Q(1,0)$ by computing the vanishing locus
+of the two sections corresponding to the generators of the module. Imitate the proof of Theorem~\ref{E-N} to prove
+the exactness of the given resolution of $\Sym^a(M)$. See also \cite[Appendix ****]{Eisenbud1995}. \fix{citation}.
+\end{exercise}
 \input{footer}

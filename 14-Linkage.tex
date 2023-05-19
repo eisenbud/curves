@@ -395,6 +395,47 @@ To prove that the relation of direct linkage is symmetric, we can repeat this ar
 resolution of $C'$, above, using the same forms of degree $s,t$ and we see that  direct link of $C'$ is $C$.
 \end{proof}
 
+Sometimes the following consequence is a useful way to compute the deficiency module:
+
+\begin{corollary}[Corollary of the proof of Theorem~\ref{HR}]\label{deficiency as dual of Ext}
+If $C$ is a purely 1-dimensional subscheme of $\PP^3$ with homogeneous ideal $I = I_C$ then 
+$$
+D(C) \cong Hom_\CC (Ext^3(S/I, S), \CC)(-4), \CC)
+$$
+as graded modules over the homogeneous coordinate ring $S$ of $\PP^3$.
+\end{corollary}
+
+This is a special case of the local duality isomorphism between local cohomology and the dual of Ext; see for example \cite[Theorem A.1.9]{MR2103875}.
+\begin{proof}
+We may choose a surjection  $\psi:  \oplus_iS(-a_i)\rTo I$, and choose the map
+$\phi: \oplus_i\sO_{\PP^3}(-a_i)\rTo\sI_C$
+in the proof of Theorem~\ref{HR}
+to be the corresponding map of sheaves, so that
+$\sE$ is the sheafification of the graded module $E = \ker \psi$.
+
+Since $I$ is a saturated ideal,
+ the depth of $S/I$ is at least 1, so $\pd\ S/I\leq 3$, and $I$ has a free resolution of the form
+$$
+0\rTo G \rTo F \rTo \oplus_iS(-a_i)  \rTo S\rTo S/I \rTo 0.
+$$
+where $G\to F$ is a free presentation of $E$. and there is an exact sequence
+$$
+0 \to E^* \to F^* \to G^* \to Ext^3_S(S/I, S) \to 0.
+$$
+Since $\sO_C$ is Cohen-Macaulay the sheafification of $Ext^3_S(S/I, S)$ is 0; that is,
+$Ext^3_S(S/I, S)$ has finite length, and writing $\widetilde{(\phantom{-})}$ for the sheafification functor,
+we have a short exact sequence of sheaves 
+$$
+0\to \sE^* \to \widetilde{F^*} \to \widetilde{G^*}\to 0.
+$$
+From this we see that 
+$$
+Ext^3_S(S/I,S) = H^1_*(\sE^*) = Hom_\CC( H^2_*(\sE(-4)),\CC) = H^1_*(\sI)(-4),
+$$
+proving the assertion.
+\end{proof}
+
+
 \section{The linkage equivalence relation}
 As an immediate consequence of Theorem~\ref{HR} we have:
 \begin{corollary}(Hartshorne)
@@ -468,6 +509,21 @@ Conclude that if a different union $C'$ of 3 skew lines is linked to $C$, then $
 See~\cite{Migliore} for more examples of this type.
 \end{exercise}
 
+\begin{exercise}
+ Compute the Hilbert function of the Hartshorne-Rao module of a curve of type $(a,b)$ on a smooth quadric surface.
+ Hint: The ideal sheaf of the curve on the quadric $Q$ is an extension of the ideal sheaf of the quadric in $\PP^3$
+ with the ideal sheaf of the curve on the quadric, which is 
+ $$
+ \sO_Q(-a,-b) = \pi_1^*(\sO_{\PP^1}(-a)) \otimes pi_2^*(\sO_{\PP^1}(-b)),
+ $$
+ where $\pi_1, \pi_2$ are the projections to $\PP^1$. Use the K\"unneth formula
+ $$
+ H^1(\sO_Q(p,q)) = H^1(\sO_{\PP^1}(p)) \otimes H^0(\sO_{\PP^1}(q)) \oplus
+  H^0(\sO_{\PP^1}(p)) \otimes H^1(\sO_{\PP^1}(q))
+ $$
+  to compute the necessary cohomology.
+\end{exercise}
+
 \begin{exercise} (Liaison addition)\label{Liaison addition}
 (From the unpublished Brandeis thesis of Phillip Schwartau):
 Suppose that $I, J$ are saturated ideals defining purely 1-dimensional subschemes of $\PP^3$
@@ -517,41 +573,3 @@ locally analytically at $p$ the sheaf $\sHom_C(\sO_C, \omega_D)$ is $\sO_C(e)$.
 
 \input{footer}
 
-%%%%%%%%%%%%%%%% \fix{DO WE WANT TO INCLUDE THIS?}
-\begin{corollary}[Corollary of the proof of Theorem~\ref{HR}]
-If $C$ is a purely 1-dimensional subscheme of $\PP^3$ with homogeneous ideal $I = I_C$ then 
-$$
-D(C) \cong Hom_\CC (Ext^3(S/I, S), \CC)(-4), \CC)
-$$
-as graded modules over the homogeneous coordinate ring $S$ of $\PP^3$.
-\end{corollary}
-
-This is a special case of the local duality isomorphism between local cohomology and the dual of Ext; see for example \cite[Theorem A.1.9]{MR2103875}.
-\begin{proof}
-We may choose a surjection  $\psi:  \oplus_iS(-a_i)\rTo I$, and choose the map
-$\phi: \oplus_i\sO_{\PP^3}(-a_i)\rTo\sI_C$
-in the proof of Theorem~\ref{HR}
-to be the corresponding map of sheaves, so that
-$\sE$ is the sheafification of the graded module $E = \ker \psi$.
-
-Since $I$ is a saturated ideal,
- the depth of $S/I$ is at least 1, so $\pd\ S/I\leq 3$, and $I$ has a free resolution of the form
-$$
-0\rTo G \rTo F \rTo \oplus_iS(-a_i)  \rTo S\rTo S/I \rTo 0.
-$$
-where $G\to F$ is a free presentation of $E$. and there is an exact sequence
-$$
-0 \to E^* \to F^* \to G^* \to Ext^3_S(S/I, S) \to 0.
-$$
-Since $\sO_C$ is Cohen-Macaulay the sheafification of $Ext^3_S(S/I, S)$ is 0; that is,
-$Ext^3_S(S/I, S)$ has finite length, and writing $\widetilde{(\phantom{-})}$ for the sheafification functor,
-we have a short exact sequence of sheaves 
-$$
-0\to \sE^* \to \widetilde{F^*} \to \widetilde{G^*}\to 0.
-$$
-From this we see that 
-$$
-Ext^3_S(S/I,S) = H^1_*(\sE^*) = Hom_\CC( H^2_*(\sE(-4)),\CC) = H^1_*(\sI)(-4),
-$$
-proving the assertion.
-\end{proof}
