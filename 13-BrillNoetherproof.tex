@@ -10,7 +10,7 @@ If $r\geq 0$ and
  $$
  \rho(g,r,d) := g - (r+1)(g-d+r) \geq 0.
 $$
-then every smooth projective curve of genus $g$  possesses a $g^r_d$, and for a general curve $C$,  $\dim W^r_d(C) = \rho$. Conversely, if $\rho < 0$ then a general curve $C$ of genus $g$ will not possess a $g^r_d$.
+then every smooth projective curve of genus $g$  possesses a $g^r_d$; and for a general curve $C$,  $\dim W^r_d(C) = \rho$. Conversely, if $\rho < 0$ then a general curve $C$ of genus $g$ will not possess a $g^r_d$.
 \end{theorem}
 
 In fact, a closer examination of our proof will yield some if not all of the assertions of the stronger Theorems~\ref{Wrd omnibus} and~\ref{grd omnibus}, as well as additional results on the existence of linear series with specified inflectionary behavior; we will discuss these at the end of the current chapter.
@@ -135,7 +135,7 @@ Our first goal is to find a family $\{C_t\}$ of curves of arithmetic genus $g$, 
 This will be a special case of a general construction, informally called ``crimping." We can state the result as
 
 \begin{proposition}
-Let $C$ be any curve and $p \in C$ a smooth point. There exists a curve $C_0$ and a map $f : C \to C_0$ such that  $f$ maps $C \setminus \{p\}$ isomorphically to $C_0 \setminus \{r\}$ and the image $r=f(p) \in C_0$ is a cusp of $C_0$.
+Let $C$ be any curve and $p \in C$ a smooth point. There exists a curve $C_0$ and a bijective morphism $f : C \to C_0$ such that  $f$ maps $C \setminus \{p\}$ isomorphically to $C_0 \setminus \{r\}$ and the image $r=f(p) \in C_0$ is a cusp of $C_0$.
 \end{proposition}
 
 
@@ -266,49 +266,56 @@ To start, let $C$ be a curve with a node $p$, and $\widetilde C \rTo^\nu C$ the 
 
 Thus the family of invertible sheaves $\cL$ on $C$ whose pullback is isomorphic to a given $\cM$ may be identified with the set of isomorphisms $\cM_q \cong \cM_r$ of the two one-dimensional vector spaces $\cM_q$ and $\cM_r$, so that  we have an exact sequence of groups
 $$
-0 \rTo \pic_0(\widetilde C) \rTo^{\nu^*} \pic_0(C) \rTo \CC^* \rTo 0
+0 \rTo  \CC^* \rTo \pic_0(C) \rTo^{\nu^*}  \pic_0(\widetilde C) \rTo 0
 $$
 and similarly for $\pic_d$ for any degree $d$.
 
-Thus given one invertible sheaf $\sF_1$ on $C$ there are pairwise non-isomorphic invertible sheaves $\sF_\lambda$ on $C$ for $\lambda\in \CC^*$ that become
-isomorphic when restricted to the complement of $p$. 
+One way to express this---which will apply as well in the cuspidal case---is that \emph{the data of an invertible sheaf $\cL$ on $C$ is equivalent to the data of an invertible sheaf $\widetilde \cL$ on $\widetilde C$, together with a trivialization of $\widetilde \cL$ on the preimage $\nu^{-1}(p)$ up to scalar multiplication}.
+
 
 \def\wL{{\widetilde\sL}}
 
-Similarly, suppose that $p\in C$ is a cusp and $\pi: \widetilde C \to C$ is the partial normalization of $C$ at $p$. Suppose that
-$\sL$ is an invertible sheaf on $C$, and let $\wL = \pi^*(\sL) = \sO_{\widetilde C}\otimes_{\sO_C} \sL$ be its pullback to $\widetilde C$. The inclusion $\gm_{C,p}\subset \sO_C \subset \pi_*(\sO_{\widetilde C})$ induces proper inclusions
+Similarly, suppose that $p\in C$ is a cusp and $\pi: \widetilde C \to C$ is the normalization of $C$ at $p$; denote by $q$ the preimage of $p$ in $\widetilde C$. Now the preimage $\nu^{-1}(p)$ is the nonreduced scheme $2q \subset \widetilde C$, but the principle stated above still holds: the data of an invertible sheaf $\cL$ on $C$ is equivalent to the data of an invertible sheaf $\widetilde \cL$ on $\widetilde C$, together with a trivialization of $\widetilde \cL$ on the preimage $\nu^{-1}(p)$ up to scalar multiplication. In this case, the family of such trivializations, mod scalars, in parametrized by $\CC$; so we have an exact sequence 
 $$
-\gm_{C,p}\wL  = \wL(-2p) \subset \sL \subset \wL;
+0 \rTo \CC \rTo \pic_0(C) \rTo^{\nu^*} \pic_0(\widetilde C) \rTo 0.
 $$
-where for simplicity we have written $p$ again for the preimage of $p$ in $\widetilde C$ and $\wL$ in place of $\pi_*(\wL)$.
-This is the same as saying that local sections of $\sL$ may be identified with the local sections of $\wL$ that
-are either units or vanish to order 2 at $p$.
 
-Fixing the sheaf $\wL\in \Pic_0(\widetilde C)$ we note that  $\wL/\wL(-2p) \cong \CC[x]/(x^2)$. The 1-dimensional subspaces of $\CC[x]/(x^2)$ that contain a unit
-are those of the form $\CC(1+rx)$ for $r\in \CC$. Identifying the image of a local generator of $\sL$ in $\wL/\wL(-2p)$
- with $1\in \CC[x]/(x^2)$, we see that there are invertible sheaves $\sL_r$ on $C$ whose local generator
- at $p$ goes to $1+rx\in \CC[x]/(x^2)$. These are non-isomorphic on $C$ because
- any isomorphism would induce an automorphism of $\wL(-2)$, and such an automorphism would be given by multiplication
- with an element of $\CC^*$. Once again, these are sheaves that become isomorphic when restricted to the
- complement of $p$ (since they are isomorphic as sheaves on $\widetilde C$. Thus we have an exact sequence 
-$$
-0 \rTo \pic_0(\widetilde C) \rTo^{\nu^*} \pic_0(C) \rTo \CC \rTo 0,
-$$
-and similarly for $\Pic_d$.
+
+%
+%Suppose that
+%$\sL$ is an invertible sheaf on $C$, and let $\wL = \pi^*(\sL) = \sO_{\widetilde C}\otimes_{\sO_C} \sL$ be its pullback to $\widetilde C$. The inclusion $\gm_{C,p}\subset \sO_C \subset \pi_*(\sO_{\widetilde C})$ induces proper inclusions
+%$$
+%\gm_{C,p}\wL  = \wL(-2p) \subset \sL \subset \wL;
+%$$
+%where for simplicity we have written $p$ again for the preimage of $p$ in $\widetilde C$ and $\wL$ in place of $\pi_*(\wL)$.
+%This is the same as saying that local sections of $\sL$ may be identified with the local sections of $\wL$ that
+%are either units or vanish to order 2 at $p$.
+%
+%Fixing the sheaf $\wL\in \Pic_0(\widetilde C)$ we note that  $\wL/\wL(-2p) \cong \CC[x]/(x^2)$. The 1-dimensional subspaces of $\CC[x]/(x^2)$ that contain a unit
+%are those of the form $\CC(1+rx)$ for $r\in \CC$. Identifying the image of a local generator of $\sL$ in $\wL/\wL(-2p)$
+% with $1\in \CC[x]/(x^2)$, we see that there are invertible sheaves $\sL_r$ on $C$ whose local generator
+% at $p$ goes to $1+rx\in \CC[x]/(x^2)$. These are non-isomorphic on $C$ because
+% any isomorphism would induce an automorphism of $\wL(-2)$, and such an automorphism would be given by multiplication
+% with an element of $\CC^*$. Once again, these are sheaves that become isomorphic when restricted to the
+% complement of $p$ (since they are isomorphic as sheaves on $\widetilde C$. Thus we have an exact sequence 
+%$$
+%0 \rTo \CC \rTo \pic_0(C) \rTo^{\nu^*} \pic_0(\widetilde C) \rTo 0,
+%$$
+%and similarly for $\Pic_d$.
 
 % If the curve $C$ has a cusp at $p$, the analogue of the class of identifications $\cM_q \cong \cM_r$ above is an equivalence class of trivializations of the invertible sheaf $\cM$ over the preimage $\nu^{-1}(p) \subset \widetilde C$, where two trivializations are equivalent if they differ by multiplication by a constant. Stated that way, the same conclusion holds if $\nu : \widetilde C \to C$ is the normalization of a curve $C$ at a cusp $p$; the difference is that the preimage $\nu^{-1}(p)$ is a nonreduced scheme isomorphic to $\Spec \CC[\epsilon]/(\epsilon^2)$ rather than two reduced points. In this case, the family of equivalence classes of trivializations of $\cM$ over $\nu^{-1}(p)$ is a copy of $\CC$ rather than $\CC^*$, and we have correspondingly an 
  
 
 
-To express this result for the curves we'll be dealing with, we can say that for a $g$-cuspidal curve $C_0$,
+In the case of the curves we'll be dealing with, we can say that for a $g$-cuspidal curve $C$,
 $$
-\pic_0(C_0) \; \cong \CC^g
+\pic_0(C) \; \cong \CC^g
 $$
-and for a $g$-nodal curve, 
+and for a $g$-nodal curve $C$, 
 $$
-\pic_0(C_0) \; \cong (\CC^*)^g.
+\pic_0(C) \; \cong (\CC^*)^g.
 $$
-Note that both of these are irreducible of dimension $g$, just like the Picard variety of a smooth curve of genus $g$. In neither case is $\pic_d(C)$ proper. We will deal with this fact in Section~\ref{line bundle limits} below.
+Note that both of these are irreducible of dimension $g$, just like the Picard variety of a smooth curve of genus $g$. In neither case, however, is $\pic_0(C)$ proper. We will deal with this fact in Section~\ref{line bundle limits} below.
 
 \subsection{The relative Picard variety}
 
@@ -349,6 +356,8 @@ crimping $\PP^1$ at each $p_i$. There exists a family of curves $\pi : \cC \to B
 \fix{this needs a proof -- not refer to Severi scheme but rather to the local comp plus Ravi's references}
 
 \subsection{Limits of line bundles}\label{line bundle limits}
+
+\fix{This subsection is extremely confusing. I'd suggest scrapping it entirely and talking about how to state (and prove) what we need.}
 
 %Given a family $\pi : \cC \to B$, and a family $\{ \cD_b = (L_b, V_b)\}_{b \neq 0 \in B}$ of linear series on the curves $C_b$ with $b \neq 0$, how can we describe the ``limit" of the linear series $\cD_b$ as $b \to 0$? The answers are similar whether the special fiber $C_0$ has nodes or cusps, so we'll give the answer in both cases. 
 
@@ -886,13 +895,13 @@ $$
 Finally, we can combine this last theorem with a little dimension-counting to deduce a simple fact:
 
 \begin{theorem}
-If $\cD$ is a general $g^r_d$ on a general curve, then $\cD$ has only simple ramification; that is,
+If $\cD$ is a general $g^r_d$ on a general curve, then $\cD$ has only simple ramification; that is,open 12-	
 $$
 w(\cD, p) \leq 1 \quad \text{for all } p \in C.
 $$
 \end{theorem}
 
-Note that applying this in case $d=2g-2$ and $r = g-1$, we arrive at the statement made earlier \fix{where?}: that a general curve $C$ of genus $g$ has only normal Weierstrass points!
+Note that applying this in case $d=2g-2$ and $r = g-1$, we arrive at the statement made in Section~\ref{Weierstrass points}: that a general curve $C$ of genus $g$ has only normal Weierstrass points!
 
 \section{Exercises}
 
