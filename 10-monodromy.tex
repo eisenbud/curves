@@ -59,6 +59,8 @@ on the space of quadratic forms in the ideal of the line. Thus the monodromy of 
 is transitive, and exchanges the two lines through the point.
 \end{example}
 
+\subsection{Uniform position}
+
 
 We will next compute the monodromy group of the  universal hyperplane section of a curve, constructed as follows:
 Let $C \subset \PP^r$ be an irreducible, nondegenerate curve of degree $d$, and let $X = {\PP^r}^*$ be the space of hyperplanes in $\PP^r$. We define the \emph{universal hyperplane section of $C$} to be the projection  $f: Y\to {\PP^r}^*$ of the incidence variety
@@ -98,6 +100,26 @@ $M$ is $n$ times transitive if and only if the restricted fiber power $\tilde Y^
 \begin{proof}
 If we restrict ourselves to open subsets $U \subset X$ and $V = f^{-1}(U) \subset Y$ such that $U$ and $V$ are smooth and the restriction $f|_V : V \to U$ is a covering space map in the classical topology, then the restricted fiber powers are unions of connected component of the usual fiber powers $Y^n/X$. The condition that the monodromy is $n$-times transitive is equivalent to the condition that the restricted fiber power $\tilde Y^n/X$ is connected; since the fiber powers are all smooth, this is equivalent to $\tilde Y^n/X$ being irreducible.
 \end{proof}
+
+\subsection{Uniform position for higher-dimensional varieties}
+
+We mention here a generalization of Theorem~\ref{uniform position lemma} for irreducible varieties $X \subset \PP^r$ of any dimension $k$. To set this up, let $\GG(r-k,r)$ be the Grassmannian parametrizing $(r-k)$-planes $\Lambda \subset \PP^r$. We introduce the \emph{universal $(r-k)$-plane section of} $X$:
+$$
+Y = \{ (\Lambda, p) \in \GG(r-k,r) \times X \mid p \in \Lambda \}.
+$$
+Projection on the first factor expresses $Y$ as a generically finite cover of $\GG(r-k,r)$, and we can ask for its monodromy. The answer is the same as for curves: we have
+
+
+\begin{theorem}\label{higher dim uniform position lemma}
+The monodromy group of the universal $(r-k)$-plane section of an irreducible $k$-dimensional variety $X \subset \PP^r$ is the full symmetric group $S_d$.
+\end{theorem}
+
+\begin{proof}
+In fact, this follows from Theorem~\ref{uniform position lemma}. To do it, fix a general $(r-k+1)$-plane $\Gamma \subset \PP^r$; since a general hyperplane section of an irreducible variety $X \subset \PP^r$ of dimension $k \geq 2$ is again irreducible, we see that $C := \Gamma \cap X$ is an irreducible curve. The restriction of the universal $(r-k)$-plane section of $X$ to the sub-Grassmannian $\GG(r-k, \Gamma) \cong {\PP^r}^*$ of $(r-k)$-planes contained in $\Gamma$ is just the universal hyperplane section of the curve $C$, which we know has monodromy $S_d$; since the monodromy group of a cover can only get smaller under restriction to a subvariety of the target, the result follows.
+\end{proof}
+
+We will see an application of this result in Proposition~\ref{plane curve nodes} below.
+
 
 \section{Flexes and bitangents are isolated}\label{isolated flexes and bitangents}
 
@@ -299,6 +321,35 @@ of the points---is equivalent to $D$.
 Thus if $p\in D$ and $q\notin D$, then $D-p+q \equiv D$, whence $q\equiv p$. Thus
 $r(p)\geq 1$, so $C\cong \PP^1.$
 \end{proof}
+
+\subsection{Nodes of plane curves}\label{plane curve nodes}
+
+In Section~\ref{severi variety}, we introduced the \emph{Severi variety} $V_{d,g}$; this is the locally closed subset of the projective space $\PP^N$ of all plane curves of degree $d$ parametrizing irreducible plane curves of degree $d$ having $\delta := \binom{d-1}{2} - g$ nodes and no other singularities. We proved there that $V_{d,g}$ was smooth, and mentioned, in Cheerful Fact~\ref{severi irreducible} that it is irreducible for all $d$ and $g$. 
+
+We want to consider now the monodromy action on the nodes. To set this up, we introduce the incidence correspondence
+$$
+\Phi := \{(C, p) \in V_{d,g} \times \PP^2 \mid p \in C_{sing} \};
+$$ 
+this is a $\delta$-sheeted covering space of $V_{d,g}$, and we ask now what its monodromy is. We start with the extremal case $g = 0$, where we can prove
+
+\begin{proposition}
+The monodromy group of $\Phi$ over $V_{d,0}$ is the full symmetric group $S_\delta$, with $\delta = \binom{d-1}{2}$.
+\end{proposition}
+
+\begin{proof}
+The key observation here is that every rational nodal curve $C \subset \PP^2$ is the projection of a rational normal curve $\tilde C \subset \PP^d$ from a $(d-3)$-plane $\Lambda \subset \PP^d$. Moreover, if $\Lambda$ is general,  the nodes of the projection correspond to the points of intersection of $\Lambda$ with the  secant variety $X \subset \PP^d$ of the rational normal curve $\tilde C$. Applying Theorem~\ref{higher dim uniform position lemma}, the result follows.
+\end{proof}
+
+This result has an immediate consequence, which played a major role in the proof of Cheerful Fact~\ref{severi irreducible}: given the description in Section~\ref{severi variety} of $V_{d,g}$ in a neighborhood of a point in $V_{d,0}$, it follows that \emph{there is a unique irreducible component of $V_{d,g}$ containing $V_{d,0}$ in its closure}. Thus, to prove the irreducibility of $V_{d,g}$, it is sufficient to show that every component of $V_{d,g}$ contains $V_{d,0}$ in its closure. 
+
+Going in the other direction, note also that if we assume Cheerful Fact~\ref{severi irreducible}, then we can deduce the analogous result for all $g$:
+
+
+\begin{proposition}
+The monodromy group of $\Phi$ over $V_{d,g}$ is the full symmetric group $S_\delta$, with $\delta = \binom{d-1}{2} - g$.
+\end{proposition}
+
+
 
 \section{Exercises}
 
