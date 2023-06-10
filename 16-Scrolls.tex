@@ -379,7 +379,7 @@ As always, the set $V(M)$ is the union of the linear spaces on which generalized
 \end{proof}
 
 More is true: 
-\begin{theorem}
+\begin{theorem}\label{matrix pencils}
  Every
  1-generic $2 \times N$ matrix of linear forms can be transformed by row and column transformations and a linear change
  of variables to one of the type shown in
@@ -392,64 +392,12 @@ in $\CC^{2}\otimes \CC^{a}\otimes \CC^{N+1}$, or, equivalently, as an $a\times (
 \cite[Theorems *** and ***]{Gantmacher} for an exposition, and ~\cite{Eisenbud-Harris-Centennial} for a geometric approach.
 \end{proof}
 
-\begin{corollary}\label{hyperelliptic and trigonal} Suppose that one of the following holds:
-\begin{enumerate}
- \item  $C\subset \PP^n$ is a linearly normal hyperelliptic curve, and  
-$$
-\{D_\lambda \mid \lambda \in \PP^1\}
-$$
-are the divisors of the $g^1_2$ on $C$; or
 
-\item $C\subset \PP^{g-1}$ is a trigonal canonical curve, and  
-$\{D_\lambda \mid \lambda \in \PP^1\}$
-are the divisors of the $\g^1_3$.
-\end{enumerate}
 
-The union of the lines spanned by the $D_\lambda$
-is a scroll $S(a_1,a_2)$ and $\max\{a_1, a_2\}$ is the maximal number of
-$D_\lambda$ that are contained in a single hyperplane.
-\end{corollary}
-
-\begin{proof}
-Let $\sL$ be the invertible sheaf $\cO_C(D_\lambda)$ corresponding to the $g^1_2$ in case 1 or
-the $g_3^1$ in case 2 and let $s_\lambda$ be
-the section vanishing on $D_\lambda$. Setting $\sM =  \sL^{-1}\otimes \sO_C(1)$, we see that
-$s_\lambda\cdot H^0(\sM) \subset H^0(\sO_C(1)$ is the space of linear forms vanishing on
-$D_\lambda$. In both cases, this space is a line: this is obvious in case 1, and follows from the 
-geometric Riemann-Roch theorem in case 2. 
-
-These forms make up the
-generalized rows of the matrix $M_\mu$ corresponding to the multiplication
-$\mu: H^0(\sL)\otimes H^0(\sM) \to H^0(\sO_C(	1))$, we see that the union of the lines is a
-scroll $S(a_1,a_2)$ cut out by $I_2(M_\mu)$.
-
-The proof is completed by the more general Proposition~\ref{which scroll}.
-\end{proof}
-
-\begin{proposition}\label{which scroll}
-Let $S(a_1,a_2)\subset \PP^{a_1+a_2+1}$ be a scroll with $a_1\leq a_2$. The maximal number of rulings contained in
-a proper subspace of $ \PP^{a_1+a_2+1}$, is $a_2$. Equivalently, if the scroll is defined from a multiplication
-map $H^0(\sL_1)\otimes H^0(\sL_2) \to H^0(\sO_X(1))$ with invertible sheaves $\sL_i$ on a variety $X$, with 
-$h^0(\sL_1) =2$, then $a_2$ is the maximal integer such that $\sL_1^{-a_2}\\sO_X(1)$ is effective.
-\end{proposition}
-
-\begin{proof}
-We may suppose that $a_1\leq a_2$. A hyperplane containing $C_{a_1}$ meets $C_{a_2}$ in $a_2$
-points, and thus contains $a_2$ rulings of the scroll. If $H$ were a hyperplane containg more than $a_2$
-rulings, then $H$ would meet each curve $C_{a_i}$ in more than $a_i$ points, and thus $H$ would contain
-both these curves, so that $S(a_1,a_2)\subset H$. Since $S(a_1,a_2)$ is nondegenerate, this is impossible.
-
-The second characterization follows because the rulings of the scroll are the divisors of section of $\sL_1$.
-\end{proof}
-\fix{What if some of the linear series $V_1 = \langle 1,\sigma\rangle,V_2, V_3$ where the scroll comes
-from $V_1\otimes V_2 \to V_3$ and $X\subset \PP(V_3)$ are not complete,
- What if if the scroll is higher-dimensional?
- I think this corresponds to
-a ``maximal'' decomposition of the embedding linear series $V$ as a direct sum of sections of $V_2$ times
-powers of $V_1$.  Make an exercise?}
 
 \section{Scrolls as Images of Projective Bundles (the deep and inscrutable name)}\label{inscrutable name}
 
+\fix{Clarify the relationship between $a_1,a_2$ and $\pi_*(\sO_{S(a_1,a_2)})$, which has much larger rank.
 Our third description of scrolls is that they are the images of projective space bundles on $\PP^{1}$ under the map given by the complete series associated to the tautological line bundle. When both $a_{1}$ and $a_{2}$ are strictly positive, we will see that this is an embedding. For simplicity we focus on the 2-dimensional case; the case of higher dimensional scrolls is similar.
 
 Fix integers $a_1\leq a_2$, and let $\sE = \sO_{\PP^1}(a_1) \oplus \sO_{\PP^1}(a_2)$. Recall (from \cite[***]{Hartshorne1977}) that the projectivized vector bundle
@@ -617,6 +565,107 @@ Apply \cite[II.7.12]{Hartshorne1977}).
 
 \section{Curves on a 2-dimensional scroll}\label{curves on scrolls}
 
+We may begin with the curve, and try to ``find'' the scroll; or we may begin with the scroll and ask
+what curves it contains. We begin with the first approach:
+
+\subsection{Finding a scroll containing a given curve}
+\begin{proposition}
+Suppose that $C\subset \PP^n$ is a linearly normal integral curve, and $D$ is a base-point-free Cartier divisor on $C$. If the linear span of $D$ is $t$-dimensional with $t\leq n-2$, then $C$ lies on a scroll of dimension $t+1$.
+\end{proposition}
+
+\begin{proof}
+Choose a base-point-free pencil $\CC^2\cong V \subset H^0(\sO_C(D)$, and let $H$ be a hyperplane section of $C$. Since the span of $D$ is $t$-dimensional, $W:=H^0(\sO_C(H-D))$ has dimension $n-t$, and the natural 1-generic mapping
+$V\otimes W \to H^0(\sO_C(H)$ corresponds, as in Theorem~\ref{1-generic basics} and Theorem~\ref{matrix pencils}, to the desired scroll.
+\end{proof}
+
+\begin{corollary}\label{hyperelliptic and trigonal} Suppose that one of the following holds:
+\begin{enumerate}
+ \item  $C\subset \PP^n$ is a linearly normal hyperelliptic curve, and  
+$$
+\{D_\lambda \mid \lambda \in \PP^1\}
+$$
+are the divisors of the $g^1_2$ on $C$; or
+
+\item $C\subset \PP^{g-1}$ is a trigonal canonical curve, and  
+$\{D_\lambda \mid \lambda \in \PP^1\}$
+are the divisors of the $\g^1_3$.
+\end{enumerate}
+
+The union of the lines spanned by the $D_\lambda$
+is a scroll $S(a_1,a_2)$ and $\max\{a_1, a_2\}$ is the maximal number of
+$D_\lambda$ that are contained in a single hyperplane.
+\end{corollary}
+
+\begin{proof}
+Let $\sL$ be the invertible sheaf $\cO_C(D_\lambda)$ corresponding to the $g^1_2$ in case 1 or
+the $g_3^1$ in case 2 and let $s_\lambda$ be
+the section vanishing on $D_\lambda$. Setting $\sM =  \sL^{-1}\otimes \sO_C(1)$, we see that
+$s_\lambda\cdot H^0(\sM) \subset H^0(\sO_C(1)$ is the space of linear forms vanishing on
+$D_\lambda$. In both cases, this space is a line: this is obvious in case 1, and follows from the 
+geometric Riemann-Roch theorem in case 2. 
+
+These forms make up the
+generalized rows of the matrix $M_\mu$ corresponding to the multiplication
+$\mu: H^0(\sL)\otimes H^0(\sM) \to H^0(\sO_C(	1))$, we see that the union of the lines is a
+scroll $S(a_1,a_2)$ cut out by $I_2(M_\mu)$.
+
+The proof is completed by the more general Proposition~\ref{which scroll}.
+\end{proof}
+
+\begin{proposition}\label{which scroll}
+Let $S(a_1,a_2)\subset \PP^{a_1+a_2+1}$ be a scroll with $a_1\leq a_2$. The maximal number of rulings contained in
+a proper subspace of $ \PP^{a_1+a_2+1}$, is $a_2$. 
+
+Equivalently, if the scroll is defined from a multiplication
+map $V\otimes H^0(\sL_2) \to H^0(\sO_X(1))$, where $V$ is a basepoint-free pencil in $H^0(\sL_1)$,
+then $a_2$ is the maximal integer such that $\sL_1^{-a_2}\\sO_X(1)$ is effective.
+\end{proposition}
+
+\begin{proof}
+A hyperplane containing $C_{a_1}$ meets $C_{a_2}$ in $a_2$
+points, and thus contains $a_2$ rulings of the scroll. If $H$ were a hyperplane containg more than $a_2$
+rulings, then $H$ would meet each curve $C_{a_i}$ in more than $a_i$ points, and thus $H$ would contain
+both these curves, so that $S(a_1,a_2)\subset H$. Since $S(a_1,a_2)$ is nondegenerate, this is impossible.
+
+The second characterization follows because the rulings of the scroll are the divisors of elements of $V.$
+\end{proof}
+
+In the simplest case, the scroll might be a rational normal curve. There is a famous result of Castelnuovo
+in this direction. Recall that a set of $d$ points in linearly general position that spans $\PP^r$ imposes
+at least $min(d, 2r+1)$ conditions on quadrics (Proposition~\ref{min hilb}).
+
+\begin{theorem}\label{2n+3}
+If $\Gamma\subset \PP^n$ is a set of $d\geq 2n+3$ points in linearly general position, and $\Gamma$ imposes only
+$2n+1$ conditions on quadrics, then $\Gamma$ lies on rational normal curve.
+\end{theorem}
+\begin{proof}
+ See~\cite[Lemma 3.9]{MR685427}. The proof is broken into hints in Exercise~\ref{2n+3 exercise}
+\end{proof}
+
+The bound $2n+3$ is sharp; for example, in $\P^3$ the complete intersection of $3 = 10 -(2n+1)$ quadrics
+is $8=2n+2$ points, and these do not lie on a rational normal curve (Exercise~\ref{2n+3 is sharp}).
+
+
+\begin{theorem}\label{Castelnuovo examples}
+If $C\subset \PP^r$ is an integral curve of degree $d\geq 2r+1$ with arithmetic genus equal to $\pi(r,d)$, the
+Castelnuovo bound, then $C$ lies on a 2-dimensional scroll or on a cone over the Veronese surface
+\end{theorem}
+
+\begin{proof}
+From the proof of Castelnuovo's theorem (Theorem~\ref{Castelnuovo's bound}) we see that a general hyperplane
+section of $C$, which is a set of point imposes exactly $2(r-1)+1$ conditions on quadrics, and moreover these
+quadrics are the restriction of quadrics containing the curve. By Theorem~\ref{2n+1} the hyperplane
+section lies on a rational normal curve whose ideal consists of all the quadrics containing the points;
+Thus these quadrics intersect in a surface of minimal degree containing $C$.
+\end{proof}
+
+Both scrolls and the Veronese surface can occur; see Exercise~\ref{Castelnuovo Veronese}.
+
+\subsection{Finding curves on a given scroll}
+
+We now turn to the reverse approach: given a 2-dimensional scroll, what are the curves that lie on it?
+The key is to understand the divisor class group and the canonical class. We begin with the nonsingular case.
+
 \noindent{\bf Notation:} Throughout this section we consider the vector bundle 
 $$
 \sE = \sO_{\PP^1}(a_1) \oplus\sO_{\PP^1}(a_2)
@@ -626,7 +675,6 @@ scroll $ S(a_1, a_2) \subset \PP^N$, where $N = a_1+a_2+1$. This scroll is the i
 if $0<a_1$ and is the blow-down of the $C_1$ if $a_1=0$ \fix{This requires defining $C_1,C_2$ inside $\PP(\sE)$}.  We write $\pi:X \to \PP^1$ for the projection, and
 $C_{a_i}\subset X$ for the directrix of degree $a_i$. The degree of $S(a,b)$ is $d := a_1+a_2$.
 
-Our interest in scrolls in this book is primarily for the curves that lie on them.The key is to understand the Picard group and the canonical class. We begin with the nonsingular case.
 
 \begin{theorem}\label{pic of scroll}
 \begin{enumerate} Suppose in addition that $a_{1}>0$.
@@ -923,6 +971,19 @@ $X$ is a variety of minimal degree (that is, $\deg X = c+1$.)
 Hint: Let $Y = X \cap H$ be a general hyperplane section of $X$ and consider the restriction map $H^0(\cI_{X/\PP^n}(2)) \to H^0(\cI_{Y/\PP^{n-1}}(2))$; repeat $n-c$ times.
 \end{exercise}
 
+\begin{exercise}\label{Castelnuovo Veronese}
+Find all the curves on the Veronese surface that satisfy the conditions of 
+ Theorem~\ref{Castelnuovo examples}. Do any of them also lie on a 2-dimensional scroll?
+\end{exercise}
+
+
+\begin{exercise}
+State and prove an analogue of Proposition~\ref{which scroll} for curves on scrolls of dimension $>2$.
+Hint: $a_1$ is again the maximal number of rulings. What's the cleanest statement after that? Does one have
+to project the scroll to $S(a_2, \dot)$ to see the rest?
+\end{exercise}
+
+
 \begin{exercise}\label{general projections}
 Improve the result of Exercise~\ref{special projections} by showing that, if $0\leq a_1,\leq a_2$, then
  the projection of $S(a_1,a_2)$ from any point not on $C_{a_1}$ (or not the vertex, in case $a_1=0$) is 
@@ -942,7 +1003,16 @@ $$
 $$
 \end{exercise}
 
-\fix{Add Castelnuovo curves modulo the 2n+3 lemma}
+\begin{exercise}~\label{2n+3 exercise}
+Prove that if $\Gamma\subset \PP^n$ is a set of $d\geq 2n+3$ points in linearly general position, and $\Gamma$ imposes only
+$2n+1$ conditions on quadrics, then $\Gamma$ lies on rational normal curve, using the following steps:
+\fix{add an exercise version of the proof}
+\end{exercise}
+
+\begin{exercise}~\label{2n+3 is sharp}
+Show that 3 general quadrics meet in 8 general points in $\PP^3$, and deduce that the bound in Exercise~\ref{2n+3 exercise}
+is sharp.
+\end{exercise}
 
 \fix{Revise the following, moved from the genus 4,5 chapter and referred to there}
 
