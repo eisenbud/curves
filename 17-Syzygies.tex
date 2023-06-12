@@ -271,99 +271,119 @@ is surjective, completing the proof.
 \end{proof}
 
 
-\section{Canonical Curves}\label{canonical ACM}
-A slightly more subtle argument will show that
-canonical curves are arithmetically Cohen-Macaulay, a result (in the smooth case) of~\cite{Noether-canonical} that we have been using ever since Section~\ref{Noether theorem section}.
-The necessary modification is to replace the base-point-free pencil with one having many base points in a controlled way.
-We follow the treatment in \cite{Schreyer}. 
-
-If $C$ is an integral curve then by Theorem~\ref{linear general position} a general hyperplane $H\subset \PP^{g-1}$
-meets $C$ transversely in a set of points in linearly general position. Any subset $\Gamma$ of $g-2$ of these points will span a $(g-3)$-plane $\Lambda$
-meeting $C$ transversely in $\Gamma$, and we call $\Lambda$ a \emph{simple $(g-2)$-secant $(g-3)$-plane}. 
-
-\begin{theorem}\label{canonical curves are ACM}
-If $C\subset \PP^{g-1}$ is a  canonically embedded integral curve of genus $g := H^0(\omega_C)$, then 
-$$
-\HH^{0}(\sO_{\PP^{g-1}}(m)) \to \HH^{0}(\sO_{C}(m));
-$$
-is  surjective for all $m$; equivalently,
-$\HH^{1}_*(\sI_{C/\PP^{g-1}}) = 0$.
-\end{theorem}
-  
-\begin{proof} 
-%The Hilbert polynomial $\chi_{C}(t) = h^{0}\sO(t)-\h^{1}\sO(t)$ of $C$ has degree equal to
-%$\dim C = 1$, so it is determined by two values.
-
-For $m = 0,1$ the conclusion is immediate. Let $H$ be a general hyperplane in $\PP^{g-1}$, 
-and let $\Gamma$ be a set of
- of $g-2$ points of $H\cap C$ (so that the linear span $\overline \Gamma$ is a simple $(g-2)$-secant $(g-3)$-plane).
-
-By induction on $m$ it suffices to prove the surjectivity of
-$$
-\HH^{0}(\sO_{C}(H)) \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH))
-$$
-for all $m$, where $H$ is the hyperplane divisor on $C$. The cases $m=0,1$ are immediate.
-
-Since the points of $\Gamma$
-are linearly independent, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
-$x_{i}(p_{j}) \neq 0$ if and only if $i = j$. 
-and $H^0(\sO_C(1))$ is the direct sum of the 2-dimensional
-space $V:= \HH^{0}(\sO_{C}(H-\Gamma))$ and the space $X := \langle x_1,\dots, x_{g-2}\rangle$ spanned by the $x_i$.
-Furthermore, the image of 
-$$
-V \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH))
-$$
-is contained in $\HH^{0}(\sO_{C}(mH-\Gamma))$, which is disjoint from the space
-$X_m:= \langle x_1^m,\dots, x_{g-2}^m\rangle$. Since $X_m$ surjects onto
-$$
-H^0(\sO_C(mH|_\Gamma) = H^0(\sO_C(mH)/H^0(\sO_C(mH(-\Gamma)),
-$$
-it suffices to prove the surjectivity of
-$$
-V \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH-\Gamma))
-$$
-for  $m\geq 2$.
-
-
-Since $V$ is base-point free away from $\Gamma$, the two sections of $V$
-define a surjective map $V\otimes \sO_C \to  \sO_{C}(H-\Gamma)$ and thus a short exact sequence of sheaves
-$$
-(*) \quad 0\to \sL  \to V\otimes \sO_C((m-1)H) \to  \sO_{C}(mH-\Gamma)\to 0
-$$
-for some invertible sheaf $\sL$. We must show that the right-hand map is surjective on global sections for $m\geq 2$.
-
-From the exact sequence $(*)$ it follows that
-$$
-\sL\otimes \sO_{C}(mH-\Gamma) \cong  \wedge^2(V\otimes \sO_C((m-1)H) ) \cong \sO_C(2(m-1)H) 
-$$
-so $\sL \cong \sO_C((m-2)H+\Gamma).$ 
-
-
-To deal with the case $m=2$ we compute the dimensions of the cohomology of the three sheaves in the exact squence (*).
-By the Riemann-Roch theorem,
-$$
-h^0(\sO_C(2H-\Gamma)) = 3g-3 - (g-2) = 2g-1.
-$$ 
-On the other hand,
-$$
-h^0(\sO_C(\Gamma)))=\deg \Gamma -g+1+h^0(H-\Gamma) = -1 + h^0(\sO_C(H-\Gamma)) = 1
-$$
-and 
-$$
-\dim V \otimes H^0(\sO_C(H)) = 2g.
-$$
-Thus the left exact sequence
-$$
-0\to H^0(\sO_{C}(\Gamma)  \to V\otimes H^0(\sO_C(H)) \to H^0( \sO_{C}(2H-\Gamma))) \to 0
-$$
-is also right exact, as required for the case $m=2$.
-
-For $m\geq 3$ the divisor $(m-2)H+\Gamma$ has degree $>2g-2$. Consequently
-$H^1(\sO_{C}((m-2)H+\Gamma)) = 0$, which implies that the sequence $(*)$ is
-exact on global sections, as required.
-\end{proof}
-
-\begin{corollary}\label{canonical hilbert function}
+%\section{Canonical Curves}\label{canonical ACM}
+%
+%\fix{Since canonical curves are Castelnuovo curves, we could move this theorem to Chapter 9, as an application of
+%(the proof of) Castelnuovo's theorem. The proof given here is probably more general -- it only needs a simple $g-2$-secant---but we're not using that extra generality, and we could refer to Schreyer's paper. I have added this to Ch 9, along with the 
+%fact. Most of this
+%section can go, but we should keep a discussion of the canonical resolution here.}
+%
+%A slightly more subtle argument will show that
+%canonical curves are arithmetically Cohen-Macaulay, a result (in the smooth case) of~\cite{Noether-canonical} that we have been using ever since Section~\ref{Noether theorem section}.
+%The necessary modification is to replace the base-point-free pencil with one having many base points in a controlled way.
+%We follow the treatment in \cite{Schreyer}. 
+%
+%If $C$ is an integral curve then by Theorem~\ref{linear general position} a general hyperplane $H\subset \PP^{g-1}$
+%meets $C$ transversely in a set of points in linearly general position. Any subset $\Gamma$ of $g-2$ of these points will span a $(g-3)$-plane $\Lambda$
+%meeting $C$ transversely in $\Gamma$, and we call $\Lambda$ a \emph{simple $(g-2)$-secant $(g-3)$-plane}. 
+%
+%\begin{theorem}\label{canonical curves are ACM}
+%If $C\subset \PP^{g-1}$ is a  canonically embedded integral curve of genus $g := H^0(\omega_C)$, then 
+%$$
+%\HH^{0}(\sO_{\PP^{g-1}}(m)) \to \HH^{0}(\sO_{C}(m));
+%$$
+%is  surjective for all $m$; equivalently,
+%$\HH^{1}_*(\sI_{C/\PP^{g-1}}) = 0$.
+%\end{theorem}
+%  
+%\begin{proof} 
+%%The Hilbert polynomial $\chi_{C}(t) = h^{0}\sO(t)-\h^{1}\sO(t)$ of $C$ has degree equal to
+%%$\dim C = 1$, so it is determined by two values.
+%
+%For $m = 0,1$ the conclusion is immediate. Let $H$ be a general hyperplane in $\PP^{g-1}$, 
+%and let $\Gamma$ be a set of
+% of $g-2$ points of $H\cap C$ (so that the linear span $\overline \Gamma$ is a simple $(g-2)$-secant $(g-3)$-plane).
+%
+%By induction on $m$ it suffices to prove the surjectivity of
+%$$
+%\HH^{0}(\sO_{C}(H)) \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH))
+%$$
+%for all $m$, where $H$ is the hyperplane divisor on $C$. The cases $m=0,1$ are immediate.
+%
+%Since the points of $\Gamma$
+%are linearly independent, we may choose homogeneous coordinates $x_{i} \in \HH^{0}(\sO_{C}(1))$ so that
+%$x_{i}(p_{j}) \neq 0$ if and only if $i = j$. 
+%and $H^0(\sO_C(1))$ is the direct sum of the 2-dimensional
+%space $V:= \HH^{0}(\sO_{C}(H-\Gamma))$ and the space $X := \langle x_1,\dots, x_{g-2}\rangle$ spanned by the $x_i$.
+%Furthermore, the image of 
+%$$
+%V \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH))
+%$$
+%is contained in $\HH^{0}(\sO_{C}(mH-\Gamma))$, which is disjoint from the space
+%$X_m:= \langle x_1^m,\dots, x_{g-2}^m\rangle$. Since $X_m$ surjects onto
+%$$
+%H^0(\sO_C(mH|_\Gamma) = H^0(\sO_C(mH)/H^0(\sO_C(mH(-\Gamma)),
+%$$
+%it suffices to prove the surjectivity of
+%$$
+%V \otimes \HH^{0}(\sO_{C}((m-1)H)) \to \HH^{0}(\sO_{C}(mH-\Gamma))
+%$$
+%for  $m\geq 2$.
+%
+%
+%Since $V$ is base-point free away from $\Gamma$, the two sections of $V$
+%define a surjective map $V\otimes \sO_C \to  \sO_{C}(H-\Gamma)$ and thus a short exact sequence of sheaves
+%$$
+%(*) \quad 0\to \sL  \to V\otimes \sO_C((m-1)H) \to  \sO_{C}(mH-\Gamma)\to 0
+%$$
+%for some invertible sheaf $\sL$. We must show that the right-hand map is surjective on global sections for $m\geq 2$.
+%
+%From the exact sequence $(*)$ it follows that
+%$$
+%\sL\otimes \sO_{C}(mH-\Gamma) \cong  \wedge^2(V\otimes \sO_C((m-1)H) ) \cong \sO_C(2(m-1)H) 
+%$$
+%so $\sL \cong \sO_C((m-2)H+\Gamma).$ 
+%
+%
+%To deal with the case $m=2$ we compute the dimensions of the cohomology of the three sheaves in the exact squence (*).
+%By the Riemann-Roch theorem,
+%$$
+%h^0(\sO_C(2H-\Gamma)) = 3g-3 - (g-2) = 2g-1.
+%$$ 
+%On the other hand,
+%$$
+%h^0(\sO_C(\Gamma)))=\deg \Gamma -g+1+h^0(H-\Gamma) = -1 + h^0(\sO_C(H-\Gamma)) = 1
+%$$
+%and 
+%$$
+%\dim V \otimes H^0(\sO_C(H)) = 2g.
+%$$
+%Thus the left exact sequence
+%$$
+%0\to H^0(\sO_{C}(\Gamma)  \to V\otimes H^0(\sO_C(H)) \to H^0( \sO_{C}(2H-\Gamma))) \to 0
+%$$
+%is also right exact, as required for the case $m=2$.
+%
+%For $m\geq 3$ the divisor $(m-2)H+\Gamma$ has degree $>2g-2$. Consequently
+%$H^1(\sO_{C}((m-2)H+\Gamma)) = 0$, which implies that the sequence $(*)$ is
+%exact on global sections, as required.
+%\end{proof}
+%
+%
+%\begin{fact}
+%Though we have stated and proved this theorem for smooth curves,
+%only a few additional arguments are needed to treat a much more  general case. In \cite{Schreyer} 
+%the same result is proven for
+%any purely one-dimensional, nondegenerate closed subscheme $C\subset \PP^{g-1}$ satisfying
+%$$
+% h^{0}(\sO_{C}) = 1,\ h^{0}(\sO_{C}(1) = g, \ \omega_{C} = \sO_{C}(1),
+%$$ 
+%and having a simple $(g-2)$-secant $(g-3)$-plane.
+%\end{fact}
+% 
+ \fix{the theorem and proof commented out above are tentatively replaced by the simpler argument in Ch 9}
+ 
+ \begin{corollary}\label{canonical hilbert function}
 If $C\subset \PP^{g-1}$ is a canonical curve with a simple $g-2$-secant $g-3$-plane, then the Hilbert function of the homogeneous coordinate ring $S_{C}$ of  $C$ depends only on $g$, and is given by:
 $$
 \dim({S_{C}})_{n} = h^{0}(\cO_{C}(n)) = 
@@ -379,17 +399,6 @@ $$
 By Theorem~\ref{canonical curves are ACM} implies, in particular, that the homogeneous coordinate ring of $C$ can be identified with $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$.  
 \end{proof}
 
-\begin{fact}
-Though we have stated and proved this theorem for smooth curves,
-only a few additional arguments are needed to treat a much more  general case. In \cite{Schreyer} 
-the same result is proven for
-any purely one-dimensional, nondegenerate closed subscheme $C\subset \PP^{g-1}$ satisfying
-$$
- h^{0}(\sO_{C}) = 1,\ h^{0}(\sO_{C}(1) = g, \ \omega_{C} = \sO_{C}(1),
-$$ 
-and having a simple $(g-2)$-secant $(g-3)$-plane.
-\end{fact}
- 
  As noted above, the homogeneous coordinate ring $S/I_C$ of an arithmetically Cohen-Macaulay curve $C\subset \PP^r$ is isomorphic
  to $H^0_*(\sO_C)$. In the same way, the canonical module $\omega_{S/I} \cong \Ext_S^{r-1}(S/I_C, S(-r-1))$ of an arithmetically Gorenstein curve satisfies
  $\omega_{S/I} = H^0_*(\omega_C)$.  If the last free module in the minimal resolution of $S/I$ is $S(-a-r-1)$,
