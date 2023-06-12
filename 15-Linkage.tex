@@ -213,6 +213,305 @@ $$
 Since we have left the realm of smooth curves and surfaces, we will need a more sophisticated duality theory, and we
 postpone the proof to explain the necessary ideas.
 
+
+\section{The canonical sheaf of a singular curve}
+
+\fix{This section used to be the final section in the Plane Curves chapter, and I just (6/12) dropped it in here. Needs to be integrated.}
+
+Suppose again that $\nu:C\to C_0$ is the normalization of a singular curve. In order to understand the adjoint ideal, we 
+want to compare the canonical sheaf of $C$ with
+that of $C_0$. But the sheaf of differentials on $C_0$ is generally not well-behaved, generally not even torsion-free,
+ and it does not
+have the properties that make the canonical sheaf useful. The canonical
+sheaf on $C_0$ must be defined differently:
+
+\begin{definition}\label{canonical as Hom}
+Let $C_0$ be a purely 1-dimensional scheme and let $\rho: C_0\to \PP^1$ be a finite morphism. The canonical sheaf $\omega_{C_0}$
+is the sheaf $\rho^{-1}\Hom_{\PP^1}(\rho_*\sO_{C_0}, \omega_{\PP^1})$ on $C_0$. 
+\end{definition}
+
+To demystify the last phrase of this definition, note that because the map
+$\rho$ is finite,  the open sets $U = \rho^{-1}V$, where $V\subset \PP^1$ is open, form a basis for the open sets of $C_0$; and for
+such an open set $U$ the ring $\sO_C(U)$ is equal, as a set, to 
+$(\rho_*\sO_C)(V)$. Thus if $\sL$ is any coherent sheaf on $C_0$ then $\rho_*\sL$, or more properlu $\rho^{-1}(\rho_*(\sL)$,
+may be regarded as a coherent sheaf on $C_0$.
+
+The reader may be concerned with applying the name ``canonical'' to a definition that seems to
+depend on the choice of a map $\rho$, but in fact if $\rho': C_0 \to \PP^1$ is another such map,
+there is a canonical isomorphism between the apparently different sheaves $\omega_{C_0}$ defined above.
+
+More generally:
+
+\begin{fact}
+Suppose that $X$ is a smooth projective variety and $\omega_X$ is the sheaf of differential forms of degree $\dim X$.
+If $\psi: C_0 \to X$ is any finite morphism of pure-dimensional schemes, then
+$$
+\omega_{C_0} \cong \sExt^{\dim X -\dim C_0}(\sO_{C_0}, \omega_X),
+$$
+and any two such representations are canonically isomorphic.
+\end{fact}
+
+For a proof in the case of the inclusion of a projective variety see \cite[Section III.7]{Hartshorne1977}, while for the more general assertion above see \cite{AltmanKleiman}. 
+
+\begin{example}
+Consider the case when $C = C_0$ is smooth, connected projective curve. If $\psi: C\to \PP^1$ is a finite  ($\equiv$ non-constant) morphism to $\PP^1$, then Hurwitz' Theorem asserts that the canonical sheaf on
+$C$ is $(\rho^*\omega_{\PP^1})(R)$, where $R$ is the ramification divisor. It is not hard to show that this
+agrees with Definition~\ref{canonical as Hom}. For simplicity, suppose that the degree of the map is 2---the general case
+is virtually the same. If
+ $ p\in\PP^1$ is a point over which there are two disjoint smooth branches
+we can complete the local ring at $p$ and, after tensoring
+with $\widehat \sO_{C,p} \cong k[[x]]$, the map of rings becomes 
+$$
+R := k[[x]] \subset R':= k[[x]]e_1\times k[[x]]e_2; \quad x =xe_1+xe_2,
+$$
+where the $e_i$ are orthogonal idempotents. Tensoring with the quotient field $Q = k((x))$ of $k[[x]]$
+we get a map $Q \to Q':= Qe_1\times Qe_2$. As in any such situation there is a natural map of $Q$-vectorspaces in the other direction, the trace, which takes any element of $Q'$ to the trace of that element
+regarded as a homomorphism $Q' \to Q'$ of $Q$-modules. Because $R'$ is finite, and thus integral, over $R$, the trace takes elements of $R'$ to $R$; that is $Tr \in \widehat \omega_{R'} = \Hom_R(R', R) \cong R^2$.
+
+In this situation the trace generates $\widehat \omega_{R'}$ \emph{as an $R'$-module}: 
+$$
+(e_1Tr) (e_1) = Tr(e_1^2) = Tr(e_1) = Tr 
+\begin{pmatrix}
+ 1&0\\0&0
+\end{pmatrix} 
+=1$$
+while $e_1Tr(e_2) = Tr(e_1e_2) = Tr(0) = 0$
+and similarly with $(e_2Tr)$, the other projection.
+
+However, if $p$ is a simple branch point then, upon completing, the map of local rings becomes
+$$
+R := k[[x]] \subset R':= k[[y]; \quad x = y^2
+$$
+Again taking $Q = k((x))$, the quotient field of $R$, we see that $Q' = Q\otimes_RR'$ is freely generated as a $Q$-module by 1 and $y$. Again, since $R'$ is integral over $R$ the map $Tr$ takes $R'$ to $R$.
+We have $Tr(1) = 2$,  but
+$$
+Tr(y) = Tr
+\begin{pmatrix}
+ 0&1\\1&0
+\end{pmatrix} 
+=0
+$$
+so $\frac{1}{2}Tr$ is the projection onto the first summand,
+Furthermore, $yTr$ takes 1 to $Tr(y) =0$ and $y$ to $Tr(y^2) = Tr(x) = 2x$,
+so the cyclic module $R'Tr$ does not contain any map taking $y$ to a nonzero scalar, and
+thus does not contain a projection onto the second factor.
+However $y^{-1}= x^{-1}y$ so
+$$
+y^{-1}Tr(1) = 
+Tr
+\begin{pmatrix}
+0&1\\ x^{-1}&0
+\end{pmatrix} 
+=0
+$$
+while
+$
+y^{-1}Tr(y) = Tr(1) = 2
+$
+so 
+$$
+\frac{1}{2}y^{-1}Tr: R' = R\oplus Ry \to R
+$$
+ is the second projection, and $y^{-1}Tr$ generates $\omega_{R'} = \Hom_R(R', R)$ as an $R'$-module.
+
+This corresponds to the fact that a local generator of the module of regular differential forms
+on $\Spec R'$ is $y^{-1}$ times the pullback of a local generator $dx$, or equivalently
+that a differential form on $C'$ must be multiplied by $y$ to ensure that it ``descends'' to a regular differential
+form on $\PP^1$. Note that if we write
+$R' = k[[x,y]]/(f)$  with $f(x,y) = y^2-x$, then we have written the regular differential form on $C$
+$$
+y^{-1}dx = \frac{dx}{\partial f/\partial y}
+$$
+a formula we have seen before.
+\end{example}
+ 
+
+\begin{example}
+ If $C$ is a plane curve of degree $d$, then 
+$$
+\omega_C = \sExt^1(\sO_C, \omega_{\PP^2}) = \sExt^1(\sO_C, \sO_{\PP^2}(-3)) \cong \sO_C(d-3),
+$$
+where the last isomorphism can be seen from the long exact sequence in $\sExt$ applied
+to the locally free resolution
+$$
+0\to \sO_{\PP^2}(-d) \to \sO_{\PP^2} \to\sO_{X} \to 0
+$$
+of $\sO_C$ as a sheaf on $\PP^2$. 
+\end{example}
+
+Using Definition~\ref{canonical as Hom} we can give a formula for the adjoint ideal of any curve singularity.
+
+\begin{theorem}\label{general adjoint}
+If $\nu: C \to C_0$ is the normalization of a reduced connected projective curve then the 
+adjoint ideal 
+$$
+\fA_{C/C_0} :=\ann_{\sO_{C_0}}\frac{\omega_{C_0}}{\nu_* \omega_C}
+$$
+is equal to the conductor ideal
+$$
+\mathfrak f_{C/C_0}: = \ann_{\sO_{C_0}}\frac{\nu_* \sO_C}{\sO_{C_0}}	
+$$
+Moreover, if $C_0$ is a plane curve, then 
+$$
+\delta(C_0) = \length \frac{\nu_* \sO_C}{\sO_{C_0}} = \length \frac {\sO_{C_0}}{\mathfrak f_{C/C_0}}.
+$$
+\end{theorem}
+
+Here $\delta(C_0)$ is the ``deficiency'' or the ``number of nodes equivalent to the singularities of $C_0$'' as
+explained in Chapter~\ref{RiemannRochChapter}. The notation $\mathfrak f$ for the conductor comes from the german term \emph{F\"uhrer}. The property in the last statement of the
+Theorem  was first noted (for plane curves) in Daniel Gorenstein's thesis under Oscar Zariski\footnote{Gorenstein is better remembered for his work on the classification of finite simple groups.}. This is the
+reason why Grothendieck gave the name ``Gorenstein" to Cohen-Macaulay rings that have cyclic canonical 
+modules--see~\cite{Bass}. 
+
+In the previous chapter we used the adjoint ideal as a condition on a polynomial
+$e$ to multiply differential forms on $C$ for $e\phi$ to belong to $\omega_C$ is always sufficient, but may be necessary only
+when $\omega_{C_0}$ is cyclic---which is equivalent to the statement that $C_0$ is locally
+Gorenstein. This condition is always satisfied for singularities of curves in the plane.
+See Example~\ref{nongorenstein} for a singularity that is not locally planar, and behaves differently.
+
+
+\begin{proof}[Proof of Theorem~\ref{general adjoint}]
+  Let 
+$\rho: C_0 \to \PP^1$ be a finite morphism. Both $\rho_*\nu_*\sO_C$ and $\rho_*\sO_{C_0}$
+are torsion free coherent sheaves over $\sO_{\PP^1}$, and are thus locally free. Since $\rho_*$ is left-exact,
+the inclusion $\sO_{C_0} \subset \nu_*\sO_C$ pushes forward to an inclusion
+$$
+\alpha: \rho_*\sO_{C_0} \hookrightarrow \rho_*\nu_*\sO_C
+$$
+and since $\sO_C$ is equal to $\sO_{C_0}$ generically on $\PP^1$, the cokernel $\coker \alpha$ has finite length; indeed, it is supported on the 
+image of the singular locus of $C_0$. Since the maps $\nu$ and $\rho$ are finite, we may harmlessly think of both 
+$\sO_{C_0}$ and $\sO_C$ as coherent sheaves on $\PP^1$, and we will simplify the notation by dropping $\nu_*$ and $\rho_*$.
+Taking duals into $\sO_{\PP^1}$ and defining
+$\alpha^\vee := \Hom_{\PP^1}(\alpha, \sO_{\PP^1}) $ we get a map that fits into the long exact sequence
+of $\sExt_{\PP^1}(-, \sO_{\PP^1})$:
+$$
+\begin{diagram}[small]
+ 0&\rTo& 
+ \Hom_{\PP^1}(\coker \alpha,\sO_{\PP^1})
+&\rTo&
+\omega_{C}
+& \rTo^{\alpha^\vee}&
+\omega_{C_0}\\
+&\rTo&
+\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})
+&\rTo&
+\sExt^1_{\PP^1}(\sO_C, \sO_{\PP^1})
+&\rTo&
+\cdots
+\end{diagram}
+$$
+Since $\coker \alpha$ has finite support, $ \Hom_{\PP^1}(\coker \alpha,\sO_{\PP^1}) = 0$ and
+$\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})$ has the same length and the same annihilator
+as $\coker \alpha$. Furthermore, because $\sO_C$ is locally free as an $\sO_{\PP^1}$-module, the term
+$\sExt^1_{\PP^1}(\sO_C, \sO_{\PP^1})$ vanishes, and we get the more manageable exact sequence
+$$
+\begin{diagram}
+ 0&\rTo&
+\omega_{C}
+& \rTo^{\alpha^\vee}&
+\omega_{C_0}
+&\rTo&
+\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})
+&\rTo&
+0
+\end{diagram}
+$$
+It follows that the sheaves $\nu_*\sO_C/\sO_{C_0}$ and $\omega_{C_0}/\nu_*\omega_C$ have the same
+length $\delta(C_0)$. Note that the \emph{conductor} $\mathfrak f_{C/C_0}$ of $C/C_0$, which is defined to be the annihilator of $\sO_C/\sO_{C_0}$ 
+in $\sO_{C_0}$, is at the same time an ideal sheaf of $\sO_{C_0}$ and an ideal sheaf of $\sO_C$ via the inclusion $\sO_{C_0}\subset \sO_C$. The argument above shows that $\mathfrak f_{C/C_0}$ is also the annihilator ideal of $\omega_{C_0}/\omega_C$. By definition, this is the adjoint ideal of $C_0$, proving the first statement
+of the Theorem.
+
+A further simplification occurs when $C_0\subset \PP^2$ is a plane curve, or more generally any 
+curve such that the canonical module of $C_0$ is an invertible sheaf (this is the definition of the Gorenstein property).
+If the defining equation of 
+$C_0$ is the form $F$ of degree $d$, then there is a locally free resolution of  $\sO_C$ of the form
+$$
+0\rTo \sO_{\PP^2}(-d) \rTo^F \sO_{\PP^2} \rTo \sO_C \rTo 0
+$$
+and thus $\omega_C \cong \sExt^1_{\PP^2}(\sO_{C_0}, \omega_{\PP^2})$
+is cokernel of the map $\sO_{\PP^2}(-3) \to \sO_{\PP^2}(d-3)$ given by multiplication by $F$. Thus
+$\omega_{C_0}$ is locally cyclic, and  since the support of $\omega_{C_0}/\omega_C$ is finite, this module is
+ globally cyclic, so
+$\omega_{C_0}/\omega_C \cong \sO_{C_0}/\mathfrak f_{C/C_0}$.
+Since the length of $\omega_{C_0}/\omega_C$ is equal to the length of 
+$\sO_{C}/\sO_{C_0}$, the last statement of the Theorem follows.
+\end{proof}
+
+\begin{example}
+ Working locally, consider the germ of a node, represented by the ring $R_0:= k[[x,y]]/(xy)$, and
+ the projection to a line represented by the inclusion 
+ $$
+ P:= k[[t]] \subset R_0: t\mapsto x+y.
+ $$
+ The normalization of $R_0$ is the map $R_0 \to R := k[[x]]e_1\times k[[y]]e_2$,
+ where $e_1= x/t, e_2= y/t$ are orthogonal idempotents.Writing 
+ $Q_1 = k((t)) \subset Q:= k((x))\times k((y))$
+ for the map of total quotient rings, we know that, because the extension is separable, the trace map
+ $Tr := Tr_{Q/Q_1}: Q \to Q_1$ generates $\Hom_{Q_1}(Q,Q_1)$ as a $Q$-vector space. Thus we may write the
+ elements of $\omega_{R_0} = \Hom_{P}(R_0,P)$ and $\omega_R = \Hom_{P}(R,P)$ as
+ multiples of $Tr$ by elements of $Q$.
+ 
+ Since $R \cong Pe_1\oplus Pe_2$ as a $P$-module, the module $\Hom_P(R,P)$ is
+ generated by the two projections, and it is easy to check that these are the maps
+ $(x/t)Tr$ and $(y/t)Tr$. One can also check easily that 
+ $$
+ g := \frac{x-y}{t^2} Tr \in \Hom_P(R_0,R).
+ $$
+ Since
+$xg = x/t$ and $yg = y/t$ in $Q$ we have
+ $xg = x/tTr$ and $yg= y/tTr$, the generators of $\Hom_{P}(R,P)$. 
+ The ring $R_0$, regarded As a $P$-module, is freely generated by 1 and $x$.
+ Immediate computation shows that $gTr(1) = 0$ while $gTr(x) = 1$.
+ Furthermore $(x-y)g = 1$ in $Q$,  and thus $\frac{1}{2}(x-y)gTr = Tr$ takes 1 to 1
+ and $x$ to $t$, proving that $gTr$  generates
+ $\Hom_P(R_0,P)$. We also see directly from this that the adjoint ideal
+ of $\omega_{R_0}/\omega_R$ is the conductor ideal $(x,y)R_0 = (x,y)R = \mathfrak f_{R/R_0}$,
+ as shown by  Theorem~\ref{general adjoint}. 
+\end{example}
+
+\begin{example}\label{nongorenstein}
+We showed earlier that the adjoint ideal of a planar triple point is the square of the ideal of the point. Consider now
+  the germ of a spatial triple point singularity $R_0 := k[[x,y,z]]/(xy, xz,yz)$, the vertex of the cone over 3
+ non-colinear points in the plane, with normalization $R = k[[x]]\times k[[y]]\times k[[z]]$.
+ If we set $t = x+y+z\in R_0\subset R$, then the three idempotents that generated $R$ as an $S$-module
+ can be written as $x/t, y/t, z/t$. We have $x^2/t = xt_t= x$ and similarly for $y$ and $z$, so
+ the conductor is given by $\ff_{R/R_0} = (x,y,z)R = (x,y,z)R_0$.
+ 
+ The ring $R$ is also finite over $S := k[[x,y,z]]$, and is isomorphic as such to 
+ $S/(x,y)\oplus S/(x,z) \oplus S/(y,z)$, so we can compute its canonical module from the
+ resolution that is the direct sum of the three Koszul complexes resolving these summands, and 
+ as such the canonical module $\omega_R = \Ext^2(R,S)$ is isomorphic to $R$ as an $S$-module.
+ 
+
+ The $S$-module $R_0$, on the other hand,   has free resolution
+ $$
+ 0\rTo S^2\rTo^{
+	\begin{pmatrix}
+ 0&z\\
+ y&-y\\
+ -x&0
+\end{pmatrix}}
+ S^3 \rTo^{
+\begin{pmatrix}
+ xy&xz&yz
+\end{pmatrix}}
+ S \rTo R_0 \rTo 0. 
+ $$
+The canonical module of $R_0$ (which would be the germ of the canonical module of a global curve with such a singularity) is thus 
+ $$
+ \omega_{R_0} = \Ext^2(R_0, S) = 
+ \coker 
+\begin{pmatrix}
+ 0&y&-x\\z&-y&0
+\end{pmatrix}
+$$
+a module requiring 2 generators.
+\end{example}
+The inclusion $\omega_{R} \subset \omega_{R_0}$ is thus induced by the 
+dual of the last map in a comparison map between the two resolutions. Computation
+confirms the conclusion of Theorem~\ref{general adjoint} that $\fA_{R/R_0} = \ff_{R/R_0} = (x,y,z)$. However, the length of $R/R_0$ is 2, and the length of $R_0/\ff_{R/R_0} = R_0/(x,y,z)$ is  1, so the
+last conclusion of Theorem~\ref{general adjoint} fails, along with its hypothesis.
+
 \section{Dualizing sheaves and the Riemann-Roch theorem for singular curves }\label{duality}
 
 Recall that in Chapter~\ref{RR} we claimed that the canonical sheaf of a smooth curve---the sheaf of differential forms---was ``the most important invertible sheaf'' after the structure sheaf. In the general setting of Cohen-Macaulay schemes, the analogue of the canonical sheaf is called the dualizing sheaf.
