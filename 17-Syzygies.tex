@@ -3,87 +3,65 @@
 \chapter{Syzygies}
 \label{SyzygiesChapter}
 
-%Useful for drawing betti tables:
-%$$
-%\vbox{\offinterlineskip %\baselineskip=15pt
-%\halign{\strut\hfil# \ \vrule\quad&# \ &# \ &# \ &# \ &# \ &# \ 
-%&# \ &# \ &# \ &# \ &# \ 
-%\cr
-%degree&\cr
-%\noalign {\hrule}
-%0&1&--&--&--&--&--&--\cr
-%1&--&17&46&45&4&--&--\cr
-%2&--&--&--&--&25&18&4\cr
-%\noalign{\bigskip}
-%\omit&\multispan{8}{\bf Conjectural shape of $F_\bullet$}\cr
-%\noalign{\smallskip}
-%}}
-%$$
-%
-%
-%\centerline{\scriptsize
-%\begin{tabular}{r|ccc} 
-%$j\backslash i$&0&1&2\\ 
-%\hline 
-%0&1&$-$&$-$\\ 
-%1&$-$&3&2\\ 
-%\end{tabular}}
-%
-%
-%$$
-%\begin{matrix} 
-%j\backslash i&\vline&0   &  1    & \cdots & n    \cr\hline
-%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
-%       0&\vline&\beta_{0,0}&\beta_{1,1}&\cdots&\beta_{n,n}\cr
-%       1&\vline&\beta_{0,1}&\beta_{1,2}&\cdots&\beta_{n,n+1}\cr
-%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
-%\end{matrix}
-%$$         
-%%
-%
 \def\length{{\rm length}}
 
 
-\fix{revision idea: Use WMACE to prove ACM $=$ short resolution. only sketch the EN proof -- WMACE is used again there.
+\fix{revision idea: Use WMACE to prove ACM $=$ short resolution.
 }
 
 In Chapter~\ref{LinkageChapter} we related the resolutions of curves in $\PP^3$ to their Hartshorne-Rao modules. The
 simplest case was that in which the Hartshorne-Rao module vanishes, that is, the case of arithmetically Cohen-Macaulay curves.
-In this chapter we first quote a result that is a step toward understanding the structure of free resolutions, and use it to explain how the condition that a curve is arithmetically Cohen-Macaulay manifests itself in the 
+In this chapter we first quote a result that is a step toward understanding the structure of free resolutions, and use it to explain how the condition that a curve in $\PP^r$ is arithmetically Cohen-Macaulay manifests itself in the 
 free resolution of the homogeneous ideal of the curve.  We will then introduce the Eagon-Northcott complexes, and explain their relation to the free resolutions of canonical curves. We close the chapter with an explanation of Green's conjecture, which proposes a a way in which the intrinsic geometry
 of a curve may be connected to the shape of its minimal free resolution of its ideal in the canonical embedding.
 
 \begin{remark}
- There are two related contexts in which the results of this section can be used: over a local ring and, with graded modules and homogeneous ideals, over a polynomial ring whose variables have positive degree. These are parallel essentially because Nakayama's Lemma works in both cases. They can be unified by working with graded modules over positively graded rings whose degree 0 component is a local ring, but rather than worry the reader with this generality we will simply work with local rings or polynomial rings over a field with variables in degree 1, and trust the reader to apply the results in the other case when necessary.
-\end{remark}
+ There are two related contexts for the results of this section:  modules over a local ring and, graded modules over a polynomial ring whose variables have positive degree. These are parallel, essentially because Nakayama's Lemma works in both cases. We will simply work with local rings or polynomial rings over a field with variables in degree 1 and leave the translations to the reader.\end{remark}
 
 \section{Free resolutions}
-A presentation of the material in this section may be found in~\cite[Chapter ****]{Eisenbud1995}.
+A more complete presentation of the material in this section may be found in~\cite[Chapter ****]{Eisenbud1995}.
 
 
-Let $(R,\gm, k)$ be a local ring and let $M$ be a finitely generated module. A \emph{free resolution} of $M$ is an exact complex
+Let $M$ be a finitely generated graded module over $S := \CC[x_0, \dots x_n]$. A \emph{free resolution} of $M$ is an exact complex
+of graded free modules, with maps of degree 0:
 $$
-\FF: \cdots \rTo F_s \rTo^{\phi_s} F_{s-1} \rTo^{\phi_{s-1}} \cdots \rTo F_1 \rTo^{\phi_1}  F_0 \rTo M \rTo 0.
+0\lTo N \lTo^\epsilon \oplus_jS(-j)^{\beta_{0,j}} \lTo\cdots
+ \lTo^{\phi_t}\oplus_jS(-j)^{\beta_{t,j}}\lTo 0,
 $$
-The resolution is \emph{minimal} if a minimal set of generators of $F_i$ maps to a minimal set of generators of the kernel of the following map,
-or equivalently (by Nakayama's Lemma) the maps in $\FF\otimes_R k$ are all 0.
+Here $S(-j)$ denotes the graded free module of rank 1 with generator in degree $j$.
+%$$
+%\FF: \cdots \rTo F_s \rTo^{\phi_s} F_{s-1} \rTo^{\phi_{s-1}} \cdots \rTo F_1 \rTo^{\phi_1}  F_0 \rTo^\epsilon M \rTo 0.
+%$$
+(the map to $N$ is not considered part of the free resolution). The resolution is \emph{minimal} if a minimal set of generators of $F_i$ maps to a minimal set of generators of the kernel of the following map,
+or equivalently (by Nakayama's Lemma) the maps in $\FF\otimes_S \CC$ are all 0.
 
-The first examples of a minimal free resolution are the Koszul complexes, which resolve $R/I$ when
+The first examples of a minimal free resolution are the Koszul complexes, which resolve $/I$ when
  $I = (f_1,\dots, f_t)$
-is a complete intersection, that is, $f_1,\dots, f_t$ is a regular sequence.  For $t = 2,3$ these look like
+is a complete intersection, that is, $f_1,\dots, f_t$ is a regular sequence, with $\deg f_i = d_i$.  For $t = 2,3$, these look like
+
 $$
-\begin{aligned}
- 0\rTo &R \rTo^{
-\begin{pmatrix}
+0\lTo S/I 
+\lTo^\epsilon 
+S
+\lTo^{ \begin{pmatrix}
+f_1&f_2
+\end{pmatrix}} 
+S(-d_1)\oplus S(-d_2) 
+\lTo^{\begin{pmatrix}
 -f_2\\f_1
 \end{pmatrix}}
- R^2\rTo^{
+ S(-d_1-d_2)\lTo 0,
+$$
+
+
+$$
+0\lTo S/I \lTo^\epsilon S\lTo \oplus_{j=1^3}S(-d_j)^{
  \begin{pmatrix}
-f_1&f_2
-\end{pmatrix}}
- R \rTo R/I \rTo 0\\
- \end{aligned}
- $$
+f_1&f_2&f_3
+\end{pmatrix}} \lTo\cdots
+ \lTo^{\phi_t}\oplus_jS(-j)^{\beta_{t,j}}\lTo 0,
+$$
+
  
 %%
 
@@ -91,37 +69,37 @@ and
 
 $$
 \begin{aligned}
-0\rTo R \rTo^{
+0\rTo S \rTo^{
 \begin{pmatrix}
 f_1\\f_2\\f_3
-\end{pmatrix}} R^3&\rTo{
+\end{pmatrix}} S^3&\rTo{
 \begin{pmatrix}
  0&f_3&-f_2\\
  -f_3&0&f_1\\
  f_2&-f_1&0
 \end{pmatrix}}
- R^3\rTo^{
+ S^3\rTo^{
  \begin{pmatrix}
 f_1&f_2&f_3
-\end{pmatrix}}R \rTo R/I \rTo 0
+\end{pmatrix}}
+S\rTo S/I \rTo 0
 \end{aligned}
 $$
 
-Minimal free resolutions of a given module $M$ are all isomorphic, and the \emph{projective dimension}  $\pd(M) = \pd_R(M)$ is their length, the number of nonzero
-maps (possibly infinity). Equivalently, 
-$$
-\pd\ M = \max\{s \mid \Ext_R^s(M,k) \neq 0 \}.
-$$
-Fundamental
-results of Auslander, Buchsbaum and Serre say that $R$ is \emph{regular}---that is, the Krull dimension of $R$ is equal to the minimal number
+Hilbert's Basis and Syzygy theorems together imply that every finitely generated $S$-module has a finite free resolution. (Fundamental
+results of Auslander, Buchsbaum and Serre say that a local ring $R$ is \emph{regular}---that is, the Krull dimension of $R$ is equal to the minimal number
 of generators of $\gm$---if and only if the minimal free resolution of the residue field is finite, in which case
-the minimal free resolution of every module is finite. 
+the minimal free resolution of every module is finite.)
+
+Minimal free resolutions of a given module $M$ are all isomorphic, and the \emph{projective dimension}  $\pd(M) = \pd_(M)$ is their length, the number of nonzero
+maps. Equivalently, 
+$$
+\pd\ M = \max\{t \mid \Ext_S^t(M,k) \neq 0 \}.
+$$
 
 
 \subsection{How to look at a resolution}
-In this section we collect some definitions and results from \cite{Eisenbud1995} that will help to understand the exposition of Green's conjecture, which occupies the last section of this chapter.
-
-If $N$ is a finitely generated graded module over $S = \CC[x_0,\dots, x_r]$, then there is a minimal graded free resolution $\FF$
+If $N$ is a finitely generated graded module over $S = \CC[x_0,\dots, x_r]$, then, taking account of the grading, there is a minimal graded free resolution $\FF$
 of $N$ that we can write in the form
 $$
 0\lTo N \lTo^\epsilon \oplus_jS(-j)^{\beta_{0,j}} \lTo^{\phi_1} \cdots \lTo^{\phi_t}\oplus_jS(-j)^{\beta_{t,j}}\lTo 0,
@@ -552,6 +530,40 @@ Cohen-Macaulay. The linear independence of the minors of $M$ follows because $EN
 $EN(M)_2$ is generated in degree 3, so all the relations on the minors have coefficients of degree 1.
 \end{proof}
 
+\begin{example}
+The betti table of the Eagon-Northcott complex of 
+a $2\times n$ matrix of linear forms is:
+
+\centerline{\scriptsize
+\begin{tabular}{r|ccccc} 
+$j\backslash i$&0&1&2&3&4\\ 
+\hline 
+0&1&$-$&$-$&$\cdots$&$-$\\ 
+1&$-$&$\binom{n}{2}$&$2\binom{n}{3}$&$\cdots$&$(n-1)\binom{n}{n}$\\ 
+\end{tabular}}
+\end{example}
+
+In general when $X\subset Y\subset \PP^r$, so that $I_X \supset I_Y$, it may be hard to see which syzygies of $X$ come
+from syzygies of $Y$. But when the degrees of the syzygies of $Y$ are smaller than those from $X$, the situation is simpler.
+Here is the special case we will use:
+
+\begin{proposition}
+Suppose that $C\subset \PP^r$ is a nondegenerate curve. If $C\subset X \subset \PP^r$, where $X$ is a rational
+normal scroll, then the Eagon-Northcott complex that is  the minimal free resolution of $I_X$ is termwise a direct summand
+of the minimal free resolution of $I_C$. Thus the betti table of the resolution of $I_C$ is termwise $\geq$ that of $I_X$.
+\end{proposition}
+
+\begin{proof}
+Let $EN$ be the minimal resolution of $I_X$, and let $\FF$ be the minimal resolution of $I_C$.
+The inclusion $I_X \subset I_C$ induces a map $\phi: EN\to \FF$, unique up to homotopy. Since the minimal generators of $I_X$ are quadratic, and $I_C$ contains no linear forms, $\phi_0: EN_0\to \FF_0$ is a spit monomorphism.
+
+By induction, we may assume that $\phi_{i-1}$ is a split monomorphism. The free module $EN_{i}$ is generated in 
+degree $i+1$, while the free module $\FF_i$ is generated in degrees $\geq i+1$. It follows that the relations
+represented by $EN_i$, extended by 0, are among the minimal generators of the relations represented by $\FF_i$,
+completing the proof.
+ \end{proof}
+ 
+
 %\fix{START COMMENTED OUT MATERIAL}
 %We will also use a special case of the Auslander-Buchsbaum formula connecting projective dimension and depth:
 %
@@ -655,122 +667,89 @@ $EN(M)_2$ is generated in degree 3, so all the relations on the minors have coef
 % presented in his famous paper \cite{Hilbert1890}. 																											
 %\fix{END COMMENTED OUT MATERIAL}
 
-\section{How to look at a resolution}
-In this section we collect some definitions and results from \cite{Eisenbud1995} that will help to understand the exposition of Green's conjecture, which occupies the last section of this chapter.
-
-If $N$ is a finitely generated graded module over $S = \CC[x_0,\dots, x_r]$, then there is a minimal graded free resolution $\FF$
-of $N$ that we can write in the form
-$$
-0\lTo N \lTo^\epsilon \bigoplus_jS(-j)^{\beta_{0,j}} \lTo^{\phi_1} \cdots \lTo^{\phi_t}\bigoplus_jS(-j)^{\beta_{t,j}}\lTo 0,
-$$
-where it is understood that each direct sum has only finitely many nonzero terms.
-To construct this, suppose that a minimal homogeneous set of generators of $N$
-contains $\beta_{1,j}$ generators of degree $j$ for each $j$; this defines a degree 0 map $\epsilon$
-from 
-$
-\oplus S(-j)^{\beta_{0,j}}
-$
-onto $N$. We proceed similarly with the kernel of $\epsilon$, and continue to construct the whole resolution.
-Hilbert's syzygy theorem \cite[***]{Eisenbud1995} implies that the process ends after $t\leq n$ steps with a map $\phi_t$ whose
-kernel is 0. The number $t$ is then the projective dimension of $N$. It follows from the Auslander-Buchsbaum
-theorem~\cite[***]{Eisenbud1995} that $t \geq \codim \ann_S(N)$, the codimension of the support of $N$.
-
-Since we choose a minimal set of generators at each stage, the matrices of the $\phi_i$ have entries in the maximal
-ideal $(x_0,\dots x_r)$, and thus each $\beta_{i+1, j}$ must be strictly greater than some $\beta_{i,j}$. For this reason it
-is more convenient to tabulate the numbers so that $\beta_{i,j}$ is in the $i$-th column and $j-i$-th row:
-
-$$
-\scriptsize{
-\begin{matrix} 
-j\backslash i&\vline&0   &  1    & \cdots & n    \cr\hline
-\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
-       0&\vline&\beta_{0,0}&\beta_{1,1}&\cdots&\beta_{n,n}\cr
-       1&\vline&\beta_{0,1}&\beta_{1,2}&\cdots&\beta_{n,n+1}\cr
-\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
-\end{matrix}.
-}
-$$         
-
-
-%$$
-%\vbox{\offinterlineskip %\baselineskip=15pt
-%\halign{\strut\hfil# \ \vrule\quad&# \ &# \ &# \ &# \ &# \ &# \ 
-%&# \ &# \ &# \ &# \ &# \ 
-%\cr
-%degree&\cr
-%\noalign {\hrule}
-%0&1&--&--&--&--&--&--\cr
-%1&--&17&46&45&4&--&--\cr
-%2&--&--&--&--&25&18&4\cr
-%\noalign{\bigskip}
-%\omit&\multispan{8}{\bf Conjectural shape of $F_\bullet$}\cr
-%\noalign{\smallskip}
-%}}
-%$$
+%\section{How to look at a resolution}
+%In this section we collect some definitions and results from \cite{Eisenbud1995} that will help to understand the exposition of Green's conjecture, which occupies the last section of this chapter.
 %
+%If $N$ is a finitely generated graded module over $S = \CC[x_0,\dots, x_r]$, then there is a minimal graded free resolution $\FF$
+%of $N$ that we can write in the form
+%$$
+%0\lTo N \lTo^\epsilon \bigoplus_jS(-j)^{\beta_{0,j}} \lTo^{\phi_1} \cdots \lTo^{\phi_t}\bigoplus_jS(-j)^{\beta_{t,j}}\lTo 0,
+%$$
+%where it is understood that each direct sum has only finitely many nonzero terms.
+%To construct this, suppose that a minimal homogeneous set of generators of $N$
+%contains $\beta_{1,j}$ generators of degree $j$ for each $j$; this defines a degree 0 map $\epsilon$
+%from 
+%$
+%\oplus S(-j)^{\beta_{0,j}}
+%$
+%onto $N$. We proceed similarly with the kernel of $\epsilon$, and continue to construct the whole resolution.
+%Hilbert's syzygy theorem \cite[***]{Eisenbud1995} implies that the process ends after $t\leq n$ steps with a map $\phi_t$ whose
+%kernel is 0. The number $t$ is then the projective dimension of $N$. It follows from the Auslander-Buchsbaum
+%theorem~\cite[***]{Eisenbud1995} that $t \geq \codim \ann_S(N)$, the codimension of the support of $N$.
+%
+%Since we choose a minimal set of generators at each stage, the matrices of the $\phi_i$ have entries in the maximal
+%ideal $(x_0,\dots x_r)$, and thus each $\beta_{i+1, j}$ must be strictly greater than some $\beta_{i,j}$. For this reason it
+%is more convenient to tabulate the numbers so that $\beta_{i,j}$ is in the $i$-th column and $j-i$-th row:
+%
+%$$
+%\scriptsize{
+%\begin{matrix} 
+%j\backslash i&\vline&0   &  1    & \cdots & n    \cr\hline
+%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+%       0&\vline&\beta_{0,0}&\beta_{1,1}&\cdots&\beta_{n,n}\cr
+%       1&\vline&\beta_{0,1}&\beta_{1,2}&\cdots&\beta_{n,n+1}\cr
+%\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+%\end{matrix}.
+%}
+%$$         
+%
+%
+%%$$
+%%\vbox{\offinterlineskip %\baselineskip=15pt
+%%\halign{\strut\hfil# \ \vrule\quad&# \ &# \ &# \ &# \ &# \ &# \ 
+%%&# \ &# \ &# \ &# \ &# \ 
+%%\cr
+%%degree&\cr
+%%\noalign {\hrule}
+%%0&1&--&--&--&--&--&--\cr
+%%1&--&17&46&45&4&--&--\cr
+%%2&--&--&--&--&25&18&4\cr
+%%\noalign{\bigskip}
+%%\omit&\multispan{8}{\bf Conjectural shape of $F_\bullet$}\cr
+%%\noalign{\smallskip}
+%%}}
+%%$$
+%%
+%%
+%%\centerline{\scriptsize
+%%\begin{tabular}{r|ccc} 
+%%$j\backslash i$&0&1&2\\ 
+%%\hline 
+%%0&1&$-$&$-$\\ 
+%%1&$-$&3&2\\ 
+%%\end{tabular}}
+%%
+%%
+%\begin{example}
+% For example the Koszul complex that resolves the homogeneous coordinate ring $S/(Q, F_1, F_2)$ of the complete intersection of  2 quadrics and  and a cubic in $\PP^3$ has the form
+%$$
+%S \lTo S(-2)\oplus S(-3)^2 \lTo S(-5)^2\oplus S(-6) \lTo S(-8) \lTo 0,
+%$$
+%which has betti table:
 %
 %\centerline{\scriptsize
-%\begin{tabular}{r|ccc} 
-%$j\backslash i$&0&1&2\\ 
+%\begin{tabular}{r|ccccc} 
+%$j\backslash i$&0&1&2&3\\ 
 %\hline 
-%0&1&$-$&$-$\\ 
-%1&$-$&3&2\\ 
-%\end{tabular}}
-%
-%
-\begin{example}
- For example the Koszul complex that resolves the homogeneous coordinate ring $S/(Q, F_1, F_2)$ of the complete intersection of  2 quadrics and  and a cubic in $\PP^3$ has the form
-$$
-S \lTo S(-2)\oplus S(-3)^2 \lTo S(-5)^2\oplus S(-6) \lTo S(-8) \lTo 0,
-$$
-which has betti table:
+%0&1&$-$&$-$&$-$\\ 
+%1&$-$&1&$-$&$-$\\
+%2&$-$&2&$-$&$-$\\
+%3&$-$&$-$&$2$&$-$\\
+%4&$-$&$-$&$1$&$-$\\
+%5&$-$&$-$&$-$&$1$\\
+%\end{tabular}.}
+%\end{example}
 
-\centerline{\scriptsize
-\begin{tabular}{r|ccccc} 
-$j\backslash i$&0&1&2&3\\ 
-\hline 
-0&1&$-$&$-$&$-$\\ 
-1&$-$&1&$-$&$-$\\
-2&$-$&2&$-$&$-$\\
-3&$-$&$-$&$2$&$-$\\
-4&$-$&$-$&$1$&$-$\\
-5&$-$&$-$&$-$&$1$\\
-\end{tabular}.}
-\end{example}
-
-\begin{example}
-The betti table of the Eagon-Northcott complex of 
-a $2\times n$ matrix of linear forms is:
-
-\centerline{\scriptsize
-\begin{tabular}{r|ccccc} 
-$j\backslash i$&0&1&2&3&4\\ 
-\hline 
-0&1&$-$&$-$&$\cdots$&$-$\\ 
-1&$-$&$\binom{n}{2}$&$2\binom{n}{3}$&$\cdots$&$(n-1)\binom{n}{n}$\\ 
-\end{tabular}}
-\end{example}
-
-In general when $X\subset Y\subset \PP^r$, so that $I_X \supset I_Y$, it may be hard to see which syzygies of $X$ come
-from syzygies of $Y$. But when the degrees of the syzygies of $Y$ are smaller than those from $X$, the situation is simpler.
-Here is the special case we will use:
-
-\begin{proposition}
-Suppose that $C\subset \PP^r$ is a nondegenerate curve. If $C\subset X \subset \PP^r$, where $X$ is a rational
-normal scroll, then the Eagon-Northcott complex that is  the minimal free resolution of $I_X$ is termwise a direct summand
-of the minimal free resolution of $I_C$. Thus the betti table of the resolution of $I_C$ is termwise $\geq$ that of $I_X$.
-\end{proposition}
-
-\begin{proof}
-Let $EN$ be the minimal resolution of $I_X$, and let $\FF$ be the minimal resolution of $I_C$.
-The inclusion $I_X \subset I_C$ induces a map $\phi: EN\to \FF$, unique up to homotopy. Since the minimal generators of $I_X$ are quadratic, and $I_C$ contains no linear forms, $\phi_0: EN_0\to \FF_0$ is a spit monomorphism.
-
-By induction, we may assume that $\phi_{i-1}$ is a split monomorphism. The free module $EN_{i}$ is generated in 
-degree $i+1$, while the free module $\FF_i$ is generated in degrees $\geq i+1$. It follows that the relations
-represented by $EN_i$, extended by 0, are among the minimal generators of the relations represented by $\FF_i$,
-completing the proof.
- \end{proof}
- 
 
 
 %We will also use a special case of the Auslander-Buchsbaum formula connecting projective dimension and depth:
