@@ -47,7 +47,7 @@
 \fix{revision idea: Use WMACE to prove ACM $=$ short resolution. only sketch the EN proof -- WMACE is used again there.
 }
 
-In Chapter~\ref{LinkageChapter} we used the resolutions of curves in $\PP^3$ to their Hartshorne-Rao modules. The
+In Chapter~\ref{LinkageChapter} we related the resolutions of curves in $\PP^3$ to their Hartshorne-Rao modules. The
 simplest case was that in which the Hartshorne-Rao module vanishes, that is, the case of arithmetically Cohen-Macaulay curves.
 In this chapter we first quote a result that is a step toward understanding the structure of free resolutions, and use it to explain how the condition that a curve is arithmetically Cohen-Macaulay manifests itself in the 
 free resolution of the homogeneous ideal of the curve.  We will then introduce the Eagon-Northcott complexes, and explain their relation to the free resolutions of canonical curves. We close the chapter with an explanation of Green's conjecture, which proposes a a way in which the intrinsic geometry
@@ -82,7 +82,15 @@ $$
 f_1&f_2
 \end{pmatrix}}
  R \rTo R/I \rTo 0\\
+ \end{aligned}
+ $$
+ 
 %%
+
+and
+
+$$
+\begin{aligned}
 0\rTo R \rTo^{
 \begin{pmatrix}
 f_1\\f_2\\f_3
@@ -94,7 +102,7 @@ f_1\\f_2\\f_3
 \end{pmatrix}}
  R^3\rTo^{
  \begin{pmatrix}
-f_1&f_2&f3
+f_1&f_2&f_3
 \end{pmatrix}}R \rTo R/I \rTo 0
 \end{aligned}
 $$
@@ -102,7 +110,7 @@ $$
 Minimal free resolutions of a given module $M$ are all isomorphic, and the \emph{projective dimension}  $\pd(M) = \pd_R(M)$ is their length, the number of nonzero
 maps (possibly infinity). Equivalently, 
 $$
-\pd\ M = \max\{s \mid \Ext_R^s(M,k) \neq 0.
+\pd\ M = \max\{s \mid \Ext_R^s(M,k) \neq 0 \}.
 $$
 Fundamental
 results of Auslander, Buchsbaum and Serre say that $R$ is \emph{regular}---that is, the Krull dimension of $R$ is equal to the minimal number
@@ -230,6 +238,7 @@ module is again Cohen-Macaulay.
 As we showed in Chapter~\ref{linkageChapter}, a curve $C\subset \PP^3$ is linked to a complete intersection
 if and only if  $H^1_*(\sI_C) := \oplus_{m\in \ZZ} H^1(\sI_C(m)) = 0$, in which case $C$ is said to be is arithmetically Cohen-Macaulay. 
 
+
 %Here is the connection between these notions: 
 %
 %\begin{proposition}\label{meaning of ACM}
@@ -254,7 +263,7 @@ if and only if  $H^1_*(\sI_C) := \oplus_{m\in \ZZ} H^1(\sI_C(m)) = 0$, in which 
 
 More generally, we say that a subscheme $X\subset \PP^r$ is \emph{arithmetically Cohen-Macaulay}
 if $H^1(\sI_{X/\PP^r}(m)) = 0$ for all $m$ and also $H^i(\sO_X(m)) = 0$ for all $m$ and all $0<i<\dim X$,
-and this is equivalent to the Cohen-Macaulay property of $S/(I_X)$. As with the case of curves,
+and this is equivalent to the Cohen-Macaulay property of $S/I_X$. As with the case of curves,
 the condition that $H^1(\sI_{X/\PP^r}(m)) = 0$ 
 is strongly dependent on the embedding. Using Theorem~\ref{WMACE} below one can show
 that $X$ is arithmetically Cohen-Macaulay if and only if the dual of the minimal $S$-free resolution
@@ -285,11 +294,11 @@ is a short exact sequence of finitely generated modules over a local or positive
 
 
 \subsection{The Gorenstein property} 
-Another important homological condition is the condition that $\omega_X$ is an invertible sheaf; when this holds, $X$ is \emph{quasi-Gorenstein}. When, in addtition, $X$ is Cohen-Macaulay we say that $X$ is \emph{Gorenstein}. Any scheme that is locally a complete intersection, such as any smooth scheme and any plane curve, is Gorenstein. Since the restriction
+Another important homological condition is the condition that $\omega_X$ is an invertible sheaf; when this holds, $X$ is \emph{quasi-Gorenstein}. When, in addition, $X$ is Cohen-Macaulay we say that $X$ is \emph{Gorenstein}. Any scheme that is locally a complete intersection, such as any smooth scheme and any plane curve, is Gorenstein. Since the restriction
 of $\sO_{\PP^r}(1)$ to a subvariety is always invertible, saying that a scheme $X$ is canonically embedded implies that
 $X$ is at least quasi-Gorenstein. As with the Cohen-Macaulay property, the Gorenstein property is interpreted locally
 on a scheme. We say that a projective scheme $X$ is \emph{arithmetically Gorenstein}
-if it's homogeneous coordinate ring is Gorenstein, and it follows that $\omega_{S/I} \cong S/I(a)$ for some integer $a = a(X)$.
+if its homogeneous coordinate ring is Gorenstein, and it follows that $\omega_{S/I} \cong S/I(a)$ for some integer $a = a(X)$.
 
 If $X$ is arithmetically Cohen-Macaulay, so that
 $\pd(X) = codim(X)$,  then since 
@@ -302,18 +311,22 @@ in the Koszul complex (a complete intersection is Gorenstein) and we will see mo
 below.
 
 
- As noted above, the homogeneous coordinate ring $S/I_C$ of an arithmetically Cohen-Macaulay curve $C\subset \PP^r$ is isomorphic
+As noted above, the homogeneous coordinate ring $S/I_C$ of an arithmetically Cohen-Macaulay curve $C\subset \PP^r$ is isomorphic
  to $H^0_*(\sO_C)$. In the same way, the canonical module $\omega_{S/I} \cong \Ext_S^{r-1}(S/I_C, S(-r-1))$ of an arithmetically Gorenstein curve satisfies
  $\omega_{S/I} = H^0_*(\omega_C)$.  If the last free module in the minimal resolution of $S/I$ is $S(-a-r-1)$,
  then $\Ext_S^{r-1}(S/I_C, S(-r-1)) = (S/I)(a)$, and the number $a$ is (unimaginatively) called the $a$-invariant
  of the ring $S/I$.
  
- In the case of a canonically embedded curve $C\subset \PP^{g-1}$ we have $\omega_C = \sO_C(1))$, 
+ In the case of a canonically embedded curve $C\subset \PP^{g-1}$ we have $\omega_C = \sO_C(1)$, 
  so  $\omega_{S/I}= H^0_*(\omega_C)$ is generated in degree $-1$. Thus the  the last
  free module in the minimal free resolution $\FF$ of $S/I$ is $S(-r-2)$. Since the resolution is minimal,
  the minimal  twist in $F_{i+1}$ must be $\leq$ the minimal twist in $F_i$; since the dual is also a minimal resolution,
  it follows that both the minimal and maximal twists of $F_{i+1}$ are $\leq$ the minimal and maximal twists of $F_i$, respectively.
- Since there are no linear forms in the ideal, and the resolution is self-dual, we see that the betti table of $\FF$ has the form
+ Since there are no linear forms in the ideal, and the resolution is self-dual, we see that the betti table of $\FF$ 
+ 
+ \fix{We haven't said what a Betti table is at this point. It will be defined and described in the section ``How to look at a resolution" later in this chapter; maybe move that section earlier?}
+ 
+ has the form
 
 % \centerline{\scriptsize
 %\begin{tabular}{r|cccccc} 
@@ -347,7 +360,7 @@ $j\backslash i$&0&1&2&$\cdots$&$g-3$&$g-2$\\
 
 where $b_2 = \binom{g-2}{2}$. It turns out that the other $b_i$ depend on the particular canonical curve,
 but since the Hilbert function of the curve is the alternating sum of the Hilbert functions in the resolution,
-the difference $b_i- b_{g-i-1}$ are independent of the curve.
+the differences $b_i- b_{g-i-1}$ are independent of the curve.
 
  
 \section{The Eagon-Northcott Complex}\label{EN section}
@@ -409,7 +422,7 @@ To show that $(\bigwedge^2 M)\circ \delta_2$ is zero, it is simplest to choose a
 Direct computation using only the usual expansion of a determinant
 along a row shows that, up to sign, the
 pure basis vector $e\otimes f_i\wedge f_j\wedge f_k$ of $G^*\otimes \bigwedge^3 F$
-maps under the composition $(\bigwedge^2) M\circ \delta_2$ to the determinant
+maps under the composition $(\bigwedge^2 M)\circ \delta_2$ to the determinant
 of the $3\times 3$ matrix obtained from $M$ by repeating the row corresponding to $e$ and
 the columns $i,j,k$. This determinant is 0 because it has a repeated row.
 
@@ -528,16 +541,202 @@ then $EN(M)$ is a resolution, completing the proof.
 
 \begin{corollary}\label{E-N cor}
 With notation as in Theorem~\ref{E-N}, if the ideal $I_2(M)$ has codimension $\geq n-1$ then it has
-codimension exactly $n-1$, the ring $S/I_2(M)$ is Cohen-Macaulay, and the$\binom{n}{2}$ quadratic forms
+codimension exactly $n-1$, the ring $S/I_2(M)$ is Cohen-Macaulay, and the $\binom{n}{2}$ quadratic forms
 that are the $2\times 2$ minors of $M$ are linearly independent over $\CC$.
 \end{corollary}
 
 \begin{proof}
 From the resolution $EN(M)$ we see that the projective dimension of $S/I_2(M)$ is $n-1$. Since the projective dimension of a module
-is at least the codimension of its annihilator, the equality follows, and the Auslander-Buchsbaum formula implies that $S/I_2(M)$ 
+is at least the codimension of its annihilator, the equality follows, and the Auslander-Buchsbaum formula implies that $S/I_2(M)$ is 
 Cohen-Macaulay. The linear independence of the minors of $M$ follows because $EN(M)$ is a resolution and there
 $EN(M)_2$ is generated in degree 3, so all the relations on the minors have coefficients of degree 1.
 \end{proof}
+
+%\fix{START COMMENTED OUT MATERIAL}
+%We will also use a special case of the Auslander-Buchsbaum formula connecting projective dimension and depth:
+%
+%\begin{theorem}\label{Auslander-Buchsbaum}
+%If $R$ is a regular local ring of dimension $d$, and $M$ is a finitely generated $R$-module, then the projective dimension of $M$ is $\leq d$ with equality only if
+%$M$ contains a submodule of finite length. 
+%\end{theorem}
+%
+%\begin{corollary}\label{associated primes}
+%If $R$ is a regular local ring of dimension $d$, and $M$ is a finitely generated $R$-module, then the codimension of an associated prime of $A$ is at most the projective dimension of $A$. 
+%\end{corollary}
+%\begin{proof}[Proof of  Corollary~\ref{associated primes}]
+% Projective dimension can only decrease under localization, and
+% the associated primes $P$ of $A$ are those for which $A_{P}$ contains a submodule
+% of finite length.
+%\end{proof}
+%
+%With this and the multi-linear algebra above we can  prove the basic acyclicity result for an Eagon-Northcott complex:
+%
+%\fix{the Theorem as now stated doesn't need the following. I've copied the short proof
+%of acyclicity into the end of the proof above.}
+%\begin{proposition}\label{acyclicity}
+%Let $S = k[x_0,\dots, x_r]$ be a polynomial ring,  and let $M: F\to G$ be a homomorphism with
+% $F = S^n(-1), G= S^2$.
+% $$
+% S^n \cong F \rTo^M G \cong S^2
+% $$
+% is a (not necessarily homogeneous) map of free $S$-modules.
+% The Eagon-Northcott complex $EN(M)$ is acyclic if and only if $\codim I_2(M) \geq n-1$, in which case the dual complex is also acyclic and
+% the associated primes of $I_2(M)$ are all minimal and of codimension $n-1$.
+% \end{proposition}
+%
+%\begin{proof}[Proof of Proposition~\ref{acyclicity}]
+%Let $X_{i}\subset \AA^{r+1}$ be the variety defined from the complex $EN(M)$ as in 
+%Theorem~\ref{WMACE}. Since $EN(M)$ becomes split exact after inverting any $2\times 2$ minor of $M$
+%$X_{i}$ is
+%contained in the closed set defined by $I_{2}(M)$, for all $i$. Thus if $I_{2}(M)$ has codimension $n-1$,
+%then $EN(M)$ is acyclic. 
+%
+%In this case the projective dimension
+%of $S/I_{2}(M)$ is $n-1$, so all the associated primes of $I_{2}(M)$ have codimension
+%exactly $n-1$.
+%
+%If $EN(M)$ is  acylic then, by Theorem~\ref{WMACE}, the codimension of $X_{n-1}$ is at least $n-1$. Thus to prove that the acyclicity of $EN(M)$ implies  $\codim I_{2}(M) \geq n-1$ (and thus
+%$\codim I_{2}(M))  n-1$, it suffices to show that $X_{n-1} = X_{0}$ as algebraic sets.
+%
+%To see this, note that
+%the ideal of $2\times 2$ minors of $M$. By definition, $X_{n-1}$ 
+%is the set of points $p$ where $\kappa(p)\otimes \delta_{n-1}$ is not an inclusion, 
+%or equivalently, that 
+%that 
+%$$
+%\kappa(p)\otimes F\otimes \Sym^{n-3}G 
+%\cong 
+%\kappa(p)\otimes \bigwedge^{n-1} F^{*} \otimes  \Sym^{n-3}G 
+%\rTo^{\partial_{n-1}}
+%\kappa(p)\otimes \bigwedge^{n} F^{*} \otimes  \Sym^{n-2}G
+%\cong
+%\kappa(p)\otimes \Sym^{n-2}G
+%$$
+%is not a split surjection, and it is easy to see that the composite map takes
+%$a\otimes b$ to $\kappa(p) \otimes M(a)\cdot b$, so the cokernel is the $(n-2)$-nd symmetric power
+%of the cokernel of the map $\kappa(p) \otimes M$. Thus $X_{n}$ is equal to the support
+%of the cokernel of $M$ itself. 
+%
+%By Nakayama's Lemma, $X_{0}$ is the support of $M$; furthermore, the localization of $\coker M$ at $p$ is 0 if and only if
+%one of the 
+%$2\times 2$ minors of $M$ is a unit locally at $p$ so $X_{0}$, so this is defined
+%set-theoretically by $I_{2}(M)$.
+%
+%It now follows from Theorem~\ref{WMACE} that all the $X_{i}$ are equal, so $EN(M)$ is 
+%acyclic if and only if $EN(M)^{*}$ is acyclic. 
+%
+%Since $M$ is 1-generic the entries of of the second row of $M$ are linearly independent, and since the dimension of the span of all the linear forms is at least $n+1$, some element in the first row is outside the span of the the elements in the second. After a permutation of columns we may assume that $l_{1,1}, l_{2,1}, l_{2,2},\dots l_{2,n}$ are linearly independent, and we may take them to be a subset of the variables, say $x_{0},\dots x_{n+1}$
+%
+%We next show by induction on $n$ that  $I_{2}(M)$ is prime. In the case $n=2$ we have $I_{2}(M) =  (x_{0}x_{2}-x_{1}l_{1,2})$ which obviously does not factor. 
+%
+%Now suppose that $n>2$, and let $M'$ be the matrix $M$ with the first column omitted. we know by induction that $I_{2}(M')$ is prime of codimension $n-2$. Since $I:=I_{2}(M)$ does not have the maximal ideal as an associated prime, it is saturated. The ideal $I_{2}(M)+x_{0}$ properly contains $I_{2}(M')$ and thus has codimension $\geq n-1$ in $S/x_{0}$, whence we see that every component of $I_{2}(M)$ meets the open set
+%$x_{0} = 1$. Restricting to this open set \fix{complete the proof}
+%\end{proof}
+%
+%The first non-trivial example of a finite free resolution is the Koszul complex on 3 variables, which is the minimal $S = k[x,y,z]$-free resolution of the module $S/(x,y,z)$:
+%$$
+%0\to S(-3) \rTo^{
+%\begin{pmatrix}
+%x\\y\\z 
+%\end{pmatrix}}
+% S^3(-2) \rTo^{\begin{pmatrix}
+%0&-z&y\\
+%z&0&-x\\
+%-y&x &0
+%\end{pmatrix}}
+%S^3(-1) \rTo^{
+%\begin{pmatrix}
+%x&y&z
+%\end{pmatrix}}
+%S
+%$$
+%In fact this is the first example that 
+%Hilbert
+% presented in his famous paper \cite{Hilbert1890}. 																											
+%\fix{END COMMENTED OUT MATERIAL}
+
+\section{How to look at a resolution}
+In this section we collect some definitions and results from \cite{Eisenbud1995} that will help to understand the exposition of Green's conjecture, which occupies the last section of this chapter.
+
+If $N$ is a finitely generated graded module over $S = \CC[x_0,\dots, x_r]$, then there is a minimal graded free resolution $\FF$
+of $N$ that we can write in the form
+$$
+0\lTo N \lTo^\epsilon \bigoplus_jS(-j)^{\beta_{0,j}} \lTo^{\phi_1} \cdots \lTo^{\phi_t}\bigoplus_jS(-j)^{\beta_{t,j}}\lTo 0,
+$$
+where it is understood that each direct sum has only finitely many nonzero terms.
+To construct this, suppose that a minimal homogeneous set of generators of $N$
+contains $\beta_{1,j}$ generators of degree $j$ for each $j$; this defines a degree 0 map $\epsilon$
+from 
+$
+\oplus S(-j)^{\beta_{0,j}}
+$
+onto $N$. We proceed similarly with the kernel of $\epsilon$, and continue to construct the whole resolution.
+Hilbert's syzygy theorem \cite[***]{Eisenbud1995} implies that the process ends after $t\leq n$ steps with a map $\phi_t$ whose
+kernel is 0. The number $t$ is then the projective dimension of $N$. It follows from the Auslander-Buchsbaum
+theorem~\cite[***]{Eisenbud1995} that $t \geq \codim \ann_S(N)$, the codimension of the support of $N$.
+
+Since we choose a minimal set of generators at each stage, the matrices of the $\phi_i$ have entries in the maximal
+ideal $(x_0,\dots x_r)$, and thus each $\beta_{i+1, j}$ must be strictly greater than some $\beta_{i,j}$. For this reason it
+is more convenient to tabulate the numbers so that $\beta_{i,j}$ is in the $i$-th column and $j-i$-th row:
+
+$$
+\scriptsize{
+\begin{matrix} 
+j\backslash i&\vline&0   &  1    & \cdots & n    \cr\hline
+\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+       0&\vline&\beta_{0,0}&\beta_{1,1}&\cdots&\beta_{n,n}\cr
+       1&\vline&\beta_{0,1}&\beta_{1,2}&\cdots&\beta_{n,n+1}\cr
+\vdots&\vline&\vdots&\vdots & \cdots    &\vdots     \cr 
+\end{matrix}.
+}
+$$         
+
+
+%$$
+%\vbox{\offinterlineskip %\baselineskip=15pt
+%\halign{\strut\hfil# \ \vrule\quad&# \ &# \ &# \ &# \ &# \ &# \ 
+%&# \ &# \ &# \ &# \ &# \ 
+%\cr
+%degree&\cr
+%\noalign {\hrule}
+%0&1&--&--&--&--&--&--\cr
+%1&--&17&46&45&4&--&--\cr
+%2&--&--&--&--&25&18&4\cr
+%\noalign{\bigskip}
+%\omit&\multispan{8}{\bf Conjectural shape of $F_\bullet$}\cr
+%\noalign{\smallskip}
+%}}
+%$$
+%
+%
+%\centerline{\scriptsize
+%\begin{tabular}{r|ccc} 
+%$j\backslash i$&0&1&2\\ 
+%\hline 
+%0&1&$-$&$-$\\ 
+%1&$-$&3&2\\ 
+%\end{tabular}}
+%
+%
+\begin{example}
+ For example the Koszul complex that resolves the homogeneous coordinate ring $S/(Q, F_1, F_2)$ of the complete intersection of  2 quadrics and  and a cubic in $\PP^3$ has the form
+$$
+S \lTo S(-2)\oplus S(-3)^2 \lTo S(-5)^2\oplus S(-6) \lTo S(-8) \lTo 0,
+$$
+which has betti table:
+
+\centerline{\scriptsize
+\begin{tabular}{r|ccccc} 
+$j\backslash i$&0&1&2&3\\ 
+\hline 
+0&1&$-$&$-$&$-$\\ 
+1&$-$&1&$-$&$-$\\
+2&$-$&2&$-$&$-$\\
+3&$-$&$-$&$2$&$-$\\
+4&$-$&$-$&$1$&$-$\\
+5&$-$&$-$&$-$&$1$\\
+\end{tabular}.}
+\end{example}
 
 \begin{example}
 The betti table of the Eagon-Northcott complex of 
@@ -596,9 +795,9 @@ completing the proof.
 Corollary~\ref{canonical hilbert function} implies that the dimension of the vector space of forms of degree $d$
 vanishing on a canonical curve is independent of the curve; for example, for $d=2$ we get
 $
-\dim ({I_{C}})_{2} = {g-2\choose 2}
+\dim ({I_{C}})_{2} = {g-2\choose 2}.
 $
-The Hilbert function of $I_C$ is determined by the betti table of its resolution, that the table generally has more information.
+The Hilbert function of $I_C$ is determined by the betti table of its resolution, so that the table generally has more information.
 
  For example
 when $C$ is trigonal then, by the geometric Riemann-Roch theorem, $C$ has a 1-dimensional family of trisecant lines; any quadric containing $C$ must contain all these. As we have seen in Chapter~\ref{ScrollsChapter}, these lines sweep
@@ -611,7 +810,7 @@ ideal of minors defines a rational normal scroll of dimension 2.
 Furthermore, if $g = 6$ and $C$ is isomorphic to a plane quintic curve, then the canonical series of the plane quintic is $5-3 = 2$ times the hyperplane series, and it follows that the canonical image of $C$ lies on the Veronese surface in $\PP^{5}$. Using Theorem *** again, we see that the Veronese is contained in (in fact, equal to) the intersection of the quadrics defined by the $2\times 2$ minors of a generic symmetric matrix, coming from the 
 multiplication map 
 $$
-\HH^{0}(\sO_{\PP^{1}}(1))\otimes \HH^{0}(\sO_{\PP^{1}}(1)) \to \HH^{0}(\sO_{\PP^{1}}(2)) = \HH^{0}(\sO_{\PP^{5}}(1))
+H^{0}(\sO_{\PP^{1}}(1))\otimes H^{0}(\sO_{\PP^{1}}(1)) \to H^{0}(\sO_{\PP^{1}}(2)) = H^{0}(\sO_{\PP^{5}}(1))
 $$
 and there are $6 = {g-2\choose 2}$ independent quadrics in this ideal. Again in this case, they cannot generate the ideal of the curve.
 
@@ -626,7 +825,7 @@ For a modern treatment of Petri's Theorem in this level of generality see \cite{
 The two exceptions can be described simultaneously by using the Clifford index:
 
 \begin{definition}
- The Clifford index Cliff $\sL$ of a line bundle $\sL$ on a curve $C$ is $d-2r$, where $d := \deg \sL$ and $r :=  h^0(\sL)-1$. The Clifford index Cliff $C$ of
+ The \emph{Clifford index} Cliff $\sL$ of a line bundle $\sL$ on a curve $C$ is $d-2r$, where $d := \deg \sL$ and $r :=  h^0(\sL)-1$. The Clifford index Cliff $C$ of
  a curve $C$ of genus $\geq 2$ is the minimum of the Clifford indices of special line bundles with at least 2 sections.
 \end{definition}
 
@@ -638,10 +837,12 @@ cubics obtained by multiplying $g$ linear forms and ${g-2\choose 2}$ quadrics, w
 $$
 {g-2\choose 2} - {g+2\choose 3}-(5g-5) 
 $$
-independent syzygies of total degree 3 (that is, linear syzygies on the quadrics. For example when $g=4$ so that $C\subset \PP^3$ there is one quadric and 5 independent
+independent syzygies of total degree 3 (that is, linear syzygies on the quadrics). For example when $g=4$ so that $C\subset \PP^3$ there is one quadric and 5 independent
 cubics, at most 4 of which are multiples of the quadric. Since the curve has degree $6 = 2\times 3$, the ideal of the curve must be generated by
 the quadric and one cubic. When $g=5$ there are genuinely two possibilities: the three quadrics in the ideal might be a complete intersection
 (then they generate the ideal), so the Betti table would be
+
+\
 
 \centerline{\small %\scriptsize
 \begin{tabular}{r|ccc} 
@@ -695,11 +896,13 @@ Here the $2\times 2$ minors of the upper $2\times 3$ block of linear forms gener
 Applying this logic more generally we get the following result about the canonical embedding of curves with low degree maps to $\PP^1$:
 
 \begin{theorem}
- Let $C\subset \PP^{g-1}$ be a reduced, irreducible canonical curve. If $C$ has a line bundle $\sL$ of degree $d$ with $h^0(\sL) = 2$  then
+ Let $C\subset \PP^{g-1}$ be a reduced, irreducible canonical curve. If $C$ has a line bundle $\sL$ of degree $d \leq g-1$ with $h^0(\sL) = 2$  then
  there is a 1-generic  $2\times (g+1-d)$ matrix of linear forms whose minors define a scroll of codimension $g-d$ containing $C$; and thus an
  Eagon-Northcott complex of length $g-d$ is a subcomplex of the minimal free resolution of $S_C$. In particular, the Betti table of $S_C$ is
  termwise $\geq$ that of the homogeneous coordinate ring of the scroll.
  \end{theorem}
+ 
+ (We have stated this theorem for canonical curves, but in fact the construction applies much more generally to a linearly normal variety $X \subset \PP^n$ of any dimension: if $X$ has a divisor $D$ that moves in a pencil and is contained in a subspace $\PP^k$ with $k \leq n-2$, the planes spanned by the divisors of the pencil $|D|$ sweep out a rational normal scroll.)
  
  Thus the existence of the $g^1_d$ on $C$, together with the symmetry of the resolution of the Gorenstein ring $S_C$,
   implies that the Betti table of $S_C$ has the form
@@ -729,7 +932,7 @@ Starting from examples such as the case of genus 6, Mark Green made a bold conje
 
 \begin{conjecture}[Green's Conjecture]
 If $C$ is a smooth canonical curve of genus $g$ and $S/I_C$ is the homogeneous coordinate ring of $C$ in its canonical embedding,
-then the Clifford index of $C$ is $\leq c$ if and only if $\beta_{c,c-2}(S/I_C)) \neq 0$. 
+then the Clifford index of $C$ is $\leq c$ if and only if $\beta_{c,c-2}(S/I_C) \neq 0$. 
 \end{conjecture}
 
 The conjecture was made for curves over a field of characteristic 0, and is known in many cases, though it is also known to fail in small finite characteristics (see~\cite{Bopp-Schreyer} for an amended conjecture that may hold in all characteristics.)
