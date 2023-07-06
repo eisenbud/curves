@@ -78,31 +78,6 @@ hyperplanes whose preimages contain $p$. We will make this more precise in the f
 %Because rational functions have degree 0 divisors, the degree of an invertible sheaf $\sL$, defined to be the degree of the 
 %divisor of zeros and poles of a rational section of $\sL$, is well-defined. We write $\pic_d(C)$ for the set of invertible sheaves of degree $d$ over $C$
 
-\section{Linear series}
-
-We want to understand morphisms to $\PP^r$ more than set-theoretically, and we want to be able to produce them from data on $C$. For this we use the notion of linear series (sometimes called linear system). Our goal in the next sections is to explain this connection:
-
-\begin{definition}
- A \emph{linear series} on a scheme $C$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $C$ and
- $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
- $$
- \dim \sV := \dim V -1,
- $$
-If $\sV$ has degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}---the old language means that $\sV$ it represents a group of $d$ points ``moving'' within a linear equivalence class with $r$ degrees of freedom. If $C$ is a smooth curve, then the divisor of zeros and the divisor of poles of a (rational) section of $\sV$ are subschemes, and the \emph{degree} of $\sV$ is by definition the degree of the divisor of poles minus the degree of the divisor of zeros of any of its sections; since the 
- ratio of two sections is a rational function, this is independent of the section chosen. The intersection of the vanishing loci of all the sections in $V$ is called the \emph{base locus} of $\sV$. It is in general a subscheme of $C$; points in its support are called \emph{base points} of $\sV$. \end{definition}
-
-The apparently perverse definition of the dimension of the linear series is because morphisms of a curve to $\PP^r$ are connected to linear series that have dimension $r$ in the sense above.
-
-\begin{theorem}\label{morphisms and linear series}
-There is a natural bijection between the set of nondegenerate morphisms $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and basepoint-free linear series of dimension $r$ on $C$, up to isomorphism.\end{theorem}
-
-Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane; the dimension of the series
- $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and basepoint-free means that there is no point of $C$ where all the sections in $V$
-vanish.
-
-The proof of Theorem~\ref{morphisms and linear series} is contained in sections~\ref{morphism from series}
-and \ref{series from morphism}.
-
 
 \subsection{Invertible sheaves}\label{Invertible sheaves}
 
@@ -123,7 +98,9 @@ a finite-dimensional vector space. If, moreover, $X$ is reduced and irreducible,
 functions on $X$ are the constant functions.
 
 The coherent sheaf $\sL$ is said to be an \emph{invertible sheaf} on $X$ if there is an open cover as above with the additional property
-that $L_{i} \cong \sO_X(U_{i})$, the free module on one generator. 
+that $L_{i} \cong \sO_X(U_{i})$, the free module on one generator. Note that the tensor product of two invertible sheaves is thus again an invertible sheaf, as is the dual invertible sheaf $\hom(\cF, \cO_C)$ of an invertible sheaf $\cF$. Thus the set of isomorphism classes of invertible sheaves on $C$ forms a group with law of composition given by tensor product.
+
+The key construction here is the \emph{invertible sheaf associated to a divisor} $D$, denoted $\cO_C(D)$. To describe this, suppose first that $C$ is a smooth curve, and $D = \sum m_p\cdot p$ a divisor on $C$. We can define an invertible sheaf on $C$ by associating to an open set $U \subset C$ the space of rational functions $f$ on $U$ such that $\ord_p(F) + m_p \geq 0$ for all $p \in U$. Thus, for example, if $D$ is effective, sections of $\cO_C(D)$ are rational functions, regular away from the points $p$ with $m_p > 0$, but which are allowed to have poles of order at most $m_p$ at $p$. Note that if $D$ and $E$ are linearly equivalent divisors on $C$---that is, there is a rational function $f$ on $C$ with $(f) = D - E$---then multiplication by $f$ defines an isomorphism $\cO_C(D) \cong \cO_C(E)$; thus the isomorphism class of the invertible sheaf $\cO_C(D)$ depends only on the linear equivalence class of $D$. Once we verify that every invertible sheaf on $C$ is of the form $\cO_C(D)$ for some divisor $D$, which we'll do shortly, we can conclude that the group of invertible sheaves is equal to the group $\pic(C)$ of linear equivalence classes of divisors. 
 
 If $\sigma \in H^0(\sL)$ is a global section of an invertible sheaf
 on $X$, and $p\in X$ is a point, then $\sigma(p)$ denotes the image of $\sigma$ under the natural map $H^0(\sL)$ to the stalk $\sL_{p}$, an $\sO_{X,p}$-module isomorphic to $\sO_{X,p}$. Since the isomorphism is not canonical, $\sigma$ does not define a function on $X$ at $p$; but since any two isomorphisms
@@ -221,6 +198,8 @@ Though we will systematically prefer the invertible sheaf terminology, there are
 section of the line bundle as a function. Second, and more serious, given a morphism $f: Y\to X$ of schemes, the 
 pullback $f^*(\sL)$ of an invertible sheaf $\sL$ on $X$ is defined as the tensor product of $\sO_Y$ with a sort of naive pullback; whereas the pullback of a line bundle is a straightforward set-theoretic operation.
 
+\section{Linear series and maps to projective space}
+
 
 \subsection{The morphism to projective space coming from a linear series} \label{morphism from series}
 For any $\CC$-vector space $V$ of dimension $r+1$ with basis $x_{0}, \dots, x_{r}$, we write $\Sym(V) \cong \CC[x_{0},\dots, x_{r}]$ for the symmetric algebra on $V$, and
@@ -263,6 +242,32 @@ The image of $\PP^1$ under this morphism is called the \emph{rational normal cur
 \emph{plane conic}, and in the case $d=3$ it is called the \emph{twisted cubic}. Veronese himself studied the image of $\PP^2$
 by the Veronese morphism of degree 2 now simply called \emph{the Veronese surface}.
 \end{example}
+
+\subsection{Linear series}
+
+We want to understand morphisms to $\PP^r$ more than set-theoretically, and we want to be able to produce them from data on $C$. For this we use the notion of linear series (sometimes called linear system). Our goal in the next sections is to explain this connection:
+
+\begin{definition}
+ A \emph{linear series} on a scheme $C$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $C$ and
+ $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
+ $$
+ \dim \sV := \dim V -1,
+ $$
+If $\sV$ has degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}---the old language means that $\sV$ it represents a group of $d$ points ``moving'' within a linear equivalence class with $r$ degrees of freedom. If $C$ is a smooth curve, then the divisor of zeros and the divisor of poles of a (rational) section of $\sV$ are subschemes, and the \emph{degree} of $\sV$ is by definition the degree of the divisor of poles minus the degree of the divisor of zeros of any of its sections; since the 
+ ratio of two sections is a rational function, this is independent of the section chosen. The intersection of the vanishing loci of all the sections in $V$ is called the \emph{base locus} of $\sV$. It is in general a subscheme of $C$; points in its support are called \emph{base points} of $\sV$. \end{definition}
+
+The apparently perverse definition of the dimension of the linear series is because morphisms of a curve to $\PP^r$ are connected to linear series that have dimension $r$ in the sense above.
+
+\begin{theorem}\label{morphisms and linear series}
+There is a natural bijection between the set of nondegenerate morphisms $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and basepoint-free linear series of dimension $r$ on $C$, up to isomorphism.\end{theorem}
+
+Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane; the dimension of the series
+ $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and basepoint-free means that there is no point of $C$ where all the sections in $V$
+vanish.
+
+The proof of Theorem~\ref{morphisms and linear series} is contained in sections~\ref{morphism from series}
+and \ref{series from morphism}.
+
 
 
 \subsection{The linear series coming from a morphism to projective space}\label{series from morphism}
