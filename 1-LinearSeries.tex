@@ -182,80 +182,101 @@ pullback $f^*(\sL)$ of an invertible sheaf $\sL$ on $X$ is defined as the tensor
 
 \subsection{Linear series}
 
-We have said that one reason invertible sheaves arise is to help classify and describe maps of a given variety $X$ to projective space. For this we use the notion of linear series (sometimes called linear system). Our goal in the next sections is to explain this connection:
+We have said that one reason invertible sheaves arise is to help classify and describe maps of a given variety $X$ to projective space. For this we use the notion of linear series (sometimes called linear system). Our goal in this section is to explain this connection. We start with the definition:
 
 \begin{definition}
- A \emph{linear series} on a scheme $C$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $C$ and
+ A \emph{linear series} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $X$ and
  $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
  $$
- \dim \sV := \dim V -1,
+ \dim \sV := \dim V -1.
  $$
-If $\sV$ has degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}---the old language means that $\sV$ it represents a group of $d$ points ``moving'' within a linear equivalence class with $r$ degrees of freedom. If $C$ is a smooth curve, then the divisor of zeros and the divisor of poles of a (rational) section of $\sV$ are subschemes, and the \emph{degree} of $\sV$ is by definition the degree of the divisor of poles minus the degree of the divisor of zeros of any of its sections; since the 
- ratio of two sections is a rational function, this is independent of the section chosen. The intersection of the vanishing loci of all the sections in $V$ is called the \emph{base locus} of $\sV$. It is in general a subscheme of $C$; points in its support are called \emph{base points} of $\sV$. 
+ 
+ Note that to every global section $\sigma$ of an invertible sheaf $\cL$ on a variety $X$  we can associate a divisor, namely the zero locus $(\sigma)$ of $\sigma$ (with appropriate multiplicity). If $\tau$ is a scalar multiple of $\sigma$, of course it has the same divisor; and if $X$ is projective the converse is true: two sections of $\cL$ with the same divisor differ by multiplication by a scalar. Thus, a linear system $\sV = (\cL, V)$ gives rise to a family of effective divisors on $X$, all in the same linear equivalence class, parametrized by the projective space $\PP V^*$ of nonzero $\sigma \in V$ mod scalars. This is indeed the way most people think of linear series: as families of divisors linearly parametrized by a projective space. This is reflected in the definition of the dimension of a linear series above: it's not the dimension of $V$ as a vector space, but the dimension of the corresponding projective space. It is also reflected in the terminology: we often speak of ``the divisors of a linear series $\sV$." 
+ 
+ Note that is $C$ is a smooth projective curve and $\sV$ a linear system on $C$, then all the divisors of $\sV$ have the same degree; this is called the \emph{degree} of the linear system. One other bit of terminology: if the vector space $V = H^0(\cL)$, the linear system is said to be \emph{complete}; in terms of the ``family of divisors" point of view, this is the same as saying the linear system includes every effective divisor in the linear equivalence class.
+ 
+If $\sV$ has degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}---the old language means that $\sV$ it represents a group of $d$ points ``moving'' within a linear equivalence class with $r$ degrees of freedom.  The intersection of the vanishing loci of all the sections in $V$ is called the \emph{base locus} of $\sV$. It is in general a subscheme of $C$; points in its support are called \emph{base points} of $\sV$. 
  \end{definition}
 
-The apparently perverse definition of the dimension of the linear series is because morphisms of a curve to $\PP^r$ are connected to linear series that have dimension $r$ in the sense above.
+With all this said, the fundamental theorem is the following:
 
 \begin{theorem}\label{morphisms and linear series}
-There is a natural bijection between the set of nondegenerate morphisms $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and base-point free linear series of dimension $r$ on $C$, up to isomorphism.\end{theorem}
+There is a natural bijection between the set of nondegenerate morphisms $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and base-point free linear series of dimension $r$ on $C$, up to isomorphism.
+\end{theorem}
 
 Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane; the dimension of the series
  $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and base-point free means that there is no point of $C$ where all the sections in $V$
 vanish.
 
-The proof of Theorem~\ref{morphisms and linear series} is contained in sections~\ref{morphism from series}
-and \ref{series from morphism}.
-
-
+In the next two subsections, we will describe the bijection of Theorem~\ref{morphisms and linear series} in both directions, concluding the proof of the theorem.
 
 \subsection{The linear series coming from a morphism to projective space}\label{series from morphism}
 
-Conversely, suppose that we are given a morphism $\phi: X\to \PP^{r}$. With notation as in Example~\ref{linear series on Pr} we may choose an open affine cover $W_{i,j}$ of $X$ such that $\phi(W_{i,j})\subset U_{j}$. Composing the regular
-functions
-$x_{0}/x_{j},\dots, x_{r}/x_{j}$ with $\phi$ we get functions $\sigma_{0},\dots,\sigma_{r}$ on $W_{i,j}$.  The function $\sigma_{j}$ is the image under $\phi^*: \sO_{U_j} \to \sO_{W_{i,j}}$ of the function $x_j/x_j = 1$ on $U_{j}$, so $\sigma_j = 1\in \sO_{W_{i,j}}$. 
+Let $f : X \to \PP^r$ be any nondegenerate map. We can construct an associated linear series $\sV = (\cL, V)$ on $X$ by taking $\cL = f^*\cO_{\PP^r}(1)$ the pullback of the invertible sheaf $\cO_{\PP^r}(1)$, and taking
+$$
+V = f^*H^0(\cO_{\PP^r}(1)) \subset H^0(\cL).
+$$
+In geometric terms, if we think of a linear series as a family of effective divisors, this is the linear series on $X$ consisting of preimages of hyperplanes in $\PP^r$ (the condition of nondegeneracy assures us that the preimage of a hyperplane in $\PP^r$ is indeed a divisor on $X$).
 
-In particular, the module $\sL\mid_{W_{i,j}}$ generated by the rational functions 
-$$
-\{\sigma_p\mid_{W_{i,j}}\}= 
-\{\phi^*((x_p/x_j)\mid_{U_j})\}
-_{0\leq p\leq r}
-$$
- is a free $\sO_{W_{i,j}}$-module on 1 generator. On the preimage of $U_j\cap U_k$ these sections differ by the common unit $\phi^*(x_k/x_j)$, and thus the collection of these modules defines an invertible sheaf $\sL$ on $X$ together with an
-$r+1$-dimensional space of global sections $\sV := \langle \sigma_0,\dots \sigma_r\rangle$ that forms a base-point free linear series. Note that the subscheme  $\{\sigma_p = 0\} \subset W_{i,j}$  is the scheme-theoretic preimage of the
-the hyperplane $\{x_p = 0\}\subset \PP^r$. This association of a linear series to a morphism is inverse to the construction
-of Section~\ref{morphism from series},  completing the explanation and proof of Theorem~\ref{morphisms and linear series}\qed
+%Conversely, suppose that we are given a morphism $\phi: X\to \PP^{r}$. With notation as in Example~\ref{linear series on Pr} we may choose an open affine cover $W_{i,j}$ of $X$ such that $\phi(W_{i,j})\subset U_{j}$. Composing the regular
+%functions
+%$x_{0}/x_{j},\dots, x_{r}/x_{j}$ with $\phi$ we get functions $\sigma_{0},\dots,\sigma_{r}$ on $W_{i,j}$.  The function $\sigma_{j}$ is the image under $\phi^*: \sO_{U_j} \to \sO_{W_{i,j}}$ of the function $x_j/x_j = 1$ on $U_{j}$, so $\sigma_j = 1\in \sO_{W_{i,j}}$. 
+%
+%In particular, the module $\sL\mid_{W_{i,j}}$ generated by the rational functions 
+%$$
+%\{\sigma_p\mid_{W_{i,j}}\}= 
+%\{\phi^*((x_p/x_j)\mid_{U_j})\}
+%_{0\leq p\leq r}
+%$$
+% is a free $\sO_{W_{i,j}}$-module on 1 generator. On the preimage of $U_j\cap U_k$ these sections differ by the common unit $\phi^*(x_k/x_j)$, and thus the collection of these modules defines an invertible sheaf $\sL$ on $X$ together with an
+%$r+1$-dimensional space of global sections $\sV := \langle \sigma_0,\dots \sigma_r\rangle$ that forms a base-point free linear series. Note that the subscheme  $\{\sigma_p = 0\} \subset W_{i,j}$  is the scheme-theoretic preimage of the
+%the hyperplane $\{x_p = 0\}\subset \PP^r$. This association of a linear series to a morphism is inverse to the construction
+%of Section~\ref{morphism from series},  completing the explanation and proof of Theorem~\ref{morphisms and linear series}\qed
 
 
 
 \subsection{The morphism to projective space coming from a linear series} \label{morphism from series}
-For any $\CC$-vector space $V$ of dimension $r+1$ with basis $x_{0}, \dots, x_{r}$, we write $\Sym(V) \cong \CC[x_{0},\dots, x_{r}]$ for the symmetric algebra on $V$, and
-$\PP(V)\cong \PP^{r}_{\CC}$ to be the projective space ${\rm Proj}(\Sym(V))$, which is naturally isomorphic to the
-space of lines in $V^{*}$ or, equivalently,  the space of 1-dimensional quotients of $V$. Note that the isomorphism $\PP(V)\cong \PP^{r}_{\CC}$ is well-defined up to the action
-of $\Aut(\PP^r) = PGL(r+1)$.
 
-Given a linear series $\sV:=(\sL, V)$  of dimension $r$ on a scheme $X$
-we define the \emph{base locus} of $\sV$ to be the closed subscheme 
+Suppose now that $X$ is any variety, and $\sV = (\cL, V)$ a base-point free linear series of dimension $r$ on $X$; we want to describe a corresponding morphism $f : X \to \PP^r$. We can do this concretely and explicitly by choosing a basis $\sigma_0, \dots, \sigma_r$ for $V$. If we let $D_i = (\sigma_i) \subset X$ be the divisor of zeroes of $\sigma_i$ and $U_i := X \setminus D_i$, then the ratio $\sigma_j/\sigma_i$ is a regular function on $U_i$, and
+we can define a map $f_i : U_i \to \PP^r$ by
 $$
-B_\sV := \bigcap_{\sigma\in V}\{\sigma = 0\}.
+f_i : p \; \mapsto \; \big[\frac{\sigma_0}{\sigma_i}(p), \dots, \frac{\sigma_r}{\sigma_i}(p)\big]
 $$
-Note that we could have restricted the intersection to a basis of $V$, with the same result.
-Let $W:=X\setminus B_\sV$ be the open subscheme where not all sections $\sigma_{i}$ vanish.
+The maps $f_i$ and $f_j$ agree on the overlap $U_i \cap U_j$, and by the hypothesis that $\sV$ is base-point free the $U_i$ cover $X$;
+so together they define a regular map $f$ from $X$ to $\PP^r$. 
 
-For any point $q\in W$ we  may choose an open neighborhood $W'\subset W$ of $q$, and an identification 
-$$
-t: \sL\mid_{W'} \rTo^{\cong} \sO_{W'}
-$$
-and define $\phi_{\sV}: W' \to \PP(V)$ by 
-$$
-W'\ni p \mapsto \bigl(t(\sigma_{0}(p)),\dots, t(\sigma_{r}(p))\bigr) \in \PP(V).
-$$
-This  is a morphism on $W'$. A change of neighborhoods $W'$ or of identifications $t$ would multiply
-each value $t(\sigma_{i}(p))$ by a unit, the same one for each $i$, and thus the construction would define the same morphism. It follows that the morphisms
-defined on different $W'$ agree on overlaps, and thus define a morphism $W \to \PP(V) \cong \PP^r$. This is the reason
-that the dimension of $\sV$ is defined to be $r=\dim V -1$ instead of $\dim V$.
+We can describe this map set-theoretically without having to choose a basis: since $\sV$ is assumed base-point free, for any point $p \in X$ the subspace $H_p := \{ \sigma \in V \mid \sigma(p) = 0 \}$ is a hyperplane in $V$; thus we get a map $f : X \to \PP V^*$.
 
-The most useful linear series are those that define morphisms defined on all of $X$. This happens when $B_\sV = \emptyset$,
-that is, for every point $q\in X$, there is a section $\sigma \in V$ such that $\sigma$ does not vanish at $q$. In this case we say that $(\sL, \sV)$ is \emph{base-point free}.
+
+%
+%For any $\CC$-vector space $V$ of dimension $r+1$ with basis $x_{0}, \dots, x_{r}$, we write $\Sym(V) \cong \CC[x_{0},\dots, x_{r}]$ for the symmetric algebra on $V$, and
+%$\PP(V)\cong \PP^{r}_{\CC}$ to be the projective space ${\rm Proj}(\Sym(V))$, which is naturally isomorphic to the
+%space of lines in $V^{*}$ or, equivalently,  the space of 1-dimensional quotients of $V$. Note that the isomorphism $\PP(V)\cong \PP^{r}_{\CC}$ is well-defined up to the action
+%of $\Aut(\PP^r) = PGL(r+1)$.
+%
+%Given a linear series $\sV:=(\sL, V)$  of dimension $r$ on a scheme $X$
+%we define the \emph{base locus} of $\sV$ to be the closed subscheme 
+%$$
+%B_\sV := \bigcap_{\sigma\in V}\{\sigma = 0\}.
+%$$
+%Note that we could have restricted the intersection to a basis of $V$, with the same result.
+%Let $W:=X\setminus B_\sV$ be the open subscheme where not all sections $\sigma_{i}$ vanish.
+%
+%For any point $q\in W$ we  may choose an open neighborhood $W'\subset W$ of $q$, and an identification 
+%$$
+%t: \sL\mid_{W'} \rTo^{\cong} \sO_{W'}
+%$$
+%and define $\phi_{\sV}: W' \to \PP(V)$ by 
+%$$
+%W'\ni p \mapsto \bigl(t(\sigma_{0}(p)),\dots, t(\sigma_{r}(p))\bigr) \in \PP(V).
+%$$
+%This  is a morphism on $W'$. A change of neighborhoods $W'$ or of identifications $t$ would multiply
+%each value $t(\sigma_{i}(p))$ by a unit, the same one for each $i$, and thus the construction would define the same morphism. It follows that the morphisms
+%defined on different $W'$ agree on overlaps, and thus define a morphism $W \to \PP(V) \cong \PP^r$. This is the reason
+%that the dimension of $\sV$ is defined to be $r=\dim V -1$ instead of $\dim V$.
+%
+%The most useful linear series are those that define morphisms defined on all of $X$. This happens when $B_\sV = \emptyset$,
+%that is, for every point $q\in X$, there is a section $\sigma \in V$ such that $\sigma$ does not vanish at $q$. In this case we say that $(\sL, \sV)$ is \emph{base-point free}.
 
 \begin{example}\label{Veronese definition}
 The morphism from $\PP^r$ defined by the  linear series $(\cO_{\PP^r}(d), H^0(\cO_{\PP^r}(d))$ has target
