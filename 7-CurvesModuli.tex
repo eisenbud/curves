@@ -1,365 +1,12 @@
 \input{header}
 
-\chapter{Moduli} 
+\chapter{Moduli of Curves} 
 \label{Moduli chapter}\label{ModuliChapter}
 
-\section{What is a moduli problem?}
 
-Algebraic geometry is almost unique among geometric theories in that the objects---varieties,  schemes or maps between them---can be parametrized by other varieties or schemes. The set of submanifolds of a given manifold, or more generally of maps between two given manifolds, seems too large to be given the structure of a finite-dimensional manifold itself. By contrast, any algebraic variety is specified by a finite collection of polynomials, which in turn have a finite number of coefficients, so it's not too far-fetched that the collection of all varieties with specified numerical invariants, or morphisms between two given varieties, could be given the structure of a ``moduli space'' that is a variety (or scheme or\dots) in its own right.
+\section{The moduli space of curves of genus $g$}
 
-For example, perhaps the original one, projective plane curves of degree $d$
-are in natural one-to-one correspondence with the forms of degree $d$ modulo the group of nonzero scalars---that is, with the points of the dual of the projective space
-$ \PP(H^0(\sO_{\PP^2}(d)))=\PP^{\binom{d+2}{2}-1} $.
-In this chapter, we'll give a general framework for the notion of moduli space, introducing the main examples that we will treat in this book.
-
-There are several ways in which the possibility of making moduli spaces has been useful in algebraic geometry. First, the existence of a moduli space that  parameterizes objects of a certain type allows us to speak of ``the general object'', meaning that we allow ourselves to avoid the ``special'' properties of objects parameterized by closed subvarieties of the moduli space. We have already used this
-possibility in many places in this book. 
-
-Second, it allows us to speak coherently about
-families of objects. Some moduli spaces carry \emph{universal families}, and every nice family of the sort of objects
-they parameterize is pulled back from this one by a unique map.  
-
-This idea was already exploited informally in the nineteenth century in the guise of ``preservation of number'', used to count configurations of points or curves with a given property by specializing the 
-data, and we have also exploited this idea in
-Chapter~\ref{JacobianChapter} to explain the count of odd and even theta characteristics on a a general curve by appealing to the existence of a specialization to a hyperelliptic curve. In a related manner, we have already seen how the fact that invertible sheaves of degree $d$ on a curve $C$ are parametrized by a $g$-dimensional variety allows us to prove the ``$g+3$" theorem (Theorem~\ref{g+3 theorem}).
-
-Third, to the extent that we can describe the intersection theory of a moduli space, it opens up the possibility of doing enumerative geometry on it to count solutions of geometric problems---and in particular to prove the existence of solutions. For example, knowing that the parameter space for lines in $\PP^3$ is the Grassmannian $\GG(1,3)$, a projective variety of dimension 4, and that the condition that the set of lines meeting a given curve of degree $d$
-is a divisor linearly equivalent to  $d$ times the hyperplane sections, we can conclude  that there exists a line in $\PP^3$ meeting any any four given curves \cite[****]{3264}. We will use the same idea to prove the much deeper existence of certain linear series on all curves (the ``existence" half of the Brill-Noether theorem, discussed in Chapter~\ref{Brill-Noether}). 
-
-In modern terms, a \emph{moduli problem} consists of a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common attributes---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
-which associates to each scheme $B$ the set of families over $B$ of the given sort. Examples will make this vague notion more concrete.
-
-\subsection{Some moduli problems}
-
-\begin{enumerate}\label{list of moduli problems}
-
-\item \emph{Effective divisors on a given curve}. The objects are effective divisors of given degree on a given smooth, projective curve $C$. A family of such divisors is a subscheme $\cD \subset B \times C$, flat of degree $d$ over $B$. 
-Here we are using
-the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ subschemes of the curve. The moduli space is the $d$-th symmetric power $C_d$ of $C$, discussed in Section~\ref{symmetric section}.
-
-\item \emph{Line bundles on a given curve}. The objects are invertible sheaves on a given smooth projective curve $C$. A family over a scheme $B$ is an equivalence class of invertible sheaves $\cL$ on $B \times C$ whose restriction to each fiber of $B \times C$ over $B$ has degree $d$, where two families $\cL$ and $\cL'$ on $B \times C$ are equivalent if $\cL\cong \cL' \otimes \cM$, where $\cM$ is  an invertible sheaf pulled back from $B$. Usually one restricts attention to invertible sheaves 
-whose restriction to each fiber $b\times C$ has a given degree $d$.
-The moduli spaces are the Jacobian and Picard varieties, discussed in Section~\ref{Picard section}.
-
-\item \emph{Hurwitz spaces}. The objects are curves of a given genus, together with maps to $\PP^1$ of given degree, up to isomorphism of the curves that commute with the maps. Often the allowable ramification indices are specified.
-
-\item \emph{Severi varieties}. The objects are plane curves
-of given degree $d$ and geometric genus $g$. If $g \neq {d-1\choose 2}$
-the curves will necessarily be singular but are often
-constrained to have only mild singularities, usually only nodes.
-
-\item \emph{Hilbert schemes}. The objects are curves of given degree $d$ and arithmetic genus $g$ in $\PP^r$.  A family over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$. There are many useful extensions of this notion. For example, there are Hilbert schemes
-for subschemes $X$ contained in a given projective scheme $Y$ and having specified Hilbert polynomial or Hilbert function. 
-
-\item \emph{Moduli of smooth curves}. The objects are isomorphism classes of smooth, projective curves of genus $g$. A family over $B$ is an equivalence class of smooth, projective morphisms $f : \cC \to B$ whose fibers are curves of genus $g$, where two such families $f, f'$
-are equivalent if there is an isomorphism from the source of $f$ to the source
-of $f'$ making the diagram
-$$
-\begin{diagram}[small]
-\cC && \rTo^\cong && \cC'\\
-&\rdTo_f&&\ldTo_{f'}\\
-&&B
-\end{diagram}
-$$
-commute.
-\end{enumerate}
-
-
-We have already encountered examples 1 and 2 in Chapter~\ref{JacobianChapter}. Severi varieties will be discussed in Chapter~\ref{PlaneCurvesChapter}. In this chapter we will discuss Hilbert schemes, Hurwitz spaces, the moduli of curves and (briefly) the Hurwitz scheme.
-
-\section{What is a solution to a moduli problem?}
-
-Typically what we want from a solution to a moduli problem is to understand all possible families of the objects
-in question. In particular, the individual objects should be in one-to-one correspondence with the closed points of the
-moduli space.  The word \emph{natural} is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere  bijection between the points of $M$ and the objects to be parametrized is meaningless.
-
-In the nicest situations there is a \emph{universal} family $\phi: \cX\to M$ of these objects over $M$,
-such that any family over a scheme $B$,  is pulled back from the one on $M$ via a unique morphism $B\to M.$  Such a space $M$ with its universal family $\phi$, if it exists, is called a \emph{fine moduli space}. This can be expressed more abstractly but more succinctly by saying that there is an isomorphism of functors:
-$$
-\{ B \mapsto \text{families of } X \text{ over } B \} \cong \{ B\mapsto {\rm{Mor}}_{{\rm Schemes}}(B, M) \}.
-$$
-If $M$ is a fine moduli space then the identity map $M\to M$ corresponds to the ``universal family'' $\phi: \cX \to M$. 
-For example, the Hilbert scheme, as well as $Div_d(C)$ and $\Pic_d(C)$ are fine moduli spaces; the moduli space of curves
-and the Hurwitz schemes are not.
-
-If a fine moduli space and its universal family exist, then it is unique up to unique isomorphism: given two avatars $M$ and $M'$
-the universal family on $M$ corresponds to a map $M\to M'$, and we similarly produce a map $M'\to M$. The pullback of the universal family on $M$ by the composition of these two maps is again the universal family, so the composition is the identity map.
-
-\def\eps{{\epsilon}}
-One of the useful features of a fine moduli space is that it makes the computation of tangent spaces relatively easy.
-Recall that if $(R,\gm)$ is the local ring at a point $m$ on a variety $\cM$ then the (Zariski) tangent
-space to $M$ at $m$ is the vector space of linear functionals $Hom_{R/\gm}(\gm/\gm^2, R/\gm)$.   Assuming that
-$R$ contains its residue field $R/\gm$, such functionals
-are precisely the restrictions to $\gm/\gm^2$ of the ring homomorphisms $R \to R/\gm[\eps]/(\eps^2)$ inducing the identity
-$R/\gm \to R/\gm$. 
- If $\cM$ is a fine moduli space for some functor $F$, then such maps are in one-to-one correspondence
-with the set $F(E)$ of families over $E := \Spec(R/\gm[\eps]/(\eps^2))$. 
-
-
-The vector space structure on the tangent space is also accessible from this description: since the representable
-functor $\rm{Mor}_{\rm Schemes}(B, M)$ preserves products, the
- sum of tangent vectors corresponding to families $X_i \to E$ is the restriction to the diagonal
- $E \subset E\times E$
- of the product family $X_1 \times X_2 \to E\times E$.
-Often one can to compute the tangent space to a moduli space before even knowing that the moduli space exists!
-
-%Hilbert schemes are fine moduli spaces for subschemes of a given scheme, but 
-%fine moduli spaces do not exist for all moduli problems. As we'll explain in Section~\ref{coarse moduli}, there does not exist a universal family of abstract curves of genus $g$: the moduli space of curves is
-%not a fine moduli space, but has a slightly weaker property.
-
-\section{Hilbert schemes}\label{hilbert scheme section}
-
-The Hilbert scheme is a fine moduli space representing the functor of flat families of subschemes of $\PP^r$,
-that is, the functor that takes a scheme $S$ over $\CC$ to the set of subschemes $\sX \subset S\times \PP^r$
-that are flat over $S$. It is a central example of in the theory, one in terms of which many others are defined.
-
-\begin{example}\label{Hilb for plane curves}
- For a simple example, consider the family of schemes $X$ in the plane
-$Hilb_p(\PP^2)$
-having the same Hilbert polynomial $p_X(m)  = p(m) := dm+1-{d-1\choose 2}$ as a plane curve of degree $d$. Since 
-$\dim X = \deg p$, $X$ has at least a component that is 1-dimensional, and this component must have degree
-equal to $d$, the leading coefficient of $p$. Since the Hilbert polynomial  of this component is already equal
-to $p_X(m)$ we see that $X$ is in fact a plane curve of degree $d$. The space $Hilb_{p}(\PP^2)$ is thus the projective space $\PP^{{d+2\choose 2}-1}$ of forms of degree $d$,
-and the universal family is the projection 
-$$
-\{(x,F) \in \PP^2 \times \PP^{{d+2\choose 2}-1} \mid F(x) = 0\} \to \PP^{{d+2\choose 2}-1}.
-$$
-\end{example}
- 
-Since the Hilbert polynomials of the fibers of a flat family are all equal (\cite[Section III.9]{Hartshorne1977}, the Hilbert scheme is the disjoint union of components corresponding to particular Hilbert polynomials. For example, the set of curves $C \subset \PP^r$ of degree $d$ and genus $g$ corresponds to a subset of the Hilbert scheme parametrizing subschemes of $\PP^r$ with Hilbert polynomial $p(m) = dm - g + 1$, though not all schemes with this hilbert polynomial are purely one-dimensional subschemes, as we shall see. In this section, we'll describe
- the tangent spaces to the Hilbert scheme and sketch the construction. For a rigorous treatment of the construction of the Hilbert scheme, including many generalizations,  see~\cite{HomogHilbert} or \cite{MR2222646}. In Chapters~\ref{HilbertSchemesChapter} and~\ref{HilbertSchemesCounterexamplesChapter}, we'll describe  the Hilbert schemes of curves of low degree and genus in $\PP^3$ in more detail. 
-
-\subsection{The tangent space to the Hilbert scheme}
-
-Following the general recipe for tangent spaces to fine moduli spaces, we need to understand flat families
-of projective schemes over $E := \Spec \CC[\eps]/(\eps^2)$. Recall (\cite[****]{Hartshorne1977} that if $X\subset \PP^r$ is a smooth subscheme then
-the dual of the exact sequence
-$$
-0\to \sI_{X/\PP^r}/\sI_{X/\PP^r}^2 \to \Omega_{\PP^r}\mid_X \to \Omega_X \to 0
-$$
-identifies $\sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X)$ with the \emph{normal bundle} of $X$ in $\PP^r$.
-By analogy, for any subscheme $X\subset \PP^r$ we define the \emph{normal sheaf} to be
-$$
-\sN_{X/\PP^r} := \sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X).
-$$
-
-\begin{theorem}\label{tangent space of Hilb}
-Let $X\subset \PP^r$ be a projective variety with Hilbert polynomial $p(m)$. The flat families 
-$\sX \subset \PP^r\times E$ specializing to $X$ at the closed point defined by $(\eps)$
-are in natural one-to-one correspondence with the vector space $Hom_{\PP^r}(\sI_{X/\PP^r}, \sO_X) = H^0(\sN_{X/\PP^r})$, which is thus the tangent space to the Hilbert scheme $Hilb_{p}(\PP^r)$ at $[X]$.
-\end{theorem}
-
-\begin{proof}
-We will actually treat the analogous result for an affine scheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2)= S \oplus \eps S$. 
-
-A $U$-module $M$ is flat  over $U$ if and only if $\Tor_1^U(\CC,M) = 0$. 
-Since the free resolution of $\CC$ as a $U$-module has the form
-$$
-\cdots \rTo^\eps U \rTo^\eps U \rTo^\eps U \rTo \CC \rTo 0
-$$
-we have $\Tor_1^U(\CC,M)=0$ if and only if the submodule of $M$ annihilated by $\eps$ is $\eps M$.
-
-%The algebra $T/I'$ is flat over $U$ if and only if $\Tor_1^U(T/I', \CC) = 0$.
-%Let 
-%$$
-%F_2 \to F_1 \to T \to T/I' \to 0
-%$$
-%be the beginning of a $T$-free resolution of $T/I'$. Since $-\otimes_U\CC$ is right exact, 
-%$\Tor_1^U(T/I', \CC)$  is the kernel of $F_1 \otimes \CC \to I$ modulo the image of
-%$F_2 \otimes \CC \to F_1\otimes C$. Thus $\Tor_1^U(T/I', \CC) = 0$ if and only if
-%all the relations on generators of $I$ can be lifted to relations on generators of $I'$.
-
-We now construct a flat family from a homomorphism: Let $I = (g_1,\dots, g_t)\subset S = \CC[x_1,\dots, x_r]$ be the ideal defining $X$. 
-Note that $Hom_S(I/I^2, S/I) = Hom_S(I,S/I)$. Let $\phi: I\to S/I$ be a homomorphism, and let $h_i\in S$ be
-any element reducing to $\phi(g_i)$ modulo $I$.  The ideal
-$\tilde I := (g_1+\eps h_1,\dots, g_t+\eps h_t)\subset S[\eps]/(\eps^2)$
-defines a scheme over $\Spec U$ which restricts to $X$ modulo $(\eps)$; that is, $I' +(\eps) = I$. 
-
-To see that $\tilde I$ is 
-independent of the lifting chosen, suppose that $k_1,\dots,k_t\in I$ so that $g_i+\eps(h_i+k_i)$ are a different lifting,
-generating an ideal $\tilde I'$.
-Writing $k_i = \sum r_{i,j}g_j$ we have $g_i+\eps(h_i+k_i) = g_i+\eps h_i+ \sum \eps r_ij(g_i+\eps h_i)$, so 
-$\tilde I' \subset \tilde I$, and symmetrically $\tilde I \subset \tilde I'$.
-
-To prove flatness, suppose that $a\in T$ and  $\eps a  \in I'$,
-so that we can write  $\eps a= \sum(r_i+\eps s_i)(g_i+\eps h_i) \in T$.
-It follows that 
-$\sum r_i\g_i = 0$. Since $\phi$ is a homomorphism this implies $\sum r_i h_i \in I.$ Thus
-$\eps a \in  \eps I\subset T$, whence $a\in I + (\eps)$.  Writing $a =\sum p_i g_i+\eps b'$
-and using the relations $g_i \equiv \eps h_i \hbox{ mod } I'$ we get
- $a \equiv \eps (\sum p_i h_i+b') \hbox{ mod } I'$, as required.
-
-Finally, starting from a flat family $T$ over $U$ we must construct a homomorphism $I/I^2 \to S/I$  in a way that is inverse to the construction above: Given an ideal $\tilde I \subset T$ such that $T/\tilde I$ is flat over $U$ and $\tilde I + (\eps) = I +\eps$, 
-let $J$ be the image of $\tilde I$ in $T/(\eps I) = S \oplus (\eps S)/(\eps I)$. We claim that $J$ is the graph of a homomorphism $\phi: I \to  (\eps S)/(\eps I) \cong S/I$. 
-
-Since $\tilde I + \eps S = I +\eps S$,  the projection  to the first  summand of $S'$ maps $J$ onto $I$. 
-To prove that $J$ is the graph of a homomorphism, it suffices to show that this projection is an isomorphism.
-The kernel is
-the intersection of $J$ with the second factor $(\eps S)/(\eps I )$, so we must show that
-if $r\in S$ and $\eps r \in \tilde I$ then $\eps r \in \eps I$. 
-
-Since $\eps r \in \tilde I$, the condition of flatness implies
-that the image of $r$ in $T/\tilde I$ is in $\eps(T/\tilde I)$, which is to say that $r \in \tilde I + \eps S = I +\eps S$.
-Thus $r \in  I + \eps S,$ whence $\eps  r \in \eps I$ as required.
-
-Thus
-$J$ defines a homomorphism $\phi$ as claimed, which means that
- $\tilde I$ is generated by $\{g+\phi g\mid g\in I\}$, so the two constructions are inverse to one another.
-\end{proof}
-
-\begin{example}\label{Hilb for plane curves-continued}
-If $C$ is the plane curve of degree $d$ defined by a form $F$, then the ideal sheaf of $C$ is $\sO_{\PP^2}(-d)$, and thus
-$$
-\sI_{C/\PP^2}/\sI_{C/\PP^2}^2 = \sO_{\PP^2}(d)\mid_C = \sO_C(d).
-$$
-From the exact sequence 
-$$
-0\rTo\sO_{\PP^2}\rTo^F\sO_{\PP^2}(d) \rTo\sO_C(d)\rTo 0
-$$
-we deduce that the dimension of the tangent space to $Hilb_{p(m)}(\PP^2)=\PP^d$  at $C$
-with $p(m) = dm+1-{d-1\choose 2}$,
-is $h^0(\sO_C(d)) = h^0(\sO_{\PP^2}(d))-1 = \dim \PP^d$, as expected.
-\end{example}
-
-\
-
-\subsection{Parametrizing twisted cubics} By Lemma~\ref{smooth is open} below, the set of twisted cubics---that is, smooth curves of degree 3 in $\PP^3$---is an open subset of the Hilbert scheme $Hilb_{3m+1}(\PP^3)$. As we've seen, a twisted cubic curve $C \subset \PP^3$ can be described as the zero locus of three homogeneous quadratic polynomials $Q_1, Q_2$ and $Q_3$ in the homogeneous coordinates on $\PP^3$; to specify the twisted cubic we could just list the $3 \times 10 = 30$ coefficients of these. But of course we could replace the three quadrics $Q_i$ with any three independent linear combinations of them; what matters---and what is is naturally associated to $C$---is the vector space $V = \langle Q_1, Q_2, Q_3 \rangle \subset H^0(\cO_{\PP^3}(2))$ that they span. This suggests that we consider the map of sets
-$$
-h : \{ \text{twisted cubic curves } C \subset \PP^3 \} \to G = G(3, H^0(\cO_{\PP^3}(2)))
-$$
-obtained by associating to a twisted cubic $C$ the second graded piece of its homogeneous ideal. 
-
-This differs significantly from the example of plane curves given at the beginning of this chapter: there, the objects to be parametrized were the zero locus of a single polynomial, and we could vary those coefficients arbitrarily and still have a plane curve; thus, the image of the analogous map was open in the projective space $\PP^N$. In the present situation, though, if we vary the coefficients of the three quadratic polynomials $Q_i$ generally, the resulting quadrics will no longer intersect in a twisted cubic curve, but rather in eight points. Thus the image of the map $h$ is more complicated.
-In fact, we'll see in Section~\ref{*****} below that the image of this map is a locally closed subvariety of the Grassmannian (we'll give the equations cutting it out in $G$), and the image can lay claim to being the moduli space of twisted cubics in $\PP^3$.
-
-In the meantime, we can analyze the open subset of the Hilbert scheme consisting of twisted cubics. First a basic lemma:
-
-\begin{lemma}\label{smooth is open}
-Suppose that $X \to B$ is a flat family of projective schemes (that is, the projection to the second factor of 
-$X\subset B\times \PP^n$ over a smooth base $B$. The points $b\in B$ such that the fiber $X_b$ is smooth and connected is an open set.
-\end{lemma}
-
-\begin{proof}
-Since $B$ is smooth, it's closed points are locally complete intersections, so if $p\in X$ is a singular point of $X$ then the fiber through $p$ is singular. Since the singular subset of $X$ is closed and the family is projective, the image of the singular set in $X$ is closed, and we may remove it and assume that $X$ is smooth from the start. Now the condition that a point on a fiber is singular is a closed condition on $X$, so again its image in $B$ is closed. Finally, a smooth fiber $X_b$ is connected if and only if $h^0\sO_{X_b})$ and by the flat base change theorem~\cite[***]{Hartshorne1977} this set is open as well.
-\end{proof}
-
-\fix{revised to here}
-%%%%%%%%%%%%%%%%%%%%
-
-\begin{proposition}\label{hilb of twisted cubics}
-The open subset $\cH^\circ$ of the Hilbert scheme $Hilb_{3m+1}(\PP^3)$ parametrizing twisted cubics is irreducible of dimension 12.
-\end{proposition}
-
-\begin{proof}  Let $C_0 \subset \PP^3$ be a twisted cubic, and consider the family of translates of $C_0$ by automorphisms $A \in \PGL_4$ of $\PP^3$: that is, the family
-$$
-\cC = \{ (A, p) \in \PGL_4 \times \PP^3 \; \mid \; p \in A(C_0) \}.
-$$
-Via the projection $\pi : \cC \to \PGL_4$, this is a family of twisted cubics, and so it induces a map
-$$
-\phi : \PGL_4 \to \cH^\circ.
-$$
-Since every twisted cubic is a translate of $C_0$, this is surjective, with fibers isomorphic to the stabilizer of $C_0$, that is, the subgroup of $\PGL_4$ of automorphisms of $\PP^3$ carrying $C_0$ to itself. By the discussion in Section~\ref{linear series 1}, every automorphism of $C_{0}$ is induced by an automorphism of $\PP^{3}$, so the stabilizer is isomorphic to $\PGL_2$ and  thus has dimension 3. Since $\PGL_4$ is irreducible of dimension 15, we conclude that \emph{$\cH^\circ$ is irreducible of dimension 12}.
-\end{proof}
-
-
-\subsection{Construction of the Hilbert scheme in general}
-
-The Hilbert scheme is more complicated than would appear from the examples above, starting with the Hilbert polynomial $3m+1$. There are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---and are not the intersection of the quadrics containing them. (See Exercises \ref{characterization of degree} and Exercise~\ref{deg of disjoint union}). In Chapters~\ref{HilbertSchemesChapter}
-and \ref{HilbertSchemesCounterexamplesChapter} we will discuss many more components of Hilbert schemes.
-
-A fundamental result of~\cite{Matsusaka} provides a place to start:
-
-\begin{lemma}\label{matsusaka}
-Let $p(m) \in \QQ[m]$ be a polynomial. There exists an integer $m_0$ such that
-
-\begin{enumerate}  
-
-\item For any subscheme $X \subset \PP^r$ with Hilbert polynomial $p_X = p$ we have
-$$
-h^0(\cI_{X/\PP^r}(m)) = \binom{m+r}{r} - p(m) \quad \text{for all } m \geq m_0
-$$
-or in other words the Hilbert function of $X$ agrees with the Hilbert polynomial $p_X = p$ for all $m \geq m_0$; and
-
-\item For any subscheme $X \subset \PP^r$ with Hilbert polynomial $p_X = p$ and for all $m \geq m_0$, $X$ is the intersection of the hypersurfaces of degree $m$ containing it.
-\end{enumerate}
-\end{lemma}
-
-In fact, with $m_0$ sufficiently large more is true:  these forms generate the truncation of the saturated ideal (see~\cite{Gotzmann})
-
-Note that  for any given $X$ the existence of an $m_0$ satisfying the statement of the lemma is immediate by Serre's vanishing theorem~\ref{Serre-Grothendieck vanishing}. The point of the lemma is that we can find one value of $m_0$ that works for all $X$ with Hilbert polynomial $p$. The following result of Gotzmann provides a method for determining $m_0$. 
-
-\begin{theorem}
-The Hilbert polynomial  of the homogeneous coordinate ring of any scheme $X\subset \PP^r$ can be written uniquely in the form
-$$
-\chi(\sO_X(m) = {m+a_1\choose a_1}+ {m+a_2 -1\choose a_2}+ \cdots+{m+a_s -(s-1)\choose a_s},
-$$
-with 
-$$
-a_1\geq \cdots \geq a_s \geq 0
-$$
-where the binomial coefficients are interpreted as polynomials in $m$. Moreover, the homogeneous ideal of $X$ is
-then generated in degrees $\leq s$, and one can take $m_0 = s$ in the construction of the Hilbert Scheme, above.
-\end{theorem}
-See~\cite{MR1023391} %Green-Gotzmann
-for an exposition and a proof. From the coefficients $a_j$ one can read off uniform vanishing theorems for $H^i(\sI_X)$
- as well.
- 
- For example, the Hilbert polynomial $3m+1$ of the twisted cubic may be written as
- $$
- 3m+1 =  {m+1\choose 1}+ {m+1 -1\choose 1}+{m+1 -2\choose 1}+{m+0 -(3)\choose 0},
- $$
- Here $s=4$, and indeed the homogeneous ideal of the union of a plane cubic with a point, also in the plane,
- requires equations of degree 4.
- 
-The first item allows us to define a  map of sets
-$$
-h : \left\{ \text{subschemes $X \subset \PP^r$ with $p_X=p$} \right\}  \to G\big(\binom{m_0+r}{r} - p(m_0),\binom{m_0+r}{r} \big)
-$$
-by sending $X$ to $H^0(\cI_{X/\PP^r}(m_0))$; the second implies that this map is injective.  In Section~\ref{eqns of Hilb} we give a set of equations on $G = G(\binom{m_0+r}{r} - p(m_0), \binom{m_0+r}{r})$ with common zero locus the image $\im(h)$, showing that $\im(h)$ is closed and giving it the structure of a scheme; this is the Hilbert scheme we seek.
-
-
-We observed above that if $Q_1, Q_2$ and $Q_3$ were general quadrics, their intersection would be
-8 points,  not a twisted cubic. What we want to know is how to tell these cases apart algebraically. One way to do this is to consider the multiplication map
-$$
-V \otimes H^0(\cO_{\PP^3}(1)) \to H^0(\cO_{\PP^3}(3)).
-$$
-We saw in Chapter~\ref{genus0And1Chapter} that the cokernel of this map is the 10-dimensional space $H^0(\sO_{\PP^1}(9))$, so the image of this map is 10-dimensional, whereas
-3 general quadrics form a complete intersection and would have only Koszul syzygies, so
-in the case of general quadrics this map would have 12-dimensional image.
-This is a map from a 12-dimensional vector space to a 20-dimensional one, and what we've seen is that if $V$ is the net of quadrics containing a twisted cubic, it has a 2-dimensional kernel; that is, it has rank 10. 
-
-Thus if $S$ is the universal subbundle on $G = G(3, H^0(\cO_{\PP^3}(2))$, and  $H^0(\cO_{\PP^3}(d))\otimes \sO_G$ is the trivial bundle, then the multiplication map above gives a map of vector bundles
-$$
-\mu: S \otimes H^0(\cO_{\PP^3}(1)) \to H^0(\cO_{\PP^3}(3))
-$$
-We can represent this locally as a matrix of functions, and the minors of this matrix vanish on the points of
-of the Hilbert scheme: in a neighborhood of a point in $G$ corresponding to a twisted cubic, the common zero locus of these minors is the locus of nets of quadrics containing a twisted cubic
-
-\subsection{Equations defining the Hilbert scheme}\label{eqns of Hilb}
-
-In fact, the construction of the Hilbert scheme in general is no more structurally complicated than this special case. Given a polynomial $p(m)$, we find a value of $m_0$ that satisfies the statement of Lemma~\ref{matsusaka}; we let
-$$
-G = G\big(\binom{m_0+r}{r} - p(m_0), \binom{m_0+r}{r} \big)
-$$
-be the Grassmannian, and let $h$ be the map from the set of subschemes of $\PP^r$ with Hilbert polynomial $p$ to $G$ sending $X$ to $H^0(\cI_{X/\PP^r}(m_0))$. We then get a map of vector bundles  on $G$
-$$
-S \otimes H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{\PP^r}(m_0+1)),
-$$
-and indeed in a neighborhood of any point of $G$ in the image of $h$, the common zero locus of the minors of size $\binom{r+m_0+1}{r} - p(m_0+1)$ of a matrix representative of this map is the image of $h$; and these functions define the Hilbert scheme.
-
-\subsection{Subschemes of a given scheme}
-
-Though the Hilbert scheme is a priori about subschemes of projective space, it is easy to see that if $X\subset \PP^n$,
-then the family of subschemes $Y$ of $X$ with given Hilbert function $p$ is a closed subscheme of $Hilb_p(\PP^n)$: we simply
-add the condition that the vector space of forms of high degree defining $Y$  contain the vector space defining $X$---this is also a determinantal condition.
-
-fix{no revisions done beyond here on 5/21}
-
-%%%%%%%%%%%% Consider breaking the chapter into two here.
-
-\section{The moduli space $M_g$ of curves of genus $g$}
-
-In the remainder of this chapter, we will discuss the moduli space central to the theory of algebraic curves: the moduli space $M_g$, whose points are in one-to-one correspondence with the isomorphism classes of smooth projective
+In this chapter, we will discuss the moduli space central to the theory of algebraic curves: the moduli space $M_g$, whose points are in one-to-one correspondence with the isomorphism classes of smooth projective
 curves of genus $g$.
 
 \subsection{Genus 2}                                                                                             
@@ -381,11 +28,12 @@ with $a, b$ and $c$ general scalars. We will discuss the analogous question for 
 
 \subsection{Higher genus}
 
-In the genus 2 example, we worked with the canonical map $\phi_K$, expressing a given curve $C$ of genus 2 as a 2-sheeted cover of $\PP^1$, so that the moduli space of curves of genus 2 could be realized as the space of such double covers modulo $\PGL_2$. What if we adopted the same approach in genus 3? If a curve $C$ of genus 3 is non-hyperelliptic, the canonical map embeds $C$ as a smooth quartic curve in $\PP^2$. Since this realization is unique up to automorphisms of $\PP^2$, we could realize the space $\tilde M_3$ of non-hyperelliptic curves as the quotient of the space of smooth plane quartic curves---an open subset of the $\PP^{14}$ of all quartic curves---by the action of ${\rm Aut}(\PP^2) = PGL_3$. 
+In the genus 2 example, we worked with the canonical map $\phi_K$, expressing a given curve $C$ of genus 2 as a 2-sheeted cover of $\PP^1$, so that the moduli space of curves of genus 2 could be realized as the space of such double covers modulo $\PGL_2$. What if we adopted the same approach in genus 3? If a curve $C$ of genus 3 is non-hyperelliptic, the canonical map embeds $C$ as a smooth quartic curve in $\PP^2$. Since this realization is unique up to automorphisms of $\PP^2$, we could realize the space $\tilde M_3$ of non-hyperelliptic curves as the quotient of the space $U$ of smooth plane quartic curves---an open subset of the $\PP^{14}$ of all quartic curves---by the action of ${\rm Aut}(\PP^2) = PGL_3$. We could similarly try the same approach by looking at canonical models of curves of any genus $g$, substituting a suitable subset of the Hilbert scheme for the open subset $U \subset \PP^{14}$ above.
 
-We can include the hyperelliptic curves as well if we take the the bicanonical map $\phi_{2K} : C \to \PP^{3g-4}$ (or, if we want to include the case of genus 2, the tricanonical map  $\phi_{3K} : C \to \PP^{5g-6}$). This means we have to replace the relatively simple ``space of smooth plane quartic curves" (an open subset of $\PP^{14}$) with the more daunting ``locally closed\footnote{In the open subset of the Hilbert scheme parametrizing smooth curves of degree $6g-6$ in $\PP^{5g-6}$, the locus of those for which $\cO_C(3) \cong K_C^3$ is closed.}
+
+Of course, this approach would exclude hyperelliptic curves. We can include these as well if we replace the canonical map with the bicanonical map $\phi_{2K} : C \to \PP^{3g-4}$ (or, if we want to include the case of genus 2, the tricanonical map  $\phi_{3K} : C \to \PP^{5g-6}$). This means we have to replace the relatively simple ``space of smooth plane quartic curves" (an open subset of $\PP^{14}$) with the more daunting ``locally closed"\footnote{In the open subset of the Hilbert scheme parametrizing smooth curves of degree $6g-6$ in $\PP^{5g-6}$, the locus of those for which $\cO_C(3) \cong K_C^3$ is closed.}
  subset of the Hilbert scheme of curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$,"
- whose construction was given in Section~\ref{Hilbert scheme section}.
+ whose construction was sketched in Section~\ref{Hilbert scheme section}.
 
 In this case we want to take the quotient of a subset of the Hilbert scheme by the positive-dimensional group $PGL_{5g-5}$. Unlike of the orbit space of a finite group, the orbit space in this case cannot be realized as an algebraic variety!
 
@@ -423,20 +71,16 @@ this means finding as many functions as possible that are invariant on the orbit
 of the homogeneous coordinate ring $A$ of the closure of $X$. In general, this may not even be finitely generated,
 and thus may not correspond to a variety. But Hilbert showed that if $G= SL_{N+1}$, then the ring of invariants
 is finitely generated. Since Hilbert's time this result has been extended to the class of 
-\emph{linearly reductive} groups---see~\cite{****}.
+\emph{linearly reductive} groups, using ideas of 
+Hilbert, Mumford and Haboush---see~\cite{****}.
 
 
-
-
-then the ring of $G$  \fix{We should have a standard notation for homogeneous coordinate ring!!}
-\fix{say first diff is may not be fg; but... give reference...}
 The first difficulty is that the elements of $A$ are not functions on $X$, so $G$ may not even act on $A$. However, 
 it is possible to lift the action of $G$ to an action on $A$ of a slightly larger group, a process called \emph{linearization}. The kernel of the map $SL_{N+1} \to PGL_{N+1}$ consists of diagonal matrices of finite order dividing $N+1$, and the choice of
 a linearization amounts to a choice of a character of this abelian group. However, the choice doesn't matter: since the kernel acts trivially on forms of degree a multiple
 of $N+1$, and thus the action of $PGL_{N+1}$ itself  extends to an action on the homogeneous coordinate ring of the $(N+1)$-st Veronese embedding. 
 
-By a famous result of Hilbert \cite{} theorem\footnote{Hilbert's theorem covered the action of $SL_{N+1}$ in characteristic 0. The general case of a reductive group in any characteristic is more complicated, and combines ideas of 
-Hilbert, Mumford and Haboush} the subring $A^G \subset A$ of invariant elements is finitely generated over the ground field, and the projective variety best approximating the set of orbits of $G$ on $X$ 
+By Hilbert's theorem  the subring $A^G \subset A$ of invariant elements is finitely generated over the ground field, and the projective variety best approximating the set of orbits of $G$ on $X$ 
 is $\Proj(A^G)$, usually denoted $X//G$. In view of the example above, we must ask what might be
 the relationship between the points of $X//G$ and the orbits of $G$? 
 
@@ -446,7 +90,7 @@ To answer this question, GIT performs a sort of triage on the points of $X$ (or 
 
 \item  \emph{Stable} points. These are the points whose orbits are closed. They comprise an open subset $X^s \subset X$, and the points of an open subset of $X//G$ correspond one-to-one to the stable orbits, that is, an open subset that is set-theoretically $X^s/G$. In the case of the action of $PGL_3$ on the $\PP^9$ of plane cubics, the stable points are the smooth plane cubics, and the quotient is the affine $j$-line.
 
-\item \emph{Strictly semistable} points. These are the points $p$ such that there exists an invariant form not vanishing at $p$.  Together with the stable points, comprise a larger open subset $X^{ss} \subset X$, called the \emph{semistable} locus. Two  semistable points $p,q$ map to the same point in $X//G$ if and only if $\overline{Gp}\cap \overline{Gq} \neq \emptyset$. In the example of the action of $PGL_3$ on  $\PP^9$, the semistable  locus contains  the orbits of smooth and nodal plane cubics; that is, smooth cubics together with the three orbits consisting of irreducible cubics with a node, unions of lines and conics meeting transversely, and triangles. In the quotient, these last three orbits correspond to just one additional point, and this quotient is the compactification of the affine line to the projective line obtained by adding one point.
+\item \emph{Strictly semistable} points. These are the points $p$ such that there exists an invariant form not vanishing at $p$.  Together with the stable points, they comprise a larger open subset $X^{ss} \subset X$, called the \emph{semistable} locus. Two  semistable points $p,q$ map to the same point in $X//G$ if and only if $\overline{Gp}\cap \overline{Gq} \neq \emptyset$. In the example of the action of $PGL_3$ on  $\PP^9$, the semistable  locus contains  the orbits of smooth and nodal plane cubics; that is, smooth cubics together with the three orbits consisting of irreducible cubics with a node, unions of lines and conics meeting transversely, and triangles. In the quotient, these last three orbits correspond to just one additional point, and this quotient is the compactification of the affine line to the projective line obtained by adding one point.
 
 \item  \emph{Unstable} orbits. These are the points $p$ on which all invariant polynomials vanish, so that the induced map
 $\Proj A \to \Proj (A^G)$ is not even defined at $p$. Thus unstable points do not correspond to any points of $X//G$; in fact, they cannot be included in any topologically separated quotient of an open subset of $X$ (but there are other compactifications, coming from
@@ -456,7 +100,7 @@ other representations of $M_g$ as $X'//G'$; see \cite{MR3044128}).
 
 Geometric invariant theory provides tools for determining this stratification. These are crucial for the application of geometric invariant theory to specific situations; a  priori, given an action of a group $G$ on a variety $X$, we don't know that there are any stable orbits at all.
 
-\chapter{MgChapter}l
+
 \subsection{Construction and characterization of the moduli space of curves}
 
 Geometric invariant theory gives us a way of constructing a moduli space $M_g$ of smooth  curves of genus $g$. We start with the Hilbert scheme $\cH$ parametrizing curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$, and pass to the open subset $W \subset \cH$ of smooth curves. Within this open subset, the locus $U \subset W$ of curves embedded by their tricanonical bundles is a closed subvariety, invariant under the automorphism group of the ambient space, and it is a theorem of Mumford~\cite{GIT} that all that orbits in $U$ are stable. The moduli space $M_g$ is the quotient $U/PGL_{5g-5}$,
@@ -482,9 +126,8 @@ To summarize:
 \begin{enumerate}
   \item The points of $M_g$ correspond one-to-one to isomorphism classes of smooth curves.
  \item For every family $\cC \to B$ of smooth curves there is a map $B\to M_g$ carrying
- each closed point  $b \in B$ to the point representing the isomorphism class of the fiber of $\cC$ over $b$,
+ each closed point  $b \in B$ to the point representing the isomorphism class of the fiber of $\cC$ over $b$.
  \end{enumerate}
-in a ``maximal'' way.
 
 \section{Compactifying moduli}
 
@@ -496,7 +139,8 @@ Often, though, we can learn the most from a compactification where the ``boundar
 
 The compactification $\overline M_g$ introduced by Deligne and Mumford in their groundbreaking 1969 paper~\cite{Deligne-Mumford} has an important extra property: it is a \emph{modular}  compactification in the sense that the points of the boundary correspond to slightly more general
 objects of the same type as the points of $M_g$. 
-Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and the automorphism group is finite. These are precisely the stable points in the Hilbert scheme of tri-canonical embeddings in the sense of geometric invariant theory. \fix{is this true? Check Harris-Morrison}
+Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and the automorphism group is finite. These are precisely the stable points in the Hilbert scheme of tri-canonical embeddings in the sense of geometric invariant theory. 
+%\fix{is this true? Check Harris-Morrison}
 
 \begin{theorem}(Deligne, Mumford, Knudsen) \cite{Deligne-Mumford}, \cite{MR702954}\label{DM is coarse}
 $\overline M_g$ is a projective variety such that
@@ -609,7 +253,27 @@ This example is worked through in detail in \cite[****]{Harris-Morrison}.
 %
 %At this point, we have achieved most of our goals: the (scheme-theoretic) special fiber is indeed nodal. The only thing that keeps the special fiber from being stable if the presence of smooth rational components in the special fiber meeting the rest of the fiber in only one point; and these can be blown down. We arrive finally at a family $S \to \Delta$ whose fiber over $0 \in \Delta$ is the union of the normalization $\tilde C_0$ of the original fiber, together with a curve of genus 1 meeting $\tilde C_0$ at one point.
 
-\section{$M_g$ and $\overline M_g$ are almost fine}\label{almost fine}
+
+\section{$M_g$ is not a fine moduli space...}\label{coarse moduli}
+
+Let $B$ be a curve with a fixed-point free involution $\sigma$; equivalently, let $B \to B_0$ be a map of smooth curves of degree 2, with no branching. It is easy to construct such a map starting with any curve $B_0$ of genus $\geq 1$ by homotopy theory. 
+To show that no fine moduli space of smooth curves can exist, we will construct two non-isomorphic families over $B_0$ that
+would both correspond to the same map $B_0\to M_g$. Another somewhat different obstruction to the existence is given in 
+\cite[Chapter 6]{DE-JH-schemes}
+
+Let $C$ be any smooth curve of genus $g$ with an involution $\tau : C \to C$, and consider the family
+$$
+S := B \times C/\langle (\sigma, \tau) \rangle \to B_0 := B/\langle \sigma \rangle.
+$$
+For each $b \in B$ we are identifying the fiber of $B \times C$ over $b$ with the fiber over $\sigma(b)$ via the map $\tau$. Since $\sigma$ has no fixed points, neither does the involution $(\sigma, \tau)$ of $B \times C$; so that the map $S \to B_0$ is a family of smooth curves of genus $g$.
+
+All the fibers of $S \to B_0$ are isomorphic to $C$. Thus if $M$ were a fine moduli space for curves of genus $g$,
+ the induced map $B_0 \to M$ would be the constant map sending $B_0$ to the point $[C] \in M_g$. This would be the
+ same for the trivial family over $C\times B_0 \to B_0$. This contradicts the hypothesis that $M$ is a fine moduli space. 
+
+
+
+\section{...But $M_g$ and $\overline M_g$ are almost fine}\label{almost fine}
 
 Though these are not fine moduli spaces, they come close. We state the result for $\overline M_g$, and the similar statement follows for $M_g$:
 
@@ -642,12 +306,12 @@ the same approach works in genera $4$ and $5$; in each case a general canonical 
 
 This method breaks down when we get to genus 6, where a canonical curve is not a complete intersection. But it's close enough: as discussed in Chapter~\ref{Brill-Noether}, a general canonical curve of genus 6 is the intersection of a smooth del Pezzo surface $S \subset \PP^5$ with a quadric hypersurface $Q$; since all smooth del Pezzo surfaces in $\PP^5$ are isomorphic, we can just fix one such surface $S$ and let $Q$ be a general quadric.
 
-It gets harder as the genus increases. Let's do one more case, genus 7, which already calls for a different approach. Here we want to argue that, by Brill-Noether theory, a general curve of genus $7$ can be realized as (the normalization of) a plane septic curve with 8 nodes $p_1,\dots,p_8 \in \PP^2$. Moreover, t having nodes at 8 general points imposes $24= 3\times 8$ independent conditions on the $\PP^{35}$ of curves of degree 7. 
+It gets harder as the genus increases. Let's do one more case, genus 7, which already calls for a different approach. Here we want to argue that, by Brill-Noether theory, a general curve of genus $7$ can be realized as (the normalization of) a plane septic curve with 8 nodes $p_1,\dots,p_8 \in \PP^2$. Moreover, having nodes at 8 general points imposes $24= 3\times 8$ independent conditions on the $\PP^{35}$ of curves of degree 7. 
 If we let $S = Bl_{p_1,\dots,p_8}(\PP^2)$ be the blow-up, and let $l$ and $e_1,\dots,e_8$ be the classes of the pullback of a line and of the eight exceptional divisors respectively, a divisor of class $7l - 2 \sum e_i$ is a curve of genus 7 on $S$. Thus the curves on $S$ form a linear series, parametrized by a projective space $\PP^{11}$.
 
 The problem is, there are many such surfaces $S$; we don't have a single linear system that includes the general curve of genus 7. The good news is, that's OK because the surfaces $S$ themselves form a rationally parametrized family. Explicitly, if we look at the set $\Phi$ of pairs $(S, C)$ with $S = Bl_{p_1,\dots,p_8}(\PP^2)$  the blow-up of $\PP^2$ at eight points and $C \subset S$ a curve of class $7l - 2 \sum e_i$ on $S$, then $\Phi$ is a $\PP^{11}$-bundle over $(\PP^2)^8$, and so is again a rational variety; choosing a rational parametrization of $\Phi$ we get a family of curves of genus $7$ parametrized by $\PP^{27}$ and dominating $M_7$. As before a general point in $\PP^{27}$ yields a general curve of genus 7.
 
-A similar approach works through genus 10, and Severi conjectured that it would be possible to do something similar for all genera. The approach through plane curves, however, fails in genus 11: by the Brill-Noether theorem, the smallest degree of a planar embedding of a general curve of genus 11 is 10; by our $g+2$ theorem, such a curve has ${9\choose 2}-11 = 25$ nodes. But $3 \times 25 > 65$, the dimension of the space of plane curves of degree 10, and the situation only gets worse if we look at higher degrees. Thus the nodes are no longer general points of $\PP^2$, and the genus 7 argument doesn't work. 
+A similar approach works through genus 10, and Severi conjectured that it would be possible to do something similar for all genera. The approach through plane curves, however, fails in genus 11: by the Brill-Noether theorem, the smallest degree of a planar embedding of a general curve of genus 11 is 10; by our $g+2$ theorem, such a curve has ${9\choose 2}-11 = 25$ nodes. But $3 \times 25 > 65$, the dimension of the space of plane curves of degree 10, and so if $p_1,\dots,p_{25} \in \PP^2$ are general points, these will not exist any plane curves of degree 10 double at all the $p_i$. The situation only gets worse if we look at higher degrees. Thus the nodes are no longer general points of $\PP^2$, and the genus 7 argument doesn't work. 
  Ad hoc (and much more difficult) arguments have been given in genera 11, 12 13 and 14, but so far no-one can go further in producing general curves. 
 
 But the sequence cannot go on much longer! To say that there exists a family $\cC \to B$ over an open subset $B \subset \AA^n$ such that the induced map $\phi_\cC : B \to M_g$ is dominant is to say that $M_g$ is \emph{unirational}. One application of the construction of $\overline M_g$ shows that for higher $g$ this is not the case, and in fact:
@@ -666,73 +330,56 @@ and thus the normal bundle of the general rational curve $\phi: \PP^1 \to M_g$, 
 Furthermore, an effective pluricanonical form is by definition represented by a nontrivial global section of a tensor power
 of $\wedge^{\dim M_g}\Omega_{M_g}$ and the pull-back of this section section 
 along a nontrivial map from $\PP^1$ to $\overline M_g$, and thus to a desingularization, that met the pluricanonical divisor properly, would lead to an effective canonical divisor on $\PP^1$, a contradiction.
-\fix{say something about restricting a plurican div. Change this vague statement to the one in Mumford.} 
+%\fix{say something about restricting a plurican div. Change this vague statement to the one in Mumford.} 
 \end{proof}
  
  A consequence is that the sort of descriptions of embeddings with which much of this book is concerned, where we produce a surface on which a general curve of a certain sort lies, cannot be continued to high genus:
 
 \begin{fact}
  A general curve $C$ of  genus $\geq 22$ does not lie in a nontrivial linear series on any surface
- except those birational to $C\times \PP^1$. \fix{why doesn't the theorem have hypothesis $g\geq 22$?}
- \fix{ref to "isotrivial moving divisor implies birat to product".}
+ except those birational to $C\times \PP^1$. 
+% \fix{why doesn't the theorem have hypothesis $g\geq 22$?}
+% \fix{ref to "isotrivial moving divisor implies birat to product".}
 \end{fact}
 
-
-\subsection{$M_g$ is not a fine moduli space}\label{coarse moduli}
-
-Let $B$ be a curve with a fixed-point free involution $\sigma$; equivalently, let $B \to B_0$ be a map of smooth curves of degree 2, with no branching. It is easy to construct such a map starting with any curve $B_0$ of genus $\geq 1$ by homotopy theory. 
-To show that no fine moduli space of smooth curves can exist, we will construct two non-isomorphic families over $B_0$ that
-would both correspond to the same map $B_0\to M_g$. Another somewhat different obstruction to the existence is given in 
-\cite[Chapter 6]{DE-JH-schemes}
-
-Let $C$ be any smooth curve of genus $g$ with an involution $\tau : C \to C$, and consider the family
-$$
-S := B \times C/\langle (\sigma, \tau) \rangle \to B_0 := B/\langle \sigma \rangle.
-$$
-For each $b \in B$ we are identifying the fiber of $B \times C$ over $b$ with the fiber over $\sigma(b)$ via the map $\tau$. Since $\sigma$ has no fixed points, neither does the involution $(\sigma, \tau)$ of $B \times C$; so that the map $S \to B_0$ is a family of smooth curves of genus $g$.
-
-All the fibers of $S \to B_0$ are isomorphic to $C$. Thus if $M$ were a fine moduli space for curves of genus $g$,
- the induced map $B_0 \to M$ would be the constant map sending $B_0$ to the point $[C] \in M_g$. This would be the
- same for the trivial family over $C\times B_0 \to B_0$. This contradicts the hypothesis that $M$ is a fine moduli space. 
-
-
-\section{Hurwitz spaces and the dimension of $M_g$}\label{Hurwitz section}
-
-Recall that the \emph{Hurwitz spaces},  parametrize branched covers of $\PP^1$ of specified degree and genus. In the simplest case, where we consider only simply branched covers, we can give at least a local description of these spaces. We will use this to estimate the dimension of the moduli space $M_g$.
-
-We start by recalling from Chapter~\ref{genus 2 and 3 chapter} the description of connected, simply branched covers of $\PP^1$: given $b = 2d + 2g - 2$ distinct points $p_1,\dots,p_b \in \PP^1$, we have a  bijection between the set of maps $C \to \PP^1$ of degree $d$ simply branched over the points $p_i$ and unramified elsewhere; and the set of $b$-tuples $\tau_1, \dots, \tau_b \in S_d$ of transpositions in the symmetric group $S_d$
-satisfying the conditions that the product $\tau_1\cdot \dots \cdot \tau_b = e$ is the identity, and $\tau_1, \dots, \tau_b$ generate a transitive subgroup of $S_d$, modulo simultaneous conjugation by elements of $S_d$. 
-
-Now suppose we allow the points $p_i$ to vary in $(\PP^1)^{2g+2} \setminus \Delta$, where $\Delta$ is the union of the 
-diagonals $p_i=p_j$. Locally, the same correspondence between branched covers and $b$-tuples of transpositions can be carried out simultaneously and consistently. Thus, if we let $U = (\PP^1)^b \setminus \Delta$ be the complement of the big diagonal in $(\PP^1)^b$---that is, the space of ordered $b$-tuples of points in $\PP^1$, the set
-$$
-H := \{ (f, B) \mid f : C \to \PP^1 \text{ is simply branched over } B \}
-$$
-can be given the structure of a topological covering space of $U$ via projection on the second factor. $H$ thus has the structure of a complex manifold of dimension $b$.
-
-In fact, $H$ has the structure of an algebraic variety. The space $H$ also has a useful modular compactification, as shown in \cite{Harris-Mumford-Moduli}. We will not pursue these ideas, but rather use $H$
-to estimate the dimension of the moduli space $M_g$.
-
-To set this up, consider the map $\rho : H \to M_g$, in which we forget everything except the domain $C$ of the map $f$. For $d \gg g$, this map is surjective (this follows, for example from the $g+1$ theorem of Chapter~\ref{JacobianChapter}). Thus it suffices to know the dimension of the general fiber: how many simply branched maps $f : C \to \PP^1$ are there?
-
-A map $f : C \to \PP^1$ is given by a rational function on $C$, whose polar divisor $D = f^{-1}(\infty)$ can be any divisor of degree $d$ on $C$ if $d$ is large. Moreover, once we specify $D$, we know by Riemann-Roch (again, for large $d$) that the space of rational functions with polar divisor $D$ is a subset of a vector space of dimension $d-g+1$. Thus the fibers of the map $\rho$ have dimension $2d-g+1$; and since the space $H$ has dimension $b = 2d+2g-2$, we conclude that
-$$
-\dim M_g = (2d+2g-2)-(2d-g+1) = 3g-3.
-$$
-
-\subsection{When is a general curve of genus $g$ a $d$-sheeted cover of $\PP^1$?}
-
-We just used the Hurwitz space to estimate the dimension of the moduli space $M_g$; we did this by focussing on the case $d \gg  g$. Amusingly, we can now turn this around and answer (at least in one direction) the question posed above. The point is, to say that a general curve of genus $g$ a $d$-sheeted cover of $\PP^1$ is tantamount to saying that the map $H \to M_g$ from the space $H$ of $d$-sheeted covers of $\PP^1$ of genus $g$ to $M_g$ is dominant; if this is the case, we must have
-$$
-\dim H = 2d+2g-1 \geq \dim M_g = 3g-3;
-$$
-or in other words we have
-
-\begin{corollary}\label{BN dim 1}
-A general curve of genus $g$ is a $d$-sheeted cover of $\PP^1$ only if $d \geq \frac{g+2}{2}$.
-\end{corollary}
-
-In fact, the converse is also true, and together they form the case $r=1$ of the \emph{Brill-Nother theorem}, which we'll discuss in general in Chapter~\ref{BNChapter}. 
+%
+%\section{Hurwitz spaces and the dimension of $M_g$}\label{Hurwitz section}
+%
+%Recall that the \emph{Hurwitz spaces},  parametrize branched covers of $\PP^1$ of specified degree and genus. In the simplest case, where we consider only simply branched covers, we can give at least a local description of these spaces. We will use this to estimate the dimension of the moduli space $M_g$.
+%
+%We start by recalling from Chapter~\ref{genus 2 and 3 chapter} the description of connected, simply branched covers of $\PP^1$: given $b = 2d + 2g - 2$ distinct points $p_1,\dots,p_b \in \PP^1$, we have a  bijection between the set of maps $C \to \PP^1$ of degree $d$ simply branched over the points $p_i$ and unramified elsewhere; and the set of $b$-tuples $\tau_1, \dots, \tau_b \in S_d$ of transpositions in the symmetric group $S_d$
+%satisfying the conditions that the product $\tau_1\cdot \dots \cdot \tau_b = e$ is the identity, and $\tau_1, \dots, \tau_b$ generate a transitive subgroup of $S_d$, modulo simultaneous conjugation by elements of $S_d$. 
+%
+%Now suppose we allow the points $p_i$ to vary in $(\PP^1)^{2g+2} \setminus \Delta$, where $\Delta$ is the union of the 
+%diagonals $p_i=p_j$. Locally, the same correspondence between branched covers and $b$-tuples of transpositions can be carried out simultaneously and consistently. Thus, if we let $U = (\PP^1)^b \setminus \Delta$ be the complement of the big diagonal in $(\PP^1)^b$---that is, the space of ordered $b$-tuples of points in $\PP^1$, the set
+%$$
+%H := \{ (f, B) \mid f : C \to \PP^1 \text{ is simply branched over } B \}
+%$$
+%can be given the structure of a topological covering space of $U$ via projection on the second factor. $H$ thus has the structure of a complex manifold of dimension $b$.
+%
+%In fact, $H$ has the structure of an algebraic variety. The space $H$ also has a useful modular compactification, as shown in \cite{Harris-Mumford-Moduli}. We will not pursue these ideas, but rather use $H$
+%to estimate the dimension of the moduli space $M_g$.
+%
+%To set this up, consider the map $\rho : H \to M_g$, in which we forget everything except the domain $C$ of the map $f$. For $d \gg g$, this map is surjective (this follows, for example from the $g+1$ theorem of Chapter~\ref{JacobianChapter}). Thus it suffices to know the dimension of the general fiber: how many simply branched maps $f : C \to \PP^1$ are there?
+%
+%A map $f : C \to \PP^1$ is given by a rational function on $C$, whose polar divisor $D = f^{-1}(\infty)$ can be any divisor of degree $d$ on $C$ if $d$ is large. Moreover, once we specify $D$, we know by Riemann-Roch (again, for large $d$) that the space of rational functions with polar divisor $D$ is a subset of a vector space of dimension $d-g+1$. Thus the fibers of the map $\rho$ have dimension $2d-g+1$; and since the space $H$ has dimension $b = 2d+2g-2$, we conclude that
+%$$
+%\dim M_g = (2d+2g-2)-(2d-g+1) = 3g-3.
+%$$
+%
+%\subsection{When is a general curve of genus $g$ a $d$-sheeted cover of $\PP^1$?}
+%
+%We just used the Hurwitz space to estimate the dimension of the moduli space $M_g$; we did this by focussing on the case $d \gg  g$. Amusingly, we can now turn this around and answer (at least in one direction) the question posed above. The point is, to say that a general curve of genus $g$ a $d$-sheeted cover of $\PP^1$ is tantamount to saying that the map $H \to M_g$ from the space $H$ of $d$-sheeted covers of $\PP^1$ of genus $g$ to $M_g$ is dominant; if this is the case, we must have
+%$$
+%\dim H = 2d+2g-1 \geq \dim M_g = 3g-3;
+%$$
+%or in other words we have
+%
+%\begin{corollary}\label{BN dim 1}
+%A general curve of genus $g$ is a $d$-sheeted cover of $\PP^1$ only if $d \geq \frac{g+2}{2}$.
+%\end{corollary}
+%
+%In fact, the converse is also true, and together they form the case $r=1$ of the \emph{Brill-Nother theorem}, which we'll discuss in general in Chapter~\ref{BNChapter}. 
 
 \section{Exercises}
 
