@@ -28,28 +28,38 @@ Thus on a smooth projective curve $C$, we are led to define a \emph{divisor} to 
 affine subset $U$ by equations $f$ and $g$ thus corresponds to a rational function
 $f/g$.
 
+Write $K(X)$ for the field of rational functions on $X$.
+For each open set $U\subset X$ we define $K_X(U)$ to be the field of fractions of $\sO_X(U)$, and write $K_X$ for the
+associated sheaf. We write $\sO_X^*$ and $K_X^*$ for the sheaves of groups of units in $\sO_X(U)$ and $K_X(U)$.
+A Cartier divisor on $X$ is by definition a global section of $K_X^*/\CC^*$.
 
-The relevant generalization to more general schemes $X$ is that of a Cartier divisor. To simplify matters we will assume that $X$ is a projective variety: a reduced irreducible projective scheme. Write $K(X)$ for the field of rational functions on $X$. 
-A Cartier divisor on $X$ is by definition an element of the group $K(X)^*/\CC^*$.
-
-If $C$ is a smooth curve then this corresponds exactly to the definition above:
-there is a natural map $\div$
+There is a natural map $\div$
 from the group of Cartier divisors on $C$ to the free group on the points of $C$:
- for any rational function $f$ on $C$
+ for any rational function $f$ on an open set $U\subset C$
 and any 
-point $p\in C$ the local ring $\sO_{C,p}$ is a discrete valuation
+point $p\in U$ the local ring $\sO_{C,p}$ is a discrete valuation
 ring and we can write $f$ uniquely in the form $f = ut^m$ where $t$ generates
 the maximal ideal of $\sO_{C,p}$ and $u$ is a unit in $\sO_{C,p}$. We define
 $m:= \ord_p(f)$, and we set
 $$
 div(f) := \sum_{p\in C}\ord_D(f)[p] 
 $$
-Exactly the same argument works on any variety that is regular in codimension 1,
-and yields a map from the group of Cartier divisors to the free group on
-codimension 1 subvarieties, called the group of Weil divisors. See~\cite{Hartshorne1977} for this and further generalizations. When
+When
 confusion is unlikely we write $(f) $ in place of $div(f)$, and we let
-$(f)_0, (f)_\infty$ be the effective divisors that are the sums of the terms in $(f) that appear with positive
-or  negative coefficients, so that $(f) = (f)_0-(f)_\infty$.
+$(f)_0, (f)_\infty$ be the effective divisors that are the sums of the terms in $(f)$ that appear with positive
+or  negative coefficients, so that $(f) = (f)_0-(f)_\infty$. 
+
+Two Cartier divisors are said to be \emph{linearly equivalent}
+if they differ by the divisor of a globally defined rational function $f \in K(C)$, called a \emph{principal divisor}.
+\begin{definition}
+The group of divisors modulo linear equivalence is called $\pic(C)$.
+\end{definition}
+ 
+Exactly the same definition of Cartier divisors and linear equivalence works for any projective variety $X$; and
+the map $\div$ is also defined in the same way when $X$ is nonsingular in codimension 1, yielding
+a map from the group of Cartier divisors to the free group on
+codimension 1 subvarieties, called the group of Weil divisors. See~\cite{Hartshorne1977} for this and further generalizations. 
+ 
  
  %
 %
@@ -65,29 +75,37 @@ or  negative coefficients, so that $(f) = (f)_0-(f)_\infty$.
 \subsection{Divisors of functions}
 Returning to the case of smooth curves, we have:
 \begin{theorem}\label{degree defn}
-I
+Let $C$ be a smooth projective curve. If $f\in K(C)$, then $deg (f) = 0$. Thus any two linearly equivalent divisors on $C$ have the
+same degree.
 \end{theorem}
-It is important to note that the degree of the divisor associated to a rational function on a smooth curve is 0. This is evident on $\PP^1$, where a rational 
+
+\begin{proof}
+ The result is evident on $\PP^1$, where a rational 
 function is the ratio of two forms of the same degree. The divisor of a rational function $\phi$ on a smooth curve $C$ may be regarded as the pullback of the divisor of a rational function
 on $\PP^1$ under the map given by $\phi$; since any non-constant map of smooth curves is flat, the pullback multiplies the degree of a divisor by the degree 
-of the covering. The upshot of this is that linearly equivalent divisors have the same degree, so that we can write $\pic(C)$ as a disjoint union
+of the covering. 
+\end{proof}
+
+It follows that we can write $\pic(C)$ as a disjoint union
 $$
 \pic(C) = \bigsqcup_{d \in \ZZ} \pic_d(C),
 $$
 where $\pic_d(C)$ is the set of linear equivalence classes of divisors of degree $d$.
 
 On $\PP^r$ the divisors of hypersurfaces of degree $d$ $F = 0$ and $G=0$ differ by the principal divisor of the rational function $F/G$,
-and thus are linearly equivalent. In particular, If $\phi : C \to \PP^r$ is a morphism, then the preimages
+and thus are linearly equivalent. Thus, if $\phi : C \to \PP^r$ is a morphism, then the preimages
 of any two hyperplanes that don't contain the image $\phi(C)$ are linearly equivalent. In particular, they have the same
 degree, called the \emph{degree of $\phi$}. If $\phi$ is an inclusion, we call this the \emph{degree of $C\subset \PP^r$.}
 
 \subsection{Invertible sheaves}\label{Invertible sheaves}
 
 As we have explained, a map of a curve to a projective space corresponds to a family of linearly equivalent divisors.
-To deal with such families we will use the language of invertible sheaves and Cartier divisors. 
+To deal with such families we will use the language of invertible sheaves. 
 
 For simplicity will assume in this section that $X$ is a reduced, irreducible projective
-scheme. The theory can be done in greater generality, but we will not have need of this; the interested reader can find an account in~\cite{Hartshorne1977}.
+scheme, nonsingular in codimension 1, so that divisors may be thought of as formal linear combinations of
+subvarieties of codimension 1 with integer coefficients. 
+  An account greater generality may be found in~\cite{Hartshorne1977}.
 
 Recall first that a \emph{coherent sheaf} $\sL$ on $X$ may be defined by
 giving 
@@ -100,7 +118,10 @@ giving
 
 A \emph{global section} of $\sL$ is a family of elements $t_{i}\in L_{i}$ such that 
 $\sigma_{i,j} t_{i} = t_{j}$. Such a section may be realized as the image of the constant function 1 under
-a homomorphism of sheaves $\sO_{X} \to \sL$. If $X$ is projective, then 
+a homomorphism of sheaves $\sO_{X} \to \sL$. 
+
+\fix{The following is stated as a thm in Ch 2---do we need it here?}
+If $X$ is projective, then 
 by Theorem \cite[Thm III.5.2]{H} the space $H^{0}(\sL)$  of global sections is
 a finite-dimensional vector space. If, moreover, $X$ is reduced and irreducible, then $H^{0}(\sO_{X}) = \CC$ because the only globally defined
 functions on $X$ are the constant functions.
@@ -110,7 +131,8 @@ The coherent sheaf $\sL$ is said to be an \emph{invertible sheaf} if it is local
 for every open set in some covering of $X$. The tensor product  $\sL_1\otimes_{\sO_X}\sL_2$ of two invertible sheaves is  again an invertible sheaf, as is the dual invertible sheaf $\sF^{-1} := \hom_{\sO_X}(\cF,\sO_X)$ of an invertible sheaf $\cF$. There is a natural map
 $\cF \otimes \sF^{-1} \to \cO_X$ that is an isomorphism, as one checks locally. Thus the set of isomorphism classes of invertible sheaves on $X$ forms a group with law of composition given by tensor product and inverse given by the dual.
 
-If $D\subset X$ is a Cartier divisor (and thus locally defined by the vanishing of one non-zerodivisor) then the ideal sheaf $\sI_{D/X}$
+A divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients.
+If $D\subset X$ is an effective Cartier divisor (and thus locally defined by the vanishing of a non-zerodivisor) then the ideal sheaf $\sI_{D/X}$
 is invertible $\cO_X(-D)$ to be $\sI_{D/X}$. To make the group law on the group of divisors correspond to the
 tensor product of invertible sheaves, we set $\sO_X(D) =\cO_X(-D)^{-1}$. The dual of the inclusion
 $\cO_X(-D) \subset \cO_X$ is a homomorphism $\sigma := \cO_X \to \cO_X(D)$, that we regard as a global section which
