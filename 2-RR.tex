@@ -88,6 +88,15 @@ variety of dimension $n$ the canonical sheaf is the $n$-exterior power of the sh
 $\omega_C$ is thus a differential form, and the class of the divisor
 of such a form is usually denoted $K_C$. 
 
+The canonical sheaf is defined for more general projective schemes such as hypersurfaces, and we compute them below.
+\begin{fact}
+Canonical sheaves are defined for any projective scheme; see Section~\ref{Dualizing sheaves for singular curves}. 
+They are usually called ``dualizing sheaves'' in that generality. The condition for the dualizing sheaf to be an invertible
+sheaf is that the scheme is (locally) Gorenstein, something that is true, for example, for any subscheme of $\PP^r$
+that is locally a complete intersection.
+\end{fact}
+ 
+
 On projective space we can compute the canonical sheaf directly; other computations of the canonical sheaf will usually reduce to this central case.
 
 \begin{theorem}
@@ -129,8 +138,6 @@ In particular, the canonical module $\omega_{\PP^r} = \bigwedge^r(\Omega_{\PP^{r
 $(r+1)$-st syzygy, $S(-r-1)$.
 \end{fact}
 
-%\fix{Add cite of Hartshorne and refer to Syz chapter.}
-
 The most important invariant of a smooth curve can be defined in terms of the canonical sheaf:
 
 \begin{definition}
@@ -161,15 +168,16 @@ as in Lemma~\ref{exterior powers}.\end{proof}
 
 \begin{lemma}\label{exterior powers}
  If 
-\end{lemma}
 $$
 0\to \sE \to \sF\to \sG \to 0
 $$
-is a short exact sequence of vector bundles of ranks $e,f,g$ respectively then there is a natural
+is a short exact sequence of locally free sheaves of ranks $e,f,g$ respectively on a scheme $X$ then there is a natural
 isomorphism 
 $$
 \wedge^e\sE \otimes \wedge^g \sG \to \wedge^f\sF.
 $$
+\end{lemma}
+
 \begin{proof}
  We may define a map
 $
@@ -181,9 +189,25 @@ $$
 \mapsto \epsilon_1\wedge\cdots \wedge \epsilon_e\wedge\gamma_1\wedge\cdots\wedge \gamma_g.
 $$
 This is globally well-defined because changing one of the $\gamma_i$ by a local section of $\sE$ would not
-change the exterior product. The map is an isomorphism because locally $\sF = \sE\oplus \sG$ is
-simply a sum of free modules, and with this
-decomposition the result is obvious.
+change the exterior product.
+To check that the map is an isomorphism, it is enough to show that this is true locally.
+
+Because $\sG$ is locally free, there is a covering of $X$ by open sets $U$
+so that the sequence
+$$
+0\to \sE\mid_U \to \sF\mid_U\to \sG\mid_U \to 0
+$$
+is a split exact sequence of free modules, $\sF\mid_U = \sE\mid_U\oplus \sG\mid_U$.
+It follows that
+$$
+\wedge^f\sF\mid_U = \oplus_{i+j = f} \wedge^i \sE\mid_U \otimes \wedge^j\sG\mid_U.
+$$
+In our case all the exterior powers of $\sE$ vanish above the $e$-th, and all the 
+exterior powers of $\sG$ vanish above the $g$-th, so 
+$$
+\wedge^f\sF\mid_U =  \wedge^e \sE\mid_U \otimes \wedge^g\sG\mid_U,
+$$
+with isomorphism given as above.
 \end{proof}
 
 
@@ -193,16 +217,24 @@ $X\subset \PP^{r}$ is a complete intersection of hypersurfaces of degrees $d_{1}
 $\omega_{X} = \sO_{X}(\sum d_{i }-r-1).$
 \end{corollary}
 
+\begin{proof}
+The result follows by induction on the codimension, using Theorem~\ref{adjunction}.
+\end{proof}
+
 \subsection{Hurwitz' Theorem}
  Given a (nonconstant) morphism $f : C \to X$ of smooth projective curves, the Riemann-Hurwitz formula computes the canonical sheaf  $C$ in terms of that of  $X$ and the local geometry of $f$. To do this we define the
-\emph{ramification index} of $f$ at $p$,  denoted $\ram(f,p)$. In terms of a suitable choice of local coordinates $z$ on $C$ around $p$ and $w$ on $X$ around $f(p)$, we can write the morphism as $z \mapsto w = z^m$ for some integer $m > 0$, and we define $\ram(f,p) = m-1$. We could also define the ramification indices
+\emph{ramification index} of $f$ at $p$,  denoted $\ram(f,p)$. 
+Which is defined 
 by the formula of divisors
 $$
  f^{-1}(q) = \sum_{p\in C \mid f(p)=q} (\ram(f,p)+1)\cdot p
  $$
  for any point $q \in X$.
-It follows from complex analysis (or the separability of field extensions in characteristic 0) that there are only finitely many
-points on $C$ where $\ram(f,p) \neq 0$. Thus we can define the \emph{ramification divisor} of $f$ to be the divisor
+
+\begin{proposition}
+If a (nonconstant) morphism $f : C \to X$ of smooth projective curves then there are only finitely many
+points $p\in C$ such that $\ram(f,p)>0$.
+Thus we can define the \emph{ramification divisor} of $f$ to be the divisor
  $$
  R = \sum_{p \in C} \ram(f,p)\cdot p \; \in \;  \Div(C).
  $$
@@ -210,7 +242,27 @@ points on $C$ where $\ram(f,p) \neq 0$. Thus we can define the \emph{ramificatio
  $$
  B = \sum_{q \in X} \Big(\sum_{p \in f^{-1}(q)} \ram(f,p) \Big)\cdot q \; \in \; \Div(X).
  $$
- Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$. 
+\end{proposition}
+
+Note that $R$ and $B$ have the same degree $\sum_{p \in C} \ram(f,p)$.
+
+\begin{proof}
+The result follows from the separability of the map of fields of rational functions, $K(X) \to K(C)$, which holds because we
+are in characteristic 0 (in characteristic $p$ the Frobenius map provides a counterexample). A proof along these lines
+is given in~\cite[Section IV.2]{Hartshorne1977}.
+
+In terms of local parameters $z$ on $C$ around $p$ and $w$ on $X$ around $f(p)$, we can write the morphism as $z \mapsto w = z^m$ for some integer $m > 0$; that is,
+if $w$ is a local parameter on $X$ and $z$ is a local parameter in the source, then
+the map of convergent power series rings induced by $f^*$
+$$
+ \CC\{\{w\}\} \cong \widehat\sO_{X,f(p)} \rTo^{\widehat {f^*}}\widehat\sO_{C,p}\cong  \CC\{\{z\}\} 
+$$
+sends $w$ to $uz^m$, where $u$ is a power series with nonvanishing constant term.
+In this case $\ram(f,p) = m-1$. These power series expansions are valid in a neighborhood
+of $p$, and the derivative of $f$ vanishes at the ramification points in this neighborhood. Since
+the zeros of a nonconstant analytic function are isolated, the ramification points are isolated. 
+Since $C$ is compact in the classical topology, there are only finitely many.
+\end{proof}
 
  Hurwitz' theorem describes the difference between the canonical divisor of $C$ and the pullback of the canonical divisor of $X$.
 \begin{theorem}(Hurwitz' Theorem) \cite[Proposition IV.2.3]{H} \label{Hurwitz}
@@ -340,21 +392,31 @@ It was Riemann's student Roch  who supplied the correction term $h^0(K_C - D)$ f
 The dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$.
 
 Corollary~\ref{nonspecial RR} and Proposition~\ref{very ample} together show that all high degree divisors come from hyperplane sections in 
-suitable embeddings:
+suitable embeddings; and unlike the general vanishing theorems, they give a bound on the degree necessary for vanishing
+of cohomology and for
+global generation:
 
 \begin{corollary}\label{degree 2g+1 embedding}
-Let $D$ be a divisor of degree $d$ on a smooth, connected projective curve of genus $g$. If $d \geq 2g$, the complete linear series $|D|$ is basepoint free; and if $d \geq 2g+1$ the associated morphism $\phi_D : C \to \PP^{d-g}$ is an embedding, so that
+Let $D$ be a divisor of degree $d$ on a smooth, connected projective curve of genus $g$.
+\begin{enumerate}
+ \item If $d>2g-2$ then $H^1(\sO_C(D)) = 0$.
+ \item If $d \geq 2g$ then $\sO_C(D)$ is generated by global sections; that is, the complete linear series $|D|$ is basepoint free.
+ \item If $d \geq 2g+1$ then $\sO_C(D)$ is very ample; that is, the associated morphism $\phi_D : C \to \PP^{d-g}$ is an embedding, and
+$D$ is the preimage of the intersection of $C$ with a hyperplane in $ \PP^{d-g}$.
+\end{enumerate}
+ If $d \geq 2g$, the complete linear series $|D|$ is basepoint free; and if $d \geq 2g+1$ the associated morphism $\phi_D : C \to \PP^{d-g}$ is an embedding, so that
 $D$ is the preimage of the intersection of $C$ with a hyperplane in $ \PP^{d-g}$.
 \end{corollary}
 
 \begin{proof}
-This follows from Proposition~\ref{very ample} and the Riemann-Roch theorem.
+If $d>2g-2$ then $K-D$ has negative degree, and thus $h^1(D) = h^0(K-D) = 0.$ The last two parts follow
+from Proposition~\ref{very ample} and the Riemann-Roch theorem.
 \end{proof}
 
 Since the complement of a hyperplane in projective space is an affine space, we get an affine embedding result too:
 
 \begin{corollary}
- If $C$ is any smooth, connected projective curve and $\emptyset \neq \Gamma \subset C$ a finite subset then $C \setminus \Gamma$ is affine.
+ If $C$ is any smooth projective curve and $\emptyset \neq \Gamma \subset C$ a finite subset then $C \setminus \Gamma$ is affine.
 \end{corollary}
 \begin{proof}
 Let $D$ be the divisor defined by $\Gamma$. By Corollary~\ref{degree 2g+1 embedding} a high multiple of $D$ is very ample,
@@ -385,18 +447,18 @@ If $C\subset \PP^n$ is a purely 1-dimensional projective scheme with Hilbert pol
 $p_C(m) = \chi(\sO_C(m))$, the \emph{arithmetic genus} of $p_a(C)$ is $1-p_C(0)$. If $C$ is reduced and irreducible, then
 the \emph{geometric genus} $g(C)$ is the genus of the normalization of $C$.
 \end{definition}
-We see from the Riemann-Roch theorem that if $C$ is smooth, then $p_a(C) = g(C) = h^0(\omega_C)$, the genus of $C$. In general, we
+We see from the Riemann-Roch theorem that if $C$ is smooth, then $p_a(C) = g(C) = h^0(\omega_C)$, the genus of $C$. We
 will see that for reduced and irreducible curves $p_a(C) \geq g(C)$, with equality only when $C$ is smooth.
  
 The Riemann-Roch theorem and Serre duality have extensions to arbitrary coherent sheaves in place of invertible sheaves 
 and to singular curves, which we will explain in Chapter~\ref{LinkageChapter}.
 
-The Riemann-Roch formula does \emph{not} give us a formula for the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such divisors $D$ are called \emph{special divisors}. The existence or nonexistence of divisors $D$ with given $h^{0}(D)$ and $h^{1}(D)$ often serves to distinguish one curve from another, and will be an important part of our study.
+The degree of a divisor $D$ is not enough to determine the dimension $h^0(D)$ when $h^0(K_C - D)>0$; such 
+divisors $D$ are called \emph{special divisors}. The existence or nonexistence of divisors $D$ with given $h^{0}(D)$ and $h^{1}(D)$ often serves to distinguish one curve from another, and will be an important part of our study.
 
 \subsection{Residues, and a complex-analytic argument for the Riemann-Roch theorem.}\label{RR by residues}
 
-We remarked at the beginning of Chapter~\ref{linear series} that a smooth projective curve over $\CC$ is the same thing as a compact Riemann surface. In this section, we'll adopt the complex analytic viewpoint, and give an explanation of the Riemann-Roch theorem  (Theorem~\ref{RR theorem}) in a special case. We will use the fact that meromorphic functions on a Riemann surface are exactly the rational functions on the corresponding
-algebraic curve. We will prove:
+We remarked at the beginning of Chapter~\ref{linear series} that a smooth projective curve over $\CC$ is the same thing as a compact Riemann surface. In this section, we'll adopt the complex analytic viewpoint, and give an explanation of the Riemann-Roch theorem  (Theorem~\ref{RR theorem}) in a special case. Under a mild additional assumption we will prove:
 
 \begin{theorem}
 Let $X$ be a compact Riemann surface of genus $g$, and let $D = \sum a_i p_i$ be an effective divisor ($=$ formal sum of points $p_i$ with integral coefficients $a_i\geq 0$) of degree $d:= \sum a_i$ on $X$, and suppose that $K-D$ is also effective for some canonical divisor $K$.
@@ -404,7 +466,11 @@ The dimension of the space $L(D)$ of meromorphic functions on $X$ with poles of 
 $d-g+1$ plus $L(K-D)$, the number of holomorphic differential forms vanishing on each $p_i$ to order at least $a_i$. 
 \end{theorem}
 
-We will prove this using residues, under the additional assumption that  $D$ and $K-D$ are both effective (that is, $D$ is both effective and \emph{special} in the sense that there are nonzero functions
+Because  meromorphic functions on a Riemann surface are rational functions on the corresponding
+algebraic curve, and $L(D) = H^0(\sO_C(D)$, the assertion is equivalent to Theorem~\ref{RR theorem} above.
+
+\begin{proof}
+ We will prove this using residues, under the additional assumption that  $D$ and $K-D$ are both effective (that is, $D$ is both effective and \emph{special} in the sense that there are nonzero functions
 both in $L(D)$ and in $L(K-D)$.)
 
 Recall that the \emph{residue} of a meromorphic 1-form $\phi$ at a pont $p$ on $X$ is defined by an integral: choose a disc $\Delta \subset X$ containing $p$ and in which $\phi$ is holomorphic except for its pole at $p$. The residue ${\rm Res}_p(\phi)$ is $\frac{1}{2\pi i}$ times the integral of $\phi$ along the boundary of $\Delta$. If $z$ is a local coordinate on $\Delta$ zero at $p$ and we write the differential $\phi$ as
@@ -450,17 +516,37 @@ L(D) + L(K-D) \leq L(D) + L(K-D).
 $$
 Since the sum of the inequalities is an equality, we conclude that each inequality is also an equality; this is the Riemann-Roch formula
 in our special case.
+\end{proof}
 
 \subsection{Arithmetic genus and geometric genus}
 
-Throughout this book, we will be primarily concerned with the geometry of smooth curves. Of course singular curves will arise---for example, as images of curves under maps associated to non-very ample linear series---but when they do we'll tend to think of them in terms of their normalizations. 
+Throughout this book, we will be primarily concerned with the geometry of smooth curves. Of course singular curves will arise---for example, as images of curves under morphisms that are not embeddings. At least when $C$ is a 1-dimensional variety (that is, a 
+reduced irreducible 1-dimensional scheme) we can regard $C$ as the image of a smooth curve in a simple way (Proposition~\ref{resolution of singularities}).
 
 There is one circumstance, however, in which we want to do geometry on singular curves: when we have a \emph{family} of curves $\{C_t\}$, for example, whose general member is smooth but that may include singular curves $C_0$ as well. In this case, the  normalization $\tilde C_0$ of $C_0$ will not fit into a family with the nearby smooth curves $C_t$; among other things, (as we'll indicate below) it will have strictly smaller genus than the $C_t$. In this case, we will want to see how many of the elements in our analysis of smooth curves carry over in this more general setting. We'll start here by comparing the two notions of genus for singular curves.
 
-So: in this section, we'll deal with a  curve $C_0$ that is reduced and irreducible, but not necessarily smooth.
-Given $C_0$ there is a birational normalization morphism $\nu: C \to C_0$, and any map of a smooth ($=$normal) curve to $C_0$
-factors through $C$. Thus $C_0$ is birational to a unique
-smooth curve. The genus of $C$ is called the \emph{geometric genus} of $C_0$.
+
+
+\begin{proposition}\label{resolution of singularities}
+If $C_0$ is a projective variety of dimension 1 then the \emph{normalization} $\phi: C \to C_0$ of $C_0$ is a birational
+morphism from a smooth curve $C$. The curve $C$ is again projective, and the pair $(C, \phi)$ is
+unique up to unique isomorphism. In particular, every birational map of smooth curves is an isomorphism.
+\end{proposition}
+ 
+\begin{proof}
+  We use the result that the normalization ($=$ integral closure) of a domain
+finitely generated over a field is again finitely generated, and nonsingular in codimension 1~\cite[]{Eisenbud1995}. Thus,
+starting with a projective embedding of $C$ we normalize the homogeneous coordinate ring of $C$. The resulting ring
+may have generators in many degrees, but a suitable Veronese subring will be generated in a single degree, and thus
+is the homogeneous coordinate ring of a smooth projective curve. 
+
+Since localization
+commutes with normalization, and any map from a normal ring to a domain factors uniquely through the normalization,
+the normalization is unique in the sense stated.
+\end{proof}
+
+ (a different, less canonical resolution procedure
+is given in Exercise~\ref{resolution by projection}.
 
 Applied to any 1-dimensional projective scheme $C_0$, the formula~\ref{genus Hilbert} defines
 the \emph{arithmetic genus} $p_a(C_0) = 1-\chi(\sO_{C_0})$ of $C_0$. For some examples with curves that are not
@@ -472,35 +558,35 @@ reduced and irreducible, see Exercise~\ref{pa example}.
  use of a more general version in Chapter~\ref{uniform position} (Theorem~\ref{general RR without duality})
   and, in a more serious way, in Chapter~\ref{linkage} (Theorem~\ref{general RR with duality}). 
  
-
 Still assuming that $C_0$ is reduced and irreducible, we can relate the arithmetic and geometric genera of $C_0$ using the map of sheaves
 $$
 \cO_{C_0} \to \nu_*\cO_C.
 $$
-This is injective; the cokernel sheaf will be a skyscraper sheaf supported on the singular points of $C_0$. Denoting this sheaf by $\cF$, we have an exact sequence
+This is injective and the cokernel is a skyscraper sheaf supported on the singular points of $C_0$. Denoting this sheaf by $\cF$, 
+the definition means that there is an exact sequence
 $$
 0 \to \cO_{C_0} \to \nu_*\cO_C \to \cF \to 0.
 $$
 
-The normalization map $\nu: C \to C_0$ is finite, so that the direct images $R^i\nu_*\cO_C$ vanish for $i > 0$; it follows from the Leray spectral sequence~\ref{Leray} that $\chi(\nu_*\cO_C) = \chi(\cO_C)$. Thus
+The normalization map $\nu: C \to C_0$ is finite, so the Leray spectral sequence~\ref{Leray} implies that the direct images $R^i\nu_*\cO_C$ vanish for $i > 0$ and that $\chi(\nu_*\cO_C) = \chi(\cO_C)$. Thus
 $$
 p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF) 
 $$ 
 since the support of $\cF$ is finite.
-In other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks of $\cF$; colloquially, it's the number of linear conditions a function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant} $\delta_p$ of the singularity; to rephrase the statement above in these terms, we have:
+In other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks of $\cF$; colloquially, it is the number of linear conditions a function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant} $\delta_p$ of the singularity; to rephrase the statement above in these terms, we have:
 $$
 p_a(C_0) - g(C) = \sum_{p \in (C_0)_{\rm sing}} \delta_p
 $$ 
 
-We should take a moment here and explain the use of the Leray spectral sequence. In general, the Leray spectral sequence addresses the situation where we have  a morphism $f:X\to Y$ of varieties or schemes, 
- and a coherent sheaf $\sF$  on the source $X$; it says in this circumstance that we have a spectral sequence
+In general, the Leray spectral sequence addresses the situation of  a morphism $f:X\to Y$ of varieties or schemes, 
+ and a coherent sheaf $\sG$  on the source $X$; it says in this circumstance that we have a spectral sequence
   $$
-  \HH^p(R^qf_*(\sF)) \Longrightarrow \HH^{p+q}(\sF).
+  \HH^p(R^qf_*(\sG)) \Longrightarrow \HH^{p+q}(\sG).
   $$
 (This is a special case of the spectral sequence for the derived functors of a composite functor ($H^0$ composed with $f_*$);
 see~\cite[II.4.17.1]{Godement} or \cite[Section III.7]{Gelfand-Manin} for proofs.)
 
-In the present circumstance---where the morphism $f$ is the normalization $\nu : C \to C_0$ of a possibly singular curve, and the sheaf $\cF$ is the structure sheaf $\cO_C$---the situation is particularly simple: since the map $\nu$ is finite, there are no higher direct images, and so the Leray theorem says simply that the Euler characteristics $\chi(\cO_{C_0}) = \chi(\nu_*\cO_C)$.
+In the present circumstance---where the morphism $f$ is the normalization $\nu : C \to C_0$ of a possibly singular curve, and the sheaf $\cG$ is the structure sheaf $\cO_C$---the situation is particularly simple: since the map $\nu$ is finite, there are no higher direct images, and we deduce that $\chi(\cO_{C_0}) = \chi(\nu_*\cO_C)$.
 
 %\begin{proposition}\label{Leray}
 % We have used an almost trivial part of the Leray spectral sequence, and we shall use it again in a few other almost equally simple cases. Suppose that $f:X\to Y$ is a morphism of varieties or schemes
@@ -523,9 +609,9 @@ The $\delta$ invariant is easy to compute in simple cases:
 
 If $p \in C_0$ is a node, with points $r,s \in C$ lying over it, the condition for a function $f$ on $C$ to descend is  that $f(r)=f(s)$; this is one linear condition so $\delta_p = 1$.
 
-\item (cusps) A \emph{cusp} of a curve $C_0$ is a point $p$ such that an analytic neighborhood of $p$ in $C_0$ is given by the equation $y^2=x^3$. If $p \in C_0$ is a cusp, its preimage in the normalization $C$ of $C_0$ will consist of one point.
+\item (cusps) An \emph{ordinary cusp} of a curve $C_0$ is a point $p$ such that an analytic neighborhood of $p$ in $C_0$ is given by the equation $y^2=x^3$. If $p \in C_0$ is an ordinary cusp then its preimage in the normalization $C$ of $C_0$ will consist of one point.
 
-If $p \in C_0$ is a cusp, with  $r \in C$ lying over it, the condition for a function $f$ on $C$ to descend is that the derivative $f'(r)=0$; again, this is one linear condition so $\delta_p = 1$.
+If $p \in C_0$ is a ordinary cusp, with  $r \in C$ lying over it, the condition for a function $f$ on $C$ to descend is that the derivative $f'(r)=0$; again, this is one linear condition so $\delta_p = 1$.
 
 \item (tacnodes) Suppose now that $p \in C_0$ is a \emph{tacnode}, that is, $C_0$ has two smooth branches at $p$ simply tangent to one another. There will be two points $r, s \in C$ lying over it, and the condition for a function $f$ on $C$ to descend is that in terms of suitable local coordinates both $f(r)=f(s)$ and $f'(r)=f'(s)$.  This represents two linear conditions, so $\delta_p = 2$.
 
@@ -846,8 +932,32 @@ that is the intersection of $X$ with a general plane of degree $r-n$. Prove that
 by $(dim X)!$.
 
 \item If $C\subset \PP^r$ is a smooth curve of genus $g$ and degree $d$, show that the Hilbert polynomial of $C$ is $H_C(m) = dm-g+1$.
- 
 \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+If $C\subset \PP^r$ is a 1-dimensional variety with normalization $\phi: \widetilde C\to C$, and $X\subset \PP^r$ is any subscheme that does
+not contain $C$
+we define the multiplicity of intersection $\mult(C,X;p)$ at the point $p$ to be the length of the finite scheme $\phi^{-1}(X)$.
+\begin{enumerate}
+\item Show that $C$ is singular at $p$ if and only if $\mult(C,X;p) \geq 2$. Show further that if $H\subset \PP^r$ then
+ $\deg C = \sum_{p\in C} \mult(C,H;p)$. 
+ \item Show that the degree of the image of $C$ under projection from $p$
+ is $\deg C - \mult(C,H;p)$.
+ 
+Hint: For the degree formula note that $\sum_{p\in C} \mult(C,H;p) p$ is the divisor associated to the morphism $\widetilde C \to \PP^r$ with image $C$
+\end{enumerate}
+ Show that $C$ is singular at $p$ if and only if $\mult(C,X;p) \geq 2$. Show further that if $H\subset \PP^r$ then
+ $\deg C = \sum_{p\in C} \mult(C,H;p)$. Show that the degree of the image of $C$ under projection from $p$
+ is $\deg C - \mult(C,H;p)$.
+ 
+Hint: For the degree formula note that $\sum_{p\in C} \mult(C,H;p) p$ is the divisor associated to the morphism $\widetilde C \to \PP^r$ with image $C$
+\end{exercise}
+
+\begin{exercise}\label{resolution by projection}
+Let $C\subset \PP^r$ be a variety of dimension 1, and let $C_m$ be the (isomorphic) image of $C$ under the $m$-th Veronese map.
+If $C_m$ is singular, choose a singular point $p$ and project $C$ from $p$ to obtain a curve $C'$. Compare the degree and codimension of $C_m$ and the degree and codimension of $C'$. Show that if $m$ is sufficiently large, then iterating the process
+of projection from singular points will eventually lead to a nonsingular curve, birational to $C$.
 \end{exercise}
 
 In the following series of exercises, we are going to be working with smooth projective curves associated to a given affine curve $C^\circ := V(f(x,y)) \subset \AA^2$; this is the unique smooth projective curve containing the normalization of $C^\circ$ as a Zariski dense open subset.
@@ -940,7 +1050,7 @@ transverse branches, called an \emph{ordinary multiple point}.
 \end{exercise}
 
 \begin{exercise}\label{delta=1 characterization}
-Let $p \in C$ be a singular point of a reduced curve $C$. Show that if $\delta_p = 1$, then $p$ must be either a node or a cusp.
+Let $p \in C$ be a singular point of a reduced curve $C$. Show that if $\delta_p = 1$, then $p$ must be either a node or an ordinary cusp.
 \end{exercise}
 
 
