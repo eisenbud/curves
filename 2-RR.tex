@@ -156,7 +156,7 @@ a codimension 1 subscheme and the restriction of the canonical divisor from the 
  Let $X$ be a variety that is a Cartier divisor on a variety $Y$, and let $K_{Y}$ be the canonical class of $Y$. The canonical class $K_X$ of $X$ is
  the restriction to $X$ of the divisor $K_{Y}+X$ on $Y$.
 \end{proposition}
-This is \cite[Proposition 8.20]{H}.
+This is \cite[Proposition 8.20]{Hartshorne1977}.
 \begin{proof}
  There is an exact sequence of sheaves
  $$
@@ -607,11 +607,12 @@ The $\delta$ invariant is easy to compute in simple cases:
 
 \item (nodes) A \emph{node} of a curve $C_0$ is a point $p$ such that an analytic neighborhood of $p$ in $C_0$ consists of two smooth arcs intersecting transversely at $p$; that is, it is given locally by the equation $xy=0$. (Equivalently, the completion of the local ring $\cO_{C_0,p}$ is isomorphic to $k[[x,y]]/(xy)$). If $p \in C_0$ is a node, its preimage in the normalization $C$ of $C_0$ will consist of two points.
 
-If $p \in C_0$ is a node, with points $r,s \in C$ lying over it, the condition for a function $f$ on $C$ to descend is  that $f(r)=f(s)$; this is one linear condition so $\delta_p = 1$.
+If $p \in C_0$ is a node, with points $r,s \in C$ lying over it, the condition for a function $f$ on $C$ to descend to $C_0$---that is, to be the pullback of a function
+on $C_0$---is  that $f(r)=f(s)$; this is one linear condition so $\delta_p = 1$.
 
 \item (cusps) An \emph{ordinary cusp} of a curve $C_0$ is a point $p$ such that an analytic neighborhood of $p$ in $C_0$ is given by the equation $y^2=x^3$. If $p \in C_0$ is an ordinary cusp then its preimage in the normalization $C$ of $C_0$ will consist of one point.
 
-If $p \in C_0$ is a ordinary cusp, with  $r \in C$ lying over it, the condition for a function $f$ on $C$ to descend is that the derivative $f'(r)=0$; again, this is one linear condition so $\delta_p = 1$.
+If $p \in C_0$ is a ordinary cusp, with  $r \in C$ lying over it, the condition for a function $f$ on $C$  is that the derivative $f'(r)=0$; again, this is one linear condition so $\delta_p = 1$.
 
 \item (tacnodes) Suppose now that $p \in C_0$ is a \emph{tacnode}, that is, $C_0$ has two smooth branches at $p$ simply tangent to one another. There will be two points $r, s \in C$ lying over it, and the condition for a function $f$ on $C$ to descend is that in terms of suitable local coordinates both $f(r)=f(s)$ and $f'(r)=f'(s)$.  This represents two linear conditions, so $\delta_p = 2$.
 
@@ -669,7 +670,7 @@ The image of the canonical morphism of a nonhyperelliptic curve of genus $g>2$ i
 
 \subsection{The geometric Riemann-Roch theorem}
 
-There is a way of expressing the Riemann-Roch formula in terms of the geometry of the canonical map that is quite useful in practice. To express it, suppose $C \subset \PP^r$ is a curve and $D$ an effective divisor on $C$, thought of as a subscheme of $C$. We define the \emph{span} $\overline D$ of $D$ to be the intersection of the hyperplanes $H \subset \PP^r$ containing it. More generally, if $\phi : C \to \PP^r$ is a map and $D$ an effective divisor on $C$, we define the span $\overline{\phi(D)} \subset \PP^r$ to be the intersection
+There is a way of expressing the Riemann-Roch formula in terms of the geometry of the canonical map that is quite useful in practice. To express it, suppose $C \subset \PP^r$ is a smooth curve and $D$ an effective divisor on $C$, thought of as a subscheme of $C$. We define the \emph{span} $\overline D$ of $D$ to be the intersection of the hyperplanes $H \subset \PP^r$ containing it. More generally, if $\phi : C \to \PP^r$ is a map and $D$ an effective divisor on $C$, we define the span $\overline{\phi(D)} \subset \PP^r$ to be the intersection
 $$
 \overline{\phi(D)} := \bigcap_{H \subset \PP^r \text{ a hyperplane}\, \mid D \subset \phi^{-1}(H)} H.
 $$
@@ -686,9 +687,14 @@ If $D$ is a divisor on a smooth curve $C$ of genus $\geq 2$ then
 $$
 r(D) = d - 1 - \dim \overline{ \phi_K(D)}.
 $$
+In particular, if $D = \sum_{i=1}^dp_i$ is a sum of distinct points, then
+ the dimension of the linear series $|D|$  is equal to the number of linear relations among the images of the$p_i$ on the canonical 
+ image of $C$.
 \end{corollary}
 
-When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism onto its image in $\PP^{g-1}$, and we say that $ \phi_K(C)\subset \PP^{g-1}$ is \emph{canonically embedded}. In this case, supposing for simplicity that $D = p_1+\cdots+p_d$ is a sum of distinct points, we can say that \emph{the dimension of the linear series $|D|$  is equal to the number of linear relations among the points $p_i$ on the canonical curve}. Thus, for example, a divisor given as the sum $D = p+q+r$ of three points will move in a pencil if and only if the three points are colinear on the canonical model.
+Thus, for example, a divisor given as the sum $D = p+q+r$ of three points will move in a pencil if and only if the three points are colinear on the canonical model.
+
+When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism onto its image in $\PP^{g-1}$, and we say that $ \phi_K(C)\subset \PP^{g-1}$ is \emph{canonically embedded}. 
 
 \begin{remark}
 For a singular curve $C_0$ to have a canonical morphism it is necessary first of all that its canonical sheaf
@@ -714,7 +720,7 @@ every canonical divisor is a sum of $g-1$ fibers of $\pi$.
 We can use these ideas to analyze all special divisors.
 
 \begin{corollary}\label{special on hyperelliptic} Let $C$ be a smooth hyperelliptic curve with map $\pi: C\to \PP^1$ of degree 2.
-Every special divisor $D$ of degree $d$ on a hyperelliptic curve is a sum of $s$ fibers of $\pi$ and $d-2s$ basepoints.
+Every special divisor $D$ of degree $d$ on a hyperelliptic curve is a sum of $s$ fibers of $\pi$ and $d-2s$ basepoints for some $s$.
 \end{corollary}
 
 \begin{proof}
@@ -768,9 +774,9 @@ the largest possible value, then either
 \end{theorem}
 
 From Corollary~\ref{canonical on hyperelliptic} and Corollary~\ref{geometric RR} we see that the equality does indeed hold
-in each of the cases enumerated. Clifford's Theorem is true for smooth curves over fields of any characteristic (see for example \cite[IV.5.4]{Hartshorne1977}, but in characteristic 0 it is a simple consequence of the much more 
+in each of the cases enumerated. Clifford's Theorem is true for smooth curves over fields of any characteristic (see for example \cite[IV.5.4]{Hartshorne1977}, but in characteristic 0 it is a simple consequence of the stronger 
 Corollary~\ref{Clifford equality plus}
-that we will prove via the Uniform position lemma.
+that we will prove using a general position argument.
 
 
  \section{Curves on surfaces}
@@ -791,36 +797,24 @@ appropriate $C^\infty$
 normal vector field along $E$ and define $E'$ by ``pushing'' $E$ out slightly along the direction of this field, until $D$ and $E'$ are transverse,
 and the intersections can be computed in the usual way. It should be noted that such intersection numbers can be either positive or negative,
 since they depend on the relative orientations of $D$ and $E'$ at the intersection points; this is in contrast to the case when $D$ and $E$
-themselves meet properly; in this case the fact that the complex numbers are canonically oriented makes the intersection number nonnegative.
+themselves meet properly; in the latter case the fact that the complex numbers are canonically oriented makes the intersection number nonnegative.
 
-The intersection product can also be defined algebraically, over any field, for the intersection of Cartier divisors,
-on any surface, even when the surface is singular: Setting $\sL := \sO_X(C)$ and
+The intersection product can be defined for Cartier divisors even when the surface is singular: Setting $\sL := \sO_X(C)$ and
 $\sM := \sO_X(D)$ to simplify the notation, we set 
 $$
 D\cdot E = \chi(\sO_X)-\chi(\sL^{-1}) -\chi(\sM^{-1}) +\chi(\sL^{-1}\otimes \sM^{-1}) 
 $$
 \begin{theorem} The pairing $(D,E) \mapsto (D\cdot E)$ is the unique bilinear map
-$\Pic(X) \times \Pic(X) \to \ZZ$ extending the case of intersections of two transverse curves on $X$. 
+$\Pic(X) \times \Pic(X) \to \ZZ$ extending the case of intersections of two curves meeting transversely at smooth points of $X$. 
 \end{theorem}
 
-A frequent use of the the intersection pairing is to compute the (arithmetic) genus of a curve on a surface,
-a result called the adjunction formula.
+Using the intersection pairing we can turn the adjunction formula of Proposition~\ref{adjunction} into a numerical formula:
 
-\begin{theorem}[Adjunction Formula]\label{adjunction formula} \cite[Theorem ****]{Hartshorne1977}
-If $C$ is a Cartier divisor  on a complete intersection $X\subset \PP^n$ of any dimension, then 
-$$
-\omega_C = \omega_X \otimes \sO_X(C) \otimes \sO_C;
-$$
-in particular, 
-\begin{enumerate}
- \item If $X\subset \PP^n$ is the complete interesection of divisors of degree $d_1, \dots, d_c$, then
- $\omega_X = \sO_X( \sum_1^c d_i -n-1).$
- \item If $C$ is a Cartier divisor on surface $X$ that is a complete intersection
-in $\PP^n$ then: \label{genus formula}
+\begin{theorem}[Adjunction Formula]\label{adjunction formula} 
+If $C$ is a Cartier divisor on a smooth surface $X$ then\label{genus formula}
 $$
 p_a(C) = \frac{(K_X+C)\cdot C}{2} +1.
  $$
-\end{enumerate}
 \end{theorem}
 
 We will frequently be interested in curves on quadrics in $\PP^3$, and we can spell out the
