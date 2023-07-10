@@ -4,7 +4,7 @@
 
 In the first two sections of this chapter we lay out a number of definitions that we will later use to discuss
 maps of curves to projective space; in the last section we derive some consequences that do not involve the
-use of cohomology. In the next chapter we introduce that too as well. We will prove only some of our assertions; a reader who wants to see all the proofs should keep a copy of \cite{Hartshorne1977} or the equivalent handy. On the other hand, a more experienced reader
+use of cohomology. (In the next chapter we will introduce cohomological methods as well.) We will prove only some of our assertions; a reader who wants to see all the proofs should keep a copy of \cite{Hartshorne1977} or the equivalent handy. On the other hand, a more experienced reader
 could skip ahead to Chapter 3.
 
 As an analytic space a complex projective smooth curve is a compact. Riemann surface. This is a compact, orientable 2-manifold with a complex structure but it's hard to ``see'' the global complex structure. Any two Riemann surfaces with the same genus are $C^\infty$ isomorphic, but except for genus 0, where the sphere has a unique complex structure,
@@ -24,14 +24,16 @@ $\ell = \sum r_ix_i$ is does not define a function on $\PP^r$, but $\ell/x_i$ is
  of the hyperplane $\ell=0$ with the image $\phi(C)$ of $C$---and we take the divisor of a rational
  function to be the difference of the divisors associated to the numerator and denominator.
 
-Thus on a smooth projective curve $C$, we are led to define a \emph{divisor} to be a finite formal sum of points of $C$ with integer coefficients, which we can write compactly as $\sum m_p\cdot p$ with all but finitely many $m_p=0$.  The coefficient $m_p$ is called the \emph{multiplicity} of the point $p$ in the divisor $D$; if all coefficients $m_p$ are nonnegative we say that $D$ is \emph{effective}. The \emph{degree} of  $D = \sum m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, so every effective divisor $D$ is defined locally by the vanishing of one non-zerodivisor; and the difference of two effective divisors $D - E$ that are defined on an open
+Thus on a smooth projective curve $C$, we are led to define a \emph{divisor} to be a finite formal sum of points of $C$ with integer coefficients, which we can write compactly as $\sum m_p\cdot p$ with all but finitely many $m_p=0$.  The coefficient $m_p$ is called the \emph{multiplicity} of the point $p$ in the divisor $D$; if all coefficients $m_p$ are nonnegative we say that $D$ is \emph{effective}. If $D = \sum m_p\cdot p$ and $E = \sum n_p\cdot p$ are any two divisors, we write $E \geq D$ to mean $n_p \geq m_p$ for all $p \in C$.
+
+The \emph{degree} of  $D = \sum m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, so every effective divisor $D$ is defined locally by the vanishing of one non-zerodivisor; and the difference of two effective divisors $D - E$ that are defined on an open
 affine subset $U$ by equations $f$ and $g$ thus corresponds to a rational function
 $f/g$.
 
 Write $K(X)$ for the field of rational functions on $X$.
 For each open set $U\subset X$ we define $K_X(U)$ to be the field of fractions of $\sO_X(U)$, and write $K_X$ for the
 associated sheaf. We write $\sO_X^*$ and $K_X^*$ for the sheaves of groups of units in $\sO_X(U)$ and $K_X(U)$.
-A Cartier divisor on $X$ is by definition a global section of $K_X^*/\CC^*$.
+A Cartier divisor on $X$ is by definition a global section of $K_X^*/\cO_X^*$.
 
 There is a natural map $\div$
 from the group of Cartier divisors on $C$ to the free group on the points of $C$:
@@ -42,7 +44,7 @@ ring and we can write $f$ uniquely in the form $f = ut^m$ where $t$ generates
 the maximal ideal of $\sO_{C,p}$ and $u$ is a unit in $\sO_{C,p}$. We define
 $m:= \ord_p(f)$, and we set
 $$
-div(f) := \sum_{p\in C}\ord_D(f)[p] 
+div(f) := \sum_{p\in C}\ord_p(f) \cdot p
 $$
 When
 confusion is unlikely we write $(f) $ in place of $div(f)$, and we let
@@ -120,32 +122,26 @@ A \emph{global section} of $\sL$ is a family of elements $t_{i}\in L_{i}$ such t
 $\sigma_{i,j} t_{i} = t_{j}$. Such a section may be realized as the image of the constant function 1 under
 a homomorphism of sheaves $\sO_{X} \to \sL$. 
 
-\fix{The following is stated as a thm in Ch 2---do we need it here?}
-If $X$ is projective, then 
-by Theorem \cite[Thm III.5.2]{H} the space $H^{0}(\sL)$  of global sections is
-a finite-dimensional vector space. If, moreover, $X$ is reduced and irreducible, then $H^{0}(\sO_{X}) = \CC$ because the only globally defined
-functions on $X$ are the constant functions.
-
 A coherent sheaf $\cL$ is said to be \emph{locally free} if the modules $L_i$ are all free; when $X$ is irreducible the \emph{rank} of $\cL_i$ is defined to be the rank of the modules $L_i$.
-The coherent sheaf $\sL$ is said to be an \emph{invertible sheaf} if it is locally free of rank 1; that is, $L\mid_U \cong \sO_X(U)$,
+The coherent sheaf $\sL$ is said to be an \emph{invertible sheaf} if it is locally free of rank 1; that is, $L\mid_U \cong \sO_U$,
 for every open set in some covering of $X$. The tensor product  $\sL_1\otimes_{\sO_X}\sL_2$ of two invertible sheaves is  again an invertible sheaf, as is the dual invertible sheaf $\sF^{-1} := \hom_{\sO_X}(\cF,\sO_X)$ of an invertible sheaf $\cF$. There is a natural map
 $\cF \otimes \sF^{-1} \to \cO_X$ that is an isomorphism, as one checks locally. Thus the set of isomorphism classes of invertible sheaves on $X$ forms a group with law of composition given by tensor product and inverse given by the dual.
 
 A divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients.
 If $D\subset X$ is an effective Cartier divisor (and thus locally defined by the vanishing of a non-zerodivisor) then the ideal sheaf $\sI_{D/X}$
-is invertible $\cO_X(-D)$ to be $\sI_{D/X}$. To make the group law on the group of divisors correspond to the
+is invertible and we define $\cO_X(-D)$ to be $\sI_{D/X}$. To make the group law on the group of divisors correspond to the
 tensor product of invertible sheaves, we set $\sO_X(D) =\cO_X(-D)^{-1}$. The dual of the inclusion
 $\cO_X(-D) \subset \cO_X$ is a homomorphism $\sigma := \cO_X \to \cO_X(D)$, that we regard as a global section which
 vanishes precisely along $D$. 
 
-We extend this idea to to all Cartier divisors, and define $\sO_X(\sum m_iD_i)$ to be the corresponding tensor
+We extend this idea to all Cartier divisors, and define $\sO_X(\sum m_iD_i)$ to be the corresponding tensor
 product of the sheaves $\cO_X(D_i)$. If $D$ and $E$ are linearly equivalent divisors on $C$---that is, there is a rational function $f$ on $C$ with $(f) = D - E$---then multiplication by $f$ defines an isomorphism $\cO_C(D) \cong \cO_C(E)$; thus the isomorphism class of the invertible sheaf $\cO_C(D)$ corresponds to the linear equivalence class of $D$. By Corollary~\ref{invertible sheaves and divisors} every invertible sheaf on a projective scheme has this form.
 
-For example, if $C$ is a smooth curve, and $D = \sum m_p\cdot p$ s a divisor on $C$ then the sections of the invertible sheaf
+For example, if $C$ is a smooth curve, and $D = \sum m_p\cdot p$ is a divisor on $C$ then the sections of the invertible sheaf
 $\sO_D(U)$ on an open set $U$ is the space of rational functions $f$ on $U$ such that $\ord_p(f) + m_p \geq 0$ for all $p \in U$. 
 In particular, if $D$ is effective, sections of $\cO_C(D)$ are rational functions, regular away from the points $p$ with $m_p > 0$, but which are allowed to have a pole at a point $p$ of order at most $m_p$. 
 
-If $\sigma\in H^0(\sL)$ is a global section of an invertible sheaf on $X$  $p\in X$ is a point and, then the value $\sigma(p)$ of $\sigma$ at $p$ is the image  of $\sigma$ under the natural map $H^0(\sL)$ to the fiber $\kappa(p) \otimes \sL_{p} \cong \CC$.
+If $\sigma\in H^0(\sL)$ is a global section of an invertible sheaf on $X$ and $p\in X$ is a point, then the value $\sigma(p)$ of $\sigma$ at $p$ is the image  of $\sigma$ under the natural map $H^0(\sL)$ to the fiber $\kappa(p) \otimes \sL_{p} \cong \CC$.
 Since the isomorphism is not canonical, $\sigma$ does not define a function on $X$ at $p$; but since any two isomorphisms
 differ by a unit in $\sO_{X,p}$, the vanishing locus, denoted $(\sigma)_0$ of $\sigma$ is a well-defined subscheme of $X$. Moreover, if $X$ is reduced and irreducible, then the ratio $\sigma/\tau$ of two global sections is a well-defined rational function
 $\sigma(p)/\tau(p)$ at all the points where the denominator $\tau(p)\neq 0$ is not 0, so the divisor class of 
@@ -161,7 +157,7 @@ as an element of the stalk $\sL_p$ itself. Similarly, we say that $\sigma$ vanis
 
 If $\sL$ is an invertible sheaf on a variety $X$, and $p\in X$ is a point then the \emph{stalk} $\sL_p$ of $\sL$ is isomorphic to the local
 ring $\sO_{X,p}$. We write $\gm_{X,p}$ for the maximal ideal of $\sO_{X,p}$. By definition the \emph{fiber} of $\sL$ is 
-$\sL_p/\gm_{X,p}\cong \CC$. It is not hard to prove that the collection of these fibers forms a line bundle on $X$; that is,
+$\sL_p/\gm_{X,p}\sL_p\cong \CC$. It is not hard to prove that the collection of these fibers forms a line bundle on $X$; that is,
 a morphism of schemes $L \to X$ whose fibers are given the structure of 1-dimensional vector spaces that becomes
 a product $\CC^1 \times U$ over the open sets $U$ of an affine covering of $X$.
 
@@ -227,7 +223,7 @@ Putting this together for future reference we have:
 \begin{proposition}
  Every invertible sheaf $\sL$ on $\PP^r$ has the form $\L \cong \sO_{\PP^r}(m)$ for a unique $m = \deg \sL \in \ZZ$; and
  $$
- H^0(\sO_{\PP^r}(m) = \CC[x_0,\dots, x_r]_m
+ H^0(\sO_{\PP^r}(m)) = \CC[x_0,\dots, x_r]_m
  $$
  the space of forms of degree $m$ in $r+1$ variables.
 \end{proposition}
@@ -239,7 +235,7 @@ Putting this together for future reference we have:
 We will use invertible sheaves to  describe maps of a given variety $X$ to projective space. For this we add the notion of linear series (sometimes called linear system). We start with the definition:
 
 \begin{definition}
- A \emph{linear series} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $X$ and
+ A \emph{linear series} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf  on $X$ and
  $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
  $$
  \dim \sV := \dim V -1.
@@ -252,7 +248,7 @@ We will use invertible sheaves to  describe maps of a given variety $X$ to proje
 
 Thus a linear system $\sV = (\cL, V)$ gives rise to a family of effective divisors on $X$, all in the same linear equivalence class, parametrized by the projective space $\PP V^*$ of nonzero $\sigma \in V$ mod scalars. This is indeed the way most people think of linear series: as families of divisors linearly parametrized by a projective space. This is reflected in the definition of the dimension of a linear series above: it's not the dimension of $V$ as a vector space, but the dimension of the corresponding projective space. It is also reflected in the terminology: we often speak of ``the divisors of a linear series $\sV$." 
  
- If $C$ is a smooth projective curve and $\sV$ a linear system on $C$, then all the divisors of $\sV$ have the same degree; this is called the \emph{degree} of the linear system. One other bit of terminology: i 
+ If $C$ is a smooth projective curve and $\sV$ a linear system on $C$, then all the divisors of $\sV$ have the same degree; this is called the \emph{degree} of the linear system. One other bit of terminology: 
 If $\sV$ has degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}---this classical  language means that $\sV$ it represents a group of $d$ points ``moving'' within a linear equivalence class with $r$ degrees of freedom.  The intersection of the vanishing loci of all the sections in $V$ is called the \emph{base locus} of $\sV$. It is in general a subscheme of $C$. The points in its support are called \emph{base points} of $\sV$. 
  \end{definition}
 
@@ -260,15 +256,15 @@ If $\sV$ has degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}-
 For any scheme $X$ there is a natural bijection between the set of nondegenerate morphisms $\phi : X \to \PP^r$ modulo $PGL_{r+1}$, and base-point free linear series of dimension $r$ on $X$, up to isomorphism.
 \end{theorem}
 
-Given an embedding $X\subset \PP^r$ write $\sO_C(1)$ for the restriction of $\sO_{\PP^r}(1)$.
+%Given an embedding $X\subset \PP^r$ write $\sO_C(1)$ for the restriction of $\sO_{\PP^r}(1)$.
 
 Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane; the dimension of the series
- $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and base-point free means that the scheme $\cap_{\sigma\in V}(\sigma)_0$, called the  \emph{base locus} of $\sV$, is zeothere is no point of $C$ where all the sections in $V$
+ $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and base-point free means that the scheme $\cap_{\sigma\in V}(\sigma)_0$, called the  \emph{base locus} of $\sV$, is empty; in other words, there is no point of $C$ where all the sections in $V$
 vanish. The phrase ``modulo $PGL_{r+1}$ because the notation $\PP^r$ supposes a choice of projective coordinates, and
 $PGL_{r+1}$ is the group of linear coordinate transformations (actually all automorphisms, by Exercise~\ref{aut Pr}).
 To get a correspondence without the dependence on a basis we could think of morphisms to $\PP(V)$, the set of 1-quotients of $V$.
 
-Suppose that $(\sL, V)$ is a linear series on $X$ that does have a base locus. If the base locus $D = (sigma)_0$ is a Cartier divisor---as is always the
+Suppose that $(\sL, V)$ is a linear series on $X$ that does have a base locus. If the base locus $D = (\sigma)_0$ is a Cartier divisor---as is always the
 case when $X$ is a smooth curve---then we can subtract it, replacing $\sL$ by $\sL(-D)$ and dividing each section in $V$
 by $\sigma$ to get a new, base-point free linear series of the same dimension. 
 
@@ -310,7 +306,7 @@ where the component $\sigma_i/\sigma_i = 1$ ensures that not all the components 
 The maps $f_i$ and $f_j$ agree on the overlap $U_i \cap U_j$, and by the hypothesis that $\sV$ is base-point free the $U_i$ cover $X$;
 so together they define a regular map $f$ from $X$ to $\PP^r$. 
 
-We can describe this map set-theoretically without having to choose a basis: since $\sV$ is assumed base-point free, for any point $p \in X$ the subspace $H_p := \{ \sigma \in V \mid \sigma(p) = 0 \}$ is a hyperplane in $V$; thus we get a map $f : X \to \PP V^*$.
+We can describe this map set-theoretically without having to choose a basis: since $\sV$ is assumed base-point free, for any point $p \in X$ the subspace $H_p := \{ \sigma \in V \mid \sigma(p) = 0 \}$ is a hyperplane in $V$; thus we get a map $f : X \to \PP V$.
 
 
 %
@@ -545,9 +541,6 @@ that $h^0(\sL(-2p) \neq h^0(\sL(-p))$.
 A more geometric version of the last part of the proof would be to say that the condition of the existence of a section
 vanishing to order exactly 1 implies that $\phi$ is an injection on the tangent space to $C$ at $p$. This implies that
 the map is analytically an isomorphism onto its image, and together with the finiteness of the map, this suffices.
-
-\fix{move the following remarks someplace else!}
-For another example of the relationship between linear series on curves and morphisms of curves to projective space, consider a smooth curve $C \subset \PP^r$ embedded in projective space, and assume that $C$ is linearly normal. If $\phi : C \to C$ is any automorphism, we can ask whether $\phi$ is induced by an automorphism of $\PP^r$; in other words, does there exist an automorphism $\Phi : \PP^r \to \PP^r$ such that $\Phi(C) = C$ and $\Phi|_C = \phi$? The answer is expressed in Exercise~\ref{projective automorphism}.
 
 
 If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of $\phi$} is the number of points in the preimage of a general point of $\phi(X)$. It follows that if $D := \sum_{p\in C} n_pp$ is a divisor on a smooth curve, and the linear series $|D|$ is base-point free, then the degree of the morphism associated to $|D|$ is $\deg D := \sum_{p\in C} n_p$.
