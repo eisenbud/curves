@@ -3,7 +3,7 @@
 \chapter{Curves of genus 0 and 1}\label{genus 0 and 1 chapter}
 
 In this chapter, we'll begin our project of describing curves in projective space with the simplest cases, that of curves of genus 0 and 1. In the case of genus 1 especially, the theory we will treat is ``simple'' because we are operating over $\CC$; the arithmetic theory occupies a major part of modern number theory. Even here, there are interesting statements to make about the geometry of their embeddings in $\PP^r$, and there are many open problems.
-
+ 
 
 \section{Curves of genus 0} 
 
@@ -52,7 +52,7 @@ the first part of the theorem, we see that $D\cong \PP^1$ so $K \cong \CC(y)$ fo
 \begin{fact}
 The theorem remains true if we replace $\CC$ by any  field; see for example \cite[Section 8.13]{JacobsonII} for a elementary proof.
 There is an analogue for rational surfaces proven by Castelnuovo: every complex surface admitting a dominant rational
-map from $\PP^2$ is rational (see for example \cite[Corollary V.5]{Beauville}). However, the analogue of Luroth's theorem in higher dimension is false; for example, Clemens and Griffiths (\cite{}) show that a smooth cubic threefold $X$ admits a dominant rational map $\PP^3 \to X$ but is not rational.
+map from $\PP^2$ is rational (see for example \cite[Corollary V.5]{Beauville}). However, the analogue of Luroth's theorem in higher dimension is false; for example, Clemens and Griffiths (\cite{MR0302652}) show that a smooth cubic threefold $X$ admits a dominant rational map $\PP^3 \to X$ but is not rational.
 \end{fact}
 
 \begin{fact}
@@ -71,7 +71,77 @@ conic $x^2+y^2+z^2 = 0$ with no points over $\RR$ is the scheme of left ideals i
 
 \section{Rational Normal Curves}\label{rational normal curves section}
 
+\subsubsection{The homogeneous coordinate ring of a rational normal curve}
 
+If $\sV = (V,\sL)$ is a linear series on a scheme $X$, then the inclusion
+$V\subset H^0(\sL)$ induces by multiplication a map from the symmetric algebra
+$$
+\alpha_{\sV}: \Sym(V) \to H^0_*(\sL) := \oplus_{n\in \ZZ} H^0(\sL^n).
+$$
+When $\sV$ embeds $X$ in $\PP^r = \PP(V)$, the image of this map is called the \emph{homogeneous coordinate ring} of $X$. 
+
+The rational normal curve $C\subset \PP^d$ of degree $d$ is embedded by the linear series
+$\sV = (\CC[s,t]_d, \sO_{\PP^1}(d)$. Since any form of degree $nd$ in $\CC[s,t]$ is a product of $n$ forms of degree $d$, 
+the corresponding homogeneous coordinate ring of the rational normal curve is 
+$\oplus_n(\CC[s,t]_{nd})$, and the map $\alpha_{\sV}$ is surjective. This is expressed by saying
+that $C$ is \emph{arithmetically Cohen-Macaulay}; more generally, if $C\subset \PP^r$ is 
+a one-dimensional scheme, we say that $C$ linearly (respectively, quadratically, \dots, $n$-ically) normal
+if  the natural maps
+$$
+\alpha_m: H^0(\sO_{\PP^r}(m)) \to H^0(\sO_{C}(m)
+$$
+are surjective for every $m=1$ (respectively $m=2$\dots $m=n$). We say that $C$ is arithmetically Cohen-Macaulay
+(usually abbreviated ACM)
+ when $\alpha_m$ is surjective for all $m$. 
+
+ This is related to the usual  Cohen-Macaulay property as follows:
+
+\begin{proposition}\label{ACM basics}
+Suppose that $C\subset \PP^r$ is a 1-dimensional subscheme. Let $S = H^0_*(\sO_{\PP^r})$
+be the homogeneous coordinate ring of $\PP^r$, and let $S_C = S/I_C$ be the homogeneous
+coordinate ring of $C$. The following conditions are equivalent:
+\begin{enumerate}
+ \item $C\subset \PP^r$ is arithmetically Cohen-Macaulay.
+% \item the natural map $S_C \to H^0_*(\sO_{C}(1)$ is surjective;
+\item The homogeneous coordinate ring $S_C$ of $C$ is a Cohen-Macaulay ring; that is, there are linear forms $h,h'$ on $\PP^r$ such that $h, h'$ is a regular sequence
+on $S_C$. In particular, $C$ has no 0-dimensional primary components.
+\item $H^1_*(\sI_{C/\PP^r}) = 0.$
+ \item For every hyperplane $H\subset \PP^r$ that does not contain any component of $C$,
+ the homogeneous ideal of $H\cap C$
+ is equal to  $I_C+(h)$, where $h$ is a linear form defining $H$.
+\end{enumerate}
+\end{proposition}
+ 
+\begin{proof}
+{\sl 1} $\Leftrightarrow$ {\sl 2}: First let $C\subset \PP^r$ be an arbitrary 1-dimensional subscheme,
+and let $R =H^0_*(\sO_{C}) := \oplus_{n\in \ZZ} H^0(\sO_{C}(n))$.
+If $H$ is a 
+general hyperplane, with equation $h=0$, then $h$ does not vanish on any primary component of $C$, and thus the sequence
+$$
+0\rTo \sO_C(-1) \rTo^{h}\sO_C\rTo \sO_{C\cap H}\rTo 0
+$$
+is exact. Applying $H^0_*$, we see that $h$ is a non-zerodivisor on $R$, and that $R/hR$ is
+a subring of $H^0_*(\sO_{C\cap H})$.  A general linear form $h'$ doesn't vanish on
+any point of $C\cap H$, so $h'$ is a unit on $H^0_*(\sO_{C\cap H})$
+and thus a non-zerodivisor on $R/hR$. 
+
+The ring $S_C$ is the image of the natural map $S\to R$, and by definition $C$ is ACM if and only if this map is surjective,
+so that $S_C = R.$ This shows that if $C$ is arithmetically Cohen-Macaulay then $S_C$ is a Cohen-Macaulay ring,
+and is in particular unmixed; that is, $C$ has no 0-dimensional primary components (see for example \cite[Chapter 18]{Eisenbud1995} for general
+information about Cohen-Macaulay rings). This proves the equivalence of conditions {\sl 1} and {\sl 2.}
+
+{\sl 1} $\Leftrightarrow$ {\sl 3}: We may assume that $r\geq 2$, so $H^1_*(\sO_{\PP^r}(n)) = 0$ for all $n$. Using this and the exact sequence 
+$$
+0\rTo \sI_{C/\PP^r}  \rTo  \sO_{\PP^r}  \rTo  \sO_C  \rTo  0
+$$
+we see that $H^0(\sO_{\PP^r}(n)) \to H^0(\sO_C(n))$ is surjective for all $n$ if and only if $H^1(\sI_{C/\PP^r}(n)) = 0$ for all $n$,
+proving the equivalence of {\sl 1} and {\sl 3.}
+
+{\sl 2} $\Leftrightarrow$ {\sl 4}: If  $h$ does not vanish on any component of $C$ then $h$ is a non-zerodivisor on $S_C$. The ideal $I_{C\cap H}$ is in any case the saturation of $I_C+(h)$. 
+If $I_{C\cap H}=I_C+(h)$, then any linear form $h'$ not containing a point of $C\cap H$ is a non-zerodivisor
+on $I_C+(h)$, so $C$ satisfies condition {\sl 2}. Conversely, in a 2-dimensional positively graded Cohen-Macaulay ring, any 
+system of parameters is a regular sequence \cite[Section 18.2]{Eisenbud1995}, so $I_C+(h)$ is unmixed, and in particular, saturated.
+\end{proof}
 \subsubsection{The equations defining a rational normal curve}
 
 Choosing a basis $s,t$ for the linear forms on $\PP^1$, we can write
@@ -89,6 +159,8 @@ Note that if we substitute $s^it^{(d-i)}$ for $x_i$ and identify $H^0(\cO_{\PP^1
 $$
 H^0(\cO_{\PP^1}(1)) \times H^0(\cO_{\PP^1}(d-1)) \to H^0(\cO_{\PP^1}(d)).
 $$
+
+By Serre's Criterion~\ref[Section 11.2]{Eisenbud1995} the homogeneous coordinate ring $S_C$ of a curve $C$ is normal (that is, integrally closed) iff $C$ is both nonsingular and ACM, and sometimes $C$ is said to be \emph{projectively normal} in this case.  (This is also the excuse for the misleading terminology ``linearly normal"\dots described above.)
 
 It is easy to see that $C$ is set-theoretically defined by the $2\times 2$ minors of $M$: the affine set $s=1$ in $\PP^1$ maps
 to the affine set $x_0 = 1$ in $\PP^d$, and the affine form of the map is $t \mapsto (t, t^2, \dots, t^d)$. But if $x_1 = t$ then from 
@@ -113,6 +185,7 @@ $$
  $$
  corresponding to $\phi_d$ is surjective, so $\CC[s,t]_{(d)}$ is the homogeneous coordinate ring of $C$,
  and the Proposition amounts to saying that $\CC[x_0,\dots, x_d]/I \cong \CC[s,t]_{(d)}$.
+ 
  
 \begin{proof}
 Let $I\subset \CC[x_0,\dots, x_d]$ be the ideal generated by the $2\times 2$ minors of $M$.
@@ -160,22 +233,64 @@ $$
 and if equality holds then $C$ is a rational normal curve
 \end{proposition}
 
+In the proof we will use a general fact about hyperplane sections:
+
+\begin{proposition}\label{arbitrary hyperplane}
+If $X\subset \PP^r$ is a nondegenerate, reduced, irreducible variety, 
+then $H^0(\sI_X(1)) = H^1 (\sI_X(1)).$ Moreover if $H$ is any hyperplane of $\PP^r$, defined by
+a linear form $h$, then the natural
+sequence
+$$
+0\to \sI_{X/\PP^r} \rTo^h \sI_{X/\PP^r}(1)\to \sI_{(H\cap X)/H}(1)\to 0,
+$$
+is exact, and the subscheme
+$H\cap X$ spans $H$; that is, $H^0(\sI_{(H\cap X)/H}(1)) = 0$.
+\end{proposition}
+
+See Exercise~\ref{arbitrary hyperplane examples} for the necessity of the hypotheses
+and Exercise~\ref{restriction of ideals} for a generalization. 
+%Note that
+%${H\cap X}$ could have embedded components of dimension $<\dim X -1$, though in the case where $X$ is a curve
+%this is obviously impossible. 
+
+\begin{proof}
+Because $X$ is reduced irreducible and nondegenerate,
+$h$ is a non-zerodivisor modulo $\sI_{X/\PP^r}$. Thus, setting $\Gamma = {H\cap X}$ we have
+we have 
+$$
+\begin{aligned}
+\sI_{X/\PP^r}(1)/h\sI_{X/\PP^r} &= \sI_{X/\PP^r}(1)/((h)\cap\sI_{X/\PP^r})\\
+ &=(\sI_{X/\PP^r}(1)+(h))/(h)\\
+ &= \sI_{\Gamma/H}(1).
+\end{aligned}
+ $$
+ From which the exactness assertion follows.
+ 
+ Again because $X$ is reduced and irreducible, $H^0(\sO_X)$ contains only the constant function, so the map $H^0(\sO_{\PP^r}) \to H^0(\sO_X)$ is surjective, 
+from which it follows that $H^1(\sI_{X/\PP^r}) = 0.$ From the long exact sequence in cohomology it follows that
+ the restriction map $H^0(\sI_{X/\PP^r}(1))\to H^0(\sI_{\Gamma/H}(1))$ is surjective. Since
+$X$ is nondegenerate, $H^0(\sI_{X/\PP^r}(1)) = 0$, and the desired result follows.
+\end{proof}
+
+
 \begin{proof}
 Consider the restriction of the quadrics containing $C$ to a general hyperplane $H \cong \PP^{d-1} \subset \PP^d$, and let $\Gamma = H \cap C$. We have an exact sequence:
 $$
 0 \to \cI_{C/\PP^d}(1) \to \cI_{C/\PP^d}(2) \to \cI_{\Gamma/\PP^{d-1}}(2) \to 0.
 $$ 
-Since $C$ is nondegenerate, $h^0(\cI_{C/\PP^d}(1)) = 0$, and since $\deg C \geq d$, the hyperplane section $\Gamma$ of $C$ must contain at least $d$ linearly independent points. Since linearly independent points impose independent conditions on quadrics, we have
+Proposition~\ref{arbitrary hyperplane} shows that $h^0(\cI_{C/\PP^d}(1)) = h^1(\cI_{C/\PP^d}(1))=0$ and that $H$ is the linear span of  $\Gamma$. In particular, the hyperplane section $\Gamma$ of $C$ must contain at least $d$ linearly independent points (this gives another proof that
+such a curve must have degree $\geq d$.)
+Any set of linearly independent points imposes independent conditions on linear forms, and thus also on quadrics (see 
+Proposition~\ref{min hilb} for a stronger result). Thus
 $$
 h^0(\cI_{\Gamma/\PP^{d-1}}(2)) \leq h^0(\cO_{\PP^{d-1}}(2)) - d,
 $$
 establishing the desired inequality. 
 
-To prove that the equality can be achieved only with the rational normal curve, note that because  $\Gamma\subset \PP^{d-1}$
-is a general hyperplane section, it
-contains a collection of $d$  points $\Gamma'$ that span $\PP^{d-1}$. Suppose that $\Gamma$ contained another point $p$.
+To prove that the equality can be achieved only with the rational normal curve, let $\Gamma'\subset \Gamma$ be a subset
+of $d$ linearly independent points, and that $\Gamma$ contained another point $p$.
 It suffices to show that $p$ imposes a nontrivial vanishing condition on quadrics containing $\Gamma'$.
-The intersection of the $d$ hyperplanes in $\PP^{d-1}$ that are spanned by subsets of $d-1$ of the
+The intersection of the $d$ hyperplanes in $H \cong \PP^{d-1}$ that are spanned by subsets of $d-1$ of the
 points of $\Gamma'$ is empty, so the span of one of these subsets $\Gamma''$ does not contain $p$. The union of 
 the span of $\Gamma''$ with a general hyperplane containing the point $\Gamma' \setminus \Gamma''$
 is a quadric containing $\Gamma'$ but not $p$, as required. 
@@ -374,9 +489,7 @@ $$
   completes the proof.
 \end{proof}
 
-\fix{introduce $d$-normal, ACM, mention CM, normal"}
-
-\subsection{Problems on rational curves}
+\subsection{Open problems about rational curves}
 
 We can say far less about rational curves of higher degree, even in $\PP^3$. For example, when $d$ is large, we
 don't know the possible Hilbert functions for curves of degree $d$ in $\PP^3$, and the situation in $\PP^r$ for
@@ -414,6 +527,16 @@ perhaps with a few low degree exceptions. Is this true of a general rational cur
 
 \section{Curves of genus 1}
 
+
+%\fix{ Consider making this a separate chapter. Things we might add:
+%\begin{enumerate}
+% \item The ring $\oplus_n(H^0(\sO_E(n))$; 
+% \item consequence is the ACM property of series of degree $\geq 3$. 
+% \item Perhaps an exercise about
+% weighted projective space embedding.
+% \item Why people care about elliptic curves: finite generation of the class group over number fields; bounded rank? bounded torsion. perhaps other "facts", open problems (Burch-Swinnerton-Dyer?)
+%\end{enumerate}
+%}
 We will describe the maps of a curve of genus 1 given by
 the complete linear series in the lowest degree cases of interest: $d =  2, 3, 4$ and $5$. Along the
 way we will see several ways of parametrizing the family of curves of genus 1 by one-dimensional varieties,
@@ -432,6 +555,9 @@ thus has a unique global section. This vanishes at a unique point $r$, which may
 effective divisor linearly equivalent to $p+q-o$. For example if $r$ is the  unique point
 linearly equivalent to $2o-p$ then $p+r-o\sim o$, so that $r$ is the inverse $-p$ of $p$. Note that this operation is commutative.
 
+\pict{lines defining the group operation. Later when we do this for a plane cubic with 2 nodes, show the picture with 
+conics through the nodes}
+
 \begin{proposition}\label{group law} Let $E$ be an elliptic curve with origin $o\in E$.
 If we set $p+q = r$ where $r$ is the unique effective divisor linearly equivalent to $p+q-o$, then $E$ becomes an algebraic group
 and the group of divisor classes is divisible, in the sense that for any divisor $D$ of degre $n>0$
@@ -449,7 +575,7 @@ varieties, and for a curve $C$ of genus $g$ the divisors
 of degree $g$ form a group that surjects birationally to $\Pic_g(C)$. 
 \end{remark}
 
-\fix{I don't think we've introduced $\pic(C)$ at this point; likewise for the appearance of ``inflection point" in the following paragraph}
+%\fix{I don't think we've introduced $\pic(C)$ at this point; likewise for the appearance of ``inflection point" in the following paragraph}
  
 \begin{proof}
 To show that the group operation is given by regular functions, we map $E$ to $\PP^2$ by the complete linear series $|3o|$. Since
@@ -482,7 +608,7 @@ For the rest of the chapter, we fix a smooth irreducible projective curve $E$ of
 
 \subsection{Double covers of $\PP^1$}
 
-Let $E$ be a smooth projective curve of genus 1 and let  $\sL$ be an invertible sheaf of degree 2 on $E$. By \trr{},\kern -3pt $h^0(\sL) = 2$ and the linear series $|\sL|$ is base point free, so we get a map $\phi : E \to \PP^1$ of degree 2. By \trh the map $\phi$ will have 4 branch points, which must be distinct because in a degree 2 map
+Let $E$ be a smooth projective curve of genus 1 and let  $\sL$ be an invertible sheaf of degree 2 on $E$. By the Riemann-Roch theorem, $h^0(\sL) = 2$ and the linear series $|\sL|$ is base-point free, so we get a map $\phi : E \to \PP^1$ of degree 2. By \trh the map $\phi$ will have 4 branch points, which must be distinct because in a degree 2 map
 only simple branching is possible. By Corollary~\ref{equivalence of sheaves}, these four points are determined, up to automorphisms of $\PP^1$ by the curve $E$, and are independent of the choice of $\sL$.
 
 After composing with an automorphism of $\PP^1$ we can take these four points to be $0, 1, \infty$ and $\lambda$ for some $\lambda \neq 0, 1 \in \CC$. Since there is a unique double cover of $\PP^1$ with given branch divisor (see Lemma~\ref{branched cover classification} it follows that $E \cong E_\lambda$, where $E_\lambda$ is the curve given by the affine equation
@@ -626,6 +752,22 @@ $\PP^n\to \PP^{\binom{n+d}{d}-1}$, and that the cokernel of $M_{n,d}$ is the uni
  space that contains it?
 \end{exercise}
 
+\begin{exercise}\label{arbitrary hyperplane examples}
+Let $C_1$ be the union of two skew lines in $\PP^3$, and let $C_2$ be the double line on a smooth quadric in $\PP^3$.
+Show that there are hyperplane sections of $C_1$ and of $C_2$ that violate the conclusion of Proposition~\ref{arbitrary hyperplane}.
+\end{exercise}
+
+\begin{exercise}\label{restriction of ideals}
+Suppose that $X\subset \PP^r$ is a subscheme and  $Z$ is the subscheme of $\PP^r$ defined by a hypersurface $F\in H^0(\sO_{\PP^r}(m)$. If the restriction of $F$ is a non-zerodivisor in $\sO_X(m)$  then there are short exact sequences
+$\sI_X(d-m) \rTo^F \sI_X(m) \rTo \sI_{X\cap Z}(m) \to 0$.
+\end{exercise}
+
+\begin{exercise}\label{bad restriction}
+Let $C\subset \PP^3$ be the smooth rational quartic (or any smooth curve embedded by an incomplete linear series), and let $h$ be a linear form defining the hyperplane $H$.Show that
+the the irrelevant ideal is associated to the 
+homogeneous ideal $I_C+(h)$, and thus $I_C(1)/hI_c$ is not the saturated homogeneous ideal of the finite
+set $C\cap H$. 
+\end{exercise}
 
 \begin{exercise}
 Show that the twisted cubic is the unique irreducible, nondegenerate space curve lying on three quadrics by considering the possible
@@ -719,6 +861,16 @@ $$
 In the situation of the preceding problem, the set  of direct summands of $\cN_{C/\PP^d} $ is a projective space $\PP^{d-2}$. How does the  group of automorphisms of $\PP^d$ carrying $C$ to itself act on this $\PP^{d-2}$?
 (For more on normal bundles of rational curves, see for example~\cite{MR3778979}.
 \end{exercise}
+
+\begin{exercise}\label{ci is acm}
+If $C=\bigcap{i = 1}^{r-1} \subset \PP^r$ is a complete intersection of surfaces,
+then $C$ is arithmetically Cohen-Macaulay.
+
+Hint: Since the $r-1$ surfaces intersect only in codimension $r-1$, they form
+a regular sequence; and the length of any maximal regular sequence in 
+$\CC[x_0,\dots, x_r]$ is $r+1$. Altenately, Lasker's theorem states that complete intersections are unmixed; therefore
+\end{exercise}
+
 
 \input footer.tex
 

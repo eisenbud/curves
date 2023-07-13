@@ -17,14 +17,14 @@
 \end{verbatim}
 --T. S. Eliot, Old Possum's Book of Practical Cats\footnote{\cite{PracticalCats}}
 
-\section*{}
+\section*{Introduction}
 Some of the simplest subvarieties in projective space are the \emph{rational normal scrolls}. They appear in many contexts in algebraic geometry, and are useful for describing the embeddings of curves of low degree and genus. 
 
-We begin this chapter by giving three different characterizations of these varieties, each useful in a different context: First a classical geometric construction, then an algebraic description that allows one to ``find" the scrolls containing a given variety, and then a more modern geometric definition that makes it easy to understand the divisors on a scroll. Finally, we turn to some of the applications to the embeddings of curves. We will focus on the 2-dimensional case because this is the case that occurs in our applications.
+Like the cats in T. S. Eliot's poem, scrolls can be seen from three rather different points of view, each useful in a different context: First a classical geometric construction, then an algebraic description that allows one to ``find" the scrolls containing a given variety, and then a more modern geometric definition that makes it easy to understand the divisors on a scroll. Finally, we turn to some of the applications to the embeddings of curves. We will focus on the 2-dimensional case because this is the case that occurs in our applications.
 
 In this chapter we will refer to rational normal scrolls simply as scrolls. The third characterization we will give lends itself to a natural generalization to  irrational ruled varieties, In the literature the word ``scroll'' is often used for this wider class.
 
-\section{Some classical geometry (the name the family use daily)}\label{daily name}
+\section{Some classical geometry}\label{daily name}
 
 To construct a scroll of dimension 2 in $\PP^n$, we start by choosing integers $0\leq a_1 \leq a_2$ with $a_1 + a_2 = n-1$, and consider  a pair of complementary linear subspaces $\PP^{a_1}$ and $\PP^{a_2} \subset \PP^n$---that is, we express an $(n+1)$-dimensional vector space as a direct sum $ V_1 \oplus V_2$ of subspaces $V_1, V_2 \subset V$ of dimensions $a_1+1$ and $a_2+1$, and let $\PP^{a_1} = \PP V_1$ and $\PP^{a_2} = \PP V_2 \subset \PP (V_1\oplus V_2)$.
 
@@ -132,8 +132,7 @@ showing that $S(a_{1}, a_{2})$ is independent, up to an automorphism of the ambi
 
 
 
-\section{1-generic matrices and the equations of scrolls
-(the name that's particular)}\label{particular name}
+\section{1-generic matrices and the equations of scrolls}\label{particular name}
 
 Suppose that a scheme $X $ is embedded in $\PP^n$ by a complete linear series, and that
 $\sO_X(1)$ can be ``factored'' as a tensor product $\sL\otimes \sM$ of invertible sheaves on $X$. If we pick sets of $p$ independent elements $\{\ell_i\}\subset H^0(\sL)$ and  $q$ independent elements $\{m_i\} \subset H^0(\sM)$ then the multiplication map 
@@ -284,7 +283,7 @@ The 1-generic matrices $M$ of size $2\times a$ have a simple classification. The
 
 \begin{lemma}\label{codim of 2,n 1-generic}
 If $M$ is a $2\times a$ matrix of linear forms in $\CC[x_0,\dots, x_n]$, and $M$ is 1-generic, then 
-and  $V(I_2(M))$ is irreducible of codimension $a-1$.
+  $V(I_2(M))$ is irreducible of codimension $a-1$.
 \end{lemma}
 
 \begin{proof}
@@ -357,6 +356,89 @@ Since $I_2(M)$ is prime it has the same degree and codimenion as $I_2(M) +(x)/(x
 is $a$.
 \end{proof}
 
+We can use Theorem~\ref{1-generic basics} to prove a classic result of Castelnuovo, characterizing large sets of 
+points on a rational normal curve. It is a key element in Castelnuovo's classification of Castelnuovo curves of high
+degree, Theorem~\ref{Castelnuovo examples} below.
+
+\begin{corollary}(Castelnovo's $2r+3$ Lemma)\label{Castelnuovo2r+3}
+If $\Gamma\subset \PP^r$ is a set of $\geq 2r+3$ distinct points in linearly general position, then
+$\Gamma$ is contained in a rational normal curve if and only if $\Gamma$ imposes only $2r+1$
+conditions on quadrics. 
+\end{corollary}
+ 
+ To understand the approach taken in the proof below, recall that in the case of a twisted
+ cubic, whose equations are the minors of the matrix
+ $$
+\begin{pmatrix}
+ x_0&x_1&x_2\\
+ x_1&x_2&x_3
+\end{pmatrix}
+ $$
+the first column defines a secant line to the twisted cubic, and the two minors involving the first column are a regular sequence defining the union of the twisted cubic and that secant line.
+In general a rational normal curve may be defined by the 1-generic matrix coming associated to the product $H^0(\sO_{\PP^1}(1)) \otimes H^0(\sO_{\PP^1}(r-1)) \to H^0(\sO_{\PP^1}(r))$,
+and it follows from that description that the columns of the matrix define the $(r-1)$-secant $(r-2)$-planes to the curve. In the proof below we reconstruct the matrix starting from such a secant plane.
+
+\begin{proof}
+By Theorem~\ref{1-generic basics} it suffices to construct a 1-generic $2\times r$ matrix $M$ whose minors vanish on
+$\Gamma$. Note that the dimension of the space of quadrics on $\PP^r$, which is $\binom{r+2}{2}$, is equal to the sum
+$\binom{r}{2}+2r+1$, so the vector space of quadrics containing $\Gamma$ has dimension $\binom{r}{2}$.
+
+Enumerate the points $p_i\in \Gamma$, and let $\Lambda = V(a_1,b_1)$ be the linear
+space spanned by $p_1,\dots,p_{r-1}$. 
+
+ The number of
+conditions $\Lambda$ imposes on quadrics is $\binom{r}{2}$, but the $r-1$ points of $\Gamma \cap \Lambda$
+already impose $r-1$ conditions, so the dimension of the space of quadrics containing $\Lambda\cup \Gamma$
+is $\binom{r}{2}-\bigl(\binom{r}{2}-(r-1)\bigr) = r-1.$ These quadrics are contained in the ideal $(a_1,b_1)$, so a
+basis for them
+may be written as the $2\times 2$ minors that involve the first column of a matrix
+$$
+M := \begin{pmatrix}
+a_1&a_2&\dots&a_{r}\\
+b_1&b_2&\dots&b_{r}
+\end{pmatrix}.
+$$
+We will show that $M$ is 1-generic, and that its minors vanish on $\Gamma$, as required.
+Note that row and column operations do not change either of these properties.
+
+If $M'$ were not 1-generic then we could perform row and column operations that do not change the 
+span of the first column to arrive at a matrix with an entry in some column equal to 0. The minor
+involving the first column and that column is nonzero, because the quadrics defined by
+these minors are linearly independent. But a reducible quadric can contain
+only $2r$ linearly independent points, so $M'$ must be 1-generic.
+
+Because $a_2,\dots, a_r$ are linearly indpendent,
+we may perform column operations to ensure that for $i=2, \dots, r$ the linear form
+$a_i$ vanishes at all of $\{p_2,\dots, p_{r}\}$ except possibly at $p_i$.
+
+At a point in $p\in \Gamma$ that is not in $\Lambda$, at least one of $a_1,b_1$ is nonzero.
+Since each minor
+of $M$ involving the first column vanishes at $p$, each pair
+of scalars $(a_i(p),b_i(p))$ is a multiple of $(a_1(p), b_1(p))$. Thus all the minors
+of $M$ vanish at $p$---a total of $\geq 2r+3-(r-1) = r+4$ points.
+
+In addition the minor of $M$ involving columns $i,j$ vanishes at each of $p_2,\dots, p_r$ except possibly
+$p_i,p_j$, thus at r-3 addtional points, for a total of $2r+1$ points of $\Gamma$. Since
+$\Gamma$ imposes only $2r+1$ conditions on quadrics, the minors of $M$ vanish on all of $\Gamma$,
+as required. 
+\end{proof}
+
+\begin{remark}
+ The number $2r+3$ in Corollary~\ref{Castelnuovo2r+3} is sharp: if $C$ is a canonical curve of genus $r+2$ in $\PP^{r+1}$, then, since $C$
+ is arithmetically Cohen-Macaulay (Corollary~\ref{canonical ACM}), Corollary~\ref{ACM basics} implies that the points of a hyperplane 
+ section lie on the same number of independent quadrics as does $C$, and so,
+ by Corollary~\ref{canonical hilbert function} such points lie on the same number of
+ quadrics as do $2r+2$ points on a rational normal curve.
+ 
+In \cite{MR685427} a similar argument is used to show that if $\Gamma$ is a set of $\geq 2r+1+2d$ in uniform position
+imposing only
+$2r+d$ conditions on quadrics, then $\Gamma$ lies on a rational normal scroll of dimension $d$.
+We do not know whether the requirement of uniform position can be weakened to linearly general position,
+as in the case $d=1$.
+
+For a classical proof of Corollary~\ref{Castelnuovo2r+3} see for example \cite[p. 531]{Griffiths-Harris1978}.
+\end{remark}
+
 \begin{corollary}\label{equations of scrolls} Let $a_{1}, \dots, a_{r}$ be non-negative integers, and let $N = r-1+\sum_{i=1}^{r} a_{i}$.
 The ideal of $S(a_{1},\dots,a_{r})\subset \PP^{N}$ is generated by the $2\times 2$ minors of the matrix
 {\footnotesize
@@ -372,7 +454,7 @@ Moreover, the scroll admits a linear projection to each $C_{a_i}$.
 \end{corollary}
 
 \begin{proof} We may think of the matrix $M$ as consisting of $r$ blocks, $M_{a_{i}}$. These blocks are 1-generic by Proposition~\ref{some generators}. Since they involve distinct variables, it follows that $M$ is 1-generic. Thus by
-Theorem~\ref{}, the ideal $I_{2}(M)$ is prime and of codimension $\sum a_{i}-1$, as is the ideal of the scroll. Thus it suffices to show that the minors of $M$ vanish on the scroll.
+Theorem~\ref{1-generic basics}, the ideal $I_{2}(M)$ is prime and of codimension $\sum a_{i}-1$, as is the ideal of the scroll. Thus it suffices to show that the minors of $M$ vanish on the scroll.
 
 Let $C_{i}$ be the rational normal curve in the subspace $\PP^{a_{i}}\subset\PP^{N}$.
 As always, the set $V(M)$ is the union of the linear spaces on which generalized rows of $M$ vanish; and each such space is the space spanned by the points in the curves $C_{a_{i}}$ corresponding to the part of that row in the block $M_{a_{i}}$---that is, $V(I_{2}(M))$ is the union of the spans of sets of corresponding points on the $C_{a_{i}}$, as required.
@@ -389,13 +471,13 @@ Corollary~\ref{equations of scrolls}, and thus the minors of any 1-generic matri
 \begin{proof}[Proof sketch]
 A $2\times a$ matrix of linear forms in $N+1$ variables may be thought of as a tensor
 in $\CC^{2}\otimes \CC^{a}\otimes \CC^{N+1}$, or, equivalently, as an $a\times (N+1)$ matrix of linear forms in 2 variables. This, in turn is equivalent to a \emph{pencil} (that is, a projective line) in the vector space of scalar $a\times (N+1)$ matrices. Such ``matrix pencils'' were first classified by Kronecker; see 
-\cite[Theorems *** and ***]{Gantmacher} for an exposition, and ~\cite{Eisenbud-Harris-Centennial} for a geometric approach.
+\cite[Vol. II, Chapter 12]{Gantmacher} for an exposition, and ~\cite{Eisenbud-Harris-Centennial} for a geometric approach.
 \end{proof}
 
 
 
 
-\section{Scrolls as Images of Projective Bundles (the deep and inscrutable name)}\label{inscrutable name}
+\section{Scrolls as Images of Projective Bundles}\label{inscrutable name}
 
 Our third description of scrolls is that they are the images of projective space bundles on $\PP^{1}$ under the map given by the complete series associated to the tautological line bundle. When both $a_{1}$ and $a_{2}$ are strictly positive, we will see that this is an embedding, and in any case we will focus on the projective bundle itself, which is always smooth. We will present the theory in the 2-dimensional case; the case of higher dimensional scrolls is similar. We follow  \cite[Chapter V]{Hartshorne1977}), restricting
 to the rational case. 
@@ -483,7 +565,7 @@ to lines joining the corresponding points of the $C_i$.
 \end{theorem}
 
 
-\begin{corollary}\cite[****]{Hartshorne1977}
+\begin{corollary}\cite[Section V.2]{Hartshorne1977}
 Let $0\leq a_1\leq a_2$ be integers. The divisor class group of the 
 rational normal scroll 
 $$
@@ -515,6 +597,8 @@ $0<e = a_1$ or $e\geq a_2$.
 Apply \cite[II.7.12]{Hartshorne1977}).
 \end{proof}
 
+
+
 \section{Curves on a 2-dimensional scroll}\label{curves on scrolls}
 
 We may begin with the curve, and try to ``find'' the scroll; or we may begin with the scroll and ask
@@ -524,7 +608,7 @@ what curves it contains. We begin with the first approach:
 \subsection{Finding a scroll containing a given curve}
 
 \begin{proposition}
-Suppose that $C\subset \PP^n$ is a linearly normal integral curve, and $D$ is a  Cartier divisor on $C$ moving in a base-point-free linear system. If the linear span of $D$ is $t$-dimensional with $t\leq n-2$, then $C$ lies on a scroll of dimension $t+1$.
+Suppose that $C\subset \PP^n$ is a linearly normal reduced and irreducible curve, and $D$ is a  Cartier divisor on $C$ moving in a base-point-free linear system. If the linear span of $D$ is $t$-dimensional with $t\leq n-2$, then $C$ lies on a scroll of dimension $t+1$.
 \end{proposition}
 
 \begin{proof}
@@ -550,6 +634,9 @@ is a scroll $S(a_1,a_2)$ and $\max\{a_1, a_2\}$ is the maximal number of
 $D_\lambda$ that are contained in a single hyperplane.
 \end{corollary}
 
+\begin{remark}
+ In the case of a trigonal curve the difference $|a_2-a_1|$ is called the \emph{Maroni invariant}.
+\end{remark}
 \begin{proof}
 Let $\sL$ be the invertible sheaf $\cO_C(D_\lambda)$ corresponding to the $g^1_2$ in case 1 or
 the $g_3^1$ in case 2 and let $s_\lambda$ be
@@ -584,34 +671,20 @@ both these curves, so that $S(a_1,a_2)\subset H$. Since $S(a_1,a_2)$ is nondegen
 The second characterization follows because the rulings of the scroll are the divisors of elements of $V.$
 \end{proof}
 
-In the simplest case, the scroll might be a rational normal curve. There is a famous result of Castelnuovo
-in this direction. Recall that a set of $d$ points in linearly general position that spans $\PP^r$ imposes
-at least $min(d, 2r+1)$ conditions on quadrics (Proposition~\ref{min hilb}).
-
-\begin{theorem}\label{2n+3}
-If $\Gamma\subset \PP^n$ is a set of $d\geq 2n+3$ points in linearly general position, and $\Gamma$ imposes only
-$2n+1$ conditions on quadrics, then $\Gamma$ lies on rational normal curve.
-\end{theorem}
-\begin{proof}
- A  classical proof is given in~\cite[p.531]{Griffiths-Harris1978} and a more modern one in~\cite[Proposition 3.19]{MR685427}. 
- The proof is broken into hints in Exercise~\ref{2n+3 exercise}.
-\end{proof}
-
-The bound $2n+3$ is sharp; for example, in $\PP^3$ the complete intersection of $3 = 10 -(2n+1)$ quadrics
-is $8=2n+2$ points, and these do not lie on a rational normal curve (Exercise~\ref{2n+3 is sharp}).
 
 
 \begin{theorem}\label{Castelnuovo examples}
-If $C\subset \PP^r$ is an integral curve of degree $d\geq 2r+1$ with arithmetic genus equal to $\pi(r,d)$, the
-Castelnuovo bound, then $C$ lies on a 2-dimensional scroll or on  the Veronese surface.
+If $C\subset \PP^r$ is a reduced and irreducible curve of degree $d\geq 2r+1$ with arithmetic genus equal to $\pi(r,d)$, the
+Castelnuovo bound, then $C$ lies on a 2-dimensional scroll or $r=5$ and $C$ lies on  the Veronese surface.
 \end{theorem}
 
 \begin{proof}
 From the proof of Castelnuovo's theorem (Theorem~\ref{Castelnuovo's bound}) we see that a general hyperplane
-section of $C$, which is a set of point imposes exactly $2(r-1)+1$ conditions on quadrics, and moreover these
-quadrics are the restriction of quadrics containing the curve. By Theorem~\ref{2n+1} the hyperplane
+section of $C$, which is a set of point imposes exactly $2(r-1)+1$ conditions on quadrics. Moreover the curve
+is arithmetically Cohen-Macaulay, so the dimension of the space of quadrics containing the hyperplane section
+is the same as the dimension of the space of quadrics containing $C$. By Theorem~\ref{Castelnuovo2r+2} the hyperplane
 section lies on a rational normal curve whose ideal consists of all the quadrics containing the points;
-thus these quadrics intersect in a surface of minimal degree containing $C$.
+thus these quadrics containing $C$ intersect in a surface of minimal degree containing $C$.
 \end{proof}
 
 Both scrolls and the Veronese surface can occur; see Exercise~\ref{Castelnuovo Veronese}.
@@ -628,7 +701,7 @@ $$
 with $0\leq a_1\leq a_2$ and the 
 scroll $ S(a_1, a_2) \subset \PP^N$, where $N = a_1+a_2+1$. This scroll is the image of $X = \PP(\sE)$ by a map that is an isomorphism
 if $0<a_1$ and is the blow-down of  $C_1$ if $a_1=0$.  We write $\pi:X \to \PP^1$ for the projection, and
-$C_{a_i}\subset X$ for the directrix of degree $a_i$. The degree of $S(a,b)$ is $d := a_1+a_2$.
+$C_{a_i}\subset X$ for the directrix of degree $a_i$. The degree of $S(a,b)$ is $d := a_1+a_2 = N-1$.
 
  We begin with the nonsingular case:
 
@@ -653,7 +726,7 @@ ${p\choose 2}d+pq-p-q+1$.
 \item The class of $C_{a_1}$
 is $H-a_2F$, and the class of $C_{a_2}$ is 
 is $H-a_1F$. 
-\item If $C \subset \PP^{g-1}$ is a trigonal canonical curve and $X$ is the scroll swept out by the trisecants of $C$, then the class of $C$ is $3H+(4-g)F = H-K$. (Note that in this case we necessarily have $a_1 > 0$.)
+\item If $C \subset \PP^{g-1}$ is a trigonal canonical curve and $X$ is the scroll swept out by the trisecants of $C$, then the class of $C$ is $3H+(4-g)F = H-K$. (Note that in when $g>4$ we necessarily have $a_1 > 0$.)
 \end{enumerate}
 \end{theorem}
 
@@ -695,6 +768,11 @@ But we would also have to have $(H-K+E)\cdot(H+E) = 2g-2$, and a straightforward
 computation shows that there is no solution to this equation with $p\neq 0$ and $g>3$.
 \end{proof}
 
+%\begin{corollary}
+%Suppose that $C\subset \PP^r$ is a curve of degree $d$ and maximal genus $\pi(r,d) = \binom{M}{2}(r-1)+M\epsilon$
+%where $(d-1) = M(r-1)+ \epsilon$, with $0\leq \epsilon < r-1$. If $r=5$ then $C  
+%$C\subset 
+%\end{corollary}
 Now we can say exactly which classes on the scroll contain curves:
 
 \begin{theorem}\label{where are the curves?} Again, suppose that $0<a_{1}$.
@@ -714,7 +792,7 @@ on $X$ other than $C_{a_1}$ can have negative self-intersection.
 
 \begin{proof}
 The existence of smooth curves of types 1 and 2 is obvious; the following result will show that
-the ones of type 3 move in a base-point-free linear series. By Bertini's theorem \ref{***} such a series must contain smooth curves unless the associated map factors through a curve, in which case $D^2 = dp^2-2pq = p(pa_1+pa_2 -2 q) = 0$, which implies that $a_2=a_1$ and $q= -pa_1$.
+the ones of type 3 move in a base-point-free linear series. By Bertini's theorem \ref{Bertini} such a series must contain smooth curves unless the associated map factors through a curve, in which case $D^2 = dp^2-2pq = p(pa_1+pa_2 -2 q) = 0$, which implies that $a_2=a_1$ and $q= -pa_1$.
 
 The next result, Theorem~\ref{global sections}, thus completes the proof.
 \end{proof}
@@ -735,7 +813,7 @@ h^{0}(\sO_{X}(D)) =
 \sum_{i \mid q+(p-i)a_{1}+i a_{2} \geq 0}1+(q + (p-i)a_{1}+i a_{2}),
 $$
 and
-$|D|$ is base point free iff $p\geq 0$ and $q\geq -pa_{1}$.
+$|D|$ is base-point free iff $p\geq 0$ and $q\geq -pa_{1}$.
 \end{theorem}
 
 \begin{proof} First, If $q<-pa_{1}$, then 
@@ -772,7 +850,7 @@ $H^{0}(\bigl(\sO_{\PP^{1}}(q + (p-i)a_{1}+i a_{2})\bigr))$ is nonzero iff and on
 $H^{0}(\sO_{\PP^{1}}(q + pa_{1})$ is nonzero iff $q\geq -pa_{1}$.
 If $\sigma = \sum \sigma_i$ is a section of $\sO_X(D)$ written according to the decomposition
 above, then the restriction of $\sigma$ to  the rational normal curve $C_{a_1} = \PP(\sO_{\PP^1}(a_1)$ is the component $\sigma_0$, and similarly for $C_{a_2}$ and $\sigma_p$. Thus when  all the summands are nonzero
-there are sections  vanishing on $C_{a_{1}}$ but not $C_{a_{2}}$, and vice versa, so the system is base point free. 
+there are sections  vanishing on $C_{a_{1}}$ but not $C_{a_{2}}$, and vice versa, so the system is base-point free. 
 \end{proof}
 
  
@@ -932,7 +1010,7 @@ Improve the result of Exercise~\ref{special projections} by showing that, if $0\
  is $S(a_1, a_2-1)$.
 \end{exercise}
 
-\fix{maybe integrate this with Corollary~\ref{curves on a singular scroll}}
+%\fix{maybe integrate this with Corollary~\ref{curves on a singular scroll}}
 Exercise~\ref{F2}
 \begin{exercise}\label{curves on cones}
 \item If $C \subset S(0, a_2) \subset \PP^{a_2+1}$ is a smooth curve with class $m$ times the hyperplane section (that is, corresponding to a curve on $S(1,a_2+1)$ with class $mH - mF$), show that
@@ -985,7 +1063,7 @@ Proposition~\ref{min hilb} shows that $\geq 2n+1$ points in $\PP^n$ that are in 
  \item Show that
 any number of points lying on a rational normal curve in $\PP^n$ impose only $2n+1$ conditions on quadrics. 
 \item As a partial converse, prove Theorem~\ref{2n+3} of Castelnuovo:
- \fix{put in a guided proof}
+ %\fix{put in a guided proof}
  \end{enumerate}
 \end{exercise}
 
@@ -995,7 +1073,7 @@ Show that 3 general quadrics meet in 8 general points in $\PP^3$, and deduce tha
 is sharp.
 \end{exercise}
 
-\fix{Revise the following, moved from the genus 4,5 chapter and referred to there}
+%\fix{Revise the following, moved from the genus 4,5 chapter and referred to there}
 
 \begin{exercise} Trigonal curves of genus 5.\label{trigonal genus 5} 
 In Section~\ref{trigonal genus 5} we analyzed trigonal curves $C\subset \PP^4$ of genus 5, showing that
@@ -1025,7 +1103,7 @@ whereas a similar computation in the first case yields 8; thus $C\sim 3H-F$.
 The key thing to note here is that the curve $C$ has intersection number 3 with the lines of the ruling of $S$, meaning that $C$ is a trigonal curve. (We also see that the $g^1_3$ on $C$ is unique: if $D = p + q + r$ is a divisor moving in a pencil, the points $p, q$ and $r$ must lie on a line; since the surface $S$ is the intersection of quadrics, those lines must lie on $S$ and so must be  lines  of the ruling.) We see also that the locus $W^1_4(C)$ has two components: there are pencils with a base point, that is, consisting of the $g^1_3$ plus a base point; and there are the residual series $K_C - g^1_3 - p$. Each of these components of $W^1_4(C)$ is a copy of the curve $C$ itself, and they meet in two points, corresponding to the points of intersection of $C$ with the directrix of the scroll $S$.
 \end{exercise}
 
-\fix{consider an exercise to find the automorphism group}
+%\fix{consider an exercise to find the automorphism group}
 
 %\section{Appendix: Varieties of minimal degree}
 %\includepdf[pages=1-11]{Centennial.pdf}
