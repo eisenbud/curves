@@ -4,74 +4,199 @@
 \chapter{Moduli of curves} 
 \label{CurvesModuli chapter}\label{CurvesModuliChapter}
 
-\section{Smooth Curves}
 
-In this chapter we will discuss the moduli space central to the theory of algebraic curves: the moduli space $M_g$, whose points are in one-to-one correspondence with the isomorphism classes of smooth projective
-curves of genus $g$. We begin with two examples:
+In the preceding chapter, we described the \emph{Hilbert scheme}, a fine moduli space for curves in projective space. In
+this chapter we will discuss the second moduli space central to the theory of algebraic curves: $M_g$, whose points are in one-to-one correspondence with the isomorphism classes of smooth projective
+curves of genus $g$. There does not exist a fine moduli space, and to construct the coarse moduli space  we have to take an indirect route via geometric invariant theory. We will start with the case of curves of genus 1, where everything can be made explicit.
 
-\fix{I find the presentation of the difficulties of these examples muddy. The first is saved by a reduction to a finite group problem; but the original description has both the infinite group AND the problem of orbit closures, and these are somehow swept under the rug. The second example explores the orbit closures, but doesn't consider whether one might take just curves
-through a certain set of points, or something else that would kill the group; and in the previous version didn't even mention
-the non-finiteness as a problem. We don't need the hyperelliptic example at all -- it's atypical. I think that a more careful treatment of cubics in the plane would be better than this sequence of
-examples.}
+\section{Curves of genus 1}
 
-\subsection{Genus 2: coverings of $\PP^1$}                                                                                             
-
- The simplest way to represent a smooth curve $C$ of genus 2 is via the canonical map $\phi_K : C \to \PP^1$, which expresses $C$ as a 2-sheeted cover of $\PP^1$ branched over 6 distinct points $p_1,\dots,p_6 \in \PP^1$. Since this expression is unique, we see that the moduli space $M_2$ of smooth curves of genus 2 is---at least set-theoretically---the set of unordered 6-tuples of distinct points in $\PP^1$, modulo the automorphism group ${\rm Aut}(\PP^1) = PGL_2$.
-
- If we choose an ordering of the points $p_i$, there is a unique automorphism of $\PP^1$ carrying $p_1, p_2$ and $p_3$ to $0$, $1$ and $\infty$ respectively.  The remaining three points will be sent to three distinct points in $\PP^1 \setminus \{0, 1, \infty \} $. Of course, this depends on how we order the points in the first place; at the end of the day, we see that the symmetric group $S_6$ acts on the quasi-projective variety
+Let $E$ be a smooth curve of genus 1. Any invertible sheaf of degree 2 on $E$ can be written as
+$\sO_E(2p)$, and defines
+a morphism to $\PP^1$ with 4 distinct branch points. Since the automorphism group of $E$ is transitive,
+these 4 points in $\PP^1$ are independent of the choice of $p$, and are well-defined
+up to an automorphism of $\PP^1$.    As explained in Section~\ref{branched covers},  this means that every curve $C$ of genus 1 can be realized as the completion of the affine curve
 $$
-\Gamma = \left( \PP^1 \setminus \{0, 1, \infty \} \right)^3 \setminus \Delta
+y^2 = f(x)
 $$
-(where $\Delta$ is the subset where two points are equal), and the set $M_2$ of isomorphism classes of smooth curves of genus 2 may be identified with the the quotient $\Gamma/S_6$. This is naturally an algebraic variety, as we saw in Chapter~\ref{JacobianChapter}.
-
-This construction does two things: first, it suggests that $M_2$ is an irreducible variety of dimension 3; and
-second, it allows us to write down explicitly a ``general curve of genus 2." This is the curve
+where $f$ is a quartic polynomial with distinct roots $\lambda_1, \dots \lambda_4$; that is, 
 $$
-y^2 = x(x-1)(x-a)(x-b)(x-c)
+f(x) = \prod_{i=1}^4 (x - \lambda_i).
 $$
-with $a, b$ and $c$ general scalars. We will discuss the analogous question for curves of any genus $g$ in Section~\ref{Hurwitz section} below.
+Thus we would like to define $M_1$ to be the set of 4-tuples of distinct points of $\PP^1$ modulo the action of $\Aut(\PP^1) = PGL_2$.
 
-\subsection{Cubics in the plane}
-
-The simplest way to describe a moduli space of smooth curves of genus 1 is to observe that every such curve can be expressed as a 2-sheeted cover of $\PP^1$ branched over 4 points, and to construct the moduli of unordered 4-tuples of distinct points in $\PP^1$, much as we did in the case of curves of genus 2 above.
-
-\fix{Why aren't we worried about the limits of orbits of distinct points where some of the points come together? The transition from this para to the next seems illogical}
-
-Since any curve of genus 1 can be realized as a plane cubic, we could also try to construct a moduli space by taking the quotient of the space $\PP^9$ of plane cubics---the Hilbert scheme---by the group ${\rm Aut}(\PP^2) = PGL_3$. To get the moduli space, we would like to take the quotient of this space by the group $PGL_{5g-5}$. But, unlike of the orbit space of a finite group, the orbit space under infinite groups may not have the structure of an algebraic variety! 
-
-
-Any $PGL_3$ orbit in $\PP^9$ contains in its closure the locus of points in $\PP^9$ corresponding to triple lines: after a change of variables adding suitable multiples of $x$ to $y$ and $z$, the curve $C$ will be defined by a cubic of the form $F(x,y,z) = x^3+$ terms in the ideal $(y,z)$.
-Consider $F(x,ty, tz)$, and let $t$ go to 0. It follows that in the topological quotient $\PP^9/PGL_3$ the point corresponding to triple lines is in the closure of every other point; this could not be an algebraic variety.
-
-The same problem occurs in a less obvious fashion for other orbits. For example, in suitable coordinates every smooth cubic $C$ has affine equation of the form $y^2-x^3 - ax - b$, and the family of cubics
+As we will explain in the next sections, quotients by infinite groups can behave badly,
+but in this case we can compute the quotient in a much simpler way:
+There is a unique automorphism of $\PP^1$ carrying the three points $\lambda_1, \lambda_2,\lambda_3$ to the points $0, 1$ and $\infty \in \PP^1$ respectively, so that we can write $C$ as the zero locus of
 $$
-y^2 - x^3 - t^2ax - t^3b 
+y^2 = x(x-1)(x-\lambda)
 $$
-are isomorphic to $C$ for $t \neq 0$ but have limit the cuspidal curve $y^2 = x^3$.
-Thus, if a quotient existed, the point corresponding to the orbit of a cuspidal cubic would lie in the closure of every point corresponding to a smooth cubic. 
+for some complex number $\lambda = \in \PP^1 \setminus \{0,1,\infty\}$; we'll call this curve $C_\lambda$. 
+This expression is not unique, since if we reordered the original  four points $\lambda_i$, we might arrive at a different value of $\lambda$. Thus $\Aut(\PP^1)$ acts on the 4-tuples 
+of points containing $0,1,\infty$ via the symmetric group $S_4$,
+and one can show that the orbit of $\lambda$ under this action is
+$$
+\lambda' \in \left\{ \lambda, 1-\lambda, \frac{1}{\lambda}, \frac{1}{1-\lambda}, \frac{\lambda-1}{\lambda}, \frac{\lambda}{\lambda - 1} \right\}.
+$$
+(There are 6 points in the orbit rather than 24 because
+$Z/2\times Z/2 \subset S_4$ acts trivially.) \fix{say which $Z/2\times Z/2$}): 
 
-A related phenomenon involves curves with nodes: as the reader can verify, the orbit in $\PP^9$ corresponding to irreducible cubics with a node contains in its closure the locus of reducible cubics consisting of a line and a conic meeting transversely; and this orbit contains in its closure the orbit of triangles, cubics consisting of three non-concurrent lines. Thus even after restricting to the open set consisting just of nodal cubics, any continuous map 
-to a separated space that sends orbits to points must map all three of these orbits  to the same point.
+Since $S_4$ is finite and $\PP^1 \setminus \{0,1,\infty\}$ is a normal affine curve, the quotient space by the action is again a normal affine curve whose points are in one-to-one
+correspondence with the orbits, and thus with the set of curves of genus 1. 
+ Moreover, by L\"uroth's theorem, Theorem~\ref{}, the quotient is rational.
+ 
+One can check that the quotient map $\PP^1 \setminus \{0,1,\infty\} \to \PP^1\setminus \infty = \AA^1$
+is given by the rational function
+$$
+j(\lambda) := 256\frac{(\lambda^2-\lambda + 1)^3}{\lambda^2(\lambda-1)^2},
+$$
+known as the $j$-function. As $\lambda$ varies in $\PP^1 \setminus \{0,1,\infty\}$, $j(\lambda)$ can assume any value in $\AA^1$.
 
-This is the central problem of \emph{geometric invariant theory} as developed by David Mumford in the first edition of~\cite{GIT}. We will treat the theory as a black box; to explain its inputs and outputs, we will describe a relatively well-understood example. For further examples (and a beautiful exposition) see~\cite{IntroModuli}.
+Summarizing, we have proven:
 
-\subsection{Higher genus}
+\begin{theorem}
+The set of isomorphism classes of smooth projective curves of genus 1 is in bijection with the points of the affine line $M_1: = \AA^1$: A curve defined by $y^2 = x(x-1)(x-\lambda)$
+corresponds to $j(\lambda)\in \AA^1$.
+\end{theorem}
 
-In the genus 2 example, we worked with the canonical map $\phi_K$, expressing a given curve $C$ of genus 2 as a 2-sheeted cover of $\PP^1$, so that the moduli space of curves of genus 2 could be realized as the space of such double covers modulo $\PGL_2$. What if we adopted the same approach in genus 3? If a curve $C$ of genus 3 is non-hyperelliptic, the canonical map embeds $C$ as a smooth quartic curve in $\PP^2$. Since this realization is unique up to automorphisms of $\PP^2$, we could realize the space $\tilde M_3$ of non-hyperelliptic curves as the quotient of the space of smooth plane quartic curves---an open subset of the $\PP^{14}$ of all quartic curves---by the action of ${\rm Aut}(\PP^2) = PGL_3$. 
+ As we will see,
+$M_1$ is not a fine moduli space, but it comes close in two senses. First:
 
-We can include the hyperelliptic curves as well if we take the the bicanonical map $\phi_{2K} : C \to \PP^{3g-4}$ (or, if we want to include the case of genus 2, the tricanonical map  $\phi_{3K} : C \to \PP^{5g-6}$). This means we have to replace the relatively simple ``space of smooth plane quartic curves" (an open subset of $\PP^{14}$) with the corresponding subset $U$ of the Hilbert scheme of smooth curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$. 
+\begin{proposition}
+To any family $\pi : \cC \to B$  of smooth projective curves of genus 1 we can associate a morphism of schemes $\phi : B \to M_1$ whose value at any point $b \in B$ is the $j$-invariant of the corresponding fiber $C_b$.
+\end{proposition} 
 
-The morphism $\sC \subset U \times \PP^{5g-6} \to U$ from the universal family to the Hilbert scheme is a smooth morphism over the open set of smooth curves, and therefore the relative cotangent sheaf is a bundle whose top exterior power is the family of canonical bundles. 
-\fix{I think the morphism has relative dim 1, so the bundle IS the canonical bundle.}
-The third tensor power  of this bundle times the inverse of the restriction of $\sO_\PP{5g-6}(1)$ has a nonzero global section at a point if and only if
-that point represents a tricanonical curve, and thus by semicontinuity of cohomology, the locus of smooth tricanonical curves is closed
-in the open set of smooth curves. We would now like to take the quotient by the group of automorphisms
-of $\PP^{5g-6}.$ This requires geometric invariant theory.
+\begin{proof}\fix{This is the part that's not in H, and it's too quick.}
+In an analytic neighborhood $U$ of any point $b_0 \in B$ we can find a section $\rho : U \to \cC_U$ of $\pi : \cC \to B$, which we'll think of as the origin in each fiber; let $D = \rho(U) \subset \cC_U$ be the image. By the theorem on cohomology and base change, the direct image $\cE := \pi_*(\cO_{\cC_U}(2D))$ will be locally free of rank 2, and we get a morphism $\cC_U \to \PP(\cE)$ expressing each curve $C_b$ as a two-sheeted cover of the corresponding fiber $\PP(\cE_b)$. Since we are working locally in $B$, we can trivialize the bundle $\cE$, and (possibly after a finite base change) write the family $\cC_U \to U$ as the locus
+$$
+y^2 = \prod_1^4 (x - \lambda_i),
+$$
+where the $\lambda_i$ are regular functions on $U$. Taking the $j$-function of the $\lambda_i$ renders moot any base change we made \fix{where was that made?} and yields a map $U \to M_1$; by the uniqueness of the $j$-function, these maps agree on overlaps to give  the desired map $B \to M_1$.
+\end{proof}
+
+\subsection{The bad news} \fix{I want to rewrite this as a positive: the second way $M_1$ is
+nearly a moduli space. "While we can't go from a map
+to a family, we can after composing the map with a covering..."}
+
+By the above, the $j$-line $M_1$ is a coarse moduli space for smooth projective curves of genus 1. It is not, however, a fine moduli space, as can be seen directly from the explicit formula above for the $j$-function. For example, from the formula above, we see that if $j : B \to M_1$ is the map associated to a family $\cC \to B$ of curves of genus 1, then every zero of the $j$-function must have multiplicity divisible by 3 \fix{why 3; and if it is, do we get a pullback?}. Thus we do not have a bijection between such families and maps of $B$ to $M_1$; and in particular there is no universal family over $M_1$. 
+
+This situation persists in all higher genera as well: there does not exist a fine moduli space for smooth projective curves of genus $g$ for any $g$.\footnote{It should be noted that the existence of nontrivial $\PP^1$-bundles implies that there is no fine moduli space $M_0$ either.} One way of dealing with this is to enlarge the category of schemes to the category of \emph{stacks}, where a fine moduli space does exist, but this is technically demanding \fix{boo hoo}; our approach here will be to work with, and describe, the coarse moduli space $M_g$ 
+
+%\subsection{Genus 2: coverings of $\PP^1$}                                                                                             
+%
+% The simplest way to represent a smooth curve $C$ of genus 2 is via the canonical map $\phi_K : C \to \PP^1$, which expresses $C$ as a 2-sheeted cover of $\PP^1$ branched over 6 distinct points $p_1,\dots,p_6 \in \PP^1$. Since this expression is unique, we see that the moduli space $M_2$ of smooth curves of genus 2 is---at least set-theoretically---the set of unordered 6-tuples of distinct points in $\PP^1$, modulo the automorphism group ${\rm Aut}(\PP^1) = PGL_2$.
+%
+% If we choose an ordering of the points $p_i$, there is a unique automorphism of $\PP^1$ carrying $p_1, p_2$ and $p_3$ to $0$, $1$ and $\infty$ respectively.  The remaining three points will be sent to three distinct points in $\PP^1 \setminus \{0, 1, \infty \} $. Of course, this depends on how we order the points in the first place; at the end of the day, we see that the symmetric group $S_6$ acts on the quasi-projective variety
+%$$
+%\Gamma = \left( \PP^1 \setminus \{0, 1, \infty \} \right)^3 \setminus \Delta
+%$$
+%(where $\Delta$ is the subset where two points are equal), and the set $M_2$ of isomorphism classes of smooth curves of genus 2 may be identified with the the quotient $\Gamma/S_6$. This is naturally an algebraic variety, as we saw in Chapter~\ref{JacobianChapter}.
+%
+%This construction does two things: first, it suggests that $M_2$ is an irreducible variety of dimension 3; and
+%second, it allows us to write down explicitly a ``general curve of genus 2." This is the curve
+%$$
+%y^2 = x(x-1)(x-a)(x-b)(x-c)
+%$$
+%with $a, b$ and $c$ general scalars. We will discuss the analogous question for curves of any genus $g$ in Section~\ref{Hurwitz section} below.
+%
+%\subsection{Cubics in the plane}
+%
+%The simplest way to describe a moduli space of smooth curves of genus 1 is to observe that every such curve can be expressed as a 2-sheeted cover of $\PP^1$ branched over 4 points, and to construct the moduli of unordered 4-tuples of distinct points in $\PP^1$, much as we did in the case of curves of genus 2 above.
+%
+%\fix{Why aren't we worried about the limits of orbits of distinct points where some of the points come together? The transition from this para to the next seems illogical}
+%
+%Since any curve of genus 1 can be realized as a plane cubic, we could also try to construct a moduli space by taking the quotient of the space $\PP^9$ of plane cubics---the Hilbert scheme---by the group ${\rm Aut}(\PP^2) = PGL_3$. To get the moduli space, we would like to take the quotient of this space by the group $PGL_{5g-5}$. But, unlike of the orbit space of a finite group, the orbit space under infinite groups may not have the structure of an algebraic variety! 
+%
+%
+%Any $PGL_3$ orbit in $\PP^9$ contains in its closure the locus of points in $\PP^9$ corresponding to triple lines: after a change of variables adding suitable multiples of $x$ to $y$ and $z$, the curve $C$ will be defined by a cubic of the form $F(x,y,z) = x^3+$ terms in the ideal $(y,z)$.
+%Consider $F(x,ty, tz)$, and let $t$ go to 0. It follows that in the topological quotient $\PP^9/PGL_3$ the point corresponding to triple lines is in the closure of every other point; this could not be an algebraic variety.
+%
+%The same problem occurs in a less obvious fashion for other orbits. For example, in suitable coordinates every smooth cubic $C$ has affine equation of the form $y^2-x^3 - ax - b$, and the family of cubics
+%$$
+%y^2 - x^3 - t^2ax - t^3b 
+%$$
+%are isomorphic to $C$ for $t \neq 0$ but have limit the cuspidal curve $y^2 = x^3$.
+%Thus, if a quotient existed, the point corresponding to the orbit of a cuspidal cubic would lie in the closure of every point corresponding to a smooth cubic. 
+%
+%A related phenomenon involves curves with nodes: as the reader can verify, the orbit in $\PP^9$ corresponding to irreducible cubics with a node contains in its closure the locus of reducible cubics consisting of a line and a conic meeting transversely; and this orbit contains in its closure the orbit of triangles, cubics consisting of three non-concurrent lines. Thus even after restricting to the open set consisting just of nodal cubics, any continuous map 
+%to a separated space that sends orbits to points must map all three of these orbits  to the same point.
+%
+%This is the central problem of \emph{geometric invariant theory} as developed by David Mumford in the first edition of~\cite{GIT}. We will treat the theory as a black box; to explain its inputs and outputs, we will describe a relatively well-understood example. For further examples (and a beautiful exposition) see~\cite{IntroModuli}.
+
+\section{Higher genus}
+
+The idea used for genus 1 curves can be applied more generally: to construct a moduli space, first parametrize curves with a choice of some additional structure, such as a map to projective space, and then mod out by the choices made. For any smooth projective curve $C$ of genus $g\geq 2$, the tricanonical linear series $|3K_C|$ is very ample; it embeds $C$ as a curve of degree $6g-6$ in $\PP^{5g-6}$. Thus we have a way of realizing a given abstract curve $C$ as a curve in projective space, unique up to automorphisms of $\PP^{5g-6}$.
+
+The singular locus of the fibers in any family of curves is closed, so the set of points in the base over which the curves are smooth is open.  Let 
+$$
+\cH\circ_{(6g-6)m+1-g}(\PP^{5g-6} \subset \cH\circ_{(6g-6)m+1-g}(\PP^{5g-6}
+$$
+be this open set, let $H$ for the pullback of $\sO_{\PP^5g-6}(1)$ to the universal curve over it.
+The canonical bundle of each fiber is the restriction of the relative cotangent bundle $\Omega$ of the family,
+so a fiber $C_\lambda$ is tricanonically embedded if $(\Omega_\lambda)^\{otimes 3}(-H)$ has a nonzero section. By the semicontinuity of cohomology, this is a closed condition on $\lambda.$  Thus
+the set of tricanonically embedded smooth curves is a closed subset of the open set of smooth
+curves---a locally closed subset $X$ of the Hilbert scheme.
+
+%Moreover, as tricanonically embedded smooth curves are parametrized by a locally closed subvariety of the Hilbert scheme $\cH\circ_{(6g-6)m+1-g}(\PP^{5g-6}$: Quite generally, a curve is smooth if
+%the the set of points representing smooth curves
+%is open in the Hilbert scheme, since  and  the morphism $\sC \subset U \times \PP^{5g-6} \to U$ from the universal family to the Hilbert scheme is a smooth morphism over the open set of smooth curves, and therefore the relative cotangent sheaf is a bundle whose top exterior power is the family of canonical bundles. 
+%%The third tensor power  of this bundle times the inverse of the restriction of $\sO_\PP{5g-6}(1)$ has a nonzero global section at a point if and only if
+%%that point represents a tricanonical curve, and thus by semicontinuity of cohomology, the locus of smooth tricanonical curves is closed
+%%in the open set of smooth curves. 
+
+The group $PGL_{5g-5}$ of automorphisms of $\PP^{5g-6}$ acts on variety $X$ and its orbits
+are the isomorphism classes of curves. Unlike the case of an action of a finite group on a variety,
+the orbit spaces of infinite groups are often not algebraic varieties, but this case is well-behaved. This is the content of the main (and last) theorem of \cite{GIT}:
+
+\begin{theorem}(Mumford)
+The space of orbits of $PGL_{5g-5}$ acting on the subset of the Hilbert scheme representing
+tricanonical curves has the structure of an algebraic variety $M_g$ which is a \emph{coarse moduli
+space} in the sense that
+\begin{enumerate}
+ \item Given any flat family $Y\to B$ of smooth curves of genus $g$ there is a morphism of schemes
+ $B\to M_g$ sending each closed point $p\in B$ to the point of $M_g$ representing the fiber $Y_b$;
+ \item These maps form a natural transformation from the functor $G(-)$ of families of stable curves to the functor 
+ $\Mor_{\rm schemes}(-, \overline M_g)$ through which any natural transformation $G \to \Mor_{\rm schemes}(-, M')$
+ factors;
+Given any variety $M$ with this property, there is a unique morphism $M\to M_g$ that
+ sending each closed point $p\in M$ to the point of $M_g$ representing the same curve as $p$.
+ 
+
+\end{enumerate}
+\end{theorem}
+
+The power of the theory of the moduli space of curves was greatly increased when compactifications of the space (there are many interesting ones) were understood. One of these, the compactification
+of $M_1 = \AA^$ to $\overline M_1 \PP^1$ by adding a nodal curve, has already been mentioned. This has the desirable properties that the subset added to $M_1$ is a divisor; and the compactification is \emph{modular} in the sense
+that the point added corresponds to a curve almost of the same type as the curves in $M_g$.
+
+There are two reasons why a compactification is  important:
+
+First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply directly only to projective varieties. For example, the Satake compactification is a projective variety containing $M_g$ in such a way that the complement---usually referred to as the "boundary"---has codimension 2. Taking successive hyperplane sections that pass through a given point but don't meet the boundary, we see that for $g\geq 2$ there is a complete one-dimensional family of \emph{smooth} curves containing any smooth curve of genus $\geq 2$. 
+
+Often, though, we can learn the most from a compactification where the ``boundary''---the part that is added---is ad divisor, and this is the case for the Deligne-Mumford compactification
+$\overline M_g$ introduced by Deligne and Mumford in their groundbreaking 1969 paper~\cite{Deligne-Mumford}, described below. A central example of how this is used is given in Section~\ref{mgunirational}, where we take up the question, ``can we write down a general curve of genus $g$?" 
+
+To describe this compactification, we first explain some of the language and results of geometric
+invariant theory.
+
+%The variety $\overline M_g$ has an important extra property: it is a \emph{modular}  compactification in the sense that the points of the boundary correspond to slightly more general
+%objects of the same type as the points of $M_g$. 
+%Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and its automorphism group is finite. These are precisely the stable points in the Hilbert scheme of tri-canonical embeddings in the sense of geometric invariant theory. \fix{is this true? Check Harris-Morrison}
+
+%But while orbit spaces of finite groups always exist  and behave well, quotients by positive-dimensional algebraic groups are a very different story; to deal with these, we have to introduce the methods of \emph{geometric invariant theory}, which we'll do now.
+
+
+%The morphism $\sC \subset U \times \PP^{5g-6} \to U$ from the universal family to the Hilbert scheme is a smooth morphism over the open set of smooth curves, and therefore the relative cotangent sheaf is a bundle whose top exterior power is the family of canonical bundles. 
+%\fix{I think the morphism has relative dim 1, so the bundle IS the canonical bundle.}
+%The third tensor power  of this bundle times the inverse of the restriction of $\sO_\PP{5g-6}(1)$ has a nonzero global section at a point if and only if
+%that point represents a tricanonical curve, and thus by semicontinuity of cohomology, the locus of smooth tricanonical curves is closed
+%in the open set of smooth curves. We would now like to take the quotient by the group of automorphisms
+%of $\PP^{5g-6}.$ This requires geometric invariant theory.
 
 
 \subsection{Stable, semistable, unstable}
 
-In general, given a quasi projective variety $X \subset \PP^N$ and a group $G \subset PGL_{N+1}$ that carries $X$ into itself, we wish to construct as good a map as possible from the set of orbits
+Given a quasi projective variety $X \subset \PP^N$ and a group $G \subset PGL_{N+1}$ that carries $X$ into itself, we wish to construct as good a map as possible from the set of orbits
 to a projective space. If we succeed, then the closure of the
 image will correspond to a graded ring. We want to preserve as much of the structure of the orbit space as possible, and on an open affine cover
 this means finding as many functions as possible that are invariant on the orbits. Thus it is natural to take the ring of invariants
@@ -109,64 +234,52 @@ other representations of $M_g$ as $X'//G'$; see \cite{MR3044128}).
 \fix{It would be nice to have the simplest example exhibiting each type of orbit. Can we do it with 4-tuples of non-necessarily distinct points
 in $\PP^1$? }
 
-\subsection{Construction and characterization of the moduli space of curves}
-
-To construct a moduli space $M_g$ of smooth  curves of genus $g\geq 2$, we start with the Hilbert scheme $\cH$ parametrizing curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$, and pass to the open subset $W \subset \cH$ of smooth curves. Within this open subset, the locus $U \subset W$ of curves embedded by their tricanonical bundles is a closed subvariety, invariant under the automorphism group of the ambient space. The moduli space $M_g$ is the quotient $U//PGL_{5g-5}$, and it is a theorem of Mumford~\cite{GIT} that all the orbits in $U$ are stable, so the
-points of $M_g$ correspond one-to-one to the orbits, that is, to the isomorphism classes of smooth curves. \fix{The construction was already done at the end of an earlier section as an "example". Now its back as the real thing.}
-
-\fix{Note to authors: do we want to include Caporaso's construction of an algebraic Picard variety?}
-
-Even so, these curves do \emph{not} form a family over $M_g$; that is, there is no universal family, for reasons discussed in Section~\ref{almost fine}. But it is a ``coarse moduli space", the best possible approximation to a fine moduli space in the category of varieties. Even though the
-functor $\Mor_{\rm schemes}(-, M_g)$ is not isomorphic to the functor $F(-)$ of families of curves of genus $g$, there is
-a natural transformation
-$$
-\Psi: F\to \Mor_{\rm schemes}(-, M_g)
-$$
-such that 
-for every scheme $M'$ and natural transformation $\Psi': F \to \Mor(-, M')$
-there is a unique morphism $\eta: M\to M'$ so that $\Psi' = \Psi\circ \Mor(-, \eta)$.
-
-Since $M_g$ does not support a universal family of curves, we cannot expect an arbitrary family $\pi: X \to B$ of smooth curves of genus $g$ to arise as the pull-back along a morphism $B\to M_g$. However, the property of functors above
-says that the set-theoretic
-map $\rho_\pi: B \to M_g$ sending each closed point  $b\in B$ to the point of $M_g$ corresponding to the class of the fiber
-over $b$ is actually a morphism of schemes. \fix{ I think we're dropping the idea expressed in the next sentence} Even more is true, as explained below in Section~\ref{almost fine}. 
-
-%%%Edited to here Jul 14
-
-To summarize:
-\begin{enumerate}
-  \item The points of $M_g$ correspond one-to-one to isomorphism classes of smooth curves.
- \item For every family $\cC \to B$ of smooth curves there is a map $B\to M_g$ carrying
- each closed point  $b \in B$ to the point representing the isomorphism class of the fiber of $\cC$ over $b$,
- \end{enumerate}
-in a ``maximal'' way.
-
+%\subsection{Construction and characterization of the moduli space of curves}
+%
+%Even so, these curves do \emph{not} form a family over $M_g$; that is, there is no universal family, for reasons discussed in Section~\ref{almost fine}. But it is a ``coarse moduli space", the best possible approximation to a fine moduli space in the category of varieties. Even though the
+%functor $\Mor_{\rm schemes}(-, M_g)$ is not isomorphic to the functor $F(-)$ of families of curves of genus $g$, there is
+%a natural transformation
+%$$
+%\Psi: F\to \Mor_{\rm schemes}(-, M_g)
+%$$
+%such that 
+%for every scheme $M'$ and natural transformation $\Psi': F \to \Mor(-, M')$
+%there is a unique morphism $\eta: M\to M'$ so that $\Psi' = \Psi\circ \Mor(-, \eta)$.
+%
+%Since $M_g$ does not support a universal family of curves, we cannot expect an arbitrary family $\pi: X \to B$ of smooth curves of genus $g$ to arise as the pull-back along a morphism $B\to M_g$. However, the property of functors above
+%says that the set-theoretic
+%map $\rho_\pi: B \to M_g$ sending each closed point  $b\in B$ to the point of $M_g$ corresponding to the class of the fiber
+%over $b$ is actually a morphism of schemes. \fix{ I think we're dropping the idea expressed in the next sentence} Even more is true, as explained below in Section~\ref{almost fine}. 
+%
+%%%%Edited to here Jul 14
+%
+%To summarize:
+%\begin{enumerate}
+%  \item The points of $M_g$ correspond one-to-one to isomorphism classes of smooth curves.
+% \item For every family $\cC \to B$ of smooth curves there is a map $B\to M_g$ carrying
+% each closed point  $b \in B$ to the point representing the isomorphism class of the fiber of $\cC$ over $b$,
+% \end{enumerate}
+%in a ``maximal'' way.
+%
 
 \section{Stable curves}
 
-The power of the theory of the moduli space of curves was greatly increased when compactifications of the space (there are many interesting ones) were understood. There are two reasons why such results are  important:
-
-First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply directly only to projective varieties. For example, the Satake compactification is a projective variety containing $M_g$ in such a way that the complement---usually referred to as the "boundary"---has codimension 2. Taking successive hyperplane sections through a given point, we see that for $g\geq 2$ there is a complete one-dimensional family of \emph{smooth} curves containing any smooth curve of genus $\geq 2$. 
-
-Often, though, we can learn the most from a compactification where the ``boundary''---the part that is added---is a well-behaved divisor, and this is the case for the Deligne-Mumford compactification, described below. A central example of how this is used is given in Section~\ref{mgunirational}, where we take up the question, ``can we write down a general curve of genus $g$?" 
-
-The compactification $\overline M_g$ introduced by Deligne and Mumford in their groundbreaking 1969 paper~\cite{Deligne-Mumford} has an important extra property: it is a \emph{modular}  compactification in the sense that the points of the boundary correspond to slightly more general
+The compactification $\overline M_g$ is also a \emph{modular}  compactification in the sense that the points of the boundary correspond to slightly more general
 objects of the same type as the points of $M_g$. 
-Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and the automorphism group is finite. These are precisely the stable points in the Hilbert scheme of tri-canonical embeddings in the sense of geometric invariant theory. \fix{is this true? Check Harris-Morrison}
+Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and the automorphism group is finite. These are stable points in the Hilbert scheme of tri-canonical embeddings in the sense of geometric invariant theory.
 
 \begin{theorem}(Deligne, Mumford, Knudsen) \cite{Deligne-Mumford}, \cite{MR702954}\label{DM is coarse}
 $\overline M_g$ is a projective variety such that
 \begin{enumerate}
  \item The points of $M_g$ correspond one-to-one to isomorphism classes of smooth curves.
- \item For every family $\cC \to B$ of stable curves there is a map $B\to M_g$ carrying
- each closed point  $b \in B$ to the point representing the isomorphism class of the fiber of $\cC$ over $b$, 
- forming a natural transformation from the functor $G(-)$ of families of stable curves to the functor 
+ \item For every family $\cC \to B$ of stable curves there is a morphism of schemes $B\to M_g$ carrying
+ each closed point  $b \in B$ to the point representing the isomorphism class of the fiber of $\cC$ over $b$. 
+ These maps form a natural transformation from the functor $G(-)$ of families of stable curves to the functor 
  $\Mor_{\rm schemes}(-, \overline M_g)$ through which any natural transformation $G \to \Mor_{\rm schemes}(-, M')$
  factors;
 \end{enumerate}
 \end{theorem}
- 
-  
+
 
 \subsection{$M_g$ and $\overline M_g$ are almost fine}\label{almost fine}
 
