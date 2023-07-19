@@ -54,6 +54,7 @@ isomorphic. Thus $\div$ is injective as well.
 \end{proof}
 
 \subsection{Riemann-Roch without duality}
+
 Thus on a scheme $X\subset \PP^r$ we have $\chi(\sL(d)) = h^0(\sL(d))$ for large $d$, and in the case of a curve $C\subset \PP^r$, we have $\chi(\sL) = h^0(\sL) - h^1(\sL)$. 
 
 \begin{theorem} (Easy Riemann-Roch)\label{easy RR}
@@ -75,6 +76,9 @@ $$
 Since every divisor on $C$ can be reached by adding and subtracting points, this suffices.
 \end{proof}
 
+Since the Euler characteristic of a sheaf is well-behaved, we can extend the result of Theorem~\ref{easy RR} 
+to invertible sheaves on any 1-dimensional scheme $C$, by defining $\deg \sL := \chi(\sL) -\chi(\sO_C)$.
+We will use this definition to express the self-intersection of a divisor on a surface in Section~\ref{}.
 
 We can make a more useful Riemann-Roch theorem by understanding the error term $h^1(\sL)$ using
 the canonical divisor and Serre duality, to which
@@ -354,6 +358,7 @@ $$
 h^0(D) - h^0(K_C -D) = \deg D - g(C) +1.
 $$
 \end{theorem}
+See Sections~\ref{duality} and Theorem~\ref{general RR with duality} for the corresponding results on singular curves.
 
 \begin{proof}
 Combine Theorem~\ref{easy RR} with Theorem~\ref{sd}.
@@ -809,6 +814,32 @@ $$
 \begin{theorem} The pairing $(D,E) \mapsto (D\cdot E)$ is the unique bilinear map
 $\Pic(X) \times \Pic(X) \to \ZZ$ extending the case of intersections of two curves meeting transversely at smooth points of $X$. 
 \end{theorem}
+
+An important special case is that of the self-intersection $D\cdot D = D^2$. The general formula reduces immediately to the case of an effective divisor:
+
+\begin{corollary}\label{self-intersection number}
+If $D$ is an effective divisor on a surface $S$, then the self-intersection of $D$ is the degree of the normal bundle
+$\sN_{D/S} := (\sI_{D/S}\otimes \sO_D)^{-1}$
+\end{corollary}
+
+The result has a simple geometric interpretation when $\sN_{D/S}$ has a section $\sigma$: this is a normal vector field,
+and we can think of it as generating an infinitesimal movement (a first-order deformation) of $D$ to a divisor $D'$.
+The intersection of $D$ and $D'$ is thus the number of points of $D$ that did not move, the number  of zeros of $\sigma$.
+\pict{Divisor "moved" by normal vector field}
+
+\begin{proof}
+Since $\sO_D(-D) = \sO_S(-D)/\sO_S$ we see that 
+$$
+\chi(\sO_S)-\chi(\sO_S(-D)) = -\chi(\sO_D(-D)).
+$$
+Similarly $\chi(\sO_S(-2D) - \chi(\sO_S(-D)) = \chi(\sO_D(-2D)$. Using the remark following Theorem~\ref{easy RR},
+we have $\deg \sO_D(D) = \chi(\sO_D(D) - \chi(\sO_D))$ we see
+that
+$$
+\chi(\sO_D(-2D) -\chi(\sO_D(-D)) = \deg -2D - \deg -D = \deg -D
+$$
+as required.
+\end{proof}
 
 Using the intersection pairing we can turn the adjunction formula of Proposition~\ref{adjunction} into a numerical formula:
 
