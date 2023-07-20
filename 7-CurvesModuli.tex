@@ -124,18 +124,66 @@ $$
 where $j(\lambda)$ is as given in~\ref{formula for j}. We hve already described a family of curves of genus 1 over the ``$\lambda$-line $\AA^1 \setminus \{0,1\}$; the pullback to $B'$ is the desired family.
 \end{proof}
 
-Thus, $M_1$ is not a fine moduli space for smooth curves of genus 1, but it is the next best thing: we don't get a bijection between families of curves of genus 1 over a base $B$ and maps $j : B \to M_1$; but we do get a map with ``finite kernel and cokernel"---what we might call a \emph{Deligne-Mumford moduli space}.
+Thus, $M_1$ is not a fine moduli space for smooth curves of genus 1, but it is the next best thing: we don't get a bijection between families of curves of genus 1 over a base $B$ and maps $j : B \to M_1$; but we do get a map from the former to the latter with ``finite kernel and cokernel"---what we might call a \emph{Deligne-Mumford moduli space}.
 
+\subsection{Compactifying $M_1$}
+
+A natural question to ask is, if every value of $j \in \AA^1$ corresponds to an isomorphism class of curves $C_j$ of genus 1, what happens to the curves $C_j$ as $j$ goes to $\infty$? Or, equivalently, what happens to the curve $C_\lambda$ given as the double cover
+$$
+y^2 = x(x-1)(x - \lambda)
+$$
+as $\lambda$ approaches 0, 1 or $\infty$---the other branch points of the double cover? The answer is clear from the equation: when two branch points of a double cover of smooth curves come together, the limiting curve has a node. In fact, there is a unique isomorphism class of irreducible curves of arithmetic genus 1 having a node; it's represented by the curve with equation $y^2=x^2(x-1)$.
+
+The upshot of this is that if we enlarge the original class of curves parametrized by $M_1$---``smooth projective curves of genus 1"---to the slightly larger class, ``irreducible nodal projective curves of arithmetic genus 1," we still have a coarse moduli space $\overline M_1$ for this slightly larger class of objects; and this enlarged moduli space is simply the space obtained by adding one point ``at $\infty$" to the existing space $M_1 \cong \AA^1$ to form $\overline M_1 \cong \PP^1$.
+
+This is a basic example of what is called a \emph{modular compactification}. The basic situation is this: we have a class of objects parametrized by a (non-compact) moduli space $M$; and we enlarge the class of objects to be parametrized, with the result that the moduli space $\overline M$ of the larger class is compact. 
+
+Modular compactifications of a given moduli problem may or may not exist. It's sometimes a tricky problem to find a suitable class of objects to parametrize: if we don't add enough additional isomorphism classes, not every 1-parameter family of objects in our original class will have a limit in the larger class, meaning the enlarged moduli space will still not be compact; if we add too many,  1-parameter families may have more than one possible limit, meaning the enlarged space won't be separated.
+
+
+ When modular compactifications do exist, however, they are extremely valuable for the study of both the space $M$ and of the objects parametrized by $M$: compactness allows us to apply the techniques of modern algebraic geometry to the space $\overline M$, while the fact that it is still a moduli space gives us a handle on its geometry. In the following section, we will see (or at least assert) that modular compactifications of $M_g$ do exist, and describe the class of objects parametrized (``stable curves").
+
+Getting back to the moduli space $\overline M_1$, there are two caveats to bear in mind. The first is that not every family of curves of genus 1 specializing to a singular curve corresponds to a pole of the $j$-function: for example, in the family of curves $C_t$ given as
+$$
+C_t = V(y^2 -x^3 - t^2x - t^3)
+$$
+the $j$ function is constant, but of course the limiting curve $C_0$ has a cusp. And conversely, not every family of curves of genus 1 whose $j$-function has a pole has limit an irreducible curve of arithmetic genus 1 with a node; for example, the limit of the curves
+$$
+y^2 = x(x-t)(x-\frac{1}{t})
+$$
+as $t \to 0$ will be reducible, with two components meeting in two points.
 
 \section{Higher genus}
 
-This situation described in the preceding section for curves of genus 1 persists in all higher genera as well: there does not exist a fine moduli space for smooth projective curves of genus $g$ for any $g$;\footnote{It should be noted that the existence of nontrivial $\PP^1$-bundles implies that there is no fine moduli space $M_0$ either.} but there does exist a Deligne-Mumford moduli space, and in this section we'll describe one way of constructing such a space. 
+We now ask how much of the above description of the moduli space $M_1$ of curves of genus 1 can be carried out for curves of higher genus $g$. The answer is, virtually all of it; though the techniques needed to verify the statements are vastly more sophisticated. In this section, we'll state the main results about the moduli spaces $M_g$, and then describe one way in which they may be constructed.
 
-%One way of dealing with this is to enlarge the category of schemes to the category of \emph{stacks}, where a fine moduli space does exist, but this is technically demanding \fix{boo hoo}; our approach here will be to work with, and describe, the coarse moduli space $M_g$ 
+We start with the fundamental
 
+\begin{theorem}\label{moduli}
+There does not exist a fine moduli space for smooth projective curves of genus $g$ for any $g\geq 1$; but there does exist a coarse moduli space $M_g$, whose points correspond bijectively to isomorphism classes of smooth projective curves of genus $g$ and such that for any family $\cC \to B$ of such curves we have an induced map $\phi : B \to M_g$.
+\end{theorem}
 
+(Note that the existence of nontrivial $\PP^1$-bundles implies that there is no fine moduli space $M_0$ either.)
 
-The idea used above for genus 1 curves can be applied more generally: to construct a moduli space, first parametrize curves with a choice of some additional structure, such as a map to projective space, and then mod out by the choices made. For any smooth projective curve $C$ of genus $g\geq 2$, the tricanonical linear series $|3K_C|$ is very ample; it embeds $C$ as a curve of degree $6g-6$ in $\PP^{5g-6}$. Thus we have a way of realizing a given abstract curve $C$ as a curve in projective space, unique up to automorphisms of $\PP^{5g-6}$.
+There is also a modular compactification of $M_g$. To describe it, we have to introduce a class of curves as follows:
+
+\begin{definition}
+By a \emph{stable} curve of genus $g \geq 2$ we will mean a connected curve $C$ with at most nodes as singularities, of arithmetic genus $g$, and such that every smooth rational component of $C$ meets the other components at least three times.
+\end{definition}
+
+(The word ``stable," it should be said, is one of the most overworked terms in algebraic geometry; when we want to distinguish the usage above, we sometimes say, ``Deligne-Mumford stable," or simply ``DM stable.")
+
+We have then our second main theorem:
+
+\begin{theorem}\label{stable moduli}
+There exists a coarse moduli space $\overline M_g$, whose points correspond bijectively to isomorphism classes of smooth projective curves of genus $g$ and such that for any family $\cC \to B$ of stable curves we have an induced map $\phi : B \to \overline M_g$. Moreover, $\overline M_g$ is a projective variety.
+\end{theorem}
+
+\section{How we might construct the moduli space $\overline M_g$}
+
+As we indicated, we will not give anything like a proof of the main theorems~\ref{moduli} and~\ref{stable moduli}. But we will describe one approach, via \emph{geometric invariant theory}.
+
+The basic idea here is basically analogous to the one used above for genus 1 curves: to construct a moduli space, first parametrize curves with a choice of some additional structure, such as a map to projective space, and then mod out by the choices made. For any smooth projective curve $C$ of genus $g\geq 2$, the tricanonical linear series $|3K_C|$ is very ample; it embeds $C$ as a curve of degree $6g-6$ in $\PP^{5g-6}$. Thus we have a way of realizing a given abstract curve $C$ as a curve in projective space, unique up to automorphisms of $\PP^{5g-6}$.
 
 We claim next that the set of smooth, tricanonically embedded curves is a locally closed subset $X$ of the Hilbert scheme $\cH_{(6g-6)m+1-g}(\PP^{5g-6})$ parametrizing curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$. To see this, note first that the singular locus of the fibers in any family of curves is closed, so the set of points in the base over which the curves are smooth is open.  Let 
 $$
@@ -158,54 +206,57 @@ Next, on the universal family $\cC \subset \cH^\circ \times \PP^{5g-6}$, we have
 %%that point represents a tricanonical curve, and thus by semicontinuity of cohomology, the locus of smooth tricanonical curves is closed
 %%in the open set of smooth curves. 
 
-The group $PGL_{5g-5}$ of automorphisms of $\PP^{5g-6}$ acts on variety $X$ and its orbits
-are the isomorphism classes of curves. Unlike the case of an action of a finite group on a variety,
-the orbit spaces of infinite groups are often not algebraic varieties, but this case is well-behaved. This is the content of the main (and last) theorem of \cite{GIT}:
+Now, the group $PGL_{5g-5}$ of automorphisms of $\PP^{5g-6}$ acts on variety $X$ and its orbits
+are the isomorphism classes of smooth curves of genus $g$; thus, we might hope to realize the moduli space $M_g$ as the quotient of $X$ by $PGL_{5g-5}$. But here things go awry in a hurry: unlike the case of an action of a finite group on a variety,
+the orbit spaces of infinite groups are often not algebraic varieties. (Think of the action of $\CC^*$ on $\CC$ by multiplication.) What is needed is a tool to extract the ``	best possible approximation" to a quotient, and that is exactly what geometric invariant theory does for us. We'll begin, accordingly, with a brief introduction to the technique.
 
-\begin{theorem}(Mumford)
-The space of orbits of $PGL_{5g-5}$ acting on the subset of the Hilbert scheme representing
-tricanonical curves has the structure of an algebraic variety $M_g$ which is a \emph{coarse moduli
-space} in the sense that
-\begin{enumerate}
- \item Given any flat family $Y\to B$ of smooth curves of genus $g$ there is a morphism of schemes
- $B\to M_g$ sending each closed point $p\in B$ to the point of $M_g$ representing the fiber $Y_b$;
- \item These maps form a natural transformation from the functor $G(-)$ of families of stable curves to the functor 
- $\Mor_{\rm schemes}(-, \overline M_g)$ through which any natural transformation $G \to \Mor_{\rm schemes}(-, M')$
- factors;
-Given any variety $M$ with this property, there is a unique morphism $M\to M_g$ that
- sending each closed point $p\in M$ to the point of $M_g$ representing the same curve as $p$.
- 
+%
+%, but this case is well-behaved. This is the content of the main (and last) theorem of \cite{GIT}:
+%
+%\begin{theorem}(Mumford)
+%The space of orbits of $PGL_{5g-5}$ acting on the subset of the Hilbert scheme representing
+%tricanonical curves has the structure of an algebraic variety $M_g$ which is a \emph{coarse moduli
+%space} in the sense that
+%\begin{enumerate}
+% \item Given any flat family $Y\to B$ of smooth curves of genus $g$ there is a morphism of schemes
+% $B\to M_g$ sending each closed point $p\in B$ to the point of $M_g$ representing the fiber $Y_b$;
+% \item These maps form a natural transformation from the functor $G(-)$ of families of stable curves to the functor 
+% $\Mor_{\rm schemes}(-, \overline M_g)$ through which any natural transformation $G \to \Mor_{\rm schemes}(-, M')$
+% factors;
+%Given any variety $M$ with this property, there is a unique morphism $M\to M_g$ that
+% sending each closed point $p\in M$ to the point of $M_g$ representing the same curve as $p$.
+% 
+%
+%\end{enumerate}
+%\end{theorem}
 
-\end{enumerate}
-\end{theorem}
-
-The power of the theory of the moduli space of curves was greatly increased when compactifications of the space (there are many interesting ones) were understood. One of these, the compactification
-of $M_1 = \AA^1$ to $\overline M_1 \PP^1$ by adding a nodal curve, has already been mentioned. This has the desirable properties that the subset added to $M_1$ is a divisor; and the compactification is \emph{modular} in the sense
-that the point added corresponds to a curve almost of the same type as the curves in $M_g$.
-
-There are two reasons why a compactification is  important:
-
-First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply directly only to projective varieties. For example, the Satake compactification is a projective variety containing $M_g$ in such a way that the complement---usually referred to as the "boundary"---has codimension 2. Taking successive hyperplane sections that pass through a given point but don't meet the boundary, we see that for $g\geq 2$ there is a complete one-dimensional family of \emph{smooth} curves containing any smooth curve of genus $\geq 2$. 
-
-Often, though, we can learn the most from a compactification where the ``boundary''---the part that is added---is ad divisor, and this is the case for the Deligne-Mumford compactification
-$\overline M_g$ introduced by Deligne and Mumford in their groundbreaking 1969 paper~\cite{Deligne-Mumford}, described below. A central example of how this is used is given in Section~\ref{mgunirational}, where we take up the question, ``can we write down a general curve of genus $g$?" 
-
-To describe this compactification, we first explain some of the language and results of geometric
-invariant theory.
-
-%The variety $\overline M_g$ has an important extra property: it is a \emph{modular}  compactification in the sense that the points of the boundary correspond to slightly more general
-%objects of the same type as the points of $M_g$. 
-%Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and its automorphism group is finite. These are precisely the stable points in the Hilbert scheme of tri-canonical embeddings in the sense of geometric invariant theory. \fix{is this true? Check Harris-Morrison}
-
-%But while orbit spaces of finite groups always exist  and behave well, quotients by positive-dimensional algebraic groups are a very different story; to deal with these, we have to introduce the methods of \emph{geometric invariant theory}, which we'll do now.
-
-
-%The morphism $\sC \subset U \times \PP^{5g-6} \to U$ from the universal family to the Hilbert scheme is a smooth morphism over the open set of smooth curves, and therefore the relative cotangent sheaf is a bundle whose top exterior power is the family of canonical bundles. 
-%\fix{I think the morphism has relative dim 1, so the bundle IS the canonical bundle.}
-%The third tensor power  of this bundle times the inverse of the restriction of $\sO_\PP{5g-6}(1)$ has a nonzero global section at a point if and only if
-%that point represents a tricanonical curve, and thus by semicontinuity of cohomology, the locus of smooth tricanonical curves is closed
-%in the open set of smooth curves. We would now like to take the quotient by the group of automorphisms
-%of $\PP^{5g-6}.$ This requires geometric invariant theory.
+%The power of the theory of the moduli space of curves was greatly increased when compactifications of the space (there are many interesting ones) were understood. One of these, the compactification
+%of $M_1 = \AA^1$ to $\overline M_1 \PP^1$ by adding a nodal curve, has already been mentioned. This has the desirable properties that the subset added to $M_1$ is a divisor; and the compactification is \emph{modular} in the sense
+%that the point added corresponds to a curve almost of the same type as the curves in $M_g$.
+%
+%There are two reasons why a compactification is  important:
+%
+%First, the great majority of the techniques that algebraic geometers have developed for dealing with varieties apply directly only to projective varieties. For example, the Satake compactification is a projective variety containing $M_g$ in such a way that the complement---usually referred to as the "boundary"---has codimension 2. Taking successive hyperplane sections that pass through a given point but don't meet the boundary, we see that for $g\geq 2$ there is a complete one-dimensional family of \emph{smooth} curves containing any smooth curve of genus $\geq 2$. 
+%
+%Often, though, we can learn the most from a compactification where the ``boundary''---the part that is added---is ad divisor, and this is the case for the Deligne-Mumford compactification
+%$\overline M_g$ introduced by Deligne and Mumford in their groundbreaking 1969 paper~\cite{Deligne-Mumford}, described below. A central example of how this is used is given in Section~\ref{mgunirational}, where we take up the question, ``can we write down a general curve of genus $g$?" 
+%
+%To describe this compactification, we first explain some of the language and results of geometric
+%invariant theory.
+%
+%%The variety $\overline M_g$ has an important extra property: it is a \emph{modular}  compactification in the sense that the points of the boundary correspond to slightly more general
+%%objects of the same type as the points of $M_g$. 
+%%Briefly, a projective curve $C$ of arithmetic genus $g$ is said to be \emph{stable} if its singularities, if any, are all nodes, and its automorphism group is finite. These are precisely the stable points in the Hilbert scheme of tri-canonical embeddings in the sense of geometric invariant theory. \fix{is this true? Check Harris-Morrison}
+%
+%%But while orbit spaces of finite groups always exist  and behave well, quotients by positive-dimensional algebraic groups are a very different story; to deal with these, we have to introduce the methods of \emph{geometric invariant theory}, which we'll do now.
+%
+%
+%%The morphism $\sC \subset U \times \PP^{5g-6} \to U$ from the universal family to the Hilbert scheme is a smooth morphism over the open set of smooth curves, and therefore the relative cotangent sheaf is a bundle whose top exterior power is the family of canonical bundles. 
+%%\fix{I think the morphism has relative dim 1, so the bundle IS the canonical bundle.}
+%%The third tensor power  of this bundle times the inverse of the restriction of $\sO_\PP{5g-6}(1)$ has a nonzero global section at a point if and only if
+%%that point represents a tricanonical curve, and thus by semicontinuity of cohomology, the locus of smooth tricanonical curves is closed
+%%in the open set of smooth curves. We would now like to take the quotient by the group of automorphisms
+%%of $\PP^{5g-6}.$ This requires geometric invariant theory.
 
 
 \subsection{Stable, semistable, unstable}
