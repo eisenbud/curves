@@ -452,6 +452,147 @@ Hurwitz' argument illustrates a fundamental point: in practice, moduli spaces of
 
 There are many more problems about Hurwitz spaces that we won't get into here: notably, finding a good compactification; describing the divisor class group (and more generally the cycle class theory) of the Hurwitz spaces, and calculating the degrees of the maps $\cH^\circ_{d,g} \to \PP^b$, called Hurwitz numbers; see~\cite{Hurwitz2} and \cite{ELSV} for more.
 
+\section{The Severi variety}\label{severi variety}
+
+Despite its antiquity, many questions about the family of plane curves, such as which ones degenerate into which others, and in what way, remain open. All plane curves of degree $d$ have the same Hilbert function, and thus the same arithmetic genus
+$\binom{d-1}{2}$, but since curves of degree $d$ can have different sorts and numbers of singularities, they can have geometric genera from 0 to $\binom{d-1}{2}$. In this section we will explore the subset of of (reduced, irreducible) curves of degree $d$ with a fixed geometric genus. We will focus on the open set consisting of curves with only nodes as singularities, which we call \emph{nodal curves}, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
+
+\def\Vdg{{V_{d,g}}}
+%\def\Vdgtilde{{\widetilde{V}_{d,g}}} 
+\def\Vdgbar{{\overline{V}_{d,g}}} 
+
+Let $\PP^N := \PP^{{d_1+2\choose 2} - 1}$ be the projective space parametrizing plane curves of degree $d$.
+Within $\PP^N$ the set of reduced irreducible curves is open---it is the complement of the union of the images of the maps 
+$$
+\PP^{{d_1+2\choose 2} - 1}\times\PP^{{d_2+2\choose 2}-1} \to \PP^N
+$$ 
+with $d_1+d_2 = d$ given by multiplication of forms. 
+
+\begin{propdef}
+The \emph{Severi variety} $V_{d,g} \subset \Vdgbar$ is the locus of plane curves of degree $d$ with $\delta = \binom{d-1}{2} - g$ nodes and no other singularities. This is a locally closed subset of $\PP^N$. It is sometimes
+called the \emph{small Severi variety}, since we are excluding curves with more complicated singularities.
+\end{propdef}
+
+%\begin{proof}
+%\fix{ How about proving that $V_{d,g}$ is locally closed, and at least mentioning that $V_{d,g}$ is open in $\overline V_{d,g}$}
+%\end{proof}
+
+We will see that in a neighborhood of  $ {V}_{d,g}$,  the closure $\overline V_{d,g}$  is well behaved; but away from this,
+even the singularities of $\overline V_{d,g}$  are not well understood. It is is an interesting open problem to find a better partial compactification of $ V_{d,g}$. 
+
+
+\begin{fact}
+As we shall see, the variety $V_{d,g}$ is smooth. In 1921 F. Severi gave an incorrect proof that $\Vdg$ was connected, and thus irreducible. This was finally proven in~\cite{MR837522}.
+\end{fact}
+
+
+\subsection{Local geometry of the Severi variety}\label{local severi geometry}
+
+We first consider the \emph{universal singular point}
+$$
+\Phi := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C_{sing} \right\}
+$$
+and its image $\Delta\subset \PP^N$, the \emph{discriminant} variety. 
+
+\begin{proposition}
+ $\Phi$ is smooth and irreducible of dimension $N-1$, and the discriminant $\Delta$ is a hypersurface in $\PP^N$.
+\end{proposition}
+\begin{proof}
+Projection on the second factor expresses $\Phi$ as a $\PP^{N-3}$-bundle over $\PP^2$. Explicitly, if $[X,Y,Z]$ are homogeneous coordinates on $\PP^2$, and $\{a_{i,j,k} \mid i+j+k = d \}$ are homogeneous coordinates on $\PP^N$, then the universal curve 
+$$
+\CC := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C \right\}
+$$
+is given as the zero locus of the single bihomogenous polynomial of bidegree $(1, d)$
+$$
+F([a_{i,j,k}], [X,Y,Z] ) = \sum a_{i,j,k} X^iY^jZ^k;
+$$
+and the universal singular point is the common zero locus of the three partial derivatives $\partial F/\partial X$, $\partial F/\partial Y$ and  $\partial F/\partial Z$. 
+
+The set of forms $F$ that define curves singular at a given point is defined by 3 independent linear conditions, and since the set of 
+points is 2-dimensional, the set $\Delta$ of singular forms has dimension $N-1$.
+\end{proof}
+ 
+We next compute the differential of the map $\pi : \Phi \to \PP^N$:
+
+\begin{lemma}\label{tangent space to discriminant}
+Let $C \subset \PP^2$ be a plane curve of degree $d$, regarded as a point in $\PP^N$,  having a node at a point $p$. The differential 
+$$
+d\pi : T_{(C,p)}\Phi \to T_C \PP^N
+$$
+is injective, with image the hyperplane $H_p \subset \PP^N$ of plane curves containing the point $p$.
+\end{lemma}
+
+Thus, if $p$ is the only singularity of $C$, then $\Delta$ is smooth at $C$; and more generally the image of a small analytic neighborhood of $(C,p) \in \Phi$ is smooth, and we can identify its tangent space at $p$ with the hyperplane $H_p$. 
+
+\begin{proof}
+We will prove this using affine coordinates on $\PP^2$ and $\PP^N$. Changing coordinates if necessary, we may assume that the point $[1,0,0] \notin C$, and that the point $p$ is $[0,0,1]$. let $x = X/Z$ and $y = Y/Z$ be coordinates on the affine plane $Z \neq 0$ and write the polynomial $F(x,y,1)$ above as
+$$
+f(x,y) = \sum_{i+j \leq d} a_{i,j} x^iy^j
+$$
+with $a_{d,0}$ normalized to 1. 
+
+Let $g,h$ be the two partial derivatives of $f$, that is:
+$$
+g(x,y) := \binom{\partial f}{\partial x} = \sum_{i+j \leq d} i a_{i,j} x^{i-1}y^j
+$$
+and
+$$
+h(x,y) := \binom{\partial f}{\partial y} = \sum_{i+j \leq d} j a_{i,j} ix^{i}y^{j-1}.
+$$
+The functions $f, g$ and $h$ are local defining equations for $\Phi$; we consider their partial derivatives with respect to $x, y$ and $a_{0,0}$, evaluated at the point $(C,p)$, as in in figure~\ref{tang to Delta}.
+
+\begin{table}[h!]\label{tang to Delta}
+  \begin{center}
+     \begin{tabular}{c|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+            & $f$ & $g$ & $h$ \\
+      \hline
+$\frac{\partial}{\partial x}$ & 0 & $a_{2,0}$ & $a_{1,1}$ \\
+$\frac{\partial}{\partial y}$ & 0 & $a_{1,1}$ & $a_{0,2}$ \\
+$\frac{\partial}{\partial a_{0,0}}$ & 1 & 0 & 0 
+    \end{tabular}
+  \end{center}
+\end{table}
+
+The point $p$ is a node of $C$ (and not a more complicated singularity) if and only if the upper right $2 \times 2$ submatrix is nonsingular, which shows that the differential $d\pi$ is injective, and its image is the hyperplane $a_{0,0} = 0$ in $\PP^N$, which is exactly the hyperplane of curves containing $p$.
+\end{proof}
+
+\begin{lemma}\label{adjoint independent}
+The nodes $q_i$ of an irreducible nodal plane curve $C$ of degree $d$ impose independent conditions on curves of degree $d-3$, and hence on curves of any degree $m \geq d-3$.
+\end{lemma}
+\begin{proof}
+We will prove in Chapter~\ref{PlaneCurveChapter} that the $g$ sections of the canonical sheaf on the normalization $\widetilde C$ of
+$C$ are the preimages of the sections of $\sO_C(d-3)$ that vanish at the nodes. On the other hand, 
+$h^0(\sO_C(d-3) = \binom{d-1}{2}$, and the difference is exactly the number of nodes.
+\end{proof}
+
+\begin{corollary}\label{local geometry of Severi}
+If $C$ is a nodal curve of degree $d$ with geometric genus $g = \binom{d-1}{2}-\delta$, then in a neighborhood of $C\in \PP^N$
+the discriminant hypersurface of all singular curves consists of $\delta$ smooth sheets, meeting transversely, and hence
+$V_{d,g}$ is smooth. 
+
+%\begin{figure}
+% \caption{In a neighborhood of the point corresponding to a plane curve with 2 nodes, $V_{d, \binom{d-1}{2}-2}$ is the intersection of two smooth hypersurfaces intersecting transversely}
+%\centerline {\includegraphics[height=2in]{"Fig6.3.pdf"}}
+%\end{figure}
+
+Moreover, in a neighborhood  $C \in \PP^N$ 
+the variety $\overline V_{d,g'}$ with $g' =  \binom{d-1}{2}-\delta' > g$ is the union of $\binom{\delta}{\delta'}$ smooth branches, each of dimension $N - \delta'$, corresponding bijectively with subsets of $\{p_1,\dots,p_{\delta'}\}$ of cardinality $\delta'$.
+\end{corollary}
+\begin{proof}
+Lemma~\ref{tangent space to discriminant} shows that in an analytic neighborhood of $C\in \PP^N$ the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets, each corresponding to one node, and Lemma~\ref{adjoint independent} implies that the tangent spaces to these sheets are linearly independent. 
+\end{proof}
+
+
+\begin{corollary}\label{dim Severi}
+The  Severi variety $V_{d,g}$ has pure dimension $N - \delta$, where $\delta = \binom{d-1}{2} - g$.
+\end{corollary}
+
+In Section~\ref{estimating dim hilb}, we give a heuristic calculation of the ``expected dimension'' $h(d,g,r)$ of the variety parametrizing curves of degree $d$ and genus $g$ in $\PP^r$
+$$
+h(g,r,d) := 4g-3 + (r+1)(d-g+1) - 1.
+$$
+The actual dimension of the restricted Hilbert scheme may be quite different. But  Corollary~\ref{dim Severi} shows that in case $r=2$ (as in the case of $r=1$), the actual dimension is always the expected.
+
 
 
 \section{Exercises}
