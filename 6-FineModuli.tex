@@ -10,7 +10,7 @@ Algebraic geometry is almost unique among geometric theories in that the objects
 For an example---perhaps the original one---projective plane curves of degree $d$
 are in natural one-to-one correspondence with the forms of degree $d$ modulo the group of nonzero scalars---that is, with the points of the dual of the projective space
 $ \PP(H^0(\sO_{\PP^2}(d)))=\PP^{\binom{d+2}{2}-1} $.
-Thus, for example, plane cubic are parametrized by $\PP^{9}$, and a  family $\cC \to B$ of cubics corresponds to a map $\phi: B \to \PP^9$.
+Thus, for example, plane cubics are parametrized by $\PP^{9}$, and a  family $\cC \to B$ of cubics corresponds to a map $\phi: B \to \PP^9$.
 In this chapter, we'll give a general framework for the notion of moduli space, introducing the main examples that we will treat in this book.
 
 %\begin{figure}
@@ -145,24 +145,42 @@ Since the Hilbert polynomials of the fibers of a flat family are all equal (\cit
 
 Following the general recipe for tangent spaces to fine moduli spaces, we need to understand flat families
 of projective schemes over $E := \Spec \CC[\eps]/(\eps^2)$. Recall (\cite[p. 182]{Hartshorne1977} that if $X\subset \PP^r$ is a smooth subscheme then
-the dual of the exact sequence
+ the normal bundle $\sN_{X/\PP^r}$ of $X$ in $\PP^r$ is defined in in terms of the tangent bundles
+ of $X$ and $\PP^r$ by the exact sequence: 
 $$
-0\to \sI_{X/\PP^r}/\sI_{X/\PP^r}^2 \to \Omega_{\PP^r}|_X \to \Omega_X \to 0
+0\rTo \sT_X \rTo^{\phi} \sT_{\PP^r}\mid_X \rTo \sN_{X/\PP^r} \rTo 0.
 $$
-identifies $\sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X)$ with the \emph{normal bundle} of $X$ in $\PP^r$.
-By analogy, for any subscheme $X\subset \PP^r$ we define the \emph{normal sheaf} to be
+Thus a global section of 
+$\sN_{X/\PP^r}$
+can be thought of as an infinitesimal motion of $X$.
+
+\pict{normal vector field and perturbed curve (this may have been drawn for the "self-intersection" discussion)}
+
+To define the normal sheaf for locally complete intersection subschemes $X$ we first define the \emph{conormal sheaf}
+to be the kernel of the dual  of $\phi$, which is the natural map $\Omega_{\PP^r}\mid_X \to \Omega_X$,
+and since $X$ is locally a complete intersection, this corresponds to the exact sequence:
+$$
+0\to \sI_{X/\PP^r}/\sI_{X/\PP^r}^2 \to \Omega_{\PP^r}|_X \to \Omega_X \to 0.
+$$
+We thus define $\sN_{X/\PP^r} := \sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X)$.
+
+By analogy, for any subscheme $X\subset \PP^r$ we define the \emph{normal sheaf}
+of $X$ to be
 $$
 \sN_{X/\PP^r} := \sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X).
 $$
+In the smooth case, we see from the geometric description that  The following theorem shows that this
+has the same connection with infinitesimal motions for arbitrary subschemes $X$.
+
 
 \begin{theorem}\label{tangent space of Hilb}
-Let $X\subset \PP^r$ be a projective variety with Hilbert polynomial $p(m)$. The flat families 
+Let $X\subset \PP^r$ be a subscheme with Hilbert polynomial $p(m)$. The flat families 
 $\sX \subset \PP^r\times E$ specializing to $X$ at the closed point defined by $(\eps)$
 are in natural one-to-one correspondence with the vector space $Hom_{\PP^r}(\sI_{X/\PP^r}, \sO_X) = H^0(\sN_{X/\PP^r})$, which is thus the tangent space to the Hilbert scheme $Hilb_{p}(\PP^r)$ at $[X]$.
 \end{theorem}
 
 \begin{proof}
-We will actually treat the analogous result for an affine scheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2)= S \oplus \eps S$. 
+We will actually treat the analogous result for an affine subscheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2)= S \oplus \eps S$. 
 
 A $U$-module $M$ is flat  over $U$ if and only if $\Tor_1^U(\CC,M) = 0$. 
 Since the free resolution of $\CC$ as a $U$-module has the form
