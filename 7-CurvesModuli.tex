@@ -5,9 +5,33 @@
 \label{CurvesModuli chapter}\label{CurvesModuliChapter}
 
 
-In the preceding chapter, we described the \emph{Hilbert scheme}, a fine moduli space for curves in projective space. In
-this chapter we will discuss the second moduli space central to the theory of algebraic curves: $M_g$, whose points are in one-to-one correspondence with the isomorphism classes of smooth projective
-curves of genus $g$. There does not exist a fine moduli space, and to construct the coarse moduli space  we have to take an indirect route via geometric invariant theory. We will start with the case of curves of genus 1, where everything can be made explicit.
+In the preceding chapter, we described the \emph{Hilbert scheme}, a fine moduli space for curves in projective space, and mentioned that there is no fine moduli space for families of curves. In
+this chapter we will discuss the second moduli space central to the theory of algebraic curves: $M_g$, which has a weaker property:
+\begin{definition}\label{coarse moduli definition}
+A course moduli space for a contravariant functor $F: Schemes \to Sets$ 
+is a scheme $M$ whose closed points
+are in one-to-one correspondence with $F(\Spec \CC)$ 
+\begin{enumerate}
+\item There is a natural transformation $F \to \Mor_{Schemes}(-, M)$ that is an isomorphism on $\Spec \CC$;
+\item For any scheme $M'$ and natural transformation $F \to \Mor_{Schemes}(-, M')$
+ there is a morphism $M' \to M$ such that the diagram
+$$
+\begin{diagram}
+F& & \rTo & & \Mor_{Schemes}(-, M')\\
+& \rdTo & & \ldTo & \\
+& & \Mor_{Schemes}(-, M) & &
+\end{diagram} 
+$$
+commutes.
+\end{enumerate}
+For example, if $F$ is the functor sending $B$ to the set of flat families of smooth curves of genus $g$ over $B$,
+then a scheme $M_g$ is a coarse moduli space for families of smooth curves if the closed points of $M_g$ are in one-to-one correspondence with isomorphism types of smooth curves,
+and maps to $B \to M_g$ are the best possible approximation (among families of maps to a scheme) to families
+of smooth curves over $B$.
+\end{definition}
+
+To describe the situation,  we will start with the case of curves of genus 1, where everything can be made explicit.
+
 
 \section{Curves of genus 1}
 
@@ -37,8 +61,8 @@ and one can show that the orbit of $\lambda$ under this action is
 $$
  \left\{ \lambda, 1-\lambda, \frac{1}{\lambda}, \frac{1}{1-\lambda}, \frac{\lambda-1}{\lambda}, \frac{\lambda}{\lambda - 1} \right\}.
 $$
-(There are 6 points in the orbit rather than 24 because the Klein 4-group
-$K = \ZZ/2\times \ZZ/2 \subset S_4$ of fixed-point free involutions acts trivially, so what we really have is an action of $S_4/K \cong S_3$.) 
+There are 6 points in the orbit rather than 24 because the Klein 4-group
+$K = \ZZ/2\times \ZZ/2 \subset S_4$ of fixed-point free involutions acts trivially, so what we really have is an action of $S_4/K \cong S_3$.
 
 Since $S_3$ is finite and $\PP^1 \setminus \{0,1,\infty\}$ is a normal affine curve, the quotient space by the action is again a normal affine curve whose points are in one-to-one
 correspondence with the orbits, and thus with the set of curves of genus 1. 
@@ -46,7 +70,7 @@ correspondence with the orbits, and thus with the set of curves of genus 1.
 \begin{equation}\label{formula for j}
 j(\lambda) := 256\frac{(\lambda^2-\lambda + 1)^3}{\lambda^2(\lambda-1)^2},
 \end{equation}
-known as the \emph{$j$-function}. Note that as $\lambda$ varies in $\PP^1 \setminus \{0,1,\infty\}$, $j(\lambda)$ can assume any value in $\AA^1$.
+known as the \emph{$j$-function}. As $\lambda$ varies in $\PP^1 \setminus \{0,1,\infty\}$, $j(\lambda)$ can assume any value in $\AA^1$.
  
  
 %One can check that the quotient map $\PP^1 \setminus \{0,1,\infty\} \to \PP^1\setminus \infty = \AA^1$
@@ -66,19 +90,19 @@ corresponding to $j(\lambda)\in \AA^1$.
 \subsection{$M_1$ is a coarse moduli space}
 
  As we will see,
-$M_1$ is not a fine moduli space, but it comes close in two senses. First:
+$M_1$ is not a fine moduli space, but it comes close in two senses. 
 
 \begin{proposition}\label{M1 is coarse}
-To any family $\pi : \cC \to B$  of smooth projective curves of genus 1 over a reduced base $B$ we can associate a morphism of schemes $\phi : B \to M_1$ whose value at any point $b \in B$ is the $j$-invariant of the corresponding fiber $C_b$.
+To any family $\pi : \cC \to B$  of smooth projective curves of genus 1 over a reduced base $B$ we can associate a natural morphism of schemes $\phi : B \to M_1$ whose value at any point $b \in B$ is the $j$-invariant of the corresponding fiber $C_b$.
 \end{proposition} 
 
-Note that this is slightly weaker than saying that $M_1$ is a coarse moduli space, because we are restricting ourselves to families with reduced bases; in fact, the statement is true in general, but requires more machinery to prove.
+This is slightly weaker than saying that $M_1$ is a coarse moduli space, because we are restricting ourselves to families with reduced bases; in fact, the statement is true in general, but requires more machinery to prove.
 
 \begin{proof}
-To start, we will work locally in $B$: for a given $b_0 \in B$, we will choose a suitably small neighborhood $U$ of $b_0 \in B$ and restrict ourselves to the preimage $\CC_U = \pi^{-1}(U)$. The first thing to do is to express the curves $C_b$ in our family as 2-sheeted covers of $\PP^1$, which is to say we want to choose an invertible sheaf on $\CC_U$ having degree 2 on each fiber $C_b$. This is not hard: since we're working locally in $B$,
+To start, we will work locally in $B$: for a given $b_0 \in B$, we will choose a suitably small neighborhood $U$ of $b_0 \in B$ and restrict ourselves to the preimage $\CC_U = \pi^{-1}(U)$. The first thing to do is to express the curves $C_b$ in our family as 2-sheeted covers of $\PP^1$, which is to say we want to choose an invertible sheaf on $\CC_U$ having degree 2 on each fiber $C_b$. Since we're working locally in $B$,
 we can find a section $\rho : U \to \cC_U$ of $\pi : \cC \to B$. If we let $D = \rho(U) \subset \cC_U$ be the image, then we can take our invertible sheaf to be $\cL := \cO_{\cC_U}(2D)$.
 
-Next, by the theorem on cohomology and base change, the direct image $\cE := \pi_*(\cO_{\cC_U}(2D))$ will be locally free of rank 2, and we get a morphism $\cC_U \to \PP(\cE)$ expressing each curve $C_b$ as a two-sheeted cover of the corresponding fiber $\PP(\cE_b)$. Again, since we are working locally in $B$, we can trivialize the bundle $\cE$, so that we get a diagram
+Next, by the theorem on cohomology and base change, the direct image $\cE := \pi_*(\cO_{\cC_U}(2D))$ is locally free of rank 2, and we get a morphism $\cC_U \to \PP(\cE)$ expressing each curve $C_b$ as a two-sheeted cover of the corresponding fiber $\PP(\cE_b)$. Again, since we are working locally in $B$, we can trivialize the bundle $\cE$, so that we get a diagram
 $$
 \begin{diagram}
 \cC_U & & \rTo & & U \times \PP^1 \\
@@ -86,22 +110,21 @@ $$
 & & U & &
 \end{diagram} 
 $$
-Once more restricting to a smaller neighborhood $U$ is necessary, this means we can write the family $\cC_U \to U$ as the locus
+Once more restricting to a smaller neighborhood $U$ if necessary, we can write the family $\cC_U \to U$ as the locus
 $$
 y^2 = \prod_1^4 (x - \lambda_i),
 $$
-where the $\lambda_i$ are regular functions on $U$. Taking the $j$-function of the $\lambda_i$  yields a map $U \to M_1$; by the uniqueness of the $j$-function, these maps agree on overlaps to give  the desired map $B \to M_1$.
+where the $\lambda_i$ are regular functions on $U$. The $j$-function of the $\lambda_i$  yields a map $U \to M_1$; since the value of the $j$-function at a point is determined by the isomorphism type of the fiber over this point, these maps agree on overlaps to give  the desired map $B \to M_1$.
 \end{proof}
 
-Is $M_1$ in fact a fine moduli space for smooth curves of genus 1?
-It is not, as can be seen directly from the explicit formula~\ref{formula for j} for the $j$-function. For example, from ~\ref{formula for j}, we see that if $j : B \to M_1$ is the map associated to a family $\cC \to B$ of curves of genus 1, then every zero of the $j$-function must have multiplicity divisible by 3. (We can make a similar observation about the value $j = 1728$, corresponding to the value $\lambda = -1, 2$ or $1/2$; from the formula for $\j(\lambda)$, we see that every zero of $j - 1728$ must have even multiplicity.)
-Thus we do not have a bijection between such families and maps of $B$ to $M_1$; and in particular there is no universal family over $M_1$. 
+
+We can see that $M_1$ is not a fine moduli space directly from the explicit formula~\ref{formula for j} for the $j$-function. For example, from ~\ref{formula for j}, we see that if $j : B \to M_1 = \AA^1$ is a map that is actually associated to a family $\cC \to B$ of curves of genus 1, then every zero of the $j$-function has multiplicity divisible by 3.  Similarly, the function $j(\lambda)-1728$ vanishes doubly at $\lambda = -1, 2, 1/2$, so every zero of $j - 1728$ must have even multiplicity. Thus some maps $B\to M_1$ do not correspond to families of curves; in particular there is no universal family over $M_1$. 
 
 \subsection{The good news}
 
-As we said, $M_1$ is not a fine moduli space for smooth curves of genus 1. It comes close, however, in the following sense
+However, $M_1$ comes close to being a fine moduli space in the following sense:
 
-\begin{proposition} Let $B$ be a reduced scheme.
+\begin{proposition}\label{families on pullbacks} Let $B$ be a reduced scheme.
 \begin{enumerate}
 \item If $j : B \to \AA^1$ is any regular function on $B$, then there exists a finite cover $\alpha : B' \to B$ such that $j \circ \alpha$ is the $j$-function of a family of curves of genus 1 on $B'$; and
 \item If $\pi : \cC \to B$ and $\eta : \cD \to B$ are two families of curves of genus 1 with the same associated $j$-function, then there exists a finite cover $\alpha : B' \to B$ and an isomorphism $\cC \times_B B' \cong \cD \times_B B'$ such that the diagram
@@ -116,8 +139,8 @@ commutes.
 \end{enumerate}
 \end{proposition}
 
-\begin{proof}
-We will just prove the first of these assertions. This is straightforward: we just take
+\begin{proof} \fix{I suggest adding a proof of the secon statement if we can}
+We will just prove the first of these assertions. Let
 $$
 B' := \{(b, \lambda) \in B \times (\AA^1 \setminus \{0,1\}) \mid j(b) = j(\lambda)\}
 $$
@@ -134,36 +157,38 @@ y^2 = x(x-1)(x - \lambda)
 $$
 as $\lambda$ approaches 0, 1 or $\infty$---the other branch points of the double cover? The answer is clear from the equation: when two branch points of a double cover of smooth curves come together, the limiting curve has a node. In fact, there is a unique isomorphism class of irreducible curves of arithmetic genus 1 having a node; it's represented by the curve with equation $y^2=x^2(x-1)$.
 
-The upshot of this is that if we enlarge the original class of curves parametrized by $M_1$---``smooth projective curves of genus 1"---to the slightly larger class, ``irreducible nodal projective curves of arithmetic genus 1," we still have a coarse moduli space $\overline M_1$ for this slightly larger class of objects; and this enlarged moduli space is simply the space obtained by adding one point ``at $\infty$" to the existing space $M_1 \cong \AA^1$ to form $\overline M_1 \cong \PP^1$.
+The upshot of this is that if we enlarge the original class of curves parametrized by $M_1$---``smooth projective curves of genus 1"---to the slightly larger class, ``irreducible nodal projective curves of arithmetic genus 1," we still have a coarse moduli space $\overline M_1$ for this slightly larger class of objects. This enlarged moduli space is obtained by adding one point ``at $\infty$" to the existing space $M_1 \cong \AA^1$ to form $\overline M_1 \cong \PP^1$.
 
-This is a basic example of what is called a \emph{modular compactification}. The basic situation is this: we have a class of objects parametrized by a (non-compact) moduli space $M$; and we enlarge the class of objects to be parametrized, with the result that the moduli space $\overline M$ of the larger class is compact. 
+This is an example of what is called a \emph{modular compactification}. In general, if we have a class of objects parametrized by a (non-compact) moduli space $M$ we may be able enlarge the class of objects to be parametrized, with the result that the moduli space $\overline M$ of the larger class is compact. 
 
-Modular compactifications of a given moduli problem may or may not exist. It's sometimes a tricky problem to find a suitable class of objects to parametrize: if we don't add enough additional isomorphism classes, not every 1-parameter family of objects in our original class will have a limit in the larger class, meaning the enlarged moduli space will still not be compact; if we add too many,  1-parameter families may have more than one possible limit, meaning the enlarged space won't be separated.
-
-
- When modular compactifications do exist, however, they are extremely valuable for the study of both the space $M$ and of the objects parametrized by $M$: compactness allows us to apply the techniques of modern algebraic geometry to the space $\overline M$, while the fact that it is still a moduli space gives us a handle on its geometry. In the following section, we will see (or at least assert) that modular compactifications of $M_g$ do exist, and describe the class of objects parametrized (``stable curves").
-
-Getting back to the moduli space $\overline M_1$, there are two caveats to bear in mind. The first is that not every family of curves of genus 1 specializing to a singular curve corresponds to a pole of the $j$-function: for example, in the family of curves $C_t$ given as
+Modular compactifications of a given moduli problem may or may not exist. It's sometimes a tricky problem to find a suitable class of objects to parametrize: if we don't add enough additional isomorphism classes, not every 1-parameter family of objects in our original class will have a limit in the larger class, meaning the enlarged moduli space will still not be compact; if we add too many,  1-parameter families may have more than one possible limit, meaning the enlarged space won't be separated. For example in the family
+ of curves $C_t$ given as
 $$
 C_t = V(y^2 -x^3 - t^2x - t^3)
 $$
-the $j$ function is constant, but of course the limiting curve $C_0$ has a cusp. And conversely, not every family of curves of genus 1 whose $j$-function has a pole has limit an irreducible curve of arithmetic genus 1 with a node; for example, the limit of the curves
+the $j$ function is constant when $t\neq 0$, but  the limiting curve $C_0$ has a cusp. This shows that
+we could not have added cuspidal curves to $M_1$.
+
+ When modular compactifications do exist, they are extremely valuable for the study of both the space $M$ and of the objects parametrized by $M$: compactness allows us to apply the techniques of modern algebraic geometry to the space $\overline M$, while the fact that it is still a moduli space gives us a handle on its geometry. In the following section, we will describe a modular compactification of $M_g$. The objects parametrized are called ``stable curves"). F
+
+Getting back to the moduli space $\overline M_1$, If we have a family where
+$j(\lambda)$ has a pole, we would like to say that the limit of the curves in the family is a nodal curve,
+but this is not necessarily true! For example, for example, the limit of the curves
 $$
 y^2 = x(x-t)(x-\frac{1}{t})
 $$
-as $t \to 0$ will be reducible, with two components meeting in two points.
+as $t \to 0$ is reducible, with two components meeting in two points. A process called semistable reduction, briefly described in a more general context below, shows that after a base change and a birational
+modification of the family around the pole we can replace the family with one where the singular fiber
+is indeed an irreducible nodal curve.
 
 \section{Higher genus}
 
-We now ask how much of the above description of the moduli space $M_1$ of curves of genus 1 can be carried out for curves of higher genus $g$. The answer is, virtually all of it; though the techniques needed to verify the statements are vastly more sophisticated. In this section, we'll state the main results about the moduli spaces $M_g$, and then describe one way in which they may be constructed.
-
-We start with the fundamental
+Nearly all of the description of the moduli spaces $M_1$ and $\overline M_1$ of curves of genus 1 can be carried out for curves of higher genus $g$,  though the techniques needed to verify the statements are vastly more sophisticated. In this section, we'll state the corresponding results about the moduli spaces $M_g$, and then describe one way in which they may be constructed.
 
 \begin{theorem}\label{moduli}
-There does not exist a fine moduli space for smooth projective curves of genus $g$ for any $g\geq 1$; but there does exist a coarse moduli space $M_g$, whose points correspond bijectively to isomorphism classes of smooth projective curves of genus $g$ and such that for any family $\cC \to B$ of such curves we have an induced map $\phi : B \to M_g$.
+There exists a coarse moduli space $M_g$, whose points correspond bijectively to isomorphism classes of smooth projective curves of genus $g$ and such that for any family $\cC \to B$ of such curves we have an induced map $\phi : B \to M_g$. The space $M_g$ is not a fine moduli space, and in fact no fine moduli space exists.
 \end{theorem}
 
-(Note that the existence of nontrivial $\PP^1$-bundles implies that there is no fine moduli space $M_0$ either.)
 
 There is also a modular compactification of $M_g$. To describe it, we have to introduce a class of curves as follows:
 
