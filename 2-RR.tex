@@ -343,7 +343,7 @@ We now return to the task of understanding $h^0(\sL)$ for an invertible sheaf $\
 \begin{theorem}[Serre Duality]\label{sd}
 If $C$ is a smooth curve and $D$ is a divisor on $C$, then
 $$
-H^1(D) =H^0(K_C-D)^*,
+H^1(D) =H^0(K_C-D)^* := Hom_\CC(H^0(K_C-D), \CC),
 $$
 and thus $h^1(D) = h^0(K_C-D)$.
 \end{theorem}
@@ -388,7 +388,7 @@ For a smooth curve $C$, this says in  particular that
 $$
 H^1(C; \CC) = H^0(\omega_C)\oplus H^1(\sO_C) = H^0(\omega_C)\oplus (H^0(\omega_C))^\vee, 
 $$
-so $ h^0(\omega_C)$ is half the rank of the middle singular cohomology group, justifying the name ``genus''.
+so $ h^0(\omega_C)$ is half the rank of the middle singular cohomology group, justifying the name ``genus''. For details, see~\cite[p. 116]{Griffiths-Harris1978}
 \end{fact}
 
 
@@ -403,7 +403,8 @@ $$
 with equality if $d > 2g-2$.
 \end{corollary}
 It was Riemann's student Roch  who supplied the correction term $h^0(K_C - D)$ for divisors of lower degree.
-The dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$.
+The dimension $h^0(K_C-D) = h^1(D)$ was called the \emph{superabundance} of $D$, since
+$h^0(D) = \deg D -g+1+h^1(D)$.
 
 Corollary~\ref{nonspecial RR} and Proposition~\ref{very ample} together show that all high degree divisors come from hyperplane sections in 
 suitable embeddings; and unlike the general vanishing theorems, they give a bound on the degree necessary for vanishing
@@ -430,7 +431,7 @@ from Proposition~\ref{very ample} and the Riemann-Roch theorem.
 Since the complement of a hyperplane in projective space is an affine space, we get an affine embedding result too:
 
 \begin{corollary}
- If $C$ is any smooth projective curve and $\emptyset \neq \Gamma \subset C$ a finite subset then $C \setminus \Gamma$ is affine.
+ If $C$ is any smooth projective curve and $\Gamma \subset C$ a nonempty finite subset then $C \setminus \Gamma$ is affine.
 \end{corollary}
 \begin{proof}
 Let $D$ be the divisor defined by $\Gamma$. By Corollary~\ref{degree 2g+1 embedding} a high multiple of $D$ is very ample,
@@ -472,16 +473,19 @@ divisors $D$ are called \emph{special divisors}. The existence or nonexistence o
 
 \subsection{Residues, and a complex-analytic argument for the Riemann-Roch theorem.}\label{RR by residues}
 
-We remarked at the beginning of Chapter~\ref{linear series} that a smooth projective curve over $\CC$ is the same thing as a compact Riemann surface. In this section, we'll adopt the complex analytic viewpoint, and give an explanation of the Riemann-Roch theorem  (Theorem~\ref{RR theorem}) in a special case. Under a mild additional assumption we will prove:
+We remarked at the beginning of Chapter~\ref{linear series} that a smooth projective curve over $\CC$ is the same thing as a compact Riemann surface. In this section, we'll adopt the complex analytic viewpoint, and give an explanation of the Riemann-Roch theorem  (Theorem~\ref{RR theorem}) in a special case. 
+If $D = \sum a_ip_i$ is an effective divisor (that is, a finite formal sum of points $p_i$ with integral coefficients $a_i\geq 0$)
+on a compact Riemann surface $X$ then we write $L(D)$ for the vector space of meromorphic functions on $X$ with poles of order $\leq a_i$ at $p_i$. The \emph{degree} of $D$ is $\sum_i a_i$.
+Under a mild additional assumption we will prove:
 
 \begin{theorem}
-Let $X$ be a compact Riemann surface of genus $g$, and let $D = \sum a_i p_i$ be an effective divisor ($=$ formal sum of points $p_i$ with integral coefficients $a_i\geq 0$) of degree $d:= \sum a_i$ on $X$, and suppose that $K-D$ is also effective for some canonical divisor $K$.
-The dimension of the space $L(D)$ of meromorphic functions on $X$ with poles of order $a\leq a_i$ at $p_i$ and no other poles, is
-$d-g+1$ plus $L(K-D)$, the number of holomorphic differential forms vanishing on each $p_i$ to order at least $a_i$. 
+Let $X$ be a compact Riemann surface of genus $g$, and let $D$ of degree $d$ on $X$. Suppose that $K-D$ is also effective for some canonical divisor $K$.
+The dimension of  $L(D)$ is
+$d-g+1+\dim_\CC L(K-D)$.
 \end{theorem}
 
 Because  meromorphic functions on a Riemann surface are rational functions on the corresponding
-algebraic curve, and $L(D) = H^0(\sO_C(D)$, the assertion is equivalent to Theorem~\ref{RR theorem} above.
+algebraic curve, and $L(D) = H^0(\sO_C(D)$, the assertion is equivalent to Theorem~\ref{RR theorem}.
 
 \begin{proof}
  We will prove this using residues, under the additional assumption that  $D$ and $K-D$ are both effective (that is, $D$ is both effective and \emph{special} in the sense that there are nonzero functions
@@ -534,8 +538,8 @@ in our special case.
 
 \subsection{Arithmetic genus and geometric genus}
 
-Throughout this book, we will be primarily concerned with the geometry of smooth curves. Of course singular curves will arise---for example, as images of curves under morphisms that are not embeddings. At least when $C$ is a 1-dimensional variety (that is, a 
-reduced irreducible 1-dimensional scheme) we can regard $C$ as the image of a smooth curve in a simple way (Proposition~\ref{resolution of singularities}).
+Throughout this book, we will be primarily concerned with the geometry of smooth curves. Of course singular curves will arise---for example, as images of smooth curves under morphisms that are not embeddings. At least when $C$ is a 1-dimensional variety (that is, a 
+reduced irreducible 1-dimensional scheme) we can always regard $C$ as the image of a smooth curve in a simple way (Proposition~\ref{resolution of singularities}).
 
 There is one circumstance, however, in which we want to do geometry on singular curves: when we have a \emph{family} of curves $\{C_t\}$, for example, whose general member is smooth but that may include singular curves $C_0$ as well. In this case, the  normalization $\tilde C_0$ of $C_0$ will not fit into a family with the nearby smooth curves $C_t$; among other things, (as we'll indicate below) it will have strictly smaller genus than the $C_t$. In this case, we will want to see how many of the elements in our analysis of smooth curves carry over in this more general setting. We'll start here by comparing the two notions of genus for singular curves.
 
@@ -570,7 +574,7 @@ reduced and irreducible, see Exercise~\ref{pa example}.
  be extended to a similar result computing the Euler characteristic of any coherent sheaf on any purely 1-dimensional
  scheme. We will make
  use of a more general version in Chapter~\ref{uniform position} (Theorem~\ref{general RR without duality})
-  and, in a more serious way, in Chapter~\ref{linkage} (Theorem~\ref{general RR with duality}). 
+  and, in a more serious way, in Chapter~\ref{linkageChapter} (Theorem~\ref{general RR with duality}). 
  
 Still assuming that $C_0$ is reduced and irreducible, we can relate the arithmetic and geometric genera of $C_0$ using the map of sheaves
 $$
@@ -592,7 +596,8 @@ $$
 p_a(C_0) - g(C) = \sum_{p \in (C_0)_{\rm sing}} \delta_p
 $$ 
 
-In general, the Leray spectral sequence addresses the situation of  a morphism $f:X\to Y$ of varieties or schemes, 
+\begin{fact}~\label{Leray}
+ In general, the Leray spectral sequence addresses the situation of  a morphism $f:X\to Y$ of varieties or schemes, 
  and a coherent sheaf $\sG$  on the source $X$; it says in this circumstance that we have a spectral sequence
   $$
   \HH^p(R^qf_*(\sG)) \Longrightarrow \HH^{p+q}(\sG).
@@ -601,6 +606,7 @@ In general, the Leray spectral sequence addresses the situation of  a morphism $
 see~\cite[II.4.17.1]{Godement} or \cite[Section III.7]{Gelfand-Manin} for proofs.)
 
 In the present circumstance---where the morphism $f$ is the normalization $\nu : C \to C_0$ of a possibly singular curve, and the sheaf $\cG$ is the structure sheaf $\cO_C$---the situation is particularly simple: since the map $\nu$ is finite, there are no higher direct images, and we deduce that $\chi(\cO_{C_0}) = \chi(\nu_*\cO_C)$.
+\end{fact}
 
 The $\delta$ invariant is easy to compute in simple cases:
 
@@ -618,9 +624,9 @@ If $p \in C_0$ is a ordinary cusp, with  $r \in C$ lying over it, the condition 
 
 \item (tacnodes) Suppose now that $p \in C_0$ is a \emph{tacnode}, that is, $C_0$ has two smooth branches at $p$ simply tangent to one another. There will be two points $r, s \in C$ lying over it, and the condition for a function $f$ on $C$ to descend is that in terms of suitable local coordinates both $f(r)=f(s)$ and $f'(r)=f'(s)$.  This represents two linear conditions, so $\delta_p = 2$.
 
-\item (planar triple points) An ordinary triple point $p \in C_0$ of a plane curve is a singularity consisting of three smooth branches meeting pairwise transversely, such as the zero locus of $y^3-x^3$. There will be three points $r,s,t \in C$ lying over $p$, and certainly a necessary condition for a function $f$ on $C$ to descend is that $f(r)=f(s)=f(t)$---two linear conditions. But there's a third, less obvious linear condition: in order for $f$ to descend, the derivatives $f'(r), f'(s), f'(t)$ have to satisfy a linear condition---a reflection of the fact that a function on $C_0$ cannot vanish to order 2 on each of two branches without vanishing to order 2 along the third as well. Thus $\delta_p = 3$
+\item (planar triple points) An ordinary triple point $p \in C_0$ of a plane curve is, by definition, a singularity consisting of three smooth branches meeting pairwise transversely, such as the zero locus of $y^3-x^3$. There will be three points $r,s,t \in C$ lying over $p$, and certainly a necessary condition for a function $f$ on $C$ to descend is that $f(r)=f(s)=f(t)$---two linear conditions. But there's a third, less obvious linear condition: in order for $f$ to descend, the derivatives $f'(r), f'(s), f'(t)$ have to satisfy a linear condition---a reflection of the fact that a function on $C_0$ cannot vanish to order 2 on each of two branches without vanishing to order 2 along the third as well. Thus $\delta_p = 3$
 
-\item (spatial triple points) We will be concerned in what follows only with planar singularities, but spatial triple points provide a useful contrast to the last example. A spatial triple point is a singularity consisting of three smooth branches, with linearly independent tangent lines, so that its Zariski tangent space is 3-dimensional. An example would be the union of the three coordinate axes in $\AA^3$.
+\item (spatial triple points) We will be concerned in what follows only with planar singularities, but spatial triple points provide a useful contrast to the last example. A spatial triple point is a singularity consisting of three smooth branches, with linearly independent tangent lines, so that its Zariski tangent space is 3-dimensional. An example would be the origin as a point on the union of the three coordinate axes in $\AA^3$.
 
 In this case, in contrast to case of the planar triple point, the condition that $f(r)=f(s)=f(t)$ is both necessary and sufficient for $f$ to descend, and thus  $\delta_p=2$.
 
@@ -636,7 +642,8 @@ In this case, in contrast to case of the planar triple point, the condition that
 
 We now return to the world of smooth curves.
 
- The canonical sheaf on $\PP^1$ has negative degree, so $|K_{\PP^1}| = \emptyset$. In the case $g=1$ the canonical sheaf     has a nonzero global section, and since the sheaf has degree 0 this is nowhere vanishing, whence
+ The canonical sheaf on $\PP^1$ has negative degree, so $|K_{\PP^1}| = \emptyset$. If $C$ is a curve
+ of genus $1$ then the canonical sheaf     has a nonzero global section, and since the sheaf has degree $2g-2=0$ this is nowhere vanishing, whence
  $\omega_C = \sO_C$, and $K_C = 0$. Thus in studying the canonical series we restrict our attention to curves $C$ of genus $g\geq 2$. 
  
  \begin{theorem}\label{canonical series is very ample} Let $C$ be a smooth curve of genus $\geq 2$.
@@ -646,7 +653,7 @@ We now return to the world of smooth curves.
 \end{enumerate}
 \end{theorem}
 
-Recall that a curve of genus $\geq 2$
+A curve of genus $\geq 2$
 is said to be \emph{hyperelliptic} if there exists a morphism $f: C \to \PP^1$ of degree 2. 
 It is easy to describe this in terms of linear series:
 
@@ -708,7 +715,6 @@ When $C$ is not hyperelliptic, $\phi_K$ is an isomorphism onto its image in $\PP
 For a singular curve $C_0$ to have a canonical morphism it is necessary first of all that its canonical sheaf
  $\omega_{C_0}$ be invertible; when this is the case, we say that $C_0$ is (locally) Gorenstein, and then
 the theory above can be applied. See for example \cite{graphcurves} and \cite{ribbons} for examples. 
-However, we will not need to use these ideas.
 \end{remark}
 
 \subsection{Linear series on a hyperelliptic curve}
@@ -717,7 +723,7 @@ We can describe the canonical map of a hyperelliptic curve---and indeed all its 
 \begin{corollary}\label{canonical on hyperelliptic}
 Let $C$ be a smooth hyperelliptic curve of genus $g\geq 2$. The curve $C$ admits a unique degree 2 morphism $\pi: C\to \PP^1$,
 and the canonical map $\phi_K: C\to \PP^{g-1}$ is the composition of $\pi$ with the Veronese map of degree $g-1$ from
-$\PP^1$ to the rational normal curve of degree $g-1$; that is, every canonical divisor is a sum of $g-1$ fibers of $\pi$.
+$\PP^1$ to the rational normal curve of degree $g-1$; in particular, every canonical divisor is a sum of $g-1$ fibers of $\pi$.
 \end{corollary}
 
 \begin{proof}
@@ -782,10 +788,9 @@ the largest possible value, then either
 \end{theorem}
 
 From Corollary~\ref{canonical on hyperelliptic} and Corollary~\ref{geometric RR} we see that the equality does indeed hold
-in each of the cases enumerated. Clifford's Theorem is true for smooth curves over fields of any characteristic (see for example \cite[IV.5.4]{Hartshorne1977}, but in characteristic 0 it is a simple consequence of the stronger 
-Corollary~\ref{Clifford equality plus}
-that we will prove using a general position argument.
-
+in each of the cases enumerated. See
+Corollary~\ref{equality in Clifford from Martens} for the converse and \cite[IV.5.4]{Hartshorne1977}
+for a different proof.
 
  \section{Curves on surfaces}
  We will often analyze curves  on a smooth surface. Compared to the theory of linear series on curves, there is a new element: the intersection pairing. We refer to~\cite[Chapter V]{Hartshorne1977}
@@ -803,9 +808,9 @@ $[D]\in H^2(X, \ZZ)$ and the product is the cup product with values in $H^4(X,\Z
 there is an extension of the product to the cases where $D,E$ have common components. From a geometric point of view, we may choose an
 appropriate $C^\infty$
 normal vector field along $E$ and define $E'$ by ``pushing'' $E$ out slightly along the direction of this field, until $D$ and $E'$ are transverse,
-and the intersections can be computed in the usual way. It should be noted that such intersection numbers can be either positive or negative,
+and the intersections can be computed in the usual way. Such intersection numbers can be either positive or negative,
 since they depend on the relative orientations of $D$ and $E'$ at the intersection points; this is in contrast to the case when $D$ and $E$
-themselves meet properly; in the latter case the fact that the complex numbers are canonically oriented makes the intersection number nonnegative.
+themselves meet in just finitely many points; in that case the fact that the complex numbers are canonically oriented makes the intersection number nonnegative.
 
 The intersection product can be defined for Cartier divisors even when the surface is singular: Setting $\sL := \sO_X(C)$ and
 $\sM := \sO_X(D)$ to simplify the notation, we set 
@@ -826,7 +831,11 @@ $\sN_{D/S} := (\sI_{D/S}\otimes \sO_D)^{-1}$
 The result has a simple geometric interpretation when $\sN_{D/S}$ has a section $\sigma$: this is a normal vector field,
 and we can think of it as generating an infinitesimal movement (a first-order deformation) of $D$ to a divisor $D'$.
 The intersection of $D$ and $D'$ is thus the number of points of $D$ that did not move, the number  of zeros of $\sigma$.
-\pict{Divisor "moved" by normal vector field}
+
+\begin{figure}
+ \caption{The divisor $D'$, the result of an infinitesimal motion of $D$, meets $D$ twice. }
+\centerline {\includegraphics[height=2in]{"Fig2.3.pdf"}}
+\end{figure}
 
 \begin{proof}
 Since $\sO_D(-D) = \sO_S(-D)/\sO_S$ we see that 
