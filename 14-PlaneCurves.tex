@@ -2,12 +2,11 @@
 
 \chapter{Plane Curves}
 \label{PlaneCurvesChapter}
-\fix{Make sure that the surfaces material in ch 1 (?) is adequate: need the canonical bundle of a blowup of the plane and a little bit about Leray}
 
 
 For a long time, plane curves were the only algebraic curves that were studied. Originally these were curves in the affine plane over the real numbers, but by about 1850 the complex projective plane was well understood, and curves in $\PP^2 = \PP^2_\CC$, corresponding to irreducible forms in 3 variables, were recognized as the natural objects of study. 
 
-The work of Bernard Riemann dramatically changed the focus of the theory to branched coverings of   the ``Riemann Sphere'' ($\PP^1_\CC$). The Riemann-Roch theorem, in particular, gave information about the existence of meromorphic functions on such coverings, well beyond what could be done in the earlier theory. However, Riemann's work, depending as it did on the then-obscure ``Dirichlet principle'', was not universally accepted. In the 1860s Alfred Clebsch and, after Clebsch' death in 1872, Alexander Brill and Max Noether (Emmy Noether's father), undertook the ambitious program of redoing the Riemann-Roch theorem entirely in terms of plane curves. They went beyond Riemann in certain directions, too: the Brill-Noether Theorem treated in our Chapter~\ref{Brill-Noether chapter} was formulated by Brill and Noether, and ``proved'' by them through an unsupported general position assumption. 
+The work of Bernard Riemann dramatically changed the focus of the theory to branched coverings of   the ``Riemann Sphere'' ($\PP^1_\CC$). The Riemann-Roch theorem, in particular, gave information about the existence of meromorphic functions on such coverings, well beyond what could be done in the earlier theory. However, Riemann's work, depending as it did on the then-obscure ``Dirichlet principle'', was not universally accepted. In the 1860s Alfred Clebsch and, after the death of Clebsch  in 1872, Alexander Brill and Max Noether (Emmy Noether's father), undertook the ambitious program of redoing the Riemann-Roch theorem entirely in terms of plane curves. They went beyond Riemann in certain directions, too: the Brill-Noether Theorem treated in our Chapter~\ref{Brill-Noether chapter} was formulated by Brill and Noether, and ``proved'' by them through an unsupported general position assumption. 
 
 A central difficulty in the Brill-Noether attempt on the Riemann-Roch theorem was that,
 although any smooth curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
@@ -21,18 +20,17 @@ Macaulay exploited this theory of residuation  to prove what he called the ``Gen
 $I  \subset S:= k[x_0, \dots, x_n]$ is perfect if $S/I$ is Cohen-Macaulay) and ``super-perfection'' (the case when $S/I$ is
 Gorenstein). For all this, see~\cite{Eisenbud-Gray}.
 
-In the first part of this Chapter we will use ideas that go back to Brill and Noether to prove the ``completeness of the adjoint series'', giving us a recipe, using $C_0$, to find all effective divisors on $C$ equivalent on $C$ to a given (possibly) non-effective divisor. In Section~\ref{linear series on smooth plane curves} we treat the simple case of smooth plane curves, and in subsequent sections we treat the case of plane curves with nodes, and then plane curves with arbitrary singularities.
+In the first part of this Chapter we will use ideas that go back to Brill and Noether to find all effective divisors on $C$ equivalent on $C$ to a given (possibly) non-effective divisor. In Section~\ref{linear series on smooth plane curves} we treat the simple case of smooth plane curves, and in subsequent sections we treat the case of plane curves with nodes, and then plane curves with arbitrary singularities.
 
- In the last Section we will study the ``Severi variety'' of nodal plane curves $C_0$ of given geometric genus (the genus of the normalization, $C$.) As an application we prove the possibility of smoothing an arbitrary subset of nodes of a plane curve.
  
 \section{Using plane models to compute linear series} \label{computing linear series}
 
-In Proposition~\ref{nodal projection} we showed that any smooth projective curve $C$ can be linearly and birationall projected to a $C_0$ that has only nodes as singularities. In the first sections of this chapter we will show how to use such a \emph{plane model} to algorithmically determine the complete the linear series associated to any divisor.
+In Proposition~\ref{nodal projection} we showed that any smooth projective curve $C$ can be linearly and birationally projected to a $C_0$ that has only nodes as singularities. In the first sections of this chapter we will show how to use such a \emph{plane model} to algorithmically determine the complete the linear series associated to any divisor on $C$.
 
 In particular:
 \begin{enumerate}
 \item Given the equation $F(X,Y,Z)$ of a plane curve $C_0$, with normalization $C$, we will find a basis for $H^0(K_C)$; and
-\item  Given, in addition, a divisor $D = \sum m_ip_i$ on $C$, we will describe the complete linear system $|D|$; that is, we will find all effective divisors $E$ on $C$ with $E \sim D$, or, equivalently, a basis for $H^0(\cO_C(D)$.
+\item  Given, in addition, a divisor $D = \sum m_ip_i$ on $C$, we will describe the complete linear system $|D|$; that is, we will find all effective divisors $E$ on $C$ with $E \sim D$, or, equivalently, a basis for $H^0(\cO_C(D))$.
 \end{enumerate}
 
 Along the way we will see how to test when two given divisors $D$ and $E$ on $C$ are linearly equivalent; and whether a given divisor $D$ linearly equivalent to an effective divisor.
@@ -41,15 +39,13 @@ For clarity, we will pursue these goals in three stages: first when $C = C_0$ is
 
 \section{Differentials on a smooth plane curve}\label{canonical series on smooth plane curves}
 
-Let $C \subset \PP^2$  be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(X,Y,1)$ be the inhomogeneous form of $F$, so that $\widetilde C = C \cap U$ is given as the zero locus $V(f) \subset  \AA^2$. 
+Let $C \subset \PP^2$  be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. We'll introduce coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(x, y,1)$ be the inhomogeneous form of $F$, so that $\widetilde C = C \cap U$ is given as the zero locus $V(f) \subset  \AA^2$. 
 
 Since an automorphism of $\PP^2$ can carry any line in the plane to the line at infinity, and any point on that line to the point $(0,1,0)$, we may assume:
 \begin{enumerate}
 \item The point $[0,1,0]$ (that is, the point at infinity in the vertical direction) does not lie on $C$; equivalently,  the projection $C \to \PP^1$ from $(0,1,0)$, which is given by $[X,Y,Z] \mapsto [X,Z]$ (or, in affine coordinates, $(x,y) \mapsto x$)  has degree $d$; and
 \item The line $L$ at infinity given by $Z = 0$ intersects $C$ transversely in $d$ distinct points $p_1, \dots, p_d$; We write $H = p_1+ \dots +p_d$ for the corresponding divisor, the ``hyperplane section at infinity''.
 \end{enumerate}
-
-These conditions are not necessary: in Exercise~\ref{****} we will see how to do  without them.
  
 We start toward our first goal by writing down a single rational 1-form on $C$: 
  take a regular 1-form on $\AA^2$, such as $dx$, and restrict/pull back to $C$. 
@@ -90,7 +86,7 @@ In particular, if $d \geq 3$ then $\varphi_0$ is a global regular differential o
 Moreover, we can  multiply $\varphi_0$ by any polynomial $e(x,y)$ 
   of degree $d-3$ or less without introducing poles, so that 
 $$
-g\varphi_0 = \frac{e(x,y)dx}{\partial f/\partial y}
+e\varphi_0 = \frac{e(x,y)dx}{\partial f/\partial y}
 $$ 
 is likewise a global regular differential, for $g$  any polynomial of degree $\leq d-3$.
 
@@ -138,34 +134,36 @@ $$
 D' = D + (H/G) = D_0- D_\infty - (D_0+A)+(D_\infty+A+D')
 $$
 as required. Since $m$ is already chosen, there may not exist any such polynomial; we shall see that in this case there is no effective divisor linearly equivalent to $D$. 
+\pict {illustrate the configuration of all the divisors}
 
 \begin{example}
 Suppose that $C$ has degree 3, so that $C$ has genus 1. If we choose as origin on the curve $C$ a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) effective divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
+\pict{illustrate this}
 \end{example}
 
-We claim that we find in this way all effective divisors $D' \sim D$ a special case of the Completeness of the Adjoint series, Proposition~\ref{adjoint completeness}. In particular, this will show that if there is no polynomial $H$ as above, then there are no effective divisors equivalent to $D$.
+We claim that we find in this way all effective divisors $D' \sim D$. (This is a special case of the Completeness of the Adjoint series, Proposition~\ref{adjoint completeness}). In particular, this will show that if there is no polynomial $H$ as above, then there are no effective divisors equivalent to $D$.
 
 Indeed, suppose $D'$ is any effective divisor with $D' \sim D$. Carrying out the first step of the process as before, we arrive at a divisor $A$ with 
 $$
 \cO_C(A+D_\infty+D') = \cO_C(A+D_\infty+D)  = \cO_C(m),
 $$
-that is, $A+D_\infty+D$ is linearly equivalent on $C$ to the divisor (H) defined by the vanishing of some form $H$ of degree $m$. This means that
-$A+D_\infty+D  = (H') +(P/Q)$ for some forms $P,Q$ of equal degree, with $Q$ not vanishing identically on $C$. Since $A+D_\infty+D$ is effective,
-the zeros of $Q$ on $C$ must be contained in the zeros of $H'P$ on $C$. Writing
-$G$ for the generator of the ideal of $C$, and using the fact that
+that is, $A+D_\infty+D$ is linearly equivalent on $C$ to the divisor (H) defined by the vanishing of some form $H$ of degree $m$. 
+This means that
+$A+D_\infty+D  = (H') +(P/Q)$ for some forms $P,Q$ of equal degree, with $Q$ not vanishing identically on $C$. 
+Since $A+D_\infty+D$ is effective,
+the zeros of $Q$ on $C$ must be contained in the zeros of $H'P$ on $C$; in other words,
+the restriction to $C$ of $Q/H'P$ is a regular function, a section of $\sO_C(m)$.
+Since $C\subset \PP^2$ is arithmetically Cohen-Macaulay (see Proposition~\ref{ACM basics}), this implies that
+$Q/H'P$ is the restriction of a form $H$ of degree $m$ on $\PP^2$; that is, if $G$ is
+the defining equation of $C$, then $H'P = QH+LG$ for some form $L$ on $\PP^2$.
+
+Equivalently,
+ using the fact that
 $G,Q$ is a regular sequence, and thus is unmixed (that is, has no embedded primary component), we see that $H'P = LG+HQ$ for some
 forms $L,H$ of degree $\deg HP - \deg Q$. In particular, $H = (H'P- LG)/Q$ is a form
 of degree $m$ defining $A+D_\infty+D$, as desired.
 
-Alternatively, the fact that any regular sequence $G,Q$ defines an unmixed ideal is equivalent to the vanishing of the intermediate cohomology of all twists of the structure sheaf of $\PP^2$; and we can use this to achieve the same conclusion with fewer symbols, though more sophistication: from the exact sequence 
-$$
-0 \to \cO_{\PP^2}(m-d) \to \cO_{\PP^2}(m)  \to \cO_C(m) \to 0
-$$
-and the vanishing of $H^1(\cO_{\PP^2}(m-d))$, we again see that every global section of $ \cO_C(m)$ is the restriction to $C$ of a homogeneous polynomial of degree $m$ on $\PP^2$. 
-
 Note that if, in the process described, it turns out there is no polynomial $H$ vanishing on  $A + D_\infty + D$ but not vanishing identically on $C$, that simply means that $|D| = \emptyset$; that is, $D$ is not linearly equivalent to any effective divisor. (It may not be obvious that the existence of such an $H$ is independent of the choice of $m$ or $G$, but the argument here shows that it is.)
-
-
 
 \section{Differentials on a nodal plane curve}\label{canonical series on nodal plane curves}
 
@@ -192,11 +190,11 @@ $$
 $$
 will be regular except for simple poles at the points $r_i$ and $s_i$.
 
-We can get rid of these poles by requiring that $e$ vanishes at the points $q_i$. We say in this case that $e$ (and the curve defined by $e$) \emph{satisfies the conditions of adjunction}. (In the following section, we'll describe the  conditions of adjunction associated to an arbitrary singularity.) In any event, we see that
+We can get rid of these poles by requiring that $e$ vanishes at the points $q_i$. We say in this case that $e$ (and the curve defined by $e$) \emph{satisfies the conditions of adjunction}. (In Section~\ref{adjoint ideal}, we'll describe the  conditions of adjunction associated to an arbitrary singularity.) In any event, we see that
 $$
  \left\{ \nu^* \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3 \text{ and } e(q_i) = 0 \; \forall i \right\} \subset H^0(K_C).
 $$
-Now, in the smooth case, we were able to compare dimensions to conclude that this inclusion was indeed an equality. We can do the same thing here: to begin with, we have seen that the  rational 1-form $\varphi = \nu^*(\frac{dx}{\partial f/\partial y})$ has zeroes of order $d-3$ at the points $p_1,\dots,p_d$ and simple poles at the points $r_i$ and $s_i$ and is otherwise regular and nonzero; in other words, if we set $H = p_1+\dots + p_d$, the divisor
+In the smooth case we were able to compare dimensions to conclude that this inclusion was an equality. We can do the same thing here. We have seen that the  rational 1-form $\varphi = \nu^*(\frac{dx}{\partial f/\partial y})$ has zeroes of order $d-3$ at the points $p_1,\dots,p_d$ and simple poles at the points $r_i$ and $s_i$ and is otherwise regular and nonzero. In other words, if we set $H = p_1+\dots + p_d$, the divisor
 $$
 (\varphi) = (d-3)H - \Delta.
 $$
@@ -206,34 +204,35 @@ $$
 $$
 and correspondingly
 $$
-g(C) = \binom{d-1}{2} - \delta;
+g(C) = \binom{d-1}{2} - \delta.
 $$
-this is called the genus formula for plane curves.
 
-On the other hand, the space of polynomials $e$ of degree $\leq d-3$ vanishing at the points $q_i$ has dimension at least $ \binom{d-1}{2} - \delta$; we conclude from this that indeed
+
+On the other hand, the space of polynomials $e$ of degree $\leq d-3$ vanishing at the points $q_i$ has dimension at least $ \binom{d-1}{2} - \delta$; we conclude that
 $$
-H^0(K_C) =  \left\{ \nu^* \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3 \text{ and } e(q_i) = 0 \; \forall i \right\},
+H^0(K_C) =  \left\{ \nu^* \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3 \text{ and } e(q_i) = 0 \; \forall i \right\}.
 $$
-and as lagniappe we have proved the useful
+This argument would give another proof of Lemma~\ref{adjoint independent}.
 
-\begin{lemma}\label{adjoint independent}
-The nodes $q_i$ of an irreducible nodal plane curve of degree $d$ impose independent conditions on curves of degree $d-3$, and hence on curves of any degree $m \geq d-3$.
-\end{lemma}
-
-We will need this in Section~\ref{severi variety}.
+\pict{canonical divisor on a curve of genus 4 represented as the intersection of a plane quintic
+with a conic through 2 nodes}
 
 \section{Linear series on a nodal plane curve}\label{linear series on nodal plane curves}
 
 Given a divisor $D$ on $C$, we next compute the complete linear series $|D|$, using the birational map $\nu$ from 
-$C$ to the nodal curve $C_0$.
+$C$ to the nodal curve $C_0$. 
 
-We'll do this first in the case where $D = D_0-D_\infty$ is the difference of two effective divisors whose support is disjoint from the support $\{r_i, s_i\}$ of $\Delta$; the general case is only notationally more complicated. To start, we find an integer $m$ and a polynomial $G$ vanishing on the divisor $D_0$ \emph{and at the nodes $q_1,\dots,q_\delta$ of $C_0$}, but not vanishing identically on $C_0$. We can then write the zero locus of $G$ pulled back to $C$ as
+  To start, we find an integer $m$ and a polynomial $G$ whose pullback to $C$
+  vanishes on the divisor $D_0+\Delta$ 
+ but not identically on $C$; if $D_0$ contains a point  of $\Delta$ this means that $G$ defines
+ a curve sufficiently tangent to the corresponding branch of $C_0$, which we can 
+ achieve for sufficiently large $m$. We can then write the zero locus of $G$ pulled back to $C$ as
 $$
 (\nu^*G) = D_0 + \Delta + A,
 $$
-as before. Once more, 
- for simplicity, let's assume that the support of $A$ is disjoint from the support of $\Delta$; this means 
-  that the curve $V(G)$ is smooth at the points $q_i$ and is not tangent to either of the branches of $C_0$ there (this can certainly be done if we take $m$ large).
+as before. 
+
+\pict{illustration of a case where $D_0$ contains one point of $\Delta$.}
 
 Next, we find polynomials $H$ of the same degree $m$, vanishing at $A+D_\infty$ and at the points $q_i$  but not on all of $C_0$. Let $D'$ be the divisor cut on $C$ by $H$ residual to $D_0 + \Delta + A$; that is, we write
 $$
@@ -251,21 +250,20 @@ $\PP^2$ at the points $q_i$.
 The following result, known classically as \emph{completeness of the adjoint series}, is what we need:
 
 \begin{proposition}\label{adjoint completeness}
-If $C_0 \subset \PP^2$ is a nodal plane curve and $\nu : C \to C_0$ its normalization $C$ then the linear series cut by plane curves of degree $m$ passing through the nodes is complete.
+If $C_0 \subset \PP^2$ is a nodal plane curve and $\nu : C \to C_0$ its normalization $C$ then for any $m$ the linear series cut on $C$ by plane curves of degree $m$ passing through the nodes is complete.
 \end{proposition}
 
-The  meaning of this statement, by convention, is that we get a complete linear series on $C$ by taking pullbacks of forms of degree $m$ on $\PP^2$
+The  meaning of this statement is that we get a complete linear series on $C$ by taking pullbacks of forms of degree $m$ on $\PP^2$
 that vanish on the nodes, and then subtracting the divisor $\Delta$ of preimages of the nodes from the pullbacks.
 
 \begin{proof}
 To prove Proposition~\ref{adjoint completeness}, it will be helpful to introduce another surface: the blow-up $\pi : S \to \PP^2$ of $\PP^2$ at the points $q_i$. The proper transform on $C_0 \subset \PP^2$ in $S$ is the normalization of $C_0$, which we will again call $C$.
 
-There are two divisor classes on $S$ that will come up in our analysis: the pullback of the class of line in $\PP^2$, which we'll denote $H$; and the sum of the exceptional divisors, which we'll call $E$. We write $h= H\cap C$ and $e = \sum_i(p_i+q_i) = E\cap C$ for the corresponding divisors on $C$. In these terms, we have
+There are two divisor classes on $S$ that will come up in our analysis: the pullback of the class of a line in $\PP^2$, which we'll denote $H$; and the sum of the exceptional divisors, which we'll call $E$. We write $h= H\cap C$ and $e = \sum (p_i+q_i) = E\cap C$ for the corresponding divisors on $C$. In these terms, we have
 $$
 C \sim dH - 2E \quad \text{and} \quad K_S \sim -3H + E
 $$
-(the first follows from the fact that $C_0$ has multiplicity 2 at each of the points $q_i$, the second from considering the pullback to $S$ of a rational 2-form on $\PP^2$).
-%\fix{does the surface section of ch 1 to include this?}
+(the first follows from the fact that $C_0$ has multiplicity 2 at each of the points $q_i$, the second from considering the pullback to $S$ of a rational 2-form on $\PP^2$; see Theorem~\ref{divisor classes on blowup} for more details.)
 
  If $A$ is a curve in $\PP^2$ of degree $m$ passing through the points $q_i$, we can associate to it the effective divisor $\pi^*A - E$; this gives us an isomorphism
 $$
@@ -286,7 +284,7 @@ tells us that
 $$
 H^1(\cO_S((m-d)H + E)) \cong H^1(\cO_S((d-m-3)H))^*.
 $$
-Now, the line bundle $\cO_S((d-m-3)H)$ is 
+The line bundle $\cO_S((d-m-3)H)$ is 
  the pullback to $S$ of the bundle $\cO_{\PP^2}(d-m-3)$, which has vanishing $H^1$. The following lemma completes the proof of the proposition:
 \begin{lemma}
 Let $X$ be a smooth projective surface, and $\pi : Y \to X$ a blow-up. If $\cL$ is any line bundle on $X$, then
@@ -299,31 +297,50 @@ The lemma follows by applying the Leray spectral sequence, which relates the coh
 
 \section{Linear series on the normalization of an arbitrary plane curve} \label{arbitrary plane curves}
 
-\fix{add a Prop along the following lines}
->>>>>>> 28b5a4a7b9e5e9e8d352ebe4880e8fd5f6020d9a
 \begin{proposition}\label{effect of blowup on genus}
- Let $C$ be a curve on a smooth surface $S$, let $S'$ be the blowup of $S$ at $p$. If $C'$ is the strict transform of $C$, then
+ Let $C$ be a curve on a smooth surface $S$, let $\nu : S' \to S$ be the blowup of $S$ at $p$. If $C'$ is the strict transform of $C$, then
  $$
  p_a(C') = p_a(C) -{m\choose 2},
  $$
  where $m$ is the multiplicity of $p\in C$.
 \end{proposition}
 \begin{proof}
- \fix{to be added!}
+This follows from comparing the adjunction formulas on $S$ and $S'$. To start, we have
+$$
+p_a(C) = \frac{C^2 + K_S\cdot C}{2} + 1.
+$$
+On $S'$ let $E$ be the divisor class of the exceptional divisor. As we've seen,
+$$
+K_{S'} = \nu^*K_S + E,
+$$
+while the class of $C'$ is given by
+$$
+C' \sim \nu^*C - mE.
+$$
+It follows that
+$$
+(C')^2 = C^2 + m^2E^2 = C^2 - m^2 \quad \text{and} \quad K_{S'}\cdot C' = K_S\cdot C + m.
+$$
+Thus, applying adjunction on $S'$, we find
+$$
+p_a(C') = \frac{{C'}^2 + K_{S'}\cdot C'}{2} + 1 = \frac{C^2 + K_S\cdot C - m(m-1)}{2} + 1 = p_a(C) -{m\choose 2}
+$$
+as stated.
 \end{proof}
+
 
 Suppose again that $C_0 \subset \PP^2$ is reduced and irreducible, but with arbitrary singularities, and again let $\nu : C \to C_0$ be its normalization. Again we want to find the regular differentials on $C$ and the effective divisors on $C$ linearly equivalent to a given $D \in \Div(C)$. Again we take $\widetilde C_0$ to be the intersection of $C_0$ with the open set $z \neq 0$, that is, with $\AA^2\subset \PP^2$, and assume that
 all the singular points of $C_0$ are contained in $\widetilde C_0$.
 
-To mimic the analysis in the nodal case we need to generalize what we called the ``conditions of adjunction''. In the nodal case, these were the conditions that a curve $e(x,y)=0 \subset \AA^2$ pass through the nodes of $C_0$, that is, locally, $e$ was contained in the maximal ideal
+To mimic the analysis in the nodal case we need to generalize what we called the ``conditions of adjunction." In the nodal case, these were the conditions that a curve $e(x,y)=0 \subset \AA^2$ pass through the nodes of $C_0$, that is, locally, $e$ was contained in the maximal ideal
 at each node. For an arbitrary singular point, the ideal that will play the role of the maximal ideal is called the \emph{adjoint ideal} of the singularity. It is easy to compute in simple cases, and has a nice description in terms of $\nu$ for arbitrary plane curves that will be given in Theorem~\ref{general adjoint}.
 
 We first turn to the canonical series; that is, we wish to find expressions for all the regular differential forms on $C$. In the case of smooth and nodal curves we found we could express every regular differential form
-on $C$ as a rational function times the restriction of the differential form written as $dx$ on $\AA^2$. We justified this
+on $C$ as a rational function times the pullback of the differential form written as $dx$ on $\AA^2$. We justified this
 by counting---that is, by showing that we could get a $g(C)$-dimensional space of regular differentials in this way. The justification for 
 this procedure for a reduced, irreducible curve with arbitrary singularities relies on the fact that $x$, as a function on $\widetilde C_0$
 is a \emph{finite} map to $\AA^1$, and thus the field of rational functions $\kappa(C) = \kappa(\widetilde C_0)$ is a finite
-separable extension of $\CC(x)$. By Theorem~\cite[****]{Eisenbud1995} that the module of differentials 
+separable extension of $\CC(x)$. By~\cite[Section 16.5]{Eisenbud1995} that the module of differentials 
 $\omega_{\kappa(C)/\CC}$ is generated over $\kappa(\widetilde C_0)$ by $dx$; that is, every differential can be expressed as a rational function
 times $dx$. 
 
@@ -331,11 +348,11 @@ We focus for now on one singular point $q \in C_0$, with points $r_1,\dots,r_k \
 $$
 \varphi_0 = \nu^* \frac{dx}{\partial f/\partial y},
 $$
-and $f$ is the defining equation of $C_0$ in an affine open containing $q$. As in the case of a smooth curve $C$, the differential
+and $f$ is the defining equation of $C_0$ in $\AA^2$. As in the case of a smooth curve $C$, the differential
 form $\varphi_0$ has a zero of order $d-3$ at each of the points of $C$ lying over the intersection of $C_0$ with the line  $L = \PP^2\setminus \AA^2$
-at infinity. Thus we must must choose $e$ to be a function with poles on $C_0$ of order $\leq d-3$ on $L\cap C_0$ and no poles in $\widetilde C$. Any such function is represented (modulo $(f)$ by 
+at infinity. Thus we must must choose $e$ to be a function with poles on $C_0$ of order $\leq d-3$ on $L\cap C_0$ and no poles in $\widetilde C$. Any such function is represented (modulo $(f)$) by 
 a polynomial $e$ in $x,y$ which must have degree $\leq d-3$, since otherwise $edx$ would have poles at infinity. In addition, $\varphi_0$ will have poles at the points $r_i$,
-so $e$ must satisfy some ``conditions of adjunction'', represented by belonging to an ideal---the adjoint ideal---at each singular point.
+so $e$ must satisfy some ``conditions of adjunction," represented by belonging to an ideal---the adjoint ideal---at each singular point.
 
 Let $m_i$ be the order of the pole of $\varphi_0$ at $r_i$. We can define the \emph{adjoint ideal} of $C_0$ at $q$ to be the ideal
 $$
@@ -344,36 +361,78 @@ $$
 
 In other words, $\mathfrak A_q$ is the ideal of functions $e$ such that $\nu^* \frac{gdx}{\partial f/\partial y}$ is regular at all the points $r_i$. We define the \emph{adjoint ideal $\mathfrak A_{C/C_0}$ of $C_0$} to be the intersection of $A_q$ over all singular points  $q \in C_0$; the \emph{adjoint series of degree $m$} is then the linear series $H^0(\mathfrak A_{C/C_0}(m))$. 
 
-We now see  that every global regular 1-form on the curve $C$ is of the form 
+We can see, by an extension of the arguments above,  that every global regular 1-form on the curve $C$ is of the form 
 $$
 e(x,y) \varphi_0,
 $$
-with $e$ a polynomial of degree $\leq d-3$ in the adjoint ideal $\fA_{C/C_0}$.
-
-With this definition of the adjoint ideal we can compute complete linear series as in the nodal case, simply replacing
+with $e$ a polynomial of degree $\leq d-3$ in the adjoint ideal $\fA_{C/C_0}$; and more generally, the adjoint series of degree $m$ is complete for every $m$. Thus  we can compute complete linear series as in the nodal case, simply replacing
 the divisor $\Delta = \sum q_i$ with the divisor determined by the adjoint ideal. We omit the details, which involve replacing
 the surface $S$ with a repeated blowup of the plane on which the strict transform of $C_0$ is the normalization $C$.
 
 In simple cases, the adjoint ideal is not difficult to compute. 
 
-\subsection{The adjoint ideal of a plane curve}
+\subsection{Adjoint and deficiency}\label{adjoint ideal}
 
-We begin as usual with examples:
+We begin with examples:
+
 
 \begin{example}[nodes and cusps]
 We have already seen that in case $q$ is a node of $C_0$, there are two points of $C$ lying over it, and the multiplicities of $\varphi_0$ at these two points are $m_1=m_2=1$; the adjoint ideal is thus 
  the maximal ideal $\cI_q$ at $q$. In the case of a cusp, for example the zero locus of $y^2-x^3$, there is only one point $r=r_1$ of $C$ lying over $q$, and the differential $\varphi_0$ vanishes to order $m_1=2$; since the pullback to $C$ of any polynomial $g$ vanishing at $q$ will vanish to order at least two at $r$, the adjoint ideal is again the maximal ideal at $q$.
 \end{example}
 
-In the Theorem~\ref{general adjoint} we shall prove that the adjoint ideal can be computed
-as the \emph{conductor} ideal, the annihilator in $\sO_{C_0}$ of the quotient
-$\nu_*\sO_C/\sO_{C_0}$.
+\begin{example}[tacnodes]
+Next, consider the case of a \emph{tacnode}; that is, a plane-curve singularity with two smooth branches simply tangent to one another, such as the zero locus of $y^2-x^4$. In this case there are again two points of $C$ lying over $q$, and a simple calculation shows that $m_1=m_2=2$. The adjoint ideal is thus the ideal of functions vanishing at $q$ and having derivative 0 in the direction of the common tangent line to the branches.
+\end{example}
 
-\subsection{The ``deficiency" of a curve}
+\begin{example}[ordinary triple points]
+In the case of an ordinary triple point of a plane curve---three smooth branches pairwise transverse to one another---there are three points of $C$ lying over $q$, and we have $m_1=m_2=m_3= 2$; the adjoint ideal is correspondingly 
+ the square of the maximal ideal at $q$. 
+\end{example}
 
-%\fix{we talk about $\delta(C)$ in an early chapter. Should this ``deficiency'' description be there instead of here?}
-Even before the Riemann-Roch theorem and the modern definitions of the genus of a curve, algebraic geometers had
-defined an invariant called the \emph{deficiency} that is equal to the genus. When Clebsch, Brill and Noether tried to 
+
+In the next chapter we shall define the canonical (or dualizing) sheaf of a singular curve $C_0$ in 
+general and show in Theorem~\ref{general adjoint} that if $\nu: C\to C_0$ is the normalization of a reduced, connected
+projective curve $C$, then $\nu_*(\omega_C)$ is contained in $\omega_{C_0}$. We can
+then define the \emph{adjoint ideal} of $C_0$ to be 
+$$
+\fA_{C/C_0} :=\ann_{\sO_{C_0}}\frac{\omega_{C_0}}{\nu_* \omega_C}.
+$$
+\footnote{The notation $\mathfrak f$ for the conductor comes from the german term \emph{F\"uhrer} (leader); it is the ideal that "leads" elements of $\nu_* \sO_C$ into elements of $\sO_{C_0}$.}
+We will show that $C_0$ this is equal to the \emph{conductor ideal}
+$$
+\mathfrak f_{C/C_0}: = \ann_{\sO_{C_0}}\frac{\nu_* \sO_C}{\sO_{C_0}}	
+$$
+Furthermore, if $C_0$ is a plane curve, then 
+$$
+\delta(C_0) = \length \frac{\nu_* \sO_C}{\sO_{C_0}} = \length \frac {\sO_{C_0}}{\mathfrak f_{C/C_0}}.
+$$
+
+%For an node the value of the $\delta$-invariant is 1, and in general it may be regarded as the ``number of nodes equivalent to the singularities of $C_0$'' as
+%explained in Chapter~\ref{RiemannRochChapter}.  
+%
+%In the previous chapter we used the adjoint ideal as a condition on a polynomial
+%$e$ to multiply differential forms on $C$ for $e\phi$ to belong to $\omega_C$ is always sufficient, but may be necessary only
+%when $\omega_{C_0}$ is cyclic---which is equivalent to the statement that $C_0$ is locally
+%Gorenstein. This condition is always satisfied for singularities of curves in the plane.
+%See Example~\ref{nongorenstein} for a singularity that is not locally planar, and behaves differently.
+%
+%
+%In the Theorem~\ref{general adjoint} we shall prove that the adjoint ideal can be computed
+%as the \emph{conductor} ideal, the annihilator in $\sO_{C_0}$ of the quotient
+%$\nu_*\sO_C/\sO_{C_0}$.
+%
+%\subsection{The ``deficiency" of a curve}
+
+Arthur Cayley observed the importance for a nodal plane curve of degree $n$ of the number
+that we would now call the arithmetic genus. In \cite{Cayley2} He wrote:
+\begin{quotation}
+ Before going further, it will be convenient to to introduce the term ``Deficiency," viz., a curve of the order $n$ with
+ $\frac{1}{2}(n-1)(n-2)-D$ dps [double points] is said to have a deficiency $=D$: the foregoing theorem is that for curves with a deficiency $=0$, the coordinates are expressible rationally in terms of a parameter $\theta$.
+  \end{quotation}
+ 
+Riemann-Roch theorem and the modern definitions of the genus of a curve, algebraic geometers had
+defined an invariant called the \emph{deficiency} that is equal to the genus When Clebsch, Brill and Noether tried to 
 compute what amounts to the geometric genus of a plane curve, this was the idea they used, and we can shed some light
 on the meaning of the adjoint ideal by examining the old definition.
 
@@ -387,22 +446,21 @@ h^0(\cO_C(D)) = d.
 $$
 This lack of rational functions was viewed as a defect of the curve, and called its \emph{deficiency} (and typically denoted $p$, rather than $g$). .
 
-In general, if $C$ is a smooth plane curve $C \subset \PP^2$ of degree $n$, and suppose that $D = p_1+\dots + p_d$ is a divisor of degree $d$. To find the complete linear system $|D|$ by the method of Section~\ref{smooth plane curves} we start by choosing a plane curve $B$ of degree $m$ containing $D$ but not containing $C$; again for simplicity of notation we'll assume $m \geq n$. The intersection $B \cap C$ will then consist of $D$ plus another divisor $E$ on $C$, of degree $mn-d$; and what we saw is that the complete linear series $|D|$ will be cut on $C$ by plane curves of degree $m$ containing $E$, modulo those containing $C$.
+In general, suppose that $C$ is a smooth plane curve $C \subset \PP^2$ of degree $n$, and that $D = p_1+\dots + p_d$ is a divisor of degree $d$. To find the complete linear system $|D|$ by the method of Section~\ref{smooth plane curves} we start by choosing a plane curve $B$ of degree $m$ containing $D$ but not containing $C$; again for simplicity of notation we'll assume $m \geq n$. The intersection $B \cap C$ will then consist of $D$ plus another divisor $E$ on $C$, of degree $mn-d$; and what we saw is that the complete linear series $|D|$ will be cut on $C$ by plane curves of degree $m$ containing $E$, modulo those containing $C$.
 
 We can easily estimate the size of this linear series: If the $(mn-d)$ points of $E$ impose independent conditions on curves of degree $m$, which will be the case when $d$ is large compared with $n$, the space of curves of degree $m$ containing $E$ will have dimension
 $$
-h^0(\cI_{E/\PP^2}(m)) = \binom{m+2}{2} - (mn-d);
+h^0(\cI_{E/\PP^2}(m)) = \binom{m+2}{2} - (mn-d).
 $$ 
-and the subspace of curves of degree $m$ containing all of $C$ has dimension
+On the other hand, the subspace of curves of degree $m$ containing all of $C$ has dimension
 $$
 h^0(\cO_{\PP^2}(m-n)) = \binom{m-n+2}{2}
 $$
 so the dimension of $H^0(\cO_C(D))$ is
 $$
-h^0(\cO_C(D)) \geq \binom{m+2}{2} - (mn-d) -  \binom{m-n+2}{2} = d + 1 - \binom{n-1}{2}
+h^0(\cO_C(D)) \geq \binom{m+2}{2} - (mn-d) -  \binom{m-n+2}{2} = d + 1 - \binom{n-1}{2}.
 $$
-and the inequality will be an equality if $d$ is large enough compared to $n$ (in fact,  when $d> 2\binom{n-1}{2}-2 = n^2-3n$,
-as we know from the Riemann-Roch theorem plus the genus formula).  That is, a smooth plane curve of degree $n$ has deficiency $\binom{n-1}{2}$.
+By the Riemann-Roch theorem, the inequality will be an equality if $d> 2g-2 = 2\binom{n-1}{2}-2 = n^2-3n$.  That is, a smooth plane curve of degree $n$ has deficiency $\binom{n-1}{2}$.
 
 Now suppose the curve $C$ maps birationally to a curve $C_0$ which has a node at a point $p$; let $D$ again be a divisor of degree $d$, whose support we assume does not contain $p$. If we take our curve $B$ of degree $m$ to contain $D$ and also pass through the point $p$, then the residual intersection $E$ to $D+\nu^{-1}(p)$ on $C$ will consist of $mn-d-2$ points rather than $mn-d$. To construct the complete linear system $|D|$, we take curves of degree $m$ passing through this residual divisor $E$ and passing through $p$.
 
@@ -419,466 +477,8 @@ But we can do even better! If we require our initial curve of degree $m$ to be d
 In general---for singularities beyond nodes or triple points---the adjoint ideal can be characterized as the largest ideal that gives the best ``deal" in this sense. 
 
 
-\section{The canonical sheaf of a singular curve}
-
-Suppose again that $\nu:C\to C_0$ is the normalization of a singular curve. In order to understand the adjoint ideal, we 
-want to compare the canonical sheaf of $C$ with
-that of $C_0$. But the sheaf of differentials on $C_0$ is generally not well-behaved, generally not even torsion-free,
- and it does not
-have the properties that make the canonical sheaf useful. The canonical
-sheaf on $C_0$ must be defined differently:
-
-\begin{definition}\label{canonical as Hom}
-Let $C_0$ be a purely 1-dimensional scheme and let $\rho: C_0\to \PP^1$ be a finite morphism. The canonical sheaf $\omega_{C_0}$
-is the sheaf $\rho^{-1}\Hom_{\PP^1}(\rho_*\sO_{C_0}, \omega_{\PP^1})$ on $C_0$. 
-\end{definition}
-
-To demystify the last phrase of this definition, note that because the map
-$\rho$ is finite,  the open sets $U = \rho^{-1}V$, where $V\subset \PP^1$ is open, form a basis for the open sets of $C_0$; and for
-such an open set $U$ the ring $\sO_C(U)$ is equal, as a set, to 
-$(\rho_*\sO_C)(V)$. Thus if $\sL$ is any coherent sheaf on $C_0$ then $\rho_*\sL$, or more properlu $\rho^{-1}(\rho_*(\sL)$,
-may be regarded as a coherent sheaf on $C_0$.
-
-The reader may be concerned with applying the name ``canonical'' to a definition that seems to
-depend on the choice of a map $\rho$, but in fact if $\rho': C_0 \to \PP^1$ is another such map,
-there is a canonical isomorphism between the apparently different sheaves $\omega_{C_0}$ defined above.
-
-More generally:
-
-\begin{fact}
-Suppose that $X$ is a smooth projective variety and $\omega_X$ is the sheaf of differential forms of degree $\dim X$.
-If $\psi: C_0 \to X$ is any finite morphism of pure-dimensional schemes, then
-$$
-\omega_{C_0} \cong \sExt^{\dim X -\dim C_0}(\sO_{C_0}, \omega_X),
-$$
-and any two such representations are canonically isomorphic.
-\end{fact}
-
-For a proof in the case of the inclusion of a projective variety see \cite[Section III.7]{Hartshorne1977}, while for the more general assertion above see \cite{AltmanKleiman}. 
-
-\begin{example}
-Consider the case when $C = C_0$ is smooth, connected projective curve. If $\psi: C\to \PP^1$ is a finite  ($\equiv$ non-constant) morphism to $\PP^1$, then Hurwitz' Theorem asserts that the canonical sheaf on
-$C$ is $(\rho^*\omega_{\PP^1})(R)$, where $R$ is the ramification divisor. It is not hard to show that this
-agrees with Definition~\ref{canonical as Hom}. For simplicity, suppose that the degree of the map is 2---the general case
-is virtually the same. If
- $ p\in\PP^1$ is a point over which there are two disjoint smooth branches
-we can complete the local ring at $p$ and, after tensoring
-with $\widehat \sO_{C,p} \cong k[[x]]$, the map of rings becomes 
-$$
-R := k[[x]] \subset R':= k[[x]]e_1\times k[[x]]e_2; \quad x =xe_1+xe_2,
-$$
-where the $e_i$ are orthogonal idempotents. Tensoring with the quotient field $Q = k((x))$ of $k[[x]]$
-we get a map $Q \to Q':= Qe_1\times Qe_2$. As in any such situation there is a natural map of $Q$-vectorspaces in the other direction, the trace, which takes any element of $Q'$ to the trace of that element
-regarded as a homomorphism $Q' \to Q'$ of $Q$-modules. Because $R'$ is finite, and thus integral, over $R$, the trace takes elements of $R'$ to $R$; that is $Tr \in \widehat \omega_{R'} = \Hom_R(R', R) \cong R^2$.
-
-In this situation the trace generates $\widehat \omega_{R'}$ \emph{as an $R'$-module}: 
-$$
-(e_1Tr) (e_1) = Tr(e_1^2) = Tr(e_1) = Tr 
-\begin{pmatrix}
- 1&0\\0&0
-\end{pmatrix} 
-=1$$
-while $e_1Tr(e_2) = Tr(e_1e_2) = Tr(0) = 0$
-and similarly with $(e_2Tr)$, the other projection.
-
-However, if $p$ is a simple branch point then, upon completing, the map of local rings becomes
-$$
-R := k[[x]] \subset R':= k[[y]; \quad x = y^2
-$$
-Again taking $Q = k((x))$, the quotient field of $R$, we see that $Q' = Q\otimes_RR'$ is freely generated as a $Q$-module by 1 and $y$. Again, since $R'$ is integral over $R$ the map $Tr$ takes $R'$ to $R$.
-We have $Tr(1) = 2$,  but
-$$
-Tr(y) = Tr
-\begin{pmatrix}
- 0&1\\1&0
-\end{pmatrix} 
-=0
-$$
-so $\frac{1}{2}Tr$ is the projection onto the first summand,
-Furthermore, $yTr$ takes 1 to $Tr(y) =0$ and $y$ to $Tr(y^2) = Tr(x) = 2x$,
-so the cyclic module $R'Tr$ does not contain any map taking $y$ to a nonzero scalar, and
-thus does not contain a projection onto the second factor.
-However $y^{-1}= x^{-1}y$ so
-$$
-y^{-1}Tr(1) = 
-Tr
-\begin{pmatrix}
-0&1\\ x^{-1}&0
-\end{pmatrix} 
-=0
-$$
-while
-$
-y^{-1}Tr(y) = Tr(1) = 2
-$
-so 
-$$
-\frac{1}{2}y^{-1}Tr: R' = R\oplus Ry \to R
-$$
- is the second projection, and $y^{-1}Tr$ generates $\omega_{R'} = \Hom_R(R', R)$ as an $R'$-module.
-
-This corresponds to the fact that a local generator of the module of regular differential forms
-on $\Spec R'$ is $y^{-1}$ times the pullback of a local generator $dx$, or equivalently
-that a differential form on $C'$ must be multiplied by $y$ to ensure that it ``descends'' to a regular differential
-form on $\PP^1$. Note that if we write
-$R' = k[[x,y]]/(f)$  with $f(x,y) = y^2-x$, then we have written the regular differential form on $C$
-$$
-y^{-1}dx = \frac{dx}{\partial f/\partial y}
-$$
-a formula we have seen before.
-\end{example}
- 
-
-\begin{example}
- If $C$ is a plane curve of degree $d$, then 
-$$
-\omega_C = \sExt^1(\sO_C, \omega_{\PP^2}) = \sExt^1(\sO_C, \sO_{\PP^2}(-3)) \cong \sO_C(d-3),
-$$
-where the last isomorphism can be seen from the long exact sequence in $\sExt$ applied
-to the locally free resolution
-$$
-0\to \sO_{\PP^2}(-d) \to \sO_{\PP^2} \to\sO_{X} \to 0
-$$
-of $\sO_C$ as a sheaf on $\PP^2$. 
-\end{example}
-
-Using Definition~\ref{canonical as Hom} we can give a formula for the adjoint ideal of any curve singularity.
-
-\begin{theorem}\label{general adjoint}
-If $\nu: C \to C_0$ is the normalization of a reduced connected projective curve then the 
-adjoint ideal 
-$$
-\fA_{C/C_0} :=\ann_{\sO_{C_0}}\frac{\omega_{C_0}}{\nu_* \omega_C}
-$$
-is equal to the conductor ideal
-$$
-\mathfrak f_{C/C_0}: = \ann_{\sO_{C_0}}\frac{\nu_* \sO_C}{\sO_{C_0}}	
-$$
-Moreover, if $C_0$ is a plane curve, then 
-$$
-\delta(C_0) = \length \frac{\nu_* \sO_C}{\sO_{C_0}} = \length \frac {\sO_{C_0}}{\mathfrak f_{C/C_0}}.
-$$
-\end{theorem}
-
-Here $\delta(C_0)$ is the ``deficiency'' or the ``number of nodes equivalent to the singularities of $C_0$'' as
-explained in Chapter~\ref{RiemannRochChapter}. The notation $\mathfrak f$ for the conductor comes from the german term \emph{F\"uhrer}. The property in the last statement of the
-Theorem  was first noted (for plane curves) in Daniel Gorenstein's thesis under Oscar Zariski\footnote{Gorenstein is better remembered for his work on the classification of finite simple groups.}. This is the
-reason why Grothendieck gave the name ``Gorenstein" to Cohen-Macaulay rings that have cyclic canonical 
-modules--see~\cite{Bass}. 
-
-In the previous chapter we used the adjoint ideal as a condition on a polynomial
-$e$ to multiply differential forms on $C$ for $e\phi$ to belong to $\omega_C$ is always sufficient, but may be necessary only
-when $\omega_{C_0}$ is cyclic---which is equivalent to the statement that $C_0$ is locally
-Gorenstein. This condition is always satisfied for singularities of curves in the plane.
-See Example~\ref{nongorenstein} for a singularity that is not locally planar, and behaves differently.
-
-
-\begin{proof}[Proof of Theorem~\ref{general adjoint}]
-  Let 
-$\rho: C_0 \to \PP^1$ be a finite morphism. Both $\rho_*\nu_*\sO_C$ and $\rho_*\sO_{C_0}$
-are torsion free coherent sheaves over $\sO_{\PP^1}$, and are thus locally free. Since $\rho_*$ is left-exact,
-the inclusion $\sO_{C_0} \subset \nu_*\sO_C$ pushes forward to an inclusion
-$$
-\alpha: \rho_*\sO_{C_0} \hookrightarrow \rho_*\nu_*\sO_C
-$$
-and since $\sO_C$ is equal to $\sO_{C_0}$ generically on $\PP^1$, the cokernel $\coker \alpha$ has finite length; indeed, it is supported on the 
-image of the singular locus of $C_0$. Since the maps $\nu$ and $\rho$ are finite, we may harmlessly think of both 
-$\sO_{C_0}$ and $\sO_C$ as coherent sheaves on $\PP^1$, and we will simplify the notation by dropping $\nu_*$ and $\rho_*$.
-Taking duals into $\sO_{\PP^1}$ and defining
-$\alpha^\vee := \Hom_{\PP^1}(\alpha, \sO_{\PP^1}) $ we get a map that fits into the long exact sequence
-of $\sExt_{\PP^1}(-, \sO_{\PP^1})$:
-$$
-\begin{diagram}[small]
- 0&\rTo& 
- \Hom_{\PP^1}(\coker \alpha,\sO_{\PP^1})
-&\rTo&
-\omega_{C}
-& \rTo^{\alpha^\vee}&
-\omega_{C_0}\\
-&\rTo&
-\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})
-&\rTo&
-\sExt^1_{\PP^1}(\sO_C, \sO_{\PP^1})
-&\rTo&
-\cdots
-\end{diagram}
-$$
-Since $\coker \alpha$ has finite support, $ \Hom_{\PP^1}(\coker \alpha,\sO_{\PP^1}) = 0$ and
-$\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})$ has the same length and the same annihilator
-as $\coker \alpha$. Furthermore, because $\sO_C$ is locally free as an $\sO_{\PP^1}$-module, the term
-$\sExt^1_{\PP^1}(\sO_C, \sO_{\PP^1})$ vanishes, and we get the more manageable exact sequence
-$$
-\begin{diagram}
- 0&\rTo&
-\omega_{C}
-& \rTo^{\alpha^\vee}&
-\omega_{C_0}
-&\rTo&
-\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})
-&\rTo&
-0
-\end{diagram}
-$$
-It follows that the sheaves $\nu_*\sO_C/\sO_{C_0}$ and $\omega_{C_0}/\nu_*\omega_C$ have the same
-length $\delta(C_0)$. Note that the \emph{conductor} $\mathfrak f_{C/C_0}$ of $C/C_0$, which is defined to be the annihilator of $\sO_C/\sO_{C_0}$ 
-in $\sO_{C_0}$, is at the same time an ideal sheaf of $\sO_{C_0}$ and an ideal sheaf of $\sO_C$ via the inclusion $\sO_{C_0}\subset \sO_C$. The argument above shows that $\mathfrak f_{C/C_0}$ is also the annihilator ideal of $\omega_{C_0}/\omega_C$. By definition, this is the adjoint ideal of $C_0$, proving the first statement
-of the Theorem.
-
-A further simplification occurs when $C_0\subset \PP^2$ is a plane curve, or more generally any 
-curve such that the canonical module of $C_0$ is an invertible sheaf (this is the definition of the Gorenstein property).
-If the defining equation of 
-$C_0$ is the form $F$ of degree $d$, then there is a locally free resolution of  $\sO_C$ of the form
-$$
-0\rTo \sO_{\PP^2}(-d) \rTo^F \sO_{\PP^2} \rTo \sO_C \rTo 0
-$$
-and thus $\omega_C \cong \sExt^1_{\PP^2}(\sO_{C_0}, \omega_{\PP^2})$
-is cokernel of the map $\sO_{\PP^2}(-3) \to \sO_{\PP^2}(d-3)$ given by multiplication by $F$. Thus
-$\omega_{C_0}$ is locally cyclic, and  since the support of $\omega_{C_0}/\omega_C$ is finite, this module is
- globally cyclic, so
-$\omega_{C_0}/\omega_C \cong \sO_{C_0}/\mathfrak f_{C/C_0}$.
-Since the length of $\omega_{C_0}/\omega_C$ is equal to the length of 
-$\sO_{C}/\sO_{C_0}$, the last statement of the Theorem follows.
-\end{proof}
-
-\begin{example}
- Working locally, consider the germ of a node, represented by the ring $R_0:= k[[x,y]]/(xy)$, and
- the projection to a line represented by the inclusion 
- $$
- P:= k[[t]] \subset R_0: t\mapsto x+y.
- $$
- The normalization of $R_0$ is the map $R_0 \to R := k[[x]]e_1\times k[[y]]e_2$,
- where $e_1= x/t, e_2= y/t$ are orthogonal idempotents.Writing 
- $Q_1 = k((t)) \subset Q:= k((x))\times k((y))$
- for the map of total quotient rings, we know that, because the extension is separable, the trace map
- $Tr := Tr_{Q/Q_1}: Q \to Q_1$ generates $\Hom_{Q_1}(Q,Q_1)$ as a $Q$-vector space. Thus we may write the
- elements of $\omega_{R_0} = \Hom_{P}(R_0,P)$ and $\omega_R = \Hom_{P}(R,P)$ as
- multiples of $Tr$ by elements of $Q$.
- 
- Since $R \cong Pe_1\oplus Pe_2$ as a $P$-module, the module $\Hom_P(R,P)$ is
- generated by the two projections, and it is easy to check that these are the maps
- $(x/t)Tr$ and $(y/t)Tr$. One can also check easily that 
- $$
- g := \frac{x-y}{t^2} Tr \in \Hom_P(R_0,R).
- $$
- Since
-$xg = x/t$ and $yg = y/t$ in $Q$ we have
- $xg = x/tTr$ and $yg= y/tTr$, the generators of $\Hom_{P}(R,P)$. 
- The ring $R_0$, regarded As a $P$-module, is freely generated by 1 and $x$.
- Immediate computation shows that $gTr(1) = 0$ while $gTr(x) = 1$.
- Furthermore $(x-y)g = 1$ in $Q$,  and thus $\frac{1}{2}(x-y)gTr = Tr$ takes 1 to 1
- and $x$ to $t$, proving that $gTr$  generates
- $\Hom_P(R_0,P)$. We also see directly from this that the adjoint ideal
- of $\omega_{R_0}/\omega_R$ is the conductor ideal $(x,y)R_0 = (x,y)R = \mathfrak f_{R/R_0}$,
- as shown by  Theorem~\ref{general adjoint}. 
-\end{example}
-
-\begin{example}\label{nongorenstein}
-We showed earlier that the adjoint ideal of a planar triple point is the square of the ideal of the point. Consider now
-  the germ of a spatial triple point singularity $R_0 := k[[x,y,z]]/(xy, xz,yz)$, the vertex of the cone over 3
- non-colinear points in the plane, with normalization $R = k[[x]]\times k[[y]]\times k[[z]]$.
- If we set $t = x+y+z\in R_0\subset R$, then the three idempotents that generated $R$ as an $S$-module
- can be written as $x/t, y/t, z/t$. We have $x^2/t = xt_t= x$ and similarly for $y$ and $z$, so
- the conductor is given by $\ff_{R/R_0} = (x,y,z)R = (x,y,z)R_0$.
- 
- The ring $R$ is also finite over $S := k[[x,y,z]]$, and is isomorphic as such to 
- $S/(x,y)\oplus S/(x,z) \oplus S/(y,z)$, so we can compute its canonical module from the
- resolution that is the direct sum of the three Koszul complexes resolving these summands, and 
- as such the canonical module $\omega_R = \Ext^2(R,S)$ is isomorphic to $R$ as an $S$-module.
- 
-
- The $S$-module $R_0$, on the other hand,   has free resolution
- $$
- 0\rTo S^2\rTo^{
-	\begin{pmatrix}
- 0&z\\
- y&-y\\
- -x&0
-\end{pmatrix}}
- S^3 \rTo^{
-\begin{pmatrix}
- xy&xz&yz
-\end{pmatrix}}
- S \rTo R_0 \rTo 0. 
- $$
-The canonical module of $R_0$ (which would be the germ of the canonical module of a global curve with such a singularity) is thus 
- $$
- \omega_{R_0} = \Ext^2(R_0, S) = 
- \coker 
-\begin{pmatrix}
- 0&y&-x\\z&-y&0
-\end{pmatrix}
-$$
-a module requiring 2 generators.
-\end{example}
-The inclusion $\omega_{R} \subset \omega_{R_0}$ is thus induced by the 
-dual of the last map in a comparison map between the two resolutions. Computation
-confirms the conclusion of Theorem~\ref{general adjoint} that $\fA_{R/R_0} = \ff_{R/R_0} = (x,y,z)$. However, the length of $R/R_0$ is 2, and the length of $R_0/\ff_{R/R_0} = R_0/(x,y,z)$ is  1, so the
-last conclusion of Theorem~\ref{general adjoint} fails, along with its hypothesis.
-
-\section{Severi varieties}\label{severi variety}
-
-Despite its antiquity, many questions about the family of plane curves, such as which ones degenerate into which others, and in what way, remain open. All plane curves of degree $d$ have the same Hilbert function, and thus the same arithmetic genus
-$\binom{d-1}{2}$, but since curves of degree $d$ can have different sorts and numbers of singularities, they can have geometric genera from 0 to $\binom{d-1}{2}$. In this section we will explore the subset of of (reduced, irreducible) curves of degree $d$ with a fixed geometric genus. We will focus on the open set consisting of curves with only nodes as singularities, which we call \emph{nodal curves}, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
-
-Let $\PP^N := \PP^{{d_1+2\choose 2} - 1}$ be the projective space parametrizing plane curves of degree $d$.
-
-Since we will always be working with reduced irreducible curves, we begin by noting that this set is an open subset of the space 
-$\PP^N$---it is the complement of the union of the images of the maps 
-$$
-\PP^{{d_1+2\choose 2} - 1}\times\PP^{{d_2+2\choose 2}-1} \to \PP^N
-$$ 
-with $d_1+d_2 = d$ given by multiplication of forms.
-
-\def\Vdg{{V_{d,g}}}
-\def\Vdgtilde{{\widetilde{V}_{d,g}}} 
-\def\Vdgbar{{\overline{V}_{d,g}}} 
-\begin{propdef}
-The \emph{Severi variety} $\widetilde V_{d,g} \subset V_{d,g}$ is the locus of plane curves of degree $d$ with $\delta = \binom{d-1}{2} - g$ nodes and no other singularities. This is a locally closed subset of $\PP^N$. It is sometimes
-called the \emph{small Severi variety}, since we are excluding curves with more complicated singularities.
-
-\end{propdef}
-
-\begin{proof}
-\fix{ How about proving that $V_{d,g}$ is locally closed, and at least mentioning that $\widetilde V_{d,g}$ is open in $\overline V_{d,g}$}
-\end{proof}
-
-We will see that in a neighborhood of the small Severi variety $\widetilde {V}_{d,g}$,  the large Severi variety $\overline V_{d,g}$  is well behaved; but away from this,
-even the singularities of $\overline V_{d,g}$  are not well understood. It is is an interesting open problem to find a better compactification of $\widetilde V_{d,g}$.
-
-\fix{We should at least mention the irreducibility result as a "fact"! Also, list some more of what is NOT known about these sets.}
-
-\subsection{Local geometry of the Severi variety}\label{local severi geometry}
-
-We first consider the \emph{universal singular point}
-$$
-\Phi := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C_{sing} \right\}
-$$
-and its image $\Delta\subset \PP^N$, the \emph{discriminant} variety. 
-
-\begin{proposition}
- $\Phi$ is smooth and irreducible of dimension $N-1$, and the discriminant $\Delta$ is a hypersurface in $\PP^N$.
-\end{proposition}
-\begin{proof}
-Projection on the second factor expresses $\Phi$ as a $\PP^{N-3}$-bundle over $\PP^2$. Explicitly, if $[X,Y,Z]$ are homogeneous coordinates on $\PP^2$, and $\{a_{i,j,k} \mid i+j+k = d \}$ are homogeneous coordinates on $\PP^N$, then the universal curve 
-$$
-\CC := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C \right\}
-$$
-is given as the zero locus of the single bihomogenous polynomial of bidegree $(1, d)$
-$$
-F([a_{i,j,k}], [X,Y,Z] ) = \sum a_{i,j,k} X^iY^jZ^k;
-$$
-and the universal singular point is the common zero locus of the three partial derivatives $\partial F/\partial X$, $\partial F/\partial Y$ and  $\partial F/\partial Z$. 
-
-The set of forms $F$ that define curves singular at a given point is defined by 3 independent linear conditions, and since the set of 
-points is 2-dimensional, the set $\Delta$ of singular forms has dimension $N-1$.
-\end{proof}
- 
-We next compute the differential of the map $\pi : \Phi \to \PP^N$:
-
-\begin{lemma}\label{tangent space to discriminant}
-Let $C \subset \PP^2$ be a plane curve of degree $d$, regarded as a point in $\PP^N$,  having a node at a point $p$. The differential 
-$$
-d\pi : T_{(C,p)}\Phi \to T_C \PP^N
-$$
-is injective, with image the hyperplane $H_p \subset \PP^N$ of plane curves containing the point $p$.
-\end{lemma}
-
-Thus, if $p$ is the only singularity of $C$, then $\Delta$ is smooth at $C$; and more generally the image of a small analytic neighborhood of $(C,p) \in \Phi$ is smooth, and we can identify its tangent space at $p$ with the hyperplane $H_p$. 
-
-\begin{proof}
-We will prove this using affine coordinates on $\PP^2$ and $\PP^N$. Changing coordinates if necessary, we may assume that the point $[1,0,0] \notin C$, and that the point $p$ is $[0,0,1]$. let $x = X/Z$ and $y = Y/Z$ be coordinates on the affine plane $Z \neq 0$ and write the polynomial $F(x,y,1)$ above as
-$$
-f(x,y) = \sum_{i+j \leq d} a_{i,j} x^iy^j
-$$
-with $a_{d,0}$ normalized to 1. 
-
-Let $g,h$ be the two partial derivatives of $f$, that is:
-$$
-g(x,y) := \binom{\partial f}{\partial x} = \sum_{i+j \leq d} i a_{i,j} x^{i-1}y^j
-$$
-and
-$$
-h(x,y) := \binom{\partial f}{\partial y} = \sum_{i+j \leq d} j a_{i,j} ix^{i}y^{j-1}.
-$$
-The functions $f, g$ and $h$ are local defining equations for $\Phi$; we consider their partial derivatives with respect to $x, y$ and $a_{0,0}$, evaluated at the point $(C,p)$, as in in figure~\ref{tang to Delta}.
-
-\begin{table}[h!]\label{tang to Delta}
-  \begin{center}
-     \begin{tabular}{c|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-            & $f$ & $g$ & $h$ \\
-      \hline
-$\frac{\partial}{\partial x}$ & 0 & $a_{2,0}$ & $a_{1,1}$ \\
-$\frac{\partial}{\partial y}$ & 0 & $a_{1,1}$ & $a_{0,2}$ \\
-$\frac{\partial}{\partial a_{0,0}}$ & 1 & 0 & 0 
-    \end{tabular}
-  \end{center}
-\end{table}
-
-The point $p$ is a node of $C$ (and not a more complicated singularity) if and only if the upper right $2 \times 2$ submatrix is nonsingular, which shows that the differential $d\pi$ is injective, and its image is the hyperplane $a_{0,0} = 0$ in $\PP^N$, which is exactly the hyperplane of curves containing $p$.
-\end{proof}
-
-\begin{corollary}\label{local geometry of Severi}
-If $C$ is a nodal curve of degree $d$ with geometric genus $g = \binom{d-1}{2}-g$, then in a neighborhood of $C\in \PP^N$
-the discriminant hypersurface consists of $\delta$ smooth sheets, meeting transversely. Thus in a neighborhood  $C \in \PP^N$ 
-the variety $\overline V_{d,g}$ is the union of $\binom{\delta}{\delta'}$ smooth branches, each of dimension $N - \delta'$, corresponding bijectively with subsets of $\{p_1,\dots,p_\delta\}$ of cardinality $\delta'$.
-\end{corollary}
-\begin{proof}
-Lemma~\ref{tangent space to discriminant} shows that in an analytic neighborhood of $C\in \PP^N$ the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets, each corresponding to one node, and Lemma~\ref{adjoint independent} implies that the tangent spaces to these sheets are linearly independent. 
-\end{proof}
-
-
-\begin{corollary}\label{dim Severi}
-The small Severi variety $V_{d,g}$ has pure dimension $N - \delta$, where $\delta = \binom{d-1}{2} - g$.
-\end{corollary}
-
-In Section~\ref{estimating dim hilb}, we give a heuristic calculation of the ``expected dimension'' $h(d,g,r)$ of the variety parametrizing curves of degree $d$ and genus $g$ in $\PP^r$
-$$
-h(g,r,d) := 4g-3 + (r+1)(d-g+1) - 1.
-$$
-The actual dimension of the restricted Hilbert scheme may be quite different. But  Corollary~\ref{dim Severi} shows that in case $r=2$ (as in the case of $r=1$), the actual dimension is always the expected.
-
-Corollary~\ref{local geometry of Severi} has an important consequence that we use in Chapter~\ref{InflectionsChapter}: the existence of a families of smooth curves of genus $g$ specializing to a $g$-nodal rational curve. 
-
-%In fact, such families are already explicit in Lemma~\ref{local geometry of Severi}: if we start with a rational nodal  curve $C_0 \subset \PP^2$---for example, the general projection of a rational normal curve $\PP^1 \hookrightarrow \PP^d$ to $\PP^2$---the lemma says that we can find a family of nodal curves $C_t$ of geometric genus $g$ specializing to $C_0$, in which the  $\delta = \binom{d-1}{2} - g$ nodes of $C_t$ specialize to a subset of $\delta$ of the nodes of $C_0$. Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired. \fix{watch out! the normalization of a flat family
-%is not always the normalization of each fiber! -- eg there are normal surfaces with both smooth and singular fibers.}
-%
-%To carry this out in detail, let us first state precisely the lemma we seek to establish:
-
-\begin{corollary}\label{smoothing nodes}
-Let $p_1, \dots, p_g, q_1, \dots, q_g \in \PP^1$ be any $2g$ distinct points, and let $C := \PP^1/p_i \sim q_i$ be the nodal curve of arithmetic genus $g$ obtained by identifying $p_i$ with $q_i$ for $i = 1,\dots,g$. There exists a family $\cC \to  \Delta $ of curves, parametrized by the disc $\Delta$, with $C_t$ a smooth projective curve of genus $g$ for all $t \neq 0$ and $C_0 = C$ as above.
-\end{corollary}
-
-\begin{proof}
-Let's start by realizing the curve $C_0$ in projective space. This is straightforward: to begin, choose a degree $d > 2g+2$, and embed $\PP^1$ as a rational normal curve in $\PP^d$ via the Veronese map. Let $L_i = \overline{p_i,q_i} \subset \PP^d$ be the line spanned by $p_i$ and $q_i$, and let $\Lambda \cong \PP^{g-1} \subset \PP^d$ be the $(g-1)$-plane spanned by a general point on each of these
-lines.
-Let $\pi_\Lambda : \PP^d \to \PP^{d-g}$ be the projection with center $\Lambda$, and let $C \subset \PP^{d-g}$ be the image of our rational normal curve. We claim that the curve $C$ has degree $d$; that  $C$ has ordinary nodes at the points corresponding to the pairs $p_i,q_i$; and that $C$ has no other singularities.
-
-Thus we have to check that
-\begin{enumerate}
-\item $\Lambda$ is disjoint from the rational normal curve, so that the map $\pi_\Lambda$ is regular on $\PP^1$;
-\item $\Lambda$ does not meet any secant or tangent lines to $\PP^1$ other than the $L_i$, so that the map $\pi_\Lambda$ is an isomorphism away from the points $p_i, q_i$; and
-\item for each $i$, the 3-plane $\overline{2p_i + 2q_i}$ spanned by the tangent lines to $\PP^1$ at $p_i$ and $q_i$ meets $\Lambda$ in only one point (the point of intersection of $\Lambda$ with $L_i$), so that the common image point $\pi_\Lambda(p_i) = \pi_\Lambda(q_i) \in C$ is indeed a node of $C$.
-\end{enumerate}
-
-Each of these assertions can be verified by a  dimension count. Denote by $\Sigma_{d-g}(L_i) \subset \GG(g-1, d)$ the Schubert cycle of $(g-1)$-planes in $\PP^d$ meeting $L_i$. The cycles $\Sigma_{d-g}(L_i)$ have codimension $d-g$ in $\GG(g-1,d)$. By Proposition~\ref{independence on rnc} the lines $L_i$ are linearly independent , the Schubert cycles intersect properly in a subvariety
-$$
-X := \bigcap_{i=1}^g \Sigma_{d-g}(L_i) \subset \GG(g-1,d)
-$$
-of dimension $g(d-g+1) - g(d-g) = g$. (Thus a $(g-1)$-plane $\Lambda \in X$ is determined by its points of intersection with the $L_i$.) Since $\Lambda$ corresponds to a general point of $X$, we 
- have to show that the locus of $(g-1)$-planes violating each of the conditions above has strictly smaller dimension; we leave these verifications as Exercise~\ref{} below.
-
-Next, we project again: we take $\Gamma \cong \PP^{d-g-3} \subset \PP^{d-g}$ a general $(d-g-3)$-plane, and consider the projection $\pi_\Gamma : C \to \PP^2$. We claim that this map is regular and birational onto a rational nodal plane curve $C_0$, so that $C_0$ has $\binom{d-1}{2}$ nodes $r_1,\dots,r_{\binom{d-1}{2}}$, of which $r_1,\dots,r_g$ are the images of the nodes of $C$. Again, this requires a series of verifications: we have to show that the locus of planes $\Gamma \cong \PP^{d-g-3} \subset \PP^{d-g}$ for which each part of the statement fails has dimension strictly less than $\dim \GG(d-g-3, d-g) = 3(d-g-2)$; again, we leave this as an exercise.
-
-Finally, given all this, Lemma~\ref{local geometry of Severi} implies that we can find an arc $\{C_t\}$ in the Severi variety $\overline V_{d,g}$ whose general member has $\binom{d-1}{2} - g$ nodes and whose special member $C_0$ is the curve we've just constructed, with the $\binom{d-1}{2} - g$ nodes of $C_t$ specializing to the nodes $r_{g+1}, \dots r_{\binom{d-1}{2}} \in C_0$.
-
- Taking the normalization of the total space of this family yields a family of smooth curves of genus $g$ specializing to a $g$-nodal rational curve, as desired. 
- 
- %\fix{this NEEDS a proof. the normalization of a flat family
-%is not always the normalization of each fiber! In this case the general fiber gets normalized, but not the new nodes in the
-%special fiber.}
-\end{proof}
-
 \section{Exercises}
+
 \begin{exercise}\label{gonality of smooth plane curve}
 Let $C$ be a smooth plane curve of degree $d$. Show that $C$ admits a one-parameter family of maps $C \to \PP^1$ of degree $d-1$. Using the Riemann-Roch Theorem, show that $C$ does not admit a map $C \to \PP^1$ of degree $d-2$ or less.
 \end{exercise}
@@ -888,22 +488,31 @@ In Exercise~\ref{gonality of smooth plane curve}, we saw how to use the descript
 \begin{exercise}
 Let $C_0$ be a plane curve of degree $d\geq 4$ with one node and no other singularities, and let $C$ be its normalization. Show that $C$ admits a unique map $C \to \PP^1$ of degree $d-2$, but does not admit a map $C \to \PP^1$ of degree $d-3$ or less.
 \end{exercise}
+\begin{exercise}\label{general case of divisors on nodal curves}
+Suppose that $C$ is a smooth curve and $\nu: C \to C_0$ is a map to a plane curve with
+only nodes as singularities and let $D = D_0-D_\infty$ be a divisor on $C$. Modify the 
+technique of Section~ref{linear series on nodal plane curves} to compute the complete
+linear series $|D|$ without assuming that $D$ is disjoint from the preimages of the singular
+points. 
+Hint: Be careful to subtract the right multiples of the points that are preimages of the singular
+points.
+\end{exercise}
 
 \begin{exercise}
 Let $C_0$ be a plane curve of degree $d\geq 5$ with two nodes and no other singularities, and let $C$ be its normalization. Show that $C$ admits two maps $C \to \PP^1$ of degree $d-2$, but does not admit a map $C \to \PP^1$ of degree $d-3$ or less.
 \end{exercise}
 
-\fix{Is it true that a curve of degree $\geq \delta +3$ has gonality $d-2$ and only the projections from the nodes?
-use: $n\leq 2m+1$ points impose indep cond on curves of degree $m$ in the plane unless they contain m+2 colinear points.}
-
-
-\begin{example}[tacnodes]
-Next, consider the case of a \emph{tacnode}; that is, a singularity with two smooth branches simply tangent to one another, such as the zero locus of $y^2-x^4$. In this case there are again two points of $C$ lying over $q$, and a simple calculation shows that $m_1=m_2=2$. The adjoint ideal is thus the ideal of functions vanishing at $q$ and having derivative 0 in the direction of the common tangent line to the branches.
-\end{example}
-
-\begin{exercise}[ordinary triple points]
-In the case of an ordinary triple point---three smooth branches pairwiset ransverse to one another---there are three points of $C$ lying over $q$, and we have $m_1=m_2=m_3= 2$; the adjoint ideal is correspondingly 
- the square of the maximal ideal at $q$
+\begin{exercise}
+Generalizing some of the examples above, show that if a nodal plane curve of degree $d$ has $\delta\leq d+3$ nodes,
+then its gonality is $d-2$, and moreover every $g^1_d$ on the curve is given by projection from one of the nodes.
+You should make use of the following result from~\cite[p. 302]{MR1376653}:
+\begin{proposition}
+ A set of $n \leq 2d+ 2$ distinct
+points fails to impose independent conditions on curves of degree
+$d$ if and only if either $d + 2$ of the points  are collinear or $n = 2d + 2$ and all the points lie
+on a conic.
+\end{proposition} 
+Hint: a $g^1_{d-2}$ is a set of points that, together with the nodes, impose dependent conditions on forms of degree $d-3$.
 \end{exercise}
 
 \begin{exercise}
@@ -920,15 +529,16 @@ Here is a  general description in case the individual branches of $C_0$ at $p$ a
 \begin{exercise}
 Let $\nu : C \to C_0$ be the normalization of a plane curve $C_0$ and $p \in C_0$ a singular point. Denote the branches of $C_0$ at $p$ by $B_1,\dots,B_k$, and let $r_i$ be the point in $B_i$ lying over $p$. If the individual branches $B_i$ of $C_0$ at $p$ are each smooth, and we set
 $$
-m_i = \sum_{j \neq i} mult_p(B_i \cdot B_j)
+m_i = \sum_{j \neq i} \mult_p(B_i \cdot B_j)
 $$
-then the adjoint ideal of $C_0$ at $p$ is the ideal of functions $g$ such that $ord_{r_i}(\nu^*g) \geq m_i$.
+then the adjoint ideal of $C_0$ at $p$ is the ideal of functions $g$ such that $\ord_{r_i}(\nu^*g) \geq m_i$.
 (Hint: The computation can be done locally analytically. Let $R = \widehat{\sO_{C_0, p}}$ be the completion of the local ring
 of $C_0$ at $r_i$. The integral closure is then the product of rings $R_i = \widehat{\sO_{B_i}} \cong k[[t_i]]$,
 with $R_i = R/P_i$ as $P_j$ runs over the minimal primes of $R$. The multiplicity
 $m_i$ is the colength of the ideal $\sum_{j\neq i}P_j \subset R$.
 )
 \end{exercise}
+
 \begin{exercise}
 Continuing the example of a plane curve with a triple point $p$, show that requiring our curve of degree $m$ to be triple at $p$ gives us a ``nine-for-six" deal---the same net effect as when we required our curve of degree $m$ to be double. (In general, an ideal contained in the adjoint ideal will work as well; the adjoint ideal is characterized as the largest ideal that works.)
 \end{exercise}
@@ -936,6 +546,8 @@ Continuing the example of a plane curve with a triple point $p$, show that requi
 \begin{exercise}
 Now let $C \subset \PP^2$ be a plane curve with a tacnode at $p$. Show that by taking our curve of degree $m$ to pass through $p$ and be tangent to the branches of $C$ at $p$ we get a four-for-two deal; and that this is the best we can do, so that the effect of a tacnode is to drop the deficiency by 2.
 \end{exercise}
+
+%\fix{Joe will add a sequence of exercises on "infinitely near points"; culminate (?) with the theorem that $\delta$ can be computed in general as a sum of multiplicities of iterated blowups.}
 
 
 \input{footer}

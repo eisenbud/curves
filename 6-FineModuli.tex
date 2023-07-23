@@ -5,13 +5,19 @@
 
 \section{What is a moduli problem?}
 
-Algebraic geometry is almost unique among geometric theories in that the objects---varieties,  schemes or maps between them---can be parametrized by other varieties or schemes. The set of submanifolds of a given manifold, or more generally of maps between two given manifolds, seems too large to be given the structure of a finite-dimensional manifold itself. By contrast, any algebraic variety is specified by a finite collection of polynomials, which in turn have a finite number of coefficients, so it's not too far-fetched that the collection of all varieties with specified numerical invariants, or morphisms between two given varieties, could be given the structure of a ``moduli space'' that is a variety (or scheme or\dots) in its own right.
+Algebraic geometry is almost unique among geometric theories in that the objects involved---varieties,  schemes or maps between them---can be parametrized by other varieties or schemes. The set of submanifolds of a given manifold, or more generally of maps between two given manifolds, seems too large to be given the structure of a finite-dimensional manifold itself. By contrast, any algebraic variety is specified by a finite collection of polynomials, which in turn have a finite number of coefficients, so it's not too far-fetched that the collection of all varieties with specified numerical invariants, or morphisms between two given varieties, could be given the structure of a ``moduli space'' that is a variety (or scheme or\dots) in its own right.
 
-For example, perhaps the original one, projective plane curves of degree $d$
+For an example---perhaps the original one---projective plane curves of degree $d$
 are in natural one-to-one correspondence with the forms of degree $d$ modulo the group of nonzero scalars---that is, with the points of the dual of the projective space
 $ \PP(H^0(\sO_{\PP^2}(d)))=\PP^{\binom{d+2}{2}-1} $.
+Thus, for example, plane cubics are parametrized by $\PP^{9}$, and a  family $\cC \to B$ of cubics corresponds to a map $\phi: B \to \PP^9$.
 In this chapter, we'll give a general framework for the notion of moduli space, introducing the main examples that we will treat in this book.
 
+\begin{figure}
+ \caption{One-parameter family of plane cubics}
+\centerline {\includegraphics[height=2in]{"Fig6.1.pdf"}}
+\end{figure}
+ 
 There are several ways in which the possibility of making moduli spaces has been useful in algebraic geometry. First, the existence of a moduli space that  parameterizes objects of a certain type allows us to speak of ``the general object'', meaning that we allow ourselves to avoid the ``special'' properties of objects parameterized by closed subvarieties of the moduli space. We have already used this
 possibility in many places in this book. 
 
@@ -24,7 +30,12 @@ data, and we have also exploited this idea in
 Chapter~\ref{JacobianChapter} to explain the count of odd and even theta characteristics on a a general curve by appealing to the existence of a specialization to a hyperelliptic curve. In a related manner, we have already seen how the fact that invertible sheaves of degree $d$ on a curve $C$ are parametrized by a $g$-dimensional variety allows us to prove the ``$g+3$" theorem (Theorem~\ref{g+3 theorem}).
 
 Third, to the extent that we can describe the intersection theory of a moduli space, it opens up the possibility of doing enumerative geometry on it to count solutions of geometric problems---and in particular to prove the existence of solutions. For example, knowing that the parameter space for lines in $\PP^3$ is the Grassmannian $\GG(1,3)$, a projective variety of dimension 4, and that the condition that the set of lines meeting a given curve of degree $d$
-is a divisor linearly equivalent to  $d$ times the hyperplane sections, we can conclude  that there exists a line in $\PP^3$ meeting any any four given curves \cite[****]{3264}. We will use the same idea to prove the much deeper existence of certain linear series on all curves (the ``existence" half of the Brill-Noether theorem, discussed in Chapter~\ref{Brill-Noether}). 
+is a divisor linearly equivalent to  $d$ times the hyperplane sections, we can conclude  that there exists a line in $\PP^3$ meeting any any four given curves \cite[Section 3.4.1]{3264}. We will use the same idea to prove the much deeper existence of certain linear series on all curves (the ``existence" half of the Brill-Noether theorem, discussed in Chapter~\ref{Brill-Noether}). 
+
+\begin{figure}
+ \caption{In a one-parameter family of lines in $\PP^3$, a finite number will meet a given curve $C$}
+\centerline {\includegraphics[height=3in]{"Fig6.2.pdf"}}
+\end{figure}
 
 In modern terms, a \emph{moduli problem} consists of a class of objects in algebraic geometry---schemes, subschemes of a given scheme, sheaves on schemes, maps of schemes, typically defined by some common attributes---and a notion of what it means to have a \emph{family} of these objects parametrized by a scheme $B$. The notion is formalized in the idea of a \emph{moduli functor}, 
 which associates to each scheme $B$ the set of families over $B$ of the given sort. Examples will make this vague notion more concrete.
@@ -41,15 +52,16 @@ the equivalence between divisors of degree $d$ on a smooth curve and degree $d$ 
 whose restriction to each fiber $b\times C$ has a given degree $d$.
 The moduli spaces are the Jacobian and Picard varieties, discussed in Section~\ref{Picard section}.
 
-\item \emph{Hurwitz spaces}. The objects are curves of a given genus, together with maps to $\PP^1$ of given degree, up to isomorphism of the curves that commute with the maps. Often the allowable ramification indices are specified.
+\item \emph{Hurwitz spaces}. The objects are curves of a given genus, together with maps to $\PP^1$ of given degree, up to isomorphism of the curves that commute with the maps. Often the allowable ramification indices are specified. We will discuss the simplest Hurwitz scheme in Chapter~\ref{CurvesModuliChapter}.
 
 \item \emph{Severi varieties}. The objects are plane curves
 of given degree $d$ and geometric genus $g$. If $g \neq {d-1\choose 2}$
 the curves will necessarily be singular but are often
-constrained to have only mild singularities, usually only nodes.
+constrained to have only mild singularities, usually only nodes. We will discuss the Severi variety in Chapter~\ref{CurvesModuliChapter}.
 
 \item \emph{Hilbert schemes}. The objects are curves of given degree $d$ and arithmetic genus $g$ in $\PP^r$.  A family over $B$ is a subscheme $\cC \subset B \times \PP^r$, flat over $B$,  whose fibers are smooth, projective curves of genus $g$. There are many useful extensions of this notion. For example, there are Hilbert schemes
 for subschemes $X$ contained in a given projective scheme $Y$ and having specified Hilbert polynomial or Hilbert function. 
+A discussion of the Hilbert scheme is the main business of this Chapter.
 
 \item \emph{Moduli of smooth curves}. The objects are isomorphism classes of smooth, projective curves of genus $g$. A family over $B$ is an equivalence class of smooth, projective morphisms $f : \cC \to B$ whose fibers are curves of genus $g$, where two such families $f, f'$
 are equivalent if there is an isomorphism from the source of $f$ to the source
@@ -64,8 +76,8 @@ $$
 commute.
 \end{enumerate}
 
+The moduli spaces $M_g$ of curves are harder to construct, and we will have a separate discussion of them in the following chapter. Nonetheless, it will be useful at several points in this chapter to assume their existence, and we will do so accordingly.
 
-We have already encountered examples 1 and 2 in Chapter~\ref{JacobianChapter}. Severi varieties will be discussed in Chapter~\ref{PlaneCurvesChapter}. In this chapter we will discuss Hilbert schemes, Hurwitz spaces, the moduli of curves and (briefly) the Hurwitz scheme.
 
 \section{What is a solution to a moduli problem?}
 
@@ -129,28 +141,46 @@ $$
 Since the Hilbert polynomials of the fibers of a flat family are all equal (\cite[Section III.9]{Hartshorne1977}, the Hilbert scheme is the disjoint union of components corresponding to particular Hilbert polynomials. For example, the set of curves $C \subset \PP^r$ of degree $d$ and genus $g$ corresponds to a subset of the Hilbert scheme parametrizing subschemes of $\PP^r$ with Hilbert polynomial $p(m) = dm - g + 1$, though not all schemes with this hilbert polynomial are purely one-dimensional subschemes, as we shall see. In this section, we'll describe
  the tangent spaces to the Hilbert scheme and sketch the construction. For a rigorous treatment of the construction of the Hilbert scheme, including many generalizations,  see~\cite{HomogHilbert} or \cite{MR2222646}. In Chapters~\ref{HilbertSchemesChapter} and~\ref{HilbertSchemesCounterexamplesChapter}, we'll describe  the Hilbert schemes of curves of low degree and genus in $\PP^3$ in more detail. 
 
-\subsection{The tangent space to the Hilbert scheme}
+\subsection{The tangent space to the Hilbert scheme}\label{tan hilbert section}
 
 Following the general recipe for tangent spaces to fine moduli spaces, we need to understand flat families
-of projective schemes over $E := \Spec \CC[\eps]/(\eps^2)$. Recall (\cite[****]{Hartshorne1977} that if $X\subset \PP^r$ is a smooth subscheme then
-the dual of the exact sequence
+of projective schemes over $E := \Spec \CC[\eps]/(\eps^2)$. Recall (\cite[p. 182]{Hartshorne1977} that if $X\subset \PP^r$ is a smooth subscheme then
+ the normal bundle $\sN_{X/\PP^r}$ of $X$ in $\PP^r$ is defined in in terms of the tangent bundles
+ of $X$ and $\PP^r$ by the exact sequence: 
 $$
-0\to \sI_{X/\PP^r}/\sI_{X/\PP^r}^2 \to \Omega_{\PP^r}\mid_X \to \Omega_X \to 0
+0\rTo \sT_X \rTo^{\phi} \sT_{\PP^r}\mid_X \rTo \sN_{X/\PP^r} \rTo 0.
 $$
-identifies $\sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X)$ with the \emph{normal bundle} of $X$ in $\PP^r$.
-By analogy, for any subscheme $X\subset \PP^r$ we define the \emph{normal sheaf} to be
+Thus a global section of 
+$\sN_{X/\PP^r}$
+can be thought of as an infinitesimal motion of $X$.
+
+\pict{normal vector field and perturbed curve (this may have been drawn for the "self-intersection" discussion)}
+
+To define the normal sheaf for locally complete intersection subschemes $X$ we first define the \emph{conormal sheaf}
+to be the kernel of the dual  of $\phi$, which is the natural map $\Omega_{\PP^r}\mid_X \to \Omega_X$,
+and since $X$ is locally a complete intersection, this corresponds to the exact sequence:
+$$
+0\to \sI_{X/\PP^r}/\sI_{X/\PP^r}^2 \to \Omega_{\PP^r}|_X \to \Omega_X \to 0.
+$$
+We thus define $\sN_{X/\PP^r} := \sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X)$.
+
+By analogy, for any subscheme $X\subset \PP^r$ we define the \emph{normal sheaf}
+of $X$ to be
 $$
 \sN_{X/\PP^r} := \sHom(\sI_{X/\PP^r}/\sI_{X/\PP^r}^2, \sO_X).
 $$
+In the smooth case, we see from the geometric description that  The following theorem shows that this
+has the same connection with infinitesimal motions for arbitrary subschemes $X$.
+
 
 \begin{theorem}\label{tangent space of Hilb}
-Let $X\subset \PP^r$ be a projective variety with Hilbert polynomial $p(m)$. The flat families 
+Let $X\subset \PP^r$ be a subscheme with Hilbert polynomial $p(m)$. The flat families 
 $\sX \subset \PP^r\times E$ specializing to $X$ at the closed point defined by $(\eps)$
 are in natural one-to-one correspondence with the vector space $Hom_{\PP^r}(\sI_{X/\PP^r}, \sO_X) = H^0(\sN_{X/\PP^r})$, which is thus the tangent space to the Hilbert scheme $Hilb_{p}(\PP^r)$ at $[X]$.
 \end{theorem}
 
 \begin{proof}
-We will actually treat the analogous result for an affine scheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2)= S \oplus \eps S$. 
+We will actually treat the analogous result for an affine subscheme $X \subset \AA^r$; since our construction is natural, it will patch on an affine cover to give the projective case stated above. To simplify the notation, set $U = \CC[\eps]/(\eps^2)= S \oplus \eps S$. 
 
 A $U$-module $M$ is flat  over $U$ if and only if $\Tor_1^U(\CC,M) = 0$. 
 Since the free resolution of $\CC$ as a $U$-module has the form
@@ -230,7 +260,7 @@ $$
 obtained by associating to a twisted cubic $C$ the second graded piece of its homogeneous ideal. 
 
 This differs significantly from the example of plane curves given at the beginning of this chapter: there, the objects to be parametrized were the zero locus of a single polynomial, and we could vary those coefficients arbitrarily and still have a plane curve; thus, the image of the analogous map was open in the projective space $\PP^N$. In the present situation, though, if we vary the coefficients of the three quadratic polynomials $Q_i$ generally, the resulting quadrics will no longer intersect in a twisted cubic curve, but rather in eight points. Thus the image of the map $h$ is more complicated.
-In fact, we'll see in Section~\ref{*****} below that the image of this map is a locally closed subvariety of the Grassmannian (we'll give the equations cutting it out in $G$), and the image can lay claim to being the moduli space of twisted cubics in $\PP^3$.
+In fact, we'll see in Section~\ref{hilb construction} that the image of this map is a locally closed subvariety of the Grassmannian (we'll give the equations cutting it out in $G$), and the image can lay claim to being the moduli space of twisted cubics in $\PP^3$.
 
 In the meantime, we can analyze the open subset of the Hilbert scheme consisting of twisted cubics. First a basic lemma:
 
@@ -240,11 +270,9 @@ $X\subset B\times \PP^n$ over a smooth base $B$. The points $b\in B$ such that t
 \end{lemma}
 
 \begin{proof}
-Since $B$ is smooth, it's closed points are locally complete intersections, so if $p\in X$ is a singular point of $X$ then the fiber through $p$ is singular. Since the singular subset of $X$ is closed and the family is projective, the image of the singular set in $X$ is closed, and we may remove it and assume that $X$ is smooth from the start. Now the condition that a point on a fiber is singular is a closed condition on $X$, so again its image in $B$ is closed. Finally, a smooth fiber $X_b$ is connected if and only if $h^0\sO_{X_b})$ and by the flat base change theorem~\cite[***]{Hartshorne1977} this set is open as well.
+Since $B$ is smooth, it's closed points are locally complete intersections, so if $p\in X$ is a singular point of $X$ then the fiber through $p$ is singular. Since the singular subset of $X$ is closed and the family is projective, the image of the singular set in $X$ is closed, and we may remove it and assume that $X$ is smooth from the start. Now the condition that a point on a fiber is singular is a closed condition on $X$, so again its image in $B$ is closed. Finally, a smooth fiber $X_b$ is connected if and only if $h^0\sO_{X_b})$ and by the flat base change theorem~\cite[Theorem 12.11]{Hartshorne1977} this set is open as well.
 \end{proof}
 
-\fix{revised to here}
-%%%%%%%%%%%%%%%%%%%%
 
 \begin{proposition}\label{hilb of twisted cubics}
 The open subset $\cH^\circ$ of the Hilbert scheme $Hilb_{3m+1}(\PP^3)$ parametrizing twisted cubics is irreducible of dimension 12.
@@ -262,7 +290,7 @@ Since every twisted cubic is a translate of $C_0$, this is surjective, with fibe
 \end{proof}
 
 
-\subsection{Construction of the Hilbert scheme in general}
+\subsection{Construction of the Hilbert scheme in general}\label{hilb construction}
 
 The Hilbert scheme is more complicated than would appear from the examples above, starting with the Hilbert polynomial $3m+1$. There are many subschemes of $\PP^3$ that have the same Hilbert polynomial $3m+1$ as a twisted cubic---for example, the union of a plane cubic and a point---and are not the intersection of the quadrics containing them. (See Exercises \ref{characterization of degree} and Exercise~\ref{deg of disjoint union}). In Chapters~\ref{HilbertSchemesChapter}
 and \ref{HilbertSchemesCounterexamplesChapter} we will discuss many more components of Hilbert schemes.
@@ -347,41 +375,40 @@ S \otimes H^0(\cO_{\PP^r}(1)) \to H^0(\cO_{\PP^r}(m_0+1)),
 $$
 and indeed in a neighborhood of any point of $G$ in the image of $h$, the common zero locus of the minors of size $\binom{r+m_0+1}{r} - p(m_0+1)$ of a matrix representative of this map is the image of $h$; and these functions define the Hilbert scheme.
 
+\section{Variants of the Hilbert scheme construction}
+
+The Hilbert scheme construction is a versatile tool; it can be used to create parameter spaces for many objects beyond simple subschemes of projective space. We will mention a few of these here.
+
 \subsection{Subschemes of a given scheme}
 
 Though the Hilbert scheme is a priori about subschemes of projective space, it is easy to see that if $X\subset \PP^n$,
 then the family of subschemes $Y$ of $X$ with given Hilbert function $p$ is a closed subscheme of $Hilb_p(\PP^n)$: we simply
 add the condition that the vector space of forms of high degree defining $Y$  contain the vector space defining $X$---this is also a determinantal condition.
 
+\subsection{Nested pairs} A variant of the Hilbert scheme construction can be used to parametrize \emph{nested pairs} of subschemes of $\PP^r$; that is, given a pair of polynomials $p(m)$ and $q(m)$ we can consider pairs $(X,Y)$ with $X \subset Y \subset \PP^r$, with $X$ having Hilbert polynomial $p$ and $Y$ having Hilbert polynomial $q$. The construction is simple: we find a suitably large $m$, and associate to any such pair $X \subset Y \subset \PP^r$ the point
+$$
+H^0(\cI_Y(m)) \subset H^0(\cI_X(m)) \subset H^0(\cO_{\PP^r}(m))
+$$
+in the flag manifold $F(\binom{r+m}{r} - q(m), \binom{r+m}{r} - p(m), \binom{r+m}{r})$.
+
+For example, we could take $p=1$; the resulting space would parametrize pointed subschemes $(y,Y)$ with $Y \subset \PP^r$ having Hilbert polynomial $q$ and $y \in Y$.
+
+\subsection{Relative Hilbert schemes} Suppose now that $\cX \to B$ is a family of projective schemes over some base $B$; that is, $\cX$ is a subscheme of $B \times \PP^r$ flat over $B$. For any Hilbert polynomial $q(m)$, we can parametrize pairs $(b, Y)$ with $b \in B$ and $Y \subset X_b$ a subscheme of the fiber $X_b$ having Hilbert polynomial $q$.
+
+\subsection{Morphisms} Suppose we want to parametrize morphisms between two given projective schemes $X$ and $Y$. We can embed the product $X \times Y$ in a larger projective space $\PP^N$, and then consider the Hilbert scheme $\cH$ parametrizing subschemes of the product $X \times Y$. Among such subschemes are the graphs of maps $f: X \to Y$; since a map is determined by its graph, this expresses the family of morphisms from $X$ to $Y$ as a locally closed subscheme of $\cH$.
+
+\subsection{The Isom functor}\label{Isom}
+Finally, we can combine the last two constructions to construct what is called the Isom scheme. The situation is this: we are given families of projective varieties $\cX \subset B \times \PP^r$ and $\mathcal{Y} \subset B\times \PP^s$, and we want to parametrize the set of morphisms between members of these two families; that is, the set
+$$
+\{ (b, f) \mid b \in B \text{ and } f: X_b \to Y_b \}
+$$
+The techniques of the last two subsections allow us to do exactly that; and we can further restrict to the locus where $f$ is an isomorphism to arrive at a scheme, called the Isom scheme, parametrizing isomorphisms between corresponding fibers of $\cX$ and $\mathcal Y$.
+
+
+
+
 \section{Exercises}
 
-%\begin{exercise}\label{symmetric power vs Hilbert scheme}
-%\begin{enumerate}
-% \item If $X$ is a smooth curve, then the Hilbert scheme of finite subschemes of $X$ of degree $d$ is
-% isomorphic to the symmetric product of $d$ copies of $X$.
-% \item If $X$ is a singular curve or any variety of dimension $r \geq 2$, the symmetric power $X^{(d)}$ is \emph{not} the Hilbert scheme of subschemes of dimension 0 and degree $d$ on $X$. 
-% 
-% %\fix{maybe needs a hint, especially since we can't do even the first part!}
-%\end{enumerate}
-% \end{exercise}
-
-
-\begin{exercise}
-It is not an accident that we can characterize a fine moduli space $M$ in terms of the maps into it. 
- Let $X$ be a category, and $F,G$ two functors from $X$ to the category of sets.
- A morphism $\eta: F\to G$ in the category of functors is what is called a \emph{natural transformation}:
- for every object $a\in X$ there is a morphism $\eta_a:F(a) \to G(a)$ such that for every
- morphism $f: a\to b$ in $X$ the compositions $G(f)\circ \eta_a$ and $\eta_b\circ F(f)$
- are equal. 
-\begin{enumerate}
- \item Prove Yoneda's Lemma: If $X$ is any category, and $F$ is a contravariant functor from $X$ to the category of sets, then 
- $$
- \Hom_{\hbox{\scriptsize Functors on $X$}}(\Hom_X( -, Z), F) = F(Z)
- $$
- \item Conclude that if the functors $\Hom_X( -, Z)$ and $\Hom_X( -, Z')$ are isomorphic in the functor category, 
- then $Z \cong Z'$ in $X$; that is, the functor $\Hom_X( -, Z)$ determines the object $Z$ up to isomorphism.
- \end{enumerate}
-\end{exercise}
 
 \begin{exercise}\label{deg of disjoint union}
 Suppose that a scheme $X\subset \PP^n$ is the disjoint union of subschemes $Y,Z$. Show that the Hilbert polynomial of
@@ -397,13 +424,33 @@ $X$ is the sum of the Hilbert polynomials of $Y$ and $Z$ minus the Hilbert polyn
 Let $H \subset \PP^3$ be a 2-plane; let $C \subset H$ be a plane cubic curve and $p \in H \setminus C$ and point in $H$ not on $C$; let $X = C \cup \{p\}$.
 \begin{enumerate}
 \item Show that the Hilbert polynomial of $X$ is $p_X(m) = 3m+1$.
-\item Show that the smallest value of $m_0$ satisfying the statement of Lemma~\ref{} is 4.
+\item Show that the smallest value of $m_0$ satisfying the statement of Lemma~\ref{matsusaka} is 4.
 \end{enumerate}
 \end{exercise}
 
 \begin{exercise}\label{rational normal hilbert}
-Use an  argument like that of Proposition~\ref{hilb of twisted cubics} to show that the restricted Hilbert scheme $\cH^\circ \subset \cH_{0,r,r}$ of rational normal curves $C \subset \PP^r$ is irreducible of dimension $r^2+2r-3$.
+Use an  argument like that of Proposition~\ref{hilb of twisted cubics} to show that the restricted Hilbert scheme $\cH^\circ$ of rational normal curves $C \subset \PP^r$ is irreducible of dimension $r^2+2r-3$.
 \end{exercise}
 
+\begin{exercise}\label{hilb at a ci}
+If $C = X\cap Y\subset \PP^3$ is a complete intersection of surfaces of degrees $d,e$, then
+$Hilb$ is smooth at the point $[C]$, of dimension $2\binom{3+d,3}-4$ if $d=e$
+or $\binom{3+d}{3} +\binom{3+e}{3} -\binom{3+e-d}{3} -3$ if $d<e$.
+
+Hint: The normal bundle is $\sN = \sO_C(d)+\sO_C(e)$. To prove smoothness, use
+Exercise~\ref{ci is acm} to compute $H^0(\sN)$.
+\end{exercise}
+
+%\begin{section} possible exercises:
+%\begin{enumerate}
+%\item Iarrobino: large component
+%\item hilb of quartics in P3
+%\item hilb of all rational curves in P3
+%\item hilb of pairs: define; prove "line on quadric" is irreducible.
+%\item hilb for linear space is the Grassmannian
+%\item describe an analogue of the construction of hilb for the case of nested pairs of schemes
+%\item in a hilb \times hilb, show that the locus of pairs of schemes that intersect in closed. (Hint intersect universal families, push forward)
+%\end{enumerate}
+%\end{section}
 \input{footer}
 

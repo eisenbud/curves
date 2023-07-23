@@ -1,0 +1,514 @@
+
+\input{header}
+
+\chapter{Moduli of curves} 
+\label{CurvesModuli chapter}\label{CurvesModuliChapter}
+
+
+In the preceding chapter, we described the \emph{Hilbert scheme}, a fine moduli space for curves in projective space. In
+this chapter we will discuss the second moduli space central to the theory of algebraic curves: $M_g$, which parametrizes isomorphism classes of smooth projective curves of genus $g$. As we'll see, $M_g$ is not a fine moduli space, but it comes close, in a sense we'll make precise below.
+
+
+% has a weaker property:
+%\begin{definition}\label{coarse moduli definition}
+%A course moduli space for a contravariant functor $F: Schemes \to Sets$ 
+%is a scheme $M$ whose closed points
+%are in one-to-one correspondence with $F(\Spec \CC)$ 
+%\begin{enumerate}
+%\item There is a natural transformation $F \to \Mor_{Schemes}(-, M)$ that is an isomorphism on $\Spec \CC$;
+%\item For any scheme $M'$ and natural transformation $F \to \Mor_{Schemes}(-, M')$
+% there is a morphism $M' \to M$ such that the diagram
+%$$
+%\begin{diagram}
+%F& & \rTo & & \Mor_{Schemes}(-, M')\\
+%& \rdTo & & \ldTo & \\
+%& & \Mor_{Schemes}(-, M) & &
+%\end{diagram} 
+%$$
+%commutes.
+%\end{enumerate}
+%For example, if $F$ is the functor sending $B$ to the set of flat families of smooth curves of genus $g$ over $B$,
+%then a scheme $M_g$ is a coarse moduli space for families of smooth curves if the closed points of $M_g$ are in one-to-one correspondence with isomorphism types of smooth curves,
+%and maps to $B \to M_g$ are the best possible approximation (among families of maps to a scheme) to families
+%of smooth curves over $B$.
+%\end{definition}
+
+To describe the situation,  we will start with the case of curves of genus 1, where everything can be made explicit.
+
+
+\section{Curves of genus 1}
+
+Let $C$ be a smooth curve of genus 1. Any invertible sheaf of degree 2 on $C$ can be written as
+$\sO_C(2p)$, and defines
+a morphism to $\PP^1$ with 4 distinct branch points. Since the automorphism group of $C$ is transitive,
+these 4 points in $\PP^1$ are independent of the choice of $p$, and are well-defined
+up to an automorphism of $\PP^1$.    As explained in Section~\ref{branched covers},  this means that every curve $C$ of genus 1 can be realized as the completion of an affine curve
+$$
+y^2 = f(x)
+$$
+where $f$ is a quartic polynomial with distinct roots $\lambda_1, \dots \lambda_4$; that is, 
+$$
+f(x) = \prod_{i=1}^4 (x - \lambda_i).
+$$
+Thus we would like to define $M_1$ to be the set of 4-tuples of distinct points of $\PP^1$ modulo the action of $\Aut(\PP^1) = PGL_2$.
+
+As we will explain in the next sections, quotients by infinite groups can behave badly,
+but in this case we can compute the quotient in a much simpler way:
+There is a unique automorphism of $\PP^1$ carrying the three points $\lambda_1, \lambda_2,\lambda_3$ to the points $0, 1$ and $\infty \in \PP^1$ respectively, so that we can write $C$ as the zero locus of
+$$
+y^2 = x(x-1)(x-\lambda)
+$$
+for some complex number $\lambda  \in \PP^1 \setminus \{0,1,\infty\}$; we'll call this curve $C_\lambda$. 
+This expression is not unique, since if we reordered the original  four points $\lambda_i$, we might arrive at a different value of $\lambda$; for example, if we exchanged 0 and $\infty$ and fixed 1, $\lambda$ would be replaced by $1/\lambda$. Thus the symmetric group $S_4$ acts on the set $\AA^1 \setminus \{0,1,\infty\}$
+and one can show that the orbit of $\lambda$ under this action is
+$$
+ \left\{ \lambda, 1-\lambda, \frac{1}{\lambda}, \frac{1}{1-\lambda}, \frac{\lambda-1}{\lambda}, \frac{\lambda}{\lambda - 1} \right\}.
+$$
+There are 6 points in the orbit rather than 24 because the Klein 4-group
+$K = \ZZ/2\times \ZZ/2 \subset S_4$ of fixed-point free involutions acts trivially, so what we really have is an action of $S_4/K \cong S_3$.
+
+Since $S_3$ is finite and $\PP^1 \setminus \{0,1,\infty\}$ is a normal affine curve, the quotient space by the action is again a normal affine curve whose points are in one-to-one
+correspondence with the orbits, and thus with the set of curves of genus 1. 
+ Moreover, by L\"uroth's theorem, Theorem~\ref{}, the quotient is rational, meaning that the field of rational functions on the quotient---that is, the subfield of $\CC(\lambda)$ invariant under the action of $S_3$---is of the form $\CC(j)$ for some rational function $j(\lambda)$ of degree 6. Of course, there are many possible generators of the field of rational functions on the quotient; one that works is
+\begin{equation}\label{formula for j}
+j(\lambda) := 256\frac{(\lambda^2-\lambda + 1)^3}{\lambda^2(\lambda-1)^2},
+\end{equation}
+known as the \emph{$j$-function}. As $\lambda$ varies in $\PP^1 \setminus \{0,1,\infty\}$, $j(\lambda)$ can assume any value in $\AA^1$.
+ 
+ 
+%One can check that the quotient map $\PP^1 \setminus \{0,1,\infty\} \to \PP^1\setminus \infty = \AA^1$
+%is given by the rational function
+%$$
+%j(\lambda) := 256\frac{(\lambda^2-\lambda + 1)^3}{\lambda^2(\lambda-1)^2},
+%$$
+%known as the $j$-function. A
+
+Summarizing, we have proven:
+
+\begin{theorem}
+The set of isomorphism classes of smooth projective curves of genus 1 is in bijection with the points of the affine line $M_1 \cong \AA^1$, with the curve defined by $y^2 = x(x-1)(x-\lambda)$
+corresponding to $j(\lambda)\in \AA^1$.
+\end{theorem}
+
+\subsection{$M_1$ is a coarse moduli space}
+
+ As we will see,
+$M_1$ is not a fine moduli space, but it comes close in two senses. 
+
+\begin{proposition}\label{M1 is coarse}
+To any family $\pi : \cC \to B$  of smooth projective curves of genus 1 over a reduced base $B$ we can associate a natural morphism of schemes $\phi : B \to M_1$ whose value at any point $b \in B$ is the $j$-invariant of the corresponding fiber $C_b$.
+\end{proposition} 
+
+This is slightly weaker than saying that $M_1$ is a coarse moduli space, because we are restricting ourselves to families with reduced bases; in fact, the statement is true in general, but requires more machinery to prove.
+
+\begin{proof}
+To start, we will work locally in $B$: for a given $b_0 \in B$, we will choose a suitably small neighborhood $U$ of $b_0 \in B$ and restrict ourselves to the preimage $\cC_U = \pi^{-1}(U)$. The first thing to do is to express the curves $C_b$ in our family as 2-sheeted covers of $\PP^1$, which is to say we want to choose an invertible sheaf on $\cC_U$ having degree 2 on each fiber $C_b$. Since we're working locally in $B$,
+we can find a section $\rho : U \to \cC_U$ of $\pi : \cC \to B$. If we let $D = \rho(U) \subset \cC_U$ be the image, then we can take our invertible sheaf to be $\cL := \cO_{\cC_U}(2D)$.
+
+Next, by the theorem on cohomology and base change, the direct image $\cE := \pi_*(\cO_{\cC_U}(2D))$ is locally free of rank 2, and we get a morphism $\cC_U \to \PP(\cE)$ expressing each curve $C_b$ as a two-sheeted cover of the corresponding fiber $\PP(\cE_b)$. Again, since we are working locally in $B$, we can trivialize the bundle $\cE$, so that we get a diagram
+$$
+\begin{diagram}
+\cC_U & & \rTo & & U \times \PP^1 \\
+& \rdTo & & \ldTo & \\
+& & U & &
+\end{diagram} 
+$$
+Once more restricting to a smaller neighborhood $U$ if necessary, we can write the family $\cC_U \to U$ as the locus
+$$
+y^2 = \prod_1^4 (x - \lambda_i),
+$$
+where the $\lambda_i$ are regular functions on $U$. The $j$-function of the $\lambda_i$  yields a map $U \to M_1$; since the value of the $j$-function at a point is determined by the isomorphism type of the fiber over this point, these maps agree on overlaps to give  the desired map $B \to M_1$.
+\end{proof}
+
+
+We can see that $M_1$ is not a fine moduli space directly from the explicit formula~\ref{formula for j} for the $j$-function. For example, from ~\ref{formula for j}, we see that if $j : B \to M_1 = \AA^1$ is a map that is actually associated to a family $\cC \to B$ of curves of genus 1, then every zero of the $j$-function has multiplicity divisible by 3.  Similarly, the function $j(\lambda)-1728$ vanishes doubly at $\lambda = -1, 2, 1/2$, so every zero of $j - 1728$ must have even multiplicity. Thus some maps $B\to M_1$ do not correspond to families of curves; in particular there is no universal family over $M_1$. 
+
+\subsection{The good news}
+
+However, $M_1$ comes close to being a fine moduli space in the following sense:
+
+\begin{proposition}\label{families on pullbacks} Let $B$ be a reduced scheme.
+\begin{enumerate}
+\item If $j : B \to \AA^1$ is any regular function on $B$, then there exists a finite cover $\alpha : B' \to B$ such that $j \circ \alpha$ is the $j$-function of a family of curves of genus 1 on $B'$; and
+\item If $\pi : \cC \to B$ and $\eta : \cD \to B$ are two families of curves of genus 1 with the same associated $j$-function, then there exists a finite cover $\alpha : B' \to B$ and an isomorphism $\cC \times_B B' \cong \cD \times_B B'$ such that the diagram
+$$
+\begin{diagram}
+\cC \times_B B' & & \rTo & & \cD \times_B B' \\
+& \rdTo & & \ldTo & \\
+& & B' & &
+\end{diagram} 
+$$
+commutes.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof} For the first of these assertions, let
+$$
+B' := \{(b, \lambda) \in B \times (\AA^1 \setminus \{0,1\}) \mid j(b) = j(\lambda)\}
+$$
+where $j(\lambda)$ is as given in~\ref{formula for j}. We have already described a family of curves of genus 1 over the ``$\lambda$-line" $\AA^1 \setminus \{0,1\}$; the pullback to $B'$ is the desired family.
+
+For the second half, we want to do something similar. Specifically, we want to choose sections $\sigma : B \to \cC$ and $\tau: B \to \cD$ and take
+$$
+B' := \{ (b, \phi) \mid b \in B, \; \phi : C_b \rTo^{\cong} D_b  \text{ and } \phi(\sigma(b)) = \tau(b) \};
+$$
+by Corollary!\ref{finite automorphism genus 1}, $B'$ will then be a finite cover of $B$ and when we pull back the two families to $B'$ we have a tautological isomorphism between them. The only issue is how to give $B'$ an appropriate scheme structure, and for this we can use the Isom functor described in Section~\ref{Isom}.
+\end{proof}
+
+Thus, $M_1$ is not a fine moduli space for smooth curves of genus 1, but it is the next best thing: we don't get a bijection between families of curves of genus 1 over a given base $B$ and maps $j : B \to M_1$; but we do get a map from the former to the latter with ``finite kernel and cokernel"---what we might call a \emph{Deligne-Mumford moduli space}.
+
+\subsection{Compactifying $M_1$}
+
+A natural question to ask is, if every value of $j \in \AA^1$ corresponds to an isomorphism class of curves $C_j$ of genus 1, what happens to the curves $C_j$ as $j$ goes to $\infty$? Or, equivalently, what happens to the curve $C_\lambda$ given as the double cover
+$$
+y^2 = x(x-1)(x - \lambda)
+$$
+as $\lambda$ approaches 0, 1 or $\infty$---the other branch points of the double cover? The answer is clear from the equation: when two branch points of a double cover of smooth curves come together, the limiting curve has a node. In fact, there is a unique isomorphism class of irreducible curves of arithmetic genus 1 having a node; it's represented by the curve with equation $y^2=x^2(x-1)$.
+
+\pict{elliptic curve degenerating to a nodal curve: fig7.0.pdf}
+
+The upshot of this is that if we enlarge the original class of curves parametrized by $M_1$---``smooth projective curves of genus 1"---to the slightly larger class, ``irreducible nodal projective curves of arithmetic genus 1," we still have a coarse moduli space $\overline M_1$ for this slightly larger class of objects. This enlarged moduli space is obtained by adding one point ``at $\infty$" to the existing space $M_1 \cong \AA^1$ to form $\overline M_1 \cong \PP^1$.
+
+This is an example of what is called a \emph{modular compactification}. In general, if we have a class of objects parametrized by a (non-compact) moduli space $M$ we may be able enlarge the class of objects to be parametrized, with the result that the moduli space $\overline M$ of the larger class is compact. 
+
+Modular compactifications of a given moduli problem may or may not exist. It's sometimes a tricky problem to find a suitable class of objects to parametrize: if we don't add enough additional isomorphism classes, not every 1-parameter family of objects in our original class will have a limit in the larger class, meaning the enlarged moduli space will still not be compact; if we add too many,  1-parameter families may have more than one possible limit, meaning the enlarged space won't be separated. For example in the family
+ of curves $C_t$ given as
+$$
+C_t = V(y^2 -x^3 - t^2x - t^3)
+$$
+the $j$ function is constant when $t\neq 0$, but  the limiting curve $C_0$ has a cusp. This shows that
+we could not have added cuspidal curves to $M_1$.
+
+ When modular compactifications do exist, they are extremely valuable for the study of both the space $M$ and of the objects parametrized by $M$: compactness allows us to apply the techniques of modern algebraic geometry to the space $\overline M$, while the fact that it is still a moduli space gives us a handle on its geometry. In the following section, we will describe a modular compactification of $M_g$. The objects parametrized are called ``stable curves". 
+
+Getting back to the moduli space $\overline M_1$, if we have a family where
+$j(\lambda)$ has a pole, we would like to say that the limit of the curves in the family is an irreducible nodal curve,
+but this is not necessarily true! For example, for example, the limit of the curves
+$$
+y^2 = x(x-t)(tx-1)
+$$
+as $t \to 0$ is reducible, with two components meeting in two points, 0 and $\infty$.
+\pict{7.1}. What is true is that a process called \emph{semistable reduction}, briefly described in a more general context below, shows that after a base change and a birational
+modification of the family around the pole we can replace the family with one where the singular fiber
+is indeed an irreducible nodal curve. See~\cite{Harris-Morrison} for a description of this process in general, and several explicit examples.
+\pict{elliptic curve degenerating to a reducible curve}
+
+\section{Higher genus}
+
+Nearly all of the description of the moduli spaces $M_1$ and $\overline M_1$ of curves of genus 1 can be carried out for curves of higher genus $g$,  though the techniques needed to verify the statements are vastly more sophisticated. In this section, we'll state the corresponding results about the moduli spaces $M_g$, and then describe one way in which they may be constructed.
+
+\begin{theorem}\label{moduli}
+There exists a coarse moduli space $M_g$, whose points correspond bijectively to isomorphism classes of smooth projective curves of genus $g$ and such that for any family $\cC \to B$ of such curves we have an induced map $\phi : B \to M_g$. The space $M_g$ is not a fine moduli space, and in fact no fine moduli space exists in the category of schemes, though one does in the category of stacks..
+\end{theorem}
+
+
+
+There is also a modular compactification of $M_g$. To describe it, we have to introduce a class of curves as follows:
+
+\begin{definition}
+By a \emph{stable} curve of genus $g \geq 2$ we will mean a connected curve $C$ with at most nodes as singularities, of arithmetic genus $g$, and such that every smooth rational component of $C$ meets the other components at least three times.
+\end{definition}
+
+\pict{a stable curve}
+
+
+\begin{theorem}\label{stable moduli}
+There exists a coarse moduli space $\overline M_g$, whose points correspond bijectively to isomorphism classes of smooth projective curves of genus $g$ and such that for any family $\cC \to B$ of stable curves we have an induced map $\phi : B \to \overline M_g$. Moreover, $\overline M_g$ is a projective variety.
+\end{theorem}
+
+\section{How we might construct the moduli space $\overline M_g$}
+
+Though we will not prove either of Theorems~\ref{moduli} and~\ref{stable moduli},we will describe one approach, via \emph{geometric invariant theory}.
+
+The  idea here is basically analogous to the one used above for genus 1 curves: to construct a moduli space, first parametrize curves with a choice of some additional structure, such as a map to projective space, and then mod out by the choices made. For any smooth projective curve $C$ of genus $g\geq 2$, the tricanonical linear series $|3K_C|$ is very ample; it embeds $C$ as a curve of degree $6g-6$ in $\PP^{5g-6}$. Thus we have a way of realizing a given abstract curve $C$ as a curve in projective space, unique up to automorphisms of $\PP^{5g-6}$.
+
+We claim next that the set of smooth, tricanonically embedded curves is a locally closed subset $X$ of the Hilbert scheme $\cH_{(6g-6)m+1-g}(\PP^{5g-6})$ parametrizing curves of genus $g$ and degree $6g-6$ in $\PP^{5g-6}$. To see this, note first that the singular locus of the fibers in any family of curves is closed, so the set of points in the base over which the curves are smooth is open.  Let 
+$$
+\cH^\circ = \cH^\circ_{(6g-6)m+1-g}(\PP^{5g-6})\subset \cH_{(6g-6)m+1-g}(\PP^{5g-6})
+$$
+be this open set.
+
+Next, on the universal family $\cC \subset \cH^\circ \times \PP^{5g-6}$, we have two families of invertible sheaves: we have the pullback of $\cO_{\PP^{5g-6}}(1)$; and we have the cube $K^3$ of the dualizing sheaf. Each gives rise to a section of the relative Picard variety over $\cH^\circ$, and the locus where they agree is thus a closed subset $X \subset \cH^\circ$.
+
+Now, the group $PGL_{5g-5}$ of automorphisms of $\PP^{5g-6}$ acts on variety $X$ and its orbits
+are the isomorphism classes of smooth curves of genus $g$; thus, we might hope to realize the moduli space $M_g$ as the quotient of $X$ by $PGL_{5g-5}$. But here things go awry in a hurry: unlike the case of an action of a finite group on a variety,
+the orbit spaces of infinite groups are often not algebraic varieties. (Think of the action of $\CC^*$ on $\CC$ by multiplication.) What is needed is a tool to extract the ``best possible approximation" to a quotient. Happily, there is a tool that does exactly this:  \emph{geometric invariant theory}.  To see how GIT can be used in this particular setting to produce the space $M_g$, see~\cite{Mumford-Morrison} or~\cite{Harris-Morrison}.
+
+\subsection{How we deal with the fact that $\overline M_g$ is not fine}
+
+The fact that $\overline M_g$ is not a fine moduli space---and that correspondingly there does not exist a universal family of curves over it---is unquestionably a nuisance. Nonetheless, there are ways of dealing with the situation. The first step is to identify the cause of the problem, which is simply curves with automorphisms; fine moduli spaces are much more likely to exist for objects without automorphisms than  otherwise. This said, there are roughly three ways to proceed:
+
+\begin{enumerate}
+\item \emph{Kill the automorphisms}. The idea here is to add additional structure to the objects parametrized, so as to eliminate automorphisms. Here is an example of such a construction. We saw in Chapter~\ref{JacobianChapter} that on a smooth projective curve $C$ of genus $g$, the collection of invertible sheaves $\cL$ with $\cL^m \cong \cO_C$ forms a group isomorphic to $(\ZZ/m)^{2g}$. We define a \emph{curve with level $m$ structure} to be such a curve, together with a choice of $2g$ generators $\cL_1,\dots,\cL_{2g}$ for this group. It is then the case that for $m \geq 3$, there 
+does not exist a curve $C$ with an automorphism fixing all line bundles of order $m$, and correspondingly there does 
+exist a fine moduli space $\overline M_g[m]$ for curves with level $m$ structure; this space is a finite cover of $M_g$. Thus, while a universal family does not exist over $M_g$, one does exist over a finite cover of $M_g$, and this is sufficient for many purposes.
+
+\item \emph {Ignore the automorphisms}.
+Here we use a basic fact, which we'll establish in Chapter~\ref{}: in $M_g$, the locus $A \subset M_g$ of curves that do have automorphisms other than the identity has codimension $g-2$. If we restrict to the complement $M_g^\circ = M_g \setminus A$, accordingly, there does exist a universal family, and again this is sufficient for many purposes; for example, if $g \geq 4$ then a divisor class on $M_g$ is determined by its restriction to $M_g^\circ$, so we can just work over that open set.
+
+\item \emph{Embrace the automorphisms}. We mentioned above that there does not exist a fine moduli space for curves of genus $g$ in the category of schemes. But there is a larger category, called \emph{stacks}, in which a fine moduli space does exist. This is truly the ``right" solution to the problem, though it involves a substantial investment to master the technical issues; readers who wish to pursue this avenue are invited to consult~\cite{Olssen} and resume reading the present volume in a couple years.
+\end{enumerate} 
+
+\section{Can one write down a general curve of genus $g$?}\label{mgunirational}
+
+We have made a fuss over the value of compactifying $M_g$ to a projective variety. To see an example of the usefulness of $\overline M_g$, we'll take up a question we've raised before: Can one write down a general curve of genus $g$?
+Or, more precisely: does there exist  a family of curves depending freely on parameters---in other words, a family $\cC \to B$ over an open subset $B \subset \AA^n$---that includes a general curve of genus $g$, in the sense that the induced map $\phi_\cC : B \to M_g$ is dominant? To use the appropriate language, the existence of such a map $\phi$ implies that $M_g$ is unirational, and the question we're asking can be reposed as, ``Is $M_g$ unirational?". 	
+
+We have produced such  families in genera 2 and 3. Essentially
+the same approach works in genera $4$ and $5$; in each case a general canonical curve is a complete intersection, so that if we take the coefficients of its defining polynomials to be general scalars we have a general curve.
+
+This method breaks down when we get to genus 6, where a canonical curve is not a complete intersection. But it's close enough: as discussed in Chapter~\ref{Brill-Noether}, a general canonical curve of genus 6 is the intersection of a smooth del Pezzo surface $S \subset \PP^5$ with a quadric hypersurface $Q$; since all smooth del Pezzo surfaces in $\PP^5$ are isomorphic, we can just fix one such surface $S$ and let $Q$ be a general quadric.
+
+It gets harder as the genus increases. Already genus 7 calls for a different approach. Here we want to argue that, by Brill-Noether theory, a general curve of genus $7$ can be realized as (the normalization of) a plane septic curve with 8 nodes $p_1,\dots,p_8 \in \PP^2$. Conversely, if $p_1,\dots,p_8 \in \PP^2$ are general points then having nodes at the points $p_i$ imposes $ 3\times 8 = 24$ independent conditions on the $\PP^{35}$ of curves of degree 7, so that we would expect that the septic curves double at the $p_i$ form a linear series, parametrized by a projective space $\PP^{11}$.
+
+This suggests that we consider the space
+$$
+\Sigma := \{ (p_1,\dots,p_8,C) \in (\PP^2)^8 \times \PP^{35} \mid C \text{ is double at } p_1,\dots,p_8 \}
+$$
+With a little work, we can see that there is a unique component $\Sigma^\circ$ of $\Sigma$ dominating $(\PP^2)^8$, which is a $\PP^{11}$-bundle over an open subset of $(\PP^2)^8$ and hence rational; this component dominates $M_7$, showing that $M_7$ is unirational.
+
+A similar approach works through genus 10, and Severi conjectured that it would be possible to do something similar for all genera. The approach through plane curves, however, fails in genus 11: by the Brill-Noether theorem, the smallest degree of a planar embedding of a general curve of genus 11 is 10; by our $g+2$ theorem, such a curve has ${9\choose 2}-11 = 25$ nodes. But $3 \times 25 > 65$, the dimension of the space of plane curves of degree 10, and the situation only gets worse if we look at higher degrees. Thus the nodes are no longer general points of $\PP^2$, and the genus 7 argument doesn't work. 
+ Ad hoc (and much more difficult) arguments have been given in genera 11, 12 13 and 14, but so far no-one can go further in producing general curves. 
+ 
+ This issue was (mostly) resolved, using the compactification $\overline M_g$ introduced above. The starting point is the basic fact that \emph{a smooth $n$-dimensional projective variety $X$ with an effective canonical divisor $K_X$ cannot be unirational}: if there were a dominant rational map $\PP^n \to X$, we could pull $K_X$ back to get a canonical divisor on $\PP^n$, which we know doesn't exist.
+
+%But the sequence cannot go on much longer! To say that there exists a family $\cC \to B$ over an open subset $B \subset \AA^n$ such that the induced map $\phi_\cC : B \to M_g$ is dominant is to say that $M_g$ is \emph{unirational}. Using $\overline M_g$ one can show that for higher $g$ this is not the case, and in fact:
+%
+%\begin{theorem}
+%If $g\geq 23$ then there is no rational curve through a general point of $M_g$; that is, $M_g$ is not uniruled.
+%\end{theorem}
+%\begin{proof}[Proof sketch]
+%The set of curves of genus $g$ posessing a divisor $D$ with $\rho(D) = g - (r(D)+1)(\deg(D) -g + r(D)) = -1$ is an effective divisor
+%in the moduli space, and this leads to the construction of an effective pluricanonical divisor on the desingularization of $\overline M_g$. The proof of this
+%was carried out in
+%\cite{Harris-Mumford-Moduli}, \cite{HarrisModuli}, and \cite{Eisenbud-HarrisModuli}
+% for all genera $g \geq 23$.
+%If $M_g$ were uniruled, then there would be non-trivial deformations of a general rational curve in $M_g$, 
+%and thus the normal bundle of the general rational curve $\phi: \PP^1 \to M_g$, pulled back to $\PP^1$, would have positive degree. 
+%Furthermore, an effective pluricanonical form is by definition represented by a nontrivial global section of a tensor power
+%of $\wedge^{\dim M_g}\Omega_{M_g}$ and the pull-back of this section section 
+%along a nontrivial map from $\PP^1$ to $\overline M_g$, and thus to a desingularization, that met the pluricanonical divisor properly, would lead to an effective canonical divisor on $\PP^1$, a contradiction.
+%\fix{say something about restricting a plurican div. Change this vague statement to the one in Mumford.} 
+%\end{proof}
+% 
+% A consequence is that the sort of descriptions of embeddings with which much of this book is concerned, where we produce a surface on which a general curve of a certain sort lies, cannot be continued to high genus:
+%
+%\begin{fact}
+% A general curve $C$ of  genus $\geq 22$ does not lie in a nontrivial linear series on any surface
+% except those birational to $C\times \PP^1$. 
+% \fix{citation for the theorem "a surface with an isotrivial linear series of divisors is implies birat to product".}
+%\end{fact}
+%
+%
+\section{Hurwitz spaces}\label{Hurwitz spaces}
+
+Hurwitz spaces are spaces parametrizing branched covers. They are fascinating objects; we know quite a bit about their geometry but there is much that is unknown as well. In this discussion, we'll stick to the simplest case, that of the \emph{small Hurwitz spaces}, parametrizing simply branched covers of $\PP^1$.
+
+To start with the definition: the small Hurwitz space $\cH^\circ_{d,g}$ parametrizes pairs $(C, f)$ where $C$ is a smooth curve of genus $g$ and $f : C \to \PP^1$ a map of degree $d$ with simple branching; that is,
+$$
+\cH^\circ_{d,g} = \{ (C, f) \mid C  \text{a smooth curve of genus $g$ and } f:C \to \PP^1 \text{ simply branched of degree } d\}.
+$$
+
+There are two natural maps from the Hurwitz space to other spaces. First, we can ``project on the first factor;" that is, simply forget the map $f$ to arrive at a map $\pi : \cH^\circ_{d,g} \to M_g$. Secondly, we can associate to a point $(C,f) \in \cH^\circ_{d,g}$ the branch divisor $B \subset \PP^1$, which is an unordered $b$-tuple of distinct points in $\PP^1$, which we can think of as a point in the $b$th symmetric product $(\PP^1)_b  \cong \PP^b$. We thus have a diagram
+$$
+\begin{diagram}
+& & \cH^\circ_{d,g} & & \\
+& \ldTo^\pi & & \rdTo^\beta & \\
+M_g & & & & U \subset \PP^b
+\end{diagram}
+$$
+where $U \subset \PP^b$ is the complement of the discriminant hypersurface. Thus the Hurwitz space is positioned between an object $U$ we understand relatively well, and an object $M_g$ about which we would like to know more; this accounts for the historical important of Hurwitz spaces. We'll now illustrate how this works.
+
+To begin with, by the analysis in Section~\ref{branched covers}, we see that \emph{the map $\beta$ is a covering space}: for any reduced divisor $B \subset \PP^1$ there are a finite number of simply branched covers of $\PP^1$ with branch divisor $B$; and as we vary the points of $B$ locally we can deform the cover along with them. This allows us to give the Hurwitz space $\cH^\circ_{d,g}$ the structure of a smooth variety, and also tells us that
+$$
+\dim(\cH^\circ_{d,g}) = b = 2d+2g-2
+$$
+
+Next, we look at the projection $\pi : \cH^\circ_{d,g} \to M_g$. To start, let's assume $d$ is large relative to $g$; $d \geq g+1$ suffices, but you can take $d$ as large as you like; taking $d > 2g$ may make the argument simpler. We have then the
+
+\begin{proposition}
+If $d \geq g+1$, the map $\pi : \cH^\circ_{d,g} \to M_g$ is surjective, with fibers of dimension $2d-g+1$.
+\end{proposition}
+
+\begin{proof}
+The question is, given a curve $C$, how many simply branched maps $f : C \to \PP^1$ of degree $d$ are there? To begin with, the $g+1$ theorem (\ref{g+1 theorem}) tells us that there is one, whence we see that $\pi$ is surjective. As for estimating the dimension of the fibers, this is straightforward. To specify a map $f : C \to \PP^1$, we can start by choosing a divisor $D \in C_d$, which will be the divisor $f^{-1}(\infty)$; this can be a general divisor of degree $d$ on $C$. Second, we choose a divisor $E$ which will be $f^{-1}(0)$; this can be a general member of the linear system $|D|$, which has dimension $d-g$. Finally, specifying $f^{-1}(\infty)$ and $f^{-1}(0)$ determines the map $f$ up to scalar multiplication on $\PP^1$; adding up the degrees of freedom, we see that the fibers of $\pi$ have dimension
+$$
+d + (d-g) + 1 = 2d-g+1.
+$$ 
+\end{proof}
+
+Finally, we conclude that
+$$
+\dim(M_g) = (2d+2g-2) - (2d - g + 1) = 3g-3.
+$$
+
+We can use this in turn to analyze the cases of smaller $d$. As a basic application, note that the group $PGL_2$ of automorphisms of $\PP^1$ acts on the Hurwitz space: given $\varphi \in PGL_2$, we can send $(C,f)$ to $(C, \varphi \circ f)$. Moreover, the orbits of this action lie in fibers of the projection $\pi : \cH^\circ_{d,g} \to M_g$, meaning that \emph{the fibers of $\pi$ have dimension at least 3}. Thus we can deduce the corollary
+
+\begin{corollary}
+If $d < \lceil \frac{g}{2} \rceil + 1$, then a general curve $C$ of genus $g$ does not admit a map of degree $d$ to $\PP^1$.
+\end{corollary}
+
+This is one-half of the case $r=1$ of the Brill-Noether theorem, about which we will say much more later.
+
+This is just one example of an application of Hurwitz spaces to the study of $M_g$. Another one worth mentioning is the original proof of the irreducibility of $M_g$: in~\cite{Hurwitz}, Hurwitz analyzes the monodromy of the map $\beta: \cH^\circ_{d,g} \to U \subset \PP^b$---what happens, in other words, when you let the branch points of a cover wander around in $U$ before coming back to their original locations. He proves that the monodromy is transitive, and hence that the Hurwitz space $\cH^\circ_{d,g}$ is irreducible; since $\cH^\circ_{d,g}$ dominates $M_g$ for $d$ large, he deduces that $M_g$ must be irreducible as well.
+
+Hurwitz' argument illustrates a fundamental point: in practice, moduli spaces of curves ``with extra structure," such as a map to projective space, are often easier to work with, and provide a useful tool for getting inside the geometry of abstract moduli spaces. For example, if we're given an abstract curve $C$ of genus $g$, it's hard---without developing a fair amount of deformation theory---to show that $C$ varies in a nontrivial family. But if $C$ is expressed as a branched cover, we can find such families just by varying the branch points.
+
+There are many more problems about Hurwitz spaces that we won't get into here: notably, finding a good compactification; describing the divisor class group (and more generally the cycle class theory) of the Hurwitz spaces, and calculating the degrees of the maps $\cH^\circ_{d,g} \to \PP^b$, called Hurwitz numbers; see~\cite{Hurwitz2} and \cite{ELSV} for more.
+
+\section{The Severi variety}\label{severi variety}
+
+Despite its antiquity, many questions about the family of plane curves, such as which ones degenerate into which others, and in what way, remain open. All plane curves of degree $d$ have the same Hilbert function, and thus the same arithmetic genus
+$\binom{d-1}{2}$, but since curves of degree $d$ can have different sorts and numbers of singularities, they can have geometric genera from 0 to $\binom{d-1}{2}$. In this section we will explore the subset of of (reduced, irreducible) curves of degree $d$ with a fixed geometric genus. We will focus on the open set consisting of curves with only nodes as singularities, which we call \emph{nodal curves}, and compute its dimension. We will also prove the existence of specializations from a smooth projective curve of genus $g$ to a general $g$-nodal curve, a result used in Chapter~\ref{InflectionsChapter}.
+
+\def\Vdg{{V_{d,g}}}
+%\def\Vdgtilde{{\widetilde{V}_{d,g}}} 
+\def\Vdgbar{{\overline{V}_{d,g}}} 
+
+Let $\PP^N := \PP^{{d_1+2\choose 2} - 1}$ be the projective space parametrizing plane curves of degree $d$.
+Within $\PP^N$ the set of reduced irreducible curves is open---it is the complement of the union of the images of the maps 
+$$
+\PP^{{d_1+2\choose 2} - 1}\times\PP^{{d_2+2\choose 2}-1} \to \PP^N
+$$ 
+with $d_1+d_2 = d$ given by multiplication of forms. 
+
+\begin{propdef}
+The \emph{Severi variety} $V_{d,g} \subset \Vdgbar$ is the locus of plane curves of degree $d$ with $\delta = \binom{d-1}{2} - g$ nodes and no other singularities. This is a locally closed subset of $\PP^N$. It is sometimes
+called the \emph{small Severi variety}, since we are excluding curves with more complicated singularities.
+\end{propdef}
+
+%\begin{proof}
+%\fix{ How about proving that $V_{d,g}$ is locally closed, and at least mentioning that $V_{d,g}$ is open in $\overline V_{d,g}$}
+%\end{proof}
+
+We will see that in a neighborhood of  $ {V}_{d,g}$,  the closure $\overline V_{d,g}$  is well behaved; but away from this,
+even the singularities of $\overline V_{d,g}$  are not well understood. It is is an interesting open problem to find a better partial compactification of $ V_{d,g}$. 
+
+
+\begin{fact}
+As we shall see, the variety $V_{d,g}$ is smooth. In 1921 F. Severi gave an incorrect proof that $\Vdg$ was connected, and thus irreducible. This was finally proven in~\cite{MR837522}.
+\end{fact}
+
+
+\subsection{Local geometry of the Severi variety}\label{local severi geometry}
+
+We first consider the \emph{universal singular point}
+$$
+\Phi := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C_{sing} \right\}
+$$
+and its image $\Delta\subset \PP^N$, the \emph{discriminant} variety. 
+
+\begin{proposition}
+ $\Phi$ is smooth and irreducible of dimension $N-1$, and the discriminant $\Delta$ is a hypersurface in $\PP^N$.
+\end{proposition}
+\begin{proof}
+Projection on the second factor expresses $\Phi$ as a $\PP^{N-3}$-bundle over $\PP^2$. Explicitly, if $[X,Y,Z]$ are homogeneous coordinates on $\PP^2$, and $\{a_{i,j,k} \mid i+j+k = d \}$ are homogeneous coordinates on $\PP^N$, then the universal curve 
+$$
+\CC := \left\{ (C, p) \in \PP^N \times \PP^2 \mid p \in C \right\}
+$$
+is given as the zero locus of the single bihomogenous polynomial of bidegree $(1, d)$
+$$
+F([a_{i,j,k}], [X,Y,Z] ) = \sum a_{i,j,k} X^iY^jZ^k;
+$$
+and the universal singular point is the common zero locus of the three partial derivatives $\partial F/\partial X$, $\partial F/\partial Y$ and  $\partial F/\partial Z$. 
+
+The set of forms $F$ that define curves singular at a given point is defined by 3 independent linear conditions, and since the set of 
+points is 2-dimensional, the set $\Delta$ of singular forms has dimension $N-1$.
+\end{proof}
+ 
+We next compute the differential of the map $\pi : \Phi \to \PP^N$:
+
+\begin{lemma}\label{tangent space to discriminant}
+Let $C \subset \PP^2$ be a plane curve of degree $d$, regarded as a point in $\PP^N$,  having a node at a point $p$. The differential 
+$$
+d\pi : T_{(C,p)}\Phi \to T_C \PP^N
+$$
+is injective, with image the hyperplane $H_p \subset \PP^N$ of plane curves containing the point $p$.
+\end{lemma}
+
+Thus, if $p$ is the only singularity of $C$, then $\Delta$ is smooth at $C$; and more generally the image of a small analytic neighborhood of $(C,p) \in \Phi$ is smooth, and we can identify its tangent space at $p$ with the hyperplane $H_p$. 
+
+\begin{proof}
+We will prove this using affine coordinates on $\PP^2$ and $\PP^N$. Changing coordinates if necessary, we may assume that the point $[1,0,0] \notin C$, and that the point $p$ is $[0,0,1]$. let $x = X/Z$ and $y = Y/Z$ be coordinates on the affine plane $Z \neq 0$ and write the polynomial $F(x,y,1)$ above as
+$$
+f(x,y) = \sum_{i+j \leq d} a_{i,j} x^iy^j
+$$
+with $a_{d,0}$ normalized to 1. 
+
+Let $g,h$ be the two partial derivatives of $f$, that is:
+$$
+g(x,y) := \binom{\partial f}{\partial x} = \sum_{i+j \leq d} i a_{i,j} x^{i-1}y^j
+$$
+and
+$$
+h(x,y) := \binom{\partial f}{\partial y} = \sum_{i+j \leq d} j a_{i,j} ix^{i}y^{j-1}.
+$$
+The functions $f, g$ and $h$ are local defining equations for $\Phi$; we consider their partial derivatives with respect to $x, y$ and $a_{0,0}$, evaluated at the point $(C,p)$, as in in figure~\ref{tang to Delta}.
+
+\begin{table}[h!]\label{tang to Delta}
+  \begin{center}
+     \begin{tabular}{c|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+            & $f$ & $g$ & $h$ \\
+      \hline
+$\frac{\partial}{\partial x}$ & 0 & $a_{2,0}$ & $a_{1,1}$ \\
+$\frac{\partial}{\partial y}$ & 0 & $a_{1,1}$ & $a_{0,2}$ \\
+$\frac{\partial}{\partial a_{0,0}}$ & 1 & 0 & 0 
+    \end{tabular}
+  \end{center}
+\end{table}
+
+The point $p$ is a node of $C$ (and not a more complicated singularity) if and only if the upper right $2 \times 2$ submatrix is nonsingular, which shows that the differential $d\pi$ is injective, and its image is the hyperplane $a_{0,0} = 0$ in $\PP^N$, which is exactly the hyperplane of curves containing $p$.
+\end{proof}
+
+\begin{lemma}\label{adjoint independent}
+The nodes $q_i$ of an irreducible nodal plane curve $C$ of degree $d$ impose independent conditions on curves of degree $d-3$, and hence on curves of any degree $m \geq d-3$.
+\end{lemma}
+\begin{proof}
+We will prove in Chapter~\ref{PlaneCurveChapter} that the $g$ sections of the canonical sheaf on the normalization $\widetilde C$ of
+$C$ are the preimages of the sections of $\sO_C(d-3)$ that vanish at the nodes. On the other hand, 
+$h^0(\sO_C(d-3) = \binom{d-1}{2}$, and the difference is exactly the number of nodes.
+\end{proof}
+
+\begin{corollary}\label{local geometry of Severi}
+If $C$ is a nodal curve of degree $d$ with geometric genus $g = \binom{d-1}{2}-\delta$, then in a neighborhood of $C\in \PP^N$
+the discriminant hypersurface of all singular curves consists of $\delta$ smooth sheets, meeting transversely, and hence
+$V_{d,g}$ is smooth. 
+
+\begin{figure}
+ \caption{In a neighborhood of the point corresponding to a plane curve with 2 nodes, $V_{d, \binom{d-1}{2}-2}$ is the intersection of two smooth hypersurfaces intersecting transversely}
+\centerline {\includegraphics[height=2in]{"Fig6.3.pdf"}}
+\end{figure}
+
+Moreover, in a neighborhood  $C \in \PP^N$ 
+the variety $\overline V_{d,g'}$ with $g' =  \binom{d-1}{2}-\delta' > g$ is the union of $\binom{\delta}{\delta'}$ smooth branches, each of dimension $N - \delta'$, corresponding bijectively with subsets of $\{p_1,\dots,p_{\delta'}\}$ of cardinality $\delta'$.
+\end{corollary}
+\begin{proof}
+Lemma~\ref{tangent space to discriminant} shows that in an analytic neighborhood of $C\in \PP^N$ the discriminant hypersurface $\Delta$ will consist of $\delta$ smooth sheets, each corresponding to one node, and Lemma~\ref{adjoint independent} implies that the tangent spaces to these sheets are linearly independent. 
+\end{proof}
+
+
+\begin{corollary}\label{dim Severi}
+The  Severi variety $V_{d,g}$ has pure dimension $N - \delta$, where $\delta = \binom{d-1}{2} - g$.
+\end{corollary}
+
+In Section~\ref{estimating dim hilb}, we give a heuristic calculation of the ``expected dimension'' $h(d,g,r)$ of the variety parametrizing curves of degree $d$ and genus $g$ in $\PP^r$
+$$
+h(g,r,d) := 4g-3 + (r+1)(d-g+1) - 1.
+$$
+The actual dimension of the restricted Hilbert scheme may be quite different. But  Corollary~\ref{dim Severi} shows that in case $r=2$ (as in the case of $r=1$), the actual dimension is always the expected.
+
+
+
+\section{Exercises}
+
+\begin{exercise}
+Consider the action of the multiplicative group $G_m$ on the affine line $\AA^1$. Does the action extend
+to the projective line? What are the invariant functions? Find the sets $(\AA^1)^s, (\AA^1)^{ss}, (\AA^1)^{us}.$
+\end{exercise}
+
+\begin{exercise}
+(example showing $M_g$ is not a fine moduli space by taking twisted product)
+\end{exercise}
+
+
+\input{footer}
