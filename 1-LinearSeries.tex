@@ -7,9 +7,9 @@ maps of curves to projective space; in the last section we derive some consequen
 use of cohomology. (In the next chapter we will introduce cohomological methods as well.) We will prove only some of our assertions; a reader who wants to see all the proofs should keep a copy of \cite{Hartshorne1977} or the equivalent handy. On the other hand, a more experienced reader
 could skip ahead to Chapter 3.
 
-As an analytic space a complex projective smooth curve is a compact. Riemann surface. This is a compact, orientable 2-manifold with a complex structure but it's hard to ``see'' the global complex structure. Any two Riemann surfaces with the same genus are $C^\infty$ isomorphic,
+As an analytic space a complex projective smooth curve is a compact Riemann surface. This is a compact, orientable 2-manifold with a complex structure but it's hard to ``see'' the global complex structure. Any two Riemann surfaces with the same genus are $C^\infty$ isomorphic,
 \footnote{The notion of genus was introduced by Riemann in his great paper~\cite{Riemann}, though he never used the term. Instead,
-he defined the \emph{connectivity} (Zusamenhang) of a Riemann surface $X$---the number of closed curves $C_i$ (1-dimensional real submanifolds) that can be drawn on $X$ such that $X\setminus \cup C_i$ is connected. The term genus (Geschlect) was first used by Clebsch. Both uses
+he defined the \emph{connectivity} (Zusamenhang) of a Riemann surface $X$---the number of disjoint closed curves $C_i$ (1-dimensional real submanifolds) that can be drawn on $X$ such that $X\setminus \cup C_i$ is connected. The term genus (Geschlect) was first used by Clebsch. Both uses
 were subtly different than the modern usage: where we speak of genus as a property of a given surface, Riemann and Clebsch
 used this idea as a way of partitioning the family of all Riemann surfaces into groups \cite{MR4175877}. }
 but except for genus 0, where the sphere has a unique complex structure,
@@ -18,27 +18,27 @@ complex analytic theories are equivalent, and in this book we generally take the
 
 \section{Divisors}
 
-Since the only  globally defined regular functions on a projective variety are the constant functions, we must take a different approach to describing the maps we will study, and a large part of this chapter is devoted to describing the necessary machinery for doing this. The idea is simple: a point in projective space is the intersection of the hyperplanes containing it, so a map $\phi: C\to \PP^r$ from a variety to projective space can be described set-theoretically
-by the set of preimages of these hyperplanes, $C$: the point $p\in C$ is sent to the point
-that is the intersection of those hyperplanes whose preimages contain $p$.
- 
-\begin{figure}
- \caption{Divisors of a linear system are preimages of hyperplanes in target}
-\centerline {\includegraphics[height=2in]{"Fig1.1.pdf"}}
-\end{figure}
+%Since the only  globally defined regular functions on a projective variety are the constant functions, we must take a different approach to describing the maps we will study, and a large part of this chapter is devoted to describing the necessary machinery for doing this. The idea is simple: a point in projective space is the intersection of the hyperplanes containing it, so a map $\phi: C\to \PP^r$ from a variety to projective space can be described set-theoretically
+%by the set of preimages of these hyperplanes, $C$: the point $p\in C$ is sent to the point
+%that is the intersection of those hyperplanes whose preimages contain $p$.
+% 
+%\begin{figure}
+% \caption{Divisors of a linear system are preimages of hyperplanes in target}
+%\centerline {\includegraphics[height=2in]{"Fig1.1.pdf"}}
+%\end{figure}
+%
+%If we choose homogenous coordinates $x_0,\dots, x_r$ on $\PP^r$ then hyperplanes
+%are defined by the vanishing of linear forms such as $x_i=0$. A general linear form
+%$\ell = \sum r_ix_i$ is does not define a function on $\PP^r$, but $\ell/x_i$ is a regular function on the affine space subset where $x_i\neq 0$, and we could also
+% specify $\phi$ by specifying its composition with such regular functions. Thus we can refine the the notion of the divisor that is the preimage of $\ell=0$ by including the generic order of vanishing of $\ell/x_i \circ \phi$---this corresponds roughly to the order of tangency
+% of the hyperplane $\ell=0$ with the image $\phi(C)$ of $C$---and we take the divisor of a rational
+% function to be the difference of the divisors associated to the numerator and denominator.
 
-If we choose homogenous coordinates $x_0,\dots, x_r$ on $\PP^r$ then hyperplanes
-are defined by the vanishing of linear forms such as $x_i=0$. A general linear form
-$\ell = \sum r_ix_i$ is does not define a function on $\PP^r$, but $\ell/x_i$ is a regular function on the affine space subset where $x_i\neq 0$, and we could also
- specify $\phi$ by specifying its composition with such regular functions. Thus we can refine the the notion of the divisor that is the preimage of $\ell=0$ by including the generic order of vanishing of $\ell/x_i \circ \phi$---this corresponds roughly to the order of tangency
- of the hyperplane $\ell=0$ with the image $\phi(C)$ of $C$---and we take the divisor of a rational
- function to be the difference of the divisors associated to the numerator and denominator.
-
-Thus on a smooth projective curve $C$, we are led to define a \emph{divisor} to be a finite formal sum of points of $C$ with integer coefficients, which we can write compactly as $\sum m_p\cdot p$ with all but finitely many $m_p=0$.  The coefficient $m_p$ is called the \emph{multiplicity} of the point $p$ in the divisor $D$; if all coefficients $m_p$ are nonnegative we say that $D$ is \emph{effective}. If $D = \sum m_p\cdot p$ and $E = \sum n_p\cdot p$ are any two divisors, we write $E \geq D$ to mean $n_p \geq m_p$ for all $p \in C$.
+On a smooth projective curve $C$, we define a \emph{divisor} to be a finite formal sum of points of $C$ with integer coefficients, which we can write compactly as $\sum m_p\cdot p$ with all but finitely many $m_p=0$.  The coefficient $m_p$ is called the \emph{multiplicity} of the point $p$ in the divisor $D$; if all coefficients $m_p$ are nonnegative we say that $D$ is \emph{effective}. If $D = \sum m_p\cdot p$ and $E = \sum n_p\cdot p$ are any two divisors, we write $E \geq D$ to mean $n_p \geq m_p$ for all $p \in C$.
 
 The \emph{degree} of  $D = \sum m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, so every effective divisor $D$ is defined locally
 on an affine open set by the vanishing of one non-zerodivisor. If effective divisors $D, E$ are defined on
-some afiine open set by equations $f$ and $g$, then  $D - E$ corresponds to the rational function $f/g$ on that open set.
+some affine open set by equations $f$ and $g$, then  $D - E$ corresponds to the rational function $f/g$ on that open set.
 
 Write $K(X)$ for the field of rational functions on $X$. 
 For each open affine set $U\subset X$ we define $K_X(U)$ to be the field of fractions of $\sO_X(U)$, and write $K_X$ for the
@@ -258,7 +258,7 @@ We will use invertible sheaves to  describe maps of a given variety $X$ to proje
 
 \begin{definition}
  A \emph{linear series} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf  on $X$ and
- $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
+ $V$ is a nonzero vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
  $$
  \dim \sV := \dim_\CC V -1.
  $$
@@ -280,7 +280,7 @@ For any scheme $X$ there is a natural bijection between the set of nondegenerate
 
 %Given an embedding $X\subset \PP^r$ write $\sO_C(1)$ for the restriction of $\sO_{\PP^r}(1)$.
 
-Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane, and base-point free means that the scheme $\cap_{\sigma\in V}(\sigma)_0$, called the  \emph{base locus} of $\sV$, is empty; in other words, there is no point of $C$ where all the sections in $V$
+Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane, and base-point free means that the base locus of $\sV$ is empty; in other words, there is no point of $C$ where all the sections in $V$
 vanish. The phrase ``modulo $PGL_{r+1}$ because the notation $\PP^r$ supposes a choice of projective coordinates, and
 $PGL_{r+1}$ is the group of linear coordinate transformations (actually all automorphisms, by Exercise~\ref{aut Pr}).
 To get a correspondence without the dependence on a basis we could think of morphisms to $\PP(V)$, the set of 1-quotients of $V$.
@@ -383,33 +383,19 @@ by the Veronese morphism of degree 2 now simply called \emph{the Veronese surfac
 We will develop sophisticated ways of estimating the dimensions of linear series. We begin with an elementary bound:
 
 \begin{theorem}\label{characterization of P1}
-Let $C$ be a smooth projective curve. If $\cL$ is an invertible sheaf of degree $d\geq 0$ on $C$, then $h^0(\cL)\leq d+1$.
-Equality holds if and only if
-$$
-C \cong \PP^1  \text{ and  }  \cL \cong \cO_{\PP^1}(d).
-$$
+Let $C$ be a smooth projective curve. If $\cL$ is an invertible sheaf of degree $d\geq 0$ on $C$, then $h^0(\cL)\leq d+1$; and
+equality holds if and only if $C \cong \PP^1$.
 \end{theorem}
 
 \begin{proof}
-First, suppose that $d=1$. The linear series $(\cL, H^0(\cL))$ cannot have any base points, since
-otherwise after subtracting one, we would get an invertible sheaf of degree $0$ with two independent global sections. This is impossible, since some linear combination of the sections would vanish at any given point, showing that the degree would be
-$\geq 1$.
+First, let $p_1,\dots,p_{d+1}$ be any points of $C$. If $h^0(\cL)\geq d+2$, there would be a nonzero section $\sigma \in H^0(\cL)$ vanishing at $p_1,\dots,p_{d+1}$; the divisor $(\sigma)$ would then have degree $\geq d+1$, contradicting the hypothesis that $\deg(\cL) = d$.
 
-Thus we see that the linear series $(\cL, H^0(\cL))$ defines a morphism $\phi: C\to \PP^1$ of degree 1 whose fibers are the divisors defined by
-the vanishing of sections of $\cL$, and which are thus of degree 1. Because $C$ is projective, the map is finite. Thus if $p\in C$ is the preimage of $q\in \PP^1$, the induced map of local rings
-$\phi^*:\cO_{\PP^1, q} \to \cO_{C, p}$ is a finite, birational map. Since $\cO_{\PP^1, q}$ is integrally closed, this is an isomorphism.  Thus
-$\phi$ is an isomorphism, and the statements $\cL \cong \cO_{\PP^1}(d), \hbox{ and  } \h^0(\cL) = d+1$ follow from the classification of invertible sheaves on $\PP^1$. 
-
-If $d>1$, let $p_1,\dots p_{d-1}$ be general points of $C$, and set $\cL':=\cL(-p_1-\cdots-p_{d-1})$, a sheaf of degree 1.
- If $p\in C$ is a point then, since $\cL$ is locally isomorphic to the sheaf of functions on $C$, the global sections vanishing
- at $p$ are a linear subspace of $H^0(\sL)$ of codimension at most 1. Informally we say that vanishing at $p$ imposes at most 1 linear condition on 
-the global sections of $\cL$. It follows that  $H^0(\cL') \geq 2$. From the case $d=1$ we see that $C\cong \PP^1$, and the statements
-about $\cL$ follow as before.
+For the second part, suppose that $h^0(\cL) = d+1$. If $p_1,\dots,p_{d}$ are any points of $C$, there is a nonzero section $\sigma \in H^0(\cL)$ vanishing at $p_1,\dots,p_{d}$; by degree considerations, it cannot vanish anywhere else. It follows that \emph{any two divisors of degree $d$ on $C$ are linearly equivalent}, hence that any two points $p,q \in C$ are linearly equivalent. Thus there is a rational function $f$ on $C$ with exactly one zero and one pole, giving an isomorphism $C \cong \PP^1$
  \end{proof}
 
 From the correspondence between invertible sheaves and maps to projective space, we now get:
 \begin{corollary}\label{minimal degree curves}
-If $C\subset \PP^d$ is a  non-degenerate curve, then the degree of $C$ is $\geq d$ with equality only in the case
+If $C\subset \PP^d$ is a  nondegenerate curve, then the degree of $C$ is $\geq d$ with equality only in the case
 that $C$ is a rational normal curve.\qed
 \end{corollary}
 
@@ -614,17 +600,15 @@ $$
 \end{exercise}
 
 \begin{exercise}\label{aut Pr}
-An automorphism of $\PP^r$ takes hyperplanes to hyperplanes. Deduce that it is given by the linear series
-$\sV = (\sO_{\PP^r}(1), H^0(\sO_{\PP^r}(1)))$, and use this to show that $\Aut \PP^r = PGL(r+1)$. 
+Show that an automorphism of $\PP^r$ takes hyperplanes to hyperplanes. Deduce that it is given by the linear series
+$\sV = (\sO_{\PP^r}(1), H^0(\sO_{\PP^r}(1)))$, and use this to show that $\Aut \PP^r = PGL(r+1)$. Hint: for the first part, use B\'ezout's theorem.
 \end{exercise}
 
 \begin{exercise}\label{projective automorphism}
-In the circumstances above, the automorphism $\phi$ is induced by an automorphism of $\PP^r$ if and only if $\phi$ carries the invertible sheaf $\cO_{C}(1)$ to itself; that is, $\phi^*(\cO_{C}(1)) \cong \cO_{C}(1)$. In this case we say that the automorphism
+Let $C \subset \PP^r$ be any linearly normal curve and $\phi: C \to C$ an automorphism. Show that $\phi$ is induced by an automorphism of $\PP^r$ if and only if $\phi$ carries the invertible sheaf $\cO_{C}(1)$ to itself; that is, $\phi^*(\cO_{C}(1)) \cong \cO_{C}(1)$. In this case we say that the automorphism
 is projective. Show that every automorphism of a rational normal curve $C \subset \PP^d$  extends to $\PP^d$. Since the
-automorphism group $PSL_3$ acts transitively on $\PP^1$, we say that
+automorphism group $PGL_2$ of $\PP^1$ acts transitively on $\PP^1$, we say that
 $C$ is \emph{projectively homogeneous}.
-
-
 \end{exercise}
 
 \begin{exercise}\label{normality of RNC}
