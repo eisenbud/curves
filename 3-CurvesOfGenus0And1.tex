@@ -2,7 +2,7 @@
 
 \chapter{Curves of genus 0 and 1}\label{genus 0 and 1 chapter}
 
-In this chapter, we'll begin our project of describing curves in projective space with the simplest cases, that of curves of genus 0 and 1. In the case of genus 1 especially, the theory we will treat is ``simple'' because we are operating over $\CC$; the arithmetic theory occupies a major part of modern number theory. Even here, there are interesting statements to make about the geometry of their embeddings in $\PP^r$, and there are many open problems.
+In this chapter, we'll begin our project of describing curves in projective space with the simplest cases, that of curves of genus 0 and 1. (The theory is ``simple'' because we are operating over $\CC$; the study of curves of genus 0 over $\QQ$ was a major part of Gauss' work, and the theory of curves of genus 1 over number fields occupies a major part of modern number theory.) Even here, there are interesting statements to make about the geometry of their embeddings in $\PP^r$, and there are many open problems.
  
 
 \section{Curves of genus 0} 
@@ -50,7 +50,7 @@ the first part of the theorem, we see that $D\cong \PP^1$ so $K \cong \CC(y)$ fo
 \end{proof}
  
 \begin{fact}
-The theorem remains true if we replace $\CC$ by any  field; see for example \cite[Section 8.13]{JacobsonII} for a elementary proof.
+The theorem remains true if we replace $\CC$ by any  field; see for example \cite[Section 8.13]{JacobsonII} for an elementary proof.
 There is an analogue for rational surfaces proven by Castelnuovo: every complex surface admitting a dominant rational
 map from $\PP^2$ is rational (see for example \cite[Corollary V.5]{Beauville}). However, the analogue of Luroth's theorem in higher dimension is false; for example, (\cite{MR0302652}) shows that a smooth cubic threefold $X$ admits a dominant rational map $\PP^3 \to X$ but is not rational.
 \end{fact}
@@ -63,7 +63,7 @@ A smooth projective curve of genus 0 over a field $k$ is a \emph{form} of $\PP^1
 of scalars to
 the algebraic closure of $k$. The unique example with $k = \RR$ that is not isomorphic over $\RR$ to $\PP^1$is the conic with no $\RR$-rational points, $x^2+y^2+z^2 = 0$. 
 
-Noncommutative algebras enter the subject of forms of of $\PP^1$ (and $\PP^n$ more generally) in a surprising way: The curve $\PP_k^1$ itself may be described as the scheme of left ideals of $k$-vector-space dimension 2 in the ring of
+Noncommutative algebras enter the subject of forms of $\PP^1$ (and $\PP^n$ more generally) in a surprising way: The curve $\PP_k^1$ itself may be described as the scheme of left ideals of $k$-vector-space dimension 2 in the ring of
 $2\times 2$ matrices over $k$ (such an ideal can be embedded in the matrix ring as a linear combination of the 2 columns in an appropriate sense). More generally, any scheme that is a form of $\PP^1$ over $k$
 may be described as the scheme of 2-dimensional left ideals in a 4-dimensional central simple ($=$ Azumaya) algebra over $k$. For example, the
 conic $x^2+y^2+z^2 = 0$ with no points over $\RR$ is the scheme of left ideals in the algebra of quaternions. See~\cite[Section X.6]{Serre1979}.
@@ -76,94 +76,24 @@ conic $x^2+y^2+z^2 = 0$ with no points over $\RR$ is the scheme of left ideals i
 If $\sV = (V,\sL)$ is a linear series on a scheme $X$, then the inclusion
 $V\subset H^0(\sL)$ induces by multiplication a map from the symmetric algebra
 $$
-\alpha_{\sV}: \Sym(V) \to H^0_*(\sL) := \oplus_{n\in \ZZ} H^0(\sL^n).
+\alpha_{\sV}: \Sym(V) \to  \bigoplus_{n\in \ZZ} H^0(\sL^n).
 $$
 When $\sV$ embeds $X$ in $\PP^r = \PP(V)$, the image of this map is called the \emph{homogeneous coordinate ring} of $X$. 
 
-The rational normal curve $C\subset \PP^d$ of degree $d$ is embedded by the linear series
-$\sV = (\CC[s,t]_d, \sO_{\PP^1}(d)$. Since any form of degree $nd$ in $\CC[s,t]$ is a product of $n$ forms of degree $d$, 
+The rational normal curve $C\subset \PP^d$ of degree $d$ is embedded by the complete linear series
+$\sV = (\sO_{\PP^1}(d), \CC[s,t]_d)$. Since any form of degree $nd$ in $\CC[s,t]$ is a product of $n$ forms of degree $d$, 
 the corresponding homogeneous coordinate ring of the rational normal curve is 
 $\oplus_n(\CC[s,t]_{nd})$, and the map $\alpha_{\sV}$ is surjective. This is expressed by saying
 that $C$ is \emph{arithmetically Cohen-Macaulay}; more generally, if $C\subset \PP^r$ is 
-a one-dimensional scheme, we say that $C$ linearly (respectively, quadratically, \dots, $n$-ically) normal
+a one-dimensional scheme, we say that $C$ is linearly (respectively, quadratically, \dots, $n$-ically) normal
 if  the natural maps
 $$
-\alpha_m: H^0(\sO_{\PP^r}(m)) \to H^0(\sO_{C}(m)
+\alpha_m: H^0(\sO_{\PP^r}(m)) \to H^0(\sO_{C}(m))
 $$
-are surjective for  $m=1$ (respectively $m=2\dots m=n$). We say that $C$ is arithmetically Cohen-Macaulay
+are surjective for  $m=1$ (respectively $m=2,\dots, m=n$). We say that $C$ is arithmetically Cohen-Macaulay
 (usually abbreviated ACM)
- when $\alpha_m$ is surjective for all $m$. 
+ when $\alpha_m$ is surjective for all $m$. We'll discuss the significance of this condition in Section~\ref{ACM} of this chapter.
 
-\subsection{The Cohen-Macaulay property}
- This is related to the usual  Cohen-Macaulay property as follows:
-
-\begin{proposition}\label{ACM basics}
-Suppose that $C\subset \PP^r$ is a 1-dimensional subscheme. Let $S = H^0_*(\sO_{\PP^r})$
-be the homogeneous coordinate ring of $\PP^r$, and let $S_C = S/I_C$ be the homogeneous
-coordinate ring of $C$. The following conditions are equivalent:
-\begin{enumerate}
- \item $C\subset \PP^r$ is arithmetically Cohen-Macaulay.
-% \item the natural map $S_C \to H^0_*(\sO_{C}(1)$ is surjective;
-\item The homogeneous coordinate ring $S_C$ of $C$ is a Cohen-Macaulay ring; that is, there are linear forms $h,h'$ on $\PP^r$ such that $h, h'$ is a regular sequence
-on $S_C$. In particular, $C$ has no 0-dimensional primary components.
-\item $H^1_*(\sI_{C/\PP^r}) = 0.$
- \item For every hyperplane $H\subset \PP^r$ that does not contain any component of $C$,
- the homogeneous ideal of $H\cap C$
- is equal to  $I_C+(h)$, where $h$ is a linear form defining $H$.
-\end{enumerate}
-\end{proposition}
- 
-\begin{proof}
-{\sl 1} $\Leftrightarrow$ {\sl 2}: First let $C\subset \PP^r$ be an arbitrary 1-dimensional subscheme,
-and let $R =H^0_*(\sO_{C}) := \oplus_{n\in \ZZ} H^0(\sO_{C}(n))$.
-If $H$ is a 
-general hyperplane, with equation $h=0$, then $h$ does not vanish on any primary component of $C$, and thus the sequence
-$$
-0\rTo \sO_C(-1) \rTo^{h}\sO_C\rTo \sO_{C\cap H}\rTo 0
-$$
-is exact. Applying $H^0_*$, we see that $h$ is a non-zerodivisor on $R$, and that $R/hR$ is
-a subring of $H^0_*(\sO_{C\cap H})$.  A general linear form $h'$ doesn't vanish on
-any point of $C\cap H$, so $h'$ is a unit on $H^0_*(\sO_{C\cap H})$
-and thus a non-zerodivisor on $R/hR$. 
-
-The ring $S_C$ is the image of the natural map $S\to R$, and by definition $C$ is ACM if and only if this map is surjective,
-so that $S_C = R.$ This shows that if $C$ is arithmetically Cohen-Macaulay then $S_C$ is a Cohen-Macaulay ring,
-and is in particular unmixed; that is, $C$ has no 0-dimensional primary components (see for example \cite[Chapter 18]{Eisenbud1995} for general
-information about Cohen-Macaulay rings). This proves the equivalence of conditions {\sl 1} and {\sl 2.}
-
-{\sl 1} $\Leftrightarrow$ {\sl 3}: We may assume that $r\geq 2$, so $H^1_*(\sO_{\PP^r}(n)) = 0$ for all $n$. Using this and the exact sequence 
-$$
-0\rTo \sI_{C/\PP^r}  \rTo  \sO_{\PP^r}  \rTo  \sO_C  \rTo  0
-$$
-we see that $H^0(\sO_{\PP^r}(n)) \to H^0(\sO_C(n))$ is surjective for all $n$ if and only if $H^1(\sI_{C/\PP^r}(n)) = 0$ for all $n$,
-proving the equivalence of {\sl 1} and {\sl 3.}
-
-{\sl 2} $\Leftrightarrow$ {\sl 4}: If  $h$ does not vanish on any component of $C$ then $h$ is a non-zerodivisor on $S_C$. The ideal $I_{C\cap H}$ is in any case the saturation of $I_C+(h)$. 
-If $I_{C\cap H}=I_C+(h)$, then any linear form $h'$ not containing a point of $C\cap H$ is a non-zerodivisor
-on $I_C+(h)$, so $C$ satisfies condition {\sl 2}. Conversely, in a 2-dimensional positively graded Cohen-Macaulay ring, any 
-system of parameters is a regular sequence \cite[Section 18.2]{Eisenbud1995}, so $I_C+(h)$ is unmixed, and in particular, saturated.
-\end{proof}
-Note that for a curve $C\subset \PP^r$ to be ACM it is necessary that $C$ is embedded by a complete linear
-series.
-It follows from Theorem ~\ref{Lasker} that every plane curve, and more generally every complete intersection curve,
-is ACM; and we shall show in Chapter~\ref{Castelnuovo} that every canonically embedded curve
-and every curve embedded by a complete linear series of sufficiently high degree is also ACM.
-
-
-Adding to the terminological confusion, Serre's Criterion implies that the homogeneous coordinate ring
-of a curve is \emph{normal} (that is, integrally closed) if and only if the curve is smooth and ACM; therefore
-when speaking of smooth curves, the ACM property is often named as \emph{projectively normal}.
-
-\begin{fact}\label{meaning of ACM}
-The Cohen-Macaulay property is hard to interpret geometrically; the definition is justified by its usefulness. Here are two results that help our intuition:
-\begin{enumerate}
-\item A scheme $X$ is Cohen-Macaulay if some (respectively every) finite map $f: X\to P$ to a smooth scheme P is flat, or equivalently the pushforward $f_*)\sO_X)$ is locally free. (This follows
-from the Auslander-Buchsbaum formula Theorem~\ref{****}.)
-\item (Hartshorne) If a scheme $X$ is Cohen-Macaulay then $X$ is connected in codimension 1 (that is, $X$ remains connected after removing any closed subset of codimension $\geq 2$.)
-See for example \cite[Theorem 18.12]{Eisenbud1995} for a proof.
-\end{enumerate}
- 
-\end{fact}
 
 
 \subsubsection{The equations defining a rational normal curve}
@@ -184,7 +114,7 @@ $$
 H^0(\cO_{\PP^1}(1)) \times H^0(\cO_{\PP^1}(d-1)) \to H^0(\cO_{\PP^1}(d)).
 $$
 
-By Serre's Criterion~\ref[Section 11.2]{Eisenbud1995} the homogeneous coordinate ring $S_C$ of a curve $C$ is normal (that is, integrally closed) iff $C$ is both nonsingular and ACM, and sometimes $C$ is said to be \emph{projectively normal} in this case.  (This is also the excuse for the misleading terminology ``linearly normal"\dots described above.)
+%By Serre's Criterion~\ref[Section 11.2]{Eisenbud1995} the homogeneous coordinate ring $S_C$ of a curve $C$ is normal (that is, integrally closed) iff $C$ is both nonsingular and ACM, and sometimes $C$ is said to be \emph{projectively normal} in this case.  (This is also the excuse for the misleading terminology ``linearly normal"\dots described above.)
 
 It is easy to see that $C$ is set-theoretically defined by the $2\times 2$ minors of $M$: the affine set $s=1$ in $\PP^1$ maps
 to the affine set $x_0 = 1$ in $\PP^d$, and the affine form of the map is $t \mapsto (t, t^2, \dots, t^d)$. But if $x_1 = t$ then from 
@@ -197,7 +127,7 @@ A much stronger statement is true:
 $$
 \PP^1 \rOnto C \subset \PP^d\quad (s,t) \mapsto (s^d, s^{d-1}t, \dots t^d)
 $$ 
- is generated by the ideal $I$ of
+ is generated by the
  $2\times 2$ minors of $M$.
   \end{proposition}
   
@@ -261,7 +191,7 @@ In the proof we will use a general fact about hyperplane sections:
 
 \begin{proposition}\label{arbitrary hyperplane}
 If $X\subset \PP^r$ is a nondegenerate, reduced, irreducible variety, 
-then $H^0(\sI_X(1)) = H^1 (\sI_X(1)).$ Moreover if $H$ is any hyperplane of $\PP^r$, defined by
+then $H^0(\sI_X(1)) = H^1 (\sI_X) = 0$. Moreover if $H$ is any hyperplane of $\PP^r$, defined by
 a linear form $h$, then the natural
 sequence
 $$
@@ -564,7 +494,7 @@ way we will see several ways of parametrizing the family of curves of genus 1 by
 forerunners of the moduli spaces that we will introduce in~\ref{ModuliChapter}.
 
 
-On a curve $E$ of genus 1 the canonical sheaf has degree 0; and since it has a global section, it must be $\sO_C$.
+On a smooth, irreducible curve $E$ of genus 1 the canonical sheaf has degree 0; and since it has a global section, it must be $\sO_C$.
 Since invertible sheaves of negative degree cannot have any sections, \trr shows that
 $h^0( \sL) = \deg \sL$ for any $\sL$ of positive degree. Among the surprising consequences is that, given
 a point $o\in E$, there is a natural structure of abelian algebraic group on the points of $E$ for which $o$
@@ -604,7 +534,7 @@ of degree $g$ form a group that surjects birationally to $\Pic_g(C)$.
 \begin{proof}
 To show that the group operation is given by regular functions, we map $E$ to $\PP^2$ by the complete linear series $|3o|$. Since
 $h^0(3o) = 3$ but $h^0(3o-p-q) = 1$ for any points $p,q$, this is an embedding. Moreover, there is a line in $\PP^2$ that meets
-$E$ triply at $o$, which is thus an inflection point, and nowhere else. The three points $p,q,r$ in which any other line in the plane
+$E$ triply at $o$ and nowhere else. The three points $p,q,r$ in which any other line in the plane
 meet $E$ sum to a divisor linearly equivalent to $3o$, and thus sum to zero in the group law, that is $r = -p-q$ Since $r$ is the unique
 point in which the line
 through $p,q$ meets  E, it follows that the coordinates of $r$ are polynomial functions of those of $p,q$, so the operation
@@ -618,7 +548,7 @@ $D\sim nr$.
 \end{proof}
 
 \begin{corollary}\label{equivalence of sheaves}
-Given two invertible sheaves $\sL, \sL'$ on an of the same degree on a curve $E$ genus 1, there is an automorphism $\sigma: E\to E$
+Given two invertible sheaves $\sL, \sL'$ of the same degree on a curve $E$ genus 1, there is an automorphism $\sigma: E\to E$
 such that $\sigma^*\sL = \sL'$.
 \end{corollary}
 
@@ -752,6 +682,79 @@ the homogeneous ideal of $E$ is generated by the  Pfaffians of the five $4\times
 a row and the corresponding column.
 \end{proposition}
 \end{fact}
+
+\subsection{The Cohen-Macaulay property}\label{ACM}
+
+As promised, we would like to describe here various aspects of what we called Arithmetically Cohen-Macaulay curves in projective space. This is related to the usual  Cohen-Macaulay property as follows:
+
+\begin{proposition}\label{ACM basics}
+Suppose that $C\subset \PP^r$ is a 1-dimensional subscheme. Let $S = H^0_*(\sO_{\PP^r})$
+be the homogeneous coordinate ring of $\PP^r$, and let $S_C = S/I_C$ be the homogeneous
+coordinate ring of $C$. The following conditions are equivalent:
+\begin{enumerate}
+ \item $C\subset \PP^r$ is arithmetically Cohen-Macaulay.
+% \item the natural map $S_C \to H^0_*(\sO_{C}(1)$ is surjective;
+\item The homogeneous coordinate ring $S_C$ of $C$ is a Cohen-Macaulay ring; that is, there are linear forms $h,h'$ on $\PP^r$ such that $h, h'$ is a regular sequence
+on $S_C$. In particular, $C$ has no 0-dimensional primary components.
+\item $H^1_*(\sI_{C/\PP^r}) = 0.$
+ \item For every hyperplane $H\subset \PP^r$ that does not contain any component of $C$,
+ the homogeneous ideal of $H\cap C$
+ is equal to  $I_C+(h)$, where $h$ is a linear form defining $H$.
+\end{enumerate}
+\end{proposition}
+ 
+\begin{proof}
+{\sl 1} $\Leftrightarrow$ {\sl 2}: First let $C\subset \PP^r$ be an arbitrary 1-dimensional subscheme,
+and let $R =H^0_*(\sO_{C}) := \oplus_{n\in \ZZ} H^0(\sO_{C}(n))$.
+If $H$ is a 
+general hyperplane, with equation $h=0$, then $h$ does not vanish on any primary component of $C$, and thus the sequence
+$$
+0\rTo \sO_C(-1) \rTo^{h}\sO_C\rTo \sO_{C\cap H}\rTo 0
+$$
+is exact. Applying $H^0_*$, we see that $h$ is a non-zerodivisor on $R$, and that $R/hR$ is
+a subring of $H^0_*(\sO_{C\cap H})$.  A general linear form $h'$ doesn't vanish on
+any point of $C\cap H$, so $h'$ is a unit on $H^0_*(\sO_{C\cap H})$
+and thus a non-zerodivisor on $R/hR$. 
+
+The ring $S_C$ is the image of the natural map $S\to R$, and by definition $C$ is ACM if and only if this map is surjective,
+so that $S_C = R.$ This shows that if $C$ is arithmetically Cohen-Macaulay then $S_C$ is a Cohen-Macaulay ring,
+and is in particular unmixed; that is, $C$ has no 0-dimensional primary components (see for example \cite[Chapter 18]{Eisenbud1995} for general
+information about Cohen-Macaulay rings). This proves the equivalence of conditions {\sl 1} and {\sl 2.}
+
+{\sl 1} $\Leftrightarrow$ {\sl 3}: We may assume that $r\geq 2$, so $H^1_*(\sO_{\PP^r}(n)) = 0$ for all $n$. Using this and the exact sequence 
+$$
+0\rTo \sI_{C/\PP^r}  \rTo  \sO_{\PP^r}  \rTo  \sO_C  \rTo  0
+$$
+we see that $H^0(\sO_{\PP^r}(n)) \to H^0(\sO_C(n))$ is surjective for all $n$ if and only if $H^1(\sI_{C/\PP^r}(n)) = 0$ for all $n$,
+proving the equivalence of {\sl 1} and {\sl 3.}
+
+{\sl 2} $\Leftrightarrow$ {\sl 4}: If  $h$ does not vanish on any component of $C$ then $h$ is a non-zerodivisor on $S_C$. The ideal $I_{C\cap H}$ is in any case the saturation of $I_C+(h)$. 
+If $I_{C\cap H}=I_C+(h)$, then any linear form $h'$ not containing a point of $C\cap H$ is a non-zerodivisor
+on $I_C+(h)$, so $C$ satisfies condition {\sl 2}. Conversely, in a 2-dimensional positively graded Cohen-Macaulay ring, any 
+system of parameters is a regular sequence \cite[Section 18.2]{Eisenbud1995}, so $I_C+(h)$ is unmixed, and in particular, saturated.
+\end{proof}
+Note that for a curve $C\subset \PP^r$ to be ACM it is necessary that $C$ is embedded by a complete linear
+series.
+It follows from Theorem ~\ref{Lasker} that every plane curve, and more generally every complete intersection curve,
+is ACM; and we shall show in Chapter~\ref{Castelnuovo} that every canonically embedded curve
+and every curve embedded by a complete linear series of sufficiently high degree is also ACM.
+
+
+Adding to the terminological confusion, Serre's Criterion implies that the homogeneous coordinate ring
+of a curve is \emph{normal} (that is, integrally closed) if and only if the curve is smooth and ACM; therefore
+when speaking of smooth curves, the ACM property is often named as \emph{projectively normal}.
+
+\begin{fact}\label{meaning of ACM}
+The Cohen-Macaulay property is hard to interpret geometrically; the definition is justified by its usefulness. Here are two results that help our intuition:
+\begin{enumerate}
+\item A scheme $X$ is Cohen-Macaulay if some (respectively every) finite map $f: X\to P$ to a smooth scheme P is flat, or equivalently the pushforward $f_*)\sO_X)$ is locally free. (This follows
+from the Auslander-Buchsbaum formula Theorem~\ref{****}.)
+\item (Hartshorne) If a scheme $X$ is Cohen-Macaulay then $X$ is connected in codimension 1 (that is, $X$ remains connected after removing any closed subset of codimension $\geq 2$.)
+See for example \cite[Theorem 18.12]{Eisenbud1995} for a proof.
+\end{enumerate}
+ 
+\end{fact}
+
 
 \section{Exercises}
 
