@@ -207,14 +207,91 @@ $$
 is a perfect pairing. 
 \end{definition}
 Thus if $\sL$ is an invertible sheaf on a projective curve $C$ then $\Hom(\sF, \omega_X) = \sL^{-1}\otimes \omega$,
-so this relation becomes Serre duality: $H^{1}(\sL)$ is the dual of $H^{0}(\sL^{-1}\otimes \omega_{C}$.
+so this relation becomes Serre duality: $H^{1}(\sL)$ is the dual of $H^{0}(\sL^{-1}\otimes \omega_{C})$.
 
 It follows from the definition that the pair $(\omega_{X}, \rho)$ is unique up to canonical isomorphism if it exists:
 The module $H^{0}_{*}\omega_{X} = \oplus_{n\in \ZZ}(Hom_{X}(\sO_{X}(n), \omega_{X})$
-is determined as the dual of $H^{d}_{*}\sO_{X})$, and the choice of $\rho$ simply fixes the isomorphism.
+is determined as the graded vector space dual of $H^{d}_{*}\sO_{X})$, and the choice of $\rho$ simply fixes the isomorphism.
  
+ Several properties of the dualizing sheaf on a purely 1-dimensional scheme
+are the same as in the smooth case, and follow easily from the definition:
 
-\section{Construction of dualizing sheaves}
+\begin{proposition}\label{similarities}
+If $C$ is a purely 1-dimensional projective scheme over $\CC$, then:
+\begin{enumerate}
+
+\item $\sHom_C(\omega_C, \omega_C) = \sO_C$, and  thus if $C$ is integral then the generic rank of $\omega_C$ is 1.
+
+\item For any invertible sheaf $\sL$ on $C$ we have: 
+$$
+H^1(\sL^{-1})= H^0(\sL\otimes_C \omega_{C});\quad %\hbox{ and }
+H^0(\sL^{-1} ) = H^1(\sL\otimes_C \omega_{C}).
+$$
+In particular,
+$$
+\chi(\sL^{-1}) = -\chi(\sL\otimes_C \omega_{C}).
+$$
+
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\noindent{\bf 1:} We claim that the natural map $\sO_C \to \sHom_C(\omega_C, \omega_C)$ is an isomorphism.
+Since the map is globally defined, it suffices to prove that it is an isomorphism locally. 
+
+Choose a Noether
+normalization of $C$, that is, a finite map $f: C\to \PP^1$. 
+We shall see in Theorem~\ref{canonical as Hom} below that $\omega_C \cong \sHom_{\PP^1}(\sO_C,\omega_{\PP^1})$, regarded as a sheaf on $C$ (in Theorem~\ref{canonical as Hom} this is the sheaf $f^{!}\omega_{\PP^{1}})$).
+Since $C$ is purely 1-dimensional, $\sO_{C}$ is torsion-free as an $\sO_{\PP^{1}}$-module, and is thus locally 
+free. 
+%\begin{aligned}
+%\sHom_{C}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}),\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}) ) 
+%%&=\sHom_{C}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}), \sHom_{\PP^1}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}),\sO_{\PP^1}(-2)))\\
+%&\cong \sHom_{\PP^1}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}), \omega_{\PP^{1}}))\\
+%&= \sHom_{\PP^1}(\sO_C,\Hom_{\PP^{1}}(\omega_{\PP^1}), \omega_{\PP^{1}})\\
+%&= \sHom_{\PP^1}(\sO_C,\sO_{\PP^{1}})
+%\end{aligned}
+%$$
+%
+%Since $C$ is purely 1-dimensional it is torsion-free as an $\sO_{\PP^{1}}$-module,
+%(more precisely, $
+%and thus is locally free as an $\sO_{\PP^{1}}$-module. 
+Also, since $\PP^{1}$ is smooth, $\omega_{\PP^{1}}$ is locally
+isomorphic to $\sO_{\PP^{1}}$.
+But if $B$ is any commutative ring and $A$ is a $B$-algebra that is free as a $B$-module, then
+$A\cong Hom_{B}(A,A)$ by the natural map (Exercise~\ref{endo of free algebra}),
+completing the proof.
+
+
+\noindent{\bf 2:} The definition of $\omega_C$ shows that, if $\sL$ is an invertible sheaf, then
+$$
+\begin{aligned}
+H^1(\sL^{-1}) &= \Hom_C(\sL^{-1}, \omega_C))\\
+&= H^0(\sHom_C(\sL^{-1}, \omega_C))\\
+&= H^0(\sL\otimes_C \omega_{C}).
+\end{aligned}
+$$
+Using item 1, we have:
+$$
+\begin{aligned}
+H^0 (\sL^{-1})
+&= H^0 (\sL^{-1}\otimes_{C}\sO_{C})\\
+&= H^0 \bigl(\sL^{-1}\otimes_{C}\sHom_C(\omega_{C}, \omega_{C})\bigr) \\
+&= Hom_{C}(\sL\otimes_C \omega_{C},  \omega_{C}))\\
+&= H^{1}(\sL\otimes_{C}\omega_{C}) 
+%
+%
+%H^{1}(\sL^{-1}\otimes_{C}\omega_{C}) 
+%&= H^0(\sHom_{C}(\sL^{-1}\otimes_C \omega_{C},  \omega_{C}))\\
+%&= H^0 \bigl(\sL\otimes_{C}\sHom_C(\omega_{C}, \omega_{C})\bigr) \\
+%&=H^0 (\sL\otimes_{C}\sO_{C})\\
+%&=H^0 (\sL). 
+\end{aligned}
+$$
+ \end{proof}
+
+
+\section{The construction of dualizing sheaves}
 Dualizing sheaves do exist an any projective Cohen-Macaulay scheme. We have already seen constructions
 in three different cases:
 \begin{itemize}
@@ -225,228 +302,93 @@ $\ram$ denotes the ramification divisor.
 \item If $X\subset Y$ is a Cartier divisor on a surface, then $\omega_{X} = \omega_{Y}(X)\mid_{X}$.
 \end{itemize}
 
-A problem with these ideas is that they are so different! However, Grothendieck has provided a general scheme
+How can such different looking formulas all be correct? Grothendieck provided a general scheme
 that unifies them and gives many more. 
-To understand more general case, consider a setting generalizing Hurwitz' Theorem.
+To understand what is needed for the general case, we first consider a setting generalizing Hurwitz' Theorem.
 Suppose that $X\to Y$ is a finite map of projective schemes, and that $Y$ has a dualizing sheaf $\omega_{Y}$.
 
 If we restrict ourselves to open affine subsets
-$U := \Spec A\subset X$ mapping to $V:= \Spec B\subset Y$ via the map of rings $f^{*}(B\to A)$, then 
-$F := \sF_{U}$ is an $A$-module and $o_{D}: = \omega_{Y}(V)$ is a $B$ module. Moreover,
-$f_*{F}$ is just $F$ regarded as a $B$-module via the map $f^{*}$ and, 
-because the functor $\Hom_{B}(A, -): mod_{B}:\to mod_{A}$ is the right adjoint of the functor $f_{*}(-): mod_{A}\to mod_{B}$, 
-$$
-\Hom_{B}(f_{*}F, o_{D}) = \Hom_{A}(\sF, \Hom_{B}(A, o_{D}).
-$$
-Also, for any $B$-module $M$ there is a natural map of $B$-modules
-$$
-\eta: f_{*}f^{!}(M) = f_{*}(\Hom_{B}, (A,M)) = \Hom_{B}, (A,M) \to M:\quad \eta(\phi) = \phi(1).
-$$
-this is called the \emph{counit} of the adjoint pair $(f_{*}, f^{!})$.
+$U := \Spec A\subset X$ mapping to $V:= \Spec B\subset Y$ via the map of rings $f^{*}:B\to A$, then 
+$F := \sF_{U}$ is an $A$-module and $o_{Y}: = \omega_{Y}(V)$ is a $B$ module. Moreover,
+$f_*{F}$ is just $F$ regarded as a $B$-module via the map $f^{*}$.
 
- Following Grothendieck we write  $f^{!}(-)$ for the sheafification of the the functor
-$\Hom_{B}(A,-)$, which is a right adjoint to the functor $f_{*}$. The whole construction sheafies, 
-including the natural maps $\eta:f_{*}f^{!}(\sF) \to\sF$, and yields:
+For any $B$-module $M$ the module $\Hom_{B}(A, M)$ has a natural structure of $A$-module,
+where $(a\phi)(m)$ is defined to be $\phi(am)$. The functor $f^{!}(-) := \Hom_{B}(A, -): mod_{B}:\to mod_{A}$ 
+defined in this way is the right adjoint of the functor $f_{*}(-): mod_{A}\to mod_{B}$, 
+which means that there is a natural isomorphism of functors
+$$
+\Hom_{B}(f_{*}F, -) \cong \Hom_{A}(F, \Hom_{B}(A, -)) = Hom_{A}(F, f^{!}(-)).
+$$
+In particular 
+$
+\Hom_{B}(f_{*}F, o_{Y}) \cong \Hom_{A}(F, f^{!}o_{Y}),
+$
+Also, there is a natural transformation $\eta$ from $ f_{*}f^{!}$ to the identity functor given by the formula
+takes the form
+$$
+\eta: f_{*}f^{!}(M) = f_{*}(\Hom_{B}, (A,M)) = \Hom_{B}, (A,M) \to M:\quad \eta(\phi) = \phi(1)
+$$
+for any $A$-module $M$. 
+The transformation $\eta$ called the \emph{counit} of the adjoint pair $(f_{*}, f^{!})$.
+
+We also write  $f^{!}(-)$ for the sheafification of the the functor 
+$\Hom_{B}(A,-)$. Again $f^{!}$ is right adjoint to $f_{*}$ on coherent sheaves,
+and again there are natural maps $\eta:f_{*}f^{!}(\sF) \to\sF$. 
 
 \begin{theorem}\label{canonical as Hom}
-If $f: X \to Y$ is a finite map of $d$-dimensional projective schemes and $Y$ has a dualizing sheaf $\omega_{Y}$,
+Let $f: X \to Y$ be a finite map of $d$-dimensional projective schemes. If $Y$ has a dualizing sheaf $\omega_{Y}$,
 with residue map $\rho_{Y}: H^{d}(\omega_{Y}) \to \CC$,
 then 
  $$
-\omega_{X} := f^{!}(\omega_{Y}),
+\omega_{X} := f^{!}\omega_{Y},
 $$
-with residue map $\rho_{X}: H^{d}(\omega_{X})$ as described below, is a dualizing sheaf on $X$. 
+with residue map 
+$$
+\rho_{X}: H^{d}(f^{!}\omega_{X}) = H^{d}(f_{*}f^{!}\omega_{X}) \rTo^{H^{d}(\eta)} H^{d}(\omega_{Y}) \rTo^{\rho_{Y}} \CC,
+$$ 
+where $\eta$ is the counit of the adjoint pair $(f_{*},f^{!})$, is a dualizing sheaf on $X$. 
 \end{theorem}
 
 \begin{proof}
-Let $\eta: f_{*}f^{!}\omega_{Y} \to \omega_{Y}$ be the counit of the adjoint pair $f_{*}, f^{!}$ applied to $\omega_{Y}$,
-and let $\rho_{Y}: H^{d}(f^{!}\omega_{X}) \to \CC$ be the composite
-$$
-H^{d}(f^{!}\omega_{X}) = H^{d}(f_{*}f^{!}\omega_{X}) \rTo^{H^{d}(\eta)} H^{d}(\omega_{Y}) \rTo^{\rho_{Y}} \CC.
-$$
-
-Now let $\sF$ be a coherent sheaf on $X$. Since $f$ is finite, we have $H^{d}(\sF) = H^{d}(f_{*}(\sF)$. Thus,
+Let $\sF$ be a coherent sheaf on $X$. Since $f$ is finite, we have $H^{d}(\sF) = H^{d}(f_{*}(\sF)$. Thus,
 since $f^{!}(-)$ is a right adjoint of $f_{*}$ there are natural isomorphisms
 $$
-H^{d}(\sF) = H^{d}(f_{*}\sF) \cong^{\rho_{Y}} \Hom_{Y}(f_{*}(\sF), \omega_{Y})^{\vee} \cong 
-\Hom_{X}((\sF), f^{!}(\omega_{Y}))^{\vee},
+H^{d}(\sF) = H^{d}(f_{*}\sF) \cong^{\rho_{Y}} \Hom_{Y}(f_{*}\sF, \omega_{Y})^{\vee} \cong 
+\Hom_{X}(\sF, f^{!}\omega_{Y})^{\vee},
 $$
 where $\cong^{\rho_{Y}}$ is the isomorphism induced by $\rho_{Y}$. One can check that the composite
-isomorphism is the one induced by $\rho_{X}$, so $f^{!}(\omega_{Y}), \rho_{X})$ is a dualizing sheaf
-and residue map for $X$.
-\end{proof}
+isomorphism is the one induced by $\rho_{X}$, so $f^{!}(\omega_{Y})$, completing the proof.\end{proof}
 
 \begin{fact}
  Given this theorem, it seems natural to look for an adjoint functor $f^{!}$ for a wider class of morphisms
-$f$ but\dots no such functor exists on the category of coherent sheaves! However, an adjoint functor
+$f$ but\dots in most cases, for example when $f$ is the inclusion of a divisor on a smooth surface, no such functor exists on the category of coherent sheaves! However, an adjoint functor
 $f^{!}$ does exist on the derived category, where it is the right adjoint to $Rf_{*}$, leading to a theory
-of dualizing complexes. Fortunately for the reader who doesn't want to plunge into this level of 
-complication, when $X\to Y$ is a finite map from a projective scheme to a regular
-scheme such as $\PP^{r}$
-$dim X := d \leq dim Y :=r$, and $Y$ has a dualizing sheaf $\omega_{Y}$, the complex
-$f^{!} \omega_{Y}$ has only one cohomology module and $RHom(\sF, f^{!}\omega_{Y})$
-can be identified with $\Ext^{r-d}(\sO_{X}, \omega_{Y})$. 
+of dualizing complexes. 
+
+Fortunately for the reader who is mostly interested in curves, this level of 
+complication is unnecessary, and there is an intermediate level of generality that suffices
+for all the purposes of this book and more: 
+
+\begin{theorem}\label{general adjunction}
+Suppose that $f: X\to Y$ is a finite map of projective schemes. If $Y$ is
+Gorenstein with dualizing module $\omega_{Y}$, then
+$f^{!}(\omega_{Y}) \cong \sExt^{\dim Y-\dim X}_{Y}(\sO_{X}, \omega_{Y})$
+is a dualizing module for $X$.
+\end{theorem}
+
+The hypothesis is satisfied for any $Y$ that is smooth, or even locally a complete intersection.The
+reason this works is that the complex
+$f^{!} \omega_{Y}$ 
+can be identified with its one nonvanishing cohomology module,
+ $\sExt^{\dim Y-\dim X}_{Y}(\sO_{X}, \omega_{Y})$. 
+
+See for example \cite{AltmanKleiman} for a thorough and accessible exposition.\fix{check A-K for precise hypotheses}
 \end{fact}
-
-See Exercise \ref{codimension1} for a comparison of this general result with 
-the adjunction formula,
-and see for example \cite{AltmanKleiman} for a thorough exposition.
-
-Several similarities to the smooth case are consequences:
-
-\begin{proposition}\label{similarities}
-If $C$ is a purely 1-dimensional projective scheme over $\CC$, then:
-\begin{enumerate}
-
-\item $\sHom_C(\omega_C, \omega_C) = \sO_C$, and  thus if $C$ is integral then the generic rank of $\omega_C$ is 1.
-
-\item For any invertible sheaf $\sL$, 
-$h^0(\omega_C\otimes_C\sL^{-1} ) = h^1(\sL)$ and
-$h^1(\omega_C\otimes_C\sL^{-1})= h^0(\sL).$
-and thus
-$$
-\chi(\omega_C\otimes_C\sL)= -\chi(\sL^{-1}).
-$$
-
-\item $\deg \omega_C = 2p_a(C) -2.$
-
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-\noindent{\bf 1:} We claim that the natural map $\sO_C \to \sHom_C(\omega_C, \omega_C)$ is an isomorphism. Choose a Noether
-normalization of $C$, that is, a finite map $C\to \PP^1$.
-By Theorem~\ref{general adjunction} $\omega_C \cong \sO_C^\vee := \sHom_{\PP^1}(\sO_C,\sO_{\PP^1}(-2)).$
-Now
-$$
-\begin{aligned}
-\sHom_{C}(\sO_C^\vee,\sO_C^\vee ) &=\sHom_{C}(\sO_C^\vee, \sHom_{\PP^1}(\sO_C^\vee,\sO_{\PP^1}(-2)))\\
-&= \sHom_{\PP^1}(\sO_C^\vee, \sO_{\PP^1}(-2)))\\
-&= (\sO_C^\vee)^\vee.
-\end{aligned}
-$$
-
-Since $C$ is unmixed it is locally Cohen-Macaulay so, by the Auslander-Buchsbaum formula, 
-$\sO_C$ is locally free as an $\sO_{\PP^1}$-module.
-Thus the natural map $\sO_C \to (\sO_C^\vee)^\vee$ is an isomorphism, proving first equality in the Proposition.
-This implies in particular that if $C$ is reduced and irreducible then $\omega_C$ is generically isomorphic to $\sO_C$.
-
-\noindent{\bf 2:} The duality property of $\omega_C$ shows that, if $\sL$ is an invertible sheaf, then
-$$
-\begin{aligned}
-h^1(\omega_C \otimes_{\cO_C} \sL) &= h^0(\Hom_C(\omega_C\otimes_{\cO_C} \sL, \omega_C))\\
-&= h^0(\Hom_C(\sL, \sHom(\omega_C,\omega_C))\\
-&=h^0 (\sHom(\sL, \sO_C)\\
-&= h^0(\sL^{-1}).
-\end{aligned}
-$$
-Also
-$$
-\begin{aligned}
-h^0(\omega_C\otimes_C\sL) &= h^0 \bigl(Hom_C(\sO_C, \omega_C\otimes_C\sL)\bigr)\\
-&=h^0 \bigl(Hom_C(\sO_C\otimes_C\sL^{-1}, \omega_C)\bigr)\\
-&=H^1 (\sL^{-1}). 
-\end{aligned}
-$$
-
-\noindent{\bf 3:} By definition, $p_a(C) = 1-\chi(\sO_C)$, and 
- $\deg \omega_C = \chi(\omega_C) - \chi(\sO_C),$
- so by what we have proven above
- $\deg \omega_C = -2\chi(\sO_C) = 2p_a(C)-2.$
- \end{proof}
-
-%Here is how this construction works out in two familiar cases:
-%
-%\begin{example}
-% If $C$ is a plane curve of degree $d$, then 
-%$$
-%\omega_C = \sExt^1(\sO_C, \omega_{\PP^2}) = \sExt^1(\sO_C, \sO_{\PP^2}(-3)) \cong \sO_C(d-3),
-%$$
-%where the last isomorphism can be seen from the long exact sequence in $\sExt$ applied
-%to the locally free resolution
-%$$
-%0\to \sO_{\PP^2}(-d) \to \sO_{\PP^2} \to\sO_{X} \to 0
-%$$
-%of $\sO_C$ as a sheaf on $\PP^2$. 
-%\end{example}
-%
-%\begin{example}
-%Consider the case when $C = C_0$ is smooth, connected projective curve. If $\psi: C\to \PP^1$ is a finite  ($\equiv$ non-constant) morphism to $\PP^1$, then Hurwitz' Theorem asserts that the canonical sheaf on
-%$C$ is $(\rho^*\omega_{\PP^1})(R)$, where $R$ is the ramification divisor. It is not hard to show that this
-%agrees with Definition~\ref{canonical as Hom}. For simplicity, suppose that the degree of the map is 2---the general case
-%is virtually the same. If
-% $ p\in\PP^1$ is a point over which there are two disjoint smooth branches
-%we can complete the local ring at $p$ and, after tensoring
-%with $\widehat \sO_{C,p} \cong k[[x]]$, the map of rings becomes 
-%$$
-%R := k[[x]] \subset R':= k[[x]]e_1\times k[[x]]e_2; \quad x =xe_1+xe_2,
-%$$
-%where the $e_i$ are orthogonal idempotents. Tensoring with the quotient field $Q = k((x))$ of $k[[x]]$
-%we get a map $Q \to Q':= Qe_1\times Qe_2$. As in any such situation there is a natural map of $Q$-vectorspaces in the other direction, the trace, which takes any element of $Q'$ to the trace of that element
-%regarded as a homomorphism $Q' \to Q'$ of $Q$-modules. Because $R'$ is finite, and thus integral over $R$, the trace takes elements of $R'$ to $R$; that is $Tr \in \widehat \omega_{R'} = \Hom_R(R', R) \cong R^2$.
-%
-%In this situation the trace generates $\widehat \omega_{R'}$ \emph{as an $R'$-module}: 
-%$$
-%(e_1Tr) (e_1) = Tr(e_1^2) = Tr(e_1) = Tr 
-%\begin{pmatrix}
-% 1&0\\0&0
-%\end{pmatrix} 
-%=1$$
-%while $e_1Tr(e_2) = Tr(e_1e_2) = Tr(0) = 0$
-%and similarly with $(e_2Tr)$, the other projection.
-%
-%However, if $p$ is a simple branch point then, upon completing, the map of local rings becomes
-%$$
-%R := k[[x]] \subset R':= k[[y]; \quad x = y^2
-%$$
-%Again taking $Q = k((x))$, the quotient field of $R$, we see that $Q' = Q\otimes_RR'$ is freely generated as a $Q$-module by 1 and $y$. Again, since $R'$ is integral over $R$ the map $Tr$ takes $R'$ to $R$.
-%We have $Tr(1) = 2$,  but
-%$$
-%Tr(y) = Tr
-%\begin{pmatrix}
-% 0&1\\1&0
-%\end{pmatrix} 
-%=0
-%$$
-%so $\frac{1}{2}Tr$ is the projection onto the first summand,
-%Furthermore, $yTr$ takes 1 to $Tr(y) =0$ and $y$ to $Tr(y^2) = Tr(x) = 2x$,
-%so the cyclic module $R'Tr$ does not contain any map taking $y$ to a nonzero scalar, and
-%thus does not contain a projection onto the second factor.
-%However $y^{-1}= x^{-1}y$ so
-%$$
-%y^{-1}Tr(1) = 
-%Tr
-%\begin{pmatrix}
-%0&1\\ x^{-1}&0
-%\end{pmatrix} 
-%=0
-%$$
-%while
-%$
-%y^{-1}Tr(y) = Tr(1) = 2
-%$
-%so 
-%$$
-%\frac{1}{2}y^{-1}Tr: R' = R\oplus Ry \to R
-%$$
-% is the second projection, and $y^{-1}Tr$ generates $\omega_{R'} = \Hom_R(R', R)$ as an $R'$-module.
-%
-%This corresponds to the fact that a local generator of the module of regular differential forms
-%on $\Spec R'$ is $y^{-1}$ times the pullback of a local generator $dx$, or equivalently
-%that a differential form on $C'$ must be multiplied by $y$ to ensure that it ``descends'' to a regular differential
-%form on $\PP^1$. Note that if we write
-%$R' = k[[x,y]]/(f)$  with $f(x,y) = y^2-x$, then we have written the regular differential form on $C$
-%$$
-%y^{-1}dx = \frac{dx}{\partial f/\partial y}
-%$$
-%a formula we have seen before.
-%\end{example}
-% 
 
 \subsection{Proof of Theorem~\ref{direct linkage}}
 
 \begin{proof}
- Let $X$ be the complete intersection of surfaces of degrees $s,t$ containing $C$, and let $S_X = S/(F,G)$ be its homogeneous coordinate ring, where
+ Let $X$ be the complete intersection of surfaces of degrees $s,t$ containing $C$, and let $R_X = S/(F,G)$ be its homogeneous coordinate ring, where
 $S = \CC[x_0,\dots,x_3]$ is the homogeneous coordinate ring of $\PP^3$.
 From the free resolution
 $$
@@ -458,34 +400,37 @@ $$
 \begin{pmatrix}
  F & G
 \end{pmatrix}}
- S \rTo S/(F,G) \rTo 0
+ S \rTo R_{X} \rTo 0
 $$
- and Theorem~\ref{omega} we see that
+ and Theorem~\ref{general adjunction} we see that
  $$
 \omega_X =  \sExt^2_C(\sO_X, \omega_{\PP^3}) =\sExt^2(\sO_X, \sO_{\PP^3}(-4)) = \sO_X(s+b-4).
  $$
 Note that for any ideals $J\subset I$ in a ring $A$ we have $Hom_A(A/I, A/J) \cong (J:I)/J$, where the isomorphism
-sends a homomorphism $\phi$ to the element $\phi(1)$. Again from Theorem~\ref{omega} we have 
+sends a homomorphism $\phi$ to the element $\phi(1)$. From Theorem~\ref{general adjunction} we have 
 $$
 \omega_C = \Hom_X(\sO_C, \omega_X) = \Hom_X(\sO_C, \sO_X)(s+t-4) = \frac{\sI_X:\sI_C}{\sI_X}(s+t-4),
 $$
 where we have identified $\sO_C$ with its pushforward under the inclusion map $C\to X$. 
 
-Since $C$ is purely 1-dimensional it is Cohen-Macaulay, so
-$\chi(\omega_C(m)) = -\chi(\sO_C(-m))$. It follows that the degree of $\omega_C$, which is the leading coefficient of the Hilbert polynomial of $\omega_C$, is 
-equal to $\deg C$, and 
+By Proposition~\ref{similarities}
+$\chi(\omega_C(m)) = -\chi(\sO_C(-m))$. It follows that the leading coefficient of the Hilbert polynomial of $\omega_C$, is 
+equal to $\deg C$, and thus
 $$
-st = \deg \sO_X =\deg \sO_{C'}+\deg \omega_C = \deg \sO_{C'}+\deg \sO_C
+st = \deg \sO_X = \deg \sO_{C'}+\deg \sO_C,
 $$
 as required by the formula for the sum of the degrees.
 
-From Theorem~\ref{omega} we see that $\chi(\sO_X) = st(4-s-t)/2$. Since $\sO_{C'} = \sO_{\PP^3}/(\sI_X : \sI_C)$ and
+From Theorem~\ref{canonical as Hom} (or Theorem~\ref{general adjunction}) we see that $\chi(\sO_X) = st(4-s-t)/2$. Since $\sO_{C'} = \sO_{\PP^3}/(\sI_X : \sI_C)$ and
 $(\sI_X : \sI_C)/(\sI_X) = \omega_C(4-s-t)$ we have
 $$
 \begin{aligned}
--\frac{(s+t-4)}{2} (\deg C +& \deg C') \\&= -\frac{(s+t-4)}{2}st \\
-&= \chi(\sO_X) \\&=  \chi(\sO_{C'})+\chi(\omega_C(4-s-t)) \\&= \chi(\sO_{C'})-\chi(\sO_C(s+t-4)) \\&= \chi(\sO_{C'})-(s+t-4)\deg C-\chi(\sO_C)
-\\&= (1-p_a(\sO_{C'})) - (1-p_a(\sO_C) -(s+t-4)\deg C,
+&\frac{4-s-t}{2}(\deg C+\deg C')\\
+&=\frac{4-s-t}{2}st\\
+&=\chi(\sO_X) \\
+&=  \chi(\sO_{C'})+\chi(\omega_C(4-s-t)) \\
+&= \chi(\sO_{C'})-\chi(\sO_C(s+t-4)) \\&= \chi(\sO_{C'})-(s+t-4)\deg C-\chi(\sO_C)\\
+&= (1-p_a(\sO_{C'})) - (1-p_a(\sO_C) -(s+t-4)\deg C,
 \end{aligned}
 $$
 whence 
@@ -494,7 +439,7 @@ p_a(\sO_C) -p_a(\sO_{C'} = \frac{(s+t-4)}{2} (\deg C - \deg C').
 $$
  \end{proof}
 
-Linkage behaves in a simple way with respect to deficiency modules:
+Linkage also behaves in a simple way with respect to deficiency modules:
 
 \begin{theorem}\label{HR}
 If $C,C'$ are purely 1-dimensional subschemes of $\PP^3$ that are directly linked by a complete intersection of degrees $s,t$ then
@@ -521,55 +466,51 @@ map of resolutions
 $$
 \begin{diagram}[small]
 0&\rTo& \sE &\rTo& \oplus_i\sO_{\PP^3}(-a_i)                                         &\rTo&\sO_{\PP^3}&\rTo &\sO_C &\rTo& 0\\
-&&\uTo&&\uTo&&\uTo&&\uTo\\
+&&\uTo&&\uTo&&\uTo_{=}&&\uTo\\
 0&\rTo& \sO_{\PP^3}(-s-t) &\rTo& \sO_{\PP^3}(-s)\oplus \sO_{\PP^3}(-t) &\rTo& \sO_{\PP^3}&\rTo& \sO_X &\rTo& 0\\
 \end{diagram}
 $$
 We dualize this diagram, form the mapping cone, and twist by $-s-t$. Note that $\Hom_{\PP^3}(\sO_C, \sO_{\PP^3}) = 0$. 
 Also, since the vertical map $\sO_{\PP^3}\to \sO_{\PP^3}$ on the right
-is an isomorphism we may cancel these terms. Noting that $\omega_C = \Ext^2(\sO_C, \sO_{\PP^3}(-4))$ we get the diagram with 
+is the identity we may cancel these terms in the mapping cone. Noting that $\omega_C = \Ext^2(\sO_C, \sO_{\PP^3}(-4))$ the result is a diagram with 
 exact rows:
 $$
 \begin{diagram}[small]
  0&\lTo&\omega_C(-s-t+4)&\lTo&\sE^*(-s-t) &\lTo&  \oplus_i\sO_{\PP^3}(a_i-s-t)&\lTo&  0\\
  &&\dTo^\phi&&\dTo&&\dTo\\
- 0&\lTo&\sO_X&\lTo&\sO_{\PP^3} &\lTo& \sO_{\PP^3}(-t)\oplus \sO_{\PP^3}(-s) &\lTo&0\\
+ 0&\lTo&\sO_X&\lTo&\sO_{\PP^3} &\lTo& \sO_{\PP^3}(-t)\oplus \sO_{\PP^3}(-s) \\
  &&\dTo\\
  &&\sO_{C'}\\
  &&\dTo\\
  && 0
 \end{diagram}.
 $$
-Here the column on the left is an exact sequence because $(\sI_X:\sI_C)/\sI_X \cong \omega_C(-s-t+4)$, as explained above.
-We can now write a resolution of $\sI_{C'}$ by taking the mapping cone:
+\fix{Xianglong attributed this to Ferrand. Reference??}
+The map $\phi$ is a monomorphism because $(\sI_X:\sI_C)/\sI_X \cong \omega_C(-s-t+4)$, as explained above, so the column on the left is a short exact sequence.
+We can now write a resolution of $\sI_{C'}$ as the mapping cone:
 $$
 \begin{diagram}
-0\leftarrow \sI_{C'} \leftarrow \sO_{\PP^3}(-t)\oplus \sO_{\PP^3}(-s) \oplus \sE^*(-s-t) \leftarrow \oplus_i\sO_{\PP^3}(a_i-s-t)\leftarrow  0
+0\leftarrow \sI_{C'} \leftarrow \sO_{\PP^3}(-t)\oplus \sO_{\PP^3}(-s) \oplus \sE^*(-s-t) \leftarrow \oplus_i\sO_{\PP^3}(a_i-s-t)\leftarrow  0.
 \end{diagram}
 $$
 From this we see that 
 $$
-H^1(\sI_{C'}(m) \cong H^1(\sE^*(-s-t+m) \cong Hom_\CC( H^2(\sE(s+t-m-4)), \CC)
+H^1(\sI_{C'}(m)) \cong H^1(\sE^*(-s-t+m)) \cong Hom_\CC( H^2(\sE(s+t-m-4)), \CC)
 $$
 where the last equality is from Serre duality on $\PP^3$. Summing over $m$ we see that
 $D(C') \cong Hom(D(C)(s+t-4), \CC)$,
-and since Serre duality is functorial, the isomorphism holds not only as graded vector spaces, but as graded $S$-modules. 
-
-To prove that the relation of direct linkage is symmetric, we can repeat this argument starting from the locally free
-resolution of $C'$, above, using the same forms of degree $s,t$ and we see that  direct link of $C'$ is $C$.
-\end{proof}
+and since Serre duality is functorial, the isomorphism holds not only as graded vector spaces, but as graded $S$-modules. \end{proof}
 
 Sometimes the following consequence is a useful way to compute the deficiency module:
 
-\begin{corollary}[Corollary of the proof of Theorem~\ref{HR}]\label{deficiency as dual of Ext}
+\begin{proposition}\label{deficiency as dual of Ext}
 If $C$ is a purely 1-dimensional subscheme of $\PP^3$ with homogeneous ideal $I = I_C$ then 
 $$
 D(C) \cong Hom_\CC (Ext^3(S/I, S), \CC)(-4), \CC)
 $$
 as graded modules over the homogeneous coordinate ring $S$ of $\PP^3$.
-\end{corollary}
+\end{proposition}
 
-This is a special case of the local duality isomorphism between local cohomology and the dual of Ext; see for example \cite[Theorem A.1.9]{MR2103875}.
 \begin{proof}
 We may choose a surjection  $\psi:  \oplus_iS(-a_i)\rTo I$, and choose the map
 $\phi: \oplus_i\sO_{\PP^3}(-a_i)\rTo\sI_C$
@@ -586,8 +527,9 @@ where $G\to F$ is a free presentation of $E$. and there is an exact sequence
 $$
 0 \to E^* \to F^* \to G^* \to Ext^3_S(S/I, S) \to 0.
 $$
-Since $\sO_C$ is Cohen-Macaulay the sheafification of $Ext^3_S(S/I, S)$ is 0; that is,
-$Ext^3_S(S/I, S)$ has finite length, and writing $\widetilde{(\phantom{-})}$ for the sheafification functor,
+By Theorem~\ref{Auslander-Buchsbaum}, the fact that $C$ is Cohen-Macaulay implies that the projective dimension of each of its
+local rings is $\leq 2$,  and it follows that
+$Ext^3_S(S/I, S)$ has finite length. Writing $\widetilde{(\phantom{-})}$ for the sheafification functor,
 we have a short exact sequence of sheaves 
 $$
 0\to \sE^* \to \widetilde{F^*} \to \widetilde{G^*}\to 0.
@@ -599,12 +541,13 @@ $$
 proving the assertion.
 \end{proof}
 
+Proposition~\ref{deficiency as dual of Ext} is actually a special case of the local duality isomorphism between local cohomology and the dual of Ext; see for example \cite[Theorem A.1.9]{MR2103875}.
 
 \section{The linkage equivalence relation}
 As an immediate consequence of Theorem~\ref{HR} we have:
 \begin{corollary}(Hartshorne)
  If two curves $C,C'$ are linked by an even length chain of direct linkages, then 
- $D(C)$ and $D(C')$ are isomorphic up to a shift in grading.
+ $D(C)$ and $D(C')$ are isomorphic up to a shift in grading.\qed
 \end{corollary}
 
 As we mentioned at the beginning of this Chapter, the converse is also true: the Hartshorne-Rao modules, up to shift in grading, provide a complete invariant of
@@ -616,7 +559,6 @@ Let $S = \CC[x_0, \dots, x_3]$ be the homogeneous coordinate ring of $\PP^3$, an
 \begin{enumerate}
 \item There is a smooth curve $C$ with $D(C) = M(m)$ for some integer $m$.
 \item There is a minimum value of $m$ such that $M(m) = D(C_0)$ for some purely one-dimensional scheme $C_0$.
-\item Every curve that is evenly linked to $C_0$ is obtained from $C_0$ by deformation and a process called
 \end{enumerate}
 \end{theorem}
 
@@ -626,55 +568,17 @@ contained in $I_C$---see Exercise~\ref{Basic double links}.
 
 \begin{theorem}\cite{MR1087803}\label{LR property}
 Let $M = D(C_0)$ the the Hartshorne Rao invariant of a purely 1-dimensional subscheme of $\PP^3$, and suppose that
-$M$ is minimal in the sense that no $M(m)$ is the invariant of a purely 1-dimensional scheme. 
+$M$ is minimal in the sense that no $M(m)$ with $m>0$ is the invariant of a purely 1-dimensional scheme. 
 \begin{enumerate}
- \item Every curve $C$ in $\PP^3$ with $D(C) = M$ is a deformation of $C_0$ through curves with invariant $M$.
+ \item Any curve in $\PP^3$ with $D(C) = M$ is a deformation of $C_{0}$ through curves with invariant $M$.
  \item Every curve in the even linkage class of $C_0$ is the result of a series of ascending double links followed by a deformation.
 \end{enumerate}
 \end{theorem}
 
-In \cite{MR714753} it is shown that general curves of reasonably large degree in $\PP^3$ and many others have the property in the hypothesis
+In \cite{MR714753} it is shown that general curves  in $\PP^3$ that have 
+of reasonably large degree compared to their genus are minimal in the sense 
 of  Theorem~\ref{LR property}.
 \end{fact}
-
-
-%\section{Canonical sheaves of singular curves}
-%
-%\fix{The following was part of a different intro to the singular case. Where, if anywhere, should it go?}
-%
-%The sheaf of differentials on a singular curve $C_0$ is generally not well-behaved, generally not even torsion-free,
-% and it does not
-%have the properties that make the canonical sheaf useful. The canonical
-%sheaf on $C_0$ must be defined differently:
-%
-%\begin{definition}\label{canonical as Hom}
-%Let $C_0$ be a purely 1-dimensional scheme and let $\rho: C_0\to \PP^1$ be a finite morphism. The canonical sheaf $\omega_{C_0}$
-%is the sheaf $\rho^{-1}\Hom_{\PP^1}(\rho_*\sO_{C_0}, \omega_{\PP^1})$ on $C_0$. 
-%\end{definition}
-%
-%To demystify the last phrase of this definition, note that because the map
-%$\rho$ is finite,  the open sets $U = \rho^{-1}V$, where $V\subset \PP^1$ is open, form a basis for the open sets of $C_0$; and for
-%such an open set $U$ the ring $\sO_C(U)$ is equal, as a set, to 
-%$(\rho_*\sO_C)(V)$. Thus if $\sL$ is any coherent sheaf on $C_0$ then $\rho_*\sL$, or more properlu $\rho^{-1}(\rho_*(\sL)$,
-%may be regarded as a coherent sheaf on $C_0$.
-%
-%The reader may be concerned with applying the name ``canonical'' to a definition that seems to
-%depend on the choice of a map $\rho$, but in fact if $\rho': C_0 \to \PP^1$ is another such map,
-%there is a canonical isomorphism between the apparently different sheaves $\omega_{C_0}$ defined above.
-%
-%More generally:
-%
-%\begin{fact}
-%Suppose that $X$ is a smooth projective variety and $\omega_X$ is the sheaf of differential forms of degree $\dim X$.
-%If $\psi: C_0 \to X$ is any finite morphism of pure-dimensional schemes, then
-%$$
-%\omega_{C_0} \cong \sExt^{\dim X -\dim C_0}(\sO_{C_0}, \omega_X),
-%$$
-%and any two such representations are canonically isomorphic.
-%\end{fact}
-%
-%For a proof in the case of the inclusion of a projective variety see \cite[Section III.7]{Hartshorne1977}, while for the more general assertion above see \cite{AltmanKleiman}. 
-%
 
 \section{Comparing the canonical sheaf with that of the normalization}
 
@@ -707,11 +611,7 @@ explained in Chapter~\ref{RiemannRochChapter}.  The property in the last stateme
 Theorem  was first noted (for plane curves) in Daniel Gorenstein's thesis under Oscar Zariski\footnote{Gorenstein is better remembered for his work on the classification of finite simple groups.}. This is the
 reason why Grothendieck gave the name ``Gorenstein" to Cohen-Macaulay rings that have cyclic canonical 
 modules--see~\cite{Bass}. 
-
-In the previous chapter we used the adjoint ideal as a condition on a polynomial
-$e$ to multiply differential forms on $C$ for $e\phi$ to belong to $\omega_C$ is always sufficient, but may be necessary only
-when $\omega_{C_0}$ is cyclic---which is equivalent to the statement that $C_0$ is locally
-Gorenstein. This condition is always satisfied for singularities of curves in the plane.
+This condition is always satisfied for singularities of curves in the plane.
 See Example~\ref{nongorenstein} for a singularity that is not locally planar, and behaves differently.
 
 
@@ -724,31 +624,31 @@ $$
 \alpha: \rho_*\sO_{C_0} \hookrightarrow \rho_*\nu_*\sO_C
 $$
 and since $\sO_C$ is equal to $\sO_{C_0}$ generically on $\PP^1$, the cokernel $\coker \alpha$ has finite length; indeed, it is supported on the 
-image of the singular locus of $C_0$. Since the maps $\nu$ and $\rho$ are finite, we may harmlessly think of both 
+image in $\PP^{1}$ of the singular locus of $C_0$. Since the maps $\nu$ and $\rho$ are finite, we may harmlessly think of both 
 $\sO_{C_0}$ and $\sO_C$ as coherent sheaves on $\PP^1$, and we will simplify the notation by dropping $\nu_*$ and $\rho_*$.
-Taking duals into $\sO_{\PP^1}$ and defining
+Taking duals into $\omega_{\PP^{1}} = \sO_{\PP^1}(-2)$ and defining
 $\alpha^\vee := \Hom_{\PP^1}(\alpha, \sO_{\PP^1}) $ we get a map that fits into the long exact sequence
-of $\sExt_{\PP^1}(-, \sO_{\PP^1})$:
+of $\sExt_{\PP^1}(-, \omega_{\PP^{1}})$:
 $$
 \begin{diagram}[small]
  0&\rTo& 
- \Hom_{\PP^1}(\coker \alpha,\sO_{\PP^1})
+ \Hom_{\PP^1}(\coker \alpha,\omega_{\PP^{1}})
 &\rTo&
 \omega_{C}
 & \rTo^{\alpha^\vee}&
 \omega_{C_0}\\
 &\rTo&
-\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})
+\sExt^1_{\PP^1}(\coker \alpha,\omega_{\PP^{1}})
 &\rTo&
-\sExt^1_{\PP^1}(\sO_C, \sO_{\PP^1})
+\sExt^1_{\PP^1}(\sO_C,\omega_{\PP^{1}})
 &\rTo&
 \cdots
 \end{diagram}
 $$
-Since $\coker \alpha$ has finite support, $ \Hom_{\PP^1}(\coker \alpha,\sO_{\PP^1}) = 0$ and
-$\sExt^1_{\PP^1}(\coker \alpha, \sO_{\PP^1})$ has the same length and the same annihilator
+Since $\coker \alpha$ has finite support, $ \Hom_{\PP^1}(\coker \alpha,\omega_{\PP^{1}}) = 0$ and
+$\sExt^1_{\PP^1}(\coker \alpha, \omega_{\PP^{1}})$ has the same length and the same annihilator
 as $\coker \alpha$. Furthermore, because $\sO_C$ is locally free as an $\sO_{\PP^1}$-module, the term
-$\sExt^1_{\PP^1}(\sO_C, \sO_{\PP^1})$ vanishes, and we get the more manageable exact sequence
+$\sExt^1_{\PP^1}(\sO_C, \omega_{\PP^{1}})$ vanishes, and we get the more manageable exact sequence
 $$
 \begin{diagram}
  0&\rTo&
@@ -767,14 +667,14 @@ in $\sO_{C_0}$, is at the same time an ideal sheaf of $\sO_{C_0}$ and an ideal s
 of the Theorem.
 
 A further simplification occurs when $C_0\subset \PP^2$ is a plane curve, or more generally any 
-curve such that the canonical module of $C_0$ is an invertible sheaf (this is the definition of the Gorenstein property).
+Gorenstein curve.
 If the defining equation of 
 $C_0$ is the form $F$ of degree $d$, then there is a locally free resolution of  $\sO_C$ of the form
 $$
 0\rTo \sO_{\PP^2}(-d) \rTo^F \sO_{\PP^2} \rTo \sO_C \rTo 0
 $$
 and thus $\omega_C \cong \sExt^1_{\PP^2}(\sO_{C_0}, \omega_{\PP^2})$
-is cokernel of the map $\sO_{\PP^2}(-3) \to \sO_{\PP^2}(d-3)$ given by multiplication by $F$. Thus
+is the cokernel of the map $\sO_{\PP^2}(-3) \to \sO_{\PP^2}(d-3)$ given by multiplication by $F$. Thus
 $\omega_{C_0}$ is locally cyclic, and  since the support of $\omega_{C_0}/\omega_C$ is finite, this module is
  globally cyclic, so
 $\omega_{C_0}/\omega_C \cong \sO_{C_0}/\mathfrak f_{C/C_0}$.
@@ -807,7 +707,7 @@ $xg = x/t$ and $yg = y/t$ in $Q$ we have
  $xg = x/tTr$ and $yg= y/tTr$, the generators of $\Hom_{P}(R,P)$. 
  The ring $R_0$, regarded As a $P$-module, is freely generated by 1 and $x$.
  Immediate computation shows that $gTr(1) = 0$ while $gTr(x) = 1$.
- Furthermore $(x-y)g = 1$ in $Q$,  and thus $\frac{1}{2}(x-y)gTr = Tr$ takes 1 to 1
+ Furthermore $(x-y)g = 1$ in $Q$,  and thus $\frac{1}{2}(x-y)gTr$ takes 1 to 1
  and $x$ to $t$, proving that $gTr$  generates
  $\Hom_P(R_0,P)$. We also see directly from this that the adjoint ideal
  of $\omega_{R_0}/\omega_R$ is the conductor ideal $(x,y)R_0 = (x,y)R = \mathfrak f_{R/R_0}$,
@@ -819,7 +719,7 @@ We showed earlier that the adjoint ideal of a planar triple point is the square 
   the germ of a spatial triple point singularity $R_0 := k[[x,y,z]]/(xy, xz,yz)$, the vertex of the cone over 3
  non-colinear points in the plane, with normalization $R = k[[x]]\times k[[y]]\times k[[z]]$.
  If we set $t = x+y+z\in R_0\subset R$, then the three idempotents that generated $R$ as an $S$-module
- can be written as $x/t, y/t, z/t$. We have $x^2/t = xt_t= x$ and similarly for $y$ and $z$, so
+ can be written as $x/t, y/t, z/t$. We have $x^2/t = xt/t= x$ and similarly for $y$ and $z$, so
  the conductor is given by $\ff_{R/R_0} = (x,y,z)R = (x,y,z)R_0$.
  
  The ring $R$ is also finite over $S := k[[x,y,z]]$, and is isomorphic as such to 
@@ -852,7 +752,7 @@ The canonical module of $R_0$ (which would be the germ of the canonical module o
 $$
 a module requiring 2 generators.
 \end{example}
-The inclusion $\omega_{R} \subset \omega_{R_0}$ is thus induced by the 
+The inclusion $\omega_{R} \subset \omega_{R_0}$ is  induced by the 
 dual of the last map in a comparison map between the two resolutions. Computation
 confirms the conclusion of Theorem~\ref{general adjoint} that $\fA_{R/R_0} = \ff_{R/R_0} = (x,y,z)$. However, the length of $R/R_0$ is 2, and the length of $R_0/\ff_{R/R_0} = R_0/(x,y,z)$ is  1, so the
 last conclusion of Theorem~\ref{general adjoint} fails, along with its hypothesis.
@@ -876,11 +776,11 @@ for more information.
 \end{fact}
 
 Thus:
-\begin{theorem}\label{general RR without duality}
+\begin{proposition}\label{general RR without duality}
 $$
  \chi(\sF) = \deg \sF + r\chi(\sO_C) = \deg \sF + r(1-p_a(C)).
  $$
-\end{theorem}
+\end{proposition}
  
 This statement would be
 a tautology if there were no other way to compute $\deg(\sF)$, but there is:
@@ -888,10 +788,11 @@ a tautology if there were no other way to compute $\deg(\sF)$, but there is:
 \begin{fact} Let $C$ be a reduced and irreducible projective curve, let $\sF$ be a coherent sheaf on $C$ of generic rank $r$, and let $\sL$ be an invertible sheaf on $C$.
 \begin{enumerate}
 \item If $\sF$ is generated by its global sections and $\sigma_1,\dots, \sigma_r$ is a maximal generically independent
-collection of global sections,  then 
+collection of global sections of $\sF$,  then $M = \coker(\sO_C^r \rTo^{(\sigma_1,\dots, \sigma_r)}\sF)$
+has finite support, and
 $$
 \deg (\sF) = r \chi(\sO_C)+
-\dim_\CC H^0(\coker(\sO_C^r \rTo^{(\sigma_1,\dots, \sigma_r)}\sF))\,;
+\dim_\CC H^0(M)\,;
 $$
 
 \item $\deg (\sL \otimes \sF) = \deg (\sF) +r\deg (\sL).$
@@ -959,7 +860,7 @@ Let $C$ be the disjoint union of 3 skew lines.
  \item prove that $C$ lies on a unique quadric, and that $H^2(\sI_C) = 0$
  \item compute the Hartshorne-Rao module $D(C)$.
  \item show that if $\Gamma$ is the union of 3 points in $\PP^3$ then
- $H^1\sI(\Gamma) = 0$ iff the three points are colinear.
+ $H^1\sI(\Gamma) = 0$ if and only if the three points are colinear.
  \item Using the exact sequence in cohomology coming from the short exact sequence
 $$
 0\to \sI_C \rTo^{\ell} \sI_C(1) \to \sI_\Gamma(1) \to 0
@@ -968,7 +869,7 @@ where $\ell$ is a linear form, show that the map of vector spaces
 $$
 H^1(\sI_C) \rTo^{\ell} H^1\sI_C(1))
 $$
-has rank<2 if and only if $\ell$ vanishes on 3 collinear points on the three lines (including the case when $\ell$ vanishes identically on one of the lines).
+has rank$<2$ if and only if $\ell$ vanishes on 3 collinear points on the three lines (including the case when $\ell$ vanishes identically on one of the lines).
 Conclude that if a different union $C'$ of 3 skew lines is linked to $C$, then $C'$ lies on the same quadric as $C$.
 \end{enumerate}
 See~\cite{Migliore} for more examples of this type.
@@ -993,10 +894,10 @@ See~\cite{Migliore} for more examples of this type.
 (From the unpublished Brandeis thesis of Phillip Schwartau):
 Suppose that $I, J$ are saturated ideals defining purely 1-dimensional subschemes of $\PP^3$
 and that $f,g$ is a regular sequence with $f\in I$ and $g\in J$.
-Prove that $g I \cap fJ = (fg)$, and conclude that if $I,J$ are purely codimension 2 ideals
+Prove that $g I \cap fJ = (fg)$, and conclude that if $I,J$ are saturated codimension 2 ideals
  defining purely 1-dimensional schemes $C,C'$ in $\PP^3$
  then  $(gI+fJ)$ is a saturated ideal defining a purely 1-dimensional
-scheme $C''$ with $D(C'') = D(C)(-\deg g) \oplus D(C')(-deg f)$.
+scheme $C''$ with $D(C'') = D(C)(-\deg g) \oplus D(C')(-\deg f)$.
 
 Hint: Use the exact sequence 
 $$
@@ -1010,7 +911,7 @@ and the corresponding exact sequence of quotients by these ideals.
 The special case of the construction in Exercise~\ref{Liaison addition} in which $C'$ is trivial is already interesting. 
 
 \begin{enumerate}
- \item Show that if $I$ is a purely codimension 2 ideal
+ \item Show that if $I$ is a saturated ideal of codimension 2
  defining a purely 1-dimensional scheme $C$ in $\PP^3$
  and $(f, g)$ is a regular sequence with $g\in I$, then
  then  $fI+(g)$ defines a scheme $C'$ with $D(C') = D(C)(-\deg f)$.
