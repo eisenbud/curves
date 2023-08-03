@@ -95,7 +95,7 @@ in question. In particular, the individual objects should be in natural one-to-o
 moduli space.  The word \emph{natural} is the key. Most of the time, the set of objects we are interested in has cardinality $2^{\aleph_0}$, as do all positive-dimensional varieties $M$ over $\CC$, so a mere  bijection between the points of $M$ and the objects to be parametrized is meaningless.
 
 In the nicest situations there is a \emph{universal} family $\phi: \cX\to M$ of these objects over $M$,
-such that any family over a scheme $B$,  is pulled back from the one on $M$ via a unique morphism $B\to M.$  Such a space $M$ with its universal family $\phi$, if it exists, is called a \emph{fine moduli space}. This can be expressed more abstractly but more succinctly by saying that the moduli scheme \emph{represents the moduli functor}, which means there is an isomorphism of functors:
+such that any family over a scheme $B$  is pulled back from the one on $M$ via a unique morphism $B\to M.$  Such a space $M$ with its universal family $\phi$, if it exists, is called a \emph{fine moduli space}. This can be expressed more abstractly but more succinctly by saying that the moduli scheme \emph{represents the moduli functor}, which means there is an isomorphism of functors:
 $$
 \{ B \mapsto \text{families of } X \text{ over } B \} \cong \{ B\mapsto {\rm{Mor}}_{{\rm Schemes}}(B, M) \}.
 $$
@@ -420,8 +420,10 @@ A priori, the Hilbert scheme parametrizes subschemes of projective space. But th
 \subsubsection{Subschemes of a given scheme}
 
 Though the Hilbert scheme is a priori about subschemes of projective space, it is easy to see that if $X\subset \PP^n$,
-then the family of subschemes $Y$ of $X$ with given Hilbert function $p$ is a closed subscheme of $Hilb_p(\PP^n)$: we simply
-add the condition that the vector space of forms of high degree defining $Y$  contain the vector space defining $X$---this is also a determinantal condition.
+then the family of subschemes $Y$ of $X$ with given Hilbert polynomial $p$ is a closed subscheme of $Hilb_p(\PP^n)$: we simply
+add the condition that the vector space of forms of high degree defining $Y$  contain the vector space defining $X$---this is also a determinantal condition---and denote the resulting scheme $Hilb_p(X)$.
+
+We can identify the tangent space to $Hilb_p(X)$ at a point $[Y]$ by a variant of the argument above: if $Y \subset X$ is any subscheme, it has a normal sheaf $\cN_{Y/X}$, and the tangent space to $Hilb_p(X)$ at $[Y]$ is naturally identified with $H^0(\cN_{Y/X})$.
 
 \subsubsection{Nested pairs} A variant of the Hilbert scheme construction can be used to parametrize \emph{nested pairs} of subschemes of $\PP^r$; that is, given a pair of polynomials $p(m)$ and $q(m)$ we can consider pairs $(X,Y)$ with $X \subset Y \subset \PP^r$, with $X$ having Hilbert polynomial $p$ and $Y$ having Hilbert polynomial $q$. The construction is simple: we find a suitably large $m$, and associate to any such pair $X \subset Y \subset \PP^r$ the point
 $$
@@ -429,11 +431,25 @@ H^0(\cI_Y(m)) \subset H^0(\cI_X(m)) \subset H^0(\cO_{\PP^r}(m))
 $$
 in the flag manifold $F(\binom{r+m}{r} - q(m), \binom{r+m}{r} - p(m), \binom{r+m}{r})$.
 
-For example, we could take $p=1$; the resulting space would parametrize pointed subschemes $(y,Y)$ with $Y \subset \PP^r$ having Hilbert polynomial $q$ and $y \in Y$.
+For example, we could take $p=1$; the resulting space would parametrize pointed subschemes $(y,Y)$ with $Y \subset \PP^r$ having Hilbert polynomial $q$ and $y \in Y$. Indeed, this is the same scheme as the universal family over $Hilb_p(\PP^n)$.
 
-\subsubsection{Relative Hilbert schemes} Suppose now that $\cX \to B$ is a family of projective schemes over some base $B$; that is, $\cX$ is a subscheme of $B \times \PP^r$ flat over $B$. For any Hilbert polynomial $q(m)$, we can parametrize pairs $(b, Y)$ with $b \in B$ and $Y \subset X_b$ a subscheme of the fiber $X_b$ having Hilbert polynomial $q$.
+We can also identify the tangent spaces to Hilbert schemes of nested pairs, at least when the schemes involved are reasonable: if $X \subset Y \subset \PP^r$ is any nested pair of smooth subschemes of $\PP^r$, we have morphisms of normal sheaves
+$$
+\begin{diagram}
+\cN_{X/\PP^r} & \rTo^\alpha & \cN_{Y/\PP^r}|_X \\
+& & \uTo^\beta \\
+& & \cN_{Y/\PP^r}
+\end{diagram}
+$$
+and the tangent space to the Hilbert scheme of nested pairs at the point $[X,Y]$ is the space of pairs $(\sigma, \tau) \in H^0(\cN_{X/\PP^r}) \times H^0(\cN_{Y/\PP^r})$ with $\alpha(\sigma) = \beta(\tau)$. See Lemma 6.23 of~\cite{3264} for details.
 
-\subsubsection{Morphisms} Suppose we want to parametrize morphisms between two given projective schemes $X$ and $Y$. We can embed the product $X \times Y$ in a larger projective space $\PP^N$, and then consider the Hilbert scheme $\cH$ parametrizing subschemes of the product $X \times Y$. Among such subschemes are the graphs of maps $f: X \to Y$; since a map is determined by its graph, this expresses the family of morphisms from $X$ to $Y$ as a locally closed subscheme of $\cH$.
+\subsubsection{Relative Hilbert schemes} Suppose now that $\sY \to B$ is a flat family of projective schemes over some base $B$; that is, $\sY$ is a subscheme of $B \times \PP^r$ flat over $B$. For any Hilbert polynomial $p(m)$, we can construct the relative Hilbert scheme $Hilb_p(\sY/B)$ parametrizing pairs $(b, X)$ with $b \in B$ and $X \subset Y_b$ a subscheme of the fiber $Y_b$ having Hilbert polynomial $p$. In a sense, the last construction is a special case of this: if we take the family $\sY \to B$ to be the universal family over $B = Hilb_q(\PP^r)$, we get the Hilbert scheme of nested pairs.
+
+Relative Hilbert schemes can be fascinating objects that behave in unexpected ways. By way of an example, suppose $B$ is a smooth curve and $\sY \to B$ a family of smooth curves over $B \setminus \{b_0\}$ specializing to a nodal curve $Y_{b_0}$. We've seen that for $b \neq b_0$, the Hilbert scheme of subschemes of $Y_b$ of dimension 0 and degree $d$ is the $d$th symmetric power $Y_b^{(d)}$, and we might want to complete this to a family proper over all of $B$. Taking the relative relative Hilbert scheme $Hilb_d(\sY/B)$ yields a very different result than taking the relative $d$th symmetric power, and it's instructive (and useful!) to compare the two. See~\cite{MR2172162} for an example.
+
+\subsubsection{Morphisms} Suppose we want to parametrize morphisms between two given projective schemes $X$ and $Y$. We can embed the product $X \times Y$ in a larger projective space $\PP^N$, and then consider the Hilbert scheme $\cH(X \times Y)$ parametrizing subschemes of the product $X \times Y$. Among such subschemes are the graphs of maps $f: X \to Y$; since a map is determined by its graph, this expresses the family of morphisms from $X$ to $Y$ as a locally closed subscheme $\cH(X \to Y) \subset \cH(X \times Y)$.
+
+We can also describe the tangent space to $\cH(X \to Y)$ at a point $f : X \to Y$ by observing that the normal bundle of the graph $\Gamma_f \subset X \times Y$ is simply the pullback $f^*T_Y$ of the tangent bundle of $Y$; thus the tangent space to $\cH(X \to Y)$ at $f$ is simply $H^0(f^*T_Y)$.
 
 \subsubsection{The Isom functor}\label{Isom}
 Finally, we can combine the last two constructions to construct what is called the Isom scheme. The situation is this: we are given families of projective varieties $\cX \subset B \times \PP^r$ and $\mathcal{Y} \subset B\times \PP^s$, and we want to parametrize the set of morphisms between members of these two families; that is, the set
