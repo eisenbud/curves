@@ -671,8 +671,35 @@ a row and the corresponding column.
 
 \section{The Cohen-Macaulay property}\label{ACM}
 
-As promised, we would like to describe here various aspects of what we called Arithmetically Cohen-Macaulay curves in projective space. This is related to the usual  Cohen-Macaulay property as follows:
+In Section~\ref{rational normal curves section} we said that a curve $C\subset \PP^{r}$ is Arithmetically Cohen-Macaulay (ACM) if the maps
+$$
+\alpha_m: H^0(\sO_{\PP^r}(m)) \to H^0(\sO_{C}(m))
+$$
+are surjective for all $m$. When this is the case we can accurately predict the number of independent forms of
+each degree vanishing on the curve. In this section we will analyze the ACM condition further. One of the characterizations
+is in terms of regular sequences:
 
+\begin{definition}
+A sequence of elements $f_{1}, \dots, f_{c}$ in a ring $R$ is a \emph{regular sequence} if
+$f_{1}$ is a nonzerodivisor, $f_{2}$ is a nonzerodivisor in $R/(f_{1})$\dots, and the ideal
+$(f_{1}, \dots, f_{c})$ is not the unit ideal.
+
+The \emph{grade} of an ideal $I$ in a local ring $(R,\gm)$ (sometimes confusingly called the depth of $I$ on $R$) is the maximal length of a regular sequence contained in $I$. 
+
+If $\grade \gm = \dim R$ then $R$ is called Cohen-Macaulay. If $R$ is not necessarily local, then 
+$R$ is called Cohen-Macaulay if every localization is Cohen-Macaulay.
+\end{definition}
+
+For a 1-dimensional ring, the Cohen-Macaulay property is the same has being pure-dimensional---that is, 
+every associated prime ideal being 1-dimensional. Similarly, an algebraic variety is Cohen-Macaulay if
+all its local rings are Cohen-Macaulay.
+
+\begin{fact}
+If $(R,\gm)$ is a local ring then $\grade \gm \leq \codim \gm$. On the other hand, if $R$ is Cohen-Macaulay,
+then $\grade I =\codim I$ for every ideal $I$ of $R$.
+The same definitions and theorem apply to any positively graded ring, and homogeneous ideals.
+ \end{fact}
+ 
 \begin{proposition}\label{ACM basics}
 Suppose that $C\subset \PP^r$ is a 1-dimensional subscheme. Let $S = H^0_*(\sO_{\PP^r})$
 be the homogeneous coordinate ring of $\PP^r$, and let $S_C = S/I_C$ be the homogeneous
@@ -680,9 +707,8 @@ coordinate ring of $C$. The following conditions are equivalent:
 \begin{enumerate}
  \item $C\subset \PP^r$ is arithmetically Cohen-Macaulay.
 % \item the natural map $S_C \to H^0_*(\sO_{C}(1)$ is surjective;
-\item The homogeneous coordinate ring $S_C$ of $C$ is a Cohen-Macaulay ring; that is, there are linear forms $h,h'$ on $\PP^r$ such that $h, h'$ is a regular sequence
-on $S_C$. In particular, $C$ has no 0-dimensional primary components.
 \item $H^1_*(\sI_{C/\PP^r}) = 0.$
+\item The homogeneous coordinate ring $S_C$ of $C$ is a Cohen-Macaulay ring; that is, there are linear forms $h,h'$ on $\PP^r$ whose images in  $S_C$ form a regular sequence. In particular, $C$ has no 0-dimensional primary components.
  \item For every hyperplane $H\subset \PP^r$ that does not contain any component of $C$,
  the homogeneous ideal of $H\cap C$
  is equal to  $I_C+(h)$, where $h$ is a linear form defining $H$.
@@ -690,7 +716,14 @@ on $S_C$. In particular, $C$ has no 0-dimensional primary components.
 \end{proposition}
  
 \begin{proof}
-{\sl 1} $\Leftrightarrow$ {\sl 2}: First let $C\subset \PP^r$ be an arbitrary 1-dimensional subscheme,
+{\sl 1} $\Leftrightarrow$ {\sl 2}: We may assume that $r\geq 2$, so $H^1_*(\sO_{\PP^r}(n)) = 0$ for all $n$. Using this and the exact sequence 
+$$
+0\rTo \sI_{C/\PP^r}  \rTo  \sO_{\PP^r}  \rTo  \sO_C  \rTo  0
+$$
+we see that $H^0(\sO_{\PP^r}(n)) \to H^0(\sO_C(n))$ is surjective for all $n$ if and only if $H^1(\sI_{C/\PP^r}(n)) = 0$ for all $n$,
+proving the equivalence of {\sl 1} and {\sl 3.}
+
+{\sl 1} $\Leftrightarrow$ {\sl 3}: First let $C\subset \PP^r$ be an arbitrary 1-dimensional subscheme,
 and let $R =H^0_*(\sO_{C}) := \oplus_{n\in \ZZ} H^0(\sO_{C}(n))$.
 If $H$ is a 
 general hyperplane, with equation $h=0$, then $h$ does not vanish on any primary component of $C$, and thus the sequence
@@ -707,14 +740,8 @@ so that $S_C = R.$ This shows that if $C$ is arithmetically Cohen-Macaulay then 
 and is in particular unmixed; that is, $C$ has no 0-dimensional primary components (see for example \cite[Chapter 18]{Eisenbud1995} for general
 information about Cohen-Macaulay rings). This proves the equivalence of conditions {\sl 1} and {\sl 2.}
 
-{\sl 1} $\Leftrightarrow$ {\sl 3}: We may assume that $r\geq 2$, so $H^1_*(\sO_{\PP^r}(n)) = 0$ for all $n$. Using this and the exact sequence 
-$$
-0\rTo \sI_{C/\PP^r}  \rTo  \sO_{\PP^r}  \rTo  \sO_C  \rTo  0
-$$
-we see that $H^0(\sO_{\PP^r}(n)) \to H^0(\sO_C(n))$ is surjective for all $n$ if and only if $H^1(\sI_{C/\PP^r}(n)) = 0$ for all $n$,
-proving the equivalence of {\sl 1} and {\sl 3.}
 
-{\sl 2} $\Leftrightarrow$ {\sl 4}: If  $h$ does not vanish on any component of $C$ then $h$ is a non-zerodivisor on $S_C$. The ideal $I_{C\cap H}$ is in any case the saturation of $I_C+(h)$. 
+{\sl 3} $\Leftrightarrow$ {\sl 4}: If  $h$ does not vanish on any component of $C$ then $h$ is a non-zerodivisor on $S_C$. The ideal $I_{C\cap H}$ is in any case the saturation of $I_C+(h)$. 
 If $I_{C\cap H}=I_C+(h)$, then any linear form $h'$ not containing a point of $C\cap H$ is a non-zerodivisor
 on $I_C+(h)$, so $C$ satisfies condition {\sl 2}. Conversely, in a 2-dimensional positively graded Cohen-Macaulay ring, any 
 system of parameters is a regular sequence \cite[Section 18.2]{Eisenbud1995}, so $I_C+(h)$ is unmixed, and in particular, saturated.
