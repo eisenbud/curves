@@ -134,10 +134,10 @@ the general hyperplane section of $C$ is in linearly general position.
  
  \section{Castelnuovo's theorem}
 
-Clifford's theorem gives a complete and sharp answer to the question, ``what linear series can exist on a curve of genus $g$?
+Clifford's theorem gives a complete and sharp answer to the question, ``what linear series can exist on a curve of genus $g$?''
 But maybe that wasn't the question we meant to ask! After all, we're interested in describing curves in projective space as images of abstract curves $C$ under maps given by linear systems on $C$. Observing that the linear series that achieve equality in Clifford's theorem give maps to $\PP^r$ that are 2 to 1 onto a rational curve, we might hope that we would have a different---and more meaningful---answer if we  restrict our attention to linear series $\cD = (\cL,V)$ for which the associated map $\phi_\cD$ is at least  birational. 
 
-A classical result of Castelnuovo gives a sharp bound on the genus of a curve in terms of its degree. For positive integers $d$ and $r$, let $M := M(d,r) := \lfloor(d-1)/(r-1)\rfloor$, so that
+A classical result of Castelnuovo does exactly that: it gives a sharp bound on the arithmetic genus of a reduced, irreducible, nondegenerate curve of degree $d$ in $\PP^r$. To state it, for positive integers $d$ and $r$, let $M := M(d,r) := \lfloor(d-1)/(r-1)\rfloor$, so that
 $$
  d -1 = M(r-1) + \epsilon \quad \text{ for some $\epsilon = \epsilon(d,r)$ with }0 \leq \epsilon \leq r-2. 
 $$
@@ -151,59 +151,19 @@ $$
 Moreover, if $p_a(C) = \pi(d,r)$, and $d\geq 2r$,  then $C$ is arithmetically Cohen-Macaulay. 
 \end{theorem}
 
-We will say that a curve achieving the bound is a \emph{Castelnuovo curve}.  For example, 
-In the case $r=2$ we have $\pi(d,r) = \binom{d-1}{2}$, so in particular every plane curve (smooth or not) is a Castelnuovo curve.
+We will say that a curve achieving the bound is a \emph{Castelnuovo curve}.  
 
-\begin{theorem}
-Suppose that $C\subset \PP^r$ is a nondegrenerate curve embedded by a complete linear series. If $d := \deg C \leq 2r$
-then $C$ is  a Castelnuovo curve (and thus arithmetically Cohen-Macaulay) if and only if $C$ if and only if one of the following holds:
-\begin{enumerate}
-\item $C$ is embedded by a linear series of degree $\geq 2g+1$; in this case $d<2r$.
-\item $C$ is embedded by the canonical series; in this case $d = 2r$.
-\item $r=3$ and $C$ is a divisor on a (smooth or singular) irreducible quadric in the class $mH$ or $mH+L$,
-where $H$ is the class of a hyperplane and $L$ is the class of a line; if $r>3$ and and $d>2r$ then
-$C$ lies on a rational normal scroll in a certain range of divisor classes; see Theorem~\ref{Castelnuovo examples}.
-\end{enumerate}
-\end{theorem}
+\subsection{Proof of Castelnuovo's bound}
 
-It is easy to describe the Castelnuovo
-curves of degree $\leq 2r$ embedded by complete linear series. The most important special case is that of canonical curves:
-
- \begin{corollary}\label{canonical hilbert function}
-If $C\subset \PP^{g-1}$ is a canonical curve then the Hilbert function of the homogeneous coordinate ring $S_{C}$ of  $C$ depends only on $g$, and is given by:
+The idea of Castelnuovo's proof is simple and beautiful. To start with, the hypothesis that $C$ is nondegenerate in $\PP^r$ says that $h^0(\cO_C(1)) \geq r+1$. We'd like to use this and the Riemann-Roch formula, in the form
 $$
-\dim({S_{C}})_{n} = h^{0}(\cO_{C}(n)) = 
-\begin{cases}
- 0 &\mbox {if } d<0\\
- 1 & \mbox {if }  d=0\\
- g & \mbox {if }  d=1\\
- (2g-2)n + 1 - g & \mbox {if }  d>1\\
-\end{cases}
+g = d - h^0(\cO_C(1)) + h^1(\cO_C(1)),
 $$
-\end{corollary}
-\begin{proof}
-Theorem~\ref{canonical ACM} implies that the homogeneous coordinate ring of $C$ can be identified with $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$.  
-\end{proof}
+but this doesn't work because we have a priori no way to estimate $h^1(\cO_C(1))$.
 
+Castelnuovo's solution to this problem is derive lower bounds not just on $h^0(\cO_C(1))$ but on $h^0(\cO_C(m))$ for all $m$; since we know that $h^1(\cO_C(m)) = 0$ for large $m$, a lower bound on $h^0(\cO_C(m))$ for large $m$ will translate directly into an upper bound on $g$.
 
-\begin{fact}
-A famous theorem of Gruson and Peskine~\ref{Gruson-Peskine} (see \ref{Hartshorne-report} for an exposition and also the cases of characteristic $>0$ and small fields) completes the picture of the possibilities for the degree $d$ and  genus $g$  of a smooth curve in $\PP^3$. If the curve does not lie on a plane or a quadric, then the genus satisfies the stronger inequality
-$$
-g\leq \pi_1(d,3) := \frac{d^2-3d}{6} +1
-$$
-and smooth curves with all such degree and genus exist; they can all be realized as curves
-on cubic or quartic surfaces.
-
-Note that there can be gaps in the possible genera of curves a given degree: for example  $\pi_1(9,3) = 10<\pi(9,3) =12$ but there is
-no curve of degree 9 and genus 11. 
-The full range of possible degrees and genera for curves in $\PP^n$ remains open for larger $n$. 
-\end{fact}
-
-To prove Theorem~\ref{Castelnuovo's bound} result we will estimate the dimension of $h^0(\sO_C(m))$, and connect this with the 
-arithmetic genus using Theorem~\ref{general RR without duality}, the Riemann-Roch theorem for reduced and irreducible curves
-in the easy version $h^0(\sO_C(m)) = m\deg \sO_C(1) + \chi(\sO_C)$ for sufficiently large $m$; this version
-does not require duality, and (as noted in Chapter~\ref{RR}) its proof requires nothing more than the additivity
-of the Euler characteristic. 
+How can we go about estimating $h^0(\cO_C(m))$? The answer is to derive lower bounds on the successive differences $h^0(\cO_C(m)) - h^0(\cO_C(m-1))$, by letting $\Gamma = C \cap H$ be a general hyperplane section of $C$, and viewing $H^0(\cO_C(m-1))$ as the subspace of $H^0(\cO_C(m))$ consisting of sections vanishing on $\Gamma$. The estimates we get may seem crude---not surprisingly, considering how little we know about $\Gamma$---but remarkably, the bound we ultimately derive on the genus of $C$ turns out to be sharp!
 
 For the proof, the following definition will be convenient:
 
@@ -215,7 +175,7 @@ $$
 $$\end{definition}
 
 Thus, for example, if $\Gamma \subset \PP^r$, then the number of conditions imposed by $\Gamma$ on $H^0(\cO_{\PP^r}(m))$ is the value $h_\Gamma(m)$ of the Hilbert function of $\Gamma$ at $m$.
-Note that the number of conditions imposed by $\Gamma$ on a linear system $V$ is necessarily less than or equal to the degree $d$ of $\Gamma$; if it is equal we say that $\Gamma$ \emph{imposes independent conditions on $V$}.
+Note that in case $\Gamma$ is zero-dimensional, the number of conditions imposed by $\Gamma$ on a linear system $V$ is necessarily less than or equal to the degree $d$ of $\Gamma$; if it is equal we say that $\Gamma$ \emph{imposes independent conditions on $V$}.
 
 \begin{proof}[Proof of Theorem~\ref{Castelnuovo's bound}]
 Suppose that $C \subset \PP^r$ is an irreducible, nondegenerate curve, and let $\Gamma = C \cap H$ be a general hyperplane section of $C$. Let $V_m \subset H^0(\cO_C(m))$ be the linear series cut on $C$ by hypersurfaces of degree $m$ in $\PP^r$, that is, the image of the restriction map
@@ -300,6 +260,70 @@ $$
 But for each $k$ the difference $\dim V_k - \dim V_{k-1}\geq h^0(\cO_C(k)) - h^0(\cO_C(k-1)$,
 and thus we must have $\dim V_k=h^0(\cO_C(k))$ for all $k$; that is, $C$ is arithmetically Cohen-Macaulay.
  \end{proof}
+ 
+ \subsection{Consequences and special cases}
+ 
+ First of all, in the case $r=2$ we have $\pi(d,r) = \binom{d-1}{2}$, so in particular every plane curve (smooth or not) is a Castelnuovo curve.
+ 
+ In case $r=3$, we have
+ $$
+ \pi(d,r) =
+ \begin{cases}
+ &\left(\frac{d-2}{2} \right)^2, \quad \text{if $d$ is even; and} \\
+ &\left(\frac{d-1}{2} \right)\left(\frac{d-3}{2} \right), \quad \text{if $d$ is odd}
+ \end{cases}
+ $$
+ which we can recognize as the genus of curves of type $(\frac{d}{2}, \frac{d}{2} )$ on a quadric surface in case $d$ is even, and the genus of curves of type 
+ $(\frac{d+1}{2}, \frac{d-1}{2} )$ on a quadric when $d$ is odd. Thus we see that the Castelnuovo bound is sharp when $r=3$ as well.
+ 
+ Indeed, the Castelnuovo bound is sharp for all $d$ and $r$; we'll prove this, and describe explicitly the curves that achieve it, in Chapter~\ref{ScrollsChapter}.
+
+Another range where we can describe Castelnuovo curves explicitly---and derive consequences---is the ``low degree" range $d \leq 2r$. Here we have the
+
+\begin{theorem}
+Suppose that $C\subset \PP^r$ is a nondegenerate curve embedded by a complete linear series. If $d := \deg C \leq 2r$
+then $C$ is  a Castelnuovo curve (and thus arithmetically Cohen-Macaulay) if and only if $C$ if and only if one of the following holds:
+\begin{enumerate}
+\item $C$ is embedded by a linear series of degree $\geq 2g+1$; in this case $d<2r$.
+\item $C$ is embedded by the canonical series; in this case $d = 2r$.
+\item $r=3$ and $C$ is a divisor on a (smooth or singular) irreducible quadric in the class $mH$ or $mH+L$,
+where $H$ is the class of a hyperplane and $L$ is the class of a line; if $r>3$ and and $d>2r$ then
+$C$ lies on a rational normal scroll in a certain range of divisor classes; see Theorem~\ref{Castelnuovo examples}.
+\end{enumerate}
+\end{theorem}
+
+The most important special case is that of canonical curves:
+
+ \begin{corollary}\label{canonical hilbert function}
+If $C\subset \PP^{g-1}$ is a canonical curve then the Hilbert function of the homogeneous coordinate ring $S_{C}$ of  $C$ depends only on $g$, and is given by:
+$$
+\dim({S_{C}})_{n} = h^{0}(\cO_{C}(n)) = 
+\begin{cases}
+ 0 &\mbox {if } d<0\\
+ 1 & \mbox {if }  d=0\\
+ g & \mbox {if }  d=1\\
+ (2g-2)n + 1 - g & \mbox {if }  d>1\\
+\end{cases}
+$$
+\end{corollary}
+\begin{proof}
+Theorem~\ref{canonical ACM} implies that the homogeneous coordinate ring of $C$ can be identified with $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$.  
+\end{proof}
+
+
+\begin{fact}
+A famous theorem of Gruson and Peskine~\ref{Gruson-Peskine} (see \ref{Hartshorne-report} for an exposition and also the cases of characteristic $>0$ and small fields) completes the picture of the possibilities for the degree $d$ and  genus $g$  of a smooth curve in $\PP^3$. If the curve does not lie on a plane or a quadric, then the genus satisfies the stronger inequality
+$$
+g\leq \pi_1(d,3) := \frac{d^2-3d}{6} +1
+$$
+and smooth curves with all such degree and genus exist; they can all be realized as curves
+on cubic or quartic surfaces.
+
+Note that there can be gaps in the possible genera of curves a given degree: for example  $\pi_1(9,3) = 10<\pi(9,3) =12$ but there is
+no curve of degree 9 and genus 11. 
+The full range of possible degrees and genera for curves in $\PP^n$ remains open for larger $n$. 
+\end{fact}
+
 
 
 \section{Other applications of linear general position}
@@ -310,8 +334,8 @@ We can use Theorem~\ref{basic linear independence} to show that every smooth cur
 
 \begin{proposition}\label{nodal projection}
 If $C \subset \PP^n$ is a smooth nondegenerate curve in projective space, let $\Lambda \cong \PP^{k} \subset \PP^n$ be a general $k$-plane, and let
-$\pi_\Lambda$ be the projection from $\Lambda$, restricted to $C$. If $n\geq 4$ and $k=n-4$,then
-$\pi_\Lambda: C \to \PP^3$ defines an isomorphism of $C$ onto its image, while if $n\geq 3$ then $\pi_\Lambda$ is birational onto its image, which is a curve with only nodes.
+$\pi_\Lambda : C \to \PP^{n-k-1}$ be the projection from $\Lambda$, restricted to $C$. If  $n-k-1 \geq 3$---that is, $k \leq n-4$---then
+$\pi_\Lambda: C \to \PP^3$ defines an isomorphism of $C$ onto its image, while if $n-k-1 = 2$ (i.e., $k = n- 3$) then $\pi_\Lambda$ is birational onto its image, which is a curve with only nodes.
 \end{proposition}
 
 \begin{proof} Recall that the secant variety of $C$ consists of the union of the lines $\overline{q,r}$ joining pairs of distinct points $q,r \in C$, plus the tangent lines ${\mathbb T}_q(C)$; altogether, these lines form a family, parametrized by the symmetric square $C^{(2)}$ of $C$. More precisely every subscheme $\lambda$ of
