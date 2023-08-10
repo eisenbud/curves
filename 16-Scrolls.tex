@@ -28,7 +28,8 @@ In this chapter we will refer to rational normal scrolls simply as scrolls. The 
 
 \section{Some classical geometry}\label{daily name}
 
-To construct a scroll of dimension 2 in $\PP^r$, we start by choosing integers $0\leq a_1 \leq a_2$ with $a_1 + a_2 = n-1$, and consider  a pair of complementary linear subspaces $\PP^{a_1}$ and $\PP^{a_2} \subset \PP^r = \PP(V)$---that is, we express an $(r+1)$-dimensional vector space $V$ as a direct sum $V =  V_1 \oplus V_2$ of subspaces $V_1, V_2 \subset V$ of dimensions $a_1+1$ and $a_2+1$.
+To construct a scroll of dimension 2 in $\PP^r$, we start by choosing integers $0\leq a_1$ and  $1\leq a_2$ with $a_1 + a_2 = r-1$, and consider  a pair of complementary linear subspaces $\PP^{a_1}$ and $\PP^{a_2} \subset \PP^r = \PP(V)$---that is, we express an $(r+1)$-dimensional vector space $V$ as a direct sum $V =  V_1 \oplus V_2$ of subspaces $V_1, V_2 \subset V$ of dimensions $a_1+1$ and $a_2+1$. For simplicity we will always assume, without loss of
+generality, that $a_{1}\leq a_{2}$.
 
 Next, for $i=1,2$, we take $\phi_i : \PP^1 \to \PP^{a_i}$ to be the parametrization of the rational normal curve of degree $a_i$ given by a basis of homogeneous polynomials of degree $a_i$ (if $a_i = 0$ this is just the constant map from $\PP^1$ to a point.) Finally, we define the scroll $S(a_1, a_2)$ to be the union of the lines
 $$
@@ -40,7 +41,7 @@ We call the curve $C_{a_{1}}$ the \emph{directrix} of the scroll, and we call th
 \pict{Insert picture!}
 
 In the degenerate case $a_{1}= 0$, the surface $S(0,a_{2})$ is the cone
-in $\PP^{a_{2}+1}$ over a rational normal curve of degree $a_{2}$. Since $S(0,a_2)$ is singular when $a_2\geq 2$, it is useful to consider the surface
+in $\PP^{a_{2}+1}$ over a rational normal curve of degree $a_{2}$. Note that $S(0,1) = \PP^{2}$. Since $S(0,a_2)$ is singular when $a_2\geq 2$, it is useful to consider the surface
 $$
 \tilde S(0, a_2) := \left\{ (t, q) \in \PP^1 \times \PP^r  \mid q \in \overline{\phi_1(t), \phi_2(t)}\right)\}.
 $$
@@ -446,10 +447,6 @@ $$
 Moreover, the scroll admits a linear projection to each $C_{a_i}$.
 \end{corollary}
 
-Theorem~\ref{matrix pencils} shows that every
- 1-generic $2 \times rd$ matrix of linear forms in $r$ variables can be transformed by row and column transformations and a linear change
- of variables to one of the type shown in
-Corollary~\ref{equations of scrolls}, and thus the minors of any 1-generic matrix define a scroll.
 
 \begin{proof} We may think of the matrix $M$ as consisting of $d$ blocks, $M_{a_{i}}$. These blocks are 1-generic by Proposition~\ref{some generators}. Since they involve distinct variables, it follows that $M$ is 1-generic. Thus by
 Theorem~\ref{1-generic basics}, the ideal $I_{2}(M)$ is prime and of codimension $d = \sum a_{i}-1$, as is the ideal of the scroll. Thus it suffices to show that the minors of $M$ vanish on the scroll.
@@ -458,7 +455,11 @@ Let $C_{i}$ be the rational normal curve in the subspace $\PP^{a_{i}}\subset\PP^
 As always, the set $V(M)$ is the union of the linear spaces on which generalized rows of $M$ vanish; and each such space is the space spanned by the points in the curves $C_{a_{i}}$ corresponding to the part of that row in the block $M_{a_{i}}$---that is, $V(I_{2}(M))$ is the union of the spans of sets of corresponding points on the $C_{a_{i}}$, as required.
 \end{proof}
 
- 
+ In Theorem~\ref{matrix pencils} we will show that every
+ 1-generic $2 \times rd$ matrix of linear forms in $r$ variables can be transformed by row and column transformations and a linear change
+ of variables to one of the type shown in
+Corollary~\ref{equations of scrolls}, and thus the minors of any 1-generic matrix define a scroll.
+
  
 
 
@@ -639,17 +640,16 @@ The key is to understand the divisor class group and the canonical class.
 $$
 \sE = \sO_{\PP^1}(a_1) \oplus\sO_{\PP^1}(a_2)
 $$
-with $0\leq a_1\leq a_2$ and the 
-scroll $ S(a_1, a_2) \subset \PP^r$, where $r= a_1+a_2+1$. This scroll is the image of $X = \PP(\sE)$ by a map that is an isomorphism
+with  $0\leq a_1$, $1\leq a_2$ and  $a_{1}\leq a_{2}$. The 
+scroll $ S(a_1, a_2) \subset \PP^r$, where $r= a_1+a_2+1$. We  This scroll is the image of $X = \PP(\sE)$ by a map that is an isomorphism
 if $0<a_1$ and is the blow-down of  $C_1$ if $a_1=0$.  We write $\pi:X \to \PP^1$ for the projection, and
 $C_{a_i}\subset X$ for the directrix of degree $a_i$. The degree of $S(a,b)$ is $d := a_1+a_2 = r-1$.
 
  \subsubsection{The case of a  smooth scroll}
 
-Now assume in addition  is smooth.
+Now assume in addition that $1\leq a_{1}$, so that $S(a_{1}, a_{2})$ is smooth.
 
 \begin{theorem}\label{pic of scroll}
-Suppose that $0<a_{1}$, so that $S(a_{1},a_{2})$ is smooth.
 
 \begin{enumerate}
 
@@ -796,25 +796,7 @@ above, then the restriction of $\sigma$ to  the rational normal curve $C_{a_1} =
 there are sections  vanishing on $C_{a_{1}}$ but not $C_{a_{2}}$, and vice versa, so the system is base-point free. 
 \end{proof}
 
- 
-We can easily compute the degrees and genera of curves that lie on scrolls:
 
-\begin{proposition}Again, suppose that $0<a_{1}$.
-If $D\sim pH+qF$ is a smooth irreducible curve on $S(a_{1}, a_{2})$ as in Theorem~\ref{where are the curves?}, then: 
-\begin{itemize}
- \item The degree of $D$ is $p(a_{1}+a_{2}) +q$.
- \item The genus of $D$ is ${p\choose 2}(a_{1}+a_{2}) + (p-1)(q-1)$.
-\end{itemize}
-\end{proposition}
-  
-\begin{proof} The degree of $D$ is $H\cdot D$, yielding the given formula. Let $g$ be the genus of $D$. 
-By the adjunction formula
-\begin{align*}
-2g-2 =  \bigl((p-2)H+&(q+a_{1}+a_{2}-2)F\bigr)\cdot (pH+qF)\\ 
- &= (p^{2}-p)(a_{1}+a_{2})+2(pq-p-q)
-\end{align*}
-so $g = {p\choose 2}(a_{1}+a_{2}) + (p-1)(q-1)$ as required.
-\end{proof}
 
 %I think we did the following somewhere else!
 %\begin{fact}
@@ -864,20 +846,31 @@ is still the complete linear series $|\sO_{\PP^1}(1)|$, and the restriction to $
 is $|\sO_{\PP^1}(a_2)|$. Thus the displayed linear series is base-point free.
 \end{proof}
 
-\begin{corollary}\label{curves on a singular scroll}
- A smooth curve $C$  on the cone $S(0,d)$ with $d >1$ is isomorphic to its strict transform $\widetilde C$
- on $S(1,d+1)$. On $S(1,d+1)$ the curve $\widetilde C$ must lie in the class $mH$ or $mH+F$, 
- corresponding to a multiple of the hyperplane section on $S(0,d)$ or one ruling plus a multiple of the hyperplane section;
- in particular, the degree of $C$ is congruent to 0 or 1 mod $d$. 
- In the latter case, the curve is a Weil divisor that is not a Cartier divisor on $S(0,d)$.
-\end{corollary}
+\begin{theorem}\label{curves on a singular scroll}
+ Suppose that $C$ is a smooth curve lying on the scroll $S(0,d)$, with $1\leq d$. Let $H,F$ be the (Weil) divisor classes of the hyperplane section and ruling, respectively.
+\begin{enumerate}
+\item $C\sim mH$ or $C\sim mH+F$ for some $m\geq 0$.
+\item If $C\sim mH$ then $\deg C = md$ and the genus of $C$ is $g = \binom{m}{2}d-m+1$.
+\item If $C\sim mH+F$ then $\deg C = md+1$ and the genus of $C$ is $g = \binom{m}{2}d$.
+\end{enumerate}
+In particular, $\deg C$ is congruent to 0 or 1 modulo $d$.
+\end{theorem}
 
 \begin{proof}
-These are the classes that intersect $C_{a_1}$ in degree 0 or 1.
+\noindent $d=1$: In this case, $S(0,1)\cong \PP^{2}$, with a distinguished point $\phi_{1}(\PP^{1})$ and $mH+F = (m+1)H$.
+The formulas for degree and genus are familiar from the theory of curves in the plane. 
+
+We now assume $2\leq d$, so $S(0,d)$ is a cone over the rational normal curve of degree $d$. Let $\pi: S(1,d+1) = \widetilde S(0,d) \to S(0,d)$
+be the blowup of the vertex of the cone, and let $E,L$ be the exceptional divisor and ruling on $S(1, d+1)$,
+so that $E = C_{1}$ and $E^{2} = -d$. The proper transform of the hyperplane class $H$ on $S(0,d)$ has intersection number 1 with $L$ and $0$ with $E$,
+and is thus of class $E+dL$. Let $\widetilde C \cong C$ be the proper transform of $C$ on $S(1,d)$.
+Since $C$ is smooth, $\widetilde C$ meets $E$ at most once, whence the first assertion. 
+
+The degree assertions of items 2,3 are immediate, and the genus assertions follow by direct computation from the 
+adjunction formula on $S(1,d+1)$.
 \end{proof}
 
-
-In these terms we can also see which classes on a singular scroll correspond to hyperelliptic or canonical (trigonal) curves in the way described by Corollary~\ref{hyperelliptic and trigonal}:
+In these terms we can also see which classes on a singular scroll correspond to hyperelliptic or canonical trigonal curves in the way described by Corollary~\ref{hyperelliptic and trigonal}:
 
 \begin{corollary}\label{which class}
 \begin{enumerate}
@@ -893,14 +886,14 @@ meet the image of $C$ in the pairs of points that are conjugate under the hypere
 \end{enumerate}
 \end{corollary}
 
-\begin{proof} 1: If $C\subset \PP^{g-1}$ is a smooth non-hyperelliptic canonical curve lying on a singular 2-dimensional scroll,
-then the scroll is $S(0, g-2)$. By Corollary~\ref{curves on a singular scroll}, $\deg C = 2g-2$ must be congruent
+\begin{proof} 1: If $C\subset \PP^{g-1}$ is a smooth non-hyperelliptic canonical curve lying on a singular 2-dimensional scroll in $\PP^{g-1}$
+then the scroll is $S(0, g-2)$. By Theorem~\ref{curves on a singular scroll}, $\deg C = 2g-2$ must be congruent
 to 0 or 1 modulo $g-2$, and this is the case only for $g=3,4$, the cases of a plane quartic or the complete intersection
 of a quadric cone with a cubic surface not passing through the vertex of the cone.
 
 2: By hypothesis the strict transform $\widetilde C\subset  \widetilde S = S(1, d+1)$
-has class $2H+\epsilon F$,  and by Corollary~\ref{curves on a singular scroll}, $\epsilon$ is 0 or 1.
-Thus the degree of $C$ is $2d$ or $2d+1$, and the formula for the genus follows from the adjunction formula.
+has class $2H+\epsilon F$,  and by Theorem~\ref{curves on a singular scroll}, $\epsilon$ is 0 or 1.
+The formulas for degree and genus follow are given in that Theorem.
 \end{proof}
 \section{Exercises}
 
@@ -1051,7 +1044,7 @@ meet in a nondegenerate surface. From Corollary~\ref{hyperelliptic and trigonal}
 the surface is a scroll. Complete the analysis by deciding between the two types of scrolls in $\PP^4$: $S(1,2)$ and $S(0,3)$.
 What is the divisor class of the curve on the scroll?
 
- Hint: $S(0,3)$ does not occur here, because by Corollary~\ref{curves on a singular scroll} the smooth curves on $S(0,3)$ are either hypersurface sections, and thus of degree $3$ for
+ Hint: $S(0,3)$ does not occur here, because by Theorem~\ref{curves on a singular scroll} the smooth curves on $S(0,3)$ are either hypersurface sections, and thus of degree $3$ for
 some integer $a$, or in the rational equivalence class of a hypersurface section plus one line,
 of degree $3a+1$, and thus not of degree 8. One can see this directly too: if the scroll were the cone over
 a twisted cubic, then the lines on the cone would cut out the $g^1_3$ on $C$. Since a pair of lines on the cone span
