@@ -735,7 +735,7 @@ Suppose that $D$ contains the sum $E$ of $s$ fibers of $\pi$ and no more; and wr
 If $\phi_K:C \to \PP^{g-1}$ is the canonical map, then $\phi_K(D')$ consists of $d-2s$ distinct points, while $\phi_K(E)$ consists of
 $s$ points. By Corollary~\ref{independence of points on a RNC} the span of $\phi_K(D)$ has dimension $\min\{g-1, d-s-1\}$, so 
 $r(D) = d-1-\min\{g-1, d-s-1\} = \max \{s,d-g\}$. Since $D$ is a special divisor, $r(D) > d-g$, so $r(D) = s$. 
-Since $r(E) =s$, we see that $D'$ is in the base locus of $D$.
+Since $r(E) =s$, we see that $E$ is basepoint free, so $D'$ is the base locus of $D$.
 \end{proof}
 
 \section{Clifford's theorem}
@@ -785,111 +785,108 @@ Corollary~\ref{equality in Clifford from Martens} for the converse and \cite[IV.
 for a different proof.
 
  \section{Curves on surfaces}\label{surface basics}
+ 
  We will often analyze curves  on a smooth surface. Compared to the theory of linear series on curves, there is a new element: the intersection pairing. We refer to~\cite[Chapter V]{Hartshorne1977}
  and~\cite[Chapter I]{Beauville} for proof of the unproven statements in this section.
- 
- We suppose for this section that $X$ is a smooth projective surface.
- We define $\Pic(X)$ to be the group whose elements are invertible sheaves on $X$.
-When two divisors $D,E$ on $X$ meet transversely we define $D\cdot E$ to be the number of points in which they meet. If they have no common
-components, we can still define a nonnegative intersection multiplicity $m_X(D,E,p)$ at each point $p$, and then set
-$$
-D\cdot E = \sum_p m_X(D,E,p).
-$$
-Over the complex numbers each codimension 1 subvariety $D$ of $X$ has a fundamental class
-$[D]\in H^2(X, \ZZ)$ and the product is the cup product with values in $H^4(X,\ZZ)$, which is $\ZZ$ since $X$ is compact and orientable. Thus
-there is an extension of the product to the cases where $D,E$ have common components. From a geometric point of view, we may choose an
-appropriate $C^\infty$
-normal vector field along $E$ and define $E'$ by ``pushing'' $E$ out slightly along the direction of this field, until $D$ and $E'$ are transverse,
-and the intersections can be computed in the usual way. Such intersection numbers can be either positive or negative,
-since they depend on the relative orientations of $D$ and $E'$ at the intersection points; this is in contrast to the case when $D$ and $E$
-themselves meet in just finitely many points; in that case the fact that the complex numbers are canonically oriented makes the intersection number nonnegative.
+ We suppose for this section that $S$ is a smooth projective surface,
+ and write $\Pic(S)$ for the group of invertible sheaves on $S$.
 
-The intersection product can be defined for Cartier divisors even when the surface is singular: Setting $\sL := \sO_X(C)$ and
-$\sM := \sO_X(D)$ to simplify the notation, we set 
+\subsubsection{The intersection pairing}
+
+When two codimension 1 subschemes $D,E$ on $S$ meet transversely we define $D\cdot E$ to be the number of points in which they meet.  
+It is less obvious how one might define an intersection number $D\cdot E$ in more general cases,
+including the case $D=E$ with itself. However 
+a codimension 1 subvariety of $S$ has a fundamental class in $H^{2}(X,\ZZ)$, and the product just defined
+agrees with the cup product pairing 
 $$
-D\cdot E = \chi(\sO_X)-\chi(\sL^{-1}) -\chi(\sM^{-1}) +\chi(\sL^{-1}\otimes \sM^{-1}) 
+H^{2}(S,\ZZ) \times H^{2}(S,\ZZ) \to H^4(S,\ZZ)\cong \ZZ,
 $$
-\begin{theorem} The pairing $(D,E) \mapsto (D\cdot E)$ is the unique bilinear map
-$\Pic(X) \times \Pic(X) \to \ZZ$ extending the case of intersections of two curves meeting transversely at smooth points of $X$. 
-\end{theorem}
-
-An important special case is that of the self-intersection $D\cdot D = D^2$. The general formula reduces immediately to the case of an effective divisor:
-
-\begin{corollary}\label{self-intersection number}
-If $D$ is an effective divisor on $S$, then the self-intersection of $D$ is the degree of the normal bundle
-$\sN_{D/S} := \Hom_{X}(\sI_{D/S}, \sO_{D}) =  (\sI_{D/S}\otimes \sO_D)^{-1}$
-\end{corollary}
-
-The result has a simple geometric interpretation when $\sN_{D/S}$ has a section $\sigma$: this is a normal vector field,
-and we can think of it as generating an infinitesimal movement (a first-order deformation) of $D$ to a divisor $D'$.
-The intersection of $D$ and $D'$ is thus the number of points of $D$ that did not move, the number  of zeros of $\sigma$.
+showing that it is possible. For example, the self-intersection $D\cdot D$ can be realized geometrically in the 
+ by choosing a  vector field $\sigma$ on $D$ and using it to push a copy $D'$ of $D$ infinitesimally away from $D$; then
+ one can count the points where $\sigma$ becomes tangent to $D$. Here one must take orientations into account,
+ and the result is that $D\cdot D$ may be negative. In the previous case (and when $\sigma$ is complex-analytic)
+ the multiplicities are all positive because a complex subvariety is canonically oriented using the orientation of $\CC$
+ itself.
 
 \begin{figure}
  \caption{The divisor $D'$, the result of an infinitesimal motion of $D$, meets $D$ twice. }
 \centerline {\includegraphics[height=2in]{"Fig2.3.pdf"}}
 \end{figure}
 
+This pairing can be realized algebraically as follows:
+
+First, if $D$ and $E$ have no common
+components, then the \emph{intersection multiplicity $m_S(D,E,p)$ at $p\in S$}
+is defined as the vector space dimension of the local ring $\sO_{S,p}/(\sI_{D,p}+\sI_{E,p})$, and 
+$$
+D\cdot E = \sum_p m_S(D,E,p).
+$$
+
+Quite generally, 
+the intersection product can be computed using the (algebraic) Euler characteristic, and this works even for Cartier divisors on a singular surface: Setting $\sL := \sO_S(D)$ and
+$\sM := \sO_S(E)$ to simplify the notation, we have 
+$$
+D\cdot E = \chi(\sO_S)-\chi(\sL^{-1}) -\chi(\sM^{-1}) +\chi(\sL^{-1}\otimes \sM^{-1}) 
+$$
+
+\begin{theorem} The pairing $(D,E) \mapsto (D\cdot E)$ is the unique bilinear map
+$\Pic(S) \times \Pic(S) \to \ZZ$ extending the case of intersections of two curves meeting transversely at smooth points of $S$. 
+\end{theorem}
+
+An important special case is that of the self-intersection $D\cdot D = D^2$. The general formula reduces immediately to the case of an effective divisor, and in that case it resembles the $C^{\infty}$ construction above:
+
+\begin{corollary}\label{self-intersection number}
+If $D$ is a codimension 1 subscheme of $S$, then the self-intersection of $D\cdot D$ is the degree of the normal bundle
+$\sN_{D/S} := \sO_{D}(D).$
+\end{corollary}
+
 \begin{proof}
-Since $\sO_D(-D) = \sO_S(-D)/\sO_S$ we see that 
-$$
-\chi(\sO_S)-\chi(\sO_S(-D)) = -\chi(\sO_D(-D)).
-$$
-Similarly $\chi(\sO_S(-2D) - \chi(\sO_S(-D)) = \chi(\sO_D(-2D)$. Using the remark following Theorem~\ref{easy RR},
-we have $\deg \sO_D(D) = \chi(\sO_D(D) - \chi(\sO_D))$ we see
-that
-$$
-\chi(\sO_D(-2D) -\chi(\sO_D(-D)) = \deg -2D - \deg -D = \deg -D
-$$
-as required.
+Substituting $\sO_{S}(-D)$ for both $\sL^{-1}$ and $\sL^{-1}$ we compute from the short exact sequence
+\begin{align*}
+ 0\to \sO_{S}(-D)\to \sO_{S}\to &\sO_{D}\to 0,\\
+0\to \sO_{S}(-2D)\to \sO_{S}(-D)\to &\sO_{-D}\to 0,
+\end{align*}
+and the Riemann-Roch theorem that
+\begin{align*}
+\chi(\sO_{S}) -\chi(\sO_{S}(-D) &= \chi(\sO_{D} = -p_{a}(D) +1,\\
+\chi(\sO_{S}(-D) -\chi(\sO_{S}(-2D) &= \chi(\sO_{D}(-D) = -\deg \sO_{D}(D) - p_{a}(D) +1.\\
+\end{align*}
+Subtracting the second of these equations from the first we see that
+$D\cdot D = \deg \sO_{D}(D)$.
 \end{proof}
 
 Using the intersection pairing we can turn the adjunction formula of Proposition~\ref{adjunction} into a numerical formula:
 
 \begin{theorem}[Adjunction Formula]\label{adjunction formula} 
-If $C$ is a Cartier divisor on a smooth surface $X$ then\label{genus formula}
+If $C$ is a Cartier divisor on a smooth surface $S$ then\label{genus formula}
 $$
 p_a(C) = \frac{(K_X+C)\cdot C}{2} +1.
  $$
 \end{theorem}
 
-\subsection{Blowing up a curve singularity}\label{delta 2} 
+%\subsection{Blowing up a curve singularity}\label{delta 2} 
+%
+%The adjunction formula gives us another way of computing the $\delta$-invariant of a singularity. Let $C \subset S$ be a reduced and irreducible curve on a smooth surface $S$ and suppose that $p \in C$ is a singular point of $C$. Let $\pi : \tilde S = Bl_p(S) \to S$ be the blow-up of $S$ at $p$, and let $E := \pi^{-1}(p)$ be the exceptional divisor.  The canonical class of $S$ is $K_{\tilde S} = \pi^*(K_S) + E.$  Let  $\tilde C$ be the proper transform of $C$ in $\tilde S$; that is, 
+%$\tilde C$ is the closure of $\pi^{-1}(C\setminus \{p\})$.
+%If the multiplicity of $C$ at $p$ is $m$, then
+%$$
+%\tilde C \sim \pi^*(C) - mE
+%$$
+%
+%The Picard group of $\tilde S$ is isomorphic to $\Pic(S) \oplus \ZZ$, and the intersection pairing on $\tilde S$ 
+%is determined by the relations 
+%$$
+%(\pi^*C)\cdot (\pi^*D) = C \cdot D; \quad (\pi^*C)\cdot E = 0 \quad \text{and} \quad E\cdot E = -1
+%$$ 
+%for any divisor classes divisor classes $C$ and $D$ on $S$.
 
-The adjunction formula gives us another way of computing the $\delta$-invariant of a singularity. Let $C \subset S$ be a reduced and irreducible curve on a smooth surface $S$ and suppose that $p \in C$ is a singular point of $C$. Let $\pi : \tilde S = Bl_p(S) \to S$ be the blow-up of $S$ at $p$, and let $E := \pi^{-1}(p)$ be the exceptional divisor.  The canonical class of $S$ is $K_{\tilde S} = \pi^*(K_S) + E.$  Let  $\tilde C$ be the proper transform of $C$ in $\tilde S$; that is, 
-$\tilde C$ is the closure of $\pi^{-1}(C\setminus \{p\})$.
-If the multiplicity of $C$ at $p$ is $m$, then
-$$
-\tilde C \sim \pi^*(C) - mE
-$$
-
-The Picard group of $\tilde S$ is isomorphic to $\Pic(S) \oplus \ZZ$, and the intersection pairing on $\tilde S$ 
-is determined by the relations 
-$$
-(\pi^*C)\cdot (\pi^*D) = C \cdot D; \quad (\pi^*C)\cdot E = 0 \quad \text{and} \quad E\cdot E = -1
-$$ 
-for any divisor classes divisor classes $C$ and $D$ on $S$.
-
-Using these facts, we can compare the adjunction formula applied to $C \subset S$ to the formula applied to $\tilde C \subset \tilde S$: we have
-$$
-\tilde C \cdot \tilde C = C \cdot C - m^2 \quad \text{and} \quad \tilde C \cdot K_{\tilde S} = C \cdot K_S + m.
-$$
-Combining these, we arrive at the formula
-$$
-p_a(\tilde C) = p_a(C) - \binom{m}{2},
-$$
-and thus the $\delta$-invariant of $p \in C$ is $\binom{m}{2}$ plus the sum of the $\delta$-invariants of all the 
-points of $\tilde C$ in the preimage of $p$. One can resolve the curve singularity by repeatedly blowing up in this way and thus compute the $\delta$-invariant
-of any singularity as a sum of binomial coefficients.
-
-In the special case where $\tilde C$ is smooth---for example, if the point $p \in C$ is an \emph{ordinary $m$-fold point}, consisting of $m$ smooth branches with distinct tangent lines---we conclude that the $\delta$-invariant of the point $p$ is $\binom{m}{2}$.
 
 
 
 \subsection{Quadrics in $\PP^3$ and the curves they contain}\label{Div of quadric}
  
- We will frequently be interested in curves on quadrics in $\PP^3$, and we can describe these
+ We will frequently be interested in curves on a quadric surface in $\PP^3$, and we can describe these
 curves and their intersections very concretely.
-Irreducible quadric in $\PP^{3}$ are the simplest of the rational normal scrolls treated at length
-in Chapter~\ref{ScrollsChapter}. 
 
 \subsubsection{The classification of quadrics} The form defining a quadric $Q\subset \PP^{3}$ can be written in suitable
 coordinates $x_{i}$ as $\sum_{i=1}^{r} x_{i}^{2}$, where $r\leq 4$ is the \emph{rank} of $Q$. (The corresponding
@@ -907,8 +904,10 @@ The Picard group of $Q$ is $\ZZ\times \ZZ$, generated by the lines of the ruling
 \end{itemize}
 
 \subsubsection{Curves on quadrics}\label{curves on quadrics}
-Thus a nondegenerate irreducible curve cannot be contained in a quadric of rank 1 or 2.
 \begin{itemize}
+
+\item A nondegenerate irreducible curve cannot be contained in a quadric of rank 1 or 2.
+
 \item Let $C$ be a reduced curve on a quadric $Q$ of rank 3 in $\PP^{3}$. 
 If $C$ has even degree $2m$ then $C$ is a complete intersection
 of the quadric with with a hypersurface of degree $m$. Therefore if the curve is smooth it cannot contain the vertex of the quadric. The genus of $C$ is $(m-1)^{2}$.
@@ -924,18 +923,20 @@ Weil divisor, not a Cartier divisor. These things follow from the description of
 of $Q$ in Corollary~\ref{singular scroll}.
 
 \item If $C$ is a reduced curve on a quadric $Q$ of rank 4, then in terms of the isomorphism
-$Q \cong \PP^{1}\times \PP^{1}$ we can express the divisor class of $C$ as $(m,n)\in \Pic(Q) = \ZZ\oplus \ZZ$.
+$Q \cong \PP^{1}\times \PP^{1}$ we can express the divisor class of $C$ as $(a,b)\in \Pic(Q) = \ZZ\oplus \ZZ$.
 The intersection form on $Q$ is determined by the fact that the lines of a ruling are all linearly equivalent,
 so that $(1,0)^{2} =0$ and $(1,0)\cdot (0,1) = 1$; thus $(a,b)\cdot (d,e) = ae+bd$. The hyperplane section
 has class $(1,1)$, and the canonical class is $(K_{\PP^{3}}+Q)\mid_{Q} = (-2,-2)$ by the adjunction formula. 
 
-The cohomology of $\sO_{Q}(a,b)$ is determined by the K\"unneth formula (or the Leray spectral sequence) as
-$$
-H^{i}(\sO_{Q}(a,b)) = \bigoplus_{i = s+t}H^{s}(\sO_{\PP^{1}}(a))\otimes H^{t}(\sO_{\PP^{1}}(b))
-$$
 Thus
 if $C$ has class $(a,b)$ then the degree of $C$ is $m+n$, while the genus of $C$ is $(m-1)(n-1)$. Note that these correspond
 to the cases on a rank 3 quadric with $n = m$ or $n = m+1$. 
+
+
+The cohomology of $\sO_{Q}(a,b)$ is determined by the K\"unneth formula (or the Leray spectral sequence) as
+$$
+H^{i}(\sO_{Q}(a,b)) = \bigoplus_{i = s+t}H^{s}(\sO_{\PP^{1}}(a))\otimes H^{t}(\sO_{\PP^{1}}(b)).
+$$
 The degrees of the generators of the generators of the homogeneous ideal of $C$ can be determined from the exact sequence
 $$
 0\to \sI_{Q/\PP^{3}} \to \sI_{C/\PP^{3}} \to \sI_{C/Q} \to 0.
@@ -980,9 +981,12 @@ ideal (Exercise~\ref{curve on rank 4 quadric}).
 %\end{itemize}
 %\end{example}
 %
+
+\subsection{The Riemann-Roch theorem for smooth surfaces}
 Often we wish to compute the dimension of the space of sections of an invertible sheaf, but
 as with the case of curves, the Euler characteristic is more accessible:
 
+\subsection{Blowups of smooth surfaces}\label{delta 2} 
 \begin{theorem}[Riemann-Roch for surfaces] Let $\sL$ be an invertible sheaf on a smooth surface $S$.
 The Euler characteristic $\chi(D) := h^0(\sL)-h^1(\sL)+h^2(\sL)$, where $\sL = \sO_S(D)$, is given by
 $$
@@ -1013,6 +1017,21 @@ divisor $E = \pi^{-1}(p)$, then:
 \end{enumerate}
 \end{theorem}
 
+Using these facts, we can compare the adjunction formula applied to $C \subset S$ to the formula applied to $\tilde C \subset \tilde S$: we have
+$$
+\tilde C \cdot \tilde C = C \cdot C - m^2 \quad \text{and} \quad \tilde C \cdot K_{\tilde S} = C \cdot K_S + m.
+$$
+Combining these, we arrive at the formula
+$$
+p_a(\tilde C) = p_a(C) - \binom{m}{2},
+$$
+and thus the $\delta$-invariant of $p \in C$ is $\binom{m}{2}$ plus the sum of the $\delta$-invariants of all the 
+points of $\tilde C$ in the preimage of $p$. One can resolve the curve singularity by repeatedly blowing up in this way and thus compute the $\delta$-invariant
+of any singularity as a sum of binomial coefficients.
+
+In the special case where $\tilde C$ is smooth---for example, if the point $p \in C$ is an \emph{ordinary $m$-fold point}, consisting of $m$ smooth branches with distinct tangent lines---we conclude that the $\delta$-invariant of the point $p$ is $\binom{m}{2}$.
+
+
 Blowups occur frequently in the theory of surfaces, and are easy to characterize:
 \begin{theorem}
 If $E\subset X$ is a curve on a smooth projective surface $X$ and
@@ -1042,18 +1061,15 @@ If $C\subset \PP^r$ is a 1-dimensional variety with normalization $\phi: \wideti
 not contain $C$
 we define the multiplicity of intersection $\mult(C,X;p)$ at the point $p$ to be the length of the finite scheme $\phi^{-1}(X)$.
 \begin{enumerate}
-\item Show that $C$ is singular at $p$ if and only if $\mult(C,X;p) \geq 2$. Show further that if $H\subset \PP^r$ then
+\item Show that $C$ is singular at $p$ if and only if $\mult(C,X;p) \geq 2$. Show further that if $H\subset \PP^r$ 
+is a hyperplane then
  $\deg C = \sum_{p\in C} \mult(C,H;p)$. 
  \item Show that the degree of the image of $C$ under projection from $p$
- is $\deg C - \mult(C,H;p)$.
+ is $\deg C - \mult(C,H;p)$ for a general hyperplane $H$.
  
 Hint: For the degree formula note that $\sum_{p\in C} \mult(C,H;p) p$ is the divisor associated to the morphism $\widetilde C \to \PP^r$ with image $C$
 \end{enumerate}
- Show that $C$ is singular at $p$ if and only if $\mult(C,X;p) \geq 2$. Show further that if $H\subset \PP^r$ then
- $\deg C = \sum_{p\in C} \mult(C,H;p)$. Show that the degree of the image of $C$ under projection from $p$
- is $\deg C - \mult(C,H;p)$.
- 
-Hint: For the degree formula note that $\sum_{p\in C} \mult(C,H;p) p$ is the divisor associated to the morphism $\widetilde C \to \PP^r$ with image $C$
+
 \end{exercise}
 
 \begin{exercise}\label{resolution by projection}
@@ -1062,10 +1078,10 @@ If $C_m$ is singular, choose a singular point $p$ and project $C$ from $p$ to ob
 of projection from singular points will eventually lead to a nonsingular curve, birational to $C$.
 \end{exercise}
 
-In the following series of exercises, we are going to be working with smooth projective curves associated to a given affine curve $C^\circ := V(f(x,y)) \subset \AA^2$; this is the unique smooth projective curve containing the normalization of $C^\circ$ as a Zariski dense open subset.
+In the following series of exercises, we will work with the smooth projective curve birational to a possibly singular affine curve $C^\circ := V(f(x,y)) \subset \AA^2$; this is the unique smooth projective curve containing the normalization of $C^\circ$ as a Zariski dense open subset.
 
 \begin{exercise}
-Let $C$ be the smooth projective curve associated to the affine plane curve $y^3 +x^3 = 1$, and let $\pi : C \to \PP^1$ be the map given by the rational function $x$.
+Let $C$ be the smooth projective curve birational to the affine plane curve $y^3 +x^3 = 1$, and let $\pi : C \to \PP^1$ be the map given by the rational function $x$.
 \begin{enumerate}
 \item Find the branch points and ramification points of $\pi$, and deduce that the genus of $C$ is 1.
 \item For any two points $p, q \in C$ find the complete linear series $|p+q|$.
