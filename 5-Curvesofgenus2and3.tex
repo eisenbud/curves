@@ -8,11 +8,11 @@ We met hyperelliptic curves in Chapter 2 and proved there that, in genus $g \geq
 map of a hyperelliptic curve is two to one onto the rational normal curve of degree $g-1$ in $\PP^{g-1}$. We used this to show that every special linear series on a hyperelliptic curve is a sum of a multiple of  the 
 unique $g^1_2$ plus base points. We will begin this chapter with an explicit construction of hyperelliptic curves and use it to give a very concrete computation of the canonical series, reproving what we did in Chapter 2. Then we will consider the projective embeddings of curves of genus 2 (which are all hyperelliptic) and genus 3.
  
-There will be a further discussion of hyperelliptic curves in Chapter~\ref{ScrollsChapter}, focussing on the algebra and geometry of their projective embeddings. 
+There will be a further discussion of hyperelliptic curves in Chapter~\ref{ScrollsChapter}.
   
  \subsection{The equation of a hyperelliptic curve}
  
-Recall that a hyperelliptic curve $C$ is a curve of genus $\geq 2$ admitting a degree two map $\pi : C \to \PP^1$, and we have seen that such a map is unique. Because the degree is only 2, each point in $\PP^1$ has either two distinct preimages, or only one, a ramification point with ramification index 1, where the map is given in terms of local analytic coordinates on $C$ and $\PP^1$ by $z \mapsto z^2$. In particular, both the ramification divisor and the branch divisor (as defined in Chapter~\ref{linear systems chapter}) are reduced. By the Hurwitz' formula there are exactly $2g+2$ branch points in $\PP^1$. These points determine the curve:
+Recall that a hyperelliptic curve $C$ is a curve of genus $\geq 2$ admitting a degree two map $\pi : C \to \PP^1$, and we have seen that such a map is unique. Because the degree is only 2, each point in $\PP^1$ has either two distinct preimages, or only one, a ramification point with ramification index 1, where the map is given in terms of local analytic coordinates on $C$ and $\PP^1$ by $z \mapsto z^2$. In particular, both the ramification divisor and the branch divisor (as defined in Chapter~\ref{linear series}) are reduced. By  Hurwitz' formula there are exactly $2g+2$ branch points in $\PP^1$. These points determine the curve:
  
 \begin{theorem}\label{hyperelliptic existence}
 There is a unique smooth projective hyperelliptic curve $C$ expressible as a 2-sheeted cover of $\PP^1$ branched over any set of $2g+2$ distinct points $\{q_{1}, \dots, q_{2g+2}\}$.
@@ -26,34 +26,43 @@ C^\circ = \big\{ (x,y) \in \AA^2 \; \mid \; y^2 = \prod_{i=1}^{2g+2} (x - \lambd
 $$ 
 Note that we're choosing a coordinate $x$ on $\PP^1$ with the point $x = \infty$ at infinity not among the $q_i$, so that the pre-image of $\infty \in \PP^1$ is two points $r, s \in C$. Concretely, we see that as $x \to \infty$, the ratio $y^2/x^{2g+2} \to 1$, so that 
 $$
-\lim_{x \to \infty} \; \frac{y}{x^{g+1}} \; = \; \pm 1;
+\lim_{x \to \infty} \; \frac{y}{x^{g+1}} \; = \; \pm 1.
 $$
-  the two possible values of this limit correspond to the two points $r,s \in C$.
+  The two possible values of this limit correspond to the two points $r,s \in C$.
   
 The curve $C$ is \emph{not} simply the closure of the affine curve $C^\circ \subset \AA^2$ in either $\PP^2$ or $\PP^1 \times \PP^1$: as you can see from a direct examination of the equation, each of these closures will be singular at the (unique) point at infinity.
   
-   The remainder of the proof of Theorem~\ref{hyperelliptic existence} will be done in a more general situation in Section~\ref{branched covers} below.
-  
+The uniqueness statement of Theorem~\ref{hyperelliptic existence} will be proven in Section~\ref{branched covers} below.
+ \end{proof}
 To give a smooth projective model of the hyperelliptic curve $C$ with given branch divisor, we divide the $2g+2$ branch points  into two sets of $g+1$---say, for example, $q_1,\dots,q_{g+1}$ and $q_{g+2}, \dots, q_{2g+2}$. We can then take $C$ to be the closure in $\PP^1 \times \PP^1$ of the  locus
   $$
   \big\{ (x,y) \in \AA^2 \; \mid \; y^2\prod_{i=1}^{g+1} (x - \lambda_i) = \prod_{i=g+2}^{2g+2} (x - \lambda_i) \big\};
   $$
   in projective coordinates, this is
    $$
-  C \; = \; \big\{ (X,Y) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
+  C \; = \; \big\{ (X_{0},X_{1}), (Y_{0},Y_{1}) \in \PP^1 \times \PP^1 \; \mid \; Y_1^2\prod_{i=1}^{g+1} (X_1 - \lambda_iX_0) = Y_0^2\prod_{i=g+2}^{2g+2} (X_1 - \lambda_iX_0) \big\}.
   $$
-To see that $C \subset \PP^1 \times \PP^1$ is smooth we note that it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the formula for the genus of a curve in $\PP^1 \times \PP^1$ derived in Example~\ref{Div of quadric} tells us that such a curve has arithmetic genus $g$, and thus no singular points.
+To see that $C \subset \PP^1 \times \PP^1$ is smooth we note that it is a curve of bidegree $(2,g+1)$ in $\PP^1 \times \PP^1$, and the formula for the genus of a curve in $\PP^1 \times \PP^1$ derived in Example~\ref{Div of quadric} tells us that such a curve has arithmetic genus $g$, and thus no singular points. 
 
 From this model, we deduce:
 
 \begin{corollary}\label{relation on ramification points}
-If $C$ is a hyperelliptic curve  and $p_1,\dots,p_{2g+2} \in C$ the ramification points of the unique degree 2 map $C \to \PP^1$, then 
+If $C$ is a hyperelliptic curve  and $p_1,\dots,p_{2g+2} \in C$ the ramification points of the unique degree 2 map $C \to \PP^1$, then for any division of $\{1,\dots,2g+2\}$ into two sets $A,B$ of cardinality $g+1$,
 $$
-p_1+\dots + p_{g+1} \; \sim \; p_{g+2} + \dots + p_{2g+2}.
+\sum_{i\in A} p_{i}  \; \sim \; \sum_{i\in B}p_{i}.
 $$
 \end{corollary}
-  
- The map $\iota : C \to C$ that exchanges the two points in each reduced fiber of the map $C \to \PP^1$ and fixes the ramification points is algebraic: in terms of the last representation of $C$, it is given by $([X_0,X_1], [Y_0,Y_1]) \mapsto  ([X_0,X_1], [Y_0,-Y_1]) $). The map $\iota$ is called the \emph{hyperelliptic involution} on $C$.
+
+\begin{proof}
+The abstract curve $C\subset \PP^{1}\times \PP^{1}$ above
+is independent of the way in which the points $p_{i}$ are divided
+into two sets of size $g+1$ since, in any case the projection to the first factor 
+is ramified over the same set $p_{1}, \dots, p_{2g+2}$. Given the representation above, the sets
+$\{p_1, \dots,  p_{g+1}\}$ and  $\{p_g+2, \dots,  p_{2g+2}\}$ are preimages of $(0,1)$ and
+$(1,0)$ in the second factor.
+\end{proof}
+
+ The map $\iota : C \to C$ that exchanges the two points in each reduced fiber of the map $C \to \PP^1$ and fixes the ramification points is algebraic: in terms of the last representation of $C$, it is given by $((X_0,X_1), (Y_0,Y_1)) \mapsto  ((X_0,X_1), (Y_0,-Y_1)) $). The map $\iota$ is called the \emph{hyperelliptic involution} on $C$.
 
   \subsection{Differentials on a hyperelliptic curve}\label{hyperelliptic differentials}
 
@@ -73,7 +82,7 @@ where $R$ denotes the ramification divisor, in this case the sum of the ramifica
 
 How can we find differentials that are regular everywhere on $C$? If we divide $dx$ by $x^2$ (or any quadratic polynomial in $x$) to kill the poles we  introduce new poles in the finite part $C^\circ$ of $C$. 
 
-Instead, we want to multiply $dx$ by a rational function with zeros at $r$ and $s$, but whose poles occur only at the points where $dx$ has zeroes---that is, the points $\lambda_i$.  A natural choice is the reciprocal of the partial derivative $f_y := \partial f/ \partial y = 2y$, which vanishes at the points $q_i$, and has  a pole of order $g+1$ at each of the points $r$ and $s$ (reason: the involution $y\to -y$ fixes $C^\circ$ and $x$, and exchanges the points $r$ and $s$). In other words, as long as $g \geq 1$, the differential
+Instead, we want to multiply $dx$ by a rational function with zeros at $r$ and $s$, but whose poles occur only at the points where $dx$ has zeroes---that is, the points $\lambda_i$.  A natural choice is the reciprocal of the partial derivative $f_y := \partial f/ \partial y = 2y$, which vanishes at the points $q_i$, and has  a pole of order $g+1$ at each of the points $r$ and $s$ (reason: $y/x^{g+1}$ approaches $\pm 1$ as $x$ goes to infinity, and $x$ has a pole of order 1 at $\infty\in \PP^{1}$ and thus also at each of $r,s$). In other words, as long as $g \geq 1$, the differential
 $$
 \omega = \pi^*(\frac{dx}{f_y})
 $$
@@ -96,13 +105,14 @@ $$
 are the relations on $x^i$, and we see that the canonical image is the rational normal curve of degree $g-1$.
 
 
-\section{Interlude: branched covers with specified branch divisor}\label{branched covers}
+\section{Branched covers with specified branching}\label{branched covers}
 
-We will describe here the classification of branched covers $\pi : C \to B$ of a given curve $B$ with specified branch points. To give ourselves a concrete goal, we will address the question: given a curve $B$ and a collection $\Delta = \{p_1,\dots,p_b\} \subset B$ of points in $B$, how many branched covers $\pi : C \to B$ of degree $d$ are there with specified branching over each of the points $p_i$, up to isomorphism over $B$? This is called
+Given a curve $B$ and a collection $\Delta = \{p_1,\dots,p_b\} \subset B$ of points in $B$, what are the branched covers $\pi : C \to B$ of degree $d$ with specified branching over each of the points $p_i$, up to isomorphism over $B$? 
+The number of these is called
 the \emph{Hurwitz number} of the configuration, and its computation in general is the subject of a large and active literature; see for example
 \cite{ELSV}.
 
-Our analysis will consist of two steps: first, we will reduce the problem to the classification of topological covering spaces of the complement $U = B \setminus \Delta$; we will then use our knowledge of the fundamental group of $U$ to enumerate such covering spaces.
+First, we will reduce the problem to the classification of topological covering spaces of the complement $U = B \setminus \Delta$; we will then use our knowledge of the fundamental group of $U$ to enumerate such covering spaces.
    
 \begin{theorem}
  Let $B$ be a smooth curve, let $\Delta\subset B$ be a finite set of points, and let $U := B\setminus \Delta$.
@@ -119,10 +129,12 @@ by a homeomorphism inducing the identity on the target of $\pi$.
 If we  define a holomorphic structure on $E$ by pulling back the one on $D$, then
 this homeomorphism is biholomorphic.
 
-Thus if $D_i$ is a small neighborhood of the point $p_i \in B$ biholomorphic to a disc, then the preimage  in $V$ of the punctured disc $D_i^* := D_i \cap U$ is a disjoint union of punctured discs, and $V$ can then be compactified to a compact Riemann surface in a unique way by completing each one to a full disc.
-\end{proof}
+Thus if $D_i$ is a small neighborhood of the point $p_i \in B$ biholomorphic to a disc, then the preimage  in $V$ of the punctured disc $D_i^* := D_i \cap U$ is a disjoint union of punctured discs $E_{i,j}^{*}$. The maps $E^{*}_{i,j} \to D_{i}^{*}$
+are bihomeomorphis to the maps $z\mapsto z^{n_{i,j}}$ for some $n_{i,j}$. Because of the way the holomorphic structure
+of $V$ is defined, the maps $z\mapsto z^{n_{i,j}}$ are actually holomorphic. Thus they extend holomorphically
+to maps of the full disks $E_{i,j}\to D_{i}$ and $V\cup \bigcup E_{i,j}$ is a compact Riemann surface in a unique way. \end{proof}
    
- The problem of classifying smooth curves $C$ that have a map $\pi : C \to B$ of degree $d$ is thus the problem becomes one of classifying covering spaces of $U$. 
+ The problem of classifying smooth curves $C$ that have a map $\pi : C \to B$ of degree $d$ is thus becomes one of classifying covering spaces of $U$. 
     
  \subsection{Branched covers of $\PP^1$} 
 
@@ -130,27 +142,33 @@ We continue with the notation $U = B\setminus \Delta$, now supposing that $B = \
 
 Choose a base point $p_0 \in U$, and draw simple, non-intersecting arcs $\gamma_i$ joining $p_0$ to $p_i$ in $U$. If $\Sigma$ is the complement of the union of these arcs in the sphere, then the preimage of $\Sigma$ in $V$ will be the disjoint union of $d$ copies of $\Sigma$, called the \emph{sheets} of the cover; label these $\Sigma_1,\dots,\Sigma_d$.
 
-%\centerline{\includegraphics[height=2in]{"pic41"}}
-   
-A covering space $V \to U$ of $U$ is determined by its \emph{monodromy}, which is the map
+Given $U$, elementary homotopy theory asserts the existence of a bijection between coverings $V \to U$ of $U$ of degree $d$ (up to homeomorphisms of $V$ fixing $U$) and group
+homomorphisms 
    $$
-   \pi_1(U, p_0) \to S_d
+ M:  \pi_1(U, p_0) \to S_d,
    $$
-associating to each path  $\beta$ in $U$ from $p_0$ to $p_0$  the permutation of the points of $\pi^{-1}(p_0)$ given by sending a point $q \in \pi^{-1}(p_0)$ to the endpoint of the unique lift of $\beta$ starting at $q$. Let $\beta_i$ be the path starting at $p_0$, going out along the arc $\gamma_i$ until just short of $p_i$, going once around $p_i$ and then going back to $p_0$ along the same path $\gamma_i$, as drawn in the Figure. 
+to the symmetric group on $d$ letters, up to inner automorphisms of $S_{d}$. The map $M$ is called the \emph{monodromy} of the covering: given $V \to U$, and a labeling of the $d$ sheets of $V$ over the point $p$, the value of $M$ at a loop  $\beta$ in $U$ based at $p_0$  to the permutation of the points of $\pi^{-1}(p_0)$ given by sending a point $q \in \pi^{-1}(p_0)$ to the endpoint of the unique lift of $\beta$ starting at $q$. A permutation $\sigma$ of the labels  of the sheets
+leads to a map $M'$ equal to the composition of $M$ with conjugation by $\sigma$.
 
-\centerline{ \includegraphics[height=2in]{"pic42"}}
 
-Let $\tau_i$ be the permutation of $\{1,2,\dots,d\}$ corresponding to the path $\beta_i$. The fundamental group of $U$ is the free group on $b-1$ generators, generated by the paths $\beta_1,\dots \beta_p$ modulo the relation $\prod_{i=1}^b \beta_i = 1$
+A convenient set of generators of $ \pi_1(U, p_0)$ is the set of paths $\beta_i$ indicated in Figure~\ref{pi 1 generators}: starting at $p_0$, going out along the arc $\gamma_i$ until just short of $p_i$, going once around $p_i$ and then going back to $p_0$ along the same path $\gamma_i$. The fundamental group of $U$ is the free group generated by the paths $\beta_1,\dots \beta_b$ modulo the relation $\prod_{i=1}^b \beta_i = 1$
 which comes from the fact that the sphere minus the part enclosed by the paths $\beta_i$ is 
-contractible. In particular, the permutations $\tau_1,\dots,\tau_b$ thus determine the covering space $V$.
+contractible.
+
+\begin{figure}\label{pi 1 generators}
+ \caption{Generators for the fundamental group of a multiply punctured sphere}
+\centerline {\centerline{\includegraphics[height=2in]{"pic41"}}}
+\end{figure}
+
+Given a degree $d$ covering space $V$ and a labeling of the $d$ sheets over the point $p$, let $\tau_i$ be the permutation of $\{1,2,\dots,d\}$ corresponding to the path $\beta_i$. The space $V$ is connected if and only if the $\tau_{i}$ generate a transitive subgroup of $S_{d}$.
  
-If we assume that the covering
-$\pi : C \to B$ is simply branched, then each $\tau_i$ is a transposition; and if we assume that
-$C$, and thus $V$, is connected, then the subgroup $\langle \tau_1, \dots, \tau_b \rangle \subset S_d$ is transitive. If we were to relabel the sheets $\Sigma_\alpha$ according to some permutation $\sigma$, the effect would be to conjugate each $\tau_i$ by $\sigma$. 
+If we start from a map of Riemann surfaces $C\to \PP^{1}$ that is
+ simply branched, and take $V$ to be the complement of the set of branch points, 
+ then each $\tau_i$ is a transposition. 
 
 \begin{figure}
  \caption{Local picture of a simple branch point}
-%\centerline {\includegraphics[height=3in]{"Fig5.1.pdf"}}
+\centerline {\includegraphics[height=3in]{"Fig5.1.pdf"}}
 \end{figure}
 
 Summarizing we have proven:   
@@ -159,22 +177,26 @@ Summarizing we have proven:
    \begin{enumerate}
    \item the set of  simply branched covers $\pi : C \to \PP^1$ of degree $d$, branched over the points $p_i$, up to isomorphism over $\PP^1$; and
    \item the set of $b$-tuples of transpositions $\tau_1, \dots, \tau_b \in S_d$ such that $\prod \tau_i = id$ and such that $\tau_1, \dots, \tau_b$ generate a transitive subgroup of $S_d$, modulo simultaneous conjugation by $S_d$.
-   \end{enumerate}
+   \end{enumerate}\qed
    \end{lemma}
+   
+\begin{proof}[Proof of the statement uniqueness in Theorem~\ref{hyperelliptic existence}.]
 In the case $d=2$ that is relevant to hyperelliptic curves, we note that there is only one transposition in $S_2$. Thus there is a unique double cover of $\PP^1$ with given branch points $p_1,\dots,p_b$. The product
 condition shows again that the number of branch points must be even. This completes the proof of Theorem~\ref{hyperelliptic existence}.
 \end{proof}
 
-We can use the same technique to count the number of degree 3 branched covers $C \to \PP^1$ with given simple branch points, using that fact that every odd permutation $\tau \in S_3$ is a transposition. Thus if $b$ is even and  $\tau_1,\dots,\tau_{b-1} \in S_3$ are arbitrary transpositions, then the product 
+\begin{example}
+We can use these ideas to count the number of degree 3 branched covers $C \to \PP^1$ with given simple branch points, using that fact that every odd permutation $\tau \in S_3$ is a transposition. Thus if $b$ is even and  $\tau_1,\dots,\tau_{b-1} \in S_3$ are arbitrary transpositions, then the product 
 $\tau_1\cdot \cdots\tau_{b-1}$ is also a
- transposition. It follows that the number of $b$-tuples of transpositions $\tau_1,\dots,\tau_{b} \in S_3$ with $\prod \tau_i$ equal to the identity is $3^{b-1}$. The requirement that the group generated by the $\tau_i$ is transitive eliminates just the three cases where all the $\tau_i$ are equal. The group $S_3$ acts on the set of $b$-tuples of permutations without stabilizing any $b$-tuple, so every cover corresponds to exactly 6 sequences
+ transposition. It follows that the number of ordered $b$-tuples of transpositions $\tau_1,\dots,\tau_{b} \in S_3$ with $\prod \tau_i$ equal to the identity is $3^{b-1}$. The requirement that the group generated by the $\tau_i$ is transitive eliminates just the three cases where all the $\tau_i$ are equal. The group $S_3$ acts on the set of $b$-tuples of permutations without stabilizing any $b$-tuple, so every cover corresponds to exactly 6 sequences
   $\tau_1,\dots,\tau_b$. In sum, the number of simply branched three-sheeted covers of $\PP^1$ with specified branch points $q_1,\dots,q_b \in \PP^1$ is
 $$
 \frac{3^{b-1} - 3}{6} \; = \; \frac{3^{b-2} - 1}{2} 
 $$
 In this context there is nothing special about the number 3; and we could treat coverings of
 curves $B$ other than $\PP^{1}$ as well; in this case the data are more complicated, since we must
-account for the homotopy of $B$ as well.
+account for the homotopy of $B$ as well. 
+\end{example}
 
 %\subsection{More general covers}\label{general covers}
 %
@@ -299,7 +321,7 @@ H^0(\cO_{\PP^3}(3)) \to H^0(\cO_C(3)).
 $$
 Since the dimensions of these spaces are 20 and $15-2+1 = 14$ respectively, we see that  vector space of cubics vanishing on $C$ has dimension at least 6. Only four of these are multiples of the defining equation of $Q$ linear forms on $\PP^3$. It follows that there are at least two cubics vanishing on $C$ that are linearly independent modulo those vanishing on $Q$.
 
-We can identify these cubics geometrically. Suppose first that $Q$ is smooth, so that $C$ is a curve of type $(2,3)$ on $Q$. In that case, if $L \subset Q$ is any line of the first ruling, the sum $C+L$ is the complete intersection of $Q$ with a cubic $S_L$, unique modulo the ideal of $Q$; conversely, if $S$ is any cubic containing $C$ but not containing $S$, the intersection $S \cap Q$ will be the union of $C$ and a line $L$ of the first ruling; thus, mod $I(Q)$, $S = S_L$. A similar argument applies in case $Q$ is a cone, and $L$ is any line of the (unique) ruling of $Q$. In Exercise~\ref{ideal of genus 2 degree 5} you may show that there are no more cubics containing C
+We can identify these cubics geometrically. Suppose first that $Q$ is smooth, so that $C$ is a curve of type $(2,3)$ on $Q$. In that case, if $L \subset Q$ is any line of the first ruling, the sum $C+L$ is the complete intersection of $Q$ with a cubic $S_L$, unique modulo the ideal of $Q$; conversely, if $S$ is any cubic containing $C$ but not containing $Q$, the intersection $S \cap Q$ will be the union of $C$ and a line $L$ of the first ruling; thus, mod $I(Q)$, $S = S_L$. A similar argument applies in case $Q$ is a cone, and $L$ is any line of the (unique) ruling of $Q$. In Exercise~\ref{ideal of genus 2 degree 5} you may show that there are no more cubics containing C
 
 \subsection{The dimension of the family of genus 2 curves}
 
@@ -317,7 +339,7 @@ Finally, a curve of genus 2 may be realized as a quintic curve in $\PP^3$ in a t
 \section{Curves of genus 3}
 
 Let $C$ be a smooth projective curve of genus 3. Since we have already discussed hyperelliptic curves, 
-we will assume  that $C$ is nonhyperellitic. By  Theorem~\ref{canonical series is very ample}, the canonical map $\phi_K : C \to \PP^2$ embeds $C$ as a smooth plane quartic curve. Conversely, by Proposition~\ref{Adjunction Formula} any smooth plane curve of degree 4 has genus 3 and is embedded by the complete canonical series. 
+we will assume  that $C$ is not hyperellitic. By  Theorem~\ref{canonical series is very ample}, the canonical map $\phi_K : C \to \PP^2$ embeds $C$ as a smooth plane quartic curve. Conversely, by Proposition~\ref{Adjunction Formula} any smooth plane curve of degree 4 has genus 3 and is embedded by the complete canonical series. 
 
 
 Since the space of plane quartic curves is 14-dimensional, and $\dim PGL(3) = 8$, this suggests that
@@ -343,10 +365,10 @@ There is thus a 1-dimensional family of representations of $C$ as a 3-sheeted co
 \end{figure}
 
 
-There are other representations of $C$ as the normalization of a plane curve. By the Riemann-Roch Theorem, $C$ has no $g^2_3$, and the canonical system is the only $g^2_4$, but there are plenty of models as plane quintic curves: by Proposition~\ref{very ample}, if $L$ is any invertible sheaf of degree 5, the linear system $|L|$ will be a basepoint free $g^2_5$ as long as $L$ is not of the form $K+p$, so that $\phi_L$ maps $C$ birationally onto a plane quintic curve $C_0 \subset \PP^2$. These can also be described geometrically in terms of the canonical model: any such invertible sheaf $L$ is of the form $2K-p-q-r$ for some trio of  points $p, q, r \in C$ that are not colinear in the canonical model, and we see  that $C_0$ is obtained from the canonical model of $C$ by applying a Cremona transform with respect to the points $p, q$ and $r$, that is, by applying the birational transformation
+There are other representations of $C$ as the normalization of a plane curve. By Clifford's theorem $C$ has no $g^2_3$, and the canonical system is the only $g^2_4$, but there are plenty of models as plane quintic curves: by Proposition~\ref{very ample}, if $L$ is any invertible sheaf of degree 5, the linear system $|L|$ will be a basepoint free $g^2_5$ as long as $L$ is not of the form $K+p$, so that $\phi_L$ maps $C$ birationally onto a plane quintic curve $C_0 \subset \PP^2$. These can also be described geometrically in terms of the canonical model: any such invertible sheaf $L$ is of the form $2K-p-q-r$ for some trio of  points $p, q, r \in C$ that are not colinear in the canonical model, and we see  that $C_0$ is obtained from the canonical model of $C$ by applying a Cremona transform with respect to the points $p, q$ and $r$, that is, by applying the birational transformation
 of the plane defined by the linear series of conics through $p,q,r$.
 
-Since hyperelliptic curves of genus 3 cannot be embedded in the plane, the lowest possible degree of an embedding is 6. Proposition~\ref{very ample} implies that a divisor $D$ of degree 6 is very ample if and only if it is not of the form $K+p+q$ for any $p, q \in C$ and since the family of invertible sheaves on $C$ has dimension 3,  we see that a general invertible sheaf of degree 6 is very ample (indeed, this is a simple case of Theorem~\ref{g+3 theorem}).  
+Proposition~\ref{very ample} implies that a divisor $D$ of degree 6 is very ample if and only if it is not of the form $K+p+q$ for any $p, q \in C$ and since the family of invertible sheaves on $C$ has dimension 3,  we see that a general invertible sheaf of degree 6 is very ample (indeed, this is a simple case of Theorem~\ref{g+3 theorem}).  
 
 If $C\subset \PP^3$ is a curve of genus 3 embedded as a curve of degree 6, then $C$ cannot lie on a singular quadric since by Example~\ref{Div of quadric} it would
 have to be a complete intersection of the quadric with cubic, and then such a curve has genus 4. If $C$ lies on a smooth quadric
@@ -373,8 +395,8 @@ $$
 \end{pmatrix}
 $$
 where $\ell_4,\dots,\ell_9$ are linear forms as well.
-As an application of the Hilbert-Burch theorem one can show that the ideal of $C$ is generated by the 4 $3\times 3$ minors of this matrix, whose columns generate
-the syzygies of the ideal of the curve (Exercise~\ref{leftover from Ch 5}).
+From the Hilbert-Burch theorem (Corollary~\ref{Hilbert-Burch}) one can show that the ideal of $C$ is generated by the 4 $3\times 3$ minors of this matrix, whose columns generate
+the syzygies of the ideal of the curve.
 
 
 \section{Theta characteristics}
@@ -392,7 +414,7 @@ counted with appropriate multiplicities (for example, a line tangent to $C$ at 3
 \centerline{\includegraphics[height = 3in]{"28bitangents-plucker.jpg"}}
 %\fix{add caption and reference to Pl\"ucker and a modern version}
 
-The bitangents to a plane quartic $C$ have a special significance: since $4 = 2 \times 2$, if $D = p+q$ is a bitangent, then the divisor $2D$ comprises the complete intersection of $C$ with a line; in other words, we have a linear equivalence
+The bitangents to a smooth plane quartic $C$ (a canonical curve of genus 3) have a special significance: since $4 = 2 \times 2$, if $D = p+q$ is a bitangent, then the divisor $2D$ comprises the complete intersection of $C$ with a line; in other words, we have a linear equivalence
 $$
 2D \sim K_C
 $$
@@ -427,7 +449,7 @@ If $C$ is a curve of genus $g$, then of the $2^{2g}$ theta-characteristics on $C
 \end{theorem}
 
 Using Theorem ~\ref{locally constant sign} and the connectedness of the moduli space of curves, 
-the result may be reduced to the case when $C$ is hyperelliptic. We will carry this out in Section~\ref{theta characteristic count} below.
+Theorem~\ref{number of theta characteristics} is reduces to the case when $C$ is hyperelliptic. We will carry out the computation for hyperelliptic curves in Section~\ref{theta characteristic count} below.
 
 %\begin{proof}[Proof when $C$ is hyperelliptic]
 % Let $C$ be a hyperelliptic curve of genus $g$ expressed as a 2-sheeted cover of $\PP^1$, with ramification points $p_1,\dots,p_{2g+2}$. If we denote the class of the unique $g^1_2$ on $C$ by $E$, and $D$ is any theta characteristic, then $D+E$ will be effective, and so we can write
@@ -448,10 +470,11 @@ the result may be reduced to the case when $C$ is hyperelliptic. We will carry t
 Note that in case of a nonhyperelliptic curve $C$ of genus 3, the dimension $h^0(\cL)$ of a theta characteristic $\cL$ cannot be $\geq 2$, so
 the odd theta characteristics are exactly the effective theta characteristics, and  this says exactly that there are $2^{g-1}(2^g-1) = 28$ effective theta-characteristics corresponding to the 28 bitangents.
 
-The proof of Theorem~\ref{locally constant sign} follows, via an ingenious construction of Mumford's, from an elementary fact about quadratic forms in an even number of variables.
-To state this, suppose that $V$ is a complex vector space of dimension $2n$ and $Q$ a nondegenerate symmetric bilinear form on $V$. By an \emph{isotropic plane} we mean a linear space $\Lambda \subset V$ such that $Q(\Lambda, \Lambda) = 0$. 
+The proof of Theorem~\ref{locally constant sign} follows, via an ingenious construction of Mumford's, from a  fact about quadratic forms in an even number of variables.
+To state this, recall that if $Q$ is a  bilinear form on $V$ then an \emph{isotropic plane} is a subspace $\Lambda \subset V$ such that $Q(\Lambda, \Lambda) = 0$. 
 
 \begin{fact}
+Suppose that $V$ is a $2m$-dimensional complex vector space with a non-degenerate bilinear form $Q$.
  \begin{enumerate}
 \item The maximal isotropic subspaces for $Q$ have dimension $n$;
 
@@ -486,7 +509,7 @@ Now suppose that $C$ is a smooth curve of genus $g$, and $\cL$ an invertible she
 $$
 V := H^0( \cL(D) / \cL(-D) ).
 $$
-The sheaf $ \cL(D) / \cL(-D) = \cL \otimes \cO_C(-2D) $ is supported on $D$, with stalk 
+The sheaf $ \cL(D) / \cL(-D) \cong \cL \otimes \cO_C(-2D) $ is supported on $D$, with stalk 
 isomorphic to $\cO_p/\gm_{C,p}^2$ of dimension 2 at each $p \in D$. We can define a bilinear form on $V$ by setting
 $$
 Q(\sigma, \tau) := \sum_i \text{Res}_{p_i}(\sigma \cdot \tau)
