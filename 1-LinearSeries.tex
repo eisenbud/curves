@@ -4,7 +4,7 @@
 
 In the first two sections of this chapter we lay out four major definitions:
 divisors, linear series, invertible sheaves, and maps to projective space; and
-to explain the close relationships among them. We will use these ideas throughout
+we explain the close relationships among them. We will use these ideas throughout
 this book. In the last section we will explore some special cases, culminating with
 the condition for an invertible sheaf to provide an embedding of a curve in projective space.
 
@@ -49,71 +49,96 @@ are the points of $C$.
 
 % If $D = \sum m_p\cdot p$ and $E = \sum n_p\cdot p$ are any two divisors, we write $E \geq D$ to mean $n_p \geq m_p$ for all $p \in C$.
 
-The \emph{degree} of  $D = \sum m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, so any two elements of
+The \emph{degree} of  $D = \sum m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, any two elements of
 $\sO_{C,p}$ with the same order of vanishing at $p$ differ by a unit. Thus an effective divisor 
-can be identifies with a finite subscheme of $C$.
+can be identified with a finite subscheme of $C$.
 
 \section{Divisors and rational functions}
 
-If effective divisors $D, E$ in a smooth curve $C$ are defined on
-some affine open set by equations $f$ and $g$, then  $D - E$ corresponds to the rational function $f/g$ on that open set;
-This makes sense because if $f$ vanishes to order $m$ at a point $p$ where $g$ vanishes to order $n$, so that
-$D = mp + ?$ and $E = np+?$, then $f/g$ vanishes to order $m-n$ at $p$, and $D-E = (m-n)p+?$ too. Here we are
-using the fact that the 1-dimensional local rings of $C$ have unique factorization; the argument would not
-work on a singular curve (but does work more generally on a variety that is smooth in codimension 1).
+Let $C$ be a smooth projective curve, $U \subset C$ an open subset and $f \in \cO_C(U)$ a regular function, not identically zero. At every point $p \in U$, we define the \emph{order} of $f$ at $p$, denoted $\ord_p(f)$, to be the highest power of the maximal ideal $m_p \subset \cO_p$ containing $f$, and we define the divisor $(f)$ associated to the function $f$ by
+$$
+(f) := \sum_{p \in U} \ord_p(f) \cdot p.
+$$
 
-Write $K(X)$ for the field of rational functions on $X$. If divisors $D,E$ on $C$
-are such that $D-E$ corresponds to the global rational function $\phi$ locally on each open set, then we say that $(phi):=D-E$
-is a principal divisor, or that $D$ is linearly equivalent to $E$, and we write $D\sim E$ to denote this.
-Taking the positive and negative parts of $D-E$ we get the divisor of zeros (respectively the divisor of poles)
-$(\phi)_{0}$ and $(\phi)_{\infty}$ of $\phi$, so that $(\phi)= (\phi)_{0}-(\phi)_{\infty}$.
+More generally, if $h$ is any rational function on $C$, given locally as a quotient $f/g$ of regular functions $f$ and $g$, we define the divisor of $h$ to be
+$$
+(h) := (f) - (g);
+$$
+this is independent of the choice of $f$ and $g$. The divisor of a rational function $h$ is called a \emph{principal divisor}; principal divisors form a subgroup $Div_0(C)$ of the group $Div(C)$ of all divisors. We say that two divisors $D$ and $E$ on $C$ are \emph{linearly equivalent} if their difference $D-E$ is a principle divisor. The group $Div(C)/Div_0(C)$ of linear equivalence classes of divisors is called the \emph{Picard group} of $C$, denoted $\pic(C)$. 
 
 Linear equivalence is important in the description of a map $C\to \PP^{r}$ by divisors
-because in $\PP^{r}$ any two hyperplanes, defined by the vanishing of linear forms  $\ell_{1}=0$ and $\ell_{2}=0$, differ by then globally defined rational
+because in $\PP^{r}$ any two hyperplanes, defined by the vanishing of linear forms  $\ell_{1}=0$ and $\ell_{2}=0$, differ by the globally defined rational
 function $\ell_{1}/\ell_{2}$. The preimages of these hyperplanes differ by the pull-back of this rational function,
 and are thus linearly equivalent divisors.
 
-A divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients.
 
 
-\subsubsection{Cartier divisors}
-A slightly different notion of divisor is important when dealing with singular varieties; we will use it only rarely.
+%If effective divisors $D, E$ in a smooth curve $C$ are defined on
+%some affine open set by equations $f$ and $g$, then  $D - E$ corresponds to the rational function $f/g$ on that open set;
+%This makes sense because if $f$ vanishes to order $m$ at a point $p$ where $g$ vanishes to order $n$, so that
+%$D = mp + ?$ and $E = np+?$, then $f/g$ vanishes to order $m-n$ at $p$, and $D-E = (m-n)p+?$ too. Here we are
+%using the fact that the 1-dimensional local rings of $C$ have unique factorization; the argument would not
+%work on a singular curve (but does work more generally on a variety that is smooth in codimension 1).
+%
+%Write $K(X)$ for the field of rational functions on $X$. If divisors $D,E$ on $C$
+%are such that $D-E$ corresponds to the global rational function $\phi$ locally on each open set, then we say that $(phi):=D-E$
+%is a principal divisor, or that $D$ is linearly equivalent to $E$, and we write $D\sim E$ to denote this.
+%Taking the positive and negative parts of $D-E$ we get the divisor of zeros (respectively the divisor of poles)
+%$(\phi)_{0}$ and $(\phi)_{\infty}$ of $\phi$, so that $(\phi)= (\phi)_{0}-(\phi)_{\infty}$.
+%
+%Linear equivalence is important in the description of a map $C\to \PP^{r}$ by divisors
+%because in $\PP^{r}$ any two hyperplanes, defined by the vanishing of linear forms  $\ell_{1}=0$ and $\ell_{2}=0$, differ by then globally defined rational
+%function $\ell_{1}/\ell_{2}$. The preimages of these hyperplanes differ by the pull-back of this rational function,
+%and are thus linearly equivalent divisors.
+%
+%A divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients.
+%
+
+\subsection{Generalizations}
+
+We can generalize the notion of a divisor on a smooth curve in two ways.
+
+First, we can extend the notion to higher dimensional smooth varieties $X$, defining a divisor to be a finite formal linear combination of irreducible subvarieties of $X$. In this setting, most of the notions introduced above have natural analogues; for example, a divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients. We can similarly define the divisor of a rational function on $X$, and the notion of linear equivalence of divisors. 
+
+We can also extend the notion to possibly singular varieties $X$, though this requires more care. We can mimic the definition above, defining a divisor to be a finite formal linear combination of irreducible subvarieties of $X$; this is called a \emph{Weil divisor} on $X$. But for most purposes we have to introduce a slightly different notion of divisor, called a \emph{Cartier divisor} defined as follows.
 
 For each open affine set $U\subset X$ we define $K_X(U)$ to be the field of fractions of $\sO_X(U)$, and write $K_X$ for the
 associated sheaf. We write $\sO_X^*$ and $K_X^*$ for the sheaves of groups of units in $\sO_X(U)$ and $K_X(U)$.
 A Cartier divisor on $X$ is by definition a global section of $K_X^*/\cO_X^*$.
 
-There is a natural map $\div$
-from the group of Cartier divisors on $C$ to $Div(C)$, the free group on the points of $C$:
- for any rational function $f$ on an open set $U\subset C$
-and any 
-point $p\in U$ the local ring $\sO_{C,p}$ is a discrete valuation
-ring and we can write $f$ uniquely in the form $f = ut^m$ where $t$ generates
-the maximal ideal of $\sO_{C,p}$ and $u$ is a unit in $\sO_{C,p}$. We define
-$m:= \ord_p(f)$, and we set
-$$
-div(f) := \sum_{p\in C}\ord_p(f) \cdot p
-$$
-When
-confusion is unlikely we write $(f) $ in place of $div(f)$, and we let
-$(f)_0, (f)_\infty$ be the effective divisors that are the sums of the terms in $(f)$ that appear with positive
-or  negative coefficients, so that $(f) = (f)_0-(f)_\infty$. 
+In this book, we will be dealing for the most part with smooth curves; even when singular curves $C$ arise, they will be viewed as images of smooth curves $\tilde C$  (their normalizations) and their geometry analyzed in terms of that of $\tilde C$.
 
-\begin{theorem}
-If $C$ is a smooth curve, then the map $div: Pic(C) \to D$ is an isomorphism.
-\end{theorem}
-
-Two Cartier divisors are said to be \emph{linearly equivalent}
-if they differ by the divisor of a globally defined rational function $f \in K(C)$, called a \emph{principal divisor}.
-\begin{definition}
-The group of Cartier divisors modulo linear equivalence is called $\pic(C)$.
-\end{definition}
+%There is a natural map $\div$
+%from the group of Cartier divisors on $C$ to $Div(C)$, the free group on the points of $C$:
+% for any rational function $f$ on an open set $U\subset C$
+%and any 
+%point $p\in U$ the local ring $\sO_{C,p}$ is a discrete valuation
+%ring and we can write $f$ uniquely in the form $f = ut^m$ where $t$ generates
+%the maximal ideal of $\sO_{C,p}$ and $u$ is a unit in $\sO_{C,p}$. We define
+%$m:= \ord_p(f)$, and we set
+%$$
+%div(f) := \sum_{p\in C}\ord_p(f) \cdot p
+%$$
+%When
+%confusion is unlikely we write $(f) $ in place of $div(f)$, and we let
+%$(f)_0, (f)_\infty$ be the effective divisors that are the sums of the terms in $(f)$ that appear with positive
+%or  negative coefficients, so that $(f) = (f)_0-(f)_\infty$. 
+%
+%\begin{theorem}
+%If $C$ is a smooth curve, then the map $div: Pic(C) \to D$ is an isomorphism.
+%\end{theorem}
+%
+%Two Cartier divisors are said to be \emph{linearly equivalent}
+%if they differ by the divisor of a globally defined rational function $f \in K(C)$, called a \emph{principal divisor}.
+%\begin{definition}
+%The group of Cartier divisors modulo linear equivalence is called $\pic(C)$.
+%\end{definition}
  
-Cartier divisors and linear equivalence make sense on any scheme $X$, but one must
-be quite careful about the definitions (See~\cite{MR570309}). 
-The map $\div$ is also defined in the same way when $X$ is nonsingular in codimension 1, yielding
-a map from the group of Cartier divisors to the free group on
-codimension 1 subvarieties, called the group of Weil divisors. See~\cite{Hartshorne1977} for this and further generalizations. 
+%Cartier divisors and linear equivalence make sense on any scheme $X$, but one must
+%be quite careful about the definitions (See~\cite{MR570309}). 
+%The map $\div$ is also defined in the same way when $X$ is nonsingular in codimension 1, yielding
+%a map from the group of Cartier divisors to the free group on
+%codimension 1 subvarieties, called the group of Weil divisors. See~\cite{Hartshorne1977} for this and further generalizations. 
  
  
  %
@@ -184,8 +209,8 @@ for every open set in some covering of $X$.
 Invertible sheaves form a group: the tensor product  $\sL_1\otimes_{\sO_X}\sL_2$ of two invertible sheaves is  again an invertible sheaf. The inverse is given by the dual invertible sheaf $\sL^{-1} := \hom_{\sO_X}(\cL,\sO_X)$: There is a natural map
 $\cL \otimes \sL^{-1} \to \cO_X$ that is an isomorphism, as one checks locally. 
 
-Invertible sheaves can be defined from divisor on a smooth scheme (or more generally from Cartier divisors on any scheme): First, if
-If $D\subset X$ is an effective Cartier divisor (and thus locally defined by the vanishing of a non-zerodivisor) then
+Invertible sheaves can be defined from divisor on a smooth scheme (or more generally from Cartier divisors on any scheme). First, if
+ $D\subset X$ is an effective Cartier divisor (and thus locally defined by the vanishing of a non-zerodivisor) then
 $D$ corresponds to a subscheme of $X$ whose ideal sheaf $\sI_{D/X}$
 is invertible. We define $\cO_X(-D)$ to be the ideal sheaf $\sI_{D/X}$, and define $\sO_{X}(D)$ to be 
 its inverse. The dual of the inclusion of
@@ -196,10 +221,10 @@ For a general (Cartier) divisor $D$ we let $\sO_{X}(D)$ be the fractional ideal
 generated by the local generator of $D$. In the usual situation of divisors on a smooth variety
 this just means that 
 $$
-\sO_{X}(\sum_{i} m_{i}D_{i} = \otimes_{i} \sO(D_{i})^{\otimes m_{i}}.
+\sO_{X}(\sum_{i} m_{i}D_{i} = \bigotimes_{i} \sO(D_{i})^{\otimes m_{i}}.
 $$
 
- If $D$ and $E$ are linearly equivalent divisors on $C$---that is, there is a rational function $f$ on $C$ with $(f) = D - E$---then multiplication by $f$ defines an isomorphism $\cO_C(E) \rTo^{\cong} \cO_C(D)$; thus the isomorphism class of the invertible sheaf $\cO_C(D)$ corresponds to the linear equivalence class of $D$. We will soon see thatevery invertible sheaf on a projective scheme has this form  (Corollary~\ref{invertible sheaves and divisors}).
+ If $D$ and $E$ are linearly equivalent divisors on $C$---that is, there is a rational function $f$ on $C$ with $(f) = D - E$---then multiplication by $f$ defines an isomorphism $\cO_C(E) \rTo^{\cong} \cO_C(D)$; thus the isomorphism class of the invertible sheaf $\cO_C(D)$ corresponds to the linear equivalence class of $D$. We will soon see that every invertible sheaf on a projective scheme has this form  (Corollary~\ref{invertible sheaves and divisors}).
 
 
 For example, if $C$ is a smooth curve, and $D = \sum m_p\cdot p$ is a divisor on $C$ then the sections of the invertible sheaf
