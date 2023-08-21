@@ -148,7 +148,11 @@ as above,
 $$
 p_a(C) \leq \pi(d,r) := \frac{M(M-1)}{2}(r-1) + M\epsilon.
 $$
-Moreover, if $p_a(C) = \pi(d,r)$, and $d\geq 2r$,  then $C$ is arithmetically Cohen-Macaulay. 
+Moreover, if $p_a(C) = \pi(d,r)$  then $C$ is arithmetically Cohen-Macaulay and every hyperplane
+section $H\cap C$ has Hilbert function
+$
+\dim (R_{H\cap C})_{m} = \min\{m(r-1), d\}.
+$
 \end{theorem}
 
 We will say that a curve achieving the bound is a \emph{Castelnuovo curve}.  
@@ -203,30 +207,30 @@ $$
 h^0(\cO_C(m)) \geq \sum_{k=0}^m h_\Gamma(k).
 $$
 
-In order to bound the genus $C$ from above, we will bound the Hilbert function of its hyperplane section $\Gamma$  from below; and for this, we need to know something about the geometry of $\Gamma$. In fact, all we need to know is Lemma~\ref{general position lemma}, which says that the points of $\Gamma$ are in linear general position! 
+In order to bound the genus $C$ from above, we will bound the Hilbert function of its hyperplane section $\Gamma$  from below; and for this, we need to know something about the geometry of $\Gamma$. In fact, all we need to know is Lemma~\ref{general position lemma}, which says that the points of $\Gamma$ are in linearly general position! 
 
 \begin{proposition}\label{min hilb}
 If $\Gamma \subset \PP^r$ is a collection of $d$ points in linearly general position that span $\PP^r$, then 
 $$
 h_\Gamma(m) \geq 
 \begin{cases}
-&mn+1\hbox{ if $m\leq M(d,n+1)$}\\
+&mr+1\hbox{ if $m\leq M(d,r+1)$}\\
 &d \hbox{ otherwise.}
 \end{cases}
 $$
 \end{proposition}
 
-One way to understand the bound $mn+1$ is to realize that if $\Gamma$ is any finite subscheme of a rational normal curve $C\subset\PP^r$ of degree $r$, 
-then $h_\Gamma(m) = \min\{\deg \Gamma, mn+1\}$ for every $m$ (Exercise~\ref{linear bound is sharp}).
+One way to understand the bound $mr+1$ is to realize that if $\Gamma$ is any finite subscheme of a rational normal curve $C\subset\PP^r$ of degree $r$, 
+then $h_\Gamma(m) = \min\{\deg \Gamma, mr+1\}$ for every $m$ (Exercise~\ref{linear bound is sharp}).
   Thus the bound in Proposition~\ref{min hilb} is best possible.
 On the other hand, sets of points on a rational normal curve are almost the only sets for which the bound is sharp.
 
 \begin{proof}
-Suppose first that $d \geq mn+1$, and let $p_1,\dots,p_{mr+1} \in \Gamma$ be any subset of $mn+1$ points. It suffices to show that $\Gamma' = \{p_1,\dots,p_{mr+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^r}(m))$, that is, for any $p_i \in \Gamma'$ there is a hypersurface $X \subset \PP^r$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mr+1}$ but not containing $p_i$.
+Suppose first that $d \geq mr+1$, and let $p_1,\dots,p_{mr+1} \in \Gamma$ be any subset of $mr+1$ points. It suffices to show that $\Gamma' = \{p_1,\dots,p_{mr+1}\}$ imposes independent conditions of $H^0(\cO_{\PP^r}(m))$, that is, for any $p_i \in \Gamma'$ there is a hypersurface $X \subset \PP^r$ of degree $m$ containing all the points $p_1,\dots, \hat{p_i},\dots,p_{mr+1}$ but not containing $p_i$.
 
 To construct such an $X$, group the $mr$ points of $\Gamma' \setminus \{p_i\}$ into $m$ subsets $\Gamma_k$ of cardinality $r$; each set $\Gamma_k$ will span a hyperplane $H_k \subset \PP^r$, and we can take $X = H_1 \cup \dots \cup H_m$. 
 
-In the case where $d<mn+1$, we add $mn+1-d$ general points; each one imposes exactly one
+In the case where $d<mr+1$, we add $mr+1-d$ general points; each one imposes exactly one
 additional condition on hypersurfaces of degree $m$.
 \end{proof}
 
@@ -241,7 +245,7 @@ h^0(\cO_C(M)) &= \sum_{k=0}^M h^0(\cO_C(k)) - h^0(\cO_C(k-1)) \\
 \end{align*}
 and similarly
 $$
-h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M  + md.+ 1
+h^0(\cO_C(M+m)) \geq \frac{M(M+1)}{2}(r-1) + M  + md+ 1
 $$
 For sufficiently large $m$, the line bundle $\cO_C(M+m)$ will be nonspecial, so by the Riemann-Roch Theorem,
 \begin{align*}
@@ -251,7 +255,8 @@ g &= (M+m)d - h^0(\cO_C(M+m)) + 1 \\
 &= \frac{M(M-1)}{2}(r-1) + M\epsilon.
 \end{align*}
 
-Now suppose that  $p_{a}(C) = \pi(d,r)$. To show that $C$ is arithmetically Cohen-Macaulay we must show that $V_{m} = H^0(\cO_C(m))$ for all $m$.
+
+To show that $C$ is arithmetically Cohen-Macaulay we must show that $V_{m} = H^0(\cO_C(m))$ for all $m$.
 Consider the diagram:
 $$
 \begin{diagram}
@@ -282,17 +287,23 @@ from the first part of the proof
 must be equalities for all $m$.  For large $m$ the restriction map
 $H^{0}(\sO_{\PP^{r}}(m)) \to H^{0}(\sO_{C}(m))$ is surjective, so
 \begin{align*}
-&\sum_{k=0}^m h^0(\cO_C(k)) - h^0(\cO_C(k-1) \\
+&\sum_{k=0}^m (h^0(\cO_C(k)) - h^0(\cO_C(k-1)) \\
 &= h^0(\cO_C(m)) = \dim V_m \\
-&= \sum_{k=0}^m \dim V_k - \dim V_{k-1}.
+&= \sum_{k=0}^m (\dim V_k - \dim V_{k-1}).
 \end{align*}
 However, for each $k$ we have $\dim V_k - \dim V_{k-1}\geq h^0(\cO_C(k)) - h^0(\cO_C(k-1)$,
-and thus we must have $\dim V_k=h^0(\cO_C(k))$ for all $k$; that is, $C$ is arithmetically Cohen-Macaulay.
+and thus we must have equality for all $k$, whence  $\dim V_k=h^0(\cO_C(k))$ for all $k$; that is, $C$ is arithmetically Cohen-Macaulay.
+
+Always supposing that  $p_{a}(C) = \pi(d,r)$  the inequalities in Proposition~\ref{min hilb}
+must be equalities, so for a general hyperplane section $\Gamma = H\cap C$
+we have $h_{\Gamma}(m) = \min \{m(r-1)+1, d\}$ for all $m\geq 0$. However, since
+$C$ is arithmetically Cohen-Macaulay, $h_{\Gamma}(m) = h^{0}\sO_{C}(m)) - h^{0}\sO_{C}(m-1)) $
+for every hyperplane section $\Gamma$, completing the proof.
 \end{proof}
  
  \subsection{Consequences and special cases}
  
- First of all, in the case $r=2$ we have $\pi(d,r) = \binom{d-1}{2}$, so in particular every plane curve (smooth or not) is a Castelnuovo curve.
+ First of all, in the case $r=2$ we have $\pi(d,r) = \binom{d-1}{2}$, so every plane curve (smooth or not) is a Castelnuovo curve.
  
  In case $r=3$, we have
  $$
@@ -305,21 +316,37 @@ and thus we must have $\dim V_k=h^0(\cO_C(k))$ for all $k$; that is, $C$ is arit
  which we can recognize as the genus of curves of type $(\frac{d}{2}, \frac{d}{2} )$ on a quadric surface in case $d$ is even, and the genus of curves of type 
  $(\frac{d+1}{2}, \frac{d-1}{2} )$ on a quadric when $d$ is odd. Thus we see that the Castelnuovo bound is sharp when $r=3$ as well.
  
- Indeed, the Castelnuovo bound is sharp for all $d$ and $r$; we'll prove this, and describe explicitly the curves that achieve it, in Chapter~\ref{ScrollsChapter}. 
+Indeed, the Castelnuovo bound is sharp for all $d$ and $r$; we'll prove this, and describe explicitly the curves that achieve it, in Chapter~\ref{ScrollsChapter}. 
 
 
-\begin{theorem}\label{list of Castelnuovo curves}
-Suppose that $C\subset \PP^r$ is a nondegenerate curve embedded by a complete linear series. If $d := \deg C \leq 2r$
-then $C$ is  a Castelnuovo curve (and thus arithmetically Cohen-Macaulay) if and only if $C$ if and only if one of the following holds:
+\begin{corollary}\label{list of Castelnuovo curves}\label{Castelnuovo examples}
+Suppose that $C\subset \PP^r$ is a smooth curve of arithmetic genus $p_{a}$ and degree $d$ embedded by a complete linear series. The curve $C$ is  Castelnuovo (and thus arithmetically Cohen-Macaulay) if and only if one of the following holds:
 \begin{enumerate}
-\item $C$ is embedded by a linear series of degree $\geq 2g+1$; in this case $d<2r$.
-\item $C$ is embedded by the canonical series; in this case $d = 2r$.
-\item $r=3$ and $C$ is a divisor on a (smooth or singular) irreducible quadric in the class $mH$ or $mH+L$,
-where $H$ is the class of a hyperplane and $L$ is the class of a line; if $r>3$ and and $d>2r$ then
-$C$ lies on a rational normal scroll in a certain range of divisor classes; see Theorem~\ref{Castelnuovo examples}.
+\item  $d<2r$ and  $d \geq 2g+1$;
+\item $d=2r$: The curve $C$ is a canonical curve;
+\item $r=3, d>6$: The curve $C$ is a divisor on a (smooth or singular) irreducible quadric in the class $mH$ or $mH+L$, where $H$ is the class of a hyperplane and $L$ is the class of a line;
+\item  More generally,  if $d>2r$ then
+$C$ lies on a rational normal scroll in a certain range of divisor classes (Theorem~\ref{Castelnuovo examples}).
 \end{enumerate}
-\end{theorem}
+\end{corollary}
 
+\begin{fact}
+Corollary~\ref{list of Castelnuovo curves} remains true with appropriate definitions also for reduced irreducible curves. This can be proven with the techniques developed in Chapters~\ref{LinkageChapter} and~\ref{ScrollsChapter}.
+\end{fact}
+
+\begin{proof}
+Simple arithmetic shows that if $d\geq 2g+1$  then  $d<2r$ and $g= \pi(d,r)$. Moreover if $g= \pi(d,r)$ and $d<2r$,
+then indeed $d\geq 2g+1$, proving item 1.
+
+If $d= 2r$ then $\pi(d,r) = r+1$, and Clifford's Theorem shows that $C$ is a canonical curve, proving the second
+item.
+
+Now suppose that $r=3, d>6$ and let $\Gamma$ be a hyperplane 
+section of $C$. Since $h_{\Gamma}(2) = \min(2\cdot 2+1, d) = 5$, $\Gamma$ lies on a conic, and 
+since $C$ is arithmetically Cohen-Macaulay, $C$ must lie on a quadric. 
+If $C$ is smooth then arithmetic plus the result of Section~\ref{Div of quadric} establishes the result; for the more general case,
+and the case $r>3$, see Theorem~\ref{Castelnuovo examples}.
+\end{proof}
 The most important special case is that of canonical curves:
 
  \begin{corollary}\label{canonical hilbert function}
@@ -335,12 +362,12 @@ $$
 $$
 \end{corollary}
 \begin{proof}
-Theorem~\ref{canonical ACM} implies that the homogeneous coordinate ring of $C$ can be identified with $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$.  
+Theorem~\ref{Castelnuovo's bound} implies that the homogeneous coordinate ring of $C$ can be identified with $\oplus_{n\in \ZZ}\HH^0\sO_C(n)$.  
 \end{proof}
 
 
 \begin{fact}
-A famous theorem of Gruson and Peskine~\ref{Gruson-Peskine} (see \ref{Hartshorne-report} for an exposition and also the cases of characteristic $>0$ and small fields) completes the picture of the possibilities for the degree $d$ and  genus $g$  of a smooth curve in $\PP^3$. If the curve does not lie on a plane or a quadric, then the genus satisfies the stronger inequality
+A famous theorem of Gruson and Peskine~\ref{MR0690647} (see \ref{MR0689536} for an exposition and also the cases of characteristic $>0$ and small fields) completes the picture of the possibilities for the degree $d$ and  genus $g$  of a smooth curve in $\PP^3$. If the curve does not lie on a plane or a quadric, then the genus satisfies the stronger inequality
 $$
 g\leq \pi_1(d,3) := \frac{d^2-3d}{6} +1
 $$
@@ -390,7 +417,7 @@ from the incidence correspondence $I$ to $\PP^3$ is empty or finite, so only a f
 We have shown that the map $\pi_\Lambda$ is an immersion, and at most two-to-one everywhere; thus the image curve $C_0 \subset \PP^2$ will have at most double points, and an analytic neighborhood of each double point will consist of two smooth branches. To complete the proof of Proposition~\ref{nodal projection} we have to show that those two branches have distinct tangent lines; that is, that
 if $q, r \in C$ are any two points collinear with $\Lambda$, then the images of the tangent lines ${\mathbb T}_q(C)$ and ${\mathbb T}_r(C)$ in $\PP^2$ are distinct. But if  $\pi_p({\mathbb T}_q(C)) = \pi_p({\mathbb T}_r(C))$ then  ${\mathbb T}_q(C)$ and ${\mathbb T}_r(C)$ lie in a plane, and thus intersect.
 
-Since the family of all secant lines is irreducible of dimension 2,  it will suffice to show that not every secant line to $C$ is a stationary secant or, equivalently, that not every pair of tangent lines to $C$ meet. We saw in Lemma~\ref{incident tangents} that in the contrary case the curve $C$ would be either strange or planar, a contradiction.
+Since the family of all secant lines is irreducible of dimension 2,  it will suffice to show that not every secant line to $C$ is a stationary secant or, equivalently, that not every pair of tangent lines to $C$ meet. We saw in Proposition~\ref{mult and stat} that in the contrary case the curve $C$ would be either strange or planar, a contradiction.
 \end{proof}
 
 
@@ -415,7 +442,7 @@ Note that the inequality $\dim W^r_d(C) \leq d-2r$ is equivalent to the inequali
 Theorem~\ref{basic linear independence} allows us to do exactly one better: 
 
 \begin{lemma}(strong secant plane lemma)\label{Strong secant plane lemma}
-Let $C \subset \PP^n$ be a smooth, irreducible and nondegenerate curve. If we denote by $\Sigma^r_d \subset C_d$ the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$, then for any $d \leq n$ and $r > 0$,
+Let $C \subset \PP^n$ be a smooth, irreducible and nondegenerate curve. If we denote by $\Sigma^r_d \subset C_d$ the locus of effective divisors $D$ of degree $d$ on $C$ with $\dim \overline D \leq d-r-1$, then for any $d \leq r$ and $r > 0$,
 $$
 \dim \Sigma^r_d \leq d-r-1.
 $$
@@ -431,7 +458,7 @@ The curve being nondegenerate, the projection map $\Gamma \to  {\PP^n}^*$ is fin
 
 \begin{proof}[Proof of the case of equality in Martens theorem]
  Now, if a curve $C$ is non-hyperelliptic, we can apply the strong secant plane lemma to the canonical curve. Except for the trivial cases $d=r=0$ and $d=2g-2, r=g-1$,
- we can apply Lemma~\ref{Strong secan plane lemma} to conclude that $\dim W^r_d(C) \leq d-2r-1$; it follows that if we have $\dim W^r_d(C) = d-2r$ the curve $C$ in question must be hyperelliptic.
+ we can apply Lemma~\ref{Strong secant plane lemma} to conclude that $\dim W^r_d(C) \leq d-2r-1$; it follows that if we have $\dim W^r_d(C) = d-2r$ the curve $C$ in question must be hyperelliptic.
 \end{proof}
 
 Using the case of equality in Martens' Theorem, we can analyze equality in 
@@ -454,22 +481,22 @@ is $\geq 0$, and we have a case of equality in Martens' theorem.
 
 Now that we have the strong form of Martens' theorem, we can prove the analogue of Theorem~\ref{g+3 theorem} for general linear series of degree $g+2$. This was stated in Section~\ref{g+3 section}, but we'll reproduce the statement here.
 
-\begin{theorem}
+\begin{theorem}\label{needed for nodes}
 Let $C$ be any smooth projective curve of genus $g$, and let $D$ be a general divisor of degree $g+2$ on $C$. 
 The complete linear series $|D|$ is base-point free of dimension 2, and the associated map $\phi_D: C\to \PP^2$
  is birational onto its image $C_0$. Moreover, $\phi_D$ is an immersion, and 
  no two branches of $C_0$ share a tangent line. Finally,
 
 \begin{enumerate}
-\item If $C$ is nonhyperelliptic, then $C_0$ has only $\binom{g}{2}$ nodes and no other singularities; and
+\item If $C$ is not hyperelliptic, then $C_0$ has only $\binom{g}{2}$ nodes and no other singularities; and
 \item If $C$ is hyperelliptic,  $C_0$ has only one singular point, which is an ordinary $g$-fold point.\end{enumerate}
 \end{theorem}
 
 \pict{illustrate the difference of the two cases: pict 9.1}
 \begin{proof}
 \begin{itemize}
-\item (Dimension) Since $D$ is general, its points span $\PP^{g-1}$,
-so $D$ is nonspecial, whence $h^0(D) = (g+2)-g+1 = 3.$
+
+\item (Dimension) Since $D$ is general and $\deg D > h^{0}(K)$ we see that $D$ is nonspecial, whence $h^0(D) = (g+2)-g+1 = 3.$
 
 \item (no base points) If $|D|$ had a base point $p\in C$, then $3=h^0(D) = h^0(D-p) = (g+1)-g+1+h^0(K_C-D+p)$,
 so $K_C-D$ is effective of degree $2g-2-(g+1) =g-3$; thus the family of such $D$ depends on only $g-3+1$ parameters,
@@ -499,7 +526,7 @@ the Abel-Jacobi map $C_{g+2} \to Pic_{g+2}(C)$ is surjective,
 
 Let's now suppose that $C$ is non-hyperelliptic and $D$ is a general divisor of degree $g+2$ on $C$. To prove the theorem in this case, we have to show  three things: that the image $C_0 = \phi_D(C)$ does not have cusps or triple points.
 
-\item (no cusps) To say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by Riemann-Roch, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
+\item (no cusps) To say that a point $p \in C$ maps to a cusp of $C_0$ (that is, the differential $d\phi_D$ is zero at $p$) amounts to saying that $h^0(D-2p) \geq 2$; that is, $D-2p$ is a $g^1_g$. But by the Riemann-Roch theorem, $W^1_g = K_C - W_{g-2}$; so to say $\phi_D$ has a cusp means that
 $$
 \mu(D) \in 2W_1 + K_C - W_{g-2},
 $$
@@ -509,10 +536,10 @@ and since the locus on the right has dimension at most $g-1$, a general point of
 $$
 \mu(D) \in W_3 + W^1_{g-1}
 $$
-Now, to argue that this is not the case, we need to know that $\dim W^1_{g-1} \leq g-4$. Here we have to invoke Marten's theorem, which says that $\dim W^1_{g-1} \leq g-4$ if $C$ is non-hyperelliptic; given this, we conclude that $C_0$ has no triple points.
+To argue that this is not the case, we need to know that $\dim W^1_{g-1} \leq g-4$. Here we have to invoke Marten's theorem, which says that $\dim W^1_{g-1} \leq g-4$ if $C$ is non-hyperelliptic; given this, we conclude that $C_0$ has no triple points.
 
 
-Thus, in the non-hyperelliptic case, the image curve $C_0 = \phi_D(C)$ has only nodes as singularities; the fact that there are exactly $\binom{g}{2}$ of them follows from the genus formula.
+Thus, in the non-hyperelliptic case, the image curve $C_0 = \phi_D(C)$ has only nodes as singularities; the fact that there are exactly $\binom{g}{2}$ of them follows from the adjunction formula.
 \end{itemize}
 
 \noindent This concludes the proof in the non-hyperelliptic case. Now suppose that $C$ is hyperelliptic, and let $|E|$ be the  $g^1_2$ on $C$. If  $D$ is any divisor of degree $g+2$, the divisor $D - E$ will have degree $g$, and so be effective; thus we can write
@@ -521,13 +548,13 @@ D \sim E + p_1 + \dots + p_g
 $$
 for some $g$-tuple of points $p_i$. If the divisor $D$ is general, the points $p_i$ will be general as well, and in particular distinct.
 
-Now, the fact that
+The fact that
 $$
 h^0(D - p_1 - \dots - p_g) = h^0(E) = 2 = h^0(D) - 1
 $$
 implies that $\phi_D$ maps all the points $p_i$ to the same point. The image curve $C_0$ thus has a point with at least $g$ branches. Since these branches cannot share a tangent line,
 they are smooth and their tangents are distinct; that is, the point is an ordinary multiple point. By the adjunction
-formula $p_a(C) = binomial{g+1}{2}$ and since $C$ has genus $g$ the singularity must have $\delta$ invariant
+formula $p_a(C) = \binom{g+1}{2}$ and since $C$ has genus $g$ the singularity must have $\delta$ invariant
 $\binom{g+1}{2} -g = \binom{g}{2}$. Such a singularity cannot have multiplicity $>g$, and is thus an ordinary $g$-fold point. Since the $\delta$-invariant of such a point is $\binom{g}{2}$ by Section~\ref{delta 2} (see also
 Proposition~\ref{effect of blowup on genus}), there can be no other singularities.
 \end{proof}
@@ -552,7 +579,8 @@ Hint: show that the items of~\ref{needed for nodes}  are true in this situation.
 
 \begin{exercise}
 Let $C_0$ be a plane quartic curve with two nodes $q_1, q_2$; let $\nu : C \to C_0$ be its normalization, and let $o \in C$ be any point not lying over a node of $C_0$.
-By the genus formula, $C$ has genus 1. Using the construction above, describe the group law on $C$ with $o$ as origin.
+By the adjunction formula, $C$ has genus 1. Give a geometric description
+of the group law on $C$ with $o$ as origin.
 \end{exercise}
 
 \begin{exercise}\label{strange curves} \cite{Rathmann}. Let $k$ be an algebraically closed field of characteristic $p>0$, and let $q=p^e$ for some $e\geq 1$. Let $C\subset \PP^r$
@@ -607,8 +635,19 @@ $$
 \end{exercise} 
 
 \begin{exercise}
-Let $C \subset \PP^r$ be an irreducible, nondegenerate curve of degree $d$, and set $M = \lfloor{\frac{d-1}{r-1}}\rfloor$ as in the proof of Castelnuovo's theorem.
-Show that the line bundle $\cO_C(M)$ is nonspecial. (This is sharp: for example, canonical curves have $M=2$).
+Let $C$ be a reduced irreducible curve with general hyperplane section $\Gamma$,
+and write 
+$d-1 = M(r-1) +\epsilon$ with $\epsilon<r-1$ as in Castelnuovo's theorem.
+ 
+Prove that
+\begin{enumerate}
+\item if $\epsilon > 0$, then $\cO_C(M)$ is nonspecial, but $\cO_C(M-1)$ is special; and
+\item if $\epsilon = 0$, then $\cO_C(M-1)$ is nonspecial, but $\cO_C(M-2)$ is special.
+\end{enumerate}
+
+Hint: Show that if $h^{0}(\sO_{C}(m+1))-h^{0}(\sO_{C}(m)) \leq \deg C$, and that if equality holds for
+all $m\geq m_{0}$, then $\sO_{C}(m) $ is nonspecial for all $m\geq m_{0}$.
+
 \end{exercise}
 
 \input footer.tex
