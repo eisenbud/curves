@@ -19,7 +19,7 @@ but except for genus 0, where the sphere has a unique complex structure,
 there are continuous families of non-isomorphic global structures.  The differences among Riemann surfaces or algebraic curves is revealed in  geometry of their maps to projective spaces. Throughout this book we will study curves in this way. The algebraic and
 complex analytic theories are equivalent, and in this book we generally take the algebraic path.
 
-Since the only  globally defined regular functions on a projective variety are the constant functions, we must take a different approach to describing the maps we will study, and a large part of this chapter is devoted to describing the necessary machinery for doing this. The idea is simple: a point in projective space is the intersection of the hyperplanes containing it, so a map $\phi: C\to \PP^r$ from a curve to projective space can be described set-theoretically
+Since the only  globally defined regular functions (that is, functions locally equal to a polynomial in affine coordinates) on a projective variety are the constant functions, we must take a different approach to describing the maps we will study, and a large part of this chapter is devoted to the necessary machinery for doing this. The idea is simple: a point in projective space is the intersection of the hyperplanes containing it, so a map $\phi: C\to \PP^r$ from a curve to projective space can be described set-theoretically
 by the set of preimages of these hyperplanes: a point $p\in C$ is sent to the point
 that is the intersection of those hyperplanes whose preimages contain $p$.
  
@@ -41,15 +41,15 @@ this way we arrive at a notion of divisor as a sum of points with multiplicities
 
 \section{Divisors}
 
-We now begin again, more formally:
+We  begin again, more formally:
 
-On a smooth projective curve $C$, we define a \emph{divisor} to be a finite formal sum of points of $C$ with integer coefficients, which we can write compactly as $\sum m_p\cdot p$ with all but finitely many $m_p=0$.  The coefficient $m_p$ is called the \emph{multiplicity} of the point $p$ in the divisor $D$; if all coefficients $m_p$ are nonnegative we say that $D$ is \emph{effective}. Thus the group of divisors $Div(C)$ is the free abelian group whose generators
+On a smooth projective curve $C$, we define a \emph{divisor} to be a finite formal sum of points of $C$ with integer coefficients, which we can write compactly as $\sum_{p\in C} m_p\cdot p$ with all but finitely many $m_p=0$.  The coefficient $m_p$ is called the \emph{multiplicity} of the point $p$ in the divisor $D$; if all coefficients $m_p$ are nonnegative we say that $D$ is \emph{effective}. Thus the group of divisors $Div(C)$ is the free abelian group whose generators
 are the points of $C$.
 
 % If $D = \sum m_p\cdot p$ and $E = \sum n_p\cdot p$ are any two divisors, we write $E \geq D$ to mean $n_p \geq m_p$ for all $p \in C$.
 
-The \emph{degree} of  $D = \sum m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, so two elements of
-$\sO_{C,p}$ with the same order of vanishing at $p$ differ by a unit. Thus an effective divisor 
+The \emph{degree} of  $D = \sum_{p\in C} m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, so two elements of
+$\sO_{C,p}$ with the same order of vanishing at $p$ generate the same ideal in the local ring. Thus an effective divisor 
 can be identified with a finite subscheme of $C$, and vice versa.
 
 \section{Divisors and rational functions}
@@ -63,7 +63,7 @@ More generally, if $h$ is any rational function on $C$, given locally as a quoti
 $$
 (h) := (f) - (g);
 $$
-this is independent of the choice of $f$ and $g$. The divisor of a rational function $h$ is called a \emph{principal divisor}; principal divisors form a subgroup $Div_0(C)$ of the group $Div(C)$ of all divisors. We say that two divisors $D$ and $E$ on $C$ are \emph{linearly equivalent} if their difference $D-E$ is a principle divisor. The group $Div(C)/Div_0(C)$ of linear equivalence classes of divisors is called the \emph{Picard group} of $C$, denoted $\pic(C)$. 
+this is independent of the choice of $f$ and $g$. The divisor of a rational function $h$ is called a \emph{principal divisor}; principal divisors form a subgroup $Div_0(C)$ of the group $Div(C)$ of all divisors. We say that two divisors $D$ and $E$ on $C$ are \emph{linearly equivalent} if their difference $D-E$ is a principal divisor. The group $Div(C)/Div_0(C)$ of linear equivalence classes of divisors is called the \emph{Picard group} of $C$, denoted $\pic(C)$. 
 
 Linear equivalence is important in the description of a map $C\to \PP^{r}$ by divisors
 because in $\PP^{r}$ any two hyperplanes, defined by the vanishing of linear forms  $\ell_{1}=0$ and $\ell_{2}=0$, differ by the globally defined rational
@@ -99,17 +99,19 @@ We can generalize the notion of a divisor on a smooth curve in two respects.
 
 First, we can extend the notion to higher dimensional smooth varieties $X$, defining a divisor to be a finite formal linear combination of irreducible subvarieties of codimension 1 in $X$. In this setting, most of the notions introduced above have natural analogues; for example, a divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients. We can similarly define the divisor of a rational function on $X$, and the notion of linear equivalence of divisors. (One notion that does not have an obvious analog is the degree of a divisor.)
 
-We can also extend the notion to possibly singular varieties $X$, though this requires more care. We can mimic the definition above, defining a divisor to be a finite formal linear combination of irreducible subvarieties of codimension 1 in $X$; this is called a \emph{Weil divisor} on $X$. But for most purposes we have to introduce a slightly different notion of divisor, called a \emph{Cartier divisor}. This is defined to be a finite linear combination of locally principal subschemes of $X$: that is, subschemes $D \subset X$ such that the ideal $\cI_D \subset \cO_X$ is locally generated by a single non-zero divisor. 
+We can also extend the notion to possibly singular varieties $X$, though this requires more care. We can mimic the definition above, defining a divisor to be a finite formal linear combination of irreducible subvarieties of codimension 1 in $X$; this is called a \emph{Weil divisor} on $X$. But for most purposes we have to introduce a slightly different notion of divisor, called a \emph{Cartier divisor}. We first define and \emph{effective Cartier divisor} to be a subscheme locally defined on some open covering $U_{i}$ by the vanishing of one non-zerodivisor in $\sO_{X}(U_{i})$; and a \emph{Cartier divisor} to be a difference of effective Cartier divisors
 
 A simple example will serve to illustrate this. Suppose $C \subset \AA^2$ is a plane curve with a node at a point $p = (0,0) \in C$. The point $p$ itself (that is, the reduced subscheme) is \emph{not} a Cartier divisor, since its ideal $(x,y)$ is not generated by a single element. Likewise, the ``fat point"---that is, the subscheme $\Gamma = V(x^2, xy, y^2) \subset C$---is not Cartier. But a subscheme of degree 2 supported at $p$---that is, a scheme of the form
 $$
 \Gamma_{\alpha, \beta} := V(\alpha x + \beta y, x^2, xy, y^2) \subset C \text{---}
 $$
-will in general be Cartier, as it is locally the intersection of $C$ with the line $L \subset \AA^2$ given by $\alpha x + \beta y = 0$. The two exceptions to this occur when the line $L$ is tangent to either branch of $C$ at the node; in these cases the scheme $\Gamma_{\alpha, \beta}$ is not a Cartier divisor on $C$ (the intersection $L \cap C$ has multiplicity 3 at $p$, and is not equal to $\Gamma_{\alpha, \beta}$). All of these assertions are the content of Exercise~\ref{Cartier examples} below; the reader who is not already familiar with the notion of Cartier divisor is encouraged to carry out the verifications.
+is in general be Cartier, as it is defined---globally as well as locally---by the equation $\alpha x + \beta y = 0$. 
+For distinct lines $L$ the schemes $\Gamma_{L}$ are also distinct, since $\Gamma_{L}\subset L$. The two exceptions, when $\Gamma_{L}$ is not Cartier, occur when the line $L$ is tangent to either branch of $C$ at the node; in these cases the scheme $\Gamma_{\alpha, \beta}$ is not a Cartier divisor on $C$ (the intersection $L \cap C$ has multiplicity 3 at $p$, and is not equal to $\Gamma_{\alpha, \beta}$). All of these assertions are the content of Exercise~\ref{Cartier examples} below; the reader who is not already familiar with the notion of Cartier divisor is encouraged to carry out the verifications.
 
 Here is another way to characterize Cartier divisors on a scheme $X$: for each open affine set $U\subset X$ we define $K_X(U)$ to be the field of fractions of $\sO_X(U)$, and write $K_X$ for the
 associated sheaf. We write $\sO_X^*$ and $K_X^*$ for the sheaves of groups of units in $\sO_X(U)$ and $K_X(U)$.
-A Cartier divisor on $X$ is then by definition a global section of $K_X^*/\cO_X^*$.
+A Cartier divisor on $X$ is then by definition a global section of $K_X^*/\cO_X^*$. 
+Moreover, if $X$ is a normal scheme (so that its local rings at the generic points of codimension 1 subvarieties are discrete valuation rings) then the Cartier divisors are the same as locally principal Weil divisors. See~\cite[Section II.6]{Hartshorne 1977} for more information. 
 
 In this book, we will be dealing for the most part with smooth curves; even when singular curves $C$ arise, they will be viewed as images of smooth curves $\tilde C$  (their normalizations) and their geometry analyzed in terms of that of $\tilde C$. Thus for the most part we'll be dealing with divisors in the simplest setting of smooth curves. But there will be occasions when we want to extend our analysis to singular curves and/or higher-dimensional varieties, and in those cases the notion of Cartier divisor is called for.
 
@@ -213,8 +215,11 @@ A coherent sheaf $\cL$ is said to be \emph{locally free} if the modules $L_i$ ar
 An \emph{invertible sheaf} is a locally free coherent sheaf of rank 1;  that is, $L|_U \cong \sO_U$,
 for every open set in some covering of $X$. 
 
-Invertible sheaves form a group: the tensor product  $\sL_1\otimes_{\sO_X}\sL_2$ of two invertible sheaves is  again an invertible sheaf. The inverse is given by the dual invertible sheaf $\sL^{-1} := Hom_{\sO_X}(\cL,\sO_X)$. There is a natural map
-$\cL \otimes \sL^{-1} \to \cO_X$ that is an isomorphism, as one checks locally. 
+Invertible sheaves form a group: the tensor product  $\sL_1\otimes_{\sO_X}\sL_2$ of two invertible sheaves is  again an invertible sheaf. The inverse is given by the dual invertible sheaf $\sL^{-1} := Hom_{\sO_X}(\cL,\sO_X)$
+(Proof: Evaluation of functions defines a natural map $\sF \otimes  Hom_{\sO_X}(\cF,\sO_X)$,
+and when $\sF = \sL$ is locally free of rank 1 this is locally an isomorphism). 
+%There is a natural map
+%$\cL \otimes \sL^{-1} \to \cO_X$ that is an isomorphism, as one checks locally. 
 
 Invertible sheaves can be defined from divisors on a smooth scheme (or more generally from Cartier divisors on any scheme). In case $C$ is a smooth projective curve, this is concrete: if $D = \sum m_p \cdot p$, then we define the sections of $\cO_C(D)$ on any open set $U$ by
 $$
@@ -231,7 +236,7 @@ its inverse. The dual of the inclusion of
 $\cO_X(-D) \subset \cO_X$ is a homomorphism $\sigma := \cO_X \to \cO_X(D)$, that we regard as a global section. It
 vanishes precisely along $D$. 
 
-For a general (Cartier) divisor $D = E - F$, we simply define
+For a general (Cartier) divisor $D = E - F$, we define
 $$
 \cO_X(D) := \cO_X(E) \otimes \cO_X(F)^{-1}.
 $$
@@ -248,13 +253,14 @@ $$
 %$\sO_D(U)$ on an open set $U$ is the space of rational functions $f$ on $U$ such that $\ord_p(f) + m_p \geq 0$ for all $p \in U$. 
 %In particular, if $D$ is effective, sections of $\cO_C(D)$ are rational functions, regular away from the points $p$ with $m_p > 0$, but which are allowed to have a pole at a point $p$ of order at most $m_p$. 
 
-If $\sigma\in H^0(\sL)$ is a global section of an invertible sheaf on $X$ and $p\in X$ is a point, then the value $\sigma(p)$ of $\sigma$ at $p$ is the image  of $\sigma$ under the natural map $H^0(\sL)$ to the fiber $\kappa(p) \otimes \sL_{p} \cong \CC$.
+If $\sigma\in H^0(\sL)$ is a global section of an invertible sheaf on $X$ and $p\in X$ is a point, then the \emph{value $\sigma(p)$ of $\sigma$ at $p$} is the image  of $\sigma$ under the natural map $H^0(\sL)$ to the fiber $\kappa(p) \otimes \sL_{p} \cong \CC$.
 Since the isomorphism is not canonical, $\sigma$ does not define a function on $X$ at $p$; but since any two isomorphisms
 differ by a unit in $\sO_{X,p}$, the vanishing locus of $\sigma$, denoted $(\sigma)_0$, is a well-defined subscheme of $X$.\footnote{The terminology of ``vanishing'' is slightly confusing: when we  say that $\sigma$ vanishes at $p$, or $\sigma(p) = 0$, we mean that the image of $\sigma$ in the stalk $\sL_p = \sL \otimes_{\sO_{X}} \sO_{X,p}$ is in 
 the maximal ideal $\gm_{X,p}$ of $\sO_{X,p}$ times $\sL_p$
 ---and \emph{not} that $\sigma$ is zero
 as an element of the stalk $\sL_p$ itself. Similarly, we say that $\sigma$ vanishes to order $m$ at $p$ if $\sigma(p)$ lies in $\gm_{X,p}^m\sL_p$. }
- Moreover, if $X$ is reduced and irreducible, then the ratio $\sigma/\tau$ of two global sections is a well-defined rational function
+ Moreover, if $X$ is reduced and irreducible, then the ratio $\sigma/\tau$ of two global sections
+ of the same invertible sheaf is a well-defined rational function
 $\sigma(p)/\tau(p)$ at all the points where the denominator $\tau(p)$ is not 0, so the divisor class of 
 $(\sigma)_0$ is independent of the choice of $\sigma \in $.
 
@@ -313,10 +319,11 @@ pullback $f^*(\sL)$ of an invertible sheaf $\sL$ on $X$ is defined as the tensor
 %$\sigma\in \sO_{X}(D)$ that vanishes precisely on $D$.
 
 \begin{example} [Invertible sheaves on $\PP^{r}$]\label{linear series on Pr} Since $\CC[x_0,\dots,x_r]$ is a 
-unique factorization domain, every codimension 1 subvariety of $\PP^r$ is defined by a principal ideal. As we explained above,
+unique factorization domain, the ideal of any codimension 1 subvariety of $\PP^r$ is generated by one
+nonzero element, which is thus a non-zerodivisor---it is a hypersurface.  As we explained above,
 any two hypersurfaces of degree $d$ differ by the divisor of a rational function, so
-the group of divisor classes on $\PP^r$ is $\ZZ$---the class of a divisor is defined by its degree.
-Thus if $D = V(F)\subset \PP^{r}$ is a hypersurface defined by the vanishing of a linear form 
+the group of divisor classes on $\PP^r$ is $\ZZ$---that is, the class of a divisor is defined by its degree.
+Thus if $D = V(F)\subset \PP^{r}$ is a hypersurface defined by the vanishing of a  form 
 $F$ of degree $d$,
 it is natural to use the name $\sO_{\PP^r}(d)$  for $\sO_{\PP^r}(D)$.
 
@@ -337,7 +344,7 @@ we may identify $H^{0}(\sO_{\PP^{r}}(d))$ with the ${r+d\choose r}$-dimensional 
 
 Putting this together for future reference we have:
 \begin{proposition}
- Every invertible sheaf $\sL$ on $\PP^r$ has the form $\L \cong \sO_{\PP^r}(m)$ for a unique $m = \deg \sL \in \ZZ$; and
+ Every invertible sheaf $\sL$ on $\PP^r$ has the form $\sL \cong \sO_{\PP^r}(m)$ for a unique $m = \deg \sL \in \ZZ$; and
  $$
  H^0(\sO_{\PP^r}(m)) = \CC[x_0,\dots, x_r]_m
  $$
@@ -348,7 +355,7 @@ Putting this together for future reference we have:
 
 \section{Linear series and maps to projective space}
 
-We will use invertible sheaves to  describe maps of a given variety $X$ to projective space. For this we add the notion of linear series (sometimes called linear system). We start with the definition:
+We will use invertible sheaves to  describe maps of a given variety $X$ to projective space. For this we add the notion of linear series (sometimes called linear system). 
 
 \begin{definition}
  A \emph{linear series} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf  on $X$ and
@@ -358,9 +365,11 @@ We will use invertible sheaves to  describe maps of a given variety $X$ to proje
  $$
   \end{definition}
   
-To every global section $\sigma$ of an invertible sheaf $\cL$ on a variety $X$  we can associate the divisor $(\sigma) = (\sigma)_0$ defined by the vanishing of $\sigma$. If $\tau$ is a scalar multiple of $\sigma$, it has the same divisor; and if 
+To every global section $\sigma$ of an invertible sheaf $\cL$ on a variety $X$  we can associate an effective divisor $(\sigma) = (\sigma)_0$ defined by the vanishing of $\sigma$. If $\tau$ is a scalar multiple of $\sigma$, it has the same divisor; and if 
  $H^0(\sO_X) = \CC$ (for example if $X$ is reduced, connected, and
- projective) then the converse is true: two sections of $\cL$ with the same divisor differ by multiplication by a scalar.  We sometimes write
+ projective) then the converse is true: two sections of $\cL$ with the same divisor differ by multiplication by a scalar.  
+ 
+ We sometimes write
  $|\sL|$ for the complete linear series $(\sL, H^0(\cL))$. If $\sL = \sO(D)$ we often write this as $|D|$.
 
 Thus a linear series $\sV = (\cL, V)$ gives rise to a family of effective divisors on $X$, all in the same linear equivalence class, parametrized by the projective space $\PP V^*$ of nonzero $\sigma \in V$ mod scalars. This is indeed the way 
