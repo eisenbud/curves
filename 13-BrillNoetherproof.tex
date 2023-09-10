@@ -3,29 +3,32 @@
 \chapter{Proof of the Brill Noether Theorem}\label{Brill Noether proof chapter}
 \label{BrillNoetherproofChapter}
 
-Our goal in this chapter is to give as self-contained as possible a proof of the Brill-Noether theorem. We will focus on proving what we call the ``Basic Brill-Noether" theorem (Theorem~\ref{basic BN}) of Chapter~\ref{Brill-Noether}), which we reproduce here for convenience:
+Our goal in this chapter is to give a largely self-contained proof of the Brill-Noether theorem. We will focus on proving what we call the ``Basic Brill-Noether" theorem (Theorem~\ref{basic BN}) of Chapter~\ref{Brill-Noether}), which we reproduce here for convenience:
 
 \begin{theorem}[Basic Brill Noether]
 If $r\geq 0$ and
  $$
  \rho(g,r,d) := g - (r+1)(g-d+r) \geq 0.
 $$
-then every smooth projective curve of genus $g$  possesses a $g^r_d$; and for a general curve $C$,  $\dim W^r_d(C) = \rho$. Conversely, if $\rho < 0$ then a general curve $C$ of genus $g$ will not possess a $g^r_d$.
+then every smooth projective curve of genus $g$  possesses a $g^r_d$; and for a general curve $C$,  $\dim W^r_d(C) = \rho$. Conversely, if $\rho < 0$ then a general curve $C$ of genus $g$ does not possess a $g^r_d$.
 \end{theorem}
 
-In fact, a closer examination of our proof will yield some if not all of the assertions of the stronger Theorems~\ref{Wrd omnibus} and~\ref{grd omnibus}, as well as additional results on the existence of linear series with specified inflectionary behavior; we will discuss these at the end of the current chapter.
+In fact, a closer examination of our proof will yield some if not all of the assertions of the stronger Theorems~\ref{Wrd omnibus} and~\ref{grd omnibus}, as well as additional results on the existence of linear series with specified inflectionary behavior; we will discuss these at the end of the chapter.
 
 %One caveat at the outset: we said that our aim was to give a self-contained proof, and we will fall short of that goal in at least two respects. Our proof is based on Theorem~\ref{osculating intersection} of the last chapter, which involves some elementary intersection theory. And in order to apply Theorem~\ref{osculating intersection}, we need to assert the existence of families of curves specializing from a smooth curve of genus $g$ to a $g$-cuspidal rational curve, which requires us to invoke some elementary deformation theory. \fix{how about families of Pic?}
 
 \section{Castelnuovo's construction}
 
-The idea behind our current proof goes back to Castelnuovo in~\cite{zbMATH02692307}. Castelnuovo's goal was not to prove Brill-Noether, which was considered established at the time (or at least not in need of further demonstration); rather, he asked a follow-up question. If indeed a general curve $C$ of genus $g = 2d-2$ has a finite number of $g^1_d$s, as Brill-Noether asserts, Castelnuovo wanted to know: how many? Note that we have answered this question in cases $g = 2, 4$ and 6, and these cases were certainly known to Castelnuovo, but the case of higher $g$ was unknown.
+The idea behind the proof goes back to Castelnuovo in~\cite{zbMATH02692307}. Castelnuovo's goal was not to prove Brill-Noether, which was considered established at the time (or at least not in need of further demonstration); rather, he asked a follow-up question. If indeed a general curve $C$ of genus $g = 2d-2$ has a finite number of $g^1_d$s, as Brill-Noether asserts, Castelnuovo wanted to know: how many? We have answered this question in cases $g = 2, 4$ and 6 in earlier chapters, and these cases were certainly known to Castelnuovo, but the case of higher $g$ was unknown.
 
-Castelnuovo's approach to this problem was simple and beautiful, and has informed the proofs of Brill Noether almost a century later. His idea was to specialize a general curve $C$ of genus $g$ to a general $g$-nodal rational curve---that is, a curve $C_0$ with $g$ nodes whose normalization is $\PP^1$---and count the number of $g^1_d$s on that curve. By way of notation, we'll call the nodes of $C_0$ $r_1,\dots,r_g$, and let $p_i, q_i \in \PP^1$ be the two points lying over $r_i$.
+Castelnuovo's approach to this problem has informed the actual proofs of the Brill Noether theorem almost a century later. His idea was to specialize to a general curve $C_0$ with $g$ nodes  whose normalization is $\PP^1$, and count the number of $g^1_d$s on that curve. Appealing to the (then) vague ``principle of conservation of number'', Castelnuovo felt that the result probably reflected the number an a general smooth curve as well.\footnote{Castelnuovo presented his computation as heuristic, not claiming it was a full proof, and the reviewer of Castelnuovo's paper in the Zentralblatt wrote very politely:
+``Das Resultat, welches er bekommen hat, gibt mit grosser Wahrscheinlichkeit den wahren Wert von N \dots; daher sind wir mit dem Verf. einverstanden, wenn er seinen Versuch nicht für wertlos hält''
+(The result that he obtained gives the true value of [the number of $g^1_d$s] with high probability, and thus we agree with the author that his work is not worthless\dots)}  
 
+By way of notation, we'll call the nodes of $C_0$ $r_1,\dots,r_g$, and let $p_i, q_i \in \PP^1$ be the two points lying over $r_i$.
 Castelnuovo counted the $g^1_d$s on $C_0$ by observing that any pencil on $C_0$ can be pulled back to a pencil on the normalization $\PP^1$; if we embed $\PP^1$ in $\PP^d$ as a rational normal curve of degree $d$, such a pencil corresponds to a $(d-2)$-plane $\Lambda \subset \PP^d$. Moreover, to say that such a pencil is a pullback from $C_0$ means that every divisor of the pencil that contains $p_i$ contains $q_i$ and vice versa; since the pencil is cut out by hyperplanes in $\PP^d$ containing $\Lambda$, this condition amounts to saying that $\Lambda \cap \overline{p_i,q_i} \neq \emptyset$.
 
-In the Grassmannian $G(d-1, d+1)$ of $(d-2)$-planes in $\PP^d$, the locus of those that meet the line $L_i = \overline{p_i,q_i}$ is what we called in the last chapter the Schubert cycle $\Sigma_1(L_i)$. In these terms, then, the set of $g^1_d$s on our curve $C_0$ is the intersection
+In the Grassmannian $G(d-1, d+1)$ of $(d-2)$-planes in $\PP^d$, the locus of those that meet the line $L_i = \overline{p_i,q_i}$ is what we called in the last chapter the Schubert cycle $\Sigma_1(L_i)$. In these terms the set of $g^1_d$s on $C_0$ is the intersection
 $$
 W^1_d(C_0) \; = \; \bigcap_{i=1}^{2d-2} \Sigma_1(L_i).
 $$
@@ -33,12 +36,10 @@ $$
 Castelnuovo proposed that if the points $p_i, q_i\in \PP^1$ were chosen generally, then the Schubert cycles
 $L_i$ would meet transversely, and thus that the cardinality of this intersection is the power $\sigma_1^{2d-2}$ in the Chow ring $A(G(d-1, d+1))$. Castelnuovo evaluated this power, and came to the conclusion that a general curve $C$ of genus $g=2d-2$ has 
 $$
-\#W^1_{k+1}(C) \; = \; \frac{(2d-2)!}{(d-1)!d!}
+\#W^1_{d+1}(C) \; = \; \frac{(2d-2)!}{(d-1)!d!}
 $$
-pencils of degree $d$.\footnote{Castelnuovo presented his computation as heuristic, not claiming it was a full proof, and the reviewer of Castelnuovo's paper in the Zentralblatt wrote very politely:
-``Das Resultat, welches er bekommen hat, giebt mit grosser Wahrscheinlichkeit den wahren Wert von N \dots; daher sind wir mit dem Verf. einverstanden, wenn er seinen Versuch nicht für wertlos hält''
-(The result that he obtained gives the true value of [the number of $g^1_d$s] with high probability, and thus we agree with the author that his work is not worthless\dots)} Indeed, we have shown
- in Corollary~\ref{secant schubert proper} that if the points $p_i, q_i$ are general, then the Schubert cycles $\Sigma_1(L_i)$ at least intersect properly, so the given number is the number of $g^1_d$ counted with appropriate multiplicities.
+pencils of degree $d$. Indeed, we see
+ in Exercise~\ref{secant general position} that if the points $p_i, q_i$ are general, then the Schubert cycles $\Sigma_1(L_i)$ at least intersect properly, so the given number is the number of $g^1_d$ counted with appropriate multiplicities.
 
 %Now, we saw in Corollary~\ref{secant schubert proper} that if the points $p_i, q_i$ are general, then the Schubert cycles $\Sigma_1(L_i)$ intersect properly; if we assume in addition that they intersect transversely, then the cardinality of this intersection is the power $\sigma_1^{2d-2}$ in the Chow ring $A(G(d-1, d+1))$. (Indeed, since the Schubert cycles $\Sigma_1(L_i)$ are hyperplane sections of the Grassmannian in the Pl\"ucker embedding, this is equal to the degree of the Grassmannian.)
 %Castelnuovo evaluated this power, and came to the conclusion that a general curve $C$ of genus $g=2d-2$ has 
@@ -47,10 +48,12 @@ pencils of degree $d$.\footnote{Castelnuovo presented his computation as heurist
 %$$
 %pencils of degree $d$.
 
-It was Kleiman who first proposed that Castelnuovo's approach to the study of linear series on a general curve could be used to give a proof of Brill-Noether, if enough care was taken with the specialization arguments. He carried this out in~\cite{Kleiman-special}, and succeeded in reducing the basic Brill-Noether theorem to a special case of Corollary~\ref{secant schubert proper}; this was then proved in~\cite{Griffiths-Harris-BN}.
+It was Kleiman who first proposed that Castelnuovo's approach to the study of linear series on a general curve could be used to give a proof of the Brill-Noether theorem, if enough care was taken with the specialization arguments. He carried this out in~\cite{Kleiman-special}, and succeeded in reducing the basic Brill-Noether theorem to a special case of Exercise~\ref{secant general position}; this was finally proven in~\cite{Griffiths-Harris-BN}.
 
-This is the general approach that we will adopt. However, the relative strength of Theorem~\ref{osculating intersection} and Corollary~\ref{secant schubert proper} suggests specializing to a $g$-cuspidal curve $C_0$ rather than a $g$-nodal one, and we will use
+This is the general approach that we will adopt. However, the strength of Theorem~\ref{osculating intersection} compared to Exercise~\ref{secant general position} suggests specializing to a $g$-cuspidal curve $C_0$ rather than a $g$-nodal one, and we will use
 this refinement.
+
+\fix{maybe distinguish the existence/non-existence parts; and boast that we are doing both together}
 
 \subsection{Upper bound on the codimension of $W^r_d(C)$}
 
@@ -62,21 +65,37 @@ h^0(\cL(E)) = d + m - g + 1.
 $$
 
 The pushforward of the Poincar\'e bundle $\cP$ on $\pic_{d+m}(C) \times C$ to $\pic_{d+m}(C)$ is thus a vector
-bundle of rank $d + m - g + 1$ whose fibers are the vector spaces $H^0(\cL(E))$. Similarly,
+bundle $\sE$ of rank $d + m - g + 1$ whose fiber over a point representing $\sL$ is the vector space $H^0(\cL(E))$. Similarly,
 the pushforward ${\pi_1}_*(\cP|_{\pic_{d+m}(C) \times E})$
-is a vector bundle whose fibers are the vector spaces $\oplus \cL(E)_{p_i}$. The restriction map
+is a trivial vector bundle whose fiber at every point is the vector space $\oplus \cL(E)_{p_i}$. The restriction map
 $$
 \cP  \rTo \cP|_{\pic_{d+m}(C) \times E}
 $$
 pushes forward to give a map $\phi : \cE \to \cF$ that on each fiber is the evaluation of sections $\sigma \in H^0(\cL(D))$ at the points $p_i$.
 
-If $\cL$ is an invertible sheaf of degree $d$ then the space $H^0(\cL)$ is the kernel of the map $\phi$ at the corresponding point $\cL(E) \in \pic_{d+m}(C)$, which is given locally by a $d+m \times d+m-g+1$ matrix. The locus $W^r_d(C)$ is a translate of the locus where $\phi$ has rank $d+m-g-r$ or less, and by \cite[Exercise 10.9]{Eisenbud1995} this locus is either empty or its components have codimension $\leq (r+1)(g-d+r)$ in $\pic_{d+m}(C)$, which has dimension $g$. Thus \emph{every component of $W^r_d(C)$ has dimension at least $\rho$}.
-
-We can extend this argument in two ways. First, \emph{it applies to families of curves}: if $\cC \to B$ is a family of curves, we can form a corresponding family $\pic_d(\cC / B)$ and a corresponding locus $W^r_d(\cC / B)$, and the conclusion that the codimension of $W^r_d(\cC / B)$ in $\pic_{d+m}(\cC / B)$ is at most $(r+1)(g-d+r)$ everywhere still holds. Thus, for example, if a particular curve $C_0$ had $\dim W^r_d(C_0) = \rho \geq 0$, it would follow that $\dim W^r_d(C_b) = \rho$ for all $b$ in a neighborhood of $0 \in B$. In particular, we could deduce that $W^r_d(C_b)$ was nonempty for all $b$ in a neighborhood of $0 \in B$.
+If $\cL$ is an invertible sheaf of degree $d$ then the space $H^0(\cL)$ is the kernel of the map $\phi$ at the corresponding point $\cL(E) \in \pic_{d+m}(C)$, which is given locally by a $d+m \times d+m-g+1$ matrix. The locus $W^r_d(C)$ is a translate of the locus where $\phi$ has rank $d+m-g-r$ or less, and by \cite[Exercise 10.9]{Eisenbud1995} this locus is either empty or its components have codimension $\leq (r+1)(g-d+r)$ in $\pic_{d+m}(C)$, which has dimension $g$. Thus every component of $W^r_d(C)$ has dimension at least $\rho$. (This, combined with optimism is a summary of the argument put forward by Brill and Noether, put into modern form.)
 
 
-The second extension is that this set-up also applies  to some singular curves. We are going to see that irreducible curves of arithmetic genus $g$ having nodes and cusps also have Picard varieties, which are irreducible of dimension $g$ (though not in general proper); and if we had a family $\cC \to B$ of curves with, say, $C_b$ smooth for $b \neq 0$ and $C_0$ a $g$-cuspidal curve, then there exists a corresponding family $\pic_d(\cC/B)$ of Picard varieties, and the dimension estimate above applies there as well. This is indeed how we propose to prove the existence of $g^r_d$s on a general curve of genus $g$: we will show that for $\rho \geq 0$ and $C_0$ a $g$-cuspidal curve,  we have $W^r_d(C_0) \neq \emptyset$, and
- $\dim W^r_d(C_0) = \rho(g,r,d)$; from this we can deduce the same statement for a general curve of genus $g$.
+The idea of Brill and Noether can be used with the technique proposed by Castelnuovo by virtue
+of the existence of relative Picard varieties, explained in``Cheerful Fact''~\ref{Kleiman-Picard}: Using that idea,
+we see that the argument above also applies in
+ families of curves (even singular ones): if $\cC \to B$ is a family of curves, we can form a corresponding family $\pic_d(\cC / B)$ and a corresponding locus $W^r_d(\cC / B)$, and the conclusion that the codimension of $W^r_d(\cC / B)$ in $\pic_{d+m}(\cC / B)$ is at most $(r+1)(g-d+r)$ everywhere still holds. 
+
+Thus the argument of Brill and Noether, together with the existence of the relative Picard variety, the bound on the codimension of determinantal ideals,  and the semi-continuity of fiber dimension, shows:
+
+\begin{theorem}\label{local existence}
+If a curve $C_0$ of arithmetic genus $p$ has $\dim W^r_d(C_0) = \rho(p,r,d) \geq 0$
+locally at a particular invertible sheaf $\sL$,  then $\dim W^r_d(C_b) = \rho$ locally for all $b$ in a neighborhood of $0 \in B$ and sheaves in a neighborhood of $\sL$. In particular, $W^r_d(C_b)$ is nonempty for all $b$ in a neighborhood of $0 \in B$.
+\end{theorem}
+
+ We will see that if $C_{0}$ is any rational curve
+ with $g$ cusps, and $\rho(g,r,d)\geq 0$, then $\dim W^r_d(C_0) = \rho$ locally at every invertible sheaf
+ on $C_{0}$.
+ 
+
+
+%The second extension is that this set-up also applies  to some singular curves. We are going to see that irreducible curves of arithmetic genus $g$ having nodes and cusps also have Picard varieties, which are irreducible of dimension $g$ (though not in general proper); and if we had a family $\cC \to B$ of curves with, say, $C_b$ smooth for $b \neq 0$ and $C_0$ a $g$-cuspidal curve, then there exists a corresponding family $\pic_d(\cC/B)$ of Picard varieties, and the dimension estimate above applies there as well. This is indeed how we propose to prove the existence of $g^r_d$s on a general curve of genus $g$: we will show that for $\rho \geq 0$ and $C_0$ a $g$-cuspidal curve,  we have $W^r_d(C_0) \neq \emptyset$, and
+% $\dim W^r_d(C_0) = \rho(g,r,d)$; from this we can deduce the same statement for a general curve of genus $g$.
 
 
 
@@ -563,6 +582,9 @@ Using Exercise~\ref{independent secants}, show that
 \end{enumerate}
 \end{exercise}
 
+\begin{exercise}\label{secant general position}
+ 
+\end{exercise}
 %\section{potential exercises}
 %\begin{enumerate}
 %\item Show that there is a unique quadric in $\PP^3 containing 3 skew lines.
