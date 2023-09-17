@@ -1,0 +1,172 @@
+\input{header}
+\chapter{Singular Curves}
+\label{SingularCurvesChapter}
+
+Throughout this book thus far, we have developed techniques for dealing with smooth, projective curves; to the extent that we have considered singular curves we have studied them by applying the ideas and constructions we've developed to their normalizations. But singular curves have a fascinating geometry in their own right, not only for the singularities themselves but the effect singularities have on associated objects such as the Jacobian. In this chapter, we will undertake a brief survey of the geometry of singular curves and what we can say about linear series on them.
+
+To say what classes of curves we'll be dealing with here: for the most part, we will confine ourselves to working with reduced, projective curves. Many of the results we will derive will in fact will be applicable to a larger class of curves, namely those that are \emph{Cohen-Macaulay}; these may well be non-reduced, but cannot have embedded points. In Section~\ref{} below, we'll mention some examples of nonreduced curves to which we can apply our ideas (such as, for example, \emph{ribbons}), and we'll develop these ideas further in the following chapter, where we introduce more algebraic techniques. But for the rest of this chapter, we will take the objects of our study to be reduced, projective curves over $\CC$.
+
+
+\section{The arithmetic genus and singularities}
+
+To start at the beginning, when we first defined the notion of the \emph{genus} of a smooth projective curve, we gave several different but equivalent characterizations of the genus. As you might expect, these diverge in the presence of singularities, so we adopt the following universal definition.
+
+\begin{definition}
+Let $C$ be an arbitrary one-dimensional projective scheme over a field $\CC$. By the \emph{arithmetic genus} $p_a(C)$ of $C$ we mean 1 minus the Euler characteristic of the structure sheaf of $C$:
+$$
+p_a(C) \; = \; 1 - \chi(\cO_{C}).
+$$
+In contrast, if $C$ is reduced, we define the \emph{geometric genus} to be the genus of the normalization $C^\nu$ of $C$.
+\end{definition}
+
+Note that the arithmetic genus satisfies many of the formulas derived above in the smooth case: for example, if $C \subset S$ is a divisor on a smooth surface, the adjunction formula holds:
+$$
+p_a(C) \; = \; \frac{C\cdot C + K_S\cdot C}{2} + 1.
+$$
+Thus, for example, a double conic curve $C = V((XY-Z^2)^2) \subset \PP^2$, like every other plane quartic curve, has arithmetic genus 3. (If you're curious, we'll see what the Jacobian of $C$ looks like in Section\ref{} below.)
+
+\subsection{Relation between the arithmetic and geometric genus}
+
+Our first order of business is to understand the relationship between the arithmetic and geometric genera of a reduced projective curve $C$. To this end, let $\nu : C^\nu \to C$ be the normalization of $C$, and consider the exact sequence of sheaves on $C$:
+$$
+0 \to \cO_C \to \nu_*\cO_{C^\nu} \to \cF \to 0
+$$
+where $\cF$ is simply defined to be the quotient $\nu_*\cO_{C^\nu}/\cO_C$; note that $\cF$ is supported exactly at the singular points of $C$.
+
+The point here is that, because the map $\nu$ is finite, there are no higher direct images of $\nu_*\cO_{C^\nu}$; so the Leray-Serre spectral sequence tells us that
+$$
+\chi(\nu_*\cO_{C^\nu}) \; = \chi(\cO_C).
+$$
+Thus, the difference between the arithmetic and geometric genera of $C$ is
+$$
+g(C) \; = \; p_a(C) - h^0(\cF).
+$$
+We can refine this a little: for each singular point $p \in C$, denote by $\delta_p$ the dimension (as vector space over $\CC$) of the stalk $\cF_p$ of $\cF$ at $p$. This is called the \emph{delta-invariant} of $p$, and is the most fundamental numerical invariant of a curve singularity. In these terms, we can write
+$$
+g(C) \; = \; p_a(C) - \sum_{p \in C} \delta_p.
+$$
+
+\subsection{The delta invariant}
+
+To see how this works in practice, let's calculate the delta invariant of some relatively simple singularities.
+
+\subsubsection{the $\delta$-invariant of a node}
+
+To start with the simplest singularity, suppose that $p$ is a node of $C$: that is, a neighborhood of $p \in C$\footnote{we can take this to be either a complex analytic neighborhood or an \'etale neighborhood} is the union of two smooth curves intersecting transversely at $p$. In this case, there will be two points $q, r \in C^\nu$ in the normalization lying over $p$, and we see that if $U$ is a suitably small neighborhood of $p \in C$ then a function $\tilde f \in \cO_{C^\nu}(\nu^{-1}(U)$ on the preimage of $U$ in $C^\nu$  is the pullback of a function $f \in \cO_C(U)$ if and only if the values $\tilde f(q) = \tilde f(r)$ agree. It follows that the stalk of the sheaf $\cF$ at $p$ is one-dimensional, so $\delta_p = 1$.
+
+\subsubsection{the $\delta$-invariant of a cusp}
+
+By definition, a \emph{cusp} of a curve $C$ is a point $p \in C$ such that the normalization map is given in terms of suitable local coordinates in a neighborhood $U$ of $p$ as
+$$
+\nu : t \mapsto (t^2, t^3).
+$$
+We see from this that a function  is the pullback of a function $f \in \cO_C(U)$ if and only if the derivative $f'(0) = 0$; this being again one linear condition, we see that $\delta_p = 1$.
+
+\subsubsection{the $\delta$-invariant of a tacnode}
+$\tilde f \in \cO_{C^\nu}(\nu^{-1}(U))$
+As with a node, a suitably small neighborhood $U$ of a tacnode $p \in C$ is a union of two smooth curves; but this time the two branches are simply tangent to one another rather than transverse. It is no longer the case, accordingly, that a function $\tilde f \in \cO_{C^\nu}(\nu^{-1}(U))$ is a pullback if and only if the values of $\tilde f$ at the points  $q, r \in C^\nu$ lying over $p$ agree: for example, a function that has a simple zero at $q$ but vanishes to order 2 or more at $r$ cannot be a pullback. The correct statement is that $\tilde f$ will descend to $C$ if and only if $f(q) = f(r)$ and the derivatives $f'(q)$ and $f'(r)$ (with respect to suitably chosen local coordinates) agree. Thus we see that $\delta_p = 2$.
+
+\subsubsection{the $\delta$-invariant of an ordinary triple point}
+
+An ordinary triple point is again a \emph{planar} singularity, meaning its Zariski tangent space is 2-dimensional, or, equivalently, it is embeddable in a smooth surface. A small neighborhood of such a point $p \in C$ consists of a union of three smooth branches, intersecting pairwise transversely at $p$. In order for a function on the preimage of $U$ to be a pullback, naturally, its values at the three points $q,r,s \in \nu^{-1}(p)$ lying over $p$ have to agree, so that $\delta_p \geq 2$. But this is not a sufficient condition: a function  $\tilde f$ with a simple zero at $q$ but vanishing to order at least 2 at $r$ and $s$ cannot be a pullback. Rather, the fact that the tangent lines to the three branches are linearly dependent means that in order for $\tilde f$ to descend its derivatives at $q, r$ and $s$ must satisfy a linear relation as well, and so we have $\delta_p = 3$. 
+
+\subsubsection{the $\delta$-invariant of a spatial triple point}
+
+By way of contrast with the last example, suppose now that $p$ is a \emph{spatial triple point}: in other words, a neighborhood of $p \in C$ is a union of three smooth branches with linearly independent tangent lines (so that $\dim T_p(C) = 3$). In this case, it is a necessary and sufficient condition for a function $\tilde f$ to descend is simply that its values at the points lying over $p$ agree, from which we see that $\delta_p = 2$.
+
+\begin{exercise}
+Consider the following curves $C \subset \PP^3$ of degree 3 in $\PP^3$. In each case, determine the arithmetic genus; and, in those cases where $p_a(C) = 0$ show that the curve $C$ is indeed the flat limit of a family of twisted cubics.
+\begin{enumerate}
+\item the union of a line and a conic curve meeting transversely at one point;
+\item the union of a conic and a tangent line;
+\item the union of three concurrent, coplanar lines;
+\item the union of three concurrent but not coplanar lines.
+\end{enumerate}
+\end{exercise}
+
+\section{The dualizing sheaf and Riemann-Roch for singular curves}
+
+Without question, the most fundamental object we deal with in analyzing the geometry of a smooth curve $C$ is its canonical bundle/divisor class $K_C$, defined simply to be the cotangent bundle of $C$ or equivalently the sheaf of regular 1-forms. Is there an analog of this in the case of singular curves?
+
+The answer is an emphatic ``yes:" if $C$ is Cohen-Macaulay (and in particular, if $C$ is reduced), we can introduce the \emph{dualizing sheaf} $\omega_C$, which is a more than adequate understudy for the role of canonical bundle. (Indeed, in a large range of cases, those of \emph{Gorenstein} curves, it is locally free, as we'll see in the subsection below.) We will give a relatively concrete description of the dualizing sheaf here, and a more abstract, algebraic definition in the next chapter.
+
+To understand the definition of the dualizing sheaf, it is useful (and amusing) to recall a bogus proof of the Riemann-Roch formula, which highlights the key property of the canonical bundle. To set this up, suppose now that $C$ is a smooth projective curve of genus $g$, and imagine we have a divisor $D = p_1 + \dots + p_d$ consisting of $d$ distinct points on $C$. We choose a local coordinate $z_i$ on $C$ around $p_i$, and ask: given a $d$-tuple of scalars $a_1,\dots,a_d$, when is there a rational function on $C$, regular away from the points $p_i$, with polar part $a_i/z_i$ at $p_i$? 
+
+Since any rational function regular away from the $p_i$ is determined, up to the addition of a scalar, by its polar parts at the $p_i$, this is tantamount to asking for the dimension of the vector space $\cL(D)$ of rational functions with at most simple poles along $D$. In particular, we see that the dimension
+$$
+\dim \c(D) \; \leq \; d + 1,
+$$
+with equality holding iff every $d$-tuple of scalars $a_1,\dots,a_d$ represents the polar part of some function $f \in \cL(D)$. But there is an obstruction to this being the case: if $\phi$ is any global regular 1-form on $C$, then for any $f \in \cL(D)$ we have
+$$
+\sum_i Res_{p_i} (f \cdot \phi) \; = \; 0,
+$$
+which (potentially) imposes a linear condition on the polar parts of $f$. Of course, if $\omega$ vanishes at all the points $p_i$ of $D$, this condition is vacuous; the actual number of conditions imposed is the difference $g - h^0(K_C -D)$. Altogether, then, we have established the inequality
+$$
+h^0(D) \; \leq \; d + 1 - g + h^0(K_C - D).
+$$
+
+Now we apply this inequality to the divisor $K-D$, which has degree $2g-2-d$; we arrive at
+$$
+h^0(K-D) \; \leq \; 2g - 2 + 1 - g + h^0(D).
+$$
+Finally, we add the last two inequalities, and almost all the terms cancel, leaving us with
+$$
+h^0(D) + h^0(K-D) \; \leq \; h^0(K-D) + h^0(D);
+$$
+since equality holds here, it most hold in both the inequalities above, and we deduce the statement of the Riemann-Roch formula.
+
+The point of this derivation of Riemann-Roch is that is emphasizes the crucial fact underlying the formula: that \emph{the sum of the residues of a rational 1-form on a smooth projective curve is zero}. Now, suppose that $C$ is a possibly singular projective curve, and $D = p_1+\dots + p_d$ a divisor $D$ (whose support we will for simplicity assume is disjoint from the singular locus of $C$). Say we want to derive an analogous formula for the dimension $h^0(D)$ of the space of rational functions on $C$ with at most poles along a divisor $D$, with the role of a global regular 1-form $\phi \in H^0(K)$ played by a global section of the dualizing sheaf $\omega_C$. We need to define the dualizing sheaf $\omega_C$ so that its sections may be viewed as rational differentials on $C$, with three properties:
+
+\begin{enumerate}
+\item we should have $\deg(\omega_C) = 2p_a(C)-2$;
+\item we should have $h^0(\omega_C) = p_a(C)$; and, crucially,
+\item for any rational function $f \in h^0(D)$ and every section $\phi \in H^0(\omega_C)$, the sum of the residues of the rational differential $f\phi$ at the points of $D$ is 0.
+\end{enumerate}
+
+
+
+\subsection{the Gorenstein condition}
+
+\section{Picard groups of singular curves}
+
+Let's start with the simplest case: suppose $C$ is an irreducible curve with a node $r$ and no other singularities. We'll denote by $\nu : C^\nu \to C$ the normalization of $C$, and let $p, q \in C^\nu$ be the two points of $C^\nu$ lying over $r$.
+
+Let $\Pic^0(C)$ denote the group of line bundles of degree 0 on $C$, and $\Pic^d(C)$ the set of line bundles of degree $d$ (which is again a principal homogeneous space for $\Pic^0(C)$). To describe these, consider the map
+$$
+\nu^* : \Pic^0(C) \to \Pic^0(C^\nu)
+$$
+given simply by associating to a line bundle $\cL \in \Pic^0(C)$ its pullback $\nu^*\cL$ to $C^\nu$. If $\cL \in \Pic^0(C)$ is any line bundle on $C$, the fibers $(\nu^*\cL)_p$ and $(\nu^*\cL)_q$ of the pullback are each identified with the fiber $\cL_r$, and so with each other; conversely, if $\cM$ is any line bundle on $C^\nu$ and $\phi : \cM_p \cong \cM_q$ any isomorphism between the fibers of $\cM$ at $p$ and $q$, we can identify the fibers to arrive at a line bundle $\cL$ on $C$ whose pullback to $C^\nu$ is $\cM$ with the specified identification of fibers.
+
+We see thus that the map $\nu^*$ above is surjective, with fibers isomorphic to $\CC^*$; that is, we have an exact sequence
+$$
+0 \to \CC^* \to \Pic^0(C) \to \Pic^0(C^\nu) \to 0.
+$$
+In other words, $\Pic^0(C)$ is a $\CC^*$-bundle over $\Pic^0(C^\nu)$ (though not a product). \fix{to describe the extension, we need the Poincar\'e bundle of $C^\nu$---is this something we're planning to introduce?}
+
+A similar description applies to an irreducible curve $C$ with an ordinary cusp $r$ and no other singularities. Again,  denote by $\nu : C^\nu \to C$ the normalization map, with $p \in C^\nu$ the point lying over the cusp of $C$. Just as in the nodal case, the pullback $\nu^*\cL$ of a line bundle $\cL$ on $C$ comes equipped with a trivialization over the scheme-theoretic preimage $\nu^{-1}(p)$; the difference is that now $\nu^{-1}(p) = 2r$ is a double point. The space of such trivializations is now a copy of $\CC$ rather than $\CC^*$, so we have instead a sequence
+$$
+0 \to \CC \to \Pic^0(C) \to \Pic^0(C^\nu) \to 0.
+$$
+
+We note in passing that these descriptions of the Picard variety $\Pic^0(C)$ can also be arrived at via a variant of Abel's theorem. For example, in the nodal case, if we let $H^0(\omega_C)^*$ be the space of linear functions on the space of sections of the dualizing sheaf $\omega_C$, we can define an inclusion of the first homology group $H_1(C,\ZZ)$ (the condition that a section of $\omega$ correspond to a rational differential on $C^\nu$ with opposite residues at $p$ and $q$ allows us to define the integral of such a form along a loop passing through the node).  \fix{need a picture here}
+We can then define the Jacobian to be the quotient $H^0(\omega_C)^*/H_1(C,\ZZ)$, and a variant of the Abel-Clebsch theorem tells us that this is naturally identified with $\Pic^0(C)$.
+
+The difference here is that, while $H^0(\omega_C)^*$ is still a complex vector space of dimension $g$, the lattice $H_1(C,\ZZ)$ has rank only $2g-1$: it contains the homology of $C^\nu$, with one additional generator corresponding to a loop on $C$ passing through the node. The quotient is therefore not compact, and we arrive at the same picture of $\Pic^0(C)$ as a $\CC^*$-bundle over $\Pic^0(C^\nu)$. 
+
+We conclude this discussion with some terminology and one important fact. To start with, the object $\Pic^0(C)$ described here may be called simply the Jacobian of $C$; in some sources, however, it is called a \emph{generalized Jacobian}; the term ``Jacobian" is reserved for Jacobians of smooth curves, which are abelian varieties. Similarly, the sort of algebraic group arising here---an extension of an abelian variety by a product of $\CC^*$s and $\CC$s---is often called a \emph{semi-abelian variety}, to distinguish it from abelian varieties.
+
+\begin{fact}
+Picard varieties fit in families: if $\pi : \cC \to B$ is a flat, projective morphism whose fibers  are irreducible  curves having at worst nodes and cusps, the Picard varieties $\{\Pic^0(C_b)\}_{b \in B}$ likewise form a flat family: that is, there exists an associated morphism $\cP \to B$ whose fiber over each point $b \in B$ is the Picard variety of the corresponding curve $C_b$.
+\end{fact}
+
+\subsection{Compactifying the Jacobian}  
+
+Many of the applications of the Jacobian we gave in Chapter~\ref{} depended only on the fact that the Jacobian of a smooth curve is irreducible of dimension $g$, and those continue to hold in the case of nodal and/or cuspidal curves. For example, we have the
+
+\begin{exercise}
+Let $C$ be a projective curve of genus $g$ having only nodes and cusps as singularities. Show that a general line bundle of degree $g+3$ on $C$ is very ample.
+\end{exercise}
+
+On the other hand, many of the deeper applications of the Jacobian rely essentially on the fact that it is a complete variety, and here we need to modify our construction if we are to port over these results. We need, in other words, to \emph{compactify} the Jacobians of singular curves, if we can, and this is what we'll describe below.
+
+\input{footer}
