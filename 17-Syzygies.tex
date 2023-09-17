@@ -8,11 +8,11 @@
 In Chapter~\ref{LinkageChapter} we related the resolutions of curves in $\PP^3$ to their Hartshorne-Rao modules. The
 simplest case was that in which the Hartshorne-Rao module vanishes, that is, the case of arithmetically Cohen-Macaulay curves.
 In this chapter we first quote a result that is a step toward understanding the structure of free resolutions, and use it to explain how the condition that a curve in $\PP^r$ is arithmetically Cohen-Macaulay manifests itself in the 
-free resolution of the homogeneous ideal of the curve.  We will then introduce the Eagon-Northcott complexes, and explain their relation to the free resolutions of canonical curves. We close the chapter with an explanation of Green's conjecture, which proposes a a way in which the intrinsic geometry
+free resolution of the homogeneous ideal of the curve.  We will then introduce the Eagon-Northcott complexes, and explain their relation to the free resolutions of canonical curves. We close the chapter with an explanation of Green's conjecture, which proposes a way in which the intrinsic geometry
 of a curve may be connected to the shape of its minimal free resolution of its ideal in the canonical embedding.
 
 \begin{remark}
- There are two related contexts for the results of this section:  modules over a local ring and, graded modules over a polynomial ring whose variables have positive degree. These are parallel, essentially because Nakayama's Lemma works in both cases. We will simply work with local rings or polynomial rings over a field with variables in degree 1 and leave the translations to the reader.\end{remark}
+ There are two related contexts for the results of this section:  modules over a local ring, and graded modules over a polynomial ring whose variables have positive degree. These are parallel, essentially because Nakayama's lemma works in both cases. We will simply work with local rings or polynomial rings over a field with variables in degree 1 and leave the translations to the reader.\end{remark}
 
 \section{Free resolutions}
 A more complete presentation of the material in this section may be found in~\cite[Chapter 19]{Eisenbud1995}.
@@ -21,19 +21,19 @@ A more complete presentation of the material in this section may be found in~\ci
 Let $M$ be a finitely generated graded module over $S := \CC[x_0, \dots x_r]$. A \emph{free resolution} of $M$ is an exact complex
 of graded free modules, with maps of degree 0:
 $$
-(\FF, \phi):\quad 0\lTo N \lTo^\epsilon \oplus_jS(-j)^{\beta_{0,j}} \lTo\cdots
- \lTo^{\phi_t}\oplus_jS(-j)^{\beta_{t,j}}\lTo 0,
+(\FF, \phi):\quad 0\lTo N \lTo^\epsilon \bigoplus_jS(-j)^{\beta_{0,j}} \lTo\cdots
+ \lTo^{\phi_t}\bigoplus_jS(-j)^{\beta_{t,j}}\lTo 0.
 $$
 Here $S(-j)$ denotes the graded free module of rank 1 with generator in degree $j$.
 %$$
 %\FF: \cdots \rTo F_s \rTo^{\phi_s} F_{s-1} \rTo^{\phi_{s-1}} \cdots \rTo F_1 \rTo^{\phi_1}  F_0 \rTo^\epsilon M \rTo 0.
 %$$
-(the map to $N$ is not considered part of the free resolution). The resolution is \emph{minimal} if a minimal set of generators of $F_i$ maps to a minimal set of generators of the kernel of the following map,
-or equivalently (by Nakayama's Lemma) the maps in $\FF\otimes_S \CC$ are all 0.
+(The map to $N$ is not considered part of the free resolution). The resolution is \emph{minimal} if a minimal set of generators of $F_i$ maps to a minimal set of generators of the kernel of the following map,
+or equivalently (by Nakayama's lemma) the maps in $\FF\otimes_S \CC$ are all 0.
 
 The first examples of a minimal free resolution are the Koszul complexes
 (first defined, despite the name, in \cite{Cayley}, and repeated, as examples, 
-in \cite{Hilbert1890}), which resolve $/I$ when
+in \cite{Hilbert1890}), which resolve $S/I$ when
  $I = (f_1,\dots, f_t)$
 is a complete intersection, that is, $f_1,\dots, f_t$ is a regular sequence, with $\deg f_i = d_i$.  For $t = 2,3$, these look like
 
@@ -76,9 +76,9 @@ $$
 
 where
 $$
-F_1 = \oplus_{j=1}^3S(-d_j),\
+F_1 = \bigoplus_{j=1}^3S(-d_j),\
  F_2=
-\oplus_{1\leq i <j\leq 3} S(-d_i-d_j),\ 
+\bigoplus_{1\leq i <j\leq 3} S(-d_i-d_j) \text{ and }
 F_3 = 
 S(-d_1-d_2-d_3).
 $$
@@ -106,7 +106,7 @@ $$
 %$$
 
 Hilbert's Basis and Syzygy theorems together imply that every finitely generated $S$-module has a finite free resolution
-of length no greater than the number of variables, $n+1$. (Fundamental
+of length no greater than the number of variables, $r+1$. (Fundamental
 results of Auslander, Buchsbaum and Serre say that a local ring $R$ is \emph{regular}---that is, the Krull dimension of $R$ is equal to the minimal number
 of generators of $\gm$---if and only if the minimal free resolution of the residue field is finite, in which case
 the minimal free resolution of every module is finite.)
@@ -118,7 +118,7 @@ $
 \oplus_jS(-j)^{\beta_{0,j}}
 $
 onto $N$. We proceed similarly with the kernel of $\epsilon$, and continue to construct the whole resolution.
-Hilbert's syzygy theorem \cite[Corollary 19.7]{Eisenbud1995} implies that the process ends after $t\leq n$ steps with a map $\phi_t$ whose
+Hilbert's syzygy theorem \cite[Corollary 19.7]{Eisenbud1995} implies that the process ends after $t\leq r$ steps with a map $\phi_t$ whose
 kernel is 0. 
 
 The number $t$ is then the projective dimension of $N$. 
@@ -130,6 +130,83 @@ It follows from the Auslander-Buchsbaum
 theorem~\cite[Theorem 19.9]{Eisenbud1995} that $t \geq \codim \ann_S(N)$, the codimension of the support of $N$.
 Minimal free resolutions of a given module $M$ are all isomorphic.
 
+\section{Classification of 1-generic $2\times f$ matrices}\label{Kronecker}
+
+We can use the uniqueness of minimal free resolutions to give a simple proof of the classification of 1-generic $2\times f$
+ matrices (announced in Chapter~\ref{Scrolls}), first done by Kronecker~\cite{Gantmacher}.
+ 
+\begin{theorem}\label{matrix pencils}
+ Every
+ 1-generic $2 \times f$ matrix of linear forms can be transformed by row and column transformations and a linear change
+ of variables to one of the type shown in
+Corollary~\ref{equations of scrolls}, and thus the minors of any 1-generic matrix define a scroll. 
+\end{theorem}
+
+
+To prove this result we first reinterpret the 1-generic condition:
+We have observed that an
+$a\times b$ matrix of linear forms in $c$ variables is the same as a $\CC$-linear map of vector spaces
+$A \otimes B \to C$, where $A, B$ and $C$ have dimensions $a,b$ and $c$ respectively. Such a map
+can be viewed in several ways, for example as a map $C^{*} \otimes B\to A^{*}$---in other words, a $c\times b$ matrix in $a$ variables---or equivalently an $a$-dimensional family of $c\times b$ matrices (and similarly for other permutations of $A,B,C$). 
+This bit of trivial formalism pays off in the following observation:
+
+\begin{proposition}\label{reinterpretation of 1-generic}
+An  $a\times b$ matrix of linear forms in $c$ variables $M$ corresponding to $A\otimes B \to C$ is 1-generic if and only if the $c \times b$ matrix $N$ of linear forms in $a$ variables corresponding to $C^{*}\otimes B \to A$ has constant rank $b$; that is, 
+for point $x$ in $\PP^{a-1}$, the rank of $N$ evaluated at $x$ is $b$.
+\end{proposition}
+
+\begin{proof}
+The $b$ columns of $N$ correspond to the $b$ columns of $M$, while the rows of $N$ are indexed
+by the $c$ variables in $M$ and the variables in $N$ are indexed by the $a$ rows of $M$. Thus the
+evaluation of $N$ at a point $x$ corresponds to a generalized row of $M$; and the image of $N(x)$
+is the span of the variables in that generalized row. The matrix $M$ is 1-generic if the dimension
+of that span is $b$ for every generalized row.
+\end{proof}
+
+Thus the classification of 1-generic $2\times f$ matrices of linear forms in $r+1$ variables of Theorem~\ref{matrix pencils} is equivalent to the classification
+of \emph{matrix pencils} of constant maximal rank---that is $f \times (r+1)$ matrices of linear forms over $\PP^{1}$ with constant rank $r$.
+Such ``matrix pencils'' were first classified by Kronecker; see 
+\cite[Vol. II, Chapter 12]{Gantmacher} for an exposition, and ~\cite{Eisenbud-Harris-Centennial} for a geometric approach.
+We will give a still simpler proof:
+
+\begin{proof}[Proof of Theorem~\ref{matrix pencils}]
+Let $M$ be a 1-generic $2\times b$ matrix in $r+1$ variables. We may assume that the span of the entries
+is equal to the vector space of linear forms in $\PP^{r}$. The associated 
+$(r+1)\times b$ matrix
+$$
+N: \sO_{\PP^{1}}(-1)^{b} \to \sO_{\PP^{1}}^{r+1}
+$$
+ of linear forms over $\PP^{1}$ has constant rank $b$.
+For every point $x\in \PP^{1}$ the scalar matrix $N(x)$ is a split inclusion, and thus
+$\coker N$ is a vector bundle, necessarily isomorphic to $\sum_{i =1}^{d}\sO_{\PP^{1}}(a_{i})$ for some
+integers $a_{i}\geq 0$. 
+
+Regarded as a matrix over $\CC[s,t]$ it follows that the exact sequence
+$$
+0\to \sO_{\PP^{1}}(-1)^{b} \rTo^{N} \sO_{\PP^{1}}^{r+1}  \rTo \bigoplus_{i = 1}^{d}\bigl( \oplus_{j=0}^{\infty}H^{0}(\sO_{\PP^{1}}(j-a_{i}))\bigr)\rTo 0
+$$
+is a minimal free resolution. It follows that the map $N$ is the direct sum of the minimal free resolutions over $\CC[s,t]$
+of the modules 
+$$
+\bigoplus_{j=0}^{\infty}H^{0}(\sO_{\PP^{1}}(j-a_{i})) = (s,t)^{a_{i}}.
+$$
+As we will explain in Example~\ref{res of max ideal power}, the minimal presentation of $(s,t)^{a_{i}}$ is the $(a_{i}+1)\times a_{i}$ matrix
+$$
+\begin{pmatrix}
+s&0&0&\dots&0\\
+-t&s&0&\dots&0\\
+0&-t&s&\dots&0\\
+0&0&-t&\dots&0\\
+\vdots&&\cdots&&\vdots\\
+0&&\dots&\ddots&s\\
+0&&\dots&\dots&-t\\
+\end{pmatrix}
+$$
+The direct sum decomposition of $N$ corresponds to a block decomposition of $M$,
+and thus after a change of bases and variables the matrix $N$ is transformed into the direct sum of these matrices.
+Translating this form back to a $2\times (r+d-1)$ matrix $M$, we have transformed $M$ into a matrix of 
+the desired form.
+\end{proof}
 
 \subsection{How to look at a resolution}
 As is apparent even in the example $t=3$ above, free resolutions can be bulky to describe; the 
@@ -151,7 +228,7 @@ j\backslash i&\vline&0   &  1    & \cdots & n    \cr\hline
 $$         
 
 \begin{example}
- The Koszul complex that resolves the homogeneous coordinate ring $S/(Q, F_1, F_2)$ of the complete intersection of  2 quadrics and  and a cubic in $\PP^3$ has the form
+ The Koszul complex that resolves the homogeneous coordinate ring $S/(Q, F_1, F_2)$ of the complete intersection of  2 quadrics and a cubic in $\PP^3$ has the form
 $$
 S \lTo S(-2)\oplus S(-3)^2 \lTo S(-5)^2\oplus S(-6) \lTo S(-8) \lTo 0,
 $$
@@ -170,42 +247,61 @@ $j\backslash i$&0&1&2&3\\
 \end{tabular}.}
 \end{example}
 
- To simplify our language, we will speak of the \emph{betti table of a scheme $X$} rather than the ``betti table of the minimal free resolution of the ideal of $X$.'
+ To simplify our language, we will speak of the \emph{betti table of a scheme $X$} rather than the ``betti table of the minimal free resolution of the ideal of $X$".
 
 \subsection{When is a finite free complex a resolution?}
 How does a free resolution over $S := \CC[x_0, \dots x_r]$ ``know'' to end no later than the $(r+1)$-st step? 
 The following result describes a sense in which the maps in the resolution change as the resolution continues.
-The result is proven in a more general form (and with a slightly different statement) 
-in~\cite[Theorem 20.9]{Eisenbud1995}. We make the convention
-that the codimension of the empty set is infinity. If $\phi: F\to G$ is a map of free modules then
-$I_t(\phi)$ denotes the ideal generated by all the $t\times t$ minors (=subdeterminants) of a matrix representing $\phi$.
+The result is proven in~\cite[Theorem 20.9]{Eisenbud1995}. 
+
+A central role in the theorem is played by the ideals of minors of the differentials in the complex: If $\phi: F\to G$ is a map of finitely generated free $R$-modules with cokernel $M$, then
+$I_t(\phi)$ denotes the ideal generated by all the $t\times t$ minors (=subdeterminants) of a matrix representing $\phi$; this is independent of the choice of bases used to represent $\phi$ as a matrix.
+The ideal $I_{\rank G -j}(\phi)$ depends only on $M$; it called the $j$-th Fitting ideal of $\coker \phi$  and 
+usually written $\Fitt_{j}(M)$. Some basic properties of these ideals are
+given in Exercise~\ref{Fitt}. For example, the annihilator of $M$ in $R$
+is closely related to the 0-th Fitting ideal:
+$$
+\ann_{R}(\coker \phi)^{\rank G}\subset Fitt_{0}(\phi) \subset \ann_{R}(\coker \phi)
+$$
+so $\Fitt_{0}(M)$ defines the support of $M$. On the other hand, $\phi$ is injective
+if and only if $\grade I_{\rank F}(\phi) \geq 1$.
+
+The \emph{rank} of $\phi: F\to G$ is the largest size of a nonvanishing minor of a matrix for $\phi$,
+or equivalently the largest $k$ such that the exterior power $\wedge^{k}\phi : \wedge^{k}F \to \wedge^{k}G$
+is nonzero. If $r:= \rank \phi = \rank G$, then the ideal $I(\phi): = I_{\rank \phi}(\phi)$ plays a special role: the cokernel of $\phi$
+is projective (= locally free) if and only if $I(\phi) = R$. If $I(\phi)$ contains a nonzerodivisor, then
+the construction localizes, and we see that $I(\phi)$ defines the locus  $P\in \Spec R$ where $(\coker \phi)_{P}$
+is not free. 
+
+
+Recall that the grade of an ideal is the length of a maximal regular sequence
+contained in it, or $\infty$ if $I=R$. If $R$ is a Cohen-Macaulay ring---for example $\CC[x_{0},\dots, x_{r}]$---then the grade of any proper ideal is equal to its codimension, so grade becomes a geometric notion.
+Readers less familiar with commutative algebra will lose little if they stick with the case when $R$ is
+regular, or even the case when $R$ is $\CC[x_{0},\dots, x_{r}]$. This suffices, for example for the applications
+of the Eagon-Northcott complex described below.
 
 
 \begin{theorem}\label{WMACE}
- Let $S = k[x_0,\dots, x_r]$, and
+ Let $R$ be a ring and let
  $$ 
 \FF:  F_0\lTo^{\phi_1}F_1 \lTo \cdots \lTo F_{n-1}\lTo^{\phi_n} F_n\lTo 0
  $$
-be a finite complex of free $S$-modules, and set $r_i := rank \phi_i$. 
-The complex $\FF$ is \emph{acyclic} (that is, $H_i(\FF) = 0$ for all $i>0$) if and only if,
+be a finite complex of free $S$-modules. Set $r_i := \rank \phi_i$. 
+The complex $\FF$ is \emph{acyclic} (that is, $H_i(\FF) = 0$ for all $i>0$) if and only if
 \begin{enumerate}
- \item $\rank F_i = \rank \phi_i+\rank \phi_{i+1}$; and
- \item $\codim I_{\rank \phi_i}(\phi_i) \geq i$.
+ \item $\rank F_i = r_i+r_{i+1}$; and
+ \item $\grade I_{r_{i}}(\phi_i) \geq i$.
 \end{enumerate}
 for all $i$.
 \qed
 \end{theorem}
 
-A familiar case occurs when  $r=1$. In this case the theorem says that a map $F_1\to F_0$ is a monomorphism iff it becomes a monomorphism after tensoring with the field of rational functions $K$, which follows from the flatness of
+A familiar case occurs when  $r=1$ and $R$ is a domain. In this case the theorem says that a map $F_1\to F_0$ is a monomorphism iff it becomes a monomorphism after tensoring with the field of rational functions $K$, which follows from the flatness of
 localization and the fact that $F_1$ is torsion-free, so that
 $F_1 \subset F_1 \otimes K$. 
 
-For example, Nakayama's Lemma implies that $X_{0}$ is the support of $\coker \phi_{1}$; thus $X_{0}$ is the set defined by the $\rank F_{0}$-sized minors of $\phi_{1}$. Similarly, 
-$X_{r+1}$ is the support of the cokernel of the dual of $\phi_{n}$. 
-
-Note that the theorem would require $\codim X_{r+2}$ to be $\geq r+2$ -- that is, $X_{r+2}$ would have to be empty. 
-This means that the minors of $\phi_{r+2}$ of size $\rank \phi_{r+2}$ would be the unit ideal, and it is not hard to show
-that this is equivalent to the cokernel of $\phi_{r+2}$ being free. Thus the theorem ``explains'' why a minimal free resolution
+To see the relevance of the second hypothesis to the conclusion, suppose for a moment that $R$ is
+a regular local ring of dimension $r$, and suppose that the complex $\FF$ is acyclic. The hypothesis $\grade I(\phi_{d+1}) \geq d+1$ can only be satisfied if $I(\phi_{d+1}) = R$ (so that its grade is $\infty$ by convention). This  is equivalent to the cokernel of $\phi_{d+1}$ being free. Thus the theorem ``explains'' why a minimal free resolution
 has length $\leq r+1$.
 
 \section{Depth and the Cohen-Macaulay property}
@@ -215,7 +311,7 @@ $f_1,\dots,f_m \in (x_0,\dots, x_r)$ such that $f_1$ is a non-zerodivisor on $M$
 The maximal length of such a sequence is called the \emph{depth} of $M$, or more properly the depth of $(x_0,\dots, x_r)$ on $M$.
 The length of any all maximal $M$-regular sequences are the same, as one shows by proving
 
-\begin{theorem} (Auslander-Buchsbaum)
+\begin{theorem} (Auslander-Buchsbaum)\label{Auslander-Buchsbaum}
 If $M$ is a finitely generated $S := \CC[x_0, \dots x_r]$-module, then the length of every $M$-regular sequence is
 the smallest integer $m$ such that $\Ext_S^m(S/(x_0, \dots x_r), M) \neq 0$ and is also $r+1 - \pd\  M$.
 \end{theorem}
@@ -226,50 +322,46 @@ the smallest integer $m$ such that $\Ext_S^m(S/(x_0, \dots x_r), M) \neq 0$ and 
 $ f_{d+1} \in(x_0, \dots x_r) $ acts as a nilpotent endomorphism of $M/(f_1, \dots, f_d)M$.
 
 It follows from these facts that the depth of an $S$-module $M$ is equal to the dimension of $M$ if and only if the projective dimension
-of $M$ is equal to the codimension of $M$; In this case we say that $M$ is a
+of $M$ is equal to the codimension of $M$; in this case we say that $M$ is a
 \emph{Cohen-Macaulay module}. 
 
 As we showed in Chapter~\ref{linkageChapter}, a curve $C\subset \PP^3$ is linked to a complete intersection
 if and only if  $H^1_*(\sI_C) := \oplus_{m\in \ZZ} H^1(\sI_C(m)) = 0$, in which case $C$ is said to be is arithmetically Cohen-Macaulay,
 From the Auslander-Buchsbaum theorem and Theorem~\ref{ACM basics} we see that $C$ is arithmetically Cohen-Macaulay if
-and only if the homogeneous coordinate ring $S_C$ is Cohen-Macaulay as an $S$-module, and this is true
-if and only if $\pd\  S_C = \codim C$.
-
-It follows from the homological characterization of depth that any localization of a Cohen-Macaulay module is Cohen-Macaulay,
-so any arithmetically Cohen-Macaulay scheme is locally Cohen-Macaulay; but this is a much weaker property: any smooth
-scheme, and even any scheme that this locally a complete intersection is locally Cohen-Macaulay, a property that does
-not depend on a projective embedding.
+and only if the homogeneous coordinate ring $R_C$ is Cohen-Macaulay, and this is true
+if and only if $\pd\  R_C = \codim C$.
 
 
 \subsection{The Gorenstein property} 
-Another important homological condition is the condition that $\omega_X$ is an invertible sheaf; when this holds, $X$ is \emph{quasi-Gorenstein}. When, in addition, $X$ is Cohen-Macaulay we say that $X$ is \emph{Gorenstein}. Any scheme that is locally a complete intersection, such as any smooth scheme or locally complete intersection scheme, is Gorenstein. Since the restriction
+Another important homological condition is the condition that $\omega_X$ is an invertible sheaf; when this holds, we say that $X$ is \emph{quasi-Gorenstein}. When, in addition, $X$ is Cohen-Macaulay we say that $X$ is \emph{Gorenstein}. Any scheme that is locally a complete intersection, such as any smooth scheme, is Gorenstein. Since the restriction
 of $\sO_{\PP^r}(1)$ to a subvariety is always invertible, saying that a scheme $X$ is canonically embedded implies that
 $X$ is at least quasi-Gorenstein. As with the Cohen-Macaulay property, the Gorenstein property is interpreted locally
 on a scheme. We say that a projective scheme $X$ is \emph{arithmetically Gorenstein}
 if its homogeneous coordinate ring is Gorenstein, and it follows that $\omega_{S/I} \cong S/I(a)$ for some integer $a = a(X)$.
 
-In Chapter~\ref{LinkageChapter}, where we expressed $\omega_X$
+In Chapter~\ref{LinkageChapter},  we expressed $\omega_X$
 for a subscheme $X\subset Y$ of a scheme $Y$ as
-as $\Ext^{\codim X}_{\sO_Y}(\sO_X, \omega_Y)$. Slightly extending this idea, if $C\subset \PP^r$ is a curve,
- we define $\omega_{S_C}$ to be $\Ext^{r-1}_S,(S_C, S(-r-1))$, where $S$ is the homogeneous coordinate ring of $\PP^r$.
+ $\Ext^{\codim X}_{\sO_Y}(\sO_X, \omega_Y)$. Slightly extending this idea, if $C\subset \PP^r$ is a curve
+with homogeneous coordinate ring $R_{C}$,
+ we define $\omega_{R_C}$ to be $\Ext^{r-1}_S(R_C, S(-r-1))$, where $S$ is the homogeneous coordinate ring of $\PP^r$.
 Since $\omega_{\PP^r} = \sO_{\PP^r}(-r-1)$, the sheafification of this module is  $\omega_C$.
 
 If $C$ is arithmetically Cohen-Macaulay, so that
-$\pd\ (C) = codim(C) = r-1$,  then 
-computing $\Ext^{r-1}_S,(S_C, S(-r-1))$ from the minimal free resolution 
+$\pd (C) = \codim(C) = r-1$,  then 
+computing $\Ext^{r-1}_S(R_C, S(-r-1))$ from the minimal free resolution 
 $$
-(\FF, \phi):\quad 0\lTo S_C \lTo S\lTo^{\phi_1} F_1 \lTo \cdots \lTo F_{r-2} \lTo^{\phi_{r-1}} F_r\lTo 0
+(\FF, \phi):\quad 0\lTo R_C \lTo S\lTo^{\phi_1} F_1 \lTo \cdots \lTo F_{r-2} \lTo^{\phi_{r-1}} F_r\lTo 0
 $$
-we see that $\omega_{S_C} = \coker \phi_{r-1}^*$. Theorem~\ref{WMACE} implies that the complex $(\FF^*, \phi^*)$ which is the dual
-of the the resolution $(\FF, \phi)$ is again acyclic, so it is the minimal free resolution of $\omega_{S_C}$. Thus 
-$\omega_{S_C}$ is a Cohen-Macaulay module. Just as the Cohen-Macaulay property of
-$S_C$ implies that $S_C = H^0_*(\sO_C)$, it follows that $\omega_{S_C} = H^0_*(\omega_C)$.
+we see that $\omega_{R_C} = \coker \phi_{r-1}^*$. Theorem~\ref{WMACE} implies that the complex $(\FF^*, \phi^*)$ which is the dual
+of the  resolution $(\FF, \phi)$ is again acyclic, so it is the minimal free resolution of $\omega_{R_C}$. Thus 
+$\omega_{R_C}$ is a Cohen-Macaulay module. Just as the Cohen-Macaulay property of
+$R_C$ implies that $R_C = H^0_*(\sO_C)$, it follows that $\omega_{R_C} = H^0_*(\omega_C)$.
 
 If, in addition, $C$ is a canonical curve, so that $\omega_C = \sO_C(1)$, then we derive:
 $$
-\omega_{S_C} = \coker(\phi_{r-2}^*)(-r-1) = S_C(1)
+\omega_{R_C} = \coker(\phi_{r-2}^*)(-r-1) = R_C(1)
 $$
-so $\coker \phi_{r-2}^* = S_C(r)$. Thus $(\FF^*(-r), \phi^*)$ is a minimal free resolution of $S_C$, and is thus isomorphic to
+so $\coker \phi_{r-2}^* = R_C(r)$. Thus $(\FF^*(-r), \phi^*)$ is a minimal free resolution of $R_C$, and is therefore isomorphic to
 $(\FF^*, \phi^*)$; that is, $(\FF^*, \phi^*)$ is self-dual.
  We have seen an example already
 in the Koszul complex (a complete intersection is arithmetically Gorenstein).
@@ -316,191 +408,450 @@ To go further, we can make use of the invertible sheaves $\sL$ on $C$ with $h^0(
 The existence of such a series guarantees that the ideal of $C$ contains the ideal of $2\times 2$ minors of the $2\times h^1(\sL)$
 matrix
 corresponding to the multiplication map 
-$H^0(\sL) \otimes H^0(\sL^-1\otimes \omega_C) \to H^0(omega_C) = H^0(\sO_C(1)$
+$H^0(\sL) \otimes H^0(\sL^{-1}\otimes \omega_C) \to H^0(\omega_C) = H^0(\sO_C(1)$
 as in Chapter~\ref{ScrollsChapter}.
 The mechanism is a resolution of
 the ideal generated by the minors of this matrix.
  
-\section{The Eagon-Northcott Complex}\label{EN section}
+\section{The Eagon-Northcott complex}\label{EN section}
 
-The Eagon-Northcott complex is a complex of free modules associated to any matrix over any commutative ring. The most familiar special case is the Koszul complex, which one may think of as the Eagon-Northcott complex of a $1\times n$ matrix, and  even in the general case the Eagon-Northcott complex is in a sense built out of the Koszul complexes. A full treatment of this and a family of related complexes can be found in 
+The Eagon-Northcott complex $EN(\phi)$~\cite{MR0142592} associated with a matrix, or a map of free modules $\phi: F\to G$,
+is a generalization of the Koszul complex, which is the case $\rank G = 1$. Like the Koszul complex,
+it is tautological: its existence depends only on the properties of commutative rings; and like the Koszul complex it is exact or not depending on a property of the matrix $\phi$ related to regular sequences. It is part of a family of complexes described in
 \cite[Appendix A2]{Eisenbud1995}, and, from a more conceptual and general point of view, in \cite{Weyman-book}. 
 
-We have seen in Chapter~\ref{ScrollsChapter} that if $X\subset \PP^r$ is linearly normal reduced and irreducible scheme, then any decomposition
-of the hyperplane section as the sum of two Cartier divisors
- $H = D+E$ where both $r(D) = 1$ and $r(E)\geq 1$ gives a 1-generic $h^0(\sO_X(D)) \times h^0(\sO_X(E))$
- matrix of linear forms whose $2\times 2$ minors generate the ideal of a rational normal scroll of codimension $r(E)$
- containing $X$. In this section we will give an explicit minimal free resolution of such an ideal of minors, and show that 
- this resolution is a termwise a direct summand of the
- minimal free resolution of the ideal of $X$.
+One reason we
+are interested in $EN(\phi)$ it is that its shape
+influences the shape of the free resolutions of canonical curves in an interesting way, 
+leading to Green's conjecture. This conjecture, one of the central open problems in the theory of algebraic curves, is described in the last
+section of this chapter. We will also use the the Eagon-Northcott complex, in a special case, to give a proof of the classification of matrix pencils and an analysis of the ideals of ACM curves in $\PP^{3}$.
 
-\begin{theorem}\label{Eagon-Northcott}\label{E-N}
- Let $S = k[x_0,\dots, x_r]$ be a polynomial ring,  and let 
- $M: F = S^n(-1) \to G= S^2$ be a homomorphism of degree 0. If $I_2(M)$ has codimension $\geq n-1$, then the minimal free resolution of $S/I_2(M)$ has the form:
+To prepare for the description of the Eagon-Northcott complex we revisit the Koszul complex, which is equal
+to the Eagon-Northcott complex in the case $\rank G = 1$, and then consider the case $\rank F = \rank G + 1$.
+
+\subsubsection{$\mathbf {\bf rank\ }  \mathbf{G = 1}$}
+
+In this subsection we let $\phi:F = R^{f}\to R$ be a homomorphism from a free module to a ring $R$, and we
+we will analyze the Koszul complex $K(\phi)$. 
+
+We may write
+$K(\phi) = EN(\phi)$ in the form
+$$
+S \lTo^{\delta_{1}} F \lTo^{\delta_{2}} \wedge^{2}F \lTo^{\delta_{3}} \cdots \lTo^{\delta_{f}} \wedge^{f}F \lTo 0
+$$
+where $\delta_{1} = \phi$.
+
+To define the complex, we must construct the differentials $\delta_{i}$ and prove that
+$\delta_{i}\delta_{i+1} = 0$. Since the modules are free, it suffices to do this for the 
+dual maps 
+$$
+\partial_{i}: \wedge^{i}F^{*} \to \wedge^{i+1}F^{*},
+$$
+and it turns out that this is in a sense even more natural. 
+
+It is convenient to think of $R$ as an $S := \ZZ[x_{1},\dots, z_{f}]$-algebra by the map sending 
+$x_{i}$ to $\phi_{i}$; we  define the Koszul complex of $\phi$ over $R$ by tensoring
+the Koszul complex of $(x_{1}, \dots, x_{f})$ with $R$.
+
+Thus for the definition we take the map $\phi$ to be 
+$$
+\phi: S^{f}\rTo^{
+\begin{pmatrix}
+x_{0} &\dots & x_{f}
+\end{pmatrix}
+} S.
+$$
+
+First of all, the map $\partial_{i}$ (like the map $\delta_{i}$) is \emph{linear}: the image of a basis vector of $\wedge^{i}F^{*} $ is a sum of variables times basis vectors
+of $\wedge^{i+1}F^{*}$. We may write $S$ as $\Sym(V)$, where $V$ is the free $\ZZ$-module generated by $x_{1}, \dots, x_{f}$, and we may think of $F$ as the module $V\otimes S$ with the map
+$\phi$ sending $V\otimes 1\subset F$ by the identity to $V = S_{1}\subset S$---the ``tautological map''. 
+Let $t\in V\otimes V^{*}\subset S\otimes \wedge V^{*}$ be the ``trace element'' represented in terms of any basis $\{x_{i}\}$ of $V$
+and dual basis $\{\hat e_{i}\}$ of $V^{*}$ as $t = \sum x_{i}\otimes \hat e_{i}$. Because $\wedge V^{*}$ is 
+an anti-commutative algebra, we have $t^{2} = 0$.
+
+We define the map 
+$$
+\partial_{i}: S\otimes_{\CC} \wedge^{i}V^{*} = \wedge^{i}F^{*}  \to \wedge^{i+1}F^{*} = S\otimes_{\CC} \wedge^{i+1}V^{*}
+$$
+to be multiplcation by $t$, and thus $\partial_{i+1}\partial_{i}$ is multiplication by $t^{2} = 0$.
+
+Having defined the complex $K(\phi) = EN(\phi)$ in the case $\rank G = 1$, we next ask what conditions on $\phi$
+make it acyclic (that is, a free resolution of $\coker (\delta_{1})$). 
+
+\begin{theorem}\label{rankG1}
+ Suppose that $R$ is a ring and $\phi: F\to R$ is a map from a free $R$-module of rank $f$.
+ The complex $K(\phi)$ is acyclic if and only if the ideal $I := I_{1}(\phi)$ has grade $\geq f$.
+ \end{theorem}
+
+\begin{proof}
+Theorem~\ref{WMACE} immediately implies that if $K(\phi)$ is acyclic then
+$\rank \delta_{f} = 1$ and $\grade I(\delta_{f}) \geq f$. Since $I(\delta_{f}) = I$, this proves one implication.
+
+Now assume that $\grade I \geq f$. We first prove that 
+$K(\phi)$ is split exact when $I = R$. The condition $I=R$ implies that
+ $\partial_{1}$ is a split injection. In this case we may write $F^{*} = R\oplus F'^{*}$ in such a way that $\partial_{1}$ is the injection into the first summand, and we may
+choose a basis $\{\hat e_{i}\}$ of $F^{*}$ so that the last $f-1$ basis elements are a basis for $F'^{*}$. 
+Specializing the sequence $x_{1},x_{2}, \dots, x_{f}$ to the sequence $1, 0,\dots, 0$, the differential of $K(\phi)^{*}$
+becomes the multiplication by  $1\otimes e_{1}$.
+
+The module
+$\wedge^{i}F$  decomposes as 
+$$
+\wedge^{i}F = \bigl(Re_{1}\otimes_{R} \wedge^{i-1}F^{*} \bigr) \oplus \wedge^{i}F'^{*}.
+$$
+Because $e_{1}\wedge e_{1} = 0$ the differential $\partial_{i}$ has the form
+$$
+\begin{diagram}
+&&Re_{1}\otimes \wedge^{i-2}F'^{*} &\rTo^{0}&  Re_{1}\otimes \wedge^{i-1}F'^{*}\\
+\wedge^{i-1}F^{*}&=& \bigoplus&\ruTo^{\cong}&\bigoplus&=&\wedge^{i}F^{*}\\
+ &&\wedge^{i-1}F'^{*}&\rTo^{0}& \wedge^{i}F'^{*}
+\end{diagram}.
+$$
+Thus we see that $K(\phi)$ is split exact when $\phi$ is a split surjection.
+
+We now assume only that $\grade I\geq f$. From what we just proved we see that if we localize
+$R$ by inverting any element of $I$ the complex $K(\phi)$ becomes split exact. Since $\grade f\geq 1$,
+we can find such an element that is a nonzerodivisor, so inverting it does not change the ranks of the 
+maps $\phi_{i}$. Because ranks of free modules are additive in direct sums, it is obvious that
+in the split exact case the condition on the ranks of the $\phi_{i}$ is satisfied; more precisely,
+$\rank(\delta_{i}) = \binom{i-1}{f-1}$. We also see that after inverting
+a nonzerodivisor in $I\delta_{1})$ we have $I(\delta_{i}) = R$; equivalently, 
+$$
+I  \subset \sqrt {I(\delta_{i})}.
+$$
+(In fact $I(\delta_{i}) = I^{\binom{i-1}{f-1}}$, though this requires a separate argument.) Thus if $\grade I = f$ then  $\grade I(\delta_{i}) \geq i$ for all $i$, so $K(\phi)$ is acyclic.
+\end{proof}
+
+
+\subsubsection{ $\mathbf{{\bf rank\ } F = {\bf rank\ }G + 1}$}
+
+We set $g=\rank G$ and $f = \rank F = g+1$. In this case the Eagon-Northcott complex has the form:
+$$
+EN(\phi):\quad 0\rTo G^{*}\otimes \wedge^{f}F \rTo^{\delta_{2}} \wedge^{f-1}F \rTo^{\delta_{1}} \wedge^gG.
+$$
+Here $\delta_{1} = \wedge^{g}\phi$, so that the entries of a matrix for $\delta_{1}$ are the $g\times g$ minors of 
+$\phi$.
+
+We choose an identification $\wedge^{f}F = S$, called an \emph{orientation} of $F$, and get a perfect pairing 
+$$
+\wedge^{g}F \times F \to \wedge^{f}F = S
+$$
+so that we may identify
+ $\wedge^{g}F$ with $F^{*}$. With this identification, we define $\delta_{2}$ as
+ $$
+\delta_{2}:  G^{*}\rTo^{\phi^{*}}  F^{*} = \wedge^{g}F.
+ $$
+We also choose an orientation $\wedge^{g}G = S$, in terms of which the image of $\delta_{1}$ is
+ the ideal generated by the $(f-1)\times (f-1)$  minors of $\phi$.
+ 
+We first claim that $EN(\phi)$ is a complex; that is,  $\delta_{1}\delta_{2} = 0$.  As with the Koszul complex,
+it is convenient to dualize and consider the maps 
+$$
+EN(\phi)^{*}:\quad 0\rTo \wedge^{g} G \to \wedge^{g}F^{*} = F \rTo^{\phi} G
+$$
+The fact that this composition is 0 is often taught as Cramer's rule for solving a system of
+homogeneous equations represented by a $g\times (g+1)$ matrix of rank $g$.
+The solutions---that is, the elements of $\ker \phi$---are multiples of the column
+$\Delta_{1}, \dots, \Delta_{g}$ where the $\Delta_{j}$ is $-1^{j}$ times the determinant
+of the matrix obtained from $\phi$ by leaving out the $j$-th column. This works
+because the composition of the two maps is a column matrix whose $i$-th entry is the
+expansion of the $(g+1)\times (g+1)$ determinant of the matrix obtained from $\phi$ by
+repeating the $i$-th row.
+
+\begin{theorem}\label{EN grade 2}
+ Suppose that $R$ is a ring and $\phi: F\to G$ is a map of  free $R$-modules, 
+ where $G$ has rank $g$ and $F$ has rank $f = g+1$.
+ The complex $EN(\phi)$ is acyclic if and only if the ideal $I := I_{g}(\phi)$ has grade $\geq 2$.
+ \end{theorem}
+
+%\begin{theorem}
+%If $\phi$ is a $g\times (g+1)$ homogeneous matrix of forms of positive degree in $S$ then the Eagon-Northcott
+%complex $EN(\phi)$ is acyclic if and only if $\grade I_{g}(\phi) \geq 2$.
+%\end{theorem}
+
+\begin{example}
+We have seen that the ideal of the twisted cubic is generated by the $2\times 2$ minors of the matrix
+$$
+\phi :=  
+\begin{pmatrix}
+ x_{0}&x_{1}&x_{2}\\
+ x_{1}&x_{2}&x_{3}
+\end{pmatrix}
+$$
+and it follows that the free resolution of its homogeneous coordinate ring is the Eagon-Northcott complex
+$$
+0\rTo S^{2}(-3) 
+\rTo^{\begin{pmatrix}
+ x_{0}&x_{1}\\
+  x_{1}&x_{2}\\
+x_{2}&x_{3}
+\end{pmatrix}
+}
+S^{3}(-2)
+\rTo^{\wedge^{2}\phi}
+S
+$$
+\end{example}
+
+\begin{example}\label{res of max ideal power}
+In Section~\ref{Kronecker} we asserted that  the $(a+1)\times a$  matrix
+$$
+\phi_{a} :=\begin{pmatrix}
+s&0&0&\dots&0\\
+-t&s&0&\dots&0\\
+0&-t&s&\dots&0\\
+0&0&-t&\dots&0\\
+\vdots&&\cdots&&\vdots\\
+0&&\dots&\ddots&s\\
+0&&\dots&\dots&-t\\
+\end{pmatrix}
+$$
+is the minimal presentation of the ideal $(s^{a},s^{a-1}t, \dots, t^{a}) \subset R:=\CC[s,t]$. It is not hard to check this
+directly, but in any case it's easy to see that its $a\times a$ minors of $\phi_{a}$ generate this ideal, which has grade 2, so the Eagon-Northcott resolution $EN(\phi)$
+has the form
+$$
+R\lTo^{\wedge^{a}\phi_{a}} R^{a+1} \lTo^{ \phi_{a}} R^{a} \lTo 0
+$$
+verifying the assertion.
+\end{example}
+
+\begin{proof}
+Once having shown that $EN(\phi)$ is a complex, as we did above,  the proof of the equivalence in the Theorem follows the same pattern as the
+proof given above for the Koszul complex.
+
+If $EN(\phi)$ is acyclic, then by Theorem~\ref{WMACE} the $g\times g$ minors of $\phi = \delta_{2}$ must
+have grade $\geq 2$.
+For the converse, suppose first that
+$I_{g}(\phi)$ is the
+unit ideal. We may split  $F$ as  $S\oplus G$ with $\Delta_{1} = 1$ and $\Delta_{j} = 0$
+for $j>1$, and then $EN(\phi)^{*}$ has the form:
+$$
+\begin{diagram}
+&&0&\rTo&  G&\rTo^{0}&S\\
+0&\rTo& \bigoplus&\ruTo^{\cong}&\bigoplus&\ruTo^{\cong}&\bigoplus\\
+ &&G&\rTo^{0}&S&\rTo&0
+\end{diagram}.
+$$
+Thus we see that $EN(\phi)$ is split exact in this case.
+
+We now apply Theorem~\ref{WMACE}: From what we just proved we see that if we localize
+$S$ by inverting any element of $I$ then the complex $EN(\phi)$ becomes split exact,
+and therefore, before localizing,
+$\rank(\delta_{1}) = 1$ and $\rank \delta_{2} = g$ . In this
+case it follows from the definition that $I_{1}(\delta_{1}) = I_{g}(\phi) = I_{g}(\delta_{2})$
+so if $I_{g}(\phi)$ has grade 2 then both conditions of Theorem~\ref{WMACE} are
+satisfied.
+\end{proof}
+
+\subsection{The Hilbert-Burch theorem}
+
+In a regular local ring any ideal of codimension 1 is principal (divisors are all Cartier). What about
+ideals of codimension 2? The answer is the content of the \emph{Hilbert-Burch} theorem, proven
+in 1890 by David Hilbert in the case of homogeneous ideals in $\CC[x_{0},x_{1}]$ and in general by
+Lindsay Burch~\cite{MR212008}. We can deduce it as an application of the Eagon-Northcott complex
+in the case $f =g+1$:
+
+\begin{corollary}[Hilbert-Burch theorem]\label{Hilbert-Burch}
+Suppose that $R$ is a local ring. Any ideal $I\subset R$ of projective dimension 1 and grade 2 has the form
+$aI'$ where $I'$ is an ideal of grade 2 generated by the $g\times g$ minors
+of a $g \times (g+1)$ matrix and $a$ is a non-zerodivisor of $R$; and conversely any ideal of this form
+has projective dimension 1. 
+
+In particular, if $C\subset \PP^{3}$ is an ACM curve whose homogeneous ideal $I$ is generated by
+$f$ elements, then $I$ is minimally generated by the $(f-1)\times (f-1)$ minors of the syzygy matrix of $I$.
+\end{corollary}
+
+\begin{proof}
+If $C\subset \PP^{3}$ is ACM, then the projective dimension of the homogeneous coordinate ring $R_{C}$
+is 2  by the Auslander-Buchsbaum theorem, and thus the ideal of $C$ has projective dimension 1.
+
+Now suppose that $I\subset R$ is an ideal of projective dimension 1 in any local ring, and suppose
+that $I$ is generated by $f$ elements, so that we have a surjection $F:= R^{f} \to I$.  The module $R/I$
+has free resolution of the form
+$$
+\FF: R\lTo^{\alpha} R^{f}\lTo^{\phi} G\lTo 0
+$$
+where $I = I_{1(\alpha}$, so by Theorem~\ref{WMACE} the free module $G$ has rank $g = f-1$, the $g\times g$
+minors of $\phi$ generate an ideal $I'$ of grade $\geq 2$, and the ideal $I$ has grade $\geq 1$. Theorem~\ref{WMACE} implies
+that both the Eagon-Northcott complex $EN(\phi)$
+and its dual are acyclic. 
+
+The dual of the complex $\FF$ will not be acyclic unless $\grade I = 2$, but there is at least a comparison map
+$$
+\begin{diagram}
+\FF^{*}:&&G^{*}& \lTo^{\phi^{*}} & G^{*}&\lTo^{\alpha^{*}} &R&\lTo &0\\
+&&\dTo_{=}&&\dTo_{=}&&\dTo_{a}\\
+EN(\phi)^{*}:&& G^{*}&\lTo^{\phi^{*}}&F^{*}&\lTo^{\wedge^{g}\phi^{*}} &R&\lTo &0\\
+\end{diagram}
+$$
+It follows that $I = aI'$, and since $I$ has grade 1, $a$ must be a non-zerodivisor.
+
+Conversely, if $\phi: R^{f}\to R^{g}$ is a map with $f = g+1$ and $\grade I_{g}(\phi)\geq 2$,
+then the acyclicity of $EN(\phi)$ shows that $I_{g}(\phi)$ has projective dimension 1; and if
+$a$ is a non-zerodivisor, then $I := aI_{g}(\phi) \cong I_{g}(\phi)$ as $R$-modules, so
+$I$ has projective dimension 1 as well.
+\end{proof}
+
+This argument applies, for example to the case of a non-hyperelliptic curve of genus 3 and 
+degree 6 in $\PP^{3}$, discussed in Section~\ref{other genus 3}.
+
+
+\subsection{The general case of the Eagon-Northcott complex}
+With these two special cases in mind, we are ready for the general case. First the definition:
+If $\phi: F\to G$ is a map of free $S$-modules with $f:=\rank F\geq  g:= \rank G$ then there is
+a complex of free $S$-modules
 \begin{align*}
 EN(M) := 
-S \lTo{\bigwedge^2 M} 
- \bigwedge^2 F&
+S \lTo{\delta_{1}:= \bigwedge^g \phi} 
+ \bigwedge^g F&
  \lTo^{\delta_{2}}
- G^*\otimes \bigwedge^3 F  \lTo^{\delta_{3}}
-  (\Sym^2G)^*\otimes\bigwedge^4F  \\
- &\lTo^{\delta_{4}}\cdots\lTo^{\delta_{n-1}} 
-(\Sym^{n-2}G)^*\otimes\bigwedge^nF 
- \lTo 0.
+ G^*\otimes \bigwedge^{g+1} F  \lTo^{\delta_{3}}
+  (\Sym^2G)^*\otimes\bigwedge^{g+2}F  \\
+ &\lTo^{\delta_{4}}\cdots\lTo^{\delta_{f-g+1}} 
+(\Sym^{f-g}G)^*\otimes\bigwedge^fF 
+ \lTo 0
 \end{align*}
-\end{theorem}
-
-Note that the degree of the generators of the $i$-term $EN(M)_i$ is $i+1$ for every $i\geq 1$.
-
-Essentially the same construction works over any local ring, with any map $M: F\to G$ of free modules
-with $\rank(F) \geq \rank(G) \geq 1$
-and yields a minimal resolution whenever the entries of a matrix for $M$ are in the maximal
-ideal and the maximal minors of $M$ generate an ideal of grade $\rank(F) - \rank(G)+1$.
-
-\begin{proof} We begin the discussion of $EN(M)$ by defining the maps $\delta_i$ and and explaining why the given sequence is  a complex---that is, consecutive maps compose to 0. We will then sketch the proof that this complex is a resolution,
-which depends only on (multilinear) algebra and Theorem~\ref{WMACE}. 
-
-For simplicity of notation, we choose a generator of $\wedge^2 S^2$
- and identify it with $S$, which gives a sense to the map labeled $\bigwedge^2M$.
+where:
+\begin{enumerate}
  
-  Although it is not hard to do this directly, the dual maps
- $$
- \partial_i: \Sym^{i-2} G \otimes \bigwedge^i F^* \rTo \Sym^{i-1} G \otimes \bigwedge^{i+1} F^*
- $$
- have a more familar-looking description, so we define these instead. Indeed, the map $M$ corresponds to an
- element $\mu\in G\otimes F^*$. We may think of $ \Sym^{i-2} G \otimes \bigwedge^i  F^*$
- as a (bigraded) component of the exterior algebra over $ \Sym G$ of 
- $$
-  \Sym G \otimes \bigwedge_S  F^*= \bigwedge_{ \Sym G} (\Sym G \otimes  F^*).
- $$
-We define $\partial_i$ to be  multiplication by $\mu$ in the sense of this exterior algebra. Since $\mu$ has degree 1
-in this sense, its square is 0. 
+\item After identifying $\wedge^{g}G$ with $S$, the map $\delta_{1}$ is identified with $\wedge^{g}\phi$.
 
-To show that $(\bigwedge^2 M)\circ \delta_2$ is zero, it is simplest to choose a matrix representing $M$.
-Direct computation using only the usual expansion of a determinant
-along a row shows that, up to sign, the
-pure basis vector $e\otimes f_i\wedge f_j\wedge f_k$ of $G^*\otimes \bigwedge^3 F$
-maps under the composition $(\bigwedge^2 M)\circ \delta_2$ to the determinant
-of the $3\times 3$ matrix obtained from $M$ by repeating the row corresponding to $e$ and
-the columns $i,j,k$. This determinant is 0 because it has a repeated row.
+\item It is convenient to give a formula for $\partial_{i} = \delta_{i}^{*}$ by taking advantage of the 
+algebra structures of $\Sym(G)$ and $\wedge F^{*}$. To do this, choose dual bases $\{e_{i}\}$ and $\{\hat e_{i}\}$ for $F$ and $F^{*}$. In these terms
+$$
+\delta_{i^{*}} = \partial_{i}: 
+\Sym^{i-2}G \otimes \wedge^{g+i-2}F^{*} \to 
+\Sym^{i-1}G \otimes \wedge^{g+i-1}F^{*}
+$$
+ is multiplication by the element
+$\sum_{i = 1}^{f} \phi(e_{i}) \otimes \hat e_{i}$.
+\end{enumerate}
 
-To complete the proof, one in any case show that 
-if a map $M': F\to G$ is surjective, then the complex $EN(M')$
-is split exact. Such a map $M'$ induces a splitting $F = G\oplus F'$ in such a way that the map $M': G\oplus F' \to G$ is the projection onto the first factor. 
+To show that $\delta_{1}\delta_{2} = 0$ is almost the same as in the case $f = g+1$ because
+a basis element 
+$$
+b: = e_{i_{1}}\wedge \cdots \wedge e_{i_{g+1}} \in \wedge^{g+1}F
+$$
+can be thought of as coming from a rank $g+1$ summand of $F$, and the value of $\delta_{2}\delta_{1}b$
+is the same as it would be if $F$ were replaced by this summand. Thus from the case $f=g+1$ we see
+that $\delta_{2}\delta_{1}b = 0$, and thus $\delta_{2}\delta_{1} = 0$.
 
-%It will be more convenient to prove the equivalent statement that 
-%the dual sequence,  
-%\begin{align*}
-%EN(M')^* := 
-%0\rTo S \rTo{\bigwedge^2 M'^*} 
-% &\bigwedge^2 F^*
-% \rTo^{\partial_{2}}
-% G\otimes \bigwedge^3 F^*  
-% \rTo^{\partial_{3}}\\
-%  \Sym^2G\otimes\bigwedge^4F^*  
-% &\rTo^{\partial_{4}}\cdots\rTo^{\partial_{n-1}} 
-%\Sym^{n-2}G\otimes\bigwedge^nF^* 
-% \rTo 0.
-%\end{align*}
-%is split exact.
-%
-%We begin by proving split exactness at  
-% $\Sym^{i} G \otimes \bigwedge^{i+2}  F^*$ where $i\geq 1$.
-%The rank of $G$ is 2, so the module
-%$ \Sym^{i} G \otimes \bigwedge^{i+2}  F^*$
-%decomposes as
-%\begin{align*}
-%&\Sym^{i} G \otimes \bigwedge^2 G^* \otimes \bigwedge^{i} F'^*\oplus \\
-%&\Sym^{i} G \otimes  G^*\otimes \bigwedge^{i+1} F'^* \oplus \\
-%&\Sym^{i} G \otimes  \bigwedge^{i+2} F'^* 
-%\end{align*}
-%Note that under our hypothesis, the element $\mu' \in G\otimes F^* = G\otimes G^* \oplus G\otimes F'^*$
-%has the form $(\mu_G, 0)$. Choosing dual bases $g_1,g_2$ of $G$ and $\widehat g_1,\widehat g_2$ of $G^*$,
-%$\mu_G$ is the element
-% $\mu_G = \sum_i g_i\otimes \widehat g_i$
-%representing the identity map $G \to G$. Thus the complex
-%$EN(M')^*$ is a direct sum over $i$ of 3-term complexes of the form
-%%$$
-%%\Sym^{i+1} G \otimes \bigwedge^2 G^* 
-%%\lTo^{-\wedge \mu'} 
-%%\Sym^{i} G \otimes  G^*
-%%\lTo^{-\wedge \mu'} 
-%%\Sym^{i-1} G
-%%$$
-%$$
-%\Sym^{i-1} G 
-%\rTo^{-\wedge \mu'} 
-%\Sym^{i} G \otimes  G^*
-%\rTo^{-\wedge \mu'} 
-%\Sym^{i+1} G \otimes \bigwedge^2 G^* 
-%$$
-%tensored with various $\bigwedge^j F'^*$, and it suffices to show that the former are split exact in the middle
-%when
-%$i\geq 1$. Now $\Sym G$ may be identified with $R:= S[x,y]$, where $x,y$ are a basis of $S^2$, and
-%as such the three-term sequence above may be identified with the $(i-1)$-st homogeneous component 
-%of the Koszul complex of $x,y$ over $R$,
-%%$$
-%%R\otimes \wedge^2 G\lTo R\otimes G \lTo R .
-%%$$
-%$$
-%0\to R \rTo R\otimes G^* \rTo R\otimes \wedge^2 G^*
-%$$
-%This is an $R$-free resolution of  $R/(x,y)R = S$ so as sequences
-%of $S$-modules every homogeneous component is split exact at the term $R_i\otimes G^*$,
-%as required.
-%
-%It remains to treat the beginning of the complex $EN(M')^*$,
-%$$
-%S \rTo{\bigwedge^2 M'^*} 
-% \bigwedge^2 F^*
-% \rTo^{-\wedge \mu'}
-%G\otimes \bigwedge^3 F^*,
-%$$
-%which in our case may be written:
-%%$$
-%%\wedge^2 F^* = \bigwedge^2 G^* \oplus (G^*\otimes F'^*) \oplus \bigwedge^2 F'*
-%%$$
-%%Consider the pair of maps
-%\begin{align*}
-%S \rTo{\bigwedge^2 M'^*} 
-% &\bigwedge^2 G^* \ \oplus\ (G^*\otimes F'^*)\ \oplus\ \bigwedge^2 F'^*
-% \rTo^{-\wedge \mu'} \\
-% &G\otimes \bigwedge^2 G^*\otimes F'^*\ \oplus\ (G\otimes G^*\otimes \bigwedge^2 F'^*)\ \oplus\ G\otimes \bigwedge^3 F'^*
-%\end{align*}
-%The map $\bigwedge^2 M'$ is the projection to $\bigwedge^2 G$ composed with the chosen isomorphism
-%$\bigwedge^2 G \cong S$, and is thus a split monomorphism. To complete the argument, we must show that
-% the map marked $-\wedge \mu'$ is a monomorphism on $(G^*\otimes F'^*) \oplus \bigwedge^2 F'^*$.
-% 
-% Identifying $\wedge^2 G^*$ with $S$, this map is the direct sum of the two maps
-%  $$
-% (G^* \rTo^{-\wedge \mu_G} G\otimes \bigwedge^2 G^*)  \otimes F'^*
-% $$
-% and
-% $$
-%(S  \rTo^{\mu_G} G\otimes G^*) \otimes \bigwedge^2 F'^*.
-% $$
-% The first of these is the tensor product of $F'^*$ with
-% something that becomes the identity map after the natural identification of $G^*$ with $G\otimes \wedge^2 G^*$,
-% while the second is the tensor product of $\wedge^2 F'^*$ with
-%  $$
-% 1 \mapsto \sum_i(g_i\otimes \widehat g_i).
-% $$
-%Since these are split monomorphisms,
-%the proof of split exactness of $EN(M')^*$ and thus of $EN(M')$ is complete.
+On the other hand, for $i\geq 1$ the map $\delta_{i}\delta_{i+1}$ is multiplication by
+$$
+(\sum_{i = 1}^{f} \phi(e_{i}) \otimes \hat e_{i})^{2},
+$$
+which we may think of as the square of an element of degree 1 in the exterior algebra
+of the free $\Sym(G)$-module $\wedge(\Sym(G)\otimes F)$, and hence this square is 0.
+Thus the given maps do define a complex.
 
-To complete the proof of Theorem~\ref{Eagon-Northcott},
-let $X_{i}\subset \AA^{r+1}$ be the variety defined from the complex $EN(M)$ as in 
-Theorem~\ref{WMACE}. Since $EN(M)$ becomes split exact after inverting any $2\times 2$ minor of $M$
-$X_{i}$ is
-contained in the closed set defined by $I_{2}(M)$, for all $i$. Theorem~\ref{WMACE} now shows that
- if $I_{2}(M)$ has codimension $n-1$,
-then $EN(M)$ is a resolution, completing the proof.
-\end {proof}
+\begin{theorem}\label{ENgeneral}
+ Suppose that $R$ is a ring and $\phi: F\to G$ is a map of  free $R$-modules, 
+ where $G$ has rank $g$ and $F$ has rank $f \geq g$.
+ The complex $EN(\phi)$ is acyclic if and only if the ideal $I := I_{g}(\phi)$ has grade $\geq f-g+1$.
+ \end{theorem}
+
+\begin{example}
+If $\phi$ is a matrix of linear forms, then the first map of $EN(\phi)$  is represented by the
+row of $g\times g$ minors of $\phi$, which are forms of degree $g$, but all the rest of the maps
+are represented by matrices of linear forms. Thus, for example, the betti table of the Eagon-Northcott complex of 
+a $2\times f$ matrix of linear forms is:
+
+\
+
+\centerline{\scriptsize
+\begin{tabular}{r|ccccc} 
+$j\backslash i$&0&1&2&3&$f-1$\\ 
+\hline 
+0&1&$-$&$-$&$\cdots$&$-$\\ 
+1&$-$&$\binom{f}{2}$&$2\binom{f}{3}$&$\cdots$&$(f-1)\binom{f}{f}$\\ 
+\end{tabular}}
+\end{example}
+
+\begin{proof}
+The dual of the last differential of $EN(\phi)$ is
+$$
+\partial_{f-g+1}: \Sym^{f-g-1}G \otimes \wedge^{f-1}F^{*} \to \Sym^{f-g}(G) \otimes \wedge^{f}F^{*}.
+$$ 
+With our usual identifications $\wedge^{f}F^{*} = S$ and $\wedge^{f-1}F^{*} = F$ this becomes the map
+$$
+\Sym^{f-g-1}G \otimes F \rTo^{1\cdot \phi} \Sym^{f-g}G
+$$
+whose cokernel is $\Sym^{f-g}(\coker \phi)$ by the right exactness of the symmetric algebra functor~\cite[]{Eisenbud1995}. The support of $\Sym^{f-g}(\coker \phi)$ is obviously contained in the support
+of $\coker \phi$, but in fact they are equal: if a localization of $\coker \phi$, over a local ring $S_{P}$,
+ is nonzero, then by
+Nakayama's lemma it surjects onto $S_{P}/P_{P} = \kappa(P)$, and again by the right exactness
+of the symmetric algebra functor $\Sym^{f-g}(\coker \phi)_{P}$ surjects onto $\Sym^{f-g}(\kappa(P)) = \kappa(P)$.
+
+By Theorem~\ref{WMACE} we see from this that if $EN(\phi)$ is acyclic, then the support of $\coker \phi$
+has grade $\geq f-g+1$. This support is defined by the radical of $I_{g}(\phi)$, so $\codim I_{g}(\phi)\geq f-g+1$ as required.
+
+Conversely, to show that $EN(\phi)$ is acyclic under the given hypothesis we first treat the case
+$I_{g}(\phi) = S$, and prove that $EN(\phi)^{*}$ is split exact. This is the most complicated part of the proof,
+but it is purely formal:
+
+As before we may split $F$ and
+assume that $F = G\oplus F'$, the map $\phi$ being the projection onto the first summand.
+Assuming that the first summand corresponds to the basis elements $e_{1}, \dots, e_{g}\in G\subset F$
+the dual differential $\partial_{i}$ takes the form $\sum_{i=1}^{g} e_{i}\otimes \hat e_{i}$.
+
+The map 
+$$
+\wedge^{g}G\lTo^{}{\delta_{1}} 
+\wedge^{g}F =\bigoplus_{j=0}^{g}\wedge^{j}G\otimes \wedge^{g-j}F'
+$$ 
+is the projection onto the $j=g$ summand, so we must show that the rest of $EN(\phi)$ is a split surjection
+ending with the terms of the source of $\delta_{1}$ other than $\wedge^{g}G$.
+
+Once again, it will be convenient to treat the dual complex. Using the splitting
+%and the identification of $\wedge^{g-j}G^{*}$ with $\wedge^{j}G$ 
+we may write the terms of the dual as
+$$
+EN_{i}(\phi)^{*} = \Sym^{i-2}G \otimes  \wedge^{g+i-2}F^{*}  = 
+\bigoplus_{j} \Sym^{i-2}G \otimes  \wedge^{j}G^{*} \otimes \wedge^{g+i-2-j}F'^{*}
+$$
+for $i\geq 1$.
+The map $\partial_{i}= \delta_{i}^{*}$ is a direct sum from $j=0$ to $g$ of the maps 
+$$
+\Sym^{i-2}G \otimes  \wedge^{j}G^{*} \otimes \wedge^{g+i-2-j}F'^{*}
+\rTo
+\Sym^{i-1}G \otimes  \wedge^{j+1}G^{*} \otimes \wedge^{g+i-2-j}F'^{*}
+$$
+that are all equal to  multiplication by $\sum_{k=1}^{g} e_{k}\otimes \hat e_{k}\otimes 1$
+where the last tensor factor is the identity map of $\wedge^{g+i-2-j}F'^{*}$.
+
+Thus it suffices to show that the complexes
+$$
+\begin{aligned}
+ (*_{j}) \quad \Sym^{0}G\otimes\wedge^{j}G^{*}\cdots \to \Sym^{i}G \otimes  \wedge^{i+j}G^{*}  \to \cdots
+\end{aligned}
+$$
+are split exact for $0\leq j<g$.
+
+Let $R = \Sym G = S[e_{1}, \dots, e_{g}]$. The Koszul complex over $R$ of the sequence $\phi_{i} = e_{i}$
+may be written as
+$$
+R\otimes_{S} \wedge^{g} = \bigoplus_{p,q}\Sym^{p}G\otimes\wedge^{j}G
+$$
+and we have proven in Theorem~\ref{rankG1} that it is a free resolution of $R/(G)=S$, which appears
+as $\Sym^{0}G\otimes \wedge^{0}G$. The $R$-dual of this complex has terms
+$\Sym G\otimes\wedge^{j}G^{*}$
+and the complexes $(*_{j})$ above are summands as $S$-modules. It follows that these finite
+complexes have no homology at all, and since the modules are free over $S$, they are split exact.
+
+Since the 
+complex $EN(\phi)$ is split exact after inverting any element of $I = (\phi_{1}, \dots, \phi_{f})$, it follows that 
+the rank condition of Theorem~\ref{WMACE} is satisfied, and
+$$
+I \subset \sqrt{I_{\rank \delta_{i}}(\delta_{i})}. 
+$$
+Since the length of $EN(\phi)$  is $f-g+1$, Theorem~\ref{WMACE} implies that
+it is acyclic when $\grade I\geq f-g+1$, completing the proof.
+\end{proof}
 
 \begin{corollary}\label{E-N cor}
-With notation as in Theorem~\ref{E-N}, if the ideal $I_2(M)$ has codimension $\geq n-1$ then it has
-codimension exactly $n-1$, the ring $S/I_2(M)$ is Cohen-Macaulay, and the $\binom{n}{2}$ quadratic forms
-that are the $2\times 2$ minors of $M$ are linearly independent over $\CC$.
+With notation as in Theorem~\ref{ENgeneral}, if the ideal $I_g(\phi)$ has codimension $\geq f-g+1$ then it has
+codimension exactly $f-g+1$, the ring $S/I_g(M)$ is Cohen-Macaulay, and the $\binom{f}{g}$ forms
+that are the $g\times g$ minors of a matrix for $\phi$ are linearly independent over $\CC$.
 \end{corollary}
 
 \begin{proof}
@@ -510,18 +861,6 @@ Cohen-Macaulay. The linear independence of the minors of $M$ follows because $EN
 $EN(M)_2$ is generated in degree 3, so all the relations on the minors have coefficients of degree 1.
 \end{proof}
 
-\begin{example}
-The betti table of the Eagon-Northcott complex of 
-a $2\times n$ matrix of linear forms is:
-
-\centerline{\scriptsize
-\begin{tabular}{r|ccccc} 
-$j\backslash i$&0&1&2&3&4\\ 
-\hline 
-0&1&$-$&$-$&$\cdots$&$-$\\ 
-1&$-$&$\binom{n}{2}$&$2\binom{n}{3}$&$\cdots$&$(n-1)\binom{n}{n}$\\ 
-\end{tabular}}
-\end{example}
 
 In general when $X\subset Y\subset \PP^r$, so that $I_X \supset I_Y$, it may be hard to see which syzygies of $X$ come
 from syzygies of $Y$. But when the degrees of the syzygies of $Y$ are smaller than those from $X$, the situation is simpler.
@@ -535,7 +874,7 @@ of the minimal free resolution of $I_C$. Thus the betti table of the resolution 
 
 \begin{proof}
 Let $EN$ be the minimal resolution of $I_X$, and let $\FF$ be the minimal resolution of $I_C$.
-The inclusion $I_X \subset I_C$ induces a map $\phi: EN\to \FF$, unique up to homotopy. Since the minimal generators of $I_X$ are quadratic, and $I_C$ contains no linear forms, $\phi_0: EN_0\to \FF_0$ is a spit monomorphism.
+The inclusion $I_X \subset I_C$ induces a map $\phi: EN\to \FF$, unique up to homotopy. Since the minimal generators of $I_X$ are quadratic, and $I_C$ contains no linear forms, $\phi_0: EN_0\to \FF_0$ is a split monomorphism.
 
 By induction, we may assume that $\phi_{i-1}$ is a split monomorphism. The free module $EN_{i}$ is generated in 
 degree $i+1$, while the free module $\FF_i$ is generated in degrees $\geq i+1$. It follows that the relations
@@ -553,11 +892,12 @@ $
 The Hilbert function of $I_C$ is determined by the betti table of its resolution, so that the table generally has more information.
 
  For example
-when $C$ is trigonal then, by the geometric Riemann-Roch theorem, $C$ has a 1-dimensional family of trisecant lines; any quadric containing $C$ must contain all these. As we have seen in Chapter~\ref{ScrollsChapter}, these lines sweep
-out a 2-dimensional scroll rational normal scroll defined by the $2\times g-2$ 1-generic matrix $M$ corresponding to the decompostion of $\sO_C(1)$
-into a tensor product of the $g^{1}_{3}$ defined by a line bundle $\sL$, the complementary linear series,
-defined by $\omega_{C}\otimes \sL^{-1}$ has $g-2$ sections, and we see from Section 16.2
-that the scroll itself lies on the ${g-2\choose 2}$ quadrics defined by the minors of $M$. The exactness of the Eagon-Northcott complex associated to this matrix shows that there are no relations of degree 0 on these minors -- that is, they are linearly independent over the ground field. It follows that they generate the vector space of all quadrics containing $C$. 
+when $C$ is trigonal then by the geometric Riemann-Roch theorem, $C$ has a 1-dimensional family of trisecant lines, and any quadric containing $C$ must contain all these. As we have seen in Chapter~\ref{ScrollsChapter}, these lines sweep
+out the 2-dimensional scroll rational normal scroll defined by the $2\times g-2$ 1-generic matrix $M$ corresponding to the decomposition of $\sO_C(1)$
+into a tensor product of the  line bundle $\sL$ associated to the $g^{1}_{3}$ and the residual line bundle $\omega_{C}\otimes \sL^{-1}$. The latter has $g-2$ sections, and we see from Section 16.2
+that the scroll itself lies on the ${g-2\choose 2}$ quadrics defined by the minors of $M$. The exactness of the Eagon-Northcott complex associated to this matrix shows that there are no relations of degree 0 on these minors---that is, they are linearly independent over the ground field. It follows that they generate the vector space of all quadrics containing $C$. 
+
+
 
 Furthermore, if $g = 6$ and $C$ is isomorphic to a plane quintic curve, then the canonical series of the plane quintic is $5-3 = 2$ times the hyperplane series, and it follows that the canonical image of $C$ lies on the Veronese surface in $\PP^{5}$. Thus the Veronese surface is contained in (in fact, equal to) the intersection of the quadrics defined by the $2\times 2$ minors of a generic symmetric matrix, coming from the 
 multiplication map 
@@ -572,7 +912,7 @@ One might fear that this is the beginning of some long series of examples, but i
 The ideal of a canonical curve of genus $\geq 5$ is generated by the $\g-2\choose 2$-dimensional space of quadrics it contains unless the curve is either trigonal or isomorphic to a plane quintic; in the latter cases, the ideal of the curve is generated by quadrics and cubics.
 \end{theorem}
 
-For a modern treatment of Petri's Theorem in this level of generality see \cite{Schreyer}; for a different treatment see \cite{Arbarello-Sernesi}.
+For a modern treatment of Petri's theorem in this level of generality see \cite{Schreyer}; for a different treatment see \cite{Arbarello-Sernesi}.
 
 The two exceptions can be described simultaneously by using the Clifford index:
 
@@ -632,8 +972,8 @@ $j\backslash i$&0&1&2&3\\
 \end{tabular}}
 \noindent Note that we can ``see'' the scroll reflected in the top two lines of the table.
 
-From the analogue of the Hilbert-Burch Theorem for Gorenstein rings of codimension 3 one can show that the 5 generators can be written as the 
-pfaffians of a skew symmetric $5\times 5$ matrix whose entries are of degrees 1 and 2, in the following pattern (we give just the degrees, and put - in the places that are 0):
+From the analogue of the Hilbert-Burch theorem for Gorenstein rings of codimension 3 one can show that the 5 generators can be written as the 
+pfaffians of a skew symmetric $5\times 5$ matrix whose entries are of degrees 1 and 2, in the following pattern (we give just the degrees, and put --- in the places that are 0):
 $$
 \begin{pmatrix}
  -&-&1&1&1\\
@@ -650,18 +990,18 @@ Applying this logic more generally we get the following result about the canonic
 \begin{theorem}
  Let $C\subset \PP^{g-1}$ be a reduced, irreducible canonical curve. If $C$ has a line bundle $\sL$ of degree $d \leq g-1$ with $h^0(\sL) = 2$  then
  there is a 1-generic  $2\times (g+1-d)$ matrix of linear forms whose minors define a scroll of codimension $g-d$ containing $C$; and thus an
- Eagon-Northcott complex of length $g-d$ is a subcomplex of the minimal free resolution of $S_C$. In particular, the Betti table of $S_C$ is
+ Eagon-Northcott complex of length $g-d$ is a subcomplex of the minimal free resolution of $R_C$. In particular, the Betti table of $R_C$ is
  termwise $\geq$ that of the homogeneous coordinate ring of the scroll.
  \end{theorem}
  
  (We have stated this theorem for canonical curves, but in fact the construction applies much more generally to a linearly normal variety $X \subset \PP^n$ of any dimension: if $X$ has a divisor $D$ that moves in a pencil and is contained in a subspace $\PP^k$ with $k \leq n-2$, the planes spanned by the divisors of the pencil $|D|$ sweep out a rational normal scroll.)
  
- Thus the existence of the $g^1_d$ on $C$, together with the symmetry of the resolution of the Gorenstein ring $S_C$,
-  implies that the Betti table of $S_C$ has the form
+ Thus the existence of the $g^1_d$ on $C$, together with the symmetry of the resolution of the Gorenstein ring $R_C$,
+  implies that the Betti table of $R_C$ has the form
  
  \centerline{\small %\scriptsize
 \begin{tabular}{r|cccccccccccc} 
-$j\backslash i$&0&1&2&\dots&d-3&d-2&\dots&g-d-1&g-d&\dots&g-3&g-2\\ 
+$j\backslash i$&0&1&2&\dots&$d-3$&$d-2$&\dots&$g-d-1$&$g-d$&\dots&$g-3$&$g-2$\\ 
 \hline 
 0&1&$-$&$-$&$\cdots$&$-$&$-$&$-$&$-$&$-$&$-$&$-$&$-$\\ 
 1&$-$&*&*&$\cdots$&*&*&$\cdots$&*&$?$&$\cdots$&?&?\\ 
@@ -671,12 +1011,12 @@ $j\backslash i$&0&1&2&\dots&d-3&d-2&\dots&g-d-1&g-d&\dots&g-3&g-2\\
 \noindent where we have assumed for illustration that $d-2<g-d-1$. The places marked $-$ are definitely 0 and those marked * are definitely nonzero. The entries of the rows marked 0 and 1 are $\geq$ the corresponding entries of the Betti table of the scroll.
 
 We can summarize this by saying
-that if the curve $C$ has a line bundle $\sL$ of degree $d$ with exactly 2 sections, and thus of Clifford index $c = d-2$ the row labeled  2 
-in the Betti diagram definitely has $\beta_c, c+2\neq 0$. As with the case of the plane quintics, above, one can
+that if the curve $C$ has a line bundle $\sL$ of degree $d$ with exactly 2 sections (which is thus of Clifford index $c = d-2$) the row labeled  2 
+in the Betti diagram definitely has $\beta_{c, c-2} \neq 0$. As with the case of the plane quintics above, one can
 make a similar argument for \emph{any} line bundle of Clifford index $c$. Thus:
 
 \begin{corollary}
- If Cliff $C \leq c$ then $\beta_{c,c-2}(S/I_C)) \neq 0.$
+ If Cliff $C \leq c$ then $\beta_{c,c+2}(S/I_C)) \neq 0.$
 \end{corollary}
  
 
@@ -684,7 +1024,7 @@ Starting from examples such as the case of genus 6, Mark Green made a bold conje
 
 \begin{conjecture}[Green's Conjecture]
 If $C$ is a smooth canonical curve of genus $g$ and $S/I_C$ is the homogeneous coordinate ring of $C$ in its canonical embedding,
-then the Clifford index of $C$ is $\leq c$ if and only if $\beta_{c,c-2}(S/I_C) \neq 0$. 
+then the Clifford index of $C$ is $\leq c$ if and only if $\beta_{c,c+2}(S/I_C) \neq 0$. 
 \end{conjecture}
 
 The conjecture was made for curves over a field of characteristic 0, and is known in many cases, though it is also known to fail in small finite characteristics (see~\cite{Bopp-Schreyer} for an amended conjecture that may hold in all characteristics.)
@@ -694,6 +1034,9 @@ See for example \cite{Farkas-progress-on-syzygies} for a survey on this and rela
 
 \subsection{Low genus canonical embeddings} 
 In his 1983 Brandeis thesis \cite{Schreyer-canonical}, Frank Schreyer analyzed all the possibilities for resolutions of smooth canonical curves up to genus 8. The project was carried further to genus 9 in a Saarbr\"ucken thesis \cite{Sagraloff}  of a student of Schreyer. The results are summarized in the tables below.
+
+\fix{need tables}
+
 %\fix{M2 notation is
 %different; and the hyperelliptic cases are included. Maybe retype in normal notation?}
 
@@ -751,15 +1094,16 @@ Referring to the betti table of a canonical curve just before Section~\ref{EN se
 for the differences $b_i- b_{g-i-1}$ that depends only on $i$ and $g$.
 \end{exercise}
 
-\begin{exercise}
- Show that if $I \subset S := \CC[x_0,\dots, x_r]$ is a codimension 2 ideal, then $S/I$ is Cohen-Macaulay if and only
- if the minimal $S$-free resolution of $S/I$ has the form
- $$
- 0\rTo S^{n-1} \to S^n \to S
- $$
- for some $n$. Show that $S/I$ is Gorenstein if and only if $I$ is a complete intersection. Hint: for the first part, tensor with
- the field of rational functions. 
-\end{exercise}
+%Superceded by new text:
+%\begin{exercise}
+% Show that if $I \subset S := \CC[x_0,\dots, x_r]$ is a codimension 2 ideal, then $S/I$ is Cohen-Macaulay if and only
+% if the minimal $S$-free resolution of $S/I$ has the form
+% $$
+% 0\rTo S^{n-1} \to S^n \to S
+% $$
+% for some $n$. Show that $S/I$ is Gorenstein if and only if $I$ is a complete intersection. Hint: for the first part, tensor with
+% the field of rational functions. 
+%\end{exercise}
 
 \begin{exercise}
 Which sets of 4 distinct points in $\PP^2$ are arithmetically Gorenstein? Which sets of 5 points? Which sets of 6 points?
@@ -825,6 +1169,37 @@ where the map is the action of $F$ on $\wedge G^*$ via the map $q: F\to G$.
 of the two sections corresponding to the generators of the module. Imitate the proof of Theorem~\ref{E-N} to prove
 the exactness of the given resolution of $\Sym^a(M)$. See also \cite[Appendix A2.6]{Eisenbud1995}. 
 \end{exercise}
+
+
+\begin{exercise}~\label{Fitt}
+\fix{include all for the following:}
+the annihilator of $M$ in $R$
+is closely related to the 0-th Fitting ideal:
+$$
+\ann_{R}(\coker \phi)^{\rank G}\subset Fitt_{0}(\phi) \subset \ann_{R}(\coker \phi)
+$$
+so $\Fitt_{0}(M)$ defines the support of $M$. On the other hand, $\phi$ is injective
+if and only if $\grade I_{\rank F}(\phi) \geq 1$.
+
+The \emph{rank} of $\phi: F\to G$ is the largest size of a nonvanishing minor of a matrix for $\phi$,
+or equivalently the largest $k$ such that the exterior power $\wedge^{k}\phi : \wedge^{k}F \to \wedge^{k}G$
+is nonzero. If $r:= \rank \phi = \rank G$, then the ideal $I(\phi): = I_{\rank \phi}(\phi)$ plays a special role: the cokernel of $\phi$
+is projective (= locally free) if and only if $I(\phi) = R$. If $I(\phi)$ contains a nonzerodivisor, then
+the construction localizes, and we see that $I(\phi)$ defines the locus  $P\in \Spec R$ where $(\coker \phi)_{P}$
+is not free. 
+
+\begin{enumerate}
+ \item Prove that if $\phi: F\to G$ is a free presentation of a finitely generated module $M$
+then 
+$$
+\ann_{R}(\coker \phi)^{\rank G}\subset Fitt_{0}(\phi) \subset \ann_{R}(\coker \phi).
+$$
+\item Prove that over a local ring every projective module is free; and show that 
+$I(\phi)$ defines the non-free locus of $\coker \phi$. 
+\end{enumerate}
+
+\end{exercise}
+
 \input{footer}
 
 

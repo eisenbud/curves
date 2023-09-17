@@ -57,3 +57,11 @@ ans_0 === null
 cast = (d) -> floor(d^2/4.0) -d +1
 cast1 = d -> floor((d^2-3*d)/6.0) +1
 netList for d from 3 to 10 list {d,cast d, cast1 d}
+
+--
+kk = ZZ/101
+S = kk[x_0..x_3]
+T = kk[s,t]
+p = random(T^1, T^{4:-5});
+I = ker map(T, S, p);
+betti res I
