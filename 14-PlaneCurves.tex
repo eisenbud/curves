@@ -1,12 +1,14 @@
 \input{header}
 
+\def\adj{{\rm adj}}
 \chapter{Plane Curves}
 \label{PlaneCurvesChapter}
 
 
-For a long time, plane curves were the only algebraic curves that were studied. Originally these were curves in the affine plane over the real numbers, but by about 1850 the complex projective plane was well understood, and curves in $\PP^2 = \PP^2_\CC$, corresponding to irreducible forms in 3 variables, were recognized as the natural objects of study. 
+For a long time, plane curves were the only algebraic curves that were studied. Originally these were curves in the affine plane over the real numbers, but by the second half of the 19th century the complex projective plane was well understood, and curves in $\PP^2 = \PP^2_\CC$, corresponding to irreducible forms in 3 variables, were recognized as the natural objects of study---see the historical appendix to this book for more details.
 
-The work of Bernhard Riemann dramatically changed the focus of the theory to branched coverings of   the ``Riemann Sphere'' ($\PP^1_\CC$). The Riemann-Roch theorem, in particular, gave information about the existence of meromorphic functions on such coverings, well beyond what could be done in the earlier theory. However, Riemann's work, depending as it did on the then-obscure ``Dirichlet principle'', was not universally accepted. In the 1860s Alfred Clebsch and, after the death of Clebsch  in 1872, Alexander Brill and Max Noether (Emmy Noether's father), undertook the ambitious program of redoing the Riemann-Roch theorem entirely in terms of plane curves. They went beyond Riemann in certain directions, too: the Brill-Noether Theorem treated in our Chapter~\ref{Brill-Noether chapter} was formulated by Brill and Noether, and ``proved'' by them through an unsupported general position assumption. 
+The work of Bernhard Riemann dramatically changed the focus of the theory to branched coverings of   the ``Riemann Sphere'' ($\PP^1_\CC$). The Riemann-Roch theorem, in particular, gave information about the existence of meromorphic functions on such coverings, well beyond what could be done in the earlier theory. However, Riemann's work, depending as it did on the then-obscure ``Dirichlet principle'', was not universally accepted. In the 1860s Alfred Clebsch and, after the death of Clebsch  in 1872, Alexander Brill and Max Noether (Emmy Noether's father), undertook the ambitious program of redoing the Riemann-Roch theorem entirely in terms of plane curves. They went beyond Riemann in certain directions, too: the Brill-Noether Theorem treated in our Chapter~\ref{Brill-Noether} was formulated by Brill and Noether, and ``proved'' by them through an unsupported general position assumption. 
+
 
 A central difficulty in the Brill-Noether attempt on the Riemann-Roch theorem was that,
 although any smooth curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
@@ -20,22 +22,20 @@ Macaulay exploited this theory of residuation  to prove what he called the ``Gen
 $I  \subset S:= k[x_0, \dots, x_n]$ is perfect if $S/I$ is Cohen-Macaulay) and ``super-perfection'' (the case when $S/I$ is
 Gorenstein). For all this, see~\cite{Eisenbud-Gray}.
 
-In the first part of this chapter we will use ideas that go back to Brill and Noether to find all effective divisors on $C$ equivalent on $C$ to a given (possibly) non-effective divisor. In Section~\ref{linear series on smooth plane curves} we treat the simple case of smooth plane curves, and in subsequent sections we treat the case of plane curves with nodes, and then plane curves with arbitrary singularities.
-
+In this chapter we will take the point of view of Clebsch, Brill and Noether, and explain how to understand 
+the differential forms and, given a (possibly ineffective) divisor $D$ on $C$, how to find all the 
+effective divisors on $C$ that are linearly equivalent to $D$, in terms of a plane model---that is, 
+in terms of a possibly singular plane curve $C_{0}$ and the normalization map $\nu: C\to C_{0}$.
+More precisely, we will give algorithms for the following tasks:
  
-\section{Using plane models to compute linear series} \label{computing linear series}
-
-In Proposition~\ref{nodal projection} we showed that any smooth projective curve $C$ can be linearly and birationally projected to a $C_0$ that has only nodes as singularities. In the first sections of this chapter we will show how to use such a \emph{plane model} to algorithmically determine the complete the linear series associated to any divisor on $C$.
-
-In particular:
 \begin{enumerate}
-\item Given the equation $F(X,Y,Z)$ of a plane curve $C_0$, with normalization $C$, we will find a basis for $H^0(K_C)$; and
-\item  Given, in addition, a divisor $D = \sum m_ip_i$ on $C$, we will describe the complete linear system $|D|$; that is, we will find all effective divisors $E$ on $C$ with $E \sim D$, or, equivalently, a basis for $H^0(\cO_C(D))$.
+\item Given the equation $F(X,Y,Z)$ of a degree $d$ plane curve $C_0$, with normalization $C$, we will find a basis for $H^0(K_C)$ constructed from curves of degree $d-3$ with base locus in a certain subscheme $\adj(C_{0})$; and
+\item  Given, in addition, a (not necessarily effective) divisor $D$ on $C$, we will describe the complete linear system $|D|$; that is, we will find all effective divisors $E$ on $C$ with $E \sim D$, or, equivalently, a basis for $H^0(\cO_C(D))$ expressed in terms of curves of some degree $m$ with specified base locus including $\adj(C_{0})$.
 \end{enumerate}
 
-Along the way we will see how to test when two given divisors $D$ and $E$ on $C$ are linearly equivalent; and whether a given divisor $D$ linearly equivalent to an effective divisor.
+Along the way we will see how to test when two given divisors $D$ and $E$ on $C$ are linearly equivalent; and whether a divisor $D$ linearly equivalent to any effective divisor.
 
-For clarity, we will pursue these goals in three stages: first when $C = C_0$ is a smooth plane curve (Section~ \ref{linear series on smooth plane curves}); next for nodal curves (Section~~\ref{nodal plane curves}), which in principle  covers all smooth curves $C$; and finally for arbitrary reduced, irreducible plane curves (Section~\ref{arbitrary plane curves}): many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Proposition~\ref{nodal projection} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is often easier to work with the given plane model. 
+To motivate the constructions we will proceed in three stages: first when $C = C_0$ is a smooth plane curve (Section~ \ref{linear series on smooth plane curves}); next for nodal curves (Section~~\ref{nodal plane curves}), which in principle  covers all smooth curves $C$; and finally for arbitrary reduced, irreducible plane curves (Section~\ref{arbitrary plane curves}): many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Proposition~\ref{nodal projection} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is often easier to work with the given plane model. 
 
 \section{Smooth plane curves}
 
@@ -49,103 +49,139 @@ Since an automorphism of $\PP^2$ can carry any line in the plane to the line at 
 \item The line $L$ at infinity given by $Z = 0$ intersects $C$ transversely in $d$ distinct points $p_1, \dots, p_d$; We write $H = p_1+ \dots +p_d$ for the corresponding divisor, the ``hyperplane section at infinity''.
 \end{enumerate}
  
-We start toward our first goal by writing down a single rational 1-form on $C$: 
+By the adjunction formula (Theorem ****) the divisors of differential forms on $C$, that is, the canonical divisors,
+are the intersections of $C$ with curves of degree $d-3$. In the spirit of Brill and Noether we begin by
+constructing the regular differential forms themselfves in terms of forms of degree $d-3$:
+
+We start by writing down a single rational 1-form on $C$: 
  take a regular 1-form on $\AA^2$, such as $dx$, and restrict/pull back to $C$. 
 
 Though $dx$ is regular on $C^\circ$, writing
 $$
 dx = d\frac{X}{Z} = \frac{X dZ+ Z dX}{Z^2}
 $$
- shows that $dx$ has double poles at the points $p_1,\dots,p_d$ of the divisor $D := C \cap L$.
+ shows that $dx$ has double poles at the points $p_1,\dots,p_d$ of the divisor $D := C \cap L$. (One can
+ also see this by thinking of $dx$ as pulled back to $C$ from the differential form on $\PP^{1}$, which
+ has a double pole at $\infty$.
  
-How do we get rid of the poles of $dx$? The extension of $\PP^2$ of a polynomial $h(x,y)$ of degree $d$ on
-$\AA^2$ has a pole of order $d$ along the line $L$ at infinity. Thus if $h$ has degree at least 2 then $dx/h$ will have no poles at infinity. However, $h(x,y)$ will vanish at points of $C \cap U$, and this may create new poles of $dx/h$. Of course if $h$ vanishes only at  points of $C \cap U$ where $dx$ already has a zero, the zeroes of $h$ may cancel the zeroes of $dx$ rather than creating new poles.
+How do we get rid of the poles of $dx$? The extension to $\PP^2$ of a polynomial $h(x,y)$ of degree $d$ on
+$\AA^2$ has a pole of order $d$ along the line $L$ at infinity. Thus if $h$ has degree at least 2 then $dx/h$ will have no poles at infinity. However, $h(x,y)$ will vanish at points of $C \cap U$, and this may create new poles of $dx/h$. Of course if $h$ vanishes only at  points of $C \cap U$ where $dx$ has a zero, the zeroes of $h$ may cancel the zeroes of $dx$ rather than creating new poles.
  
  To avoid producing new poles in this way we may take
  $$
  h(x,y) = \frac{\partial f}{\partial y}(x,y).
  $$
- Note that on $C^\circ$,
+To simplify the notation, we will set  $f_{y}:= \frac{\partial f}{\partial y}(x,y)$ and similarly for
+$f_{x}$. Note that  when restricted to $C^\circ$, $df$ must vanish identically, that is,
  $$
- df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy \equiv 0.
+ 0 \equiv df = f_{x}dx + f_{y}dy 
  $$
-Because $C$ is smooth, the functions $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ have no common zeroes on $C^\circ$. Moreover, the differentials $dx$ and $dy$ have no common zeros on $C^\circ$. It follows that at for all $p \in C^\circ$ we  have
+Because $C$ is smooth, the functions $f_{x}$ and $f_{y}$ have no common zeroes on $C^\circ$. Moreover, the differentials $dx$ and $dy$ have no common zeros on $C^\circ$. It follows that at for all $p \in C^\circ$ we  have
 $$
-\ord_p(dx) = \ord_p(\frac{\partial f}{\partial y}), 
+\ord_p(dx) = \ord_pf_{y}, 
 $$ 
 and thus the quotient 
 $$
-\varphi_0 = \frac{dx}{\partial f/\partial y}
+\varphi_0 = \frac{dx}{f_{y}}
 $$
 is everywhere regular and nowhere 0 in $C^\circ$.
 
-The differential $dx$ has poles of order $2$ at the points $p_i$. The polynomial $\partial f/\partial y$, having degree $d-1$, has poles of order $d-1$. Thus $\varphi_0$ has zeroes of order $d-3$ at the points $p_i$; in other words, as divisors,
+The differential $dx$ has poles of order $2$ at the points $p_i$. The polynomial $f_{y}$, having degree $d-1$, has poles of order $d-1$. Thus $\varphi_0$ has zeroes of order $d-3$ at the points $p_i$; in other words, as divisors,
 $$
 (\varphi_0) = (d-3)D.
 $$
-In particular, if $d \geq 3$ then $\varphi_0$ is a global regular differential on $C$.
-
+In particular, if $d \geq 3$ then $\varphi_0$ is a global regular differential on $C$. The divisor of
+zeros of this differential has degree $d(d-3)$. If $g$ is the genus of $C$, then we must
+have $2g-2 = d(d-3)$, whence 
+$$
+g = \frac{d(d-3)}{2} + 1.
+$$
 Moreover, we can  multiply $\varphi_0$ by any polynomial $e(x,y)$ 
   of degree $d-3$ or less without introducing poles, so that 
 $$
 e\varphi_0 = \frac{e(x,y)dx}{\partial f/\partial y}
 $$ 
-is likewise a global regular differential, for $g$  any polynomial of degree $\leq d-3$.
+is likewise a global regular differential, for $g$  any polynomial of degree $\leq d-3$. The dimension 
+of the space of forms of degree $d-3$ on $\PP^{2}$ is 
+$$
+\binom{d-1}{2} =  \frac{d(d-3)}{2} + 1.
+$$
+This proves:
 
-We have thus found a vector space of regular differentials, of dimension $\binom{d-1}{2}$. But at the same time, the degree of a differential like $\varphi_0$ is
+\begin{theorem}
+The space of regular differentials on a smooth plane curve $C$
+with affine equation $f=0$ has basis $\{\varphi_{i,j} \}_{i+j \leq d-3}$, where
 $$
-\deg((\varphi_0)) = (d-3)\deg(D) = d(d-3),
+\varphi_{i,j} =  \frac{x^iy^jdx}{f_{y}}.\qed
 $$
-so that the genus of $g(C)$ satisfies
-$2g(C)-2 = d(d-3)$, whence
-$$
-\frac{d(d-3)}{2} + 1 = \binom{d-1}{2}.
-$$
-In other words, we have found all the global regular differentials on $C$! We have
-$$
-H^0(K_C) = \left\{ \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3\right\};
-$$
-or, equivalently, the space of regular differentials on $C$ has basis $\{\varphi_{i,j} \}_{i+j \leq d-3}$, where
-$$
-\varphi_{i,j} =  \frac{x^iy^jdx}{\partial f/\partial y}
-$$
-
-We could have achieved the same result by using the adjunction formula (see Section~\ref{Adjunction Formula}: we have
-$$
-K_C = (K_{\PP^2} \otimes \cO_{\PP^2}(d))|_C = \cO_C(d-3),
-$$
-and from the exact sequence
-$$
-0 \to \cO_{\PP^2}((d-3)-d) \rTo^f \cO_{\PP^2}(d-3) \to \cO_C(d-3)=K_C \to 0
-$$
-and the vanishing of $H^1(\cO_{\PP^2}(-3))$, we see that the map on global sections
-$$
-H^0(\cO_{\PP^2}(d-3)) \to H^0(K_C)
-$$
-is surjective. 
-
+\end{theorem}
+%We have thus found a vector space of regular differentials, of dimension $\binom{d-1}{2}$. But at the same time, the degree of a differential like $\varphi_0$ is
+%$$
+%\deg((\varphi_0)) = (d-3)\deg(D) = d(d-3),
+%$$
+%so that the genus of $g(C)$ satisfies
+%$2g(C)-2 = d(d-3)$, whence
+%$$
+%\frac{d(d-3)}{2} + 1 = \binom{d-1}{2}.
+%$$
+%In other words, we have found all the global regular differentials on $C$! We have
+%$$
+%H^0(K_C) = \left\{ \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3\right\};
+%$$
+%or, equivalently, the space of regular differentials on $C$ has basis $\{\varphi_{i,j} \}_{i+j \leq d-3}$, where
+%$$
+%\varphi_{i,j} =  \frac{x^iy^jdx}{\partial f/\partial y}
+%$$
+%
+%We could have achieved the same result by using the adjunction formula (see Section~\ref{Adjunction Formula}: we have
+%$$
+%K_C = (K_{\PP^2} \otimes \cO_{\PP^2}(d))|_C = \cO_C(d-3),
+%$$
+%and from the exact sequence
+%$$
+%0 \to \cO_{\PP^2}((d-3)-d) \rTo^f \cO_{\PP^2}(d-3) \to \cO_C(d-3)=K_C \to 0
+%$$
+%and the vanishing of $H^1(\cO_{\PP^2}(-3))$, we see that the map on global sections
+%$$
+%H^0(\cO_{\PP^2}(d-3)) \to H^0(K_C)
+%$$
+%is surjective. 
+%
 
 \subsection{Linear series on a smooth plane curves}\label{linear series on smooth plane curves}
 
 Suppose that $D$ is any divisor on a smooth plane curve $C$, expressed as the difference of
 two effective divisors, $D= D_0-D_\infty$. We would like to find all the \emph{effective} divisors linearly equivalent to $D$, that is, of the form
 $D + (H/G)$, where $G, H$ are forms of the same degree $m$. Choose $m$ large enough so that
-there is
- a form $G$ of degree $m$ that vanishes on $D_0$ plus some divisor $A$ (but not on all of $C$). If we can find a form $H$ of degree $m$ that vanishes on both $D_\infty$ and $A$, as well as a further divisor $D'$, but does not vanish identically on $C$, then
-$$
-D' = D + (H/G) = D_0- D_\infty - (D_0+A)+(D_\infty+A+D')
-$$
-as required. Since $m$ is already chosen, there may not exist any such polynomial; we shall see that in this case there is no effective divisor linearly equivalent to $D$. 
-\pict {illustrate the configuration of all the divisors}
+we may choose
+ a form $G$ of degree $m$ that vanishes on $D_0$ plus some divisor $A$ (but not on all of $C$). 
+ 
+ 
+\begin{theorem}\label{equiv on smooth plane curve}
+The effective divisors equivalent to $D$, if any, are precisely those of the form $C'\cap C -(D_\infty+A)$ where $C'$
+is a curve of degree $m$ containing $D_\infty+A$, but not containing $C$.
+\end{theorem}
+
+In particular,  if there is no curve $C'$ of degree $m$ vanishing on  $A + D_\infty + D$ but not vanishing identically on $C$, then $D$ is not linearly equivalent to any effective divisor. In particular, the existence of such a curve $C'$ is independent of the choices of $m$ and $G$, as we shall see in the proof.
 
 \begin{example}
-Suppose that $C$ has degree 3, so that $C$ has genus 1. If we choose as origin on the curve $C$ a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) effective divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
+Suppose that $C$ has degree 3 and thus genus 1. If we choose as origin on the curve $C$ a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) effective divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, we can carry out the process described above with $m=1$: draw the line $L$ through the points $p$ and $q$, and let $r \in C$ be the remaining point of intersection of $L$ with $C$; then draw the line $M$ though the points $r$ and $o$, and let $s \in C$ be the remaining point of intersection of $L$ with $C$. This is the classical construction of the group law.
 \pict{illustrate this}
 \end{example}
 
-We claim that we find in this way all effective divisors $D' \sim D$. (This is a special case of the Completeness of the Adjoint series, Proposition~\ref{adjoint completeness}). In particular, this will show that if there is no polynomial $H$ as above, then there are no effective divisors equivalent to $D$.
+\begin{proof}[Proof of Theorem~\ref{equiv on smooth plane curve}]
+First, suppose that we can find a curve $C'$ of degree $m$ as in the Theorem. If the equation of $C'$ is $H=0$,
+then  setting $D' = C'\cap C - -(D_\infty+A)$ we have
+$$
+D' = D + (H/G) = D_0- D_\infty - (D_0+A)+(D_\infty+A+D')
+$$
+so $D'$ is linearly equivalent to $D$. 
+\pict {illustrate the configuration of all the divisors}
 
-Indeed, suppose $D'$ is any effective divisor with $D' \sim D$. Carrying out the first step of the process as before, we arrive at a divisor $A$ with 
+We claim that we find in this way all effective divisors $D' \sim D$. (This is a special case of the Completeness of the Adjoint series, Proposition~\ref{adjoint completeness}). In particular, this will show that if there is no polynomial $H$ as above, then there are no effective divisors equivalent to $D$. In particular, this shows
+that whether or not we can find a curve $C'$ fulfilling the conditions of the Theorem is independent of $m\gg 0$.
+
+Indeed, suppose $D'$ is any effective divisor with $D' \sim D$, so that
 $$
 \cO_C(A+D_\infty+D') = \cO_C(A+D_\infty+D)  = \cO_C(m),
 $$
@@ -154,30 +190,30 @@ This means that
 $A+D_\infty+D  = (H') +(P/Q)$ for some forms $P,Q$ of equal degree, with $Q$ not vanishing identically on $C$. 
 Since $A+D_\infty+D$ is effective,
 the zeros of $Q$ on $C$ must be contained in the zeros of $H'P$ on $C$; in other words,
-the restriction to $C$ of $Q/H'P$ is a regular function, a section of $\sO_C(m)$.
+the restriction to $C$ of $H'P/Q$ is a section of $\sO_C(m)$.
 Since $C\subset \PP^2$ is arithmetically Cohen-Macaulay (see Proposition~\ref{ACM basics}), this implies that
-$Q/H'P$ is the restriction of a form $H$ of degree $m$ on $\PP^2$; that is, if $G$ is
-the defining equation of $C$, then $H'P = QH+LG$ for some form $L$ on $\PP^2$.
+$H'P/Q$ is the restriction of a form $H$ of degree $m$ on $\PP^2$.
 
-Equivalently,
- using the fact that
-$G,Q$ is a regular sequence, and thus is unmixed (that is, has no embedded primary component), we see that $H'P = LG+HQ$ for some
-forms $L,H$ of degree $\deg HP - \deg Q$. In particular, $H = (H'P- LG)/Q$ is a form
-of degree $m$ defining $A+D_\infty+D$, as desired.
+We can also prove the existence of $H$ directly: Since $F$ is irreducible, 
+$Q,F$ is a regular sequence, and thus the ideal $(Q,F)$ is \emph{unmixed}; that is, it has no embedded primary component.
+Since $H'P$ vanishes on the zeros of $Q$ on $C$ we see that $H'P = QH+LF$ for some
+forms $L,H$, where $\deg H = \deg HP - \deg Q$. Thus $H = (H'P- LG)/Q$ is a form
+of degree $m$ defining $A+D_\infty+D$.
+\end{proof}
 
-Note that if, in the process described, it turns out there is no polynomial $H$ vanishing on  $A + D_\infty + D$ but not vanishing identically on $C$, that simply means that $|D| = \emptyset$; that is, $D$ is not linearly equivalent to any effective divisor. (It may not be obvious that the existence of such an $H$ is independent of the choice of $m$ or $G$, but the argument here shows that it is.)
+The argument given in the last paragraph can be stated more generally thus:  if curves $F(X,Y,Z)=0$ and $Q(X,Y,Z)=0$ 
+meet only in a set of  points $\Gamma$ in $\PP^{2}$, and $E(X,Y,Z) = 0$ is a curve containing
+$\Gamma$, then $E = QH +LF$ for some forms $H$ and $L$. Recognizing the importance of this
+statement for the argument above, Max Noether in~\cite{} dubbed it the \emph{Fundamental Theorem}, 
+noting that it had often been used by geometers but not proven. After successive attempts and 
+criticisms involving many mathematicians, he and Brill gave a complete proof, essentially using
+regular sequences as above, in~\cite{}. For more of this story see the account in~\cite{Eisenbud-Gray}.
 
 \section{Nodal plane curves}
 
 
-As noted, smooth plane curves are very special among all curves. We now want to carry out the analyses above for curves with at most nodes as singularities. As we have seen in Section~\ref{nodal curves}, every smooth curve is the normalization of a nodal plane curve.
-
-
-Given a smooth projective curve $C$ and a birational map of $C$ to $\PP^2$ with image a nodal curve $C_0$, our goal is as before:
-\begin{enumerate}
-\item to write out explicitly all global regular 1-forms on $C$; and
-\item given a divisor $D$ on $C$, to  determine $|D|$; that is, find all effective divisors linearly equivalent to $D$.
-\end{enumerate}
+Smooth curves that can be embedded in $\PP^{2}$ are very special, but every smooth curve 
+is the normalization of a plane curve with only ordinary nodes as singularities---see Section~\ref{nodal curves}.  We now want to explain methods like those above for such \emph{nodal curves}.
 
 \subsection{Differentials on a nodal plane curve}\label{canonical series on nodal plane curves}
 
@@ -338,6 +374,23 @@ The lemma follows by applying the Leray spectral sequence, which relates the coh
 Very often, smooth projective curves $C$ are given to us as the normalizations of reduced and irreducible plane curves $C_0 \subset \PP^2$ with more complicated singularities than nodes, and we would like to be able to effectively determine the complete linear systems on $C$ in this setting. Of course, we know we can re-embed $C$ birationally in the plane as a plane curve with nodes, but this knowledge is apt to be more of a comfort in theory than in practice.
 
 Happily, it is possible to carry out an analysis of linear series on the normalization of an arbitrary plane curve in a manner exactly analogous to what we did in the preceding section for nodal curves; in this section, we'll describe how this goes. 
+
+The general result
+involves the normalization map $\nu: C\to C_{0}$ and a finite subscheme  $\adj(C_{0})\subset C_{0}$ supported on the singular locus of $C_{0}$ called the 
+\emph{adjoint} scheme of $C_{0}$, about which we will have more to say later in the Chapter. 
+
+Given a 
+subscheme $B\subset C_{0}$ we consider the linear series $\sV_{0}\subset H^{0(}\sO_{C_{0}}(-m))$ of Cartier divisors on $C_{0}$ that are the intersections
+of $C_{0}$ with curves of  degree $m$ that contain the subscheme $B$. We define \emph{the linear series cut out on $C$} by curves of degree $m$
+containing $B$ to be the linear series  $\sV$ of divisors in $C$ that are residual to $\nu^{-1}(B)$ in the pullbacks 
+of divisors in $\sV_{0}$.
+
+\begin{theorem}
+If $C_{0}$ is a reduced, irreducible curve in $\PP^{2}$ and $\sV$ is a complete linear series
+on the normalization $\nu: C\to C_{0}$ then for all sufficiently large integers $m$ there is an effective Cartier divisor $D_{m}$  of $C_{0}$ 
+such that $\sV$ is the linear series cut out on $C$ by curves of degree $m$ containing $D_{m}+\adj(C)$.
+\end{theorem}
+
 
 Suppose again that $C_0 \subset \PP^2$ is reduced and irreducible, but with arbitrary singularities, and again let $\nu : C \to C_0$ be its normalization. Again we want to find the regular differentials on $C$ and the effective divisors on $C$ linearly equivalent to a given $D \in \Div(C)$. We set this up just as did above: we take $C^\circ_0$ to be the intersection of $C_0$ with the open set $z \neq 0$, that is, with $\AA^2\subset \PP^2$, and assume that
 all the singular points of $C_0$ are contained in $C^\circ_0$.
