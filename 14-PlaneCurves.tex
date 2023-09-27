@@ -12,13 +12,13 @@ The work of Bernhard Riemann dramatically changed the focus of the theory to bra
 
 A central difficulty in the Brill-Noether attempt on the Riemann-Roch theorem was that,
 although any smooth curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
-However, as we saw in Section~\ref{good projections}, we can embed $C$ as a curve $ C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $C$ birationally onto its image $C_0$, called a plane model of $C$. The curve $C_0$ typically has singularities, and $C$ is the normalization of $C_0$. Brill and Noether wanted to prove the Riemann-Roch theorem for $C$ by formulating and proving a related theorem for $C_0$. In particular, they tried to characterize linear equivalence of divisors on $C$ in terms of certain ``clusters'' of points---we would say 0-dimensional subschemes---of $C_0$. 
+However, as is shown in Section~\ref{good projections}, we can embed $C$ as a curve $ C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $C$ birationally onto its image $C_0$, called a plane model of $C$. The curve $C_0$ typically has singularities, and $C$ is the normalization of $C_0$. Brill and Noether wanted to prove the Riemann-Roch theorem for $C$ by formulating and proving a related theorem for $C_0$. In particular, they tried to characterize linear equivalence of divisors on $C$ in terms of certain ``clusters'' of points---we would say 0-dimensional subschemes---of $C_0$. 
 
-To carry out this program, a key result is that if $D\subset C_0$ is contained in the intersection
+To carry out this program, a key step was to show that if $D\subset C_0$ is contained in the intersection
 $D'$ of $C_0$ and some other plane curve $C_0'$, then the difference 
-$E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and Noether seem simply to have assumed that this is so. A bit later Frances Sowerby Macaulay proved that this is in fact possible  and also understood that it would not generally be possible if $D'$ were the intersection of three or more curves. 
+$E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and Noether seem simply to have assumed that this is so. A bit later Frances Sowerby Macaulay proved that this is in fact possible  and also understood that it would not generally be possible if $D'$ were the intersection of three or more curves.\footnote{In modern terms, the intersection of two curves is Gorenstein; the intersection of 3 is generally not}
 
-Macaulay exploited this theory of residuation  to prove what he called the ``Generalized Riemann-Roch Theorem'' (now erroneously called the ``Cayley Bacharach Theorem''). This early work of Macaulay led directly to his definitions of  ``perfection'' (a homogeneous ideal
+Macaulay exploited this theory of residuation  to prove what he called the ``Generalized Riemann-Roch Theorem'' (now widely known as the ``Cayley Bacharach Theorem'', after some precursors). This early work of Macaulay led directly to his definitions of  ``perfection'' (a homogeneous ideal
 $I  \subset S:= k[x_0, \dots, x_n]$ is perfect if $S/I$ is Cohen-Macaulay) and ``super-perfection'' (the case when $S/I$ is
 Gorenstein). For all this, see~\cite{Eisenbud-Gray}.
 
@@ -29,13 +29,17 @@ in terms of a possibly singular plane curve $C_{0}$ and the normalization map $\
 More precisely, we will give algorithms for the following tasks:
  
 \begin{enumerate}
-\item Given the equation $F(X,Y,Z)$ of a degree $d$ plane curve $C_0$, with normalization $C$, we will find a basis for $H^0(K_C)$ constructed from curves of degree $d-3$ with base locus in a certain subscheme $\adj(C_{0})$; and
-\item  Given, in addition, a (not necessarily effective) divisor $D$ on $C$, we will describe the complete linear system $|D|$; that is, we will find all effective divisors $E$ on $C$ with $E \sim D$, or, equivalently, a basis for $H^0(\cO_C(D))$ expressed in terms of curves of some degree $m$ with specified base locus including $\adj(C_{0})$.
+\item Given the equation $F(X,Y,Z)$ of a degree $d$ plane curve $C_0$, with normalization $C$,
+and a certain subscheme $C_{0}\subset C$ supported on the singular locus of $C_{0}$,
+construct a basis for $H^0(K_C)$ from curves of degree $d-3$ with base locus in $\adj(C_{0}$; and
+
+\item  Given effective Cartier divisors $D_{0}$ and $D_{\infty}$, we will  find all effective divisors $E$ on $C$ with $E \sim D$, or, equivalently, a basis for $H^0(\cO_C(D))$, expressed in terms of curves of high degree with  base locus $D_{\infty}+\adj(C_{0})$. In particular, we will test whether a divisor $D$ linearly equivalent to any effective divisor, and we will see how to test when two given divisors $D$ and $E$ are linearly equivalent. 
 \end{enumerate}
 
-Along the way we will see how to test when two given divisors $D$ and $E$ on $C$ are linearly equivalent; and whether a divisor $D$ linearly equivalent to any effective divisor.
+The subscheme $\adj(C_{0})$ is easy to compute in simple cases.
 
-To motivate the constructions we will proceed in three stages: first when $C = C_0$ is a smooth plane curve (Section~ \ref{linear series on smooth plane curves}); next for nodal curves (Section~~\ref{nodal plane curves}), which in principle  covers all smooth curves $C$; and finally for arbitrary reduced, irreducible plane curves (Section~\ref{arbitrary plane curves}): many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Proposition~\ref{nodal projection} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is often easier to work with the given plane model. 
+To motivate the constructions we will proceed in three stages: first when $C = C_0$ is a smooth plane curve (Section~ \ref{linear series on smooth plane curves}); next when $C_{0}$ is \emph{nodal}---that is, when
+its singularities are only ordinary nodes (Section~~\ref{nodal curves section}), which in principle  covers all smooth curves $C$; and finally for arbitrary reduced, irreducible plane curves (Section~\ref{arbitrary plane curves}): many times a curve $C$ is given to us as (the normalization of) a plane curve with singularities other than nodes, and while Proposition~\ref{nodal projection} assures us in principal that we can also realize $C$ as the normalization of a nodal plane curve, it is often easier to work with the given plane model. 
 
 \section{Smooth plane curves}
 
@@ -212,7 +216,7 @@ noting that it had often been used by geometers but not proven. After successive
 criticisms involving many mathematicians, he and Brill gave a complete proof, essentially using
 regular sequences as above, in~\cite{}. For more of this story see the account in~\cite{Eisenbud-Gray}.
 
-\section{Nodal plane curves}
+\section{Nodal plane curves}\label{nodal curves section}
 
 
 Smooth curves that can be embedded in $\PP^{2}$ are very special, but every smooth curve 
