@@ -571,7 +571,6 @@ the normalization is unique.
 A different, less canonical procedure for finding a smooth curve birational to a given curve
 is explained in Exercise~\ref{resolution by projection}.
 
-
 Still assuming that $C_0$ is reduced and irreducible, we can relate the arithmetic and geometric genera of $C_0$ using the map of sheaves
 $$
 \cO_{C_0} \to \nu_*\cO_C.
@@ -582,13 +581,32 @@ $$
 0 \to \cO_{C_0} \to \nu_*\cO_C \to \cF \to 0.
 $$
 
-Again since the normalization map $\nu: C \to C_0$ is finite,  the direct images $R^i\nu_*\cO_C$ vanish for $i > 0$, 
+\begin{proposition}\label{pa and delta}
+Suppose that $C_{0}$ is a reduced, irreducible curve and let  $\nu: C\to C_{0}$ be its normalization.
+Let $\sF = \nu_{*}\sO_{C}/\sO_{C_{0}}$. If we set $\delta(C_{0}) := h^{0}(\sF)$, we have
+ $$
+p_a(C_0) - g(C) =  \delta(C_{0})
+$$ 
+\end{proposition}
+
+\begin{proof}
+ Since the normalization map $\nu: C \to C_0$ is finite,  the direct images $R^i\nu_*\cO_C$ vanish for $i > 0$, 
 so the Leray spectral sequence \ref{Leray} computes $\chi(\nu_*\cO_C) = \chi(\cO_C)$. Thus
 $$
 p_a(C_0) - g(C) =  \chi(\cO_{C}) -   \chi(\cO_{C_0}) = \chi(\cF) = h^0(\cF) 
 $$ 
 since the support of $\cF$ is finite.
-In other words, the difference between the arithmetic and geometric genera of $C_0$ is the sum of the vector space dimensions of the stalks of $\cF$; colloquially, it is the number of linear conditions a locally defined function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant} $\delta_p$ of the singularity; to rephrase the statement above in these terms, we have:
+\end{proof}
+
+\def\barR{{\overline R}}
+The operation of normalization localizes, so we can understand $\sF$ by looking at it locally.
+Writing $R$ for the affine ring of some affine subset $U\subset C_{0}$ we see that $\sO_{C}|_{U}$
+is the integral closure $\barR$ of $R$, so $\sF|_{U}$ is $\overline R/R$. Thus
+the annihilator of $\sF|_{U}$, called the \emph{conductor} $\ff_{\overline R/R}$ is
+both an ideal of $\barR$ and of $R$, and correspondingly $\nu^{-1}(\ff_{C/C_{0}})$ 
+is also an ideal sheaf in $\sO_{C}$.
+
+Informally, we may say that $\delta(C_{0})$ is the number of linear conditions a locally defined function $f$ on $C$ has to satisfy to be the pullback of a function from $C_0$. The length of the stalk of $\cF$ at a particular singular point $p \in C_0$ is called the \emph{$\delta$-invariant} $\delta_p$ of the singularity; Thus
 $$
 p_a(C_0) - g(C) = \sum_{p \in (C_0)_{\rm sing}} \delta_p
 $$ 
@@ -601,11 +619,9 @@ $$
   $$
 (This is a special case of the spectral sequence for the derived functors of a composite functor ($H^0$ composed with $f_*$);
 see~\cite[II.4.17.1]{Godement} or \cite[Section III.7]{Gelfand-Manin} for proofs.)
-
-In the present circumstance---where the morphism $f$ is the normalization $\nu : C \to C_0$ of a possibly singular curve, and the sheaf $\cG$ is the structure sheaf $\cO_C$---the situation is particularly simple: since the map $\nu$ is finite, there are no higher direct images, and we deduce that $\chi(\cO_{C_0}) = \chi(\nu_*\cO_C)$.
 \end{fact}
 
-In simple cases the $\delta$ invariant is easy to compute:
+In the simplest cases the $\delta$ invariant is easy to compute:
 
 
 \begin{enumerate}
@@ -615,13 +631,9 @@ on $C_0$---is  that $f(r)=f(s)$; this is one linear condition so $\delta_p = 1$.
 
 \item (cusps) An \emph{ordinary cusp} of a curve $C_0$ is a point $p$ such that an analytic neighborhood of $p$ in $C_0$ is given by the equation $y^2=x^3$. If $p \in C_0$ is an ordinary cusp then its preimage in the normalization $C$ of $C_0$ will consist of one point $r\in C$. The condition for a function $f$ on $C$  is that the derivative $f'(r)=0$; again, this is one linear condition so $\delta_p = 1$.
 
-\item (tacnodes) Suppose now that $p \in C_0$ is a \emph{tacnode}, that is, $C_0$ has two smooth branches at $p$ simply tangent to one another, and the preimage of $p$ in the normalization consists of two points $r,s\in C$. The condition for a function $f$ on $C$ to descend is that in terms of suitable local coordinates both $f(r)=f(s)$ and $f'(r)=f'(s)$.  This represents two linear conditions, so $\delta_p = 2$.
+We will give more examples at the end of
+Chapter~\ref{PlaneCurvesChapter}.
 
-\item (planar triple points) An ordinary triple point $p \in C_0$ of a plane curve is, by definition, a singularity consisting of three smooth branches meeting pairwise transversely, such as the zero locus of $y^3-x^3$. 
-The preimage of $p$ in the normalization $C$ consists of three points $r,s,t \in C$. An obvious necessary condition for a function $f$ on $C$ to descend is that $f(r)=f(s)=f(t)$---two linear conditions. But there's a third, less obvious linear condition: in order for $f$ to descend, the derivatives $f'(r), f'(s), f'(t)$ have to satisfy a linear condition---a reflection of the fact that a function on $C_0$ cannot vanish to order 2 on each of two branches without vanishing to order 2 along the third as well. Thus $\delta_p = 3$
-
-\item (spatial triple points) Spatial triple points provide a useful contrast to the last example. A spatial triple point is a singularity consisting of three smooth branches, with linearly independent tangent lines, so that its Zariski tangent space is 3-dimensional; the simplest example is the origin as a point on the union of the three coordinate axes in $\AA^3$.
-In this case, in contrast to case of the planar triple point, the condition that $f(r)=f(s)=f(t)$ is both necessary and sufficient for $f$ to descend, and thus  $\delta_p=2$.
 
 \end{enumerate}
 
