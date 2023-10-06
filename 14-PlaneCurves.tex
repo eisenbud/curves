@@ -209,10 +209,10 @@ of degree $m$ defining $A+D_\infty+D$.
 
 The argument given in the last paragraph can be stated more generally thus:  if curves $F(X,Y,Z)=0$ and $Q(X,Y,Z)=0$ 
 meet only in a finite set of points $\Gamma$ in $\PP^{2}$, and $E(X,Y,Z) = 0$ is a curve containing the intersection in an appropriate sense,
-then $E = QH +LF$ for some forms $H$ and $L$, and this statement applies to arbitrarily singular curves. Recognizing its importance for the argument above and the generalizations to come, Max Noether in~\cite{} dubbed it the \emph{Fundamental Theorem}, 
+then $E = QH +LF$ for some forms $H$ and $L$, and this statement applies to arbitrarily singular curves. Recognizing its importance for the argument above and the generalizations to come, Max Noether in~\cite{Noether1873} dubbed it the \emph{Fundamental Theorem}, 
 noting that it had often been used by geometers but not proven. After successive attempts and 
 criticisms involving many mathematicians, he and Brill gave a complete proof, essentially using
-regular sequences as above, in~\cite{****}. For more of this story see the account in~\cite{Eisenbud-Gray}.
+regular sequences as above, in~\cite{Brill-Noether}. For more of this story see the account in~\cite{Eisenbud-Gray}.
 
 
 
@@ -564,15 +564,8 @@ are exactly those constructed in Proposition~\ref{adjoint completeness1}
 Let $C^\circ_0$ to be the intersection of $C_0$ with the open set $z \neq 0$, that is, with $\AA^2\subset \PP^2$, and assume that
 all the singular points of $C_0$ are contained in $C^\circ_0$.
 
-The function on $C^\circ_0$ defined by $x$  
-is a \emph{finite} map to $\AA^1$, and thus the field of rational functions $\kappa(C) = \kappa(C^\circ_0)$ is a finite
-separable extension of $\CC(x)$. By~\cite[Section 16.5]{Eisenbud1995} that the module of differentials 
-$\omega_{\kappa(C)/\CC}$ is generated over $\kappa(C^\circ_0)$ by $dx$; that is, every rational
-differential form on $C$ can be expressed as a rational function
-times $dx$. 
- 
-\begin{theorem}
-The complete canonical series on $C$ is cut out by differentials of the form
+\begin{theorem}\label{general differentials}
+If $C_{0}$ meets the line $L$ at infinity only in smooth points of $C_{0}$ other than $(0,1,0)$, then the complete canonical series on the normalization $\nu: C \to C_{0}$ is cut out by differentials of the form
 $$
 e(x,y) \frac{dx}{f_{y}}
 $$
@@ -581,14 +574,85 @@ conductor ideal $\ff_{C^{\circ}/C_{0}^{\circ}}$
 \end{theorem}
 
 \begin{proof}
+The proof of this result consists of four parts. 
+
+First, because we have assumed that $(0,1,0)$ does not lie on $C$, the function $x$ defines a
+ramified $d$-sheeted cover of $C$ to $\PP^{1}$. Because $C_{0}$ meets $L$ only in smooth
+points and the the differential $dx$ has a pole of order 2 at the point on $\PP^{1}$ at infinity,
+$dx$
+has polar locus twice the divisor $C_{0}\cap L = \nu^{-1}(C_{0}\cap L$. It follows that
+the differential
+$\varphi_0 := dx/f_{y}$ is regular, with a zero of order $d-3$,
+along the divisor of $C$ lying over $C_0\cap L$.
+
+Second, the function on $C^\circ_0$ defined by $x$  
+is a finite map to $\AA^1$, and thus the field of rational functions $\kappa(C) = \kappa(C^\circ_0)$ is a finite
+separable extension of $\CC(x)$. By~\cite[Section 16.5]{Eisenbud1995} that the module of differentials 
+$\omega_{\kappa(C)/\CC}$ is generated over $\kappa(C^\circ_0)$ by $dx$. Thus every rational
+differential form on $C$ can be expressed as a rational function
+times $dx$. Since $\varphi_{0} = dx/f_{y}$ vanishes to order $d-3$ along $C_{0}\cap L$,
+the regular differential forms on $C$ must be of the form $e(x,y)\varphi_{0}$ where
+$e(x,y)$ is a rational function of degree $\leq d-3$.
+ 
+A sophisticated form of Hurwitz Theorem that will be explained in Chapter~\ref{LinkageChapter}
+shows that the sheaf $\omega_{C}$ of regular differential forms on $C$ can be expressed as
+$$
+\sHom_{\PP^{1}}(\sO_{C}, \omega_{\PP^{1}}).
+$$
+Moreover, we will show in Theorem~\ref{general adjoint} that 
+$$
+\ff_{C/C_{0}} = 
+\frac{\sHom_{\PP^{1}}(\sO_{C_{0}}, \omega_{\PP^{1}})}
+{\sHom_{\PP^{1}}(\sO_{C}, \omega_{\PP^{1}})}.
+$$
+As will be explained in Chapter~\ref{LinkageChapter}, the numerator of this quotient
+$$
+\omega_{C_{0}}:= \sHom_{\PP^{1}}(\sO_{C_{0}}, \omega_{\PP^{1}}) = 
+\sHom_{\PP^{1}}(\sO_{C_{0}}, \sO_{\PP^{1}})(-2)
+$$
+ is properly called the dualizing module  of the singular curve $C_{0}$.
+Thus every regular differential form on $C$ can be expressed as an element of the conductor
+times some element of $\omega_{C_{0}}$. To prove the Theorem, we must show that
+$\varphi_{0}$ generates $\omega_{C_{0}}$ as a module over $\sO_{C_{0}}$.
+
+Passing to the field of rational functions $\kappa := \kappa(C)$, and noting that
+$\kappa(C) = \kappa(C_{0}) $ it is a well-known result from Galois theory that 
+$$
+Hom_{\kappa(\PP^{1})}(\kappa, \kappa(\PP^{1})
+$$
+is generated over $\kappa$ by the trace map $T$. Moreover, 
+because $\sO_{C_{0}}$ is integral over $\sO_{\PP^{1}}$, which is normal,
+$$
+T(\sO_{C_{0}})\subset \sO_{\PP^{1}}.
+$$
+
+Less well-known is the result from commutative
+algebra:
+\begin{fact}
+\begin{theorem}
+If $C_{0}^{\circ}$ is an affine plane curve defined by the
+equation $f(x,y)=0$ and such that $\CC[x,y]/(f)$ is finite over $\CC[x]$,
+then $Hom_{\CC[x]}(\CC[x,y]/(f), \CC[x])$ is generated by $(1/f_{y})T$.
+\end{theorem}
+See \cite[Theorem 15.1]{Kunz} for a proof using valuations, and \cite[Theorem A.1]{MR4026452} for a proof in
+a more general context.
+\end{fact}
+\end{proof}
+
+%Theorem~\ref{general differentials} can be generalized to Gorenstein singularities. However the example
+%of spatial triple point below shows that the general situation can look rather different: there the (local) conductor
+%is the maximal ideal at the singular point, but there are two linear conditions for a function on $C$ to descend
+%to $C_{0}$
+
+\fix{rescue some of the following}
 We focus for now on one singular point $q \in C_0$, with points $r_1,\dots,r_k \in C$ lying over $q$, and we wish to describe the conditions on a rational function $e(x,y)$ for  $e\varphi_0$ on $C$ to be regular
 at the points $r_{i}$, where
 $$
 \varphi_0 = \nu^* \frac{dx}{f_{y}},
 $$
-and $f$ is the defining equation of $C_0$ in $\AA^2$. As in the case of a smooth curve $C$, the differential
-form $\varphi_0$ has a zero of order $d-3$ at each of the points of $C$ lying over the intersection of $C_0$ with the line  $L = \PP^2\setminus \AA^2$
-at infinity. Thus we must must choose $e$ to be a function with poles on $C_0$ of order $\leq d-3$ on $L\cap C_0$ and no poles in $C^\circ$. Any such function is represented (modulo $(f)$) by 
+and $f$ is the defining equation of $C_0$ in $\AA^2$. 
+
+Any such function is represented (modulo $(f)$) by 
 \fix{Joe had simply asserted that e is a polynomial. This is true but needs a proof, as below}
 a rational function $e$ in $x,y$ of degree $\leq d-3$, since otherwise $edx$ would have poles at infinity. In addition, $\varphi_0$ has poles at the points $r_i$,
 so $e$ must satisfy some ``conditions of adjunction'' at each singular point.
@@ -614,7 +678,6 @@ as defined above is equal the conductor.
 To prove Theorem~\ref{general differentials}, it suffices to identify 
 $\sHom_{C_{0}^{\circ}}(\sO_{C_{0}}, \sO_{\PP^{1}})$
 with $\sO_{C_{0}}(dx/f_{y})$ in a way compatible with the computation above.
-\end{proof}
 
 %Let $m_i$ be the order of the pole of $\varphi_0$ at $r_i$. We can define the \emph{adjoint ideal} of $C_0$ at $q$ to be the fractional ideal
 %$$
