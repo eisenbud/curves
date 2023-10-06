@@ -128,11 +128,11 @@ $$
 %$$
 %In other words, we have found all the global regular differentials on $C$! We have
 %$$
-%H^0(K_C) = \left\{ \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3\right\};
+%H^0(K_C) = \left\{ \frac{e(x,y)dx}{f_y} \mid \deg e \leq d-3\right\};
 %$$
 %or, equivalently, the space of regular differentials on $C$ has basis $\{\varphi_{i,j} \}_{i+j \leq d-3}$, where
 %$$
-%\varphi_{i,j} =  \frac{x^iy^jdx}{\partial f/\partial y}
+%\varphi_{i,j} =  \frac{x^iy^jdx}{f_y}
 %$$
 %
 %We could have achieved the same result by using the adjunction formula (see Section~\ref{Adjunction Formula}: we have
@@ -303,9 +303,9 @@ conditions on forms of degree $d-3$.
 %
 %In any event, we see that
 %$$
-% \left\{ \nu^* \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3 \text{ and } e(q_i) = 0 \; \forall i \right\} \subset H^0(K_C).
+% \left\{ \nu^* \frac{e(x,y)dx}{f_y} \mid \deg e \leq d-3 \text{ and } e(q_i) = 0 \; \forall i \right\} \subset H^0(K_C).
 %$$
-%In the smooth case we were able to compare dimensions to conclude that this inclusion was an equality. We can do the same thing here. We have seen that the  rational 1-form $\varphi = \nu^*(\frac{dx}{\partial f/\partial y})$ has zeroes of order $d-3$ at the points $p_1,\dots,p_d$ and simple poles at the points $r_i$ and $s_i$ and is otherwise regular and nonzero. In other words, if we set $H = p_1+\dots + p_d$, the divisor
+%In the smooth case we were able to compare dimensions to conclude that this inclusion was an equality. We can do the same thing here. We have seen that the  rational 1-form $\varphi = \nu^*(\frac{dx}{f_y})$ has zeroes of order $d-3$ at the points $p_1,\dots,p_d$ and simple poles at the points $r_i$ and $s_i$ and is otherwise regular and nonzero. In other words, if we set $H = p_1+\dots + p_d$, the divisor
 %$$
 %(\varphi) = (d-3)H - \Delta.
 %$$
@@ -321,7 +321,7 @@ conditions on forms of degree $d-3$.
 %
 %On the other hand, the space of polynomials $e$ of degree $\leq d-3$ vanishing at the points $q_i$ has dimension at least $ \binom{d-1}{2} - \delta$; we conclude that
 %$$
-%H^0(K_C) =  \left\{ \nu^* \frac{e(x,y)dx}{\partial f/\partial y} \mid \deg e \leq d-3 \text{ and } e(q_i) = 0 \; \forall i \right\}.
+%H^0(K_C) =  \left\{ \nu^* \frac{e(x,y)dx}{f_y} \mid \deg e \leq d-3 \text{ and } e(q_i) = 0 \; \forall i \right\}.
 %$$
 
 \pict{Curve $C_{0}$ of genus 4 represented as a quintic with 2 nodes, showing a canonical divisor
@@ -502,36 +502,64 @@ $|mH-\Delta|.$
 If $R\subset R'$ is an inclusion of commutative rings, then the set
 $\ff_{R'/R} := \ann_{R}(R'/R)\subset R$, which is defined as an ideal of $R$, is also an ideal of $R'$; this follows
 because if $f\in \ff_{R'/R} $ and $r, r'\in R'$, so that $fr \in R$, then $(r'f)r = f(r'r) \in R$ as well. 
-If $R$ is a domain and $R'$ is a integral extension of $R$, then
- $\ff_{R'/R} \cong \Hom_{R}(\nu_{*}\sO_{C}, \sO_{C_{0}}$. To see this, note that $R and $R'$ become
- equal after tensoring with the quotient field $Q$ of $R$, and thus $Hom_{R}(R',R) \subset $Hom_{Q}(
- Q,Q) = Q$ may be identified
- with the set of elments $\alph\in Q\mid \alpha R' \subset R}. If $\alpha$ is in this set, then
-  $\alpha\cdot 1 = \alpha \in R$, as required.
+
+If $R_{0}$ is a domain and $R$ is a subring of the quotient field $Q(R)$ of $R$, then
+ $\ff_{R/R_{0}} \cong \Hom_{R_{0}}(R, R_{0})$. To see this, note that $R_{0}$ and $R$ become
+ equal after tensoring with $Q(R_{0})$ and thus 
+ $Hom_{R_{0}}(R,R_{0}) \subset Hom_{Q}(Q,Q) = Q$ 
+ may be identified
+ with the set of elements $\{\alpha\in Q\mid \alpha R \subset R_{0}\}$. If $\alpha$ is in this set, then
+  $\alpha\cdot 1 = \alpha \in R_{0}$, as required.
   
 Returning to the case of the curve $C_{0}$, it follows that the global sections of $mH -\Delta$ on $C$
-are, on each affine open set $U$, represented by the same ring elements that  are restrictions to $U$
+are, on each affine open set $U$, represented by the ring elements that  are restrictions to $U$
 of forms of degree $m$ contained in 
-the ideal $\ff_{C/C_{0}}$, and are thus elements in the linear series $mH-\Delta$. 
+the ideal $\ff_{C/C_{0}}$.Thus
+the global sections of the sheaf $\widetilde{\ff_{C/C_{0}}(m)}$ cut out the complete linear series $|mH-\Delta|$
+on $C$.
 
-It remains to prove the completeness. There is a natural  map
-$\ff_{C/C_{0}} \to \sHom_{\sO_{C_{0}}}(\nu_{*}\sO_{C}, \sO_{C_{0}}$, and the argument
-above shows that this map is an isomorphism on each affine open set, proving that
-$\ff_{C/C_{0}} \cong \sHom_{\sO_{C_{0}}}(\nu_{*}\sO_{C}, \sO_{C_{0}}
-
-More formally, 
+Write $S =\CC[x_{0}, x_{1}, x_{2}]$ for the homogeneous coordinate ring of $\PP^{2}$.
+It remains to prove that the homogeneous ideal $\ff_{C/C_{0}}$ maps
+surjectively to $H^{0}_{*}(\widetilde{\ff_{C/C_{0}}}$, and this amounts to the
+statement that the depth of $\ff_{C/C_{0}}$ as an $S$-module is (at least) 2.
+%There is a natural  map
+%$$
+%\ff_{C/C_{0}} \to \sHom_{\sO_{C_{0}}(\nu_{*}\sO_{C}, \sO_{C_{0}}},
+%$$ and the argument
+%above shows that this map is an isomorphism on each affine open set, proving that as sheaves
+%$$
+%\ff_{C/C_{0}} \cong \sHom_{\sO_{C_{0}}}(\nu_{*}\sO_{C}, \sO_{C_{0}}.
+%$$
+Set $R_{0} = H^{0}_{*}(\nu_{*} (\sO_{C_{0}})$ and $R = H^{0}_{*}(\nu_{*} (\sO_{C})$.
+We see from the general considerations above that
 $$
-H^{0}\sO_{C}(mH-\Delta) =H^{0}(\nu_{*}(\nu^{*}(\sO_{C_0}(m))-\Delta)) = H^{0}(\ff_{ C/C_{0}}(m)).
+\ff_{C/C_{0}} = Hom_{R_{0}}(R, R_{0}).
+$$ 
+A nonzerodivisor on a module $M$
+is automatically a nonzerodivisor on $Hom(P, M)$ for any $P$ since $(a\phi)(p) = a(phi(p))$ by definition. 
+Since $R_{0} = S/(F)$, it is a module of depth 2, and we may choose a regular sequence
+$a,b$ of elements in $R_{0}$. From the short exact sequence
 $$
-which works because $\ff_{ C/C_{0}}\subset \sO_{C_{0}}$ is also an invertible sheaf on $C$, and
-thus $\nu_{*}(\sO_{C}-Delta) =  \ff_{ C/C_{0}}$.
+0\rTo R_{0}\rTo^{x} R_{0}\rTo R_{0}/(a) \rTo 0
+$$
+we get a left exact sequence
+$$
+0\rTo Hom_{R_{0}}(R,R_{0})\rTo^{a} Hom_{R_{0}}(R,R_{0})\rTo Hom_{R_{0}}(R,R_{0}/(a)).
+$$
+Thus 
+$$
+Hom_{R_{0}}(R,R_{0})/aHom_{R_{0}}(R,R_{0}) \subset Hom_{R_{0}}(R,R_{0}/(a))
+$$
+and since $b$ is a nonzerodivisor on $Hom_{R_{0}}(R,R_{0}/(a))$, it is a nonzerodivisor
+on $Hom_{R_{0}}(R,R_{0})/aHom_{R_{0}}(R,R_{0})$ as well.
 \end{proof}
 
 Since we saw directly that the adjoint ideal was equal to the conductor ideal in the case of
-a nodal curve, this result gives another, less ad hoc proof, that the differentials on the normalization of a nodal curve
-are exactly those constructed in Theorem~\ref{canonical from adjoint 1}
+a nodal curve, this result gives another, less ad hoc proof, that the  liinear series $mH-\Delta$
+of on the normalization of a nodal curve
+are exactly those constructed in Proposition~\ref{adjoint completeness1}
 
-\subsection{Differentials and linear series on $C$}
+\subsection{Differentials}
 
 Let $C^\circ_0$ to be the intersection of $C_0$ with the open set $z \neq 0$, that is, with $\AA^2\subset \PP^2$, and assume that
 all the singular points of $C_0$ are contained in $C^\circ_0$.
@@ -541,43 +569,77 @@ is a \emph{finite} map to $\AA^1$, and thus the field of rational functions $\ka
 separable extension of $\CC(x)$. By~\cite[Section 16.5]{Eisenbud1995} that the module of differentials 
 $\omega_{\kappa(C)/\CC}$ is generated over $\kappa(C^\circ_0)$ by $dx$; that is, every rational
 differential form on $C$ can be expressed as a rational function
-times $dx$, and it suffices to find the fractional ideal $\sD_{C/C_{0}}$ of rational functions $\alpha$ such
-that $\alpha dx$ is a regular differential form on $C$. 
+times $dx$. 
+ 
+\begin{theorem}
+The complete canonical series on $C$ is cut out by differentials of the form
+$$
+e(x,y) \frac{dx}{f_{y}}
+$$
+where $e(x,y)$ is a polynomial of degree $\leq d-3$ contained in the 
+conductor ideal $\ff_{C^{\circ}/C_{0}^{\circ}}$
+\end{theorem}
 
+\begin{proof}
 We focus for now on one singular point $q \in C_0$, with points $r_1,\dots,r_k \in C$ lying over $q$, and we wish to describe the conditions on a rational function $e(x,y)$ for  $e\varphi_0$ on $C$ to be regular
 at the points $r_{i}$, where
 $$
-\varphi_0 = \nu^* \frac{dx}{\partial f/\partial y},
+\varphi_0 = \nu^* \frac{dx}{f_{y}},
 $$
 and $f$ is the defining equation of $C_0$ in $\AA^2$. As in the case of a smooth curve $C$, the differential
 form $\varphi_0$ has a zero of order $d-3$ at each of the points of $C$ lying over the intersection of $C_0$ with the line  $L = \PP^2\setminus \AA^2$
 at infinity. Thus we must must choose $e$ to be a function with poles on $C_0$ of order $\leq d-3$ on $L\cap C_0$ and no poles in $C^\circ$. Any such function is represented (modulo $(f)$) by 
-a polynomial $e$ in $x,y$ of degree $\leq d-3$, since otherwise $edx$ would have poles at infinity. In addition, $\varphi_0$ has poles at the points $r_i$,
-so $e$ must satisfy some ``conditions of adjunction," represented by belonging to an ideal---the adjoint ideal---at each singular point.
+\fix{Joe had simply asserted that e is a polynomial. This is true but needs a proof, as below}
+a rational function $e$ in $x,y$ of degree $\leq d-3$, since otherwise $edx$ would have poles at infinity. In addition, $\varphi_0$ has poles at the points $r_i$,
+so $e$ must satisfy some ``conditions of adjunction'' at each singular point.
 
-Let $m_i$ be the order of the pole of $\varphi_0$ at $r_i$. We can define the \emph{adjoint ideal} of $C_0$ at $q$ to be the ideal
-$$
-\mathfrak A_{q} = \left\{ e \in \cO_{\PP^2, q} \mid \ord_{r_i}(\nu^*e) \geq m_i \; \forall i \right\}.
-$$
 
-In other words, $\mathfrak A_q$ is the ideal of functions $e$ such that $\nu^* \frac{gdx}{\partial f/\partial y}$ is regular at all the points $r_i$. We define the \emph{adjoint ideal $\mathfrak A_{C/C_0}$ of $C_0$} to be the intersection of $A_q$ over all singular points  $q \in C_0$, 
-and the adjoint scheme $\adj(C_{0})$ is the scheme defined by $\mathfrak A_{C/C_0}$. We define
-the \emph{adjoint series of degree $m$} to be the linear series $H^0(\mathfrak A_{C/C_0}(m))$. 
-Thus the linear series of regular differential forms on  $C$ is the series cut on $C$ by the forms
+To show that the conditions of adjunction are satisfied exactly by polynomials (not rational functions)
+of degree $d-3$ that are contained in the conductor ideal
+$\ann_{\sO_{C_{0}^{\circ}}(\sO{C^{circ}}/\sO_{C^{circ}_{0}})}$,
+we wish to write the conditions of adjunction as a similar annihilator. We have
+$\omega_{C} = \sHom(\sO_{C}, \sO_{\PP^{1}}$, as explained in Chapter~\ref{LinkageChapter}.
+Now consider the $\sO_{C_{0}}$-module
 $$
-e(x,y) \varphi_0,
+M := \frac{ \sHom_{C_{0}^{\circ}}(\sO_{C_{0}}}{\sO_{\PP^{1}})}{\sHom(\sO_{C}, \sO_{\PP^{1}})})
 $$
-with $e$ a polynomial of degree $\leq d-3$ in the adjoint ideal $\fA_{C/C_0}$.
+Since the conductor is the annihilator of the quotient 
+$$
+\frac{\sO_{C}}{\sO_{C_{0}}}
+$$
+it also annihilates $M$.  We will prove in Theorem~\ref{adjoint equals conductor} that for any singular
+curve $C_{0}$ and finite map to $\PP^{1}$, with normalization $C\to C_{0}$, the annihilator of $M$
+as defined above is equal the conductor.
 
-We now use a result, That we will prove as Theorem~\ref{general adjoints}:
-\begin{theorem}
-If $C_0$ is a reduced irreducible plane curve, then the adjoint ideal $\fA_{C/C_0}$ is equal to the conductor ideal $\ff_{C/C_0}(m))$,
-and consequently the linear series on $C$ cut out by forms of degree $m$ vanishing on the adjoint scheme is complete for
-every $m$.
-\end{theorem}
+To prove Theorem~\ref{general differentials}, it suffices to identify 
+$\sHom_{C_{0}^{\circ}}(\sO_{C_{0}}, \sO_{\PP^{1}})$
+with $\sO_{C_{0}}(dx/f_{y})$ in a way compatible with the computation above.
+\end{proof}
 
-The examples in Section~\ref{pa and pg} are
-really computations of the conductor in some simple cases. Here are some further computations of the conductor:
+%Let $m_i$ be the order of the pole of $\varphi_0$ at $r_i$. We can define the \emph{adjoint ideal} of $C_0$ at $q$ to be the fractional ideal
+%$$
+%\mathfrak A_{q} = \left\{ e \hbox{ a rational function on $\PP^{2}$ defined on $C_{0}$}\mid \ord_{r_i}(\nu^*e) \geq m_i \; \forall i \right\}.
+%$$
+%
+%In other words, $\mathfrak A_q$ is the ideal of rational functions $e$ such that $\nu^* \frac{gdx}{f_y}$ is regular at all the points $r_i$. We define the \emph{adjoint ideal $\mathfrak A_{C/C_0}$ of $C_0$} to be the intersection of $A_q$ over all singular points  $q \in C_0$, 
+%and the adjoint scheme $\adj(C_{0})$ is the scheme defined by $\mathfrak A_{C/C_0}$. We define
+%the \emph{adjoint series of degree $m$} to be the linear series $H^0(\mathfrak A_{C/C_0}(m))$. 
+%Thus the linear series of regular differential forms on  $C$ is the series cut on $C$ by the forms
+%$$
+%e(x,y) \varphi_0,
+%$$
+%with $e$ a rational function of degree $\leq d-3$ in the adjoint ideal $\fA_{C/C_0}$.
+%
+%We now use a result, That we will prove as Theorem~\ref{general adjoints}:
+%\begin{theorem}
+%If $C_0$ is a reduced irreducible plane curve, then the adjoint ideal $\fA_{C/C_0}$ is equal to the conductor ideal $\ff_{C/C_0}(m))$,
+%and consequently the linear series on $C$ cut out by forms of degree $m$ vanishing on the adjoint scheme is complete for
+%every $m$.
+%%
+%\end{theorem}
+%
+%The examples in Section~\ref{pa and pg} are
+%really computations of the conductor in some simple cases. Here are some further computations of the conductor:
 
 
 \begin{example}[nodes and cusps]
