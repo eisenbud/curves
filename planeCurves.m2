@@ -8,7 +8,7 @@ newPackage(
           Authors => {{ Name => "David Eisenbud", 
 		  Email => "de@berkeley.edu", 
 		  HomePage => "eisenbud.io.github.com"}},
-	  PackageExports => {"IntegralClosure"},
+	  PackageExports => {"IntegralClosure", "Truncations"},
           AuxiliaryFiles => false,
           DebuggingMode => true
           )
@@ -16,9 +16,11 @@ newPackage(
       export {
 	  "Conductor", -- option
 	  "TargetRing", -- option
+	  "VariableName", --option
 	  "canonicalIdeal",
 	  "geometricGenus",
-	  "linearSeries"}
+	  "linearSeries",
+	  "projectiveImage"}
       
 canonicalIdeal = method(Options => {Conductor=>null})
 canonicalIdeal Ring := Ideal => o-> R ->(
@@ -42,7 +44,7 @@ canonicalIdeal Ideal := Ideal => o-> I ->(
 geometricGenus = method(Options => {Conductor=>null})
 geometricGenus Ideal := ZZ => o-> I -> (
     R := ring I;
-        if dim singularLocus  == 0 then cond := ideal 1_R else(
+        if dim singularLocus R == 0 then cond := ideal 1_R else(
           if o.Conductor === null then cond = conductor R else 
 	  cond = o.Conductor);
     c := canonicalIdeal (I, Conductor => cond);
@@ -65,11 +67,12 @@ linearSeries (Ideal, Ideal) := Ideal => o-> (D0,Dinfty) ->(
     apply (Hs_*, H -> (ideal H):(intersect(A,Dinfty)))
     )
 
-projectiveImage = method(Options =>{Conductor => null, TargetRing => null})
+projectiveImage = method(
+    Options =>{Conductor => null, TargetRing => null, VariableName => "X"})
 projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
 --Produce the ideal of the image under the linear series |D0-Dinfty|
     R := ring D0;
-    if dim singularLocus  == 0 then cond := ideal 1_R else(
+    if dim singularLocus R == 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else 
     cond = o.Conductor);
     D0plus := intersect(D0,cond);
@@ -83,7 +86,7 @@ projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
 
     s := numcols sections;
     kk := coefficientRing R;
-    X := symbol X;
+    X := o.VariableName;
     SS = kk[X_0..X_(s-1)]);
     
     ker map(R, SS, sections)
@@ -179,12 +182,21 @@ restart
 load "planeCurves.m2"
 kk = QQ
 S = kk[x,y,z]
+sing = (ideal vars S)^2 -- triplepoint
+C3 = rand (5, sing) -- quintic with ord 3-point; genus 3, hyperell.
 C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
 C2 = ideal(x^2+y^2+z^2)
+sing = (ideal (x,y))^2 -- doublePoint
+sing = (ideal (x,y))^3 -- triplePoint
+C3 = random(5, sing) -- quintic with ord 3-point; genus 3, hyperell.
 use S
 R = S/C1
 R = S/C2
-D0 = ideal (z^2)
+R = S/C3
+geometricGenus R
+conductor R
+
+D0 = ideal (z^4)
 Dinfty = ideal (x+y+z)
 Ds = linearSeries(D0,Dinfty);#Ds
 I = projectiveImage(D0, Dinfty)
