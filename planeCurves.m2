@@ -1,5 +1,3 @@
---Given C_0 \subset \PP^2, compute the canonical series on the normalization and determine linear equivalence.
---
 newPackage(
           "PlaneCurveLinearSeries",
           Version => "0.1",
@@ -15,10 +13,9 @@ newPackage(
 
       export {
 	  "Conductor", -- option
-	  "TargetRing", -- option
-	  "VariableName", --option
 	  "canonicalIdeal",
 	  "geometricGenus",
+	  "sections", 
 	  "linearSeries",
 	  "projectiveImage"}
       
@@ -26,9 +23,13 @@ canonicalIdeal = method(Options => {Conductor=>null})
 canonicalIdeal Ring := Ideal => o-> R ->(
     --input: homogeneous coordinate ring of a plane curve
     --output: canonical ideal of the desingularization, as an ideal of R
-    if dim singularLocus R == 0 then cond := ideal 1_R else(
-          if o.Conductor === null then cond = conductor R else 
-	  cond = o.Conductor);
+    cond := o.Conductor;
+    if dim singularLocus R <= 0 then cond = ideal 1_R;
+    if cond === null then cond = conductor R;
+
+    if dim singularLocus R <= 0 then cond := ideal 1_R else
+      if o.Conductor === null then cond = conductor R else 
+      cond = o.Conductor;
     d := degree R;
     if d-3<0 then ideal 0_R else
         ideal image basis(d-3, cond)
@@ -43,21 +44,37 @@ canonicalIdeal Ideal := Ideal => o-> I ->(
 
 geometricGenus = method(Options => {Conductor=>null})
 geometricGenus Ideal := ZZ => o-> I -> (
-    R := ring I;
-        if dim singularLocus R == 0 then cond := ideal 1_R else(
-          if o.Conductor === null then cond = conductor R else 
-	  cond = o.Conductor);
+    R := (ring I)/I;
+    cond := o.Conductor;
+    if dim singularLocus R <= 0 then cond = ideal 1_R;
+    if cond === null then cond = conductor R;
+
     c := canonicalIdeal (I, Conductor => cond);
     if c == 0 then 0 else numgens canonicalIdeal R)
 
 geometricGenus Ring := ZZ => o-> R -> geometricGenus ideal R
 
 linearSeries = method (Options => {Conductor=>null})
-linearSeries (Ideal, Ideal) := Ideal => o-> (D0,Dinfty) ->(
+linearSeries Ideal := Ideal => o-> D0 ->(
     R := ring D0;
-    if dim singularLocus R == 0 then cond := ideal 1_R else(
+    if dim singularLocus R <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else 
     cond = o.Conductor);
+    
+    D0plus := intersect(D0,cond);
+    m := min flatten degrees D0plus;
+    G := ideal random(m, D0plus);
+    A := G:D0plus;
+    Hs := trim ideal image basis (m, intersect(A,cond));
+    apply (Hs_*, H -> (ideal H):(intersect(A,cond)))
+    )
+
+linearSeries (Ideal, Ideal) := Ideal => o-> (D0,Dinfty) ->(
+    R := ring D0;
+    if dim singularLocus R <= 0 then cond := ideal 1_R else(
+    if o.Conductor === null then cond = conductor R else 
+    cond = o.Conductor);
+
     D0plus := intersect(D0,cond);
     m := min flatten degrees D0plus;
     G := ideal random(m, D0plus);
@@ -67,27 +84,43 @@ linearSeries (Ideal, Ideal) := Ideal => o-> (D0,Dinfty) ->(
     apply (Hs_*, H -> (ideal H):(intersect(A,Dinfty)))
     )
 
-projectiveImage = method(
-    Options =>{Conductor => null, TargetRing => null, VariableName => "X"})
-projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
+sections = method(Options =>{Conductor => null})
+sections(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
 --Produce the ideal of the image under the linear series |D0-Dinfty|
     R := ring D0;
-    if dim singularLocus R == 0 then cond := ideal 1_R else(
+    if dim singularLocus R <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else 
     cond = o.Conductor);
+
     D0plus := intersect(D0,cond);
     m := min flatten degrees D0plus;
     G := ideal random(m, D0plus);
     A := G:D0plus;
     baseLocus := intersect(A, Dinfty, cond);
-    sections := gens trim truncate(m, baseLocus);
---    sections := gens image basis(m,baseLocus);
-    if o.TargetRing =!=null then SS := TargetRing else(
+--  gens trim truncate(m, baseLocus);
+    gens image basis(m,baseLocus)
+)
+
+projectiveImage = method(Options =>{Conductor => null})
+projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
+--Produce the ideal of the image under the linear series |D0-Dinfty|
+    R := ring D0;
+    if dim singularLocus R <= 0 then cond := ideal 1_R else(
+    if o.Conductor === null then cond = conductor R else 
+    cond = o.Conductor);
+
+    D0plus := intersect(D0,cond);
+    m := min flatten degrees D0plus;
+    G := ideal random(m, D0plus);
+    A := G:D0plus;
+    baseLocus := intersect(A, Dinfty, cond);
+--    sections := gens trim truncate(m, baseLocus);
+    sections := gens image basis(m,baseLocus);
 
     s := numcols sections;
     kk := coefficientRing R;
-    X := o.VariableName;
-    SS = kk[X_0..X_(s-1)]);
+    X := symbol X;
+    SS := kk[X_0..X_(s-1)];
     
     ker map(R, SS, sections)
     )
@@ -180,24 +213,39 @@ TEST///
 end--
 restart
 load "planeCurves.m2"
-kk = QQ
+kk = ZZ/101
 S = kk[x,y,z]
 sing = (ideal vars S)^2 -- triplepoint
-C3 = rand (5, sing) -- quintic with ord 3-point; genus 3, hyperell.
 C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
 C2 = ideal(x^2+y^2+z^2)
-sing = (ideal (x,y))^2 -- doublePoint
+--sing = (ideal (x,y))^2 -- doublePoint
 sing = (ideal (x,y))^3 -- triplePoint
-C3 = random(5, sing) -- quintic with ord 3-point; genus 3, hyperell.
+C3 = ideal random(5, sing) -- quintic with ord 3-point; genus 3, hyperell.
 use S
 R = S/C1
 R = S/C2
 R = S/C3
-geometricGenus R
+geometricGenus C3
+ideal z
+(linearSeries ideal z^2)
+gens trim ideal sections(ideal z^2, ideal 1_R)
+ideal R
 conductor R
+
+projectiveImage (ideal z^2, ideal 1_R)
+minimalBetti oo
 
 D0 = ideal (z^4)
 Dinfty = ideal (x+y+z)
 Ds = linearSeries(D0,Dinfty);#Ds
 I = projectiveImage(D0, Dinfty)
-betti res I
+I = projectiveImage (ideal (z^2), ideal 1_R);
+numgens
+minimalBetti I
+
+
+from tejas:
+S = ZZ/7[x,y,z,w]
+I = (x^2,y^2,z^2,w^2,z*w,2*x*z+y*z,x*w+y*w)
+M = S^1/I
+minimalBetti M
