@@ -15,7 +15,7 @@ although any smooth curve can be embedded in $\PP^r$ for any $r \geq 3$, most cu
 However, as is shown in Section~\ref{good projections}, we can embed $C$ as a curve $ C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $C$ birationally onto its image $C_0$, called a plane model of $C$. The curve $C_0$ typically has singularities, and $C$ is the normalization of $C_0$. Brill and Noether wanted to prove the Riemann-Roch theorem for $C$ by formulating and proving a related theorem for $C_0$. In particular, they tried to characterize linear equivalence of divisors on $C$ in terms of certain ``clusters'' of points---we would say 0-dimensional subschemes---of $C_0$. 
 
 To carry out this program, a key step was to show that if $D\subset C_0$ is contained in the intersection
-$D'$ of $C_0$ and some other plane curve $C_0'$, then the difference 
+$D'$ of $C_0$ and some other plane curve $C_0'$, then a divisor 
 $E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and Noether seem simply to have assumed that this is so. A bit later Frances Sowerby Macaulay proved that this is in fact possible  and also understood that it would not generally be possible if $D'$ were the intersection of three or more curves.\footnote{In modern terms, the intersection of two curves is Gorenstein; the intersection of 3 is generally not}
 
 Macaulay exploited this theory of residuation  to prove what he called the ``Generalized Riemann-Roch Theorem'' (now widely known as the ``Cayley Bacharach Theorem'', after some precursors). This early work of Macaulay led directly to his definitions of  ``perfection'' (a homogeneous ideal
@@ -196,8 +196,6 @@ a form of degree $m$ is itself the divisor of a form of degree $m$; that is, pla
 arithmetically Cohen-Macaulay.
 \end{proposition}
 
-%\fix{if this chapter comes before ch 3, we need to say more.}
-
  The results for singular curves explained later in this chapter
  depend on strengthenings  of this condition.
  
@@ -250,7 +248,7 @@ criticisms involving many mathematicians, he and Brill gave a complete proof in~
 \section{Nodal plane curves}\label{nodal curves section}
 
 The methods above can be applied, with one change, when $C_{0}\subset \PP^{2}$
-is a nodal curve.
+is a nodal curve. 
 
 Let $\nu: C\to C_{0}\subset \PP^{2}$ be the normalization morphism from a smooth curve,
 and let $B\subset C_{0}$ be a subscheme.
@@ -337,14 +335,42 @@ conditions on forms of degree $d-3$.
  Otherwise the space of differential forms on the normalization of $C_{0}$ would be too large.
 \end{proof}
 
+Once can useTheorem~\ref{canonical from adjoint 1} to re-embed a plane curve of 
+geometric genus $g$ as a canonical
+curve in $\PP^{g-1}$:
+
+\begin{corollary}
+ The canonical ideal of a nodal plane curve of degree $d$ is the ideal of polynomial relations
+ among the forms of degree $d-3$ that vanish at the nodes of the curves. \qed
+\end{corollary}
 \pict{Curve $C_{0}$ of genus 4 represented as a quintic with 2 nodes, showing a canonical divisor
 representeed as the intersection of $C_{0}$
 with a conic through 2 nodes}
 
 \subsection{Linear series on a nodal plane curve}\label{linear series on nodal plane curves}
 
-Given a divisor $D = D_{+}-D_{-}$ on $C$, we will compute the complete linear series $|D|$, using a birational map $\nu$ from 
-$C$ to the nodal curve $C_0$. Let $\adj(C_{0})$ be the set of nodes in $C$ and let $\Delta$ be the preimage of $\adj(C_{0})$ in $C$ of the set of nodes of $C_{0}$.
+Since $C_{0}$ is singular, not every effective divisor on $C$ is the preimage of an
+effective divisor on $C_{0}$. As an example, one may take a single point lying over a node. However,
+we can still represent every divisor on $C$ as the preimage of a divisor on $C_{0}$ up to linear
+equivalence, and the same goes for any reduced curve:
+
+\begin{lemma}
+Let $\nu: C\to C_{0}$ be the normalization of any reduced projective curve. If $D$ is any divisor
+on $C$, then $D$ is linearly equivalent to the pullback of a Cartier divisor on $C_{0}$.
+\end{lemma}
+
+\begin{proof}
+It suffices to consider the case when $D$ is effective. Choose a point $p$ in the
+smooth locus of $C_{0}$. For large $m$ the linear series $D+m\nu^{-1}(p)$ is base-point free,
+so there is a divisor $D'~D+m\nu^{-1}(p)$ such that $D'$ is contained in the preimage of the 
+smooth locus of $C_{0}$. It follows that $\nu^{-1}(\nu(D')-mp) ~D$, and $\nu(D')-mp$ is contained
+in the smooth locus of $C_{0}$, so it is Cartier.
+\end{proof}
+
+Returning to the case of a nodal plane curve $C_{0}$ and its normalization $\nu: C\to C_{0}$,
+suppose that $D$ is a divisor on $C$ that is the pullback of a difference of Cartier
+divisors $D_{+}-D_{-}$ on $C_{0}$. We will compute the complete linear series $|D|$.
+Let $\adj(C_{0})$ be the set of nodes in $C$ and let $\Delta$ be the preimage of $\adj(C_{0})$ in $C$.
 
 \begin{theorem}\label{linear series on nodal curves}
 Let $D = D_{+}-D_{-}$ be a divisor on $C$, and let $G$ be a form on $\PP^{2}$ 
@@ -527,10 +553,19 @@ defined by the pullback of $\ff_{C/C_0}$ to $C$.
 Let $D = D_{+}-D_{-}$ be a divisor on $C$, and let $G$ be a form on $\PP^{2}$ in $\ff(C_{0})$ whose pullback to $C$
 vanishes on $D_{+}$ but on all of $C$. 
 
-If $G$ has degree $m$ and $A = (\nu^{*}G)-D_{+}-\Delta$, then every effective divisor on
+If $G$ has degree $m$ and $(\nu^{*}G) = D_{+}+A+\Delta$, then every effective divisor on
 $C$ linearly equivalent to $D$ (if any) has the form $(\nu^*H)-D_{-}-A-\Delta$ for some $H$ of degree $m$
- vanishing on $\adj(C_{0})+A$.
+ vanishing on $\adj(C_{0})+A$. Thus, the global sections of $H^{0}(\sO_{C}(D)$ can be written
+as divisors cut by forms of degree $m$ in $\ff_{C/C_{0}}$ with base points at $D_{-}+A+\Delta$.
 \end{theorem}
+
+The following consequence allows one to embed $C$ via the linear series $|D|$:
+
+\begin{corollary}
+With notation as in Theorem~\ref{linear series on arbitrary curves}, the ideal of the image of
+$C$ with respect to the linear series $|D|$ is the ideal of polynomial relations among the forms
+of degree $m$ in $\ff_{C/C_{0}}$ that vanish on $D_{-}+A$.\qed
+\end{corollary}
 
 \begin{proof}
 If $H\in \ff(C_{0})$ vanishes on $A$ but not on all of $C_{0}$, then as before
@@ -541,11 +576,6 @@ So $D' = (\nu^*{H})-D_{-}-A-\Delta$ is linearly equivalent to $D$. The proof tha
 divisor $D'$ linearly equivalent to $D$ has this form is the content of
 Theorem~\ref{conductor completeness} below.
 \end{proof}
-%\begin{theorem}
-%If $C_{0}$ is a reduced, irreducible curve in $\PP^{2}$ and $\sV$ is a complete linear series
-%on the normalization $\nu: C\to C_{0}$ then for all sufficiently large integers $m$ there is an effective Cartier divisor $D_{m}$  of $C_{0}$ 
-%such that $\sV$ is the linear series cut out on $C$ by curves of degree $m$ containing $D_{m}+\adj(C)$.
-%\end{theorem}
 
 
 The following result was known classically as the \emph{completeness of the adjoint series}.
@@ -630,8 +660,21 @@ where $e(x,y)$ is a polynomial of degree $\leq d-3$ contained in the
 conductor ideal $\ff_{C^{\circ}/C_{0}^{\circ}}$
 \end{theorem}
 
+As in the case of nodal curves, one can useTheorem~\ref{general differentials} to re-embed a plane curve of 
+geometric genus $g$ as a canonical
+curve in $\PP^{g-1}$:
+
+\begin{corollary}
+ The canonical ideal of a plane curve $C_{0}$ of degree $d$ with normalization $C$ 
+ is the ideal of polynomial relations
+ among the forms of degree $d-3$ that in the conductor ideal $\ff_{C/C_{0}}$. \qed
+\end{corollary}
+\pict{Curve $C_{0}$ of genus 4 represented as a quintic with 2 nodes, showing a canonical divisor
+representeed as the intersection of $C_{0}$
+with a conic through 2 nodes}
+
 \begin{proof}
-The proof of this result consists of four parts. 
+The proof of Theorem~\ref{general differentials} consists of four parts. 
 
 First, because we have assumed that $(0,1,0)$ does not lie on $C$, the function $x$ defines a
 ramified $d$-sheeted cover of $C$ to $\PP^{1}$. Because $C_{0}$ meets $L$ only in smooth

@@ -6,7 +6,7 @@ newPackage(
           Authors => {{ Name => "David Eisenbud", 
 		  Email => "de@berkeley.edu", 
 		  HomePage => "eisenbud.io.github.com"}},
-	  PackageExports => {"IntegralClosure", "Truncations"},
+	  PackageExports => {"IntegralClosure"},
           AuxiliaryFiles => false,
           DebuggingMode => true
           )
@@ -27,9 +27,6 @@ canonicalIdeal Ring := Ideal => o-> R ->(
     if dim singularLocus R <= 0 then cond = ideal 1_R;
     if cond === null then cond = conductor R;
 
-    if dim singularLocus R <= 0 then cond := ideal 1_R else
-      if o.Conductor === null then cond = conductor R else 
-      cond = o.Conductor;
     d := degree R;
     if d-3<0 then ideal 0_R else
         ideal image basis(d-3, cond)
@@ -54,6 +51,7 @@ geometricGenus Ideal := ZZ => o-> I -> (
 
 geometricGenus Ring := ZZ => o-> R -> geometricGenus ideal R
 
+
 linearSeries = method (Options => {Conductor=>null})
 linearSeries Ideal := Ideal => o-> D0 ->(
     R := ring D0;
@@ -65,8 +63,8 @@ linearSeries Ideal := Ideal => o-> D0 ->(
     m := min flatten degrees D0plus;
     G := ideal random(m, D0plus);
     A := G:D0plus;
-    Hs := trim ideal image basis (m, intersect(A,cond));
-    apply (Hs_*, H -> (ideal H):(intersect(A,cond)))
+    Hs := trim ideal image basis (m, intersect{A,cond});
+   apply (Hs_*, H -> (ideal H):(intersect(A,cond)))
     )
 
 linearSeries (Ideal, Ideal) := Ideal => o-> (D0,Dinfty) ->(
@@ -79,11 +77,11 @@ linearSeries (Ideal, Ideal) := Ideal => o-> (D0,Dinfty) ->(
     m := min flatten degrees D0plus;
     G := ideal random(m, D0plus);
     A := G:D0plus;
-    Dinftyplus := intersect(Dinfty, cond);
-    Hs := trim ideal image basis (m, intersect(A,Dinftyplus));
-    apply (Hs_*, H -> (ideal H):(intersect(A,Dinfty)))
+    Hs := trim ideal image basis (m, intersect{A,Dinfty, cond});
+ apply (Hs_*, H -> (ideal H):(intersect(A,Dinfty)))
     )
 
+    
 sections = method(Options =>{Conductor => null})
 sections(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
 --Produce the ideal of the image under the linear series |D0-Dinfty|
@@ -100,6 +98,10 @@ sections(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
 --  gens trim truncate(m, baseLocus);
     gens image basis(m,baseLocus)
 )
+
+sections Ideal := Matrix => o-> D0 ->(
+    sections(D0, ideal(1_(ring D0)))
+    )
 
 projectiveImage = method(Options =>{Conductor => null})
 projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
@@ -123,6 +125,10 @@ projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
     SS := kk[X_0..X_(s-1)];
     
     ker map(R, SS, sections)
+    )
+
+projectiveImage Ideal := Ideal => o -> D0 ->(
+    projectiveImage(D0, ideal(1_(ring D0)))
     )
 
  -* Documentation section *-
@@ -192,7 +198,8 @@ S = kk[x,y,z]
 C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
 C2 = ideal(x^2+y^2+z^2)
 C3 = ideal (x^4+y^4+z^4)
-
+sing = (ideal(x,y))^3
+C4 = ideal random(5, sing) -- quintic with ord 3-point; genus 3, hyperell.
 canonicalIdeal(S/C1)
 canonicalIdeal(S/C2)
 canonicalIdeal(S/C3)
@@ -204,6 +211,7 @@ canonicalIdeal C3 == ideal vars ((ring C3)/C3)
 geometricGenus C1 == 0
 geometricGenus C2 == 0
 geometricGenus C3 == 3
+geometricGenus C4 == 3
 ///
     
 TEST///
@@ -215,17 +223,25 @@ restart
 load "planeCurves.m2"
 kk = ZZ/101
 S = kk[x,y,z]
-sing = (ideal vars S)^2 -- triplepoint
+use S
 C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
 C2 = ideal(x^2+y^2+z^2)
+
 --sing = (ideal (x,y))^2 -- doublePoint
 sing = (ideal (x,y))^3 -- triplePoint
-C3 = ideal random(5, sing) -- quintic with ord 3-point; genus 3, hyperell.
 use S
-R = S/C1
-R = S/C2
+C3 = ideal random(6, sing) -- quintic with ord 3-point; genus 3, hyperell.
+use S
 R = S/C3
 geometricGenus C3
+geometricGenus R
+omega = canonicalIdeal R
+numgens omega
+(linearSeries ideal z) -- does not return Cartier divisors
+sections ideal z -- right aswer
+
+
+projectiveImage oo
 ideal z
 (linearSeries ideal z^2)
 gens trim ideal sections(ideal z^2, ideal 1_R)
