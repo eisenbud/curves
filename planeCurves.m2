@@ -227,7 +227,7 @@ use S
 C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
 C2 = ideal(x^2+y^2+z^2)
 
---sing = (ideal (x,y))^2 -- doublePoint
+sing = (ideal (x,y))^2 -- doublePoint
 sing = (ideal (x,y))^3 -- triplePoint
 use S
 C3 = ideal random(6, sing) -- quintic with ord 3-point; genus 3, hyperell.
@@ -239,7 +239,11 @@ omega = canonicalIdeal R
 numgens omega
 (linearSeries ideal z) -- does not return Cartier divisors
 sections ideal z -- right aswer
+projectiveImage ideal (x^3)
+degree singularLocus projectiveImage ideal (z^2)
+genus oo
 
+geometricGenus oo
 
 projectiveImage oo
 ideal z
@@ -258,10 +262,3 @@ I = projectiveImage(D0, Dinfty)
 I = projectiveImage (ideal (z^2), ideal 1_R);
 numgens
 minimalBetti I
-
-
-from tejas:
-S = ZZ/7[x,y,z,w]
-I = (x^2,y^2,z^2,w^2,z*w,2*x*z+y*z,x*w+y*w)
-M = S^1/I
-minimalBetti M
