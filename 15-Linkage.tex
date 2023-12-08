@@ -247,18 +247,6 @@ normalization of $C$, that is, a finite map $f: C\to \PP^1$.
 We shall see in Theorem~\ref{canonical as Hom} below that $\omega_C \cong \sHom_{\PP^1}(\sO_C,\omega_{\PP^1})$, regarded as a sheaf on $C$ (in Theorem~\ref{canonical as Hom} this is the sheaf $f^{!}\omega_{\PP^{1}}$).
 Since $C$ is purely 1-dimensional, $\sO_{C}$ is torsion-free as an $\sO_{\PP^{1}}$-module, and is thus locally 
 free. 
-%\begin{aligned}
-%\sHom_{C}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}),\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}) ) 
-%%&=\sHom_{C}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}), \sHom_{\PP^1}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}),\sO_{\PP^1}(-2)))\\
-%&\cong \sHom_{\PP^1}(\sHom_{\PP^1}(\sO_C,\omega_{\PP^1}), \omega_{\PP^{1}}))\\
-%&= \sHom_{\PP^1}(\sO_C,\Hom_{\PP^{1}}(\omega_{\PP^1}), \omega_{\PP^{1}})\\
-%&= \sHom_{\PP^1}(\sO_C,\sO_{\PP^{1}})
-%\end{aligned}
-%$$
-%
-%Since $C$ is purely 1-dimensional it is torsion-free as an $\sO_{\PP^{1}}$-module,
-%(more precisely, $
-%and thus is locally free as an $\sO_{\PP^{1}}$-module. 
 Also, since $\PP^{1}$ is smooth, $\omega_{\PP^{1}}$ is locally
 isomorphic to $\sO_{\PP^{1}}$.
 But if $B$ is any commutative ring and $A$ is a $B$-algebra that is finitely generated and free as a $B$-module, then the composite map 
@@ -275,7 +263,7 @@ $$
 \begin{aligned}
 H^1(\sL^{-1}) &= \Hom_C(\sL^{-1}, \omega_C))\\
 &= H^0(\sHom_C(\sL^{-1}, \omega_C))\\
-&= H^0(\sL\otimes \omega_{C}).
+&= H^0(\sL\otimes_C \omega_{C}).
 \end{aligned}
 $$
 Using item 1, we have:
@@ -284,15 +272,8 @@ $$
 H^0 (\sL^{-1})
 &= H^0 (\sL^{-1}\otimes_{C}\sO_{C})\\
 &= H^0 \bigl(\sL^{-1}\otimes_{C}\sHom_C(\omega_{C}, \omega_{C})\bigr) \\
-&= Hom_{C}(\sL\otimes \omega_{C},  \omega_{C}))\\
+&= \Hom_{C}(\sL\otimes_C \omega_{C},  \omega_{C}))\\
 &= H^{1}(\sL\otimes_{C}\omega_{C}) 
-%
-%
-%H^{1}(\sL^{-1}\otimes_{C}\omega_{C}) 
-%&= H^0(\sHom_{C}(\sL^{-1}\otimes_C \omega_{C},  \omega_{C}))\\
-%&= H^0 \bigl(\sL\otimes_{C}\sHom_C(\omega_{C}, \omega_{C})\bigr) \\
-%&=H^0 (\sL\otimes_{C}\sO_{C})\\
-%&=H^0 (\sL). 
 \end{aligned}
 $$
  \end{proof}
@@ -303,7 +284,7 @@ Dualizing sheaves do exist on any projective Cohen-Macaulay scheme. We have alre
 in three different cases:
 \begin{itemize}
  \item If $X$ is a smooth scheme of dimension $d$ over $\CC$ then $\omega_{X}= \wedge^{d} \Omega_{X/\CC}$
-is a dualizing sheaf~(\cite[Hartshorne[****]{Hartshorne1977} or  \cite[p. 648, 708]{Griffiths-Harris1978}). 
+is a dualizing sheaf~(\cite[Hartshorne[Section III.7]{Hartshorne1977} or  \cite[p. 648, 708]{Griffiths-Harris1978}). 
 \item If $f: X\to Y$ is a map of smooth curves, then $\omega_{X} = f^{*}(\omega_{Y})(\ram_{X/Y})$, where
 $\ram$ denotes the ramification divisor.
 \item If $X\subset Y$ is a Cartier divisor on a surface, then $\omega_{X} = \omega_{Y}(X)\mid_{X}$.
@@ -312,12 +293,12 @@ $\ram$ denotes the ramification divisor.
 How can such different looking formulas all be correct? Grothendieck provided a general scheme
 that unifies them and gives many more. 
 To understand what is needed for the general case, we first consider a setting generalizing Hurwitz' Theorem.
-Suppose that $X\to Y$ is a finite map of projective schemes, and that $Y$ has a dualizing sheaf $\omega_{Y}$.
+Suppose that $X\to Y$ is a finite map of projective schemes, and that $\sF$ is a coherent sheaf on $X$.
 
 If we restrict ourselves to open affine subsets
 $U := \Spec A\subset X$ mapping to $V:= \Spec B\subset Y$ via the map of rings $f^{*}:B\to A$, then 
-$F := \sF_{U}$ is an $A$-module and $o_{Y}: = \omega_{Y}(V)$ is a $B$ module. Moreover,
-$f_*{F}$ is just $F$ regarded as a $B$-module via the map $f^{*}$.
+$F := \sF_{U}$ is an $A$-module. Moreover,
+$f_*{F} := f_*(\sF)(V)$ is just $F$ regarded as a $B$-module via the map $f^{*}$.
 
 For any $B$-module $M$ the module $\Hom_{B}(A, M)$ has a natural structure of $A$-module,
 where $(a\phi)(m)$ is defined to be $\phi(am)$. The functor $f^{!}(-) := \Hom_{B}(A, -): mod_{B}:\to mod_{A}$ 
@@ -326,25 +307,25 @@ which means that there is a natural isomorphism of functors
 $$
 \Hom_{B}(f_{*}F, -) \cong \Hom_{A}(F, \Hom_{B}(A, -)) = Hom_{A}(F, f^{!}(-)).
 $$
-In particular 
+
+In particular if $Y$ has dualizing sheaf $\omega_Y$ and we set $o_Y := \omega_Y(V)$, then
 $
 \Hom_{B}(f_{*}F, o_{Y}) \cong \Hom_{A}(F, f^{!}o_{Y}),
 $
 Also, there is a natural transformation $\eta$ from $ f_{*}f^{!}$ to the identity functor given by the formula
-takes the form
 $$
 \eta: f_{*}f^{!}(M) = f_{*}(\Hom_{B}, (A,M)) = \Hom_{B}, (A,M) \to M:\quad \eta(\phi) = \phi(1)
 $$
 for any $A$-module $M$. 
 The transformation $\eta$ called the \emph{counit} of the adjoint pair $(f_{*}, f^{!})$.
 
-We also write  $f^{!}(-)$ for the sheafification of the the functor 
+We also write  $f^{!}(-)$ for the sheafification of  the functor 
 $\Hom_{B}(A,-)$. Again $f^{!}$ is right adjoint to $f_{*}$ on coherent sheaves,
 and again there are natural maps $\eta:f_{*}f^{!}(\sF) \to\sF$. 
 
 \begin{theorem}\label{canonical as Hom}
 Let $f: X \to Y$ be a finite map of $d$-dimensional projective schemes. If $Y$ has a dualizing sheaf $\omega_{Y}$,
-with residue map $\rho_{Y}: H^{d}(\omega_{Y}) \to \CC$,
+with residue map $\eta_{Y}: H^{d}(\omega_{Y}) \to \CC$,
 then 
  $$
 \omega_{X} := f^{!}\omega_{Y},
@@ -357,14 +338,14 @@ where $\eta$ is the counit of the adjoint pair $(f_{*},f^{!})$, is a dualizing s
 \end{theorem}
 
 \begin{proof}
-Let $\sF$ be a coherent sheaf on $X$. Since $f$ is finite, we have $H^{d}(\sF) = H^{d}(f_{*}(\sF)$. Thus,
+Let $\sF$ be a coherent sheaf on $X$. Since $f$ is finite, we have $H^{d}(\sF) = H^{d}(f_{*}(\sF))$. Thus,
 since $f^{!}(-)$ is a right adjoint of $f_{*}$ there are natural isomorphisms
 $$
 H^{d}(\sF) = H^{d}(f_{*}\sF) \cong^{\rho_{Y}} \Hom_{Y}(f_{*}\sF, \omega_{Y})^{\vee} \cong 
 \Hom_{X}(\sF, f^{!}\omega_{Y})^{\vee},
 $$
 where $\cong^{\rho_{Y}}$ is the isomorphism induced by $\rho_{Y}$. One can check that the composite
-isomorphism is the one induced by $\rho_{X}$, so $f^{!}(\omega_{Y})$, completing the proof.\end{proof}
+isomorphism is the one induced by $\rho_{X}$, so $\omega_X = f^{!}(\omega_{Y})$, completing the proof.\end{proof}
 
 \begin{fact}
  Given this theorem, it seems natural to look for an adjoint functor $f^{!}$ for a wider class of morphisms
@@ -379,7 +360,9 @@ for all the purposes of this book and more:
 \begin{theorem}\label{general adjunction}
 Suppose that $f: X\to Y$ is a finite map of projective schemes. If $Y$ is
 Gorenstein with dualizing module $\omega_{Y}$, then
-$f^{!}(\omega_{Y}) \cong \sExt^{\dim Y-\dim X}_{Y}(\sO_{X}, \omega_{Y})$
+$$
+f^{!}(\omega_{Y}) \cong \sExt^{\dim Y-\dim X}_{Y}(\sO_{X}, \omega_{Y})
+$$
 is a dualizing module for $X$.
 \end{theorem}
 
@@ -411,12 +394,12 @@ $$
 $$
  and Theorem~\ref{general adjunction} we see that
  $$
-\omega_X =  \sExt^2_C(\sO_X, \omega_{\PP^3}) =\sExt^2(\sO_X, \sO_{\PP^3}(-4)) = \sO_X(s+b-4).
+\omega_X =  \sExt^2_C(\sO_X, \omega_{\PP^3}) =\sExt^2(\sO_X, \sO_{\PP^3}(-4)) = \sO_X(s+t-4).
  $$
 Note that for any ideals $J\subset I$ in a ring $A$ we have $Hom_A(A/I, A/J) \cong (J:I)/J$, where the isomorphism
 sends a homomorphism $\phi$ to the element $\phi(1)$. From Theorem~\ref{general adjunction} we have 
 $$
-\omega_C = \Hom_X(\sO_C, \omega_X) = \Hom_X(\sO_C, \sO_X)(s+t-4) = \frac{\sI_X:\sI_C}{\sI_X}(s+t-4),
+\omega_C = \sHom_X(\sO_C, \omega_X) = \sHom_X(\sO_C, \sO_X)(s+t-4) = \frac{\sI_X:\sI_C}{\sI_X}(s+t-4),
 $$
 where we have identified $\sO_C$ with its pushforward under the inclusion map $C\to X$. 
 
@@ -437,12 +420,12 @@ $$
 &=\chi(\sO_X) \\
 &=  \chi(\sO_{C'})+\chi(\omega_C(4-s-t)) \\
 &= \chi(\sO_{C'})-\chi(\sO_C(s+t-4)) \\&= \chi(\sO_{C'})-(s+t-4)\deg C-\chi(\sO_C)\\
-&= (1-p_a(\sO_{C'})) - (1-p_a(\sO_C) -(s+t-4)\deg C,
+&= (1-p_a(\sO_{C'})) - (1-p_a(\sO_C)) -(s+t-4)\deg C,
 \end{aligned}
 $$
 whence 
 $$
-p_a(\sO_C) -p_a(\sO_{C'} = \frac{(s+t-4)}{2} (\deg C - \deg C'). 
+p_a(\sO_C) -p_a(\sO_{C'}) = \frac{(s+t-4)}{2} (\deg C - \deg C'). 
 $$
  \end{proof}
 
@@ -479,7 +462,7 @@ $$
 $$
 We dualize this diagram, form the mapping cone, and twist by $-s-t$. Note that $\Hom_{\PP^3}(\sO_C, \sO_{\PP^3}) = 0$. 
 Also, since the vertical map $\sO_{\PP^3}\to \sO_{\PP^3}$ on the right
-is the identity we may cancel these terms in the mapping cone. Noting that $\omega_C = \Ext^2(\sO_C, \sO_{\PP^3}(-4))$ the result is a diagram with 
+is the identity we may cancel these terms in the mapping cone. Noting that $\omega_C = \sExt^2(\sO_C, \sO_{\PP^3}(-4))$ the result is a diagram with 
 exact rows:
 $$
 \begin{diagram}[small]
@@ -505,7 +488,7 @@ $$
 H^1(\sI_{C'}(m)) \cong H^1(\sE^*(-s-t+m)) \cong Hom_\CC( H^2(\sE(s+t-m-4)), \CC)
 $$
 where the last equality is from Serre duality on $\PP^3$. Summing over $m$ we see that
-$D(C') \cong Hom(D(C)(s+t-4), \CC)$,
+$D(C') \cong \Hom_\CC(D(C)(s+t-4), \CC)$,
 and since Serre duality is functorial, the isomorphism holds not only as graded vector spaces, but as graded $S$-modules. \end{proof}
 
 Sometimes the following consequence is a useful way to compute the deficiency module:
@@ -583,13 +566,13 @@ $M$ is minimal in the sense that no $M(m)$ with $m>0$ is the invariant of a pure
 \end{theorem}
 
 In \cite{MR714753} it is shown that general curves  in $\PP^3$ that have 
-of reasonably large degree compared to their genus are minimal in the sense 
+reasonably large degree compared to their genus are minimal in the sense 
 of  Theorem~\ref{LR property}.
 \end{fact}
 
 \section{Comparing the canonical sheaf with that of the normalization}
 
-In Chapter~\ref{PlaneCurves} we boasted in that we could effectively compute
+In Chapter~\ref{PlaneCurvesChapter} we boasted in that we could effectively compute
 linear series on a smooth curve $C$ given any plane curve $C_0$ with normaliztion $C$, 
 and we showed how to do this when the plane curve has only nodes. To complete the discussion 
 we need to compare the canonical sheaf of $C$ with
@@ -696,7 +679,7 @@ $\sO_{C}/\sO_{C_0}$, the last statement of the Theorem follows.
  P:= k[[t]] \subset R_0: t\mapsto x+y.
  $$
  The normalization of $R_0$ is the map $R_0 \to R := k[[x]]e_1\times k[[y]]e_2$,
- where $e_1= x/t, e_2= y/t$ are orthogonal idempotents.Writing 
+ where $e_1= x/t, e_2= y/t$ are orthogonal idempotents. Writing 
  $Q_1 = k((t)) \subset Q:= k((x))\times k((y))$
  for the map of total quotient rings, we know that, because the extension is separable, the trace map
  $Tr := Tr_{Q/Q_1}: Q \to Q_1$ generates $\Hom_{Q_1}(Q,Q_1)$ as a $Q$-vector space. Thus we may write the
@@ -712,7 +695,7 @@ $\sO_{C}/\sO_{C_0}$, the last statement of the Theorem follows.
  Since
 $xg = x/t$ and $yg = y/t$ in $Q$ we have
  $xg = x/tTr$ and $yg= y/tTr$, the generators of $\Hom_{P}(R,P)$. 
- The ring $R_0$, regarded As a $P$-module, is freely generated by 1 and $x$.
+ The ring $R_0$, regarded as a $P$-module, is freely generated by 1 and $x$.
  Immediate computation shows that $gTr(1) = 0$ while $gTr(x) = 1$.
  Furthermore $(x-y)g = 1$ in $Q$,  and thus $\frac{1}{2}(x-y)gTr$ takes 1 to 1
  and $x$ to $t$, proving that $gTr$  generates
@@ -807,7 +790,7 @@ $$
 \end{enumerate}
 Thus if $\sO_C(1)$ is a very ample invertible sheaf on $C$ and $m$ is a sufficiently large integer so that
 $\sF(m)$ is generated by global sections, then the degree of $\sF(m)$ and the degree of $\sO_C(1)$ are computed by the formula in item (1)
-and $\deg \sF = \deg(\sF(m)) - m \rank(\sF) \deg (\sO_C(1))$
+and $\deg \sF = \deg(\sF(m)) - m \rank(\sF) \deg (\sO_C(1))$.
 
 The proof of these assertions uses nothing more than the additivity of the Euler characteristic.
 \end{fact}
@@ -865,7 +848,7 @@ Let $C$ be the disjoint union of 3 skew lines.
 
 \begin{figure}
 \begin{center}
-\centerline {\includegraphics[height=2in]{"hyperboloid with disjoint lines.pdf"}}
+\centerline {\includegraphics[height=3in]{"hyperboloid with disjoint lines.pdf"}}
 \caption{A family of disjoint lines on a smooth quadric, from the website
 \url{https://mathcurve.com/surfaces.gb/hyperboloid/hyperboloid1.shtml}. Need to get
 permission or draw our own.}
@@ -884,7 +867,7 @@ $$
 $$
 where $\ell$ is a linear form, show that the map of vector spaces
 $$
-H^1(\sI_C) \rTo^{\ell} H^1\sI_C(1))
+H^1(\sI_C) \rTo^{\ell} H^1(\sI_C(1))
 $$
 has rank$<2$ if and only if $\ell$ vanishes on 3 collinear points on the three lines (including the case when $\ell$ vanishes identically on one of the lines).
 Conclude that if a different union $C'$ of 3 skew lines is linked to $C$, then $C'$ lies on the same quadric as $C$.
@@ -897,7 +880,7 @@ See~\cite{Migliore} for more examples of this type.
  Hint: The ideal sheaf of the curve on the quadric $Q$ is an extension of the ideal sheaf of the quadric in $\PP^3$
  with the ideal sheaf of the curve on the quadric, which is 
  $$
- \sO_Q(-a,-b) = \pi_1^*(\sO_{\PP^1}(-a)) \otimes pi_2^*(\sO_{\PP^1}(-b)),
+ \sO_Q(-a,-b) = \pi_1^*(\sO_{\PP^1}(-a)) \otimes \pi_2^*(\sO_{\PP^1}(-b)),
  $$
  where $\pi_1, \pi_2$ are the projections to $\PP^1$. Use the K\"unneth formula
  $$
@@ -930,7 +913,7 @@ The special case of the construction in Exercise~\ref{Liaison addition} in which
 \begin{enumerate}
  \item Show that if $I$ is a saturated ideal of codimension 2
  defining a purely 1-dimensional scheme $C$ in $\PP^3$
- and $(f, g)$ is a regular sequence with $g\in I$, then
+ and $(f, g)$ is a regular sequence with $g\in I$, 
  then  $fI+(g)$ defines a scheme $C'$ with $D(C') = D(C)(-\deg f)$.
 
  \item Show directly that, with notation as above, $C'$ is directly linked to $C$
@@ -974,7 +957,7 @@ arithmetic genus 0. Note that the degree can also be computed as the degree of
 a general hyperplane section, since this is defined by the square of the ideal of a point
 in $\PP^2$.
 
-Hint: Count the monomials of each degree in the ideal $(x_0,x_1)$ of a line. 
+Hint: Count the monomials of each degree in square of the ideal of a line. 
 \end{exercise}
 
 \begin{exercise} To see why the rope in Exercise~\ref{hilbert function of rope} should look like a twisted cubic, show that it is the flat limit of a twisted cubic as follows:
@@ -1026,7 +1009,7 @@ Suppose that $C\subset \PP^3$ is a ribbon such that $X = C_{\red}$ is the line $
 Since $C$ is contained in the rope defined from $X$ we must have $(x_0^2, x_0x_1,x_1^2) \subset I(C)$. The tangent space to $C$ at a point $(0,0,s,t)$ meets the line  $X' = V(x_2, x_3)$
 at some point $(F(s,t),G(s,t),0,0)$, so $F$ and $G$ define a morphism $\PP^1 \to \PP^1$;
 thus they are homogeneous polynomials of the same degree $d$.  It follows that $I(C)$ also contains the element
-$x_0(G(x_2, x_3) - x_1F(x_2,x_3)$. Show that the ideal of $C$ is obtained by adding this form to the ideal of the rope, that is,
+$x_0 G(x_2, x_3) - x_1F(x_2,x_3)$. Show that the ideal of $C$ is obtained by adding this form to the ideal of the rope, that is,
 $$
 I_C \; = \; \big(X_0^2, X_0X_1, X_1^2, F(X_3,X_4)X_0 + G(X_3,X_4)X_1\big)
 $$
@@ -1042,13 +1025,10 @@ locally analytically at $p$ the sheaf $\sHom_C(\sO_C, \omega_D)$ is $\sO_C(e)$.
 \end{exercise}
 
 \begin{exercise}\label{codimension1}
- Show that if $C\subset S$ is a cartier divisor on a surface $S$ with canonical sheaf $\omega_S$, 
+ Show that if $C\subset S$ is a Cartier divisor on a surface $S$ with canonical sheaf $\omega_S$, 
  then $\sExt^1(\sO_C, \omega_S) \cong \sO_C\otimes \sO_S(C)$, and thus $K_C = (K_S+C)\cap C$.
 \end{exercise}
 
-\begin{exercise}
-Show that a ``straight rope"---that is, the subscheme $C \subset \PP^3$ defined by the square of the ideal $\cI_{L/\PP^3}$ of a line $L \subset \PP^3$---is linked to the reduced line $L$ in the complete intersection of two quadrics
-\end{exercise}
 
 \input{footer}
 
