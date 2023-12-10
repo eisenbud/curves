@@ -1,0 +1,717 @@
+\input{header.tex}
+
+If $C$ is a curve of genus 1, then By Theorem~\ref{2g+1}, any complete linear series $D$
+degree $3 = 2g+1$ on $C$ is very ample. By the Riemann-Roch Theorem any invertible sheaf
+of degree $d$ on $C$ has $d+1$ sections, so the morphism associated to $D$ embeds $C$
+as a plane curve of degree 3, on which $D$ is the intersection of $C$ with a line. 
+
+We therefore begin this chapter with a general explanation of sheaves of differentials and linear
+series on smooth plane curves, and use that theory to say a little about other embeddings of 
+curves of genus 1. Though most curves cannot be realized as smooth plane curves, we shall see
+in Proposition~\ref{nodal projection} that every curve can be projected birationally to a plane curve whose only singularities are ordinary nodes, and in Chapter~\ref{PlaneCurveChapter} we will
+explain the analogous treatment of differentials and linear series on such nodal curves, and more
+generally---but with less specificity---on all reduced plane curves.
+
+Using the plane model of a curve of genus 1, we shall see  that the theory  is only a little more complicated than for genus 0 (but curves of genus 1 over number fields occupies a major part of modern number theory!)  
+
+
+\section{Riemann, Clebsch, Brill and Noether}
+For a long time, plane curves were the only algebraic curves that were studied. Originally these were curves in the affine plane over the real numbers, but by the second half of the 19th century the complex projective plane was well understood, and curves in $\PP^2 = \PP^2_\CC$, corresponding to irreducible forms in 3 variables, were recognized as the natural objects of study---see the historical appendix to this book for more details.
+
+The work of Bernhard Riemann dramatically changed the focus of the theory to branched coverings of   the ``Riemann Sphere'' ($\PP^1_\CC$). The Riemann-Roch theorem, in particular, gave information about the existence of meromorphic functions on such coverings, well beyond what could be done in the earlier theory. However, Riemann's work, depending as it did on the then-obscure ``Dirichlet principle'', was not universally accepted. In the 1860s Alfred Clebsch and, after the death of Clebsch  in 1872, Alexander Brill and Max Noether (Emmy Noether's father), undertook the ambitious program of redoing the Riemann-Roch theorem entirely in terms of plane curves. They went beyond Riemann in certain directions, too: the Brill-Noether Theorem treated in our Chapter~\ref{Brill-Noether} was formulated by Brill and Noether, and ``proved'' by them through an unsupported general position assumption. 
+
+A central difficulty in the Brill-Noether attempt on the Riemann-Roch theorem was that,
+although any smooth curve can be embedded in $\PP^r$ for any $r \geq 3$, most curves cannot be embedded in the plane. 
+However, as is shown in Section~\ref{good projections}, we can embed $C$ as a curve $ C \subset \PP^r$ in a higher-dimensional projective space and find a projection $\PP^r \to \PP^2$ that carries $C$ birationally onto its image $C_0$, called a plane model of $C$. The curve $C_0$ typically has singularities, and $C$ is the normalization of $C_0$. Brill and Noether wanted to prove the Riemann-Roch theorem for $C$ by formulating and proving a related theorem for $C_0$. In particular, they tried to characterize linear equivalence of divisors on $C$ in terms of certain ``clusters'' of points---we would say 0-dimensional subschemes---of $C_0$. 
+
+To carry out this program, a key step was to show that if $D\subset C_0$ is contained in the intersection
+$D'$ of $C_0$ and some other plane curve $C_0'$, then a divisor 
+$E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and Noether seem simply to have assumed that this is so. A bit later Frances Sowerby Macaulay proved that this is in fact possible  and also understood that it would not generally be possible if $D'$ were the intersection of three or more curves.\footnote{In modern terms, the intersection of two curves is Gorenstein; the intersection of 3 is generally not.}
+
+Macaulay exploited this theory of residuation  to prove what he called the ``Generalized Riemann-Roch Theorem'' (now widely known as the ``Cayley Bacharach Theorem'', after some precursors). This early work of Macaulay led directly to his definitions of  ``perfection'' (a homogeneous ideal
+$I  \subset S:= k[x_0, \dots, x_n]$ is perfect if $S/I$ is Cohen-Macaulay) and ``super-perfection'' (the case when $S/I$ is
+Gorenstein). For all this, see~\cite{Eisenbud-Gray}.
+
+In this section we will take the point of view of Clebsch, Brill and Noether, and explain how to understand 
+the differential forms and, given a (possibly ineffective) divisor $D$ on $C$, how to find all the 
+effective divisors on $C$ that are linearly equivalent to $D$, in terms of a smooth plane curve. In Chapter~\ref{PlaneCurvesChapter} we will return to this point of view and treat the case of
+nodal curves and the case of arbitrary reduced plane curves. We will give effective algorithms for
+two constructions:
+
+\begin{enumerate}
+\item Given the equation $F(X,Y,Z)$ of a smooth $d$ plane curve $C$
+of degree $d$, we can
+construct a basis for $H^0(K_C)$; and
+
+\item  Given a possibly ineffective divisor $D = D_{+}-D_{-}$ on $C$ we can construct the complete linear series $|D|$ on $C$. In particular we can:
+\begin{enumerate}
+\item determine whether $D$ is equivalent to any effective divisor on $C$; and if so,
+ \item find all effective divisors $E$ on $C$ with $E \sim D$; also,
+ \item find a basis of $H^0(\cO_C(D))$, expressed in terms of curves of high degree with  base locus.
+ \item find the homogeneous coordinate ring of the morphism defined by $|D|$ or a subseries.
+\end{enumerate}
+\end{enumerate}
+
+\section{Smooth plane curves}\label{smooth plane curves}
+
+\subsection{Differentials on a smooth plane curve}\label{canonical series on smooth plane curves}
+
+Let $C \subset \PP^2$  be a smooth plane curve, given as the zero locus of a homogeneous polynomial $F(X,Y,Z)$ of degree $d$. By the adjunction formula (Proposition~\ref{adjunction}) the canonical  divisors on $C$
+are the intersections of $C$ with curves of degree $d-3$. In the spirit of Brill and Noether we
+will make this explicit by constructing all
+ the regular differential forms on $C$ in terms of forms of degree $d-3$.
+
+
+For this purpose we introduce coordinates $x = X/Z$ and $y = Y/Z$ on the affine open subset $U \cong \AA^2$ given by $Z \neq 0$, and let $f(x,y) = F(x, y,1)$ be the inhomogeneous form of $F$, so that $C^\circ = C \cap U$ is the zero locus $V(f) \subset  \AA^2$. 
+
+Since an automorphism of $\PP^2$ can carry any point in $\PP^{2}$ to any other point, we may assume
+that 
+ the point $[0,1,0]$ (that is, the point at infinity in the vertical direction) does not lie on $C$ so that the
+ projection  $\pi: C \to \PP^1$ from $(0,1,0)$, which is given by $[X,Y,Z] \mapsto [X,Z]$ (or, in affine coordinates, $(x,y) \mapsto x$)  has degree $d$. Let $D$ be the divisor defined by the intersection of $C$ with the line $Z=0$ at infinity.
+
+Consider the
+regular 1-form $dx$ on $\AA^2$, which we may regard as the pull-back of the form $dx$ on
+ $\AA^{1}$.
+Since the form $dx$ on $\PP^{1}$ has a double pole at infinity the form $dx|_{C}$ has polar
+locus $2D$.
+ 
+ \def\Co{{C^{\circ}}}
+How do we get rid of the poles of $dx$? The extension to $\PP^2$ of a polynomial $h(x,y)$ of degree $m$ on
+$\AA^2$ has a pole of order $m$ along the line $L$ at infinity. Thus if $h$ has degree at least 2 then $dx/h$ has no poles at infinity. However, $h(x,y)$ may well vanish at points of $\Co$, and this may create new poles of $dx/h$. Of course if $h$ vanishes only at  points of $\Co$ where $dx$ has a zero, the zeroes of $h$ may cancel the zeroes of $dx$ rather than creating new poles.
+ 
+ To avoid producing new poles in this way we may take
+ $$
+ h(x,y) = f_{y} := \frac{\partial f}{\partial y}(x,y).
+ $$
+ We claim that 
+ $$
+\varphi_0 = \frac{dx}{f_{y}}
+$$
+is everywhere regular and nowhere 0 in $C^\circ$. 
+
+Note that $df$ vanishes identically when restricted to $C^\circ$, so
+ $$
+ 0 \equiv df|_{\Co} = f_{x}dx|_{\Co} + f_{y}dy|_{\Co} .
+ $$
+Clearly $\varphi_0$ is regular at points $p$ where
+where $f_{y}(p) \neq 0$. At such a point, if $dx|_{\Co}$ were 0, then since $\Co$ is smooth we would have $dy|_{\Co} \neq 0$, contradicting the equation above. Thus $\varphi_{0}$ is both regular and nonzero at such points. On the other hand, if $f_{y}(p) = 0$, then since $\Co$ is smooth $f_{x}(p) \neq 0$, so $dx|_{\Co}$ and $f_{y}$ vanish to the same
+order, whence, again, $\varphi_0 = (dx/f_{y})|_{\Co}$ is regular and nonzero, proving the claim.
+
+Put differently, if $L$ is the line at infinity, so that $U = \PP^{2}\setminus L \cong \AA^{2}$,
+then the cotangent bundle on $U$ is 
+$\Omega_{U}=\sO_{U}dx \oplus \sO_{U}dy,$
+so 
+the cotangent bundle $\Omega_{\Co}$ on $C^{\circ}$, which is the canonical bundle $\omega_{\Co}$,
+ is the cokernel of the map from the normal sheaf $\sO_{C}(-d)|_{U}$ to the restriction of 
+$\Omega_{U}$ to $C^{\circ}$. This map sends the local generator $f$ of the normal sheaf to
+$f_{x}dx+f_{y}dy \in \Omega_{U}$, and because $f_{x}$ and $f_{y}$ have no common zeros, the generator $d_{y} \in \Omega_{C^{\circ}}$ is a multiple of $dx/f_{y}$.
+Thus the free $\sO_{C^{\circ}}$-module $\omega_{C}|_{C^{0}}$ is generated by $dx/f_{y}$.
+
+Since $f_{y}$ has degree $d-1$, the rational function $1/f_{y}$ vanishes to order $d-1$ on the line
+at infinity, and thus in particular on the divisor $D$. Thus $\varphi_0$ vanishes to order $d-3$ on $D$; in other words, as divisors,
+$$
+(\varphi_0) = (d-3)D.
+$$
+In particular, if $d \geq 3$ then $\varphi_0$ is a globally regular differential on $C$. The divisor of
+zeros of this differential has degree $d(d-3)$. If $g$ is the genus of $C$, then we must
+have $2g-2 = d(d-3)$, whence 
+$$
+g = \frac{d(d-3)}{2} + 1 = \binom{d-1}{2}.
+$$
+We can produce a vector space of $\binom{d-1}{2}$ regular differentials by multiplying $\varphi_0$ by 
+polynomials $e(x,y)$ 
+  of degree $d-3$, since this does not introduce any poles. This proves:
+
+\begin{theorem}
+The space of regular differentials on a smooth plane curve $C$
+with affine equation $f=0$ is 
+$$
+\left\{ \frac{e(x,y)dx}{f_{y}} \mid \hbox{ e(x,y) is a polynomial degree $\leq d-3$}\right\}.\qed
+ $$
+\end{theorem}
+
+\subsection{Linear series on a smooth plane curves}\label{linear series on smooth plane curves}
+
+Any divisor on a smooth plane curve $C$ may be expressed as the difference of
+two effective divisors, $D= D_{+}-D_{-}$. We would like to find all the \emph{effective} divisors linearly equivalent to $D$, that is, of the form
+$D + (H/G)$, where $G, H$ are forms of the same degree $m$. We begin by choosing
+an integer $m$, large enough so there is a form $G$ of degree $m$ that vanishes on $D_{+}$ plus some divisor $A$ (but not on all of $C$). 
+
+\begin{theorem}\label{equiv on smooth plane curve}
+Let $D= D_{+}-D_{-}$ be a divisor on the smooth plane curve $C$. If
+there is a form $G$ of degree $m$ vanishing on $D_{+}$
+then we may write $(G) = D_{+}+A$, and then
+the effective divisors equivalent to $D$, if any, are precisely those 
+of the form $(H) - A -D_{-}$ where $H$
+is a form of degree $m$ vanishing on $D_{-}+A$, but not on all of $C$.
+\end{theorem}
+
+In particular, if no homogeneous polynomial $H$ of degree $m$ vanishes on  $A + D_{-}$ but not on $C$, then $D$ is not linearly equivalent to any effective divisor. The existence of such an $H$ is thus independent of the choices of $m$ and $G$, as we shall see in the proof.
+
+The simplest special case of the theorem is the completeness of the linear series defined
+by intersections of $C$ with curves of a given degree, 
+or, equivalently, that the restriction maps
+$$
+H^{0}(\sO_{\PP^{n}}(m)) \to H^{0}(\sO_{C}(m))
+$$
+are surjective for all $m$. 
+
+\begin{proposition}\label {completeness of hyperplanes on plane curve}
+If $C$ is a smooth plane curve, then any Cartier divisor on $D$ that is linearly equivalent to the divisor of
+a form of degree $m$ is itself the divisor of a form of degree $m$; that is, plane curves are
+arithmetically Cohen-Macaulay.
+\end{proposition}
+
+ The results for singular curves explained later in this chapter
+ depend on strengthenings  of this condition.
+ 
+\begin{proof}
+Let $C$ be the plane curve defined by $F=0$, and let $D$ be the divisor on $C$ defined by a form $L$
+of degree $m$, not vanishing on (any component of) the curve $C$. If $G$ and $H$ are forms of the same degree $t$, 
+not vanishing on any component of $C$,
+and $D+(G/H)$ is effective, then the divisor $(LG)$  on $C$ must contain the divisor $(H)$ on $C$.
+This means that the subscheme of $\PP^{2}$ defined by $(LG,F)$ contains the scheme defined 
+by $(H,F)$. Since $H$ and $F$ have no components in common, Theorem~\ref{Lasker} implies
+that $LG = AH+BF$  for some forms $A,B$ with $\deg A = \deg LG -\deg H = m$ whence $D+(G/H) = (A)$
+as required.
+\end{proof}
+
+\begin{example}
+Suppose that $C$ has degree 3 and thus genus 1. If we choose as origin on the curve $C$ a point $o$, then to add two points $p$ and $q \in C$ means to find the (unique) effective divisor of degree 1 linearly equivalent to $p + q - o$. In this situation, Theorem~\ref{equiv on smooth plane curve} applies with $m=1$: there is a line $L$ 
+containing $p+q$ defined by a linear form $G$. If $r \in C$ be the remaining point of intersection of $L$ with $C$ we can choose a linear form $H$ vanishing on $o+r$, and the line it defines meets $C$
+in one additional point $s$. This is the classical construction of the group law on the points of $C$ (or,
+for curves over a field that is not algebraically closed, on the rational points of $C$).
+See Figure~\ref{group law on cubic}
+\end{example}
+
+\begin{proof}[Proof of Theorem~\ref{equiv on smooth plane curve}]
+First, suppose that we can find a form $H$ of degree $m$ as in the Theorem.
+Setting $D' = (H) -(D_{-}+A)$ we have
+$$
+D' = D + (H/G) = D_{+}- D_{-} - (D_{+}+A)+(D_{-}+A+D')
+$$
+so $D'$ is linearly equivalent to $D$. 
+
+\begin{figure}
+\begin{center}
+\centerline {\includegraphics[height=2in]{"Fig14.3.pdf"}}
+\caption{If $H$ and $G$ have the same degree, then $r+s\sim g+u$}
+\label{Fig14.3}
+\end{center}
+\end{figure}
+
+We claim that we find in this way all effective divisors $D' \sim D$. 
+To see this, suppose $D'$ is any effective divisor with $D' \sim D$, so that
+$$
+\cO_C(A+D_{-}+D') = \cO_C(A+D_{-}+D)  = \cO_C(m),
+$$
+that is, $A+D_{-}+D' \equiv (G)$ for some form $G$ of degree $m$. By Proposition~\ref{completeness of hyperplanes on plane curve}
+this implies that $A+D_{+} = (H)$ for some form of degree $m$ as required.
+\end{proof}
+
+
+The argument given in Proposition~\ref{equiv on smooth plane curve} can be stated more generally thus:  if curves $F(X,Y,Z)=0$ and $Q(X,Y,Z)=0$ 
+meet only in a finite set of points $\Gamma$ in $\PP^{2}$, and $E(X,Y,Z) = 0$ is a curve containing the intersection in an appropriate sense,
+then $E = QH +LF$ for some forms $H$ and $L$, and this statement applies to arbitrarily singular curves. Recognizing its importance for the argument above and the generalizations to come, Max Noether in~\cite{Noether1873} dubbed it the \emph{Fundamental Theorem}, 
+noting that it had often been used by geometers but not proven. After successive attempts and 
+criticisms involving many mathematicians, he and Brill gave a complete proof in~\cite{Brill-Noether}. For more of this story see the account in~\cite{Eisenbud-Gray}.
+
+The following result was proven by Macaulay \cite[p.~424]{Macaulay1900}, who (correctly) considered it to be a version of the Riemann-Roch theorem. It is now usually referred to as the Cayley-Bacharach Theorem, after an
+incorrect version asserted by Arthur Cayley and a correct special case later proven by 
+Bacharach; see \cite[Section 2.3]{Threads} for more on this history, and 
+\cite{MR1376653} (where the result is incorrectly attributed to Bacharach) for generalizations and related conjectures. Here we will state and prove the version for a smooth curve.
+
+\begin{theorem}[Cayley-Bacharach]\label{CB} Let $C$ be a smooth plane curve of degree $d$, suppose that
+$D', D''$ are effective divisors on $C$ such that $E:=D+D' = C\cap C'$, the complete intersection of $C$
+with a curve $C'$ of degree $d'$. The For any integer $0\leq k \leq d+d'-3-k$, the difference in the number of conditions imposed 
+on forms of degree $k$ by $D'$ and $E$ is equal to the degree of $D''$ minus the
+number of conditions it imposes on forms of degree $d+d'-3 -k$.
+\end{theorem}
+%\begin{proof}
+% The number of conditions imposed by $E$ minus the number imposed by $D'$ on forms of degree $k$ is 
+% $$
+% N := = L(kH-E') - L((k-d)H)= L(kH-D') - L(kH-E) 
+% $$
+% 
+% The failure of $D''$ to impose independent conditions on forms of degree
+% $d+e-3-k$ is 
+%\begin{align*}
+% M:=  &\gamma'' - (L((n+d-3-k)H) -L((n+d-3-k)H-D''))\\
+% =  &\gamma'' - L(K+(d-k)H) + L(K+(d-k)H - D'')).
+%\end{align*}
+% 
+%Using the Riemann--Roch theorem and the fact that the degree of the divisor $kH$ is $kd$ we see that 
+%\begin{align*}
+% N &= kd-\gamma' - g +1 +L(K-kH+D') - \bigl(kd-\gamma - g +1 +L(K-kH+E)\bigr)\\
+% &= \gamma''+L(K-kH+D') - L(K-kH+E)\\
+% &=\gamma'' + L(K +(d-k)H - D'') - L(K-(d-k)H)\\
+% &= M
+%\end{align*}
+%as required.
+%\end{proof}
+
+\section{Curves of genus 1}
+
+We will describe the maps of a curve of genus 1 given by
+the complete linear series in the lowest degree cases of interest: $d =  2, 3, 4$ and $5$. Along the
+way we will see several ways of parametrizing the family of curves of genus 1 by one-dimensional varieties,
+forerunners of the moduli spaces that we will introduce in Chapters~\ref{ModuliChapter} and~\ref{CurvesModuliChapter} .
+
+
+On a smooth, irreducible curve $E$ of genus 1 the canonical sheaf has degree 0; and since it has a global section, it must be $\sO_C$.
+Since invertible sheaves of negative degree cannot have any sections, the Riemann-Roch theorem shows that
+$h^0( \sL) = \deg \sL$ for any $\sL$ of positive degree. Among the surprising consequences is that, given
+a point $o\in E$, there is a natural structure of abelian algebraic group on the points of $E$ for which $o$
+is the zero element. A curve of genus 1 with a chosen point $o$ is called an \emph{elliptic curve}.
+
+
+The group operation is easy to describe:
+Let $E$ be an elliptic curve with the point $o\in E$ chosen arbitrarily. If $p,q$ are points of $E$ then $\sO_E(p+q-o)$ has degree 1, and
+thus has a unique global section. This vanishes at a unique point $r$, which may also be described as the unique
+effective divisor linearly equivalent to $p+q-o$, and thus 
+$p+q = r$ in the group operation, which is thus obviously commutative. For the inverse, if $r$ is the  unique point
+linearly equivalent to $2o-p$ then $p+r-o\sim o$, so that $r=-p$. 
+
+\begin{figure}\label{group law on cubic}
+\centerline {\includegraphics[height=2.2in]{"main/Fig03-2"}}
+ \caption{Adding points $p, q$ on a plane cubic with origin $o$}
+\end{figure}
+
+\begin{proposition}\label{group law} Let $E$ be an elliptic curve with origin $o\in E$.
+If we set $p+q = r$ where $r$ is the unique effective divisor linearly equivalent to $p+q-o$, then $E$ becomes an algebraic group
+and the group of divisor classes is divisible, in the sense that for any divisor $D$ of degre $n>0$
+ there is a point $p$ such that $D\sim np$.
+ \end{proposition}
+
+\begin{remark}
+From the definition it is obvious that 
+the map
+$E \to \Pic_0(E)$ sending $p$ to $\sO_E(p-o)$ is an isomorphism of groups, and adding multiples of $o$
+induces an isomorphism with each $\Pic_d(E)$ as well. This provides a natural sense
+in which the family of invertible sheaves on $C$ can be treated as a smooth curve.
+ In Chapter~\ref{JacobianChapter} we will see a general construction: the Picard group $\pic_0(C)$ can be made into
+a variety, and for a curve $C$ of genus $g$ the effective divisors
+of degree $g$ form a variety that surjects birationally to $\Pic_g(C)$. 
+\end{remark}
+
+%\fix{I don't think we've introduced $\pic(C)$ at this point; likewise for the appearance of ``inflection point" in the following paragraph}
+ 
+\begin{proof}
+To show that the group operation is given by regular functions, we map $E$ to $\PP^2$ by the complete linear series $|3o|$. Since
+$h^0(3o) = 3$ but $h^0(3o-p-q) = 1$ for any points $p,q$, this is an embedding. Moreover, there is a line in $\PP^2$ that meets
+$E$ triply at $o$ and nowhere else. The three points $p,q,r$ in which any other line in the plane
+meet $E$ sum to a divisor linearly equivalent to $3o$, and thus sum to zero in the group law, that is $r = -p-q$. Since $r$ is the unique
+point in which the line
+through $p,q$ meets  E, it follows that the coordinates of $r$ are polynomial functions of those of $p,q$, so the operation
+$(p,q) \to -p-q$ is algebraic. But by the same token, the point $-r$ is the unique third point in whic
+the line $\overline{o,r}$ meets C,
+so the operation $r\to -r$ is also defined by polynomials.
+
+Given the group operation, we see that multiplication by a positive integer $n$ defines a non-constant map of 
+curves $E\to E$. Since $E$ is projective, this map is surjective, proving the divisibility of the divisor classes of degree 0. 
+Given a divisor class $D$ of degree $n$, the class $D -no$ has degree 0, and thus can be written as $n(r-o)$, so
+$D\sim nr$.
+\end{proof}
+
+\begin{corollary}\label{equivalence of sheaves}
+Given two invertible sheaves $\sL, \sL'$ of the same degree on a curve $E$ genus 1, there is an automorphism $\sigma: E\to E$
+such that $\sigma^*\sL = \sL'$.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{group law} we may write $\sL \cong \sO_E(np)$ and $\sL'\cong \sO_E(np')$ for some points $p,p'$; and tranlation by $p-p'$
+is an automorphism of $E$ carrying one into the other.
+\end{proof}
+
+
+\section{The family of curves of genus 1} It is a fundamental fact of algebraic curve theory that \emph{the set of isomorphism classes of smooth, projective curves of a given genus $g$ is naturally parametrized by the points of a quasiprojective variety $M_g$}, called the \emph{moduli space} of curves of genus $g$. We will have a great deal more to say about moduli spaces in general, and $M_g$ in particular, in Chapters~\ref{ModuliChapter} and~\ref{CurvesModuliChapter} (in particular, we will say what we mean by ``naturally parametrized"). For now, we want to illustrate this notion by describing the family $M_1$ of isomorphism classes of curves of genus 1 in several ways, focussing on the basic question of its dimension.
+
+
+
+\subsection{Double covers of $\PP^1$}
+
+Let $E$ be a smooth projective curve of genus 1 and let  $\sL$ be an invertible sheaf of degree 2 on $E$. By the Riemann-Roch theorem, $h^0(\sL) = 2$ and the linear series $|\sL|$ is base-point free, so we get a map $\phi : E \to \PP^1$ of degree 2. By the Riemann-Hurwitz theorem the map $\phi$ will have 4 branch points, which must be distinct because in a degree 2 map
+only simple branching is possible. By Corollary~\ref{equivalence of sheaves}, this set of four points are determined, up to automorphisms of $\PP^1$, by the curve $E$, and are independent of the choice of $\sL$.
+
+We will see in Chapter~\ref{genus 2 and 3 chapter} that a double cover of $\PP^1$ is determined by  its branch points, so the family $\cH$ of double covers of $\PP^1$ having genus 1 is four-dimensional. There is a map $\cH \to M_1$, sending such a double cover to the isomorphism class of the cover, and by what we have said, the fibers of this map are isomorphic to the automorphism group $PGL_2$ of $\PP^1$; thus we may conclude that $M_1$ has dimension $4-3=1$.
+
+Further details are in Section~\ref{Curves of genus 1}.
+
+\subsection{Plane cubics}
+
+We can also represent an arbitrary smooth curve of genus 1 as a plane cubic:
+Let $\sL$ be an invertible sheaf of degree 3 on $E$. As in the proof of Proposition~\ref{group law} the linear series $|\sL|$ gives an embedding of $E$ as a smooth plane cubic curve of degree 3; conversely, the adjunction formula implies that any smooth plane cubic curve has genus 1. 
+
+The space of plane cubic curves is parametrized by the space of cubic forms in 3 variables up to 
+scalars, a  $\PP^9$. The locus of forms defining smooth curves is a Zariski open subset. If two plane cubics are abstractly
+isomorphic, that is if we have two different degree 3 linear series $|\sL|, |\sL'|$ mapping a given genus 1 curve $C$ to the plane, then by
+Proposition~\ref{equivalence of sheaves} we may  precompose one of the maps with an automorphism of $C$
+and suppose that $\sL = \sL'$. Thus the two curves differ by an element of $PGL_3$ of automorphisms of $\PP^2$. Since the group $PGL_3$ has dimension 8, one should expect that the family of such curves up to isomorphism has dimension 1, which accords with the dimension computed in the previous section.
+
+
+
+\subsection{Genus 1 quartics in $\PP^3$ and quintics in $\PP^4$} \label{g=1 in P3,P4}
+
+Again, let $E$ be a smooth projective curve of genus 1, and consider now the embedding of $E$ into $\PP^3$ given by the sections of an invertible sheaf $\sL$ of degree 4. To understand the ideal of $E$ we consider the restriction map
+$$
+\rho_2 \;  : \; H^0(\cO_{\PP^3}(2)) \; \to \; H^0(\cO_{E}(2)) = H^0(\sL^2).
+$$
+The space on the left---the space of homogeneous polynomials of degree 2 in four variables---has dimension 10, while by Riemann-Roch the space $H^0(\sL^2)$ has dimension 8. It follows that $E$ lies on at least two linearly independent quadrics $Q$ and $Q'$. Since $E$ does not lie in any plane, neither $Q$ nor $Q'$ can be reducible; thus by \bt\ we see that
+$$
+E = Q \cap Q'.
+$$
+Since $Q,Q'$ form a regular sequence, the ideal $(Q,Q')$ is unmixed, and thus the homogeneous ideal $I(E)$ is generated by
+these two quadrics. In this way, $E$ determines a point in the Grassmannian $G(2, H^0(\cO_{\PP^3}(2))) = G(2, 10)$ of pencils of quadrics; and by Bertini's theorem, a Zariski open subset of that Grassmannian corresponds to smooth quartic curves of genus 1. The Grassmannian $G(2,10)$ has dimension 16, while the group $PGL_4$ of automorphisms of $\PP^3$ has dimension 15, so again one should expect that the family of curves of genus 1 up to isomorphism has dimension 1.
+
+There is a direct way to go back and forth between the representation of the smooth genus 1 curve $E$ as the intersection of two quadrics in $\PP^3$ and the representation of $E$ as a double cover
+of $\PP^1$ branched at 4 distinct points. First, by Bertini's theorem, we may take the two quadrics to be nonsingular, since they must meet transversely along $E$, and elsewhere the
+pencil of quadrics they span has no base points. Representing the quadrics as symmetric matrices $A,B$, the pencil of all quadrics containing $E$ can be 
+written as $sA+tB$. A quadric in the pencil is singular at the points $(s,t)$ such that the quartic polynomial $det(sA+tB)$ vanishes; thus at 4 points.
+
+ A smooth quadric has two rulings by lines; a cone has one. Thus the family
+$$
+\Phi := \{ (\lambda, \sL) \mid \sL \in \Pic(Q_\lambda) \text{ is the class of a ruling of } Q_\lambda \}
+$$
+is---at least set-theoretically---a 2-sheeted cover of $\PP^1$, branched over the four values of $\lambda$ corresponding to singular quadrics in the pencil. In fact, we claim
+
+\begin{proposition}\label{rulings on pencil}
+There is an isomorphism of $\Phi$ with $E$, and thus the branch points of $\Phi$ over $\PP^1$---that is, the set of singular elements of the pencil of quadrics---are the same, up to automorphisms of $\PP^1$ as the four points over which a double cover of $\PP^1$ by $E$ are ramified.
+\end{proposition} 
+
+
+\begin{proof}
+First, choose a base point $o \in E$. We will construct inverse maps $E \to \Phi$ and $\Phi \to E$ as follows:
+\begin{enumerate}
+
+\item Suppose $q \in E$ is any point other than $o$, and let $M\subset \PP^3$ be the line $\overline{o,q}$ spanned by $o,q$. Every quadric $Q_\lambda$ contains the two points $o, q \in M$. It is one linear condition
+for a quadric $Q_{\lambda}$ to contain a given point  so if $r\in M$ is any third point, there will be a unique $\lambda$ such that $r$, and hence all of $M$, lies in $Q_\lambda$. Thus the choice of $q$ determines both one of the quadrics $Q_\lambda$ of the pencil, and a ruling of that quadric, giving us a map $E \to \Phi$.
+
+\item  Given a quadric $Q_\lambda$ and a choice of ruling of $Q_\lambda$, there is a unique line $M \subset Q_\lambda$ of that ruling passing through $o$, and that line $M$ will meet the curve $E$ in one other point $q$; this gives us the inverse map $\Phi \to E$.
+\end{enumerate}
+\end{proof}
+
+\begin{fact}
+ There is a beautiful extension of this result to pencils of quadrics in any odd-dimensional projective space. Briefly: a smooth quadric $Q \subset \PP^{2g+1}$ has two rulings by $g$-planes, which merge into one family when the quadric specializes to quadric of rank $2g+1$, that is, a cone over a smooth quadric in $\PP^{2g}$. If $\{Q_\lambda\}_{\lambda \in \PP^1}$ is a pencil with smooth base locus $X = \cap_{\lambda \in \PP^1} Q_\lambda$, then exactly $2g+2$ of the quadrics will be singular, and they will all be of rank $2g+1$. The space $\Phi$ of rulings of the quadrics $Q_\lambda$ is thus a double cover of $\PP^1$ branched at $2g+2$  points. We shall see in Chapter~\ref{genus 2 and 3 chapter} that this double cover is a hyperelliptic curve of genus $g$. For a proof see for example~\cite[Proposition 22.34]{Harris1995}.
+ This shows in particular that the polynomial $\det(sA+tB)$ has $2g+2$ \emph{distinct} roots. 
+
+ There is also a remarkable analogue of Proposition~\ref{rulings on pencil} for any $g$: the variety $F_{g-1}(X)$ of $(g-1)$-planes in the base locus $X$ of the pencil is isomorphic to the Jacobian of the  curve $\Phi$. (We will discuss Jacobians in Chapter~\ref{JacobianChapter}.) A proof of this in case $g=2$ can be found in~\cite{Griffiths-Harris1978}; for all $g$ it is done in~\cite{Donagi}. For a further study of the equivalence, see \cite{Eisenbud-Schreyer}.
+\end{fact}
+
+The complete embeddings of genus 1 curves of any degree lie on certain ruled surfaces called rational
+normal scrolls, and we will describe them in these terms in Chapter~\ref{ScrollsChapter}. However, there is a particularly nice description in $\PP^4$. 
+
+\begin{fact}[Quintic curves of genus 1 in $\PP^4$]
+Let $E$ be a smooth curve of genus 1. Any invertible sheaf $\sL$ of degree $5$ on $E$ is very ample, and so gives an embedding of $E$ in $\PP^4$; and considering the map $H^0(\op42) \to H^0(\sL^2)$
+we see that $E\subset \PP^4$ lies on (at least) 5 quadrics. 
+Recall that if $A$ is a skew-symmetric matrix of even size,
+then the determinant of $A$ is the square of a polynomial in the entries of $A$ called the Pfaffian of $A$. For example, if
+$$
+M = \begin{pmatrix}
+0&x_{1,1}&x_{1,2}&x_{1,3}\\
+-x_{1,1}&0&x_{2,2}&x_{2,3}\\
+-x_{1,2}&-x_{2,2}&0&x_{3,3}\\
+-x_{1,3}&-x_{2,3}&-x_{3,3}&0\\
+\end{pmatrix}
+$$
+then the Pfaffian of $M$ is by definition the quadric $x_{1,1}x_{3,3}-x_{1,2}x_{2,3}+x_{1,3}x_{2,2}$.
+
+As a special case of the main theorem of ~\cite{MR453723} we have:
+\begin{proposition} \cite[Theorem11]{Eisenbud1995}
+If $E\subset \PP^4$ is a smooth curve of genus 1 and degree 5, then the presentation matrix of $I(E)$ is
+a $5\times 5$ matrix of linear forms $A$. With a suitable choice of bases and variables, it can be put in the form
+$$
+A = 
+\begin{pmatrix}
+0&0&x_0&x_1&x_2\\
+0&0&x_1&x_2&x_3\\
+-x_0&-x_1&0&\ell_1&\ell_2\\
+-x_1&-x_2&-\ell_1&0&\ell_3\\
+-x_2&-x_3&-\ell_2&-\ell_3&0
+\end{pmatrix}
+$$
+and
+the homogeneous ideal of $E$ is generated by the  Pfaffians of the five $4\times 4$ submatrices of $A$ obtained by removing
+a row and the corresponding column.
+\end{proposition}
+\end{fact}
+
+\section{The Cohen-Macaulay property}\label{ACM}
+
+In Section~\ref{rational normal curves section} we defined a curve $C\subset \PP^{r}$ to be Arithmetically Cohen-Macaulay (ACM) if the natrural maps
+$$
+\rho_m: H^0(\sO_{\PP^r}(m)) \to H^0(\sO_{C}(m))
+$$
+are surjective for all $m$. When this is the case we can accurately predict the number of independent forms of
+each degree vanishing on the curve, and the condition has other important consequences that we will explore here and in Chapters~\ref{LinkageChapter} and \ref{SyzygiesChapter}. For general treatments of 
+Cohen-Macaulay rings see \cite[Chapter 18]{Eisenbud1995} or the book~\cite{BrunsHerzog}. One of the characterizations of the condition is in terms of regular sequences:
+
+\begin{definition}\label{gradeDef}
+A sequence of elements $f_{1}, \dots, f_{c}$ in a ring $R$ is a \emph{regular sequence} if
+$f_{i+1}$ is a non-zerodivisor modulo $(f_{1}, \dots, f_{i})$ for $i = 0,\dots, c-1$ and the ideal
+$(f_{1}, \dots, f_{c})$ is not the unit ideal. 
+
+The \emph{grade} of an ideal $I$ in a ring  $R$ (sometimes called the depth of $I$ on $R$) is the maximal length of a regular sequence contained in $I$, or $\infty$ if $I = R$. 
+
+A local ring $(R,\gm)$ is \emph{Cohen-Macaulay} if $\grade \gm = \dim R$. If $R$ is not necessarily local, then 
+$R$ is called Cohen-Macaulay if every localization is Cohen-Macaulay. Similarly, a scheme is Cohen-Macaulay if
+all its local rings are Cohen-Macaulay.
+\end{definition}
+
+\begin{example}
+\begin{itemize}
+ \item The sequence of elements $x_{0},\dots, x_{r}\subset S:= \CC[x_{0}\dots, x_{r}]$ is regular, proving
+ from the definition that the localization of $S$ at the homogeneous maximal ideal is Cohen-Macaulay.
+ 
+ \item Regular local rings are Cohen-Macaulay. Thus every smooth scheme is Cohen-Macaulay, and in particular
+$S:= \CC[x_{0}\dots, x_{r}]$ is Cohen-Macaulay. 
+ 
+ \item It follows from the definition that any complete intersection in a Cohen-Macaulay scheme is again Cohen-Macaulay.
+Thus every plane curve, and more generally every complete intersection curve,
+is ACM; and we shall show in Section~\ref{CastelnuovoSection} that every canonically embedded curve
+and every curve embedded by a complete linear series of sufficiently high degree is also ACM.
+
+\item Zero-dimensional rings are all Cohen-Macaulay. A 1-dimensional ring is Cohen-Macaulay if and only if
+it is pure-dimensional (sometimes called ``unmixed'')---that is, 
+every associated prime ideal is 1-dimensional (Proof: the zerodivisors in $R$ are the elements of the associated primes of 0.) Thus any purely 1-dimensional scheme is Cohen-Macaulay. 
+
+\end{itemize}
+
+\end{example}
+
+\begin{fact} 
+\begin{itemize}
+ \item We defined the grade as the maximal length of a regular sequence in $I$; but in fact all maximal regular
+sequences have the same length, equal to the smallest integer $k$ such that $\Ext^{k}(R/I,R)\neq 0$
+\cite[Theorem 17.4 and Proposition 18.4]{Eisenbud1995}.
+
+\item For any proper ideal $I\subsetneq R$ we have $\grade I \leq \codim I$. On the other hand, if $R$ is Cohen-Macaulay,
+then $\grade I =\codim I$ for every ideal $I$ of $R$. In this sense the grade is an arithmetic
+approximation to the codimension.
+
+\item Every localization of a Cohen-Macaulay ring is Cohen-Macaulay. If $X\subset \PP^{r}$
+has homogeneous coordinate ring $R_{X}$, then we say that $X\subset \PP^{r}$ is
+arithmetically Cohen-Macaulay if $R_{X}$ is Cohen-Macaulay, a property that depends on the 
+embedding, and implies the intrinsic property that $X$ is Cohen-Macaulay (since the local rings
+of $X$ are essentially localizations of $R_{X}$). Previously we defined a curve $C\subset \PP^{r}$
+to be arithmetically Cohen-Macaulay if the natural map $R_{C}\to H^{0}_{*}(\sO_{C})$ is surjective.
+We will prove that this is equivalent to $R_{C}$ being Cohen-Macaulay in Proposition~\ref{ACM basics}. The same definitions and theorem apply to a positively graded ring, and homogeneous ideals. 
+
+\item By Serre's Criterion~\cite[Section 11.2]{Eisenbud1995} the homogeneous coordinate ring $R_C$ of a curve $C$ is normal (that is, integrally closed) iff $C$ is both nonsingular and ACM, and sometimes $C$ is said to be \emph{projectively normal} in this case.  (This is also the excuse for the terminology ``linearly normal"
+for a curve embedded by a complete linear series, quadratically normal if $\rho_{2}$ is surjective, and so on.)
+
+\end{itemize}
+ \end{fact}
+ 
+\begin{proposition}\label{ACM basics}
+Suppose that $C\subset \PP^r$ is a 1-dimensional subscheme. Let $S = H^0_*(\sO_{\PP^r})$
+be the homogeneous coordinate ring of $\PP^r$, and let $R_C = S/I_C$ be the homogeneous
+coordinate ring of $C$. The following conditions are equivalent:
+\begin{enumerate}
+
+ \item The natural injective map $R_C \to H^0_*(\sO_{C}(1))$ is surjective;
+ 
+\item $H^1_*(\sI_{C/\PP^r}) = 0.$
+
+\item The homogeneous coordinate ring $R_C$ of $C$ is a Cohen-Macaulay ring; that is, there are linear forms $h,h'$ on $\PP^r$ whose images in  $R_C$ form a regular sequence. In particular, $R_C$ has no 0-dimensional primary components
+so $C$ is purely 1-dimensional and thus Cohen-Macaulay as a scheme.
+
+ \item For every hyperplane $H\subset \PP^r$ that does not contain any component of $C$,
+ the homogeneous ideal of $H\cap C$
+ is equal to  $I_C+(h)$, where $h$ is a linear form defining $H$.
+ 
+\end{enumerate}
+\end{proposition}
+ 
+\begin{proof}
+{\sl 1} $\Leftrightarrow$ {\sl 2}: We may assume that $r\geq 2$, so $H^1_*(\sO_{\PP^r}(n)) = 0$ for all $n$. Using this and the exact sequence 
+$$
+0\rTo \sI_{C/\PP^r}  \rTo  \sO_{\PP^r}  \rTo  \sO_C  \rTo  0
+$$
+we see that $H^0(\sO_{\PP^r}(n)) \to H^0(\sO_C(n))$ is surjective for all $n$ if and only if $H^1(\sI_{C/\PP^r}(n)) = 0$ for all $n$,
+proving the equivalence of {\sl 1} and {\sl 2.}
+
+{\sl 1} $\Leftrightarrow$ {\sl 3}: First let $C\subset \PP^r$ be an arbitrary 1-dimensional subscheme,
+and let $R =H^0_*(\sO_{C}) := \oplus_{n\in \ZZ} H^0(\sO_{C}(n))$.
+If $H$ is a 
+general hyperplane, with equation $h=0$, then $h$ does not vanish on any primary component of $C$, and thus the sequence
+$$
+0\rTo \sO_C(-1) \rTo^{h}\sO_C\rTo \sO_{C\cap H}\rTo 0
+$$
+is exact. Applying $H^0_*$ and using item 2, we see that $h$ is a non-zerodivisor on $R$, and that $R/hR$ is
+a subring of $H^0_*(\sO_{C\cap H})$.  A general linear form $h'$ doesn't vanish on
+any point of $C\cap H$, so $h'$ is a unit on $H^0_*(\sO_{C\cap H})$
+and thus a non-zerodivisor on $R/hR$. 
+
+The ring $R_C$ is the image of the natural map $S\to R$, and by definition $C$ is ACM if and only if this map is surjective,
+so that $R_C = R.$ This shows that if $C$ is arithmetically Cohen-Macaulay then $R_C$ is a Cohen-Macaulay ring,
+and is in particular unmixed; that is, $C$ has no 0-dimensional primary components (see for example \cite[Chapter 18]{Eisenbud1995} for general
+information about Cohen-Macaulay rings). This proves the equivalence of conditions {\sl 1} and {\sl 3.}
+
+
+{\sl 3} $\Leftrightarrow$ {\sl 4}: If  $h$ does not vanish on any component of $C$ then $h$ is a non-zerodivisor on $R_C$. The ideal $I_{C\cap H}$ is in any case the saturation of $I_C+(h)$. 
+If $I_{C\cap H}=I_C+(h)$, then any linear form $h'$ not containing a point of $C\cap H$ is a non-zerodivisor
+on $I_C+(h)$, so $C$ satisfies condition {\sl 2}. Conversely, in a 2-dimensional positively graded Cohen-Macaulay ring, any 
+system of parameters is a regular sequence \cite[Section 18.2]{Eisenbud1995}, so $I_C+(h)$ is unmixed, and in particular, saturated.
+\end{proof}
+
+\begin{fact}\label{meaning of ACM}
+The Cohen-Macaulay property is hard to interpret geometrically; the definition is justified by its usefulness. Here are two results that help our intuition:
+\begin{enumerate}
+\item A scheme $X$ is Cohen-Macaulay if some (equivalently every) finite map $f: X\to P$ to a smooth scheme $P$
+of the same dimension is flat, or equivalently the pushforward $f_*(\sO_X)$ is locally free. (This follows
+from the Auslander-Buchsbaum formula \cite[Section 19.3]{Eisenbud1995}.)
+\item (Hartshorne) If a scheme $X$ is Cohen-Macaulay then $X$ is connected in codimension 1 (that is, $X$ remains connected after removing any closed subset of codimension $\geq 2$.)
+See for example~\cite[Theorem 18.12]{Eisenbud1995} for a proof.
+\end{enumerate}
+ 
+\end{fact}
+
+
+\section{Exercises}
+
+\begin{exercise}\label{veronese inverse}
+With notation as in Section~\ref{rational normal curves section}, show that the sheaf associated to the graded module $\coker M$,
+that is, the cokernel of the map $\sO_{\PP^d}^d(-1) \to \sO_{\PP^d}^2$ defined by $M$, is the unique invertible sheaf of degree 1
+on the rational normal curve $C$, and that thus the associated complete linear series defines the isomorphism $C\to \PP^1$ inverse
+to the Veronese map.
+\end{exercise}
+
+\begin{exercise}\label{equations of Veroneses}
+Considering $\PP^n$ as $\Proj \CC[x_0,\dots,x_n]$, we may index the variables $z_p$ of $\PP^{\binom{n+d}{d}-1}$ by  monomials $p$
+of degree $d$ in the $x_i$. Let $M_{n,d}$ be an $(n+1)\times \binom{n+d-1}{n}$ matrix of linear forms
+on $\PP^{\binom{n+d}{d}-1}$ whose rows are indexed by the variables $x_i$, whose columns are indexed by the monomials $m$ of degree $d-1$ in the $x_i$ and
+whose $(i,m)$ entry is $z_{x_im}$. (For example the matrix
+$M$ of Section~\ref{rational normal curves section} is the matrix $M_{1,d}$.) Show that the $2\times 2$ minors of $M_{n,d}$ generate the ideal of the image $V_{n,d}$ of the Veronese map 
+$\PP^n\to \PP^{\binom{n+d}{d}-1}$, and that the cokernel of $M_{n,d}$ is the unique invertible sheaf of degree 1 supported on $V_{n,d}$.
+\end{exercise}
+
+\begin{exercise}
+ Let $\nu_d: \PP^r \to \PP^{\binom{r+d}{r}-1}$ be the $d$-Veronese map, and let $C\subset \PP^r$ be the rational normal curve of degree $r$. Is $\nu_d(C)$ nondegenerate? If not, what is the dimension of its linear span (that is, of the smallest linear
+ space that contains it)?
+\end{exercise}
+
+\begin{exercise}\label{arbitrary hyperplane examples}
+Let $C_1$ be the union of two skew lines in $\PP^3$, and let $C_2$ be the double line on a smooth quadric in $\PP^3$.
+Show that there are hyperplane sections of $C_1$ and of $C_2$ that violate the conclusion of Proposition~\ref{arbitrary hyperplane}.
+\end{exercise}
+
+\begin{exercise}\label{restriction of ideals}
+Suppose that $X\subset \PP^r$ is a subscheme and  $Z$ is the subscheme of $\PP^r$ defined by a hypersurface $F\in H^0(\sO_{\PP^r}(m))$. If the restriction of $F$ is a non-zerodivisor in 
+$\sO_X(m)$  then there are short exact sequences
+$$
+\sI_X(d-m) \rTo^F \sI_X(m) \rTo \sI_{X\cap Z}(m) \to 0.
+$$
+\end{exercise}
+
+\begin{exercise}\label{bad restriction}
+Let $C\subset \PP^3$ be the smooth rational quartic (or any smooth curve embedded by an incomplete linear series), and let $h$ be a linear form defining a hyperplane $H$.
+Show that
+the the irrelevant ideal is associated to the 
+homogeneous ideal $I_C+(h)$, and thus $I_C(1)/hI_c$ is not the saturated homogeneous ideal of the finite
+set $C\cap H$. 
+\end{exercise}
+
+\begin{exercise}
+Show that the twisted cubic is the unique irreducible, nondegenerate space curve lying on three quadrics by considering the possible
+intersections of two of the quadrics.
+\end{exercise}
+
+\begin{exercise}\label{decomposition of a $g^3_4$}
+As a consequence of our description of rational quartic curves on a smooth quadric in Proposition~\ref{ideal of rational quartic},
+show that a general $g^3_4$ on $\PP^1$ is uniquely expressible as a sum of the $g_1^1$ and a $g^1_3$
+(in other words, a general 4-dimensional vector space of quartic polynomials on $\PP^1$ is uniquely expressible as the product of a 2-dimensional vector space of cubics and the 2-dimensional space of linear forms.
+\end{exercise}
+
+\begin{exercise}\label{distinguishing rational quartics}
+Show that, up to projective equivalence, there is a 1-parameter family of embeddings of $\PP^1$ as a 
+smooth quartic curve in $\PP^3$ 
+by constructing an invariant that distinguishes them. 
+\end{exercise}
+
+\begin{exercise}\label{Castelnuovo uniqueness}
+Complete the proof of Proposition~\ref{points on rnc} by showing that if $C, C' \subset \PP^n$ are two rational normal curves meeting in at least $n+3$ distinct points, then $C = C'$. 
+\end{exercise}
+
+
+\begin{exercise}\label{rnc and representations}
+Let $V = \CC\cdot e_1\oplus \CC\cdot e_2$ be a 2-dimensional vector space. 
+
+The group $SL_2= SL(V)$ acts on the rational normal curve of degree $d$ through automorphisms induced from its action on
+t he ambient space $\PP^d$ of the rational normal curve, which may be identified with $\PP(\Sym^d(V))$.
+
+In~\cite[pp. 146--150]{Fulton-Harris} it is shown that
+ every finite dimensional rational 
+representation of $SL(V)$ is a direct sum of representations of the form $\Sym^e(V)$ for various $e\geq 0$. Moreover, it is often easy to understand
+how a given representation decomposes by looking at the action of
+$$
+\alpha := \begin{pmatrix}
+t&0\\
+0&t^{-1}
+\end{pmatrix}
+\in SL(V).
+$$
+Note that $\Sym^e(V)$ is spanned by ``weight vectors" ($\equiv$ eigenvectors of $\alpha$) $w_s := e_1^{e-s} e_2^{s}$ 
+which satisfy $\alpha w_s = t^{e-2s}$ for $s = 0, \dots e$.
+To decompose an arbitrary representation $W$, knowing that $W$ is a direct sum of $\Sym^{e_i}V$, it is enough to know the 
+eigenvalues for the action of $\alpha$: We begin by finding an element $w\in W$ that
+is an eigenvector of $\alpha$ and transforms by $\alpha$ as $\alpha w = t^mw$ with the highest possible $m$ (this is called a ``highest weight vector''). This element $w$ must be contained
+in a summand $\Sym^m(V)$, and after removing the eigenvalues of the action of $SL_2$ on $\Sym^m(V)$, we continue. 
+\begin{enumerate}
+ \item Use this method to show that 
+\begin{align*}
+&\Sym^d(V)\otimes \Sym^d(V)= \Sym^{2d}(V) \oplus  \Sym^{2d-2}(V) \oplus \Sym^{2d-4}(V) \cdots\\
+ &\Sym^2(\Sym^d(V))= \Sym^{2d}(V) \oplus \Sym^{2d-4}(V)\oplus \Sym^{2d-8}(V) \cdots\\
+ &\bigwedge^2(\Sym^d(V))= \Sym^{2d-2}(V) \oplus \Sym^{2d-6}(V)\oplus \Sym^{2d-10}(V) \cdots
+\end{align*}
+  (where we take $\Sym^{m}(V)=0$ when $m<0$).
+ \item Show that the space of quadrics containing the rational normal curve is a representation of $SL_2$ of the form
+ $$
+ \Sym^{2d-4}(V)\oplus \Sym^{2d-8}(V) \cdots
+ $$
+  \item Show  there is a distinguished nonsingular skew-symmetric form (up to scalars) on the ambient space of the twisted cubic; in particular
+  is, given a twisted cubic in $\PP^3$ there is a distinguished plane containing each point of $\PP^3$.
+ \item Show that if $d$ is divisible by 4 there is a distinguished quadric in the ideal of the rational normal curve.
+\end{enumerate}
+\end{exercise}
+
+%\begin{fact}
+% In the case of the quartic in $\PP^4$, the quadric is the set of quartic polynomials whose zeros have
+% j-invariant 0.
+% \fix{ref or proof}
+%\end{fact}
+
+\begin{exercise}\label{Normal bundle of cubic}
+Let $\PP^1 \hookrightarrow C \subset \PP^3$ be a twisted cubic. Show that the normal bundle $\cN_{C/\PP^3}$ (defined to be the quotient of the restriction $T_{\PP^3}|_C$ to $C$ of the tangent bundle  of $\PP^3$  by the tangent bundle $T_C$) is 
+$$
+\cN_{C/\PP^3} \cong \cO_{\PP^1}(5) \oplus  \cO_{\PP^1}(5).
+$$
+Hint: for any point $p \in C$, let $L_p \subset \cN_{C/\PP^3}$ be the sub-line bundle of $\cN_{C/\PP^3}$ whose fiber over any point $q \neq p \in C$ is the one-dimensional subspace of $(\cN_{C/\PP^3})_q$ spanned by the line $\overline{p,q}$. (This of course only defines a sub-line bundle of $\cN_{C/\PP^3}$ over $C \setminus \{p\}$, but there is a unique extension to a sub-line bundle of $\cN_{C/\PP^3}$ over all of $C$.) Show that for $p \neq p'$ we have
+$$
+\cN_{C/\PP^3} = L_p \oplus L_{p'}.
+$$
+\end{exercise}
+
+\begin{exercise}
+Let $\PP^1 \hookrightarrow C \subset \PP^d$ be a rational normal curve. Show that the normal bundle $\cN_{C/\PP^d}$  is 
+$$
+\cN_{C/\PP^d} \cong \bigoplus_{i=1}^{d-1} \cO_{\PP^1}(d+2).
+$$
+\end{exercise}
+
+\begin{exercise}
+In the situation of the preceding problem, the set  of direct summands of $\cN_{C/\PP^d} $ is a projective space $\PP^{d-2}$. How does the  group of automorphisms of $\PP^d$ carrying $C$ to itself act on this $\PP^{d-2}$?
+(For more on normal bundles of rational curves, see for example~\cite{MR3778979}.)
+\end{exercise}
+
+\begin{exercise}\label{ci is acm}
+If $C=\bigcap_{i = 1}^{r-1}X_i \subset \PP^r$ is a complete intersection of hypersurfaces,
+then $C$ is arithmetically Cohen-Macaulay.
+
+Hint: Since the $r-1$ surfaces intersect only in codimension $r-1$, they form
+a regular sequence; and the length of any maximal regular sequence in 
+$\CC[x_0,\dots, x_r]$ is $r+1$. \end{exercise}
+
+
+\input footer.tex
+
+
