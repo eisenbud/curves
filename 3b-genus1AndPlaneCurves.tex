@@ -14,7 +14,7 @@ generally---but with less specificity---on all reduced plane curves.
 
 Using the plane model of a curve of genus 1, we shall see  that the theory  is only a little more complicated than for genus 0 (but curves of genus 1 over number fields occupies a major part of modern number theory!)  
 
-
+s
 \section{Riemann, Clebsch, Brill and Noether}
 For a long time, plane curves were the only algebraic curves that were studied. Originally these were curves in the affine plane over the real numbers, but by the second half of the 19th century the complex projective plane was well understood, and curves in $\PP^2 = \PP^2_\CC$, corresponding to irreducible forms in 3 variables, were recognized as the natural objects of study---see the historical appendix to this book for more details.
 
@@ -30,7 +30,7 @@ $E := D'-D$ can be defined with properties such as that $D'-E = D$; Brill and No
 
 Macaulay exploited this theory of residuation  to prove what he called the ``Generalized Riemann-Roch Theorem'' (now widely known as the ``Cayley Bacharach Theorem'', after some precursors). This early work of Macaulay led directly to his definitions of  ``perfection'' (a homogeneous ideal
 $I  \subset S:= k[x_0, \dots, x_n]$ is perfect if $S/I$ is Cohen-Macaulay) and ``super-perfection'' (the case when $S/I$ is
-Gorenstein). For all this, see~\cite{Eisenbud-Gray}.
+Gorenstein). For all this, see~\cite{eisenbud-gray}.
 
 In this section we will take the point of view of Clebsch, Brill and Noether, and explain how to understand 
 the differential forms and, given a (possibly ineffective) divisor $D$ on $C$, how to find all the 
@@ -216,23 +216,6 @@ then $E = QH +LF$ for some forms $H$ and $L$, and this statement applies to arbi
 noting that it had often been used by geometers but not proven. After successive attempts and 
 criticisms involving many mathematicians, he and Brill gave a complete proof in~\cite{Brill-Noether}. For more of this story see the account in~\cite{Eisenbud-Gray}.
 
-If $C$ is a reduced plane curve of degree $d$, then projection from
-a point of $C$ defines a map of degree $e\leq d-1$ from $C$ to $\PP^{1}$.
-For smooth plane curves the converse is also true:
-
-\fix{ Exercise~\ref{gonality of smooth plane curve} in Ch 2 shows that there is no g^{1}_{e}$ of degree $e\leq \leq d-2$; uses any d-2 points impose
-indep conditions on forms of degree $d-3$, the canonical class.}
-
-\begin{proposition}
- If $C\subset \PP^{2}$ is a smooth plane curve of degree $d$, 
- and $\sV := (\sL, V)$ is a $g^{1}_{e}$ on $C$ with $e\leq d-1$,
- then $e=d-1$ and $\sV$ is the complete linear series $\sV -p$ for some $p\in C$.
-\end{proposition}
-
-\begin{proof}
-Suppose that the divisor $D\subset C$ is the fiber of a map to $\PP^{1}$,
-with $\deg D = e\leq d-1$.
-\end{proof}
 
 \subsection{The Cayley-Bacharach-Macaulay Theorem}\label{CB section}
 
@@ -244,8 +227,11 @@ Bacharach; see \cite[Section 2.3]{Threads} for more on this history, and
 \begin{theorem}[Cayley-Bacharach-Macaulay]\label{CBM} Let $C$ be a smooth plane curve of degree $d$, suppose that
 $E', E''$ are effective divisors on $C$ such that $E:=E'+E'' = C\cap C'$, the complete intersection of $C$
 with a curve $C'$ of degree $d'$. For any integer $0\leq k \leq d+d'-3$, the difference in the number of conditions imposed 
-on forms of degree $k$ by $E'$ and $E$ is equal to the degree of $E''$ minus the
-number of conditions $E''$ imposes on forms of degree $d+d'-3 -k$. Writing $H$ for
+on forms of degree $k$ by $E''$ and by $E$, modulo forms vanishing on $C$,  is equal to the degree of $E'$ minus the
+number of conditions $E'$ imposes on forms of degree $d'':=d+d'-3 -k$---that is, the ``failure of
+$E'$ to impose independent conditions on forms of degree $d''$.
+
+ Writing $H$ for
 the divisor class of the intersection of $C$ with a line, and setting $s := d+d'-3-k$ this is the equality:
 $$
 h^0(kH-E) - h^0(kH-E')  = \deg E'' - \left(h^0(sH) -  h^0(sH-E'')\right)
@@ -265,6 +251,36 @@ e'' - h^0(sH) +  h^0(sH+E'')
 $
 as required.
 \end{proof}
+
+Not surprisingly, the following consequence could also be deduced directly from the Riemann-Roch Theorem (Exercise~\ref{CBM corollary from RR}).
+
+\begin{corollary}\label{CBM cor 1}
+A divisor $E'$ on a smooth plane curve $C\subset \PP^2$ of degree $d$ moves
+in a linear series of dimension $r$ if and only if $E'$ fails by $r$ to impose
+independent conditions on curves of degree $d-3$.
+\end{corollary}
+
+\begin{proof}
+For sufficiently large $d'$ we can choose a curve $C'$ of degree $d'$ containing
+$E$ and meeting $C$ in $E = E'+E''$, where $E''$ is disjoint from $E'$. Since $C\cap C'$
+is a complete intersection, every form vanishing on $E+E'$ is a linear combination of
+the forms defining $C$ and $C'$, and thus the dimension of the space of forms of degree $d'$
+vanishing on $E$ modulo those vanishing on $C$ is 1. By Theorem~\ref{equiv on smooth plane curve} the dimension $r$ of the linear series $|E'|$ is the dimension of the space of
+forms of degree $d'$ modulo those vanishing on $E+E'$, and by Theorem~\ref{CBM} this
+is the failure of $E'$ to impose independent conditions on forms of degree
+$d'' = d+d' - d' -3 = d-3$.
+\end{proof}
+
+\begin{corollary}\label{CBM cor 2}
+ Suppose that $C\subset \PP^2$ is a smooth plane curve of degree $d$.
+ 
+\begin{enumerate}
+ \item If $\sV$ is a $g^1_e$ on $C$ with $e\leq d-1$ then $e = d-1$ and $\sV$
+ corresponds to projection from a point of $C$.
+ \item If $\sV$ is a $g^2_e$ on $C$ with $e\leq d$ then $e = d$ and $\sV$
+is the given embedding of $C$ in $\PP^2$
+ \end{enumerate}
+\end{corollary}
 
 
 \section{Curves of genus 1}
@@ -728,6 +744,8 @@ Hint: Since the $r-1$ surfaces intersect only in codimension $r-1$, they form
 a regular sequence; and the length of any maximal regular sequence in 
 $\CC[x_0,\dots, x_r]$ is $r+1$. \end{exercise}
 
+Exercise~\ref{CBM corollary from RR} Prove Corollaries~\ref{CBM cor 1} and \ref{CBM cor 2}
+directly from the Riemann-Roch theorem and the adjunction formula.
 
 \input footer.tex
 
