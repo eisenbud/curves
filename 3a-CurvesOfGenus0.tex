@@ -174,9 +174,11 @@ Thus every monomial in the $x_i$ of degree $t$ is equivalent, modulo $I$, to a m
   x_{1}&x_{3}&x_{4}\\
    x_{2}&x_{4}&x_{5}\\
 \end{pmatrix}
+$$
 which arises from the multiplication table of 
 $$
 H^{0}(\sO_{\PP^{2}}(1)) \otimes H^{0}(\sO_{\PP^{2}}(1)) \to H^{0}(\sO_{\PP^{2}}(2)).
+$$
 \end{fact}
 
 \begin{corollary}\label{forms vanishing on the RNC}
@@ -532,6 +534,139 @@ $$
 e \; \leq \; (s+1)\frac{r-s}{r-s-1},
 $$
 perhaps with a few low degree exceptions. Is this true of a general rational curve? For most $e$, $r$ and $s$, we don't know.
+
+\section{The Cohen-Macaulay property}\label{ACM}
+
+In Section~\ref{rational normal curves section} we defined a curve $C\subset \PP^{r}$ to be Arithmetically Cohen-Macaulay (ACM) if the natrural maps
+$$
+\rho_m: H^0(\sO_{\PP^r}(m)) \to H^0(\sO_{C}(m))
+$$
+are surjective for all $m$. When this is the case we can accurately predict the number of independent forms of
+each degree vanishing on the curve, and the condition has other important consequences that we will explore here and in Chapters~\ref{LinkageChapter} and \ref{SyzygiesChapter}. For general treatments of 
+Cohen-Macaulay rings see \cite[Chapter 18]{Eisenbud1995} or the book~\cite{BrunsHerzog}. One of the characterizations of the condition is in terms of regular sequences:
+
+\begin{definition}\label{gradeDef}
+A sequence of elements $f_{1}, \dots, f_{c}$ in a ring $R$ is a \emph{regular sequence} if
+$f_{i+1}$ is a non-zerodivisor modulo $(f_{1}, \dots, f_{i})$ for $i = 0,\dots, c-1$ and the ideal
+$(f_{1}, \dots, f_{c})$ is not the unit ideal. 
+
+The \emph{grade} of an ideal $I$ in a ring  $R$ (sometimes called the depth of $I$ on $R$) is the maximal length of a regular sequence contained in $I$, or $\infty$ if $I = R$. 
+
+A local ring $(R,\gm)$ is \emph{Cohen-Macaulay} if $\grade \gm = \dim R$. If $R$ is not necessarily local, then 
+$R$ is called Cohen-Macaulay if every localization is Cohen-Macaulay. Similarly, a scheme is Cohen-Macaulay if
+all its local rings are Cohen-Macaulay.
+\end{definition}
+
+\begin{example}
+\begin{itemize}
+ \item The sequence of elements $x_{0},\dots, x_{r}\subset S:= \CC[x_{0}\dots, x_{r}]$ is regular, proving
+ from the definition that the localization of $S$ at the homogeneous maximal ideal is Cohen-Macaulay.
+ 
+ \item Regular local rings are Cohen-Macaulay. Thus every smooth scheme is Cohen-Macaulay, and in particular
+$S:= \CC[x_{0}\dots, x_{r}]$ is Cohen-Macaulay. 
+ 
+ \item It follows from the definition that any complete intersection in a Cohen-Macaulay scheme is again Cohen-Macaulay.
+Thus every plane curve, and more generally every complete intersection curve,
+is ACM; and we shall show in Section~\ref{CastelnuovoSection} that every canonically embedded curve
+and every curve embedded by a complete linear series of sufficiently high degree is also ACM.
+
+\item Zero-dimensional rings are all Cohen-Macaulay. A 1-dimensional ring is Cohen-Macaulay if and only if
+it is pure-dimensional (sometimes called ``unmixed'')---that is, 
+every associated prime ideal is 1-dimensional (Proof: the zerodivisors in $R$ are the elements of the associated primes of 0.) Thus any purely 1-dimensional scheme is Cohen-Macaulay. 
+
+\end{itemize}
+
+\end{example}
+
+\begin{fact} 
+\begin{itemize}
+ \item We defined the grade as the maximal length of a regular sequence in $I$; but in fact all maximal regular
+sequences have the same length, equal to the smallest integer $k$ such that $\Ext^{k}(R/I,R)\neq 0$
+\cite[Theorem 17.4 and Proposition 18.4]{Eisenbud1995}.
+
+\item For any proper ideal $I\subsetneq R$ we have $\grade I \leq \codim I$. On the other hand, if $R$ is Cohen-Macaulay,
+then $\grade I =\codim I$ for every ideal $I$ of $R$. In this sense the grade is an arithmetic
+approximation to the codimension.
+
+\item Every localization of a Cohen-Macaulay ring is Cohen-Macaulay. If $X\subset \PP^{r}$
+has homogeneous coordinate ring $R_{X}$, then we say that $X\subset \PP^{r}$ is
+arithmetically Cohen-Macaulay if $R_{X}$ is Cohen-Macaulay, a property that depends on the 
+embedding, and implies the intrinsic property that $X$ is Cohen-Macaulay (since the local rings
+of $X$ are essentially localizations of $R_{X}$). Previously we defined a curve $C\subset \PP^{r}$
+to be arithmetically Cohen-Macaulay if the natural map $R_{C}\to H^{0}_{*}(\sO_{C})$ is surjective.
+We will prove that this is equivalent to $R_{C}$ being Cohen-Macaulay in Proposition~\ref{ACM basics}. The same definitions and theorem apply to a positively graded ring, and homogeneous ideals. 
+
+\item By Serre's Criterion~\cite[Section 11.2]{Eisenbud1995} the homogeneous coordinate ring $R_C$ of a curve $C$ is normal (that is, integrally closed) iff $C$ is both nonsingular and ACM, and sometimes $C$ is said to be \emph{projectively normal} in this case.  (This is also the excuse for the terminology ``linearly normal"
+for a curve embedded by a complete linear series, quadratically normal if $\rho_{2}$ is surjective, and so on.)
+
+\end{itemize}
+ \end{fact}
+ 
+\begin{proposition}\label{ACM basics}
+Suppose that $C\subset \PP^r$ is a 1-dimensional subscheme. Let $S = H^0_*(\sO_{\PP^r})$
+be the homogeneous coordinate ring of $\PP^r$, and let $R_C = S/I_C$ be the homogeneous
+coordinate ring of $C$. The following conditions are equivalent:
+\begin{enumerate}
+
+ \item The natural injective map $R_C \to H^0_*(\sO_{C}(1))$ is surjective;
+ 
+\item $H^1_*(\sI_{C/\PP^r}) = 0.$
+
+\item The homogeneous coordinate ring $R_C$ of $C$ is a Cohen-Macaulay ring; that is, there are linear forms $h,h'$ on $\PP^r$ whose images in  $R_C$ form a regular sequence. In particular, $R_C$ has no 0-dimensional primary components
+so $C$ is purely 1-dimensional and thus Cohen-Macaulay as a scheme.
+
+ \item For every hyperplane $H\subset \PP^r$ that does not contain any component of $C$,
+ the homogeneous ideal of $H\cap C$
+ is equal to  $I_C+(h)$, where $h$ is a linear form defining $H$.
+ 
+\end{enumerate}
+\end{proposition}
+ 
+\begin{proof}
+{\sl 1} $\Leftrightarrow$ {\sl 2}: We may assume that $r\geq 2$, so $H^1_*(\sO_{\PP^r}(n)) = 0$ for all $n$. Using this and the exact sequence 
+$$
+0\rTo \sI_{C/\PP^r}  \rTo  \sO_{\PP^r}  \rTo  \sO_C  \rTo  0
+$$
+we see that $H^0(\sO_{\PP^r}(n)) \to H^0(\sO_C(n))$ is surjective for all $n$ if and only if $H^1(\sI_{C/\PP^r}(n)) = 0$ for all $n$,
+proving the equivalence of {\sl 1} and {\sl 2.}
+
+{\sl 1} $\Leftrightarrow$ {\sl 3}: First let $C\subset \PP^r$ be an arbitrary 1-dimensional subscheme,
+and let $R =H^0_*(\sO_{C}) := \oplus_{n\in \ZZ} H^0(\sO_{C}(n))$.
+If $H$ is a 
+general hyperplane, with equation $h=0$, then $h$ does not vanish on any primary component of $C$, and thus the sequence
+$$
+0\rTo \sO_C(-1) \rTo^{h}\sO_C\rTo \sO_{C\cap H}\rTo 0
+$$
+is exact. Applying $H^0_*$ and using item 2, we see that $h$ is a non-zerodivisor on $R$, and that $R/hR$ is
+a subring of $H^0_*(\sO_{C\cap H})$.  A general linear form $h'$ doesn't vanish on
+any point of $C\cap H$, so $h'$ is a unit on $H^0_*(\sO_{C\cap H})$
+and thus a non-zerodivisor on $R/hR$. 
+
+The ring $R_C$ is the image of the natural map $S\to R$, and by definition $C$ is ACM if and only if this map is surjective,
+so that $R_C = R.$ This shows that if $C$ is arithmetically Cohen-Macaulay then $R_C$ is a Cohen-Macaulay ring,
+and is in particular unmixed; that is, $C$ has no 0-dimensional primary components (see for example \cite[Chapter 18]{Eisenbud1995} for general
+information about Cohen-Macaulay rings). This proves the equivalence of conditions {\sl 1} and {\sl 3.}
+
+
+{\sl 3} $\Leftrightarrow$ {\sl 4}: If  $h$ does not vanish on any component of $C$ then $h$ is a non-zerodivisor on $R_C$. The ideal $I_{C\cap H}$ is in any case the saturation of $I_C+(h)$. 
+If $I_{C\cap H}=I_C+(h)$, then any linear form $h'$ not containing a point of $C\cap H$ is a non-zerodivisor
+on $I_C+(h)$, so $C$ satisfies condition {\sl 2}. Conversely, in a 2-dimensional positively graded Cohen-Macaulay ring, any 
+system of parameters is a regular sequence \cite[Section 18.2]{Eisenbud1995}, so $I_C+(h)$ is unmixed, and in particular, saturated.
+\end{proof}
+
+\begin{fact}\label{meaning of ACM}
+The Cohen-Macaulay property is hard to interpret geometrically; the definition is justified by its usefulness. Here are two results that help our intuition:
+\begin{enumerate}
+\item A scheme $X$ is Cohen-Macaulay if some (equivalently every) finite map $f: X\to P$ to a smooth scheme $P$
+of the same dimension is flat, or equivalently the pushforward $f_*(\sO_X)$ is locally free. (This follows
+from the Auslander-Buchsbaum formula \cite[Section 19.3]{Eisenbud1995}.)
+\item (Hartshorne) If a scheme $X$ is Cohen-Macaulay then $X$ is connected in codimension 1 (that is, $X$ remains connected after removing any closed subset of codimension $\geq 2$.)
+See for example~\cite[Theorem 18.12]{Eisenbud1995} for a proof.
+\end{enumerate}
+ 
+\end{fact}
+
+
 
 \section{Exercises}
 
