@@ -6,14 +6,14 @@
 
 Generalizing the ramification points of a map from a smooth curve $C$ to $\PP^1$, there are finitely
 many ``special'' points determined by any linear series on any curve, the \emph{inflection points}.
-We love this topic for its echos of classical algebraic geometry and it will provide the tools to give a proof of the Brill-Noether theorem in the following chapter. In characteristic 0 every linear series has finitely many inflection points, and the number of these properly counted, depends only on the genus of the curve and the degree of the linear series.
+We love this topic for its echos of classical algebraic geometry and it will provide the tools to give a proof of the Brill-Noether theorem in the following chapter. In characteristic 0 every linear series has finitely many inflection points, and the number of these, properly counted, depends only on the genus of the curve and the degree of the linear series.
 
 \section{Inflection points,  Pl\"ucker formulas and Weierstrass points}
 
 \subsection{Definitions}
 To characterize the inflection points of a linear series $\sD = (\sL, V)$ on a curve $C$, we will use the following result:
 
-\begin{proposition}\label{vanishing sequence} Let $V$ be a vector space of global sections of an invertible sheaf $\sL$ on a smooth curve $C$, and let $p \in C$ be a point. There exists a basis $\sigma_0, \dots, \sigma_r$ of $V$ consisting of sections vanishing to different orders at $p$. Thus the set
+\begin{proposition}\label{vanishing sequence} Let $V$ be a finite-dimensional vector space of global sections of an invertible sheaf $\sL$ on a smooth curve $C$, and let $p \in C$ be a point. There exists a basis $\sigma_0, \dots, \sigma_r$ of $V$ consisting of sections vanishing to different orders at $p$. Thus the set
 $$
 \{ \ord_p(\sigma) \mid \sigma \neq 0 \in V \}
 $$
@@ -55,6 +55,7 @@ linear series of degree $d$ and dimension $r$, then
 For a proof, see for example~\cite[Theorem 7.13]{allthat}.
 
 Theorem~\ref{Plucker} also holds in positive characteristic under the hypothesis that the number of inflection points is finite (equivalently, not every point is an inflection point). This may seem like an unnecessary hypothesis---it's hard to imagine a plane curve in which every point is a flex!---but in positive characteristic there are such curves; see Exercise~\ref{inseparable Gauss}.
+
 As an immediate consequence of the Pl\"ucker formula, we have
 
 \begin{corollary}\label{uninflected curves}
@@ -71,7 +72,7 @@ This immediately implies that $g=0$, so that we must have $(r+1)(d-r) = 0$ and h
 
 \begin{corollary}
 A nondegenerate smooth  curve $C\subset \PP^{r}$ is the rational normal curve
-of degree $r$ if and only if either or all of the following properties holds:
+of degree $r$ if and only if any of the following equivalent properties holds:
 \begin{enumerate}
  \item $C$ is projectively homogeneous.
  \item $C$ has no inflection points.
@@ -155,16 +156,23 @@ For example, suppose $C$ is a curve of genus 2. The canonical series on $C$ give
 
 In genus 3, if $C$ is hyperelliptic then the Weierstrass points are exactly the 8 ramification points of the 2-sheeted cover $C \to \PP^1$, and each has weight 3. If $C$ is non-hyperelliptic, then it is a plane quartic curve. A general such curve has 24 ordinary flexes, which are Weierstrass points of weight 1; special quartics may have some number $\alpha$ of \emph{hyperflexes}---points where the tangent line has contact of order 4 with the curve---which are Weierstrass points of weight 2; in this case $C$ has $\alpha$ Weierstrass points of weight 2 and $24-2\alpha$ Weierstrass points of weight 1. (It has been shown that $\alpha$ cannot be 11, but  all  other values  between 0 and 12 occur (\cite{Vermeulen}).)
 
-
-\subsubsection{The Weierstrass semigroup} 
+\subsection{Another characterization of Weierstrass points}
 
 The Riemann-Roch formula tells us that
 $$
 h^0(\cO_C(gp)) = g - g + 1 + h^0(K_C(-gp))
 $$
-so the condition $h^0(K_C(-gp)) \neq 0$ that $p$ be a Weierstrass point is equivalent to the condition $h^0(\cO_C(gp)) > 1$; in other words, there exists a nonconstant rational function on $C$, regular on $C \setminus \{p\}$ and having a pole of order at most $g$ at $p$.
+so the condition $h^0(K_C(-gp)) \neq 0$ that $p$ be a Weierstrass point is equivalent to the condition $h^0(\cO_C(gp)) > 1$; in other words, we have
 
-This suggests that we look at the set of all possible orders of pole at $p$ of rational functions regular on $C \setminus \{p\}$; that is,
+\begin{proposition}\label{Weierstrass characterization}
+A point $p \in C$ is a Weierstrass point if and only if there exists a nonconstant rational function on $C$, regular on $C \setminus \{p\}$ and having a pole of order at most $g$ at $p$.
+\end{proposition} 
+
+Indeed, this is how Weierstrass points were characterized when they were first studied.
+
+\subsubsection{The Weierstrass semigroup} 
+
+Proposition~\ref{Weierstrass characterization} suggests that we look at the set of all possible orders of pole at $p$ of rational functions regular on $C \setminus \{p\}$; that is,
 $$
 W(C,p) := \left\{ -\ord_p(f) \mid f \in K(C) \text{ with $f$ regular on } C \setminus \{p\} \right\}.
 $$
@@ -197,7 +205,7 @@ We will actually prove a strong form of the assertion: the subgroup of $Aut(C)$ 
  trivial or, in the case of hyperelliptic curves, just the $\ZZ/2$ generated by the hyperelliptic involution.
     
 We will study the fixed points of automorphisms by studying the intersection of the graph of
-an automorphism with the diagonal divisor in $C\times C$ (An alternate proof uses the Lefschetz fixed point formula). For this we use the
+an automorphism with the diagonal divisor in $C\times C$ (an alternate proof uses the Lefschetz fixed point formula). For this we use the
 \emph{Neron-Severi group} $N(S)$ of a surface $S$. This consists of divisors modulo \emph{numerical equivalence}---that is, in $N(S)$ we identify divisors $H, H'$ if for all divisors $D$ on $S$ we have $H\cdot D = H'\cdot D$. The group
 $N(S)$ is a  finitely generated free abelian group for any surface---in characteristic 0 it is a subgroup of the quotient of the second integral homology group by its torsion elements. The rank of $N(S)$ is called the \emph{Picard number} of $S$. 
 
@@ -207,8 +215,10 @@ $D^2<0$; that is, the intersection pairing is negative definite on the orthogona
 ample divisor.
 \end{theorem}
 \begin{proof}
-The result follows easily from the Riemann-Roch theorem for surfaces; see \cite[Theorem V.1.9]{Hartshorne1977}.
+The result follows easily from the Riemann-Roch theorem for surfaces; see \cite[Theorem V.1.9]{Hartshorne1977}.  
 \end{proof}
+
+There is also a stronger form of the Hodge index theorem, in which the condition that $D$ is ample is weakened to the requirement that $D^2 > 0$. The proof of this stronger form relies on Hodge theory; see for example~\cite{MR1997577} or~\cite{Griffiths-Harris1978}.
 
 Together, the following two lemmas imply the stronger form of Theorem~\ref{finite autos}:
 
@@ -277,12 +287,12 @@ where $w_p$ is the total weight of $p$ as a Weierstrass point. Since the total w
 $$
 \frac{g^3-g}{\binom{g}{2}} = 2g+2.
 $$
-Finally, by the strong form of Clifford's theorem \ref{Clifford equality}, equality implies that the curve is hyperelliptic.
+Finally, by the strong form of Clifford's theorem~(\ref{Clifford equality}), equality implies that the curve is hyperelliptic.
 \end{proof}
 
 \section{Curves with automorphisms are special}\label{curves with automorphisms}
 
-Curves with nontrivial automorphisms are rare. The general curve has none, and more is true:
+In genus $g > 2$, curves with nontrivial automorphisms are rare. The general curve has none, and more is true:
 
 \begin{lemma}
 In the moduli space $M_g$ of smooth curves of genus $g \geq 3$, the locus of curves with nontrivial automorphisms has codimension $g-2$; and the only component of this codimension is the locus
@@ -293,26 +303,9 @@ of hyperelliptic curves.
 Let $C$ be a smooth curve of genus $g$ admitting a nontrivial automorphism $\phi : C \to C$. Taking a power, we may assume $\phi$ has prime order $p$. 
 %Since the number of automorphisms is bounded,
 %there are only finitely many primes $p$ to consider. 
-Let $\langle \phi \rangle = \{1, \phi, \phi^2,\dots,\phi^{p-1} \}$ be the group of automorphisms of $C$ generated by $\phi$, and let $B = C/\langle \phi \rangle $ be the quotient of $C$ by this group. As we have seen in Chapter~\ref{genus 2 and 3 chapter}, if we know $B$ and the set
-of branch points on $B$ then we know $C$ up to a finite set of choices.  Moreover, the number $b$ of 
-branch points is determined from Hurwitz' theorem by the genera of $C$ and $B$. Note that every branch point must have multiplicity $p - 1$, so that the number of branch points is
-$$
-b \; = \; \frac{2g-2 - p(2h-2)}{p-1}
-% \leq 2g-2 - p(2h-2).
-$$ 
-where $h$ is the genus of $B$. Thus we see that the curves with an automorphism of order $p$
-form a family of dimension at most
-$$
-\dim M_{h}+ b = 3h-3 + \frac{2g-2 - p(2h-2)}{p-1}.
-$$ 
-It is not hard to see that the maximum is taken for $h=0$ and $p=2$, whence the codimension in $M_g$
-of any component of the locus of curves of genus $g$ with a nontrivial  automorphism is $\geq 3g+3 - (2g+4+1) = g-2$,
-taken on only by double coverings of $\PP^{1}$.
-\end{proof}
-
-
-
-Finally, let $b$ be the number of fixed points of $\phi$, so that the quotient map $\pi : C \to B$ expresses $C$ as a $p$-sheeted branched cover of $B$, having $b$ branch points $q_1,\dots, q_b$ of multiplicity $p-1$ and otherwise unramified. Thus, to specify the curve $B$ and the $b$ points $q_i$ determines $C$ up to a finite number of choices. 
+Let $\langle \phi \rangle = \{1, \phi, \phi^2,\dots,\phi^{p-1} \}$ be the group of automorphisms of $C$ generated by $\phi$, and let $B = C/\langle \phi \rangle $ be the quotient of $C$ by this group, so that the quotient map $\pi : C \to B$ expresses $C$ as a $p$-sheeted branched cover of $B$, having $b$ branch points $q_1,\dots, q_b$ of multiplicity $p-1$ and otherwise unramified.
+As we have seen in Chapter~\ref{genus 2 and 3 chapter}, if we know $B$ and the set
+of branch points on $B$ then we know $C$ up to a finite set of choices. 
 
 The point is, in a neighborhood of $[C] \in M_g$, the locus of curves with an automorphism of order $p$ has dimension at most $3h-3 + b$. Our claim is thus that
 $$
@@ -339,6 +332,63 @@ $$
 (b-2)(p-2) \geq 0;
 $$
 and since $h=0$ the number $b$ of branch points must be at least 2, so we're done.
+\end{proof}
+
+%\begin{lemma}
+%In the moduli space $M_g$ of smooth curves of genus $g \geq 3$, the locus of curves with nontrivial automorphisms has codimension $g-2$; and the only component of this codimension is the locus
+%of hyperelliptic curves.
+%\end{lemma}
+%
+%\begin{proof} 
+%Let $C$ be a smooth curve of genus $g$ admitting a nontrivial automorphism $\phi : C \to C$. Taking a power, we may assume $\phi$ has prime order $p$. 
+%%Since the number of automorphisms is bounded,
+%%there are only finitely many primes $p$ to consider. 
+%Let $\langle \phi \rangle = \{1, \phi, \phi^2,\dots,\phi^{p-1} \}$ be the group of automorphisms of $C$ generated by $\phi$, and let $B = C/\langle \phi \rangle $ be the quotient of $C$ by this group. As we have seen in Chapter~\ref{genus 2 and 3 chapter}, if we know $B$ and the set
+%of branch points on $B$ then we know $C$ up to a finite set of choices.  Moreover, the number $b$ of 
+%branch points is determined from Hurwitz' theorem by the genera of $C$ and $B$. Note that every branch point must have multiplicity $p - 1$, so that the number of branch points is
+%$$
+%b \; = \; \frac{2g-2 - p(2h-2)}{p-1}
+%% \leq 2g-2 - p(2h-2).
+%$$ 
+%where $h$ is the genus of $B$. Thus we see that the curves with an automorphism of order $p$
+%form a family of dimension at most
+%$$
+%\dim M_{h}+ b = 3h-3 + \frac{2g-2 - p(2h-2)}{p-1}.
+%$$ 
+%It is not hard to see that the maximum is taken for $h=0$ and $p=2$, whence the codimension in $M_g$
+%of any component of the locus of curves of genus $g$ with a nontrivial  automorphism is $\geq 3g+3 - (2g+4+1) = g-2$,
+%taken on only by double coverings of $\PP^{1}$.
+%\end{proof}
+%
+%
+%
+%Finally, let $b$ be the number of fixed points of $\phi$, so that the quotient map $\pi : C \to B$ expresses $C$ as a $p$-sheeted branched cover of $B$, having $b$ branch points $q_1,\dots, q_b$ of multiplicity $p-1$ and otherwise unramified. Thus, to specify the curve $B$ and the $b$ points $q_i$ determines $C$ up to a finite number of choices. 
+%
+%The point is, in a neighborhood of $[C] \in M_g$, the locus of curves with an automorphism of order $p$ has dimension at most $3h-3 + b$. Our claim is thus that
+%$$
+%3g-3 - (3h-3+b) \geq g-2
+%$$
+%or equivalently
+%$$
+%2g - 1 - (3h-3) - b \geq 0.
+%$$
+%By applying the Riemann-Hurwitz formula to the map $C \to B$, we get
+%$$
+%2g-2 = p(2h-2) + b(p-1).
+%$$
+%Plugging this in, our claim is equivalent to the assertion that
+%$$
+%p(2h-2) + b(p-1) + 1 - (3h-3) - b \geq 0
+%$$
+%that is,
+%$$
+%(2p-3)h -2p + b(p-2) + 4 \geq 0.
+%$$
+%Now, the expression on the left could be negative only if $h=0$, in which case the expression reduces to
+%$$
+%(b-2)(p-2) \geq 0;
+%$$
+%and since $h=0$ the number $b$ of branch points must be at least 2, so we're done.
 
 \section{Inflections of linear series on $\PP^1$}
 
@@ -497,7 +547,7 @@ of the flag $\sV$. It is typically denoted $\sigma_{\bbeta}$. Moreover, the clas
 Thus the product $\sigma_{\bbeta} \cdot \sigma_{\bbeta'}$ is a linear combination of Schubert classes,
 given combinatorially by the \emph{Littlewood-Richardson rule}---see for example~\cite{MR2247964}.
 \emph{Pieri's formula} is the special
-case of the Littlewood-Richardson rule that expresses the product in the cohomology ring $A^*(G(\ell, e))$ of an a special Schubert class with an arbitrary Schubert class.
+case of the Littlewood-Richardson rule that expresses the product in the Chow ring $A^*(G(\ell, e))$ of an a special Schubert class with an arbitrary Schubert class.
 In Chapter~\ref{BrillNoetherproofChapter} we will use it to describe the possible ramification behavior of rational curves with cusps.
 
 %\def\bdelta{{\boldsymbol{\delta}}}
@@ -616,7 +666,7 @@ the sum of the codimensions of the cycles $\Sigma_{{\bbeta}^j}$. Moreover, the i
 
 
 \begin{proof} 
-If the intersection is empty then the cohomology class is 0, so it suffices to show that the intersection is proper,
+If the intersection is empty then the Chow class is 0, so it suffices to show that the intersection is proper,
 and we may assume that it is non-empty. Because the Grassmannian is smooth, the codimension of the intersection of any subvarieties
  is at most the sum of their codimensions, so it is enough to show that the codimension of the
  intersection cannot be too small.
@@ -664,10 +714,9 @@ $$
 \end{corollary}
 
 \begin{proof}
-If the product is nonzero, Proposition~\ref{ramification} and Theorem\ref{osculating intersection} immediately show the existence of a $g^r_d$ on $\PP^1$ with ramification sequence greater than or equal to $\alpha^i$ at $p_i$. But by Theorem~\ref{osculating intersection}, the ones with ramification strictly greater than the $\alpha^i$ form a family of strictly smaller dimension. Thus a general $g^r_d$ with ramification sequence greater than or equal to $\alpha^i$ at $p_i$ has  ramification sequence exactly equal to $\alpha^i$ at $p_i$.
+If the product is nonzero, Proposition~\ref{ramification} and Theorem~\ref{osculating intersection} immediately show the existence of a $g^r_d$ on $\PP^1$ with ramification sequence greater than or equal to $\alpha^i$ at $p_i$. But by Theorem~\ref{osculating intersection}, the ones with ramification strictly greater than the $\alpha^i$ form a family of strictly smaller dimension. Thus a general $g^r_d$ with ramification sequence greater than or equal to $\alpha^i$ at $p_i$ has  ramification sequence exactly equal to $\alpha^i$ at $p_i$.
 \end{proof}
 
-\fix{do something about the following, which needs the translation from ramification to osculation!}
 We can deduce a result about general secant loci strengthening one that was originally proven in \cite{Griffiths-Harris-BN}:
 Given a curve $C \subset \PP^d$, we say that a \emph{secant flag} in $\PP^d$ is a flag
 $$
@@ -693,50 +742,6 @@ Let $k$ be a field of characteristic $p$. Show that every point of the affine cu
  
 \end{exercise}
 
-\begin{exercise}\label{Hessian exercise} 
-Let $p\in C$ be a smooth point of a  plane curve with equation $F(x_0,x_1,x_2) = 0$ of degree $d>1$. Show that the tangent line to $C$ at $p$ meets
-$C$ in a scheme of order $m+2$ if and only if the determinant of the Hessian matrix vanishes
-along $C$ to order $m$ as is done in \cite[pp. 84--85]{Kunz}:
-
-\begin{enumerate}
-\item Assume that $p = (0,0)\in \AA^2\subset \PP^2$, where $\AA^2$ is the locus $x_0\neq 0$, 
-and suppose that $f(x,y) =0$ is the affine equation of $C$, with $x= x_1/x_0, y = x_2/x_0$.
-Reduce to the affine case by showing that
-$$
-\begin{aligned}
-&\det Hess(C) = \\
-&x_0^2 \det 
-\begin{pmatrix}
- d(d-1)F & (d-1) \partial F/\partial x_1 & (d-1) \partial F/\partial x_2 \\
- (d-1) \partial F/\partial x_1&\partial^2 F/\partial x_1 \partial x_1 & \partial^2 F/\partial x_1 \partial x_2\\
- (d-1) \partial F/\partial x_2 &\partial^2 F/\partial x_2 \partial x_1 & \partial^2 F/\partial x_2 \partial x_2 
-\end{pmatrix} .
-\end{aligned}
-$$ 
-Writing the partial derivatives as subscripts, this becomes
-$$
-\det \begin{pmatrix}
- d(d-1)f & (d-1) f_x & (d-1) f_y \\
- (d-1) f_x&f_{xx} & f_{xy}\\
- (d-1) f_y &f_{xy} & f_{yy}
-\end{pmatrix}
-$$ 
-when restricted to $\AA^2$.
-
-\item Assume that the tangent line to $C$ at $p$ is $y=0$. Show that $f$ can be written as
-$$
-f = x^{m+2}\phi(x) +y\psi(x,y)
-$$
-where $\phi(0) \neq 0$ and $\psi(0,0) \neq 0$, and thus, modulo $f$, the Hessian determinant,
-up to a constant factor, 
-has the form
-$$
-f_x^2f_{yy}+f_y^2f_{xx}-2f_xf_yf_{xy}.
-$$
-Note that $x$ is a local parameter at $p$. Using the form of $f$ above, show that there is a unique term vanishing to order $m$ at $p$,
-and no term vanishing to lower order there.
-\end{enumerate}
-\end{exercise}
 
 \begin{exercise}\label{codim Schubert}
 Show that the codimension of $\Sigma_{\bbeta}({\cal V})$ in the Grassmannian $G$ is equal to $\sum \beta_i$.
