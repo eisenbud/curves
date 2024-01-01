@@ -41,19 +41,20 @@ canonicalIdeal Ideal := Ideal => o-> I ->(
 
 geometricGenus = method(Options => {Conductor=>null})
 geometricGenus Ideal := ZZ => o-> I -> (
-    R := (ring I)/I;
+-*    R := (ring I)/I;
     cond := o.Conductor;
     if dim singularLocus R <= 0 then cond = ideal 1_R;
     if cond === null then cond = conductor R;
-
-    c := canonicalIdeal (I, Conductor => cond);
-    if c == 0 then 0 else numgens canonicalIdeal R)
+*-
+    c := canonicalIdeal (I, Conductor => o.cond);
+    if c == 0 then 0 else numgens c)
 
 geometricGenus Ring := ZZ => o-> R -> geometricGenus ideal R
 
 
 linearSeries = method (Options => {Conductor=>null})
 linearSeries Ideal := Ideal => o-> D0 ->(
+    --returns a basis of the complete linear series |D_0|, where D_0 is the ideal in the ring of a curve of an effective divisor.
     R := ring D0;
     if dim singularLocus R <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else 
@@ -142,12 +143,13 @@ projectiveImage Ideal := Ideal => o -> D0 ->(
        Linear series on the normalization of a plane curve 
       Description
         Text
+	 Computing the canonical ideal
         Example
          kk = QQ
          S = kk[x,y,z]
          C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
-         C2 = ideal(x^2+y^2+z^2)
-         C3 = ideal (x^4+y^4+z^4)
+         C2 = ideal(x^2+y^2+z^2) --nonsingular conic
+         C3 = ideal (x^4+y^4+z^4) -- smooth curve of genus 3
 
          canonicalIdeal(S/C1)
          canonicalIdeal(S/C2)
