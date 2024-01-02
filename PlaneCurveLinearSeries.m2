@@ -104,68 +104,38 @@ linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     --Thus F=0 pulls back to the divisor A+D0+cond on the normalization C of C0
     f := degree F;
     Aplus := (ideal F : D0); -- pullsback to the ideal of the divisor A+cond on C
-    D := gens intersect((ideal basis(degree F, R)), Aplus, Dinf); -- a matrix
-    --whose entries are a basis of the forms of the same degree as F and vanish on Aplus and Dinf
+    D := gens intersect(ideal basis(degree F, R), Aplus, Dinf); 
+    -- a matrix whose entries are a basis of the forms of the same degree as F and vanish on Aplus and Dinf
     D
     )
-
-
 
 ///
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
 S = QQ[a,b,c]
+--embeddings of a cubic
 fermat = d -> ideal sum(#gens S, i-> (-1)^i*S_i^d)
-fermat 3
 R = S/fermat 3
 p = ideal(a-b,c)
 degree p
-D0 = p^5
-Dinf = p
+D0 = p^7
+Dinf = p^2
 degree D0
-(D, Aplus, cond) = linearSeries D0
-Dlist = flatten entries D
-apply(Dlist/(g -> ideal g), I -> isSubset(I, Aplus))
-degree ideal D == degree Aplus
+D = linearSeries (D0, Dinf)
 P = QQ[x_0..x_(numcols D -1)]
 ker map(R,P,D)
 betti res oo
+
+--embeddings of a singular plane curve of degree 6
+S = QQ[a,b,c]
+p1 = ideal(a,b)
+p2 = ideal(b,c)
+p3 = ideal(a,c)
+p4 = ideal (a-b, a-c)
+intersect (p1^2, p2^2, p3^2)
+
 ///
-linearSeries (Ideal, Ideal) := Ideal => o-> (D0,Dinfty) ->(
-    R := ring D0;
-    if dim singularLocus R <= 0 then cond := ideal 1_R else(
-    if o.Conductor === null then cond = conductor R else 
-    cond = o.Conductor);
 
-    D0plus := intersect(D0,cond);
-    m := min flatten degrees D0plus;
-    G := ideal random(m, D0plus);
-    A := G:D0plus;
-    Hs := trim ideal image basis (m, intersect{A,Dinfty, cond});
- apply (Hs_*, H -> (ideal H):(intersect(A,Dinfty)))
-    )
-
-    
-sections = method(Options =>{Conductor => null})
-sections(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
---Produce the ideal of the image under the linear series |D0-Dinfty|
-    R := ring D0;
-    if dim singularLocus R <= 0 then cond := ideal 1_R else(
-    if o.Conductor === null then cond = conductor R else 
-    cond = o.Conductor);
-
-    D0plus := intersect(D0,cond);
-    m := min flatten degrees D0plus;
-    G := ideal random(m, D0plus);
-    A := G:D0plus;
-    baseLocus := intersect(A, Dinfty, cond);
---  gens trim truncate(m, baseLocus);
-    gens image basis(m,baseLocus)
-)
-
-sections Ideal := Matrix => o-> D0 ->(
-    sections(D0, ideal(1_(ring D0)))
-    )
 
 projectiveImage = method(Options =>{Conductor => null})
 projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
