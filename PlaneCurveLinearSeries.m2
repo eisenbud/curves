@@ -17,7 +17,8 @@ newPackage(
 	  "geometricGenus",
 	  "sections", 
 	  "linearSeries",
-	  "projectiveImage"}
+	  "projectiveImage",
+	  "canonicalImage"}
       
 canonicalIdeal = method(Options => {Conductor=>null})
 canonicalIdeal Ring := Ideal => o-> R ->(
@@ -132,8 +133,14 @@ p1 = ideal(a,b)
 p2 = ideal(b,c)
 p3 = ideal(a,c)
 p4 = ideal (a-b, a-c)
-intersect (p1^2, p2^2, p3^2)
+sings = intersect (p1^2, p2^2, p3^2, p4)
+I = random(6, sings)
+R = S/I
+red = map(R,S)
+geometricGenus R
 
+degree ((red p4)^13)
+linearSeries ((sub p4, R)^13)
 ///
 
 
