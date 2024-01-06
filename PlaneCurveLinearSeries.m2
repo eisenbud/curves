@@ -128,19 +128,33 @@ ker map(R,P,D)
 betti res oo
 
 --embeddings of a singular plane curve of degree 6
+restart
+loadPackage ("PlaneCurveLinearSeries", Reload => true)
 S = QQ[a,b,c]
 p1 = ideal(a,b)
 p2 = ideal(b,c)
 p3 = ideal(a,c)
 p4 = ideal (a-b, a-c)
-sings = intersect (p1^2, p2^2, p3^2, p4)
+sings = intersect (p1^2, p2^2, p3^2, p4); --lin series p4^13 has only 4 sections??
+betti sings
+sings = intersect (p1^2, p2^2, p3^2, p4); --lin series p4^13 has only 4 sections??
+
 I = random(6, sings)
+I = random(5, sings)
+
 R = S/I
 red = map(R,S)
+p4 = red p4
+degree p4
 geometricGenus R
-
-degree ((red p4)^13)
-linearSeries ((sub p4, R)^13)
+genus R
+omega = canonicalIdeal R;
+numgens omega
+degree (p4^5)
+linearSeries (p4^13);
+linearSeries (p4^5);
+linearSeries (p4^6);
+linearSeries (p4^7);
 ///
 
 
