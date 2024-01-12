@@ -75,19 +75,65 @@ linearSeries Ideal :=  o-> D0 ->(
     -- with normalization C, eg a plane curve
     -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
     -- given with Conductor => cond.
-    R := ring D0; -- ring ring of C0
+    R := ring D0;
+    D0sat := saturate D0;
+
     if dim singularLocus R <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else cond = o.Conductor);
-    --now cond is the conductor ideal.
-    
-    F := (intersect(D0,cond))_*_0;--a form of minimal degree that vanishes on D0 and cond; 
-    --Thus F=0 pulls back to the divisor A+D0+cond on the normalization C of C0
+    --now cond is the conductor ideal of $R$
+
+    base := intersect(D0sat,cond);
+    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
+        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
+	--on the normalization C of C0
     f := degree F;
-    Aplus := (ideal F : D0); -- pullsback to the ideal of the divisor A+cond on C
-    D := gens intersect((ideal basis(degree F, R)), Aplus); -- a matrix
-    --whose entries are a basis of the forms of the same degree as F and vanish on Aplus.
-    D
+    A := (ideal F : base);
+    Aplus := intersect(A, cond);
+    gens Aplus * matrix basis(f, Aplus)
     )
+
+///
+restart
+loadPackage ("PlaneCurveLinearSeries", Reload => true)
+--Plane cubic with one node:
+S = ZZ/32003[a,b,c]
+p1 = ideal(a,c)
+p2S = ideal (b, c)
+sings = intersect (p1^2, p2S)
+I = ideal random(3, sings)--rational plane cubic with a node
+I = ideal (c^3-a^2*b) -- rational plane cubic with a cusp
+R = S/I
+conductor R
+red = map(R,S)
+geometricGenus R
+p2 = red p2S
+linearSeries (D0=p2) 
+for i from 0 to 10 list rank source linearSeries p2^i
+
+
+
+--S = QQ[a,b,c] -- substantially slower
+S = ZZ/32003[a,b,c]
+p1 = ideal(a,b)
+p2 = ideal(b,c)
+p3 = ideal(a,c)
+p4S = ideal (a-b, a-c)
+sings = intersect (p1^2, p2^2, p3^2, p4S); 
+
+I = ideal random(5, sings)--quintic with 3 double points
+R = S/I
+red = map(R,S)
+
+genus R == 6 -- arithmetic genus
+geometricGenus R == 3 -- curve smooth away from the 3 double points
+degree singularLocus R == 3 -- another confirmation
+conductor R == ideal (b*c, a*c, a*b) -- and yet another
+omega = canonicalIdeal R;
+numgens omega
+
+p4 = red p4S
+for i from 1 to 11 list rank source linearSeries p4^i
+///
 
 linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
@@ -97,65 +143,67 @@ linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
     -- given with Conductor => cond.
     R := ring D0; -- ring ring of C0
+    D0sat := saturate D0;
+
     if dim singularLocus R <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else cond = o.Conductor);
-    --now cond is the conductor ideal.
-    
-    F := (intersect(D0,cond))_*_0;--a form of minimal degree that vanishes on D0 and cond; 
-    --Thus F=0 pulls back to the divisor A+D0+cond on the normalization C of C0
+    --now cond is the conductor ideal of $R$
+
+    base := intersect(D0sat,cond);
+    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
+        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
+	--on the normalization C of C0
     f := degree F;
-    Aplus := (ideal F : D0); -- pullsback to the ideal of the divisor A+cond on C
-    D := gens intersect(ideal basis(degree F, R), Aplus, Dinf); 
-    -- a matrix whose entries are a basis of the forms of the same degree as F and vanish on Aplus and Dinf
-    D
+    A := (ideal F : base);
+    Aplus := intersect(A, Dinf, cond);
+    gens Aplus * matrix basis(f, Aplus)
     )
+
 
 ///
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
-S = QQ[a,b,c]
---embeddings of a cubic
-fermat = d -> ideal sum(#gens S, i-> (-1)^i*S_i^d)
-R = S/fermat 3
-p = ideal(a-b,c)
-degree p
-D0 = p^7
-Dinf = p^2
-degree D0
-D = linearSeries (D0, Dinf)
-P = QQ[x_0..x_(numcols D -1)]
-ker map(R,P,D)
-betti res oo
+--Plane cubic with one node:
+S = ZZ/32003[a,b,c]
+p1 = ideal(a,c)
+p2S = ideal (b, c)
+sings = intersect (p1^2, p2S)
+I = ideal random(3, sings)--rational plane cubic with a node
+I = ideal (c^3-a^2*b) -- rational plane cubic with a cusp
+R = S/I
+conductor R
+red = map(R,S)
+geometricGenus R
+p2 = red p2S
+linearSeries (D0=p2) 
+for i from 0 to 10 list rank source linearSeries p2^i
 
---embeddings of a singular plane curve of degree 6
+-------------------------------------
+--quintic with 3 double points
 restart
-loadPackage ("PlaneCurveLinearSeries", Reload => true)
-S = QQ[a,b,c]
+load "PlaneCurveLinearSeries"
+S = ZZ/32003[a,b,c]
 p1 = ideal(a,b)
 p2 = ideal(b,c)
 p3 = ideal(a,c)
-p4 = ideal (a-b, a-c)
-sings = intersect (p1^2, p2^2, p3^2, p4); --lin series p4^13 has only 4 sections??
-betti sings
-sings = intersect (p1^2, p2^2, p3^2, p4); --lin series p4^13 has only 4 sections??
+p4S = ideal (a-b, a-c)
+sings = intersect (p1^2, p2^2, p3^2, p4S); 
 
-I = random(6, sings)
-I = random(5, sings)
-
+I = ideal random(5, sings)--quintic with 3 double points
 R = S/I
 red = map(R,S)
-p4 = red p4
-degree p4
-geometricGenus R
-genus R
+
+genus R == 6 -- arithmetic genus
+geometricGenus R == 3 -- curve smooth away from the 3 double points
+degree singularLocus R == 3 -- another confirmation
+conductor R == ideal (b*c, a*c, a*b) -- and yet another
 omega = canonicalIdeal R;
 numgens omega
-degree (p4^5)
-linearSeries (p4^13);
-linearSeries (p4^5);
-linearSeries (p4^6);
-linearSeries (p4^7);
+
+p4 = red p4S
+for i from 1 to 11 list rank source linearSeries p4^i
 ///
+
 
 
 projectiveImage = method(Options =>{Conductor => null})
