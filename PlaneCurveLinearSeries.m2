@@ -91,6 +91,34 @@ linearSeries Ideal :=  o-> D0 ->(
     Aplus := intersect(A, cond);
     gens Aplus * matrix basis(f, Aplus)
     )
+///
+--two characteristic pairs
+
+restart
+loadPackage ("PlaneCurveLinearSeries", Reload => true)
+kk = ZZ/32003
+S = kk[a,b,c]; T = kk[s,t];
+I = ker map(T,S, {s^7, s^6*t, s^3*t^4+s*t^6+t^7});I
+R = S/I
+genus R
+geometricGenus R
+use S
+p = ideal(a-c,b+c)
+radical ideal singularLocus R
+isSubset(I,p)
+--p is a smooth point of the curve.
+p = sub(p,R)
+for i from 0 to 6 list rank source linearSeries (p^i)
+
+radical ideal singularLocus R
+
+assert (geometricGenus R == 0)
+red = map(R,S)
+use S
+p = ideal(b,c)
+for i from 0 to 6 list rank source linearSeries red(p^i)
+
+///
 
 ///
 restart
