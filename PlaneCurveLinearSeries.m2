@@ -69,6 +69,7 @@ geometricGenus C6
 
 linearSeries = method (Options => {Conductor=>null})
 linearSeries Ideal :=  o-> D0 ->(
+    -- Note: bad news if D0 is an ideal of S rather than R = S/I.
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
     -- where D_0 \subset R
     -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
