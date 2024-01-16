@@ -163,6 +163,24 @@ numgens omega
 p4 = red p4S
 for i from 1 to 11 list rank source linearSeries p4^i
 ///
+///
+--quintic with a triple point and 2 marked points
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+S = ZZ/32003[a,b,c]
+p = ideal(a,b)
+p1' = ideal(b,c)
+p2' = ideal(a,c)
+marked = intersect (p^3, p1', p2')
+C = S/(random(5, marked))
+red = map(C,S)
+p1 = red p1'
+p2 = red p2'
+
+assert(geometricGenus C == genus C - 3)
+apply(6, i-> numcols linearSeries(p1^(i+3), p2^2))
+///
+
 
 linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
@@ -171,7 +189,25 @@ linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     -- with normalization C, eg a plane curve
     -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
     -- given with Conductor => cond.
-    R := ring D0; -- ring ring of C0
+    R := ring D0;
+    D0sat := saturate D0;
+    Dinfsat := saturate Dinf;
+    
+    if dim singularLocus R <= 0 then cond := ideal 1_R else(
+    if o.Conductor === null then cond = conductor R else cond = o.Conductor);
+    --now cond is the conductor ideal of $R$
+
+    base := intersect(D0sat,cond);
+    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
+        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
+	--on the normalization C of C0
+    f := degree F;
+    A := (ideal F : base);
+    Aplus := intersect(A, Dinfsat, cond);
+    gens Aplus * matrix basis(f, Aplus)
+)
+
+-*    R := ring D0; -- ring ring of C0
     D0sat := saturate D0;
 
     if dim singularLocus R <= 0 then cond := ideal 1_R else(
@@ -187,7 +223,7 @@ linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     Aplus := intersect(A, Dinf, cond);
     gens Aplus * matrix basis(f, Aplus)
     )
-
+*-
 
 ///
 restart
