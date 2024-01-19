@@ -165,13 +165,14 @@ for i from 1 to 11 list rank source linearSeries p4^i
 ///
 
 ///
---quintic with a triple point and 2 marked points
+--further examples
 restart
 loadPackage("PlaneCurveLinearSeries", Reload => true)
 S = ZZ/32003[a,b,c]
 p = ideal(a,b)
 p1' = ideal(b,c)
 p2' = ideal(a,c)
+
 marked = intersect (p^2, p1', p2')
 degree marked
 C = S/(random(4, marked))
@@ -227,6 +228,8 @@ assert(cond == saturate cond);
     A := ((ideal F : D0): cond);
 error();
     Aplus := intersect(A, Dinfsat, cond);
+  error(); 
+  netList ((primaryDecomposition ideal F) /radical)
     gens Aplus * matrix basis(f, Aplus)
 )
 
