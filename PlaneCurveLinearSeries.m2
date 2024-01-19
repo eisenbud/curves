@@ -171,14 +171,19 @@ S = ZZ/32003[a,b,c]
 p = ideal(a,b)
 p1' = ideal(b,c)
 p2' = ideal(a,c)
-marked = intersect (p^3, p1', p2')
+--nodal case, genus 6-1 = 5
+marked = intersect (p^2, p1', p2')
 C = S/(random(5, marked))
 red = map(C,S)
 p1 = red p1'
 p2 = red p2'
-
-assert(geometricGenus C == genus C - 3)
-apply(6, i-> numcols linearSeries(p1^(i+3), p2^2))
+linearSeries(p1^8,p2)--3
+linearSeries(p1^9,p2)--5 2g-1 -- has to be nonspecial, 8-g+1 = 4.
+genus C
+geometricGenus C
+apply(10, i-> (i+3, numcols linearSeries(p1^(i+3), p2)))
+--rational case and smooth case seem ok
+--nodal case is too big at p1^9 - p2
 ///
 
 
@@ -204,6 +209,8 @@ linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     f := degree F;
     A := (ideal F : base);
     Aplus := intersect(A, Dinfsat, cond);
+  error(); 
+  netList ((primaryDecomposition ideal F) /radical)
     gens Aplus * matrix basis(f, Aplus)
 )
 
