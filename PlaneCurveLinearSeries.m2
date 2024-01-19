@@ -163,6 +163,7 @@ numgens omega
 p4 = red p4S
 for i from 1 to 11 list rank source linearSeries p4^i
 ///
+
 ///
 --quintic with a triple point and 2 marked points
 restart
@@ -171,14 +172,29 @@ S = ZZ/32003[a,b,c]
 p = ideal(a,b)
 p1' = ideal(b,c)
 p2' = ideal(a,c)
-marked = intersect (p^3, p1', p2')
-C = S/(random(5, marked))
+marked = intersect (p^2, p1', p2')
+degree marked
+C = S/(random(4, marked))
+genus C
+g = geometricGenus C
+conductor C
 red = map(C,S)
 p1 = red p1'
 p2 = red p2'
 
-assert(geometricGenus C == genus C - 3)
-apply(6, i-> numcols linearSeries(p1^(i+3), p2^2))
+--assert(geometricGenus C == genus C - 3)
+m = 10
+netList{apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1)),
+    apply(m, i->(i+3-1 -g+1)),
+    apply(m, i->(i+3-1))}
+--with a curve of degree 5, and a double point,
+degree 7 seems to be nonspecial (dim = 7-5+1, but degree 8 jumps by 2.
+--with a curve of degree 4 and a double point (g=2), the linear series 3p_2-p1 seems to be
+--special, 4p_2-p_1 nonspecial (as it must be) but 5p_2-p1 has an extra section, dim 4
+linearSeries(p2^5, p1)    
+D0 = p2^5
+Dinf = p1
+linearSeries(D0, Dinf)
 ///
 
 
@@ -192,38 +208,27 @@ linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     R := ring D0;
     D0sat := saturate D0;
     Dinfsat := saturate Dinf;
-    
+
     if dim singularLocus R <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else cond = o.Conductor);
     --now cond is the conductor ideal of $R$
 
+assert(cond == saturate cond);
+    
     base := intersect(D0sat,cond);
     F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
         --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
 	--on the normalization C of C0
+--pF := primaryDecomposition ideal F;
+--netList pF
     f := degree F;
-    A := (ideal F : base);
+    singIdeal := sub( ideal singularLocus R, R);
+--    error();
+    A := ((ideal F : D0): cond);
+error();
     Aplus := intersect(A, Dinfsat, cond);
     gens Aplus * matrix basis(f, Aplus)
 )
-
--*    R := ring D0; -- ring ring of C0
-    D0sat := saturate D0;
-
-    if dim singularLocus R <= 0 then cond := ideal 1_R else(
-    if o.Conductor === null then cond = conductor R else cond = o.Conductor);
-    --now cond is the conductor ideal of $R$
-
-    base := intersect(D0sat,cond);
-    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
-        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
-	--on the normalization C of C0
-    f := degree F;
-    A := (ideal F : base);
-    Aplus := intersect(A, Dinf, cond);
-    gens Aplus * matrix basis(f, Aplus)
-    )
-*-
 
 ///
 restart
