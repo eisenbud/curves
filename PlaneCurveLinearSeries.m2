@@ -13,46 +13,35 @@ newPackage(
 
       export {
 	  "Conductor", -- option
-	  "canonicalIdeal",
+	  "canonicalSeries",
 	  "geometricGenus",
-	  "sections", 
 	  "linearSeries",
 	  "projectiveImage",
 	  "canonicalImage"}
-      
-canonicalIdeal = method(Options => {Conductor=>null})
-canonicalIdeal Ring := Ideal => o-> R ->(
-    --input: homogeneous coordinate ring of a plane curve
-    --output: canonical ideal of the desingularization, as an ideal of R
-    cond := o.Conductor;
-    if dim singularLocus R <= 0 then cond = ideal 1_R;
-    if cond === null then cond = conductor R;
 
-    d := degree R;
-    if d-3<0 then ideal 0_R else
-        ideal image basis(d-3, cond)
-    )
-canonicalIdeal Ideal := Ideal => o-> I ->(
-    --this version takes the ideal of a plane curve as input
-    S := ring I;
-    R := S/I;
-    canonicalIdeal(R, o)
-)
+///
+restart
+loadPackage ("PlaneCurveLinearSeries", Reload => true)
+uninstallPackage "PlaneCurveLinearSeries"      
+installPackage "PlaneCurveLinearSeries"      
+///
+
 
 geometricGenus = method(Options => {Conductor=>null})
 geometricGenus Ideal := ZZ => o-> I -> (
--*    R := (ring I)/I;
+    R := (ring I)/I;
     cond := o.Conductor;
     if dim singularLocus R <= 0 then cond = ideal 1_R;
     if cond === null then cond = conductor R;
-*-
-    c := canonicalIdeal (I, Conductor => o.Conductor);
-    if c == 0 then 0 else numgens c)
+
+    c := canonicalSeries (I, Conductor => o.Conductor);
+    if c == 0 then 0 else numcols c)
+
 geometricGenus Ring := ZZ => o-> R -> geometricGenus ideal R
 
 
 linearSeries = method (Options => {Conductor=>null})
-linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
+linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
     -- where D_0 \subset R
     -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
@@ -67,27 +56,67 @@ linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     if o.Conductor === null then cond = conductor R else cond = o.Conductor);
     --now cond is the conductor ideal of $R$
 
---cond := conductor R;
-
-    
---    base := intersect(D0sat,cond);
     base := saturate(D0sat*cond);
     F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
-        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
+        --Thus F=0 pulls back to the divisor A+D0+cond
 	--on the normalization C of C0
---pF := primaryDecomposition ideal F;
---netList pF
     f := degree F;
---    A := ((ideal F : D0): cond);
---error();
   A := (ideal F) : base;
---  Aminus := intersect(A, Dinfsat);
   Aminus := saturate(A*Dinfsat);
---  error(); 
---  pFr := (primaryDecomposition ideal F) /radical;
-    (gens Aminus) * matrix basis(f, Aminus)
+--    (gens Aminus) * matrix basis(f, Aminus)
+    gens image basis(f, Aminus)
 )
-linearSeries Ideal := o-> D0 -> linearSeries(D0, ring D0)
+linearSeries Ideal := o-> D0 -> linearSeries(D0, ideal 1_(ring D0))
+
+canonicalSeries = method(Options => {Conductor=>null})
+canonicalSeries Ring := Matrix => o-> R ->(
+    --input: homogeneous coordinate ring of a plane curve
+    --output: canonical ideal of the desingularization, as an ideal of R
+    cond := o.Conductor;
+    if dim singularLocus R <= 0 then cond = ideal 1_R;
+    if cond === null then cond = conductor R;
+
+    d := degree R;
+    if d-3<0 then ideal 0_R else
+        gens image basis(d-3, cond)
+    )
+canonicalSeries Ideal := Matrix => o-> I-> 
+       canonicalSeries((ring I)/I)
+
+projectiveImage = method(Options =>{Conductor => null})
+projectiveImage(Ideal, Ideal) := Ring => o -> (D0,Dinfty) ->(
+--Produce the ideal of the image under the linear series |D0-Dinfty|
+    D := linearSeries(D0, Dinfty, Conductor => o.Conductor);
+    R := ring D;
+    kk := coefficientRing R;
+    s := numcols D;
+        X := symbol X;
+    SS := kk[X_0..X_(s-1)];
+    SS/ker map(R, SS, D)
+    )
+
+projectiveImage Ideal := Ring => o -> D0 ->
+    projectiveImage(D0, ideal(1_(ring D0)))
+
+projectiveImage Matrix := Ring => o -> M -> (
+ -- in this case M is a 1-m matrix respresenting a
+ --linear series.
+    R := ring M;
+    kk := coefficientRing R;
+    s := numcols M;
+        X := symbol X;
+    SS := kk[X_0..X_(s-1)];
+    SS/ker map(R, SS, M)
+    )
+
+canonicalImage = method(Options => {Conductor => null})
+canonicalImage Ring := Ring => o-> R ->(
+    --this version takes the homog coord ring
+    -- of a plane curve as input, outputs the
+    --homogeneous coordinate ring of the canonical image
+    projectiveImage canonicalSeries(R, Conductor => o.Conductor)
+)
+
 
 ///
 --two characteristic pairs
@@ -96,29 +125,23 @@ restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
 kk = ZZ/32003
 S = kk[a,b,c]; T = kk[s,t];
-I = ker map(T,S, {s^7, s^6*t, s^3*t^4+s*t^6+t^7});I
+--I = ker map(T,S, {s^7, s^6*t, s^3*t^4+s*t^6+t^7});I
+I = ker (phi = map(T,S,{s^7, s^3*t^4+s*t^6, t^7}));I
 R = S/I
+red = map(R,S)
+ps = (primaryDecomposition ideal singularLocus R)
+netList(ps/radical)
+p' = ker (map(T/(ideal (s-t)), T)*phi)
+p = red p'
 genus R
 geometricGenus R
-use S
-p = ideal(a-c,b+c)
-radical ideal singularLocus R
-isSubset(I,p)
 --p is a smooth point of the curve.
-p = sub(p,R)
-for i from 0 to 6 list rank source linearSeries (p^i)
-
-radical ideal singularLocus R
-
-assert (geometricGenus R == 0)
-red = map(R,S)
-use S
-p = ideal(b,c)
-for i from 0 to 6 list rank source linearSeries red(p^i)
-
+for i from 0 to 6 list numcols linearSeries (p^i)
 ///
 
 ///
+--smooth plane cubic
+
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
 --Plane cubic with one node:
@@ -154,7 +177,7 @@ genus R == 6 -- arithmetic genus
 geometricGenus R == 3 -- curve smooth away from the 3 double points
 degree singularLocus R == 3 -- another confirmation
 conductor R == ideal (b*c, a*c, a*b) -- and yet another
-omega = canonicalIdeal R;
+omega = canonicalSeries R;
 numgens omega
 
 p4 = red p4S
@@ -184,12 +207,13 @@ p2 = red p2'
 --with a curve of degree 4 and a double point (g=2), the linear series 3p_2-p1 seems to be
 --special, 4p_2-p_1 nonspecial (as it must be) but 5p_2-p1 has an extra section, dim 4
 m = 10
-e=1
+e=2
 netList{
-    apply(m, i-> numgens trim ideal linearSeries(p2^(i+3))),
-    apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1^e)),
-    apply(m, i->(i+3-e -g+1)),
-    apply(m, i->(i+3-e))}
+    {"degree: "} | apply(m, i->(i+3-e)),
+    {"chi: "} | apply(m, i->(i+3-e -g+1)),
+    {"computed: "} | apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1^e))
+}
+
 --with a curve of degree 5, and a double point,
 degree 7 seems to be nonspecial (dim = 7-5+1, but degree 8 jumps by 2.
 ///
@@ -232,7 +256,7 @@ genus R == 6 -- arithmetic genus
 geometricGenus R == 3 -- curve smooth away from the 3 double points
 degree singularLocus R == 3 -- another confirmation
 conductor R == ideal (b*c, a*c, a*b) -- and yet another
-omega = canonicalIdeal R;
+omega = canonicalSeries R;
 numgens omega
 
 p4 = red p4S
@@ -241,95 +265,97 @@ for i from 1 to 11 list rank source linearSeries p4^i
 
 
 
-projectiveImage = method(Options =>{Conductor => null})
-projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
---Produce the ideal of the image under the linear series |D0-Dinfty|
-    R := ring D0;
-    if dim singularLocus R <= 0 then cond := ideal 1_R else(
-    if o.Conductor === null then cond = conductor R else cond = o.Conductor);
-
-    D0plus := intersect(D0,cond);
-    m := min flatten degrees D0plus;
-    G := ideal random(m, D0plus);
-    A := G:D0plus;
-    baseLocus := intersect(A, Dinfty, cond);
---    sections := gens trim truncate(m, baseLocus);
-    sections := gens image basis(m,baseLocus);
-
-    s := numcols sections;
-    kk := coefficientRing R;
-    X := symbol X;
-    SS := kk[X_0..X_(s-1)];
-    
-    ker map(R, SS, sections)
-    )
-
-projectiveImage Ideal := Ideal => o -> D0 ->(
-    projectiveImage(D0, ideal(1_(ring D0)))
-    )
-
-TEST///
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
-S = QQ[x,y,z]
-sing3 = (ideal(x,y))^3
-sing1 = (ideal(x,z))^2
-C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
-C5 = ideal random(5, sing1) -- quintic with node, genus 5
-C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
-assert (numgens canonicalIdeal C4 == 3)
-assert (numgens canonicalIdeal C5 == 5)
-assert (numgens canonicalIdeal C6 == 2)
-assert (geometricGenus C6 == 2)
-///
-
  -* Documentation section *-
-///
-restart
-loadPackage"PlaneCurveLinearSeries"
-///
-      beginDocumentation()
 
+     beginDocumentation()
+doc ///
+Key
+ PlaneCurveLinearSeries
+Headline
+ Linear series on the normalization of a plane curve
+Description
+  Text
+   This package implements procedures described in chapters 4 and 14
+   of the book "The Practice of Curves", by David Eisenbud and Joe Harris.
+  Example
+   kk = ZZ/32003
+   S = kk[a,b,c]; T = kk[s,t];
+   I = ker map(T,S, {s^7, s^3*t^4+s*t^6, t^7});I
+   p' = ideal(a,b)
+   
+   isSubset(I,p')
+   C = S/I
+   geometricGenus C
+   primaryDecomposition ideal singularLocus C
+   
+   p = sub(p', C)
+  Text
+   We see that p is a smooth point of C, which is a singular 
+   rational curve; in fact it's singularity is the simplest
+   singularity with two characteristic pairs. It has degree 7
+   and multiplicity sequence 4, 3 and thus arithmetic genus
+   binomial(6,2) - 7  = 8, though it is a rational curve.
+   rational curve
+  Example
+   geometricGenus C
+   L = for i from 0 to 6 list (rank source linearSeries (p^i)) 
+SeeAlso
+ geometricGenus
+
+///
+
+
+ 
+ 
       doc ///
       Key
-       PlaneCurveLinearSeries
+       canonicalSeries
+       (canonicalSeries, Ring)
+       (canonicalSeries, Ideal)
       Headline
-       Linear series on the normalization of a plane curve 
+       Canonical series of the normalization of a plane curve
+      Usage
+       M = canonicalSeries R
+      Inputs
+       R: Ring
+        ring of a plane curve
+      Outputs
+       M: Matrix
+	 1 x g matrix representing the canonical series
       Description
         Text
-	 Computing the canonical ideal
+	 Computing the canonical linear series
         Example
          kk = QQ
          S = kk[x,y,z]
          C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
          C2 = ideal(x^2+y^2+z^2) --nonsingular conic
          C3 = ideal (x^4+y^4+z^4) -- smooth curve of genus 3
-
-         canonicalIdeal(S/C1)
-         canonicalIdeal(S/C2)
-         canonicalIdeal(S/C3)
-	 
-      References
-      Caveat
-      SeeAlso
-      Subnodes
+         canonicalSeries(S/C1)
+         canonicalSeries(S/C2)
+         canonicalSeries(S/C3)
       ///
 
       doc ///
       Key
        geometricGenus
-      Headline
-       Geometric genus of a (singular) plane curve
-      Usage
        (geometricGenus, Ring)
        (geometricGenus, Ideal)
        [geometricGenus, Conductor]
+      Headline
+       Geometric genus of a (singular) plane curve
+      Usage
+       g = geometricGenus R
+       g = geometricGenus I
       Inputs
+       R: Ring
+        homogeneous coordinate ring of a plane curve
+       I: Ideal
+        defining a plane curve
       Outputs
-      Consequences
-        Item
-      Description
+       g:ZZ
         Text
+	 The geometric genus of a plane curve C0 is the genus of the normalization of C0
         Example
          kk = QQ
          S = kk[x,y,z]
@@ -340,14 +366,206 @@ loadPackage"PlaneCurveLinearSeries"
 	 geometricGenus C1
  	 geometricGenus C2
  	 geometricGenus C3
-      Contributors
-      References
-      Caveat
       SeeAlso
+       canonicalSeries
       ///
 
-      -* Test section *-
+doc ///
+Key 
+ linearSeries
+ (linearSeries, Ideal)
+ (linearSeries, Ideal, Ideal)
+ [linearSeries, Conductor]
+Headline
+ compute a linear series
+Usage
+ D = linearSeries Dplus
+ D = linearSeries (Dplus, Dminus)
+Inputs
+ Dplus: Ideal
+   in the homogeneous coordinate ring A of a plane curve C
+ Dminus: Ideal   
+   in A
+Outputs
+ D: Matrix
+   of size 1 x dim H^0(Dplus-Dminus). Entries are a basis of |Dplus - Dminus|
+Description
+  Text
+   A quintic plane curve with an ordinary triple point
+   and two more marked points:
+  Example
+   S = ZZ/32003[a,b,c]
+   p = ideal(a,b)
+   p1' = ideal(b,c)
+   p2' = ideal(a,c)
+   marked = intersect (p^3, p1', p2')
+   C = S/(random(5, marked))
+   red = map(C,S)
+   p1 = red p1' 
+   p2 = red p2'
+  Text
+   Since the delta invariant of a triple point is 3, the
+   geometric genus of C is 3 less than the arithmetic genus computed natively,
+   and the conductor is the square of the maximal ideal:
+  Example
+   genus C
+   g = geometricGenus C
+   conductor C
+   m = 10
+   e=2
+   netList{
+       {"degree: "} | apply(m, i->(i+3-e)),
+       {"chi: "} | apply(m, i->(i+3-e -g+1)),
+       {"computed: "} | apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1^e))
+   }
+References
+ "The Practic of Algebraic Curves" by David Eisenbud and Joe Harris
+Caveat
+ A bit slower in characteristic 0
+SeeAlso
+ conductor
+ geometricGenus
+///
 
+doc///
+Key
+ projectiveImage
+ (projectiveImage, Ideal)
+ (projectiveImage, Matrix) 
+ (projectiveImage, Ideal, Ideal)
+ [projectiveImage, Conductor]
+Headline
+ Projective image of the map defined by a divisor or matrix
+Usage
+ I = projectiveImage Dplus
+ I = projectiveImage (Dplus, Dminus)
+Inputs
+ Dplus: Ideal
+   in the homogeneous coordinate ring A of a plane curve C
+ Dminus: Ideal   
+   in A
+Outputs
+ I: Ideal
+   the ideal of the image curve
+Description
+  Text
+   The output ideal is the ideal of polynomial relations
+   among the generators of the linear series |Dplus-Dminus|.
+   
+   If the curve C = ring Dplus is a nonsingular plane cubic,
+   then every embedding of C is arithmetically Gorenstein,
+   as the following example suggests:
+  Example
+   S = ZZ/101[a,b,c]
+   p' = ideal(a-b, c)
+   C = S/ideal"a3-b3+c3"
+   p = sub (p', C)
+   netList for d from 3 to 7 list
+       betti res ideal projectiveImage p^d
+SeeAlso
+ geometricGenus
+ canonicalImage
+///
+
+doc///
+Key
+ canonicalImage
+ (canonicalImage, Ring)
+ [canonicalImage, Conductor]
+Headline
+ canonical model of the normalization of a plane curve
+Usage
+ R' = canonicalImage R
+Inputs
+ R: Ring
+   the homogeneous coordinate ring of a plane curve
+Outputs
+ R': Ring
+   the homogeneous coordinate ring of the canonical image of the normalization
+Description
+  Text
+   The output is 
+   the homogeneous coordinate ring 
+   of the canonical image of the normalization
+   the given curve.
+   
+   For example,  a plane
+   sextic with 4 nodes is a curve of genus 10-4 = 6,
+   so its canonical image is a curve of degree 10 in P5
+
+  Example
+   P5 = ZZ/101[x_0..x_5]
+   P2 = ZZ/101[a,b,c]
+   fourpoints = {
+       ideal(a,b), 
+       ideal(b,c), 
+       ideal(a,c), 
+       ideal(a-b, a-c)
+       }
+   nodes = intersect apply(fourpoints, p -> p)
+   sings' = intersect apply(fourpoints, p -> p^2)
+   C0 = P2/(ideal random(6, sings'))
+   sings = sub (sings', C0)
+   conductor C0 == sub(nodes, C0)
+   C = canonicalImage C0
+   betti res ideal C
+   delPezzo = P5/ker(map(P2, P5, gens image basis (3,intersect nodes)))
+   betti res ideal delPezzo
+   
+SeeAlso
+ geometricGenus
+ canonicalImage
+///
+
+-* Test section *-
+
+TEST///
+S = ZZ/32003[a,b,c]
+I = ideal"a3+b3-c3"
+p'= ideal(a,b-c)
+isSubset(I,p')
+R = S/I
+p = sub(p',R)
+assert (geometricGenus R == 1)
+assert(canonicalSeries R == matrix{{1_R}})
+L = for d from 3 to 7 list rank source ((res ideal projectiveImage p^d).dd_(d-2))
+assert(all(L, ell->ell == 1))
+///
+
+TEST///
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+S = QQ[x,y,z]
+sing3 = (ideal(x,y))^3
+sing1 = (ideal(x,z))^2
+C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
+C5 = ideal random(5, sing1) -- quintic with node, genus 5
+C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
+assert (numgens canonicalSeries C4 == 3)
+assert (numgens canonicalSeries C5 == 5)
+assert (numgens canonicalSeries C6 == 2)
+assert (geometricGenus C6 == 2)
+///
+ 
+TEST///
+--two characteristic pairs
+restart
+loadPackage ("PlaneCurveLinearSeries", Reload => true)
+kk = ZZ/32003
+S = kk[a,b,c]; T = kk[s,t];
+I = ker map(T,S, {s^7, s^6*t, s^3*t^4+s*t^6+t^7});I
+R = S/I
+assert (geometricGenus R == 0)
+use S
+p' = ideal(a-c,b+c)
+isSubset(I,p')
+radical ideal singularLocus R
+--p' is a smooth point of the curve.
+p = sub(p', R)
+L = for i from 0 to 6 list (rank source linearSeries (p^i)) 
+assert(L == {1, 2, 3, 4, 5, 6, 7})
+assert(degree projectiveImage p^3 == 3)
+///
 
 TEST///
  -* canonicalIdeal, geometricGenus *-
@@ -361,27 +579,56 @@ C3 = ideal (x^4+y^4+z^4)
 sing = (ideal(x,y))^3
 C4 = ideal random(5, sing) -- quintic with ord 3-point; genus 3, hyperell.
 C5 = ideal random(5, sing+(ideal(x,z))^2) -- quintic with ord 3-point and a node; genus 2
-canonicalIdeal(S/C1)
-canonicalIdeal(S/C2)
-canonicalIdeal(S/C3)
-canonicalIdeal(C4)
-canonicalIdeal(C5)
+canonicalSeries(S/C1)
+canonicalSeries(S/C2)
+canonicalSeries(S/C3)
+canonicalSeries(C4)
+canonicalSeries(C5)
 
-canonicalIdeal C1 == 0
-canonicalIdeal C2 == 0
-canonicalIdeal C3 == ideal vars ((ring C3)/C3)
+canonicalSeries C1 == 0
+canonicalSeries C2 == 0
+canonicalSeries C3 == ideal vars ((ring C3)/C3)
 
 geometricGenus C1 == 0
 geometricGenus C2 == 0
 geometricGenus C3 == 3
 geometricGenus C4 == 3
 ///
-    
-TEST///
- -* linearSeries *-
-///
+
 
 end--
+
+///
+restart
+loadPackage ("PlaneCurveLinearSeries", Reload => true)
+uninstallPackage "PlaneCurveLinearSeries"      
+installPackage "PlaneCurveLinearSeries"      
+check "PlaneCurveLinearSeries"      
+viewHelp PlaneCurveLinearSeries
+///
+
+doc ///
+Key 
+ linearSeries
+ (linearSeries, Ideal)
+ (linearSeries, Ideal, Ideal)
+ [linearSeries, Conductor]
+Headline
+ compute a linear series
+Usage
+ D = linearSeries Dplus
+ D = linearSeries (Dplus, Dminus)
+Inputs
+ Dplus: Ideal
+   in the homogeneous coordinate ring A of a plane curve C
+ Dminus: Ideal   
+   in A
+Outputs
+ D: matrix
+   of size 1 x dim H^0(Dplus-Dminus). Entries are a basis of |Dplus - Dminus|
+
+
+
 restart
 load "PlaneCurveLinearSeries.m2"
 kk = ZZ/101
@@ -398,7 +645,7 @@ use S
 R = S/C3
 geometricGenus C3
 geometricGenus R
-omega = canonicalIdeal R
+omega = canonicalSeries R
 numgens omega
 (linearSeries ideal z) -- does not return Cartier divisors
 sections ideal z -- right aswer
@@ -427,32 +674,3 @@ numgens
 minimalBetti I
 
 
----jetsam
--*
-linearSeries Ideal :=  o-> D0 ->(
-    -- Note: bad news if D0 is an ideal of S rather than R = S/I.
-    -- returns a matrix whose elements span the complete linear series |D_0|+base points,
-    -- where D_0 \subset R
-    -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
-    -- with normalization C, eg a plane curve
-    -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
-    -- given with Conductor => cond.
-    R := ring D0;
-    D0sat := saturate D0;
-
-    if dim singularLocus R <= 0 then cond := ideal 1_R else(
-    if o.Conductor === null then cond = conductor R else cond = o.Conductor);
-    --now cond is the conductor ideal of $R$
-
---    base := intersect(D0sat,cond);
-    base := saturate(D0sat*cond);    
-    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
-        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
-	--on the normalization C of C0
-    f := degree F;
-    A := (ideal F : base);
---    Aplus := intersect(A, cond);
-    Aplus := saturate(A * cond);    
-    gens Aplus * matrix basis(f, Aplus)
-    )
-*-
