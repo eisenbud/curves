@@ -32,7 +32,6 @@ canonicalIdeal Ring := Ideal => o-> R ->(
     if d-3<0 then ideal 0_R else
         ideal image basis(d-3, cond)
     )
-
 canonicalIdeal Ideal := Ideal => o-> I ->(
     --this version takes the ideal of a plane curve as input
     S := ring I;
@@ -49,27 +48,11 @@ geometricGenus Ideal := ZZ => o-> I -> (
 *-
     c := canonicalIdeal (I, Conductor => o.Conductor);
     if c == 0 then 0 else numgens c)
-
 geometricGenus Ring := ZZ => o-> R -> geometricGenus ideal R
 
-///
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
-S = QQ[x,y,z]
-sing3 = (ideal(x,y))^3
-sing1 = (ideal(x,z))^2
-C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
-C5 = ideal random(5, sing1) -- quintic with ord 3-point and a node; genus 2
-C6 = ideal random(5, intersect(sing1, sing3))
-canonicalIdeal C4
-canonicalIdeal C5
-canonicalIdeal C6
-geometricGenus C6
-///
 
 linearSeries = method (Options => {Conductor=>null})
-linearSeries Ideal :=  o-> D0 ->(
-    -- Note: bad news if D0 is an ideal of S rather than R = S/I.
+linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
     -- where D_0 \subset R
     -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
@@ -78,20 +61,34 @@ linearSeries Ideal :=  o-> D0 ->(
     -- given with Conductor => cond.
     R := ring D0;
     D0sat := saturate D0;
+    Dinfsat := saturate Dinf;
 
     if dim singularLocus R <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else cond = o.Conductor);
     --now cond is the conductor ideal of $R$
 
-    base := intersect(D0sat,cond);
+--cond := conductor R;
+
+    
+--    base := intersect(D0sat,cond);
+    base := saturate(D0sat*cond);
     F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
         --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
 	--on the normalization C of C0
+--pF := primaryDecomposition ideal F;
+--netList pF
     f := degree F;
-    A := (ideal F : base);
-    Aplus := intersect(A, cond);
-    gens Aplus * matrix basis(f, Aplus)
-    )
+--    A := ((ideal F : D0): cond);
+--error();
+  A := (ideal F) : base;
+--  Aminus := intersect(A, Dinfsat);
+  Aminus := saturate(A*Dinfsat);
+--  error(); 
+--  pFr := (primaryDecomposition ideal F) /radical;
+    (gens Aminus) * matrix basis(f, Aminus)
+)
+linearSeries Ideal := o-> D0 -> linearSeries(D0, ring D0)
+
 ///
 --two characteristic pairs
 
@@ -173,9 +170,10 @@ p = ideal(a,b)
 p1' = ideal(b,c)
 p2' = ideal(a,c)
 
-marked = intersect (p^2, p1', p2')
+use S
+marked = intersect (p^3, p1', p2')
 degree marked
-C = S/(random(4, marked))
+C = S/(random(5, marked))
 genus C
 g = geometricGenus C
 conductor C
@@ -183,55 +181,19 @@ red = map(C,S)
 p1 = red p1'
 p2 = red p2'
 
---assert(geometricGenus C == genus C - 3)
-m = 10
-netList{apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1)),
-    apply(m, i->(i+3-1 -g+1)),
-    apply(m, i->(i+3-1))}
---with a curve of degree 5, and a double point,
-degree 7 seems to be nonspecial (dim = 7-5+1, but degree 8 jumps by 2.
 --with a curve of degree 4 and a double point (g=2), the linear series 3p_2-p1 seems to be
 --special, 4p_2-p_1 nonspecial (as it must be) but 5p_2-p1 has an extra section, dim 4
-linearSeries(p2^5, p1)    
-D0 = p2^5
-Dinf = p1
-linearSeries(D0, Dinf)
+m = 10
+e=1
+netList{
+    apply(m, i-> numgens trim ideal linearSeries(p2^(i+3))),
+    apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1^e)),
+    apply(m, i->(i+3-e -g+1)),
+    apply(m, i->(i+3-e))}
+--with a curve of degree 5, and a double point,
+degree 7 seems to be nonspecial (dim = 7-5+1, but degree 8 jumps by 2.
 ///
 
-
-linearSeries (Ideal, Ideal) :=  o-> (D0, Dinf) ->(
-    -- returns a matrix whose elements span the complete linear series |D_0|+base points,
-    -- where D_0 \subset R
-    -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
-    -- with normalization C, eg a plane curve
-    -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
-    -- given with Conductor => cond.
-    R := ring D0;
-    D0sat := saturate D0;
-    Dinfsat := saturate Dinf;
-
-    if dim singularLocus R <= 0 then cond := ideal 1_R else(
-    if o.Conductor === null then cond = conductor R else cond = o.Conductor);
-    --now cond is the conductor ideal of $R$
-
-assert(cond == saturate cond);
-    
-    base := intersect(D0sat,cond);
-    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
-        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
-	--on the normalization C of C0
---pF := primaryDecomposition ideal F;
---netList pF
-    f := degree F;
-    singIdeal := sub( ideal singularLocus R, R);
---    error();
-    A := ((ideal F : D0): cond);
-error();
-    Aplus := intersect(A, Dinfsat, cond);
-  error(); 
-  netList ((primaryDecomposition ideal F) /radical)
-    gens Aplus * matrix basis(f, Aplus)
-)
 
 ///
 restart
@@ -305,6 +267,21 @@ projectiveImage(Ideal, Ideal) := Ideal => o -> (D0,Dinfty) ->(
 projectiveImage Ideal := Ideal => o -> D0 ->(
     projectiveImage(D0, ideal(1_(ring D0)))
     )
+
+TEST///
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+S = QQ[x,y,z]
+sing3 = (ideal(x,y))^3
+sing1 = (ideal(x,z))^2
+C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
+C5 = ideal random(5, sing1) -- quintic with node, genus 5
+C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
+assert (numgens canonicalIdeal C4 == 3)
+assert (numgens canonicalIdeal C5 == 5)
+assert (numgens canonicalIdeal C6 == 2)
+assert (geometricGenus C6 == 2)
+///
 
  -* Documentation section *-
 ///
@@ -448,3 +425,34 @@ I = projectiveImage(D0, Dinfty)
 I = projectiveImage (ideal (z^2), ideal 1_R);
 numgens
 minimalBetti I
+
+
+---jetsam
+-*
+linearSeries Ideal :=  o-> D0 ->(
+    -- Note: bad news if D0 is an ideal of S rather than R = S/I.
+    -- returns a matrix whose elements span the complete linear series |D_0|+base points,
+    -- where D_0 \subset R
+    -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
+    -- with normalization C, eg a plane curve
+    -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
+    -- given with Conductor => cond.
+    R := ring D0;
+    D0sat := saturate D0;
+
+    if dim singularLocus R <= 0 then cond := ideal 1_R else(
+    if o.Conductor === null then cond = conductor R else cond = o.Conductor);
+    --now cond is the conductor ideal of $R$
+
+--    base := intersect(D0sat,cond);
+    base := saturate(D0sat*cond);    
+    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
+        --Thus F=0 pulls back to the divisor A+D0+preimage(conductor)
+	--on the normalization C of C0
+    f := degree F;
+    A := (ideal F : base);
+--    Aplus := intersect(A, cond);
+    Aplus := saturate(A * cond);    
+    gens Aplus * matrix basis(f, Aplus)
+    )
+*-
