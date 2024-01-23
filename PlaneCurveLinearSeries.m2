@@ -379,7 +379,16 @@ Description
    conductor C0 == sub(nodes, C0)
    C = canonicalImage C0
    betti res ideal C
+   B' = gens image basis (3,intersect nodes)
+  Text
+   The ideal of nodes is the conductor, so
+   the canonical series on C is the restriction of
+   the set of cubics containing the nodes.
+  Example
+   B = sub(B',C);
+   canC = projectiveImage B
    delPezzo = P5/ker(map(P2, P5, gens image basis (3,intersect nodes)))
+   betti res ideal canC
    betti res ideal delPezzo
    
 SeeAlso
@@ -701,3 +710,31 @@ q' = ideal(a,b)
 C = S/random(g+2, q'^g)
 q = sub(q', C)
 geometricGenus (C, Conductor => q^(g-1))
+
+
+----bugs
+  P5 = ZZ/101[x_0..x_5]
+   P2 = ZZ/101[a,b,c]
+   fourpoints = {
+       ideal(a,b), 
+       ideal(b,c), 
+       ideal(a,c), 
+       ideal(a-b, a-c)
+       }
+   nodes = intersect apply(fourpoints, p -> p)
+   sings' = intersect apply(fourpoints, p -> p^2)
+   C0 = P2/(ideal random(6, sings'))
+   sings = sub (sings', C0)
+   conductor C0 == sub(nodes, C0)
+   C = canonicalImage C0
+   betti res ideal C
+   B' = gens image basis (3,intersect nodes)
+     B = sub(B',C);
+   canC = projectiveImage B
+   delPezzo = P5/ker(map(P2, P5, gens image basis (3,intersect nodes)))
+   betti res ideal canC
+   betti res ideal delPezzo
+   
+canonicalSeries C
+canonicalSeries(C, Conductor => ideal B) -- I don't think its using
+the given conductor!
