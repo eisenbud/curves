@@ -1,3 +1,5 @@
+
+
 newPackage(
           "PlaneCurveLinearSeries",
           Version => "0.1",
@@ -16,6 +18,7 @@ newPackage(
 	  "linearSeries",
 	  "projectiveImage",
 	  "canonicalImage",
+	  "coordPoint",
 	  "Conductor" -- option
 	  }
 ///
@@ -23,8 +26,17 @@ restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
 uninstallPackage "PlaneCurveLinearSeries"      
 installPackage "PlaneCurveLinearSeries"      
+check"PlaneCurveLinearSeries"      
 ///
 
+coordPoint = method()
+   --construct ideal of point on a curve in P3 from its coordinates
+coordPoint (BasicList, Ring) := Ideal =>  (P, C) ->(
+    PC := sub (matrix {toList P}, C);
+    I := ideal(vars C * (syz PC));
+    if dim I == 0 then error"point does not lie on curve";
+    I)
+coordPoint (ZZ,ZZ,ZZ) := (x,y,z)-> coordPoint toList(x,y,z)
 
 geometricGenus = method(Options => {Conductor=>0})
 geometricGenus Ring := ZZ => o -> R -> (
@@ -149,6 +161,42 @@ Description
 SeeAlso
  geometricGenus
 
+///
+
+
+doc ///
+Key
+ coordPoint
+ (coordPoint, BasicList, Ring)
+ (coordPoint, ZZ, ZZ, ZZ)
+ 
+Headline
+ compute the ideal of a point from coordinates
+Usage
+ I = coordPoint(L,C)
+ I = coordPoint(x,y,z, C)
+Inputs
+ L: BasicList
+  of three integers
+ x: ZZ
+ y: ZZ
+ z: ZZ
+  integer coordinates of a point on C
+Outputs
+ I: Ideal 
+  of C
+Description
+  Text 
+   Convenient way to computes the ideal of a point on a plane curve,
+   when the point is given by coordinates.
+   The script returns an error if the point is not on the curve.
+  Example
+   S = ZZ/101[a,b,c]
+   C = S/ideal"a3+b3-c3"
+   P = (0,1,1)
+   Q = (1,1,0)
+   coordPoint(P,C)
+   --coordPoint(Q,C) --would return an error.   
 ///
 
 doc ///
@@ -413,6 +461,12 @@ SeeAlso
 
 
 -* Test section *-
+TEST///
+S = ZZ/101[a,b,c]
+C = S/ideal"a3+b3-c3"
+P = (0,1,1)
+assert(coordPoint ((0,1,1), C) == ideal (a, - b + c))
+///
 
 TEST///
 S = ZZ/32003[a,b,c]
@@ -695,9 +749,60 @@ geometricGenus Ideal := ZZ => o -> I -> (
   
 
 
-g=4
+restart
+needsPackage "PlaneCurveLinearSeries"
 S = ZZ/101[a,b,c]
 q' = ideal(a,b)
-C = S/random(g+2, q'^g)
+p' = ideal(b,c)
+g = 5
+C = S/random(g+2, intersect (q'^g, p'))
 q = sub(q', C)
+p = sub(p',C)
+geometricGenus C
 geometricGenus (C, Conductor => q^(g-1))
+canonicalSeries C
+canonicalSeries (C, Conductor =>q^(g-1))
+linearSeries(p^(g+2))
+linearSeries(p^(g+2), Conductor =>(q^(g-1)))
+betti res ideal projectiveImage (p^(2*g+1))
+betti res ideal projectiveImage (p^(2*g+1),Conductor =>q^(g-1))
+betti res ideal canonicalImage C
+betti res ideal canonicalImage (C,Conductor =>q^(g-1))
+
+S = ZZ/101[a,b,c]
+q' = ideal(a,b)
+p' = ideal(b,c)
+g = 8
+C = S/random(g+2, intersect (q'^g, p'))
+degree singularLocus C
+q = sub(q', C)
+p = sub(p',C)
+--geometricGenus C
+geometricGenus (C, Conductor => q^(g-1)) == 8
+--canonicalSeries C
+canonicalSeries (C, Conductor =>q^(g-1)) ==  | a7 a6b a5b2 a4b3 a3b4 a2b5 ab6 b7 |
+--linearSeries(p^(g+2))
+degree ideal singularLocus projectiveImage linearSeries(p^(g+2), Conductor =>(q^(g-1)))
+--betti res ideal projectiveImage (p^(2*g+1))
+betti res ideal projectiveImage (p^(2*g+1),Conductor =>q^(g-1))
+--betti res ideal canonicalImage C
+betti res ideal canonicalImage (C,Conductor =>q^(g-1))
+
+ 
+
+g = 8 
+C8 = S/random(g+2, intersect (q'^g, p'))
+
+
+	  "canonicalSeries",
+	  "geometricGenus",
+	  "linearSeries",
+	  "projectiveImage",
+	  "canonicalImage",
+	  "Conductor" -- option
+
+C = S/random (3,S)
+canonicalSeries C
+geometricGenus C
+
+    
