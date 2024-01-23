@@ -1,3 +1,5 @@
+
+
 newPackage(
           "PlaneCurveLinearSeries",
           Version => "0.1",
@@ -16,6 +18,7 @@ newPackage(
 	  "linearSeries",
 	  "projectiveImage",
 	  "canonicalImage",
+	  "coordPoint",
 	  "Conductor" -- option
 	  }
 ///
@@ -23,8 +26,17 @@ restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
 uninstallPackage "PlaneCurveLinearSeries"      
 installPackage "PlaneCurveLinearSeries"      
+check"PlaneCurveLinearSeries"      
 ///
 
+coordPoint = method()
+   --construct ideal of point on a curve in P3 from its coordinates
+coordPoint (BasicList, Ring) := Ideal =>  (P, C) ->(
+    PC := sub (matrix {toList P}, C);
+    I := ideal(vars C * (syz PC));
+    if dim I == 0 then error"point does not lie on curve";
+    I)
+coordPoint (ZZ,ZZ,ZZ) := (x,y,z)-> coordPoint toList(x,y,z)
 
 geometricGenus = method(Options => {Conductor=>0})
 geometricGenus Ring := ZZ => o -> R -> (
@@ -149,6 +161,42 @@ Description
 SeeAlso
  geometricGenus
 
+///
+
+
+doc ///
+Key
+ coordPoint
+ (coordPoint, BasicList, Ring)
+ (coordPoint, ZZ, ZZ, ZZ)
+ 
+Headline
+ compute the ideal of a point from coordinates
+Usage
+ I = coordPoint(L,C)
+ I = coordPoint(x,y,z, C)
+Inputs
+ L: BasicList
+  of three integers
+ x: ZZ
+ y: ZZ
+ z: ZZ
+  integer coordinates of a point on C
+Outputs
+ I: Ideal 
+  of C
+Description
+  Text 
+   Convenient way to computes the ideal of a point on a plane curve,
+   when the point is given by coordinates.
+   The script returns an error if the point is not on the curve.
+  Example
+   S = ZZ/101[a,b,c]
+   C = S/ideal"a3+b3-c3"
+   P = (0,1,1)
+   Q = (1,1,0)
+   coordPoint(P,C)
+   --coordPoint(Q,C) --would return an error.   
 ///
 
 doc ///
@@ -422,6 +470,12 @@ SeeAlso
 
 
 -* Test section *-
+TEST///
+S = ZZ/101[a,b,c]
+C = S/ideal"a3+b3-c3"
+P = (0,1,1)
+assert(coordPoint ((0,1,1), C) == ideal (a, - b + c))
+///
 
 TEST///
 S = ZZ/32003[a,b,c]
@@ -499,6 +553,26 @@ geometricGenus C3 == 3
 geometricGenus C4 == 3
 ///
 
+TEST///
+--hyperelliptic curves. Note that with g>=6, the conductor computation fails.
+S = ZZ/101[a,b,c]
+q' = ideal(a,b)
+p' = ideal(b,c)
+g = 8
+C = S/random(g+2, intersect (q'^g, p'))
+--conductor C -- fails for g>=6
+q = sub(q', C)
+p = sub(p',C)
+--geometricGenus C
+assert(geometricGenus (C, Conductor => q^(g-1)) == 8)
+--canonicalSeries C
+assert(canonicalSeries (C, Conductor =>q^(g-1)) ==  
+    sub(matrix" a7, a6b, a5b2, a4b3, a3b4, a2b5, ab6, b7", C))
+--linearSeries(p^(g+2))
+C' = projectiveImage (p^(2*g+1),Conductor =>q^(g-1))
+assert (codim C' == max (keys minimalBetti(ideal C')/first))
+assert(degree ideal canonicalImage (C,Conductor =>q^(g-1)) == 7)
+///
 
 end--
 
@@ -511,8 +585,8 @@ check "PlaneCurveLinearSeries"
 viewHelp PlaneCurveLinearSeries
 ///
 
-Here are many small examples; some should be in the docs, some
-in the TESTs, some deleted.
+--Here are many small examples; some should be in the docs, some
+--in the TESTs, some deleted.
 
 restart
 load "PlaneCurveLinearSeries.m2"
@@ -584,7 +658,7 @@ p4 = red p4S
 for i from 1 to 11 list rank source linearSeries p4^i
 
 
---smooth plane cubic
+
 
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
@@ -656,12 +730,6 @@ netList{
     {"computed: "} | apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1^e))
 }
 
---with a curve of degree 5, and a double point,
-degree 7 seems to be nonspecial (dim = 7-5+1, but degree 8 jumps by 2.
-
-
-
-
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
 --Plane cubic with one node:
@@ -679,40 +747,7 @@ p2 = red p2S
 linearSeries (D0=p2) 
 for i from 0 to 10 list rank source linearSeries p2^i
 
-
-test = method(Options => {Conductor=>null})
-test ZZ := ZZ => o -> n -> (
-    out := o.Conductor;
-    print out;
-    if out === null then(
-	print "here";  out = n);
-    out)
-
-3 == test 3
-7 == test(3, Conductor => 7)
-
-restart
-geometricGenus = method(Options => {Conductor=>0})
-geometricGenus Ideal := ZZ => o -> I -> (
-    R := (ring I)/I;
-    cond := o.Conductor;
---    if dim singularLocus R <= 0 then cond = ideal 1_R;
-    print cond;
-    if cond == 0 then (
-	print "here"; cond = conductor R);
-    cond)
-  
-
-
-g=4
-S = ZZ/101[a,b,c]
-q' = ideal(a,b)
-C = S/random(g+2, q'^g)
-q = sub(q', C)
-geometricGenus (C, Conductor => q^(g-1))
-
-
-----bugs
+----to fix: why doesn't the canonical embedding lie on the del Pezzo?
   P5 = ZZ/101[x_0..x_5]
    P2 = ZZ/101[a,b,c]
    fourpoints = {
@@ -734,7 +769,11 @@ geometricGenus (C, Conductor => q^(g-1))
    delPezzo = P5/ker(map(P2, P5, gens image basis (3,intersect nodes)))
    betti res ideal canC
    betti res ideal delPezzo
-   
-canonicalSeries C
-canonicalSeries(C, Conductor => ideal B) -- I don't think its using
-the given conductor!
+
+
+
+ 
+
+
+    
+
