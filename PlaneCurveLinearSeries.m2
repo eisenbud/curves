@@ -93,7 +93,24 @@ loadPackage("PlaneCurveLinearSeries", Reload => true)
 E = QQ[a,b,c]/(ideal"a3+b3-c3")
 p = fromCoordinates({1,0,1}, E)
 q = fromCoordinates({0,1,1}, E)
-linearSeries(p^2)
+
+netList(apply(7, i->(
+(ls,B) = linearSeries(p^(i+1),q^i, ShowBase => true);
+select((decompose ideal ls)/(I -> I:B), J -> J!= ideal 1_E)
+)
+))
+ideal ls
+decompose (ideal ls)
+ ((decompose (ideal ls))/(I -> I:B)
+)
+i = 2
+
+E = QQ[a,b,c]/(ideal"a3+b3-c3")
+I = ideal(b-c)
+decompose I == {ideal (b - c, a)}
+--but a is not in I:
+gens (ideal a) % I
+primaryDecomposition I -- gives the right answer.
 ///
 
 
