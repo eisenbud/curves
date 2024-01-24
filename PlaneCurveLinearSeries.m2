@@ -1,5 +1,3 @@
-
-
 newPackage(
           "PlaneCurveLinearSeries",
           Version => "0.1",
@@ -18,7 +16,8 @@ newPackage(
 	  "linearSeries",
 	  "projectiveImage",
 	  "canonicalImage",
-	  "coordPoint",
+	  "fromCoordinates",
+	  "toCoordinates",
 	  "Conductor" -- option
 	  }
 ///
@@ -28,15 +27,23 @@ uninstallPackage "PlaneCurveLinearSeries"
 installPackage "PlaneCurveLinearSeries"      
 check"PlaneCurveLinearSeries"      
 ///
+toCoordinates = method()
+toCoordinates Ideal := List => I -> (
+    --I should be a complete intersection of linear
+    --forms, defining a point.
+    R := ring I;
+    D := diff(transpose gens I, vars R);
+    (entries transpose syz D)_0)
 
-coordPoint = method()
+fromCoordinates = method()
    --construct ideal of point on a curve in P3 from its coordinates
-coordPoint (BasicList, Ring) := Ideal =>  (P, C) ->(
+fromCoordinates (List, Ring) := Ideal =>  (P, C) ->(
     PC := sub (matrix {toList P}, C);
     I := ideal(vars C * (syz PC));
     if dim I == 0 then error"point does not lie on curve";
     I)
-coordPoint (ZZ,ZZ,ZZ) := (x,y,z)-> coordPoint toList(x,y,z)
+fromCoordinates (ZZ,ZZ,ZZ, Ring) := Ideal => (x,y,z, R) -> 
+    fromCoordinates (toList(x,y,z),R)
 
 geometricGenus = method(Options => {Conductor=>0})
 geometricGenus Ring := ZZ => o -> R -> (
@@ -76,6 +83,8 @@ linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
 )
 linearSeries Ideal := o-> D0 -> 
    linearSeries(D0, ideal 1_(ring D0), Conductor => o.Conductor)
+
+
 
 canonicalSeries = method(Options => {Conductor=>null})
 canonicalSeries Ring := Matrix => o-> R ->(
@@ -127,9 +136,12 @@ canonicalImage Ring := Ring => o-> R ->(
     projectiveImage canonicalSeries(R, Conductor => o.Conductor)
 )
 canonicalImage Ideal := Ring => o -> I -> canonicalImage((ring I)/I)
+
+
  -* Documentation section *-
 
 beginDocumentation()
+
 doc ///
 Key
  PlaneCurveLinearSeries
@@ -158,45 +170,83 @@ Description
   Example
    geometricGenus C
    L = for i from 0 to 6 list (rank source linearSeries (p^i)) 
+///
+
+
+doc///
+Key
+ fromCoordinates
+ (fromCoordinates, List, Ring)
+ (fromCoordinates, ZZ, ZZ, ZZ, Ring)
+Headline
+ Compute the ideal of a point from its coordinates
+Usage
+ I = fromCoordinates(L,C)
+ I = fromCoordinates(x,y,z, C)
+Inputs
+ L: List
+  of three integers or field elements
+ x: RingElement
+ y: RingElement
+ z: RingElement
+  integer or field coordinates of a point on C (assumed to be a plane curve)
+ C: Ring
+  the ring in which the ideal of the point will be created
+Outputs
+ I: Ideal 
+  of C, defining a point
+Description
+  Text 
+   Convenient way to compute the ideal of a point on a plane curve,
+   when the point is given by a list of its coordinates.
+   If the coordinates are given as integers, they are
+   interpreted as elements of the coefficient field
+   The script returns an error if the point is not on the curve.
+  Example
+   S = ZZ/101[a,b,c]
+   C = S/ideal"a3+b3-c3"
+   P = {0,1,1}
+   Q = {1,1,0}
+   fromCoordinates(P,C)
+   --fromCoordinates(Q,C) --would return an error.   
 SeeAlso
- geometricGenus
+ toCoordinates
 
 ///
 
 
 doc ///
 Key
- coordPoint
- (coordPoint, BasicList, Ring)
- (coordPoint, ZZ, ZZ, ZZ)
- 
+ toCoordinates
+ (toCoordinates, Ideal)
 Headline
- compute the ideal of a point from coordinates
+ coordinates of a point from its ideal
 Usage
- I = coordPoint(L,C)
- I = coordPoint(x,y,z, C)
+ L  = toCoordinates I
 Inputs
- L: BasicList
-  of three integers
- x: ZZ
- y: ZZ
- z: ZZ
-  integer coordinates of a point on C
+ I: Ideal
+  defining a point
 Outputs
- I: Ideal 
-  of C
+ L: List
+  of elements of the ground field
 Description
-  Text 
-   Convenient way to computes the ideal of a point on a plane curve,
-   when the point is given by coordinates.
-   The script returns an error if the point is not on the curve.
+  Text
+   This is the inverse of @TO fromCoordinates@
   Example
-   S = ZZ/101[a,b,c]
-   C = S/ideal"a3+b3-c3"
-   P = (0,1,1)
-   Q = (1,1,0)
-   coordPoint(P,C)
-   --coordPoint(Q,C) --would return an error.   
+   S = ZZ/5[x,y,z]
+   I = ideal(x- y, z)
+   L = toCoordinates I
+   I == fromCoordinates(L,S)
+   
+   S = GF(5,2,Variable => a)[x,y,z]/(ideal "x3-y3+z3")
+   a^24 == 1
+   (a^8)^3
+   (a^16)^3
+   p = {a^8, a^16, 0}
+   fromCoordinates (p,S)
+   L = toCoordinates fromCoordinates ({a^8,1,0}, S)
+SeeAlso
+ fromCoordinates
 ///
 
 doc ///
@@ -228,6 +278,7 @@ Description
    canonicalSeries(S/C2)
    canonicalSeries(S/C3)
 ///
+
 doc ///
 Key
  geometricGenus
@@ -390,10 +441,10 @@ Description
    sings' = intersect apply(fourpoints, p -> p^2)
    C0 = P2/(ideal random(6, sings'))
    sings = sub (sings', C0)
-   assert(conductor C0 == sub(nodes, C0))
+   conductor C0 == sub(nodes, C0)
    B' = gens image basis (3,nodes)
    B = sub(B',C0);
-   assert(canonicalSeries(C0) == B)
+   canonicalSeries(C0) == B
   Text
    Now the image of C under B lies on the image of 
    P^2 under B'. Since "projective image defines a ring",
@@ -404,11 +455,13 @@ Description
    C = projectiveImage B
    betti res ideal C
    betti res ideal X
-   assert(isSubset(sub(ideal X, ring ideal C), ideal C))
+   isSubset(sub(ideal X, ring ideal C), ideal C)
 SeeAlso
  geometricGenus
  canonicalImage
 ///
+
+
 
 doc///
 Key
@@ -503,14 +556,21 @@ TEST///
 S = ZZ/101[a,b,c]
 C = S/ideal"a3+b3-c3"
 P = (0,1,1)
-assert(coordPoint ((0,1,1), C) == ideal (a, - b + c))
+assert(fromCoordinates({0,1,1}, C) == ideal (a, - b + c))
+///
+
+TEST///
+R = QQ[x,y,z]
+I = fromCoordinates ({5,-3,9}, R)
+assert({5,-3,9} == toCoordinates I)
+
 ///
 
 TEST///
 S = ZZ/32003[a,b,c]
 I = ideal"a3+b3-c3"
 p'= ideal(a,b-c)
-isSubset(I,p')
+assert(isSubset(I,p'))
 R = S/I
 p = sub(p',R)
 assert (geometricGenus R == 1)
@@ -520,24 +580,21 @@ assert(all(L, ell->ell == 1))
 ///
 
 TEST///
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
+setRandomSeed 27 -- with setRandomSeed 0 the generator of C6 factors!
 S = QQ[x,y,z]
 sing3 = (ideal(x,y))^3
 sing1 = (ideal(x,z))^2
 C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
 C5 = ideal random(5, sing1) -- quintic with node, genus 5
 C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
-assert (numgens canonicalSeries C4 == 3)
-assert (numgens canonicalSeries C5 == 5)
-assert (numgens canonicalSeries C6 == 2)
+assert (numcols canonicalSeries C4 == 3)
+assert (numcols canonicalSeries C5 == 5)
+assert (numcols canonicalSeries C6 == 2)
 assert (geometricGenus C6 == 2)
 ///
  
 TEST///
 --two characteristic pairs
-restart
-loadPackage ("PlaneCurveLinearSeries", Reload => true)
 kk = ZZ/32003
 S = kk[a,b,c]; T = kk[s,t];
 I = ker map(T,S, {s^7, s^6*t, s^3*t^4+s*t^6+t^7});I
@@ -555,9 +612,7 @@ assert(degree projectiveImage p^3 == 3)
 ///
 
 TEST///
- -* canonicalIdeal, geometricGenus *-
-restart
-load "planeCurves.m2"
+setRandomSeed 0
 kk = QQ
 S = kk[x,y,z]
 C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
@@ -574,7 +629,7 @@ canonicalSeries(C5)
 
 canonicalSeries C1 == 0
 canonicalSeries C2 == 0
-canonicalSeries C3 == ideal vars ((ring C3)/C3)
+canonicalSeries C3 == vars ((ring C3)/C3)
 
 geometricGenus C1 == 0
 geometricGenus C2 == 0
@@ -808,5 +863,26 @@ needsPackage "PlaneCurveLinearSeries"
  
 
 
+The following fails -- apparently the particular
     
+setRandomSeed 0
+S = QQ[x,y,z]
+sing3 = (ideal(x,y))^3
+sing1 = (ideal(x,z))^2
+C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
+C5 = ideal random(5, sing1) -- quintic with node, genus 5
+C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
+netList decompose C6
+conductor (S/C6)
+degree singularLocus (S/C6)
 
+setRandomSeed 27
+S = QQ[x,y,z]
+sing3 = (ideal(x,y))^3
+sing1 = (ideal(x,z))^2
+C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
+C5 = ideal random(5, sing1) -- quintic with node, genus 5
+C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
+netList decompose C6
+conductor (S/C6)
+degree singularLocus (S/C6)
