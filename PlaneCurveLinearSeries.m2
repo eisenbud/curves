@@ -18,7 +18,8 @@ newPackage(
 	  "canonicalImage",
 	  "fromCoordinates",
 	  "toCoordinates",
-	  "Conductor" -- option
+	  "Conductor", -- option
+	  "ShowBase" -- option for linearSeries
 	  }
 ///
 restart
@@ -55,7 +56,7 @@ geometricGenus Ring := ZZ => o -> R -> (
 
 geometricGenus Ideal := ZZ => o-> I -> geometricGenus((ring I)/I, Conductor => o.Conductor)
 
-linearSeries = method (Options => {Conductor=>null})
+linearSeries = method (Options => {Conductor=>null, ShowBase => false})
 linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
     -- where D_0 \subset R
@@ -79,11 +80,21 @@ linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
   A := (ideal F) : base;
   Aminus := saturate(A*Dinfsat);
 --    (gens Aminus) * matrix basis(f, Aminus)
-    gens image basis(f, Aminus)
+  ls := gens image basis(f, Aminus);
+  if o.ShowBase == false then ls else (ls, Aminus)
 )
 linearSeries Ideal := o-> D0 -> 
-   linearSeries(D0, ideal 1_(ring D0), Conductor => o.Conductor)
-
+   linearSeries(D0, ideal 1_(ring D0), 
+       Conductor => o.Conductor,
+       ShowBase => o.ShowBase)
+///
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+E = QQ[a,b,c]/(ideal"a3+b3-c3")
+p = fromCoordinates({1,0,1}, E)
+q = fromCoordinates({0,1,1}, E)
+linearSeries(p^2)
+///
 
 
 canonicalSeries = method(Options => {Conductor=>null})
@@ -863,7 +874,8 @@ needsPackage "PlaneCurveLinearSeries"
  
 
 
-The following fails -- apparently the particular
+--The following fails -- apparently the particular seed
+--leads to a reducible curve C6
     
 setRandomSeed 0
 S = QQ[x,y,z]
@@ -876,6 +888,7 @@ netList decompose C6
 conductor (S/C6)
 degree singularLocus (S/C6)
 
+--this succeeds
 setRandomSeed 27
 S = QQ[x,y,z]
 sing3 = (ideal(x,y))^3
@@ -886,3 +899,7 @@ C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a n
 netList decompose C6
 conductor (S/C6)
 degree singularLocus (S/C6)
+
+S = QQ
+randomQQ = n -> sub(random (n*1000), QQ)/1000
+randomQQ 100
