@@ -126,7 +126,7 @@ canonicalImage Ring := Ring => o-> R ->(
     --homogeneous coordinate ring of the canonical image
     projectiveImage canonicalSeries(R, Conductor => o.Conductor)
 )
-
+canonicalImage Ideal := Ring => o -> I -> canonicalImage((ring I)/I)
  -* Documentation section *-
 
 beginDocumentation()
@@ -369,17 +369,42 @@ Description
   Text
    The output ideal is the ideal of polynomial relations
    among the generators of the linear series |Dplus-Dminus|.
-   
-   If the curve C = ring Dplus is a nonsingular plane cubic,
-   then every embedding of C is arithmetically Gorenstein,
-   as the following example suggests:
+
+   If C is a general curve of genus 6, then C can be represented
+   as a plane sextic with 4 nodes. Its canonical embedding is
+   then the projective image of C by the space of cubic forms
+   vanishing at the 4 nodes. This lies on the surface that is the
+   image of P2 under the linear series consisting of the 
+   cubics vanishing at the 4 nodes, a del Pezzo surface of
+   degree 5.
   Example
-   S = ZZ/101[a,b,c]
-   p' = ideal(a-b, c)
-   C = S/ideal"a3-b3+c3"
-   p = sub (p', C)
-   netList for d from 3 to 7 list
-       betti res ideal projectiveImage p^d
+   P5 = ZZ/101[x_0..x_5]
+   P2 = ZZ/101[a,b,c]
+   fourpoints = {
+       ideal(a,b), 
+       ideal(b,c), 
+       ideal(a,c), 
+       ideal(a-b, a-c)
+       }
+   nodes = intersect apply(fourpoints, p -> p)
+   sings' = intersect apply(fourpoints, p -> p^2)
+   C0 = P2/(ideal random(6, sings'))
+   sings = sub (sings', C0)
+   assert(conductor C0 == sub(nodes, C0))
+   B' = gens image basis (3,nodes)
+   B = sub(B',C0);
+   assert(canonicalSeries(C0) == B)
+  Text
+   Now the image of C under B lies on the image of 
+   P^2 under B'. Since "projective image defines a ring",
+   we need to make sure the two ideals are in the same ring
+   to compare them:
+  Example
+   X = projectiveImage B'
+   C = projectiveImage B
+   betti res ideal C
+   betti res ideal X
+   assert(isSubset(sub(ideal X, ring ideal C), ideal C))
 SeeAlso
  geometricGenus
  canonicalImage
@@ -389,14 +414,18 @@ doc///
 Key
  canonicalImage
  (canonicalImage, Ring)
+ (canonicalImage, Ideal)
  [canonicalImage, Conductor]
 Headline
  canonical model of the normalization of a plane curve
 Usage
  R' = canonicalImage R
+ R' = canonicalImage I
 Inputs
  R: Ring
    the homogeneous coordinate ring of a plane curve
+ I: Ideal
+   homogeneous ideal of a plane curve
 Outputs
  R': Ring
    the homogeneous coordinate ring of the canonical image of the normalization
@@ -748,8 +777,10 @@ linearSeries (D0=p2)
 for i from 0 to 10 list rank source linearSeries p2^i
 
 ----to fix: why doesn't the canonical embedding lie on the del Pezzo?
+restart
+needsPackage "PlaneCurveLinearSeries"
   P5 = ZZ/101[x_0..x_5]
-   P2 = ZZ/101[a,b,c]
+  P2 = ZZ/101[a,b,c]
    fourpoints = {
        ideal(a,b), 
        ideal(b,c), 
@@ -760,16 +791,18 @@ for i from 0 to 10 list rank source linearSeries p2^i
    sings' = intersect apply(fourpoints, p -> p^2)
    C0 = P2/(ideal random(6, sings'))
    sings = sub (sings', C0)
-   conductor C0 == sub(nodes, C0)
-   C = canonicalImage C0
+   assert(conductor C0 == sub(nodes, C0))
+   B' = gens image basis (3,nodes)
+   B = sub(B',C0);
+   assert(canonicalSeries(C0) == B)
+   
+   X = projectiveImage B'
+   C = projectiveImage B
    betti res ideal C
-   B' = gens image basis (3,intersect nodes)
-     B = sub(B',C);
-   canC = projectiveImage B
-   delPezzo = P5/ker(map(P2, P5, gens image basis (3,intersect nodes)))
-   betti res ideal canC
-   betti res ideal delPezzo
-
+   betti res ideal X
+   assert(isSubset(sub(ideal X, ring ideal C), ideal C))
+--but   
+   isSubset(ideal X, sub(ideal C, ring ideal X)) -- fails
 
 
  
