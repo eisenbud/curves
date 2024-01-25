@@ -18,6 +18,7 @@ newPackage(
 	  "canonicalImage",
 	  "fromCoordinates",
 	  "toCoordinates",
+	  "addition",
 	  "Conductor", -- option
 	  "ShowBase" -- option for linearSeries
 	  }
@@ -87,30 +88,64 @@ linearSeries Ideal := o-> D0 ->
    linearSeries(D0, ideal 1_(ring D0), 
        Conductor => o.Conductor,
        ShowBase => o.ShowBase)
+
+addition = method()
+addition(Ideal, Ideal,Ideal) := (origin,p,q) ->(
+    --Given the ideal of a plane curve of arithmetic genus 1,
+    --with assigned origin o,
+    --and two (smooth) points p,q, compute their sum.
+    --the points are given as codimension 1, linear
+    --ideals in the ring of the curve.
+    E := ring p;
+    if genus E != 1 or numgens E != 3 then
+    	error"Needs points on a plane curve of arithmetic genus 1";
+    I := ideal E;
+    if origin+I != I then error"first point not on curve";
+    if p+I != I then error"second point not on curve";
+    if q+I != I then error"third point not on curve";    
+    
+    (ls, B) := linearSeries(p*q,origin, ShowBase => true);
+    t := primaryDecomposition ideal ls;
+--    t := decompose ideal ls;
+    s := select(t/(I -> I:B), J -> J!= ideal 1_E);
+    s_0
+    )
+
+addition (List, List, List, Ring) := (oc, pc,qc,E) ->(
+    --same but with numerical coordinates
+    origin := fromCoordinates(oc, E);    
+    p := fromCoordinates(pc, E);
+    q := fromCoordinates(qc, E);
+    addition(origin,p,q)
+    )
+    
 ///
 restart
 loadPackage("PlaneCurveLinearSeries", Reload => true)
-E = QQ[a,b,c]/(ideal"a3+b3-c3")
+needsPackage "RandomPoints"
+S = ZZ/19[a,b,c]
+E = S/(ideal"a3+b3-c3")
+randomPoints ideal E
+origin = fromCoordinates ({1,0,1},E)
 p = fromCoordinates({1,0,1}, E)
-q = fromCoordinates({0,1,1}, E)
+q = fromCoordinates({1,4,3}, E)
 
-netList(apply(7, i->(
+cycle = (p, origin) -> (
+i := 0;
+<< toCoordinates p<< endl;
+(ls,B) = linearSeries(p^(i+1),origin^i, ShowBase => true);
+sl = select((primaryDecomposition ideal ls)/(I -> I:B), 
+    J -> J!= ideal 1_E);
+s = sl_0;
+<<toCoordinates s << endl;
+while s != p do (i = i+1;
 (ls,B) = linearSeries(p^(i+1),q^i, ShowBase => true);
-select((decompose ideal ls)/(I -> I:B), J -> J!= ideal 1_E)
+sl = select((primaryDecomposition ideal ls)/(I -> I:B), 
+    J -> J!= ideal 1_E);
+s = sl_0;
+<<toCoordinates s<<endl
 )
-))
-ideal ls
-decompose (ideal ls)
- ((decompose (ideal ls))/(I -> I:B)
-)
-i = 2
 
-E = QQ[a,b,c]/(ideal"a3+b3-c3")
-I = ideal(b-c)
-decompose I == {ideal (b - c, a)}
---but a is not in I:
-gens (ideal a) % I
-primaryDecomposition I -- gives the right answer.
 ///
 
 
@@ -141,9 +176,9 @@ projectiveImage(Ideal, Ideal) := Ring => o -> (D0,Dinfty) ->(
     SS/ker map(R, SS, D)
     )
 
-projectiveImage Ideal := Ring => o -> D0 ->
+projectiveImage Ideal := Ring => o -> D0 ->(
     projectiveImage(D0, ideal(1_(ring D0)), 
-	              Conductor => o.Conductor)
+	              Conductor => o.Conductor))
 
 projectiveImage Matrix := Ring => o -> M -> (
  -- in this case M is a 1-m matrix respresenting a
