@@ -6,7 +6,7 @@ newPackage(
           Authors => {{ Name => "David Eisenbud", 
 		  Email => "de@berkeley.edu", 
 		  HomePage => "eisenbud.io.github.com"}},
-	  PackageExports => {"IntegralClosure"},
+	  PackageExports => {"IntegralClosure","PrimaryDecomposition"},
           AuxiliaryFiles => false,
           DebuggingMode => true
           )
@@ -100,35 +100,39 @@ addition(Ideal, Ideal,Ideal) := (origin,p,q) ->(
     if genus E != 1 or numgens E != 3 then
     	error"Needs points on a plane curve of arithmetic genus 1";
     I := ideal E;
-    if origin+I != I then error"first point not on curve";
-    if p+I != I then error"second point not on curve";
-    if q+I != I then error"third point not on curve";    
+    if codim origin != 1 then error"first point not on curve";
+    if codim p != 1 then error"second point not on curve";
+    if codim q != 1 then error"third point not on curve";    
     
     (ls, B) := linearSeries(p*q,origin, ShowBase => true);
+
     t := primaryDecomposition ideal ls;
---    t := decompose ideal ls;
     s := select(t/(I -> I:B), J -> J!= ideal 1_E);
     s_0
     )
 
 addition (List, List, List, Ring) := (oc, pc,qc,E) ->(
     --same but with numerical coordinates
-    origin := fromCoordinates(oc, E);    
-    p := fromCoordinates(pc, E);
-    q := fromCoordinates(qc, E);
-    addition(origin,p,q)
+    oI := fromCoordinates(oc, E);    
+    pI := fromCoordinates(pc, E);
+    qI := fromCoordinates(qc, E);
+    addition(oI,pI,qI)
     )
     
 ///
 restart
 loadPackage("PlaneCurveLinearSeries", Reload => true)
 needsPackage "RandomPoints"
-S = ZZ/19[a,b,c]
-E = S/(ideal"a3+b3-c3")
-randomPoints ideal E
-origin = fromCoordinates ({1,0,1},E)
-p = fromCoordinates({1,0,1}, E)
-q = fromCoordinates({1,4,3}, E)
+   kk = ZZ/19
+   S = kk[x,y,z]
+   I = ideal"x3+y3+z3"
+   E = S/I
+   needsPackage "RandomPoints"
+   (p,q,origin) = toSequence randomPoints (3,I)
+   L = randomPoints(3,I)/(t -> fromCoordinates(t, E))
+   (origin, p,q) = toSequence L
+   addition(origin, p,q, E)
+   fromCoordinates(p,E)
 
 cycle = (p, origin) -> (
 i := 0;
@@ -613,6 +617,87 @@ SeeAlso
  geometricGenus
 ///
 
+doc///
+Key
+ ShowBase
+Headline
+ Option for @TO linearSeries@
+Usage
+ (ls,B) = geometricGenus(C,ShowBase => true)
+Inputs
+ C: Ring
+Outputs
+ ls: Matrix
+  1xn matrix whose entres span the linear series plus basepoints
+ B: Ideal 
+  the base locus
+Description
+  Text
+   The linear series computed for a plane curve is given as
+   a matrix of forms of a certain degree in the ideal of the curve;
+   Each form vanishes at a divisor PLUS a fixed locus, in common
+   to all the forms but not necessarily equal to their intersection
+   (unless the linear series to be computed is base-point free).
+  Example
+   C = ZZ/19[a,b,c]/(ideal"a5+b5-c5")
+   geometricGenus C == 6
+   p = fromCoordinates({0,1,1}, C)
+   (ls, B) = linearSeries(p^6, p^3, ShowBase => true)
+SeeAlso
+ linearSeries
+ fromCoordinates
+///
+
+doc ///
+Key
+ addition
+ (addition, Ideal, Ideal, Ideal)
+ (addition, List, List, List, Ring)
+Headline
+ addition on the smooth points of a genus 1 curve with chosen origin
+Usage
+ r = addition(p, q, origin)
+ Lr = addition(Lp, Lq, Lorigin, C)
+Inputs
+ p: Ideal
+ q: Ideal
+ origin: Ideal 
+  ideals of points on C
+ Lp: List
+ Lq: List
+ Lorigin: List
+  lists representing the coordinates of the points p,q,origin on C
+ C: Ring
+  homogeneous coordinate ring of a plane curve
+Outputs
+ r: Ideal
+  of C = ring p
+ Lr: List 
+  of list of the coordinates of the sum
+Description
+  Text
+   The elements of the Picard group of invertible sheaves
+   of degree 0 on curve C of genus 1
+   can be represented as O_C(p-origin) for smooth points
+   p and any chosen smooth point origin; thus we may implement
+   the group law 
+   p+q = r from the linear equivalence relation of divisors
+   p+q - origin ~ r.
+  Example
+   kk = ZZ/19
+   S = kk[x,y,z]
+   I = ideal"x3+y3+z3"
+   E = S/I
+   needsPackage "RandomPoints"
+   (p,q,origin) = toSequence randomPoints (3,I)
+   addition(p,q,origin, E)
+   fromCoordinates(p,E)
+SeeAlso
+ linearSeries
+ ShowBase
+ toCoordinates
+ fromCoordinates
+///
 
 -* Test section *-
 TEST///
@@ -721,6 +806,13 @@ assert (codim C' == max (keys minimalBetti(ideal C')/first))
 assert(degree ideal canonicalImage (C,Conductor =>q^(g-1)) == 7)
 ///
 
+TEST///
+   C = ZZ/19[a,b,c]/(ideal"a4+b4-c4")
+   assert(geometricGenus C == 3)
+   assert ((p = fromCoordinates({0,1,1}, C)) == ideal"a, c-b")
+   (ls, B) = linearSeries(p^6, p^3, ShowBase => true)
+   assert(B == ideal(b^2-2*b*c+c^2, a*b-a*c))
+///
 end--
 
 ///
