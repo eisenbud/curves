@@ -90,7 +90,7 @@ linearSeries Ideal := o-> D0 ->
        ShowBase => o.ShowBase)
 
 addition = method()
-addition(Ideal, Ideal,Ideal) := (origin,p,q) ->(
+addition(Ideal, Ideal,Ideal) := Ideal => (origin,p,q) ->(
     --Given the ideal of a plane curve of arithmetic genus 1,
     --with assigned origin o,
     --and two (smooth) points p,q, compute their sum.
@@ -111,13 +111,14 @@ addition(Ideal, Ideal,Ideal) := (origin,p,q) ->(
     s_0
     )
 
-addition (List, List, List, Ring) := (oc, pc,qc,E) ->(
+addition (List, List, List, Ring) := List => (o, p , q, E) ->(
     --same but with numerical coordinates
-    oI := fromCoordinates(oc, E);    
-    pI := fromCoordinates(pc, E);
-    qI := fromCoordinates(qc, E);
-    addition(oI,pI,qI)
+    oE := fromCoordinates(o, E);    
+    pE := fromCoordinates(p, E);
+    qE := fromCoordinates(q, E);
+    toCoordinates addition(oE,pE,qE)
     )
+
     
 ///
 restart
@@ -127,15 +128,23 @@ needsPackage "RandomPoints"
    S = kk[x,y,z]
    I = ideal"x3+y3+z3"
    E = S/I
-   needsPackage "RandomPoints"
    (p,q,origin) = toSequence randomPoints (3,I)
-   L = randomPoints(3,I)/(t -> fromCoordinates(t, E))
-   (origin, p,q) = toSequence L
-   addition(origin, p,q, E)
-   fromCoordinates(p,E)
+
+
+multiples(10, p, origin)
+
+p = fromCoordinates(p,E);
+q = fromCoordinates(q,E);
+for i from 0 to 10 do(
+(ls,B) = linearSeries(p^(i+1),q^i, ShowBase => true);
+sl = select((primaryDecomposition ideal ls)/(I -> I:B), 
+    J -> J!= ideal 1_E);
+s = sl_0;
+<<(toCoordinates s)<<endl;
+)
+
 
 cycle = (p, origin) -> (
-i := 0;
 << toCoordinates p<< endl;
 (ls,B) = linearSeries(p^(i+1),origin^i, ShowBase => true);
 sl = select((primaryDecomposition ideal ls)/(I -> I:B), 
@@ -149,7 +158,8 @@ sl = select((primaryDecomposition ideal ls)/(I -> I:B),
 s = sl_0;
 <<toCoordinates s<<endl
 )
-
+)
+cycle(p, origin)
 ///
 
 
@@ -218,26 +228,87 @@ Description
   Text
    This package implements procedures described in chapters 4 and 14
    of the book "The Practice of Curves", by David Eisenbud and Joe Harris.
+
+   If E is a curve of arithmetic genus 1 with a marked smooth point o,
+   then the map p -> O_E(p-o) is a map from the set of smooth points of E
+   onto the Jacobian of invertible sheaves of degree 0,
+   This makes the set of smooth points into a group with the operation
+   p+r = q if, as divisors, p+r-o~q.
+   The function @TO addition@, based on  @TO linearSeries@, 
+   allows us to implement the group law.
+   Here is an example with a smooth plane cubic:
   Example
-   kk = ZZ/32003
-   S = kk[a,b,c]; T = kk[s,t];
-   I = ker map(T,S, {s^7, s^3*t^4+s*t^6, t^7});I
-   p' = ideal(a,b)
-   isSubset(I,p')
-   C = S/I
-   geometricGenus C
-   (primaryDecomposition ideal singularLocus C)/radical
-   p = sub(p', C)
+   kk = QQ
+   S = kk[x,y,z]
+   p = {0,1,0}; pS = fromCoordinates(p,S)
+   q = {1,0,0}; qS = fromCoordinates(q,S)
+   o = {1,1,1}; oS = fromCoordinates(o,S)
+   I = ideal random(3, intersect(oS, pS,qS))
+   E = S/I   
+   r = addition(o,p,q, E)
   Text
-   We see that p is a smooth point of C, which is a singular 
-   rational curve; in fact  singularity at s=0 is the simplest
-   singularity with two characteristic pairs. 
-   It has arithmetic genus 15, but since it is
-   the image of P^1 it is rational:
+   It is known that when one takes multiples of a point that is not torsion,
+   the "height" - roughly the size of the coordinate - is squared
+   with each iteraction, that is, the number of digits doubles:
   Example
+   pp = addition(o,p,p,E)
+   ppp = addition(o,pp,p,E)   
+   pppp = addition(o,ppp,p,E)   
+  Text
+   On the other hand, over a finite field, a curve has only finitely many
+   points, so any subgroup of the Jacobian is finite:
+  Example
+   kk = ZZ/19
+   S = kk[x,y,z]
+   p = {0,1,0}; pS = fromCoordinates(p,S)
+   o = {1,1,1}; oS = fromCoordinates(o,S)
+   setRandomSeed 0
+   I = ideal random(3, intersect(pS,oS))
+   E = S/I   
+   geometricGenus E
+   q = o
+   netList ({o} | apply(25, i-> q = addition(o,p,q,E)))
+  Text
+   A cubic with a node or cusp is also arithmetic genus 1; in the case
+   of a node, the smooth points are in correspondence with P^1 minus {0, infinity}
+   and the Jacobian is the multiplicative troup of the field; in the case
+   of a cusp the smooth points are in correspondence with P^1 minus {infinity},
+   and the Jacobian is the additive group of the field:
+  Example
+   I = kernel map(kk[s,t], S, {s^3, s^2*t,t^3})
+   C = S/I
+   genus C
    geometricGenus C
-   L = for i from 0 to 6 list (rank source linearSeries (p^i)) 
+  Text
+   the singular point is the image of the point (0,1) in P^1,
+   so we may take the origin to be the image of (1,1) and take
+   another smooth point p to be the image of (1,0).
+   
+   The following example fails because B is contained in
+   all the ideals in the primary decomposition. Perhaps
+   because B is contained in the singular locus?
+   Try taking the form F to be of one higher degree, or more random?
 ///
+-*
+  Example
+   setRandomSeed 0
+   p = {1,0,0}; 
+   o = {1,1,1}; 
+   q = o
+   netList ({o}|apply(9, i-> q = addition(o,p,q,C)))
+   netList ({o}|apply(9, i-> q = addition(o,q,p,C)))   
+  Text
+   so 9p ~ o.   
+   --I don't like this!
+   more primitively,
+  Example
+   pC = sub(pS,C)
+   oC = sub(oS,C)  
+   netList   for i from 1 to 9 list(
+   (ls,B) = linearSeries(pC^i,oC^(i-1),ShowBase =>true);
+   select(primaryDecomposition ideal ls, J -> J:B != 1)
+       )
+*-     
 
 
 doc///
