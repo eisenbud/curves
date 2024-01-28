@@ -68,17 +68,26 @@ linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
     R := ring D0;
     D0sat := saturate D0;
     Dinfsat := saturate Dinf;
+    singR := singularLocus R;
 
-    if dim singularLocus R <= 0 then cond := ideal 1_R else(
+    if dim singR <= 0 then cond := ideal 1_R else(
     if o.Conductor === null then cond = conductor R else cond = o.Conductor);
     --now cond is the conductor ideal of $R$
 
-    base := saturate(D0sat*cond);
+    base := saturate(D0sat*cond); --if we assume that D0 and cond represent
+      --disjoint subsets of C, this is the same as intersect(D0sat, cond) without
+      --saturating.
     F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
         --Thus F=0 pulls back to the divisor A+D0+cond
-	--on the normalization C of C0
+	--on the normalization C of C0. 
     f := degree F;
   A := (ideal F) : base;
+    singRred := radical ideal singR;
+  <<select(primaryDecomposition A, J-> (gens J) % singRred == 0)<<endl;
+  
+   --at this point A should represent a set disjoint from cond; but if
+   --F is not a generic generator of cond at the singular locus I'm not
+   --sure what this ideal is. 
   Aminus := saturate(A*Dinfsat);
 --    (gens Aminus) * matrix basis(f, Aminus)
   ls := gens image basis(f, Aminus);
@@ -88,7 +97,30 @@ linearSeries Ideal := o-> D0 ->
    linearSeries(D0, ideal 1_(ring D0), 
        Conductor => o.Conductor,
        ShowBase => o.ShowBase)
-
+///
+--here--
+restart
+loadPackage( "PlaneCurveLinearSeries", Reload => true)
+   kk = ZZ/19
+   S = kk[x,y,z]
+   setRandomSeed 0
+   p = {1,0,0}; 
+   o = {1,1,1}; 
+   q = o
+   netList ({o}|apply(9, i-> q = addition(o,p,q,C)))
+   netList ({o}|apply(9, i-> q = addition(o,q,p,C)))   
+  Text
+   so 9p ~ o.   
+   --I don't like this!
+   more primitively,
+  Example
+   pC = sub(pS,C)
+   oC = sub(oS,C)  
+   netList   for i from 1 to 9 list(
+   (ls,B) = linearSeries(pC^i,oC^(i-1),ShowBase =>true);
+   select(primaryDecomposition ideal ls, J -> J:B != 1)
+       )
+///
 addition = method()
 addition(Ideal, Ideal,Ideal) := Ideal => (origin,p,q) ->(
     --Given the ideal of a plane curve of arithmetic genus 1,
@@ -291,6 +323,8 @@ Description
 ///
 -*
   Example
+   kk = ZZ/19
+   S = kk[x,y,z]
    setRandomSeed 0
    p = {1,0,0}; 
    o = {1,1,1}; 
