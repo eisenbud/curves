@@ -6,7 +6,7 @@ newPackage(
           Authors => {{ Name => "David Eisenbud", 
 		  Email => "de@berkeley.edu", 
 		  HomePage => "eisenbud.io.github.com"}},
-	  PackageExports => {"IntegralClosure","PrimaryDecomposition"},
+	  PackageExports => {"IntegralClosure","PrimaryDecomposition","ReesAlgebra"},
           AuxiliaryFiles => false,
           DebuggingMode => true
           )
@@ -20,8 +20,13 @@ newPackage(
 	  "toCoordinates",
 	  "addition",
 	  "Conductor", -- option
-	  "ShowBase" -- option for linearSeries
+	  "ConductorReduction",
+	  "ShowBase"-- option for linearSeries
 	  }
+      
+	   
+--	  "Tries"
+--	  }
 ///
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
@@ -57,7 +62,53 @@ geometricGenus Ring := ZZ => o -> R -> (
 
 geometricGenus Ideal := ZZ => o-> I -> geometricGenus((ring I)/I, Conductor => o.Conductor)
 
-linearSeries = method (Options => {Conductor=>null, ShowBase => false})
+///
+restart
+debug loadPackage"PlaneCurveLinearSeries"
+S = ZZ/19[a,b,c]
+pS = ideal(a,b)
+sing = pS^5
+R = S/random(6, sing)
+p = sub(pS, R)
+isLocalMinimalReduction(ideal random(5, p^5), p^5, 10)
+
+plocalMinimalReduction (p^3)
+canonicalSeries R
+///
+
+isLocalMinimalReduction = (F,I,bound) -> (
+    P := primaryDecomposition radical I;
+    t := all(P, p-> not isSubset(((F*I): I^2), p));
+    <<(1,t)<<endl;
+    count := 1;
+    while (not t and count <= bound) do(
+              t = all(P, p-> not isSubset(((F*I^(count+1)): I^(count +2)), p));
+	    count = count+1;
+	    <<(count,t)<<endl;
+	    );
+    t)
+
+localMinimalReduction = method(Options => {Tries => 20})
+localMinimalReduction Ideal :=  Ideal => o -> I -> (
+    I' := trim I;
+    if codim I' != 1 then error "expected codim 1 ideal";
+    if numgens I' == 1 then I' else (
+	f := max((I'_*/degree)_0);
+	F := ideal random(f, I');
+	count := o.Tries;
+	t := multiplicity F == multiplicity I';
+	while (count >0 and not t) do (
+	    F = ideal random(f+1, I');
+	    t =  multiplicity F == multiplicity I';
+	    count = count - 1);
+	F);
+    if t then F else error "couldn't find local minimal reduction"
+    )
+
+
+linearSeries = method (Options => {Conductor=>null, 
+	                          ConductorReduction => null, 
+				  ShowBase => false})
 linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
     -- where D_0 \subset R
@@ -68,35 +119,43 @@ linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
     R := ring D0;
     D0sat := saturate D0;
     Dinfsat := saturate Dinf;
-    singR := singularLocus R;
 
-    if dim singR <= 0 then cond := ideal 1_R else(
-    if o.Conductor === null then cond = conductor R else cond = o.Conductor);
-    --now cond is the conductor ideal of $R$
+    dsing := dim singularLocus R;
+    if dsing <= 0 then (
+	cond := ideal 1_R;
+	condRed := 1_R) else(
+        if o.Conductor === null then cond = conductor R else
+	    cond = o.Conductor;
+        if o.ConductorReduction === null then condRed = minimalReduction cond else
+	    condRed = o.Conductor);
+    --now cond is the conductor ideal of $R$, and condRed is a minimal reduction.
 
-    base := saturate(D0sat*cond); --if we assume that D0 and cond represent
+    base := saturate(D0sat*condRed); --if we assume that D0 and cond represent
       --disjoint subsets of C, this is the same as intersect(D0sat, cond) without
       --saturating.
-    F := (base)_*_0;--a form of minimal degree that vanishes on D0sat and cond; 
+    F := localMinimalReduction base;--a form of minimal degree that vanishes on D0sat and cond; 
         --Thus F=0 pulls back to the divisor A+D0+cond
 	--on the normalization C of C0. 
-    f := degree F;
-  A := (ideal F) : base;
-    singRred := radical ideal singR;
-  <<select(primaryDecomposition A, J-> (gens J) % singRred == 0)<<endl;
-  
-   --at this point A should represent a set disjoint from cond; but if
+  A := F : base;
+  )
+
+-*
+   --at this point A  should represent a set disjoint from cond; but if
    --F is not a generic generator of cond at the singular locus I'm not
    --sure what this ideal is. 
   Aminus := saturate(A*Dinfsat);
 --    (gens Aminus) * matrix basis(f, Aminus)
   ls := gens image basis(f, Aminus);
+  ls = gens image basis(f', Aminus);  
   if o.ShowBase == false then ls else (ls, Aminus)
 )
+*-
 linearSeries Ideal := o-> D0 -> 
    linearSeries(D0, ideal 1_(ring D0), 
        Conductor => o.Conductor,
+       ConductorReduction => o.ConductorReduction,
        ShowBase => o.ShowBase)
+
 ///
 --here--
 restart
@@ -104,6 +163,11 @@ loadPackage( "PlaneCurveLinearSeries", Reload => true)
    kk = ZZ/19
    S = kk[x,y,z]
    setRandomSeed 0
+   I = kernel map(kk[s,t], S, {s^3, s^2*t,t^3})
+   C = S/I
+   genus C
+   geometricGenus C
+
    p = {1,0,0}; 
    o = {1,1,1}; 
    q = o
@@ -113,6 +177,7 @@ loadPackage( "PlaneCurveLinearSeries", Reload => true)
    so 9p ~ o.   
    --I don't like this!
    more primitively,
+
   Example
    pC = sub(pS,C)
    oC = sub(oS,C)  
@@ -194,6 +259,15 @@ s = sl_0;
 cycle(p, origin)
 ///
 
+///
+restart
+loadPackage"PlaneCurveLinearSeries"
+S = ZZ/19[a,b,c]
+mm = ideal gens S
+sing = (ideal(a,b))^2
+R = S/random(3, sing)
+canonicalSeries R
+///
 
 canonicalSeries = method(Options => {Conductor=>null})
 canonicalSeries Ring := Matrix => o-> R ->(
