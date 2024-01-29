@@ -19,8 +19,9 @@ newPackage(
 	  "fromCoordinates",
 	  "toCoordinates",
 	  "addition",
-	  "Conductor", -- option
-	  "ConductorReduction",
+	  "Conductor", -- option for linearSeries etc
+	  "ConductorReduction", -- option for linearSeries
+	  "Check", -- option for localMinimalReduction
 	  "ShowBase"-- option for linearSeries
 	  }
       
@@ -65,50 +66,57 @@ geometricGenus Ideal := ZZ => o-> I -> geometricGenus((ring I)/I, Conductor => o
 ///
 restart
 debug loadPackage"PlaneCurveLinearSeries"
-S = ZZ/19[a,b,c]
+S = ZZ/2[a,b,c]
 pS = ideal(a,b)
 sing = pS^5
 R = S/random(6, sing)
 p = sub(pS, R)
 isLocalMinimalReduction(ideal random(5, p^5), p^5, 10)
-
-plocalMinimalReduction (p^3)
+localMinimalReduction (p^3)
+localMinimalReduction (p^3, Check => true)
 canonicalSeries R
 ///
 
 isLocalMinimalReduction = (F,I,bound) -> (
+    --checks that an ideal F is a reduction of an ideal I on an
+    --ambient projective curve
+    --by checking that FI^m = I^(m+1) locally at the minimal primes of I
+    --with m up to the constant bound.
     P := primaryDecomposition radical I;
-    t := all(P, p-> not isSubset(((F*I): I^2), p));
-    <<(1,t)<<endl;
+    t := all(P, p-> not isSubset(((F*I): I^2), p));-- true if F*I:is not in p
     count := 1;
-    while (not t and count <= bound) do(
+    while (not t and count < bound) do(
               t = all(P, p-> not isSubset(((F*I^(count+1)): I^(count +2)), p));
 	    count = count+1;
-	    <<(count,t)<<endl;
 	    );
     t)
 
-localMinimalReduction = method(Options => {Tries => 20})
+localMinimalReduction = method(Options => {Tries => 20, Check => false})
 localMinimalReduction Ideal :=  Ideal => o -> I -> (
+    --use Check => true over very small fields
     I' := trim I;
     if codim I' != 1 then error "expected codim 1 ideal";
-    if numgens I' == 1 then I' else (
+    if numgens I' == 1 then return I' else (
 	f := max((I'_*/degree)_0);
 	F := ideal random(f, I');
-	count := o.Tries;
-	t := multiplicity F == multiplicity I';
-	while (count >0 and not t) do (
-	    F = ideal random(f+1, I');
-	    t =  multiplicity F == multiplicity I';
-	    count = count - 1);
-	F);
-    if t then F else error "couldn't find local minimal reduction"
-    )
-
+       
+        if o.Check == false then return F else(
+            t :=isLocalMinimalReduction(F,I', 10);
+            if t then F else(
+    		count := o.Tries;
+		while (count >0 and not t) do (
+	    	    F = ideal random(f+1, I');
+            	    t = isLocalMinimalReduction(F,I', 10);
+	    	    count = count - 1
+		                              );
+        	if t then F else 
+		error "couldn't find local minimal reduction")
+		            )))
 
 linearSeries = method (Options => {Conductor=>null, 
 	                          ConductorReduction => null, 
-				  ShowBase => false})
+				  ShowBase => false,
+				  Check => false})
 linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
     -- returns a matrix whose elements span the complete linear series |D_0|+base points,
     -- where D_0 \subset R
@@ -124,67 +132,93 @@ linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
     if dsing <= 0 then (
 	cond := ideal 1_R;
 	condRed := 1_R) else(
-        if o.Conductor === null then cond = conductor R else
+        if o.Conductor === null then 
+	    cond = conductor R else
 	    cond = o.Conductor;
-        if o.ConductorReduction === null then condRed = minimalReduction cond else
-	    condRed = o.Conductor);
-    --now cond is the conductor ideal of $R$, and condRed is a minimal reduction.
-
-    base := saturate(D0sat*condRed); --if we assume that D0 and cond represent
-      --disjoint subsets of C, this is the same as intersect(D0sat, cond) without
-      --saturating.
-    F := localMinimalReduction base;--a form of minimal degree that vanishes on D0sat and cond; 
-        --Thus F=0 pulls back to the divisor A+D0+cond
-	--on the normalization C of C0. 
-  A := F : base;
-  )
-
--*
-   --at this point A  should represent a set disjoint from cond; but if
-   --F is not a generic generator of cond at the singular locus I'm not
-   --sure what this ideal is. 
-  Aminus := saturate(A*Dinfsat);
---    (gens Aminus) * matrix basis(f, Aminus)
-  ls := gens image basis(f, Aminus);
-  ls = gens image basis(f', Aminus);  
-  if o.ShowBase == false then ls else (ls, Aminus)
+        if o.ConductorReduction === null then 
+          condRed = localMinimalReduction(cond, Check => o.Check) else
+          condRed = o.Conductor);
+    --now cond is the conductor ideal of $R$, 
+    --and condRed is a minimal reduction.
+    base := D0sat*condRed;--this is saturated*principal, so saturated
+    F := ideal(base_*_0);
+    f := degree F_0;
+    A := F : base;
+    --Now  F~A + D0 + conductor
+    Aminus := saturate(A*Dinfsat*condRed);
+    ls := gens image basis(f, Aminus);
+error();
+    if o.ShowBase == false then ls else (ls, Aminus)
 )
-*-
-linearSeries Ideal := o-> D0 -> 
-   linearSeries(D0, ideal 1_(ring D0), 
-       Conductor => o.Conductor,
-       ConductorReduction => o.ConductorReduction,
-       ShowBase => o.ShowBase)
 
+linearSeries Ideal := o-> D0 -> 
+   linearSeries(D0, ideal 1_(ring D0), o)
+-*       Conductor => o.Conductor,
+       ConductorReduction => o.ConductorReduction,
+       ShowBase => o.ShowBase,
+       Check => o.Check)
+*-
 ///
 --here--
 restart
-loadPackage( "PlaneCurveLinearSeries", Reload => true)
+debug loadPackage( "PlaneCurveLinearSeries", Reload => true)
+--two characteristic pairs
+kk = ZZ/32003
+S = kk[a,b,c]; T = kk[s,t];
+I = ker map(T,S, {s^7, s^6*t, s^3*t^4+s*t^6+t^7});I
+R = S/I
+assert (geometricGenus R == 0)
+use S
+p' = ideal(a-c,b+c)
+isSubset(I,p')
+radical ideal singularLocus R
+--p' is a smooth point of the curve.
+p = sub(p', R)
+linearSeries p
+--p should have 2 elements
+L = for i from 0 to 6 list (rank source linearSeries (p^i)) 
+assert(L == {1, 2, 3, 4, 5, 6, 7})
+--
+
    kk = ZZ/19
    S = kk[x,y,z]
    setRandomSeed 0
+   --
    I = kernel map(kk[s,t], S, {s^3, s^2*t,t^3})
-   C = S/I
-   genus C
-   geometricGenus C
-
    p = {1,0,0}; 
    o = {1,1,1}; 
    q = o
+   C = S/I
+   genus C
+   geometricGenus C
+   pC = fromCoordinates(p,C)
+   linearSeries(pC^3) 
+   --
+   I = ideal"x3+y3+z3"
+   p = {1,0,-1}
+   q = {1,-1,0}
+   o = {0,1,-1}
+   C = S/I
+   --
    netList ({o}|apply(9, i-> q = addition(o,p,q,C)))
-   netList ({o}|apply(9, i-> q = addition(o,q,p,C)))   
   Text
    so 9p ~ o.   
    --I don't like this!
    more primitively,
 
   Example
-   pC = sub(pS,C)
-   oC = sub(oS,C)  
-   netList   for i from 1 to 9 list(
+   pC = fromCoordinates(p,C)
+   oC = fromCoordinates(o,C)
+   qC = oC
+   i = 2
    (ls,B) = linearSeries(pC^i,oC^(i-1),ShowBase =>true);
-   select(primaryDecomposition ideal ls, J -> J:B != 1)
+   ls--error-- this linear series has dim 4, should have dim 2
+   
+   netList   for i from 1 to 10 list(
+   (ls,B) = linearSeries(pC^i,oC^(i-1),ShowBase =>true);
+   p'C = select(primaryDecomposition ideal ls, J -> J:B != 1)
        )
+
 ///
 addition = method()
 addition(Ideal, Ideal,Ideal) := Ideal => (origin,p,q) ->(
@@ -933,6 +967,7 @@ isSubset(I,p')
 radical ideal singularLocus R
 --p' is a smooth point of the curve.
 p = sub(p', R)
+linearSeries p^2
 L = for i from 0 to 6 list (rank source linearSeries (p^i)) 
 assert(L == {1, 2, 3, 4, 5, 6, 7})
 assert(degree projectiveImage p^3 == 3)
@@ -980,9 +1015,14 @@ assert(geometricGenus (C, Conductor => q^(g-1)) == 8)
 assert(canonicalSeries (C, Conductor =>q^(g-1)) ==  
     sub(matrix" a7, a6b, a5b2, a4b3, a3b4, a2b5, ab6, b7", C))
 --linearSeries(p^(g+2))
+g = 2 -- 8 takes too long!
+C = S/random(g+2, intersect (q'^g, p'))
+--conductor C -- fails for g>=6
+q = sub(q', C)
+p = sub(p',C)
 C' = projectiveImage (p^(2*g+1),Conductor =>q^(g-1))
 assert (codim C' == max (keys minimalBetti(ideal C')/first))
-assert(degree ideal canonicalImage (C,Conductor =>q^(g-1)) == 7)
+assert(degree ideal canonicalImage (C,Conductor =>q^(g-1)) == g-1)
 ///
 
 TEST///
