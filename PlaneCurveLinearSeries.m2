@@ -140,12 +140,17 @@ linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
           condRed = o.Conductor);
     --now cond is the conductor ideal of $R$, 
     --and condRed is a minimal reduction.
-    base := D0sat*condRed;--this is saturated*principal, so saturated
+    base := saturate(D0sat*cond);
+--    base := D0sat*condRed;--this is saturated*principal, so saturated
     F := ideal(base_*_0);
     f := degree F_0;
-    A := F : base;
+    
+    F == intersect(A,base)
     --Now  F~A + D0 + conductor
-    Aminus := saturate(A*Dinfsat*condRed);
+--    Aminus := saturate(A*Dinfsat*condRed);
+    Aminus := saturate(A*Dinfsat);    
+    Aminus := saturate(A*Dinfsat*cond);    
+--    Aminus := saturate(A*Dinfsat*condRed);    
     ls := gens image basis(f, Aminus);
 error();
     if o.ShowBase == false then ls else (ls, Aminus)
