@@ -112,7 +112,7 @@ localMinimalReduction Ideal :=  Ideal => o -> I -> (
         	if t then F else 
 		error "couldn't find local minimal reduction")
 		            )))
-
+-*
 linearSeries = method (Options => {Conductor=>null, 
 	                          ConductorReduction => null, 
 				  ShowBase => false,
@@ -144,11 +144,11 @@ linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
 --    base := D0sat*condRed;--this is saturated*principal, so saturated
     F := ideal(base_*_0);
     f := degree F_0;
-    
-    F == intersect(A,base)
+    A := F:base;    
+    F == intersect(A,base);
     --Now  F~A + D0 + conductor
 --    Aminus := saturate(A*Dinfsat*condRed);
-    Aminus := saturate(A*Dinfsat);    
+--    Aminus := saturate(A*Dinfsat);    
     Aminus := saturate(A*Dinfsat*cond);    
 --    Aminus := saturate(A*Dinfsat*condRed);    
     ls := gens image basis(f, Aminus);
@@ -156,13 +156,45 @@ error();
     if o.ShowBase == false then ls else (ls, Aminus)
 )
 
-linearSeries Ideal := o-> D0 -> 
-   linearSeries(D0, ideal 1_(ring D0), o)
--*       Conductor => o.Conductor,
-       ConductorReduction => o.ConductorReduction,
-       ShowBase => o.ShowBase,
-       Check => o.Check)
 *-
+
+
+linearSeries = method(Options => {Conductor=>null, 
+	                          ConductorReduction => null, 
+				  ShowBase => false,
+				  Check => false})
+
+linearSeries (Ideal,Ideal) := Matrix => o-> (D0,Dinf)  ->(
+    -- returns a matrix whose elements span the complete linear series 
+    --|D0-Dinf|+base points,
+    -- where D_0, Dinf \subset R
+    -- are the ideals of effective divisors in the ring R = S of an ACM curve C0,
+    -- with normalization C, eg a plane curve
+    R := ring D0;
+    --
+    dsing := dim singularLocus R;
+    if dsing <= 0 then 
+	cond := ideal 1_R else
+          if o.Conductor === null then 
+	    cond = conductor R else
+	         cond = o.Conductor;
+    --
+    base := saturate(D0*cond);
+    F := ideal(base_*_0);
+    --Now  F~ D0 + conductor + A
+    A := F:base;
+    f := degree F_0;
+    baseplus := saturate(A*Dinf);
+    ls := gens image basis(f, baseplus);
+--error();
+    if o.ShowBase == false then ls else (ls, baseplus)
+)
+
+linearSeries Ideal := Matrix => o -> D0 ->  (
+    Dinf := ideal(1_(ring D0));
+    linearSeries(D0, Dinf, o)
+    )
+
 ///
 --here--
 restart
@@ -205,7 +237,7 @@ assert(L == {1, 2, 3, 4, 5, 6, 7})
    o = {0,1,-1}
    C = S/I
    --
-   netList ({o}|apply(9, i-> q = addition(o,p,q,C)))
+   for  i from 0 to 3 do << (q = addition(o,p,q,C))<<endl;
   Text
    so 9p ~ o.   
    --I don't like this!
@@ -389,7 +421,12 @@ Description
    q = {1,0,0}; qS = fromCoordinates(q,S)
    o = {1,1,1}; oS = fromCoordinates(o,S)
    I = ideal random(3, intersect(oS, pS,qS))
+
    E = S/I   
+   p = {0,1,0}; pE = fromCoordinates(p,E)
+   q = {1,0,0}; qE = fromCoordinates(q,E)
+   o = {1,1,1}; oE = fromCoordinates(o,E)
+
    r = addition(o,p,q, E)
   Text
    It is known that when one takes multiples of a point that is not torsion,
@@ -941,6 +978,7 @@ R = S/I
 p = sub(p',R)
 assert (geometricGenus R == 1)
 assert(canonicalSeries R == matrix{{1_R}})
+linearSeries (p)
 L = for d from 3 to 7 list rank source ((res ideal projectiveImage p^d).dd_(d-2))
 assert(all(L, ell->ell == 1))
 ///
@@ -1035,7 +1073,7 @@ TEST///
    assert(geometricGenus C == 3)
    assert ((p = fromCoordinates({0,1,1}, C)) == ideal"a, c-b")
    (ls, B) = linearSeries(p^6, p^3, ShowBase => true)
-   assert(B == ideal(b^2-2*b*c+c^2, a*b-a*c))
+   assert(saturate B == ideal(b^2-2*b*c+c^2, a*b-a*c))
 ///
 end--
 
