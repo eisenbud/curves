@@ -19,6 +19,7 @@ newPackage(
 	  "fromCoordinates",
 	  "toCoordinates",
 	  "addition",
+	  "negative",
 	  "Conductor", -- option for linearSeries etc
 	  "ConductorReduction", -- option for linearSeries
 	  "Check", -- option for localMinimalReduction
@@ -112,51 +113,6 @@ localMinimalReduction Ideal :=  Ideal => o -> I -> (
         	if t then F else 
 		error "couldn't find local minimal reduction")
 		            )))
--*
-linearSeries = method (Options => {Conductor=>null, 
-	                          ConductorReduction => null, 
-				  ShowBase => false,
-				  Check => false})
-linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
-    -- returns a matrix whose elements span the complete linear series |D_0|+base points,
-    -- where D_0 \subset R
-    -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
-    -- with normalization C, eg a plane curve
-    -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
-    -- given with Conductor => cond.
-    R := ring D0;
-    D0sat := saturate D0;
-    Dinfsat := saturate Dinf;
-
-    dsing := dim singularLocus R;
-    if dsing <= 0 then (
-	cond := ideal 1_R;
-	condRed := 1_R) else(
-        if o.Conductor === null then 
-	    cond = conductor R else
-	    cond = o.Conductor;
-        if o.ConductorReduction === null then 
-          condRed = localMinimalReduction(cond, Check => o.Check) else
-          condRed = o.Conductor);
-    --now cond is the conductor ideal of $R$, 
-    --and condRed is a minimal reduction.
-    base := saturate(D0sat*cond);
---    base := D0sat*condRed;--this is saturated*principal, so saturated
-    F := ideal(base_*_0);
-    f := degree F_0;
-    A := F:base;    
-    F == intersect(A,base);
-    --Now  F~A + D0 + conductor
---    Aminus := saturate(A*Dinfsat*condRed);
---    Aminus := saturate(A*Dinfsat);    
-    Aminus := saturate(A*Dinfsat*cond);    
---    Aminus := saturate(A*Dinfsat*condRed);    
-    ls := gens image basis(f, Aminus);
-error();
-    if o.ShowBase == false then ls else (ls, Aminus)
-)
-
-*-
 
 
 linearSeries = method(Options => {Conductor=>null, 
@@ -178,17 +134,42 @@ linearSeries (Ideal,Ideal) := Matrix => o-> (D0,Dinf)  ->(
           if o.Conductor === null then 
 	    cond = conductor R else
 	         cond = o.Conductor;
-    --
+
+    --at this point cond == conductor R
     base := saturate(D0*cond);
+--    base := saturate(intersect(D0,cond));    
     F := ideal(base_*_0);
     --Now  F~ D0 + conductor + A
     A := F:base;
     f := degree F_0;
     baseplus := saturate(A*Dinf);
+--    baseplus := saturate intersect(A,Dinf);
     ls := gens image basis(f, baseplus);
 --error();
     if o.ShowBase == false then ls else (ls, baseplus)
 )
+
+///--case of a nodal cubic over a finite field
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+needsPackage "RandomPoints"
+   setRandomSeed 7
+   kk = ZZ/7
+   S = kk[x,y,z]
+   (o,p,sing) = ({1,1,1}, {-1,1,0},{1,0,-1})
+   oS = fromCoordinates(o, S)
+   pS = fromCoordinates(p, S)
+   singS = fromCoordinates(sing, S)
+
+   I = random(3, intersect(oS,pS,singS^2))
+   E = S/I
+   q' = o
+   netList ({q'}|apply(8, i->(
+      -- <<(i,q')<<endl;
+       q' = addition(o,p,q',E, Conductor => 1_E)
+       )))
+///
+
 
 linearSeries Ideal := Matrix => o -> D0 ->  (
     Dinf := ideal(1_(ring D0));
@@ -257,8 +238,10 @@ assert(L == {1, 2, 3, 4, 5, 6, 7})
        )
 
 ///
-addition = method()
-addition(Ideal, Ideal,Ideal) := Ideal => (origin,p,q) ->(
+
+
+addition = method(Options => {Conductor => null})
+addition(Ideal, Ideal,Ideal) := Ideal => opt -> (origin,p,q) ->(
     --Given the ideal of a plane curve of arithmetic genus 1,
     --with assigned origin o,
     --and two (smooth) points p,q, compute their sum.
@@ -272,35 +255,114 @@ addition(Ideal, Ideal,Ideal) := Ideal => (origin,p,q) ->(
     if codim p != 1 then error"second point not on curve";
     if codim q != 1 then error"third point not on curve";    
     
-    (ls, B) := linearSeries(p*q,origin, ShowBase => true);
-
-    t := primaryDecomposition ideal ls;
-    s := select(t/(I -> I:B), J -> J!= ideal 1_E);
-    s_0
+    (ls, B) := linearSeries(p*q,origin, Conductor => opt.Conductor, ShowBase => true);
+    (ideal ls):B
     )
 
-addition (List, List, List, Ring) := List => (o, p , q, E) ->(
+addition (List, List, List, Ring) := List => opt -> (o, p , q, E) ->(
     --same but with numerical coordinates
     oE := fromCoordinates(o, E);    
     pE := fromCoordinates(p, E);
     qE := fromCoordinates(q, E);
-    toCoordinates addition(oE,pE,qE)
+    toCoordinates addition(oE,pE,qE, Conductor => opt.Conductor)
     )
 
-    
-///
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
-needsPackage "RandomPoints"
-   kk = ZZ/19
+negative = method(Options => {Conductor=> null})
+negative(Ideal, Ideal) := Ideal => opt -> Ideal => (origin, p) -> (
+    addition(p, origin, origin, Conductor => opt.Conductor))
+
+negative(List, List, Ring) := List => opt -> (origin, p, E) -> (
+    addition(p, origin, origin, E, Conductor => opt.Conductor))
+
+TEST///
+--a point of order 3
+   kk = QQ
    S = kk[x,y,z]
    I = ideal"x3+y3+z3"
    E = S/I
-   (p,q,origin) = toSequence randomPoints (3,I)
 
+   (o,p,q) = ({0,-1,1}, {-1,1,0},{1,0,-1})
+    oE = fromCoordinates(o, E);    
+    pE = fromCoordinates(p, E);
+    qE = fromCoordinates(q, E);
 
-multiples(10, p, origin)
+    q' := o;
+L = apply(4, i->(
+    <<(i,q')<<endl;
+    q' = addition(o,p,q',E)
+    ))
+assert(L_2==o)
+///
 
+TEST///
+--a random point over QQ; shows growth of height
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+needsPackage "RandomPoints"
+   setRandomSeed 0
+   kk = QQ
+   S = kk[x,y,z]
+   (o,p) = ({1,1,1}, {-1,1,0})
+   oS = fromCoordinates(o, S);    
+   pS = fromCoordinates(p, S);
+    
+   points = intersect(oS,pS)
+   I = ideal random(3,points)
+   E = S/I
+   oE = fromCoordinates(o, E);    
+   pE = fromCoordinates(p, E);
+
+   q' := o;
+   netList for i from 0 to 6 list(
+   q' = addition(o,p,q',E)
+    )
+///
+TEST///--a cycle of length 15 over a finite field
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+needsPackage "RandomPoints"
+setRandomSeed 0
+   kk = ZZ/19
+   S = kk[x,y,z]
+   I = ideal"x3+3y3+xyz+z3"
+   (o,p) = toSequence randomPoints (2,I) -- works for finite field
+   E = S/I
+
+q' = o;
+L = apply(16,i->(
+    q' = addition(o,p,q',E)
+    ));
+assert(L_0 == L_15)
+///
+
+///--case of a nodal cubic over a finite field
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+needsPackage "RandomPoints"
+   setRandomSeed 7
+   kk = ZZ/32003
+   S = kk[x,y,z]
+   (o,p,sing) = ({1,1,1}, {-1,1,0},{1,0,-1})
+   oS = fromCoordinates(o, S)
+   pS = fromCoordinates(p, S)
+   singS = fromCoordinates(sing, S)
+
+   I = random(3, intersect(oS,pS,singS^2))
+   E = S/I
+   oE = fromCoordinates(o, E)
+   pE = fromCoordinates(p, E);
+   assert(radical ideal singularLocus E == singS)
+   o
+   p
+   oE = fromCoordinates(o,E)
+   pE = fromCoordinates(p,E)
+   (ls, base) = linearSeries(pE^2,oE, ShowBase =>true)
+--   assert numgens ideal ls == 1 this assertion fails! Why??
+    )
+
+///
+
+///
 p = fromCoordinates(p,E);
 q = fromCoordinates(q,E);
 for i from 0 to 10 do(
@@ -428,6 +490,22 @@ Description
    o = {1,1,1}; oE = fromCoordinates(o,E)
 
    r = addition(o,p,q, E)
+   kk = QQ
+   S = kk[x,y,z]
+   (o,p,q) = ({0,1,-1}, {-1,1,0},{1,0,-1})
+   oS = fromCoordinates(o, S);    
+   pS = fromCoordinates(p, S);
+    
+   points = intersect(oS,pS)
+   I = ideal random(3,points)
+   E = S/I
+   oE = fromCoordinates(o, E);    
+   pE = fromCoordinates(p, E);
+
+   q' := o;
+   netList for i from 0 to 6 list(
+   q' = addition(o,p,q',E)
+    )
   Text
    It is known that when one takes multiples of a point that is not torsion,
    the "height" - roughly the size of the coordinate - is squared
@@ -1309,3 +1387,50 @@ degree singularLocus (S/C6)
 S = QQ
 randomQQ = n -> sub(random (n*1000), QQ)/1000
 randomQQ 100
+
+
+-*
+linearSeries = method (Options => {Conductor=>null, 
+	                          ConductorReduction => null, 
+				  ShowBase => false,
+				  Check => false})
+linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
+    -- returns a matrix whose elements span the complete linear series |D_0|+base points,
+    -- where D_0 \subset R
+    -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
+    -- with normalization C, eg a plane curve
+    -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
+    -- given with Conductor => cond.
+    R := ring D0;
+    D0sat := saturate D0;
+    Dinfsat := saturate Dinf;
+
+    dsing := dim singularLocus R;
+    if dsing <= 0 then (
+	cond := ideal 1_R;
+	condRed := 1_R) else(
+        if o.Conductor === null then 
+	    cond = conductor R else
+	    cond = o.Conductor;
+        if o.ConductorReduction === null then 
+          condRed = localMinimalReduction(cond, Check => o.Check) else
+          condRed = o.Conductor);
+    --now cond is the conductor ideal of $R$, 
+    --and condRed is a minimal reduction.
+    base := saturate(D0sat*cond);
+--    base := D0sat*condRed;--this is saturated*principal, so saturated
+    F := ideal(base_*_0);
+    f := degree F_0;
+    A := F:base;    
+    F == intersect(A,base);
+    --Now  F~A + D0 + conductor
+--    Aminus := saturate(A*Dinfsat*condRed);
+--    Aminus := saturate(A*Dinfsat);    
+    Aminus := saturate(A*Dinfsat*cond);    
+--    Aminus := saturate(A*Dinfsat*condRed);    
+    ls := gens image basis(f, Aminus);
+error();
+    if o.ShowBase == false then ls else (ls, Aminus)
+)
+
+*-
