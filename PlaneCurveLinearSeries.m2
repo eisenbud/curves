@@ -20,15 +20,12 @@ newPackage(
 	  "toCoordinates",
 	  "addition",
 	  "negative",
-	  "Conductor", -- option for linearSeries etc
-	  "ConductorReduction", -- option for linearSeries
-	  "Check", -- option for localMinimalReduction
-	  "ShowBase"-- option for linearSeries
+	  
+	  --Options
+	  "Conductor",
+	  "ShowBase"
 	  }
       
-	   
---	  "Tries"
---	  }
 ///
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
@@ -64,20 +61,7 @@ geometricGenus Ring := ZZ => o -> R -> (
 
 geometricGenus Ideal := ZZ => o-> I -> geometricGenus((ring I)/I, Conductor => o.Conductor)
 
-///
-restart
-debug loadPackage"PlaneCurveLinearSeries"
-S = ZZ/2[a,b,c]
-pS = ideal(a,b)
-sing = pS^5
-R = S/random(6, sing)
-p = sub(pS, R)
-isLocalMinimalReduction(ideal random(5, p^5), p^5, 10)
-localMinimalReduction (p^3)
-localMinimalReduction (p^3, Check => true)
-canonicalSeries R
-///
-
+-*
 isLocalMinimalReduction = (F,I,bound) -> (
     --checks that an ideal F is a reduction of an ideal I on an
     --ambient projective curve
@@ -113,12 +97,10 @@ localMinimalReduction Ideal :=  Ideal => o -> I -> (
         	if t then F else 
 		error "couldn't find local minimal reduction")
 		            )))
-
+*-
 
 linearSeries = method(Options => {Conductor=>null, 
-	                          ConductorReduction => null, 
-				  ShowBase => false,
-				  Check => false})
+	                          ShowBase => false})
 
 linearSeries (Ideal,Ideal) := Matrix => o-> (D0,Dinf)  ->(
     -- returns a matrix whose elements span the complete linear series 
@@ -149,11 +131,16 @@ linearSeries (Ideal,Ideal) := Matrix => o-> (D0,Dinf)  ->(
     if o.ShowBase == false then ls else (ls, baseplus)
 )
 
+linearSeries Ideal := Matrix => o -> D0 ->  (
+    Dinf := ideal(1_(ring D0));
+    linearSeries(D0, Dinf, o)
+    )
+
 ///--case of a nodal cubic over a finite field
 restart
 loadPackage("PlaneCurveLinearSeries", Reload => true)
 needsPackage "RandomPoints"
-   setRandomSeed 7
+   setRandomSeed 1
    kk = ZZ/7
    S = kk[x,y,z]
    (o,p,sing) = ({1,1,1}, {-1,1,0},{1,0,-1})
@@ -164,17 +151,13 @@ needsPackage "RandomPoints"
    I = random(3, intersect(oS,pS,singS^2))
    E = S/I
    q' = o
-   netList ({q'}|apply(8, i->(
+   netList ({q'}|apply(6, i->(
       -- <<(i,q')<<endl;
        q' = addition(o,p,q',E, Conductor => 1_E)
        )))
 ///
 
 
-linearSeries Ideal := Matrix => o -> D0 ->  (
-    Dinf := ideal(1_(ring D0));
-    linearSeries(D0, Dinf, o)
-    )
 
 ///
 --here--
@@ -274,133 +257,6 @@ negative(Ideal, Ideal) := Ideal => opt -> Ideal => (origin, p) -> (
 negative(List, List, Ring) := List => opt -> (origin, p, E) -> (
     addition(p, origin, origin, E, Conductor => opt.Conductor))
 
-TEST///
---a point of order 3
-   kk = QQ
-   S = kk[x,y,z]
-   I = ideal"x3+y3+z3"
-   E = S/I
-
-   (o,p,q) = ({0,-1,1}, {-1,1,0},{1,0,-1})
-    oE = fromCoordinates(o, E);    
-    pE = fromCoordinates(p, E);
-    qE = fromCoordinates(q, E);
-
-    q' := o;
-L = apply(4, i->(
-    <<(i,q')<<endl;
-    q' = addition(o,p,q',E)
-    ))
-assert(L_2==o)
-///
-
-TEST///
---a random point over QQ; shows growth of height
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
-needsPackage "RandomPoints"
-   setRandomSeed 0
-   kk = QQ
-   S = kk[x,y,z]
-   (o,p) = ({1,1,1}, {-1,1,0})
-   oS = fromCoordinates(o, S);    
-   pS = fromCoordinates(p, S);
-    
-   points = intersect(oS,pS)
-   I = ideal random(3,points)
-   E = S/I
-   oE = fromCoordinates(o, E);    
-   pE = fromCoordinates(p, E);
-
-   q' := o;
-   netList for i from 0 to 6 list(
-   q' = addition(o,p,q',E)
-    )
-///
-TEST///--a cycle of length 15 over a finite field
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
-needsPackage "RandomPoints"
-setRandomSeed 0
-   kk = ZZ/19
-   S = kk[x,y,z]
-   I = ideal"x3+3y3+xyz+z3"
-   (o,p) = toSequence randomPoints (2,I) -- works for finite field
-   E = S/I
-
-q' = o;
-L = apply(16,i->(
-    q' = addition(o,p,q',E)
-    ));
-assert(L_0 == L_15)
-///
-
-///--case of a nodal cubic over a finite field
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
-needsPackage "RandomPoints"
-   setRandomSeed 7
-   kk = ZZ/32003
-   S = kk[x,y,z]
-   (o,p,sing) = ({1,1,1}, {-1,1,0},{1,0,-1})
-   oS = fromCoordinates(o, S)
-   pS = fromCoordinates(p, S)
-   singS = fromCoordinates(sing, S)
-
-   I = random(3, intersect(oS,pS,singS^2))
-   E = S/I
-   oE = fromCoordinates(o, E)
-   pE = fromCoordinates(p, E);
-   assert(radical ideal singularLocus E == singS)
-   o
-   p
-   oE = fromCoordinates(o,E)
-   pE = fromCoordinates(p,E)
-   (ls, base) = linearSeries(pE^2,oE, ShowBase =>true)
---   assert numgens ideal ls == 1 this assertion fails! Why??
-    )
-
-///
-
-///
-p = fromCoordinates(p,E);
-q = fromCoordinates(q,E);
-for i from 0 to 10 do(
-(ls,B) = linearSeries(p^(i+1),q^i, ShowBase => true);
-sl = select((primaryDecomposition ideal ls)/(I -> I:B), 
-    J -> J!= ideal 1_E);
-s = sl_0;
-<<(toCoordinates s)<<endl;
-)
-
-
-cycle = (p, origin) -> (
-<< toCoordinates p<< endl;
-(ls,B) = linearSeries(p^(i+1),origin^i, ShowBase => true);
-sl = select((primaryDecomposition ideal ls)/(I -> I:B), 
-    J -> J!= ideal 1_E);
-s = sl_0;
-<<toCoordinates s << endl;
-while s != p do (i = i+1;
-(ls,B) = linearSeries(p^(i+1),q^i, ShowBase => true);
-sl = select((primaryDecomposition ideal ls)/(I -> I:B), 
-    J -> J!= ideal 1_E);
-s = sl_0;
-<<toCoordinates s<<endl
-)
-)
-cycle(p, origin)
-///
-
-///
-restart
-loadPackage"PlaneCurveLinearSeries"
-S = ZZ/19[a,b,c]
-mm = ideal gens S
-sing = (ideal(a,b))^2
-R = S/random(3, sing)
-canonicalSeries R
-///
 
 canonicalSeries = method(Options => {Conductor=>null})
 canonicalSeries Ring := Matrix => o-> R ->(
@@ -465,16 +321,73 @@ Headline
  Linear series on the normalization of a plane curve
 Description
   Text
-   This package implements procedures described in chapters 4 and 14
+   This package implements procedures described in chapters 4, 5, and 14
    of the book "The Practice of Curves", by David Eisenbud and Joe Harris.
+   
+   If C is a (possibly singular) plane curve, it is possible
+   to compute the complete linear series on the normalization C' of C
+   by computations using data from the plane curve together
+   with the conductor ideal $ann_C(C/C)$, which can be computed by Macaulay
+   or supplied by the user. 
+   
+   The main routine of the package is @TO linearSeries@. If D0' and Dinf'
+   are effective divisors on C' whose ideals, as schemes, are pulled back
+   from ideals D0 and Dinf of C, then 
+   
+   ell = linearSeries(D0,Dinf)
+   
+   returns a one-row matrix ell whose entries span a linear series with
+   fixed point locus B on C' (including the conductor scheme) and form a basis
+   of |D0'-Dinf'|+B.
+   
+   The routine @TO projectiveImage@ provides the image of the map to projective space given
+   by |D0-Dinf|.  There are special routines for the most important case,
+   @TO canonicalSeries@ and @To canonicalImage@.
+   
+   The functions @TO addition@, @TO negative@ implement the group law in the case
+   of a curve of genus 1.
+///
 
-   If E is a curve of arithmetic genus 1 with a marked smooth point o,
-   then the map p -> O_E(p-o) is a map from the set of smooth points of E
-   onto the Jacobian of invertible sheaves of degree 0,
-   This makes the set of smooth points into a group with the operation
-   p+r = q if, as divisors, p+r-o~q.
-   The function @TO addition@, based on  @TO linearSeries@, 
-   allows us to implement the group law.
+doc ///
+Key
+ addition
+ (addition, List, List, List, Ring)
+ (addition, Ideal, Ideal, Ideal)
+ [addition, Conductor]
+Headline
+ addition of smooth points on a curve of genus 1
+Usage
+ L =  addition(o,p,q,C)
+ I = addition(oC, pC, qC)
+Inputs
+ o: List
+ oC: Ideal
+ p: List
+ pC: Ideal
+ q: List
+ qC: Ideal
+ C: Ring
+Outputs
+ L: List
+ I: Ideal
+Description
+  Text
+   If C is a plane curve of genus 1 then the set of smooth
+   points of C is a principal homogeneous space under the group Pic_0 C
+   of invertible sheaves of degree 0. Thus if we choose a smooth
+   point o the map p -> O_E(p-o) identifies the set of smooth points with
+   such invertible sheaves. 
+   
+   This script computes the sum of smooth points p,q with respect to the
+   group law in which o is the zero point, where the group operation
+   makes p+q = r if, as divisors, r is linearly equivalent to p+q-o.
+   The functions @TO addition@ and @TO negative@, based on  @TO linearSeries@, 
+   allow us to implement the group law.
+
+   The points o,p,q may be represented either by their homogeneous coordinates
+   or by ideal in the ring C. The functions @TO fromCoordinates@
+   and @TO toCoordinates@ pass between these two representations.
+   
    Here is an example with a smooth plane cubic:
   Example
    kk = QQ
@@ -482,43 +395,26 @@ Description
    p = {0,1,0}; pS = fromCoordinates(p,S)
    q = {1,0,0}; qS = fromCoordinates(q,S)
    o = {1,1,1}; oS = fromCoordinates(o,S)
-   I = ideal random(3, intersect(oS, pS,qS))
 
+   I = ideal random(3, intersect(oS, pS,qS))
    E = S/I   
-   p = {0,1,0}; pE = fromCoordinates(p,E)
-   q = {1,0,0}; qE = fromCoordinates(q,E)
-   o = {1,1,1}; oE = fromCoordinates(o,E)
 
    r = addition(o,p,q, E)
-   kk = QQ
-   S = kk[x,y,z]
-   (o,p,q) = ({0,1,-1}, {-1,1,0},{1,0,-1})
-   oS = fromCoordinates(o, S);    
-   pS = fromCoordinates(p, S);
-    
-   points = intersect(oS,pS)
-   I = ideal random(3,points)
-   E = S/I
-   oE = fromCoordinates(o, E);    
-   pE = fromCoordinates(p, E);
-
-   q' := o;
-   netList for i from 0 to 6 list(
-   q' = addition(o,p,q',E)
-    )
+   addition(o, negative(o, p, E), r, E)
   Text
    It is known that when one takes multiples of a point that is not torsion,
    the "height" - roughly the size of the coordinate - is squared
    with each iteraction, that is, the number of digits doubles:
   Example
-   pp = addition(o,p,p,E)
-   ppp = addition(o,pp,p,E)   
-   pppp = addition(o,ppp,p,E)   
+   q' := o;
+   netList for i from 0 to 3 list(
+   q' = addition(o,p,q',E)
+    )
   Text
    On the other hand, over a finite field, a curve has only finitely many
    points, so any subgroup of the Jacobian is finite:
   Example
-   kk = ZZ/19
+   kk = ZZ/7
    S = kk[x,y,z]
    p = {0,1,0}; pS = fromCoordinates(p,S)
    o = {1,1,1}; oS = fromCoordinates(o,S)
@@ -527,51 +423,98 @@ Description
    E = S/I   
    geometricGenus E
    q = o
-   netList ({o} | apply(25, i-> q = addition(o,p,q,E)))
+   netList ({o} | apply(5, i-> q = addition(o,p,q,E)))
   Text
    A cubic with a node or cusp is also arithmetic genus 1; in the case
    of a node, the smooth points are in correspondence with P^1 minus {0, infinity}
-   and the Jacobian is the multiplicative troup of the field; in the case
-   of a cusp the smooth points are in correspondence with P^1 minus {infinity},
-   and the Jacobian is the additive group of the field:
+   and the Jacobian is the multiplicative troup of the field.
+   To allow the program to consider this as a curve of arithmetic genus 1, 
+   use the optional argument @TO Conductor@. 
+  Example
+     setRandomSeed 1
+   kk = ZZ/7
+   S = kk[x,y,z]
+   (o,p,sing) = ({1,1,1}, {-1,1,0},{1,0,-1})
+   oS = fromCoordinates(o, S)
+   pS = fromCoordinates(p, S)
+   singS = fromCoordinates(sing, S)
+
+   I = random(3, intersect(oS,pS,singS^2))
+   E = S/I
+   q' = o
+   netList ({q'}|apply(6, i->(
+      -- <<(i,q')<<endl;
+       q' = addition(o,p,q',E, Conductor => 1_E)
+       )))
+  Text
+   In the case of rational curve with a cusp, the smooth points
+   correspond to the additive group of the field
   Example
    I = kernel map(kk[s,t], S, {s^3, s^2*t,t^3})
    C = S/I
    genus C
    geometricGenus C
+   geometricGenus (C, Conductor => ideal(1_C))
   Text
-   the singular point is the image of the point (0,1) in P^1,
-   so we may take the origin to be the image of (1,1) and take
-   another smooth point p to be the image of (1,0).
-   
-   The following example fails because B is contained in
-   all the ideals in the primary decomposition. Perhaps
-   because B is contained in the singular locus?
-   Try taking the form F to be of one higher degree, or more random?
-///
--*
+   the singular point is the image {0,0,1} of the point (0,1) in P^1,
+   so we may take the origin to be the image {1,1,1} of (1,1) and take
+   another smooth point p to be the image {1,0,0} of (1,0).
   Example
-   kk = ZZ/19
-   S = kk[x,y,z]
    setRandomSeed 0
    p = {1,0,0}; 
    o = {1,1,1}; 
    q = o
-   netList ({o}|apply(9, i-> q = addition(o,p,q,C)))
-   netList ({o}|apply(9, i-> q = addition(o,q,p,C)))   
+   netList ({o}|apply(7, i-> q = addition(o,p,q,C, Conductor => ideal 1_C)))
   Text
-   so 9p ~ o.   
-   --I don't like this!
-   more primitively,
+   so 7p ~ o.   
+References
+ "The Practice of Algebraic Curves" Ch. 4, by David Eisenbud and Joe Harris,
+ American Mathematical Society
+Caveat
+  Some aspects of the program
+  use random arguments, so one should be wary of computation over very
+  small fields 
+SeeAlso
+ linearSeries
+ geometricGenus
+///
+doc ///
+Key
+ negative
+ (negative, List, List, Ring)
+ (negative, Ideal, Ideal)
+ [negative, Conductor]
+Headline
+ implements the inverse in the group law of a curve of genus 1
+Usage
+ q = negative(o,p,E)
+ qE = negative(oE,pE)
+Inputs
+ o: List
+ oE: Ideal
+ p: List
+ pE: Ideal
+ E: Ring
+Outputs
+ q: List
+ qE: Ideal
+Description
+  Text
+   Implements the additive inverse in the group law on the smooth points of
+   a plane curve E of genus 1, represented by its homogeneouos coordinate ring,
+   with chosen zero point o.
   Example
-   pC = sub(pS,C)
-   oC = sub(oS,C)  
-   netList   for i from 1 to 9 list(
-   (ls,B) = linearSeries(pC^i,oC^(i-1),ShowBase =>true);
-   select(primaryDecomposition ideal ls, J -> J:B != 1)
-       )
-*-     
-
+   S = QQ[x,y,z]
+   E = S/ideal"x3+y3+z3"
+   o = {1,-1,0}
+   p = {0,1,-1}
+   negative(o,p,E)
+   q = addition(o,p,p,E)
+   r = addition(o,q, negative(o,p,E), E)
+   r == p
+SeeAlso
+ addition
+///
 
 doc///
 Key
@@ -745,6 +688,7 @@ Key
  (linearSeries, Ideal)
  (linearSeries, Ideal, Ideal)
  [linearSeries, Conductor]
+ [linearSeries, ShowBase] 
 Headline
  compute a linear series
 Usage
@@ -981,58 +925,108 @@ SeeAlso
  fromCoordinates
 ///
 
-doc ///
-Key
- addition
- (addition, Ideal, Ideal, Ideal)
- (addition, List, List, List, Ring)
-Headline
- addition on the smooth points of a genus 1 curve with chosen origin
-Usage
- r = addition(p, q, origin)
- Lr = addition(Lp, Lq, Lorigin, C)
-Inputs
- p: Ideal
- q: Ideal
- origin: Ideal 
-  ideals of points on C
- Lp: List
- Lq: List
- Lorigin: List
-  lists representing the coordinates of the points p,q,origin on C
- C: Ring
-  homogeneous coordinate ring of a plane curve
-Outputs
- r: Ideal
-  of C = ring p
- Lr: List 
-  of list of the coordinates of the sum
-Description
-  Text
-   The elements of the Picard group of invertible sheaves
-   of degree 0 on curve C of genus 1
-   can be represented as O_C(p-origin) for smooth points
-   p and any chosen smooth point origin; thus we may implement
-   the group law 
-   p+q = r from the linear equivalence relation of divisors
-   p+q - origin ~ r.
-  Example
-   kk = ZZ/19
+
+-* Test section *-
+
+TEST/// --test of negative
+   S = QQ[x,y,z]
+   E = S/ideal"x3+y3+z3"
+   o = {1,-1,0}
+   p = {0,-1,1}
+   negative(o,p,E)
+   q = addition(o,p,p,E)
+   r = addition(o,q, negative(o,p,E), E)
+   assert (r == p)
+///
+
+TEST///
+--a point of order 3
+   kk = QQ
    S = kk[x,y,z]
    I = ideal"x3+y3+z3"
    E = S/I
-   needsPackage "RandomPoints"
-   (p,q,origin) = toSequence randomPoints (3,I)
-   addition(p,q,origin, E)
-   fromCoordinates(p,E)
-SeeAlso
- linearSeries
- ShowBase
- toCoordinates
- fromCoordinates
+
+   (o,p,q) = ({0,-1,1}, {-1,1,0},{1,0,-1})
+    oE = fromCoordinates(o, E);    
+    pE = fromCoordinates(p, E);
+    qE = fromCoordinates(q, E);
+
+    q' := o;
+L = apply(4, i->(
+    <<(i,q')<<endl;
+    q' = addition(o,p,q',E)
+    ))
+assert(L_2==o)
 ///
 
--* Test section *-
+TEST///
+--a random point over QQ; shows growth of height
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+needsPackage "RandomPoints"
+   setRandomSeed 0
+   kk = QQ
+   S = kk[x,y,z]
+   (o,p) = ({1,1,1}, {-1,1,0})
+   oS = fromCoordinates(o, S);    
+   pS = fromCoordinates(p, S);
+    
+   points = intersect(oS,pS)
+   I = ideal random(3,points)
+   E = S/I
+   oE = fromCoordinates(o, E);    
+   pE = fromCoordinates(p, E);
+
+   q' := o;
+   netList for i from 0 to 6 list(
+   q' = addition(o,p,q',E)
+    )
+///
+TEST///--a cycle of length 15 over a finite field
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+needsPackage "RandomPoints"
+setRandomSeed 0
+   kk = ZZ/19
+   S = kk[x,y,z]
+   I = ideal"x3+3y3+xyz+z3"
+   (o,p) = toSequence randomPoints (2,I) -- works for finite field
+   E = S/I
+
+q' = o;
+L = apply(16,i->(
+    q' = addition(o,p,q',E)
+    ));
+assert(L_0 == L_15)
+///
+
+///--case of a nodal cubic over a finite field
+restart
+loadPackage("PlaneCurveLinearSeries", Reload => true)
+needsPackage "RandomPoints"
+   setRandomSeed 7
+   kk = ZZ/32003
+   S = kk[x,y,z]
+   (o,p,sing) = ({1,1,1}, {-1,1,0},{1,0,-1})
+   oS = fromCoordinates(o, S)
+   pS = fromCoordinates(p, S)
+   singS = fromCoordinates(sing, S)
+
+   I = random(3, intersect(oS,pS,singS^2))
+   E = S/I
+   oE = fromCoordinates(o, E)
+   pE = fromCoordinates(p, E);
+   assert(radical ideal singularLocus E == singS)
+   o
+   p
+   oE = fromCoordinates(o,E)
+   pE = fromCoordinates(p,E)
+   (ls, base) = linearSeries(pE^2,oE, ShowBase =>true)
+--   assert numgens ideal ls == 1 this assertion fails! Why??
+    )
+
+///
+
 TEST///
 S = ZZ/101[a,b,c]
 C = S/ideal"a3+b3-c3"
@@ -1164,8 +1158,8 @@ check "PlaneCurveLinearSeries"
 viewHelp PlaneCurveLinearSeries
 ///
 
---Here are many small examples; some should be in the docs, some
---in the TESTs, some deleted.
+-- Here are many small examples; some should be in the docs, some
+-- in the TESTs, some deleted.
 
 restart
 load "PlaneCurveLinearSeries.m2"
