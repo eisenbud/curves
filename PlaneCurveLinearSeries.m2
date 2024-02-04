@@ -30,8 +30,10 @@ newPackage(
 restart
 loadPackage ("PlaneCurveLinearSeries", Reload => true)
 uninstallPackage "PlaneCurveLinearSeries"      
+restart
 installPackage "PlaneCurveLinearSeries"      
 check"PlaneCurveLinearSeries"      
+viewHelp PlaneCurveLinearSeries
 ///
 toCoordinates = method()
 toCoordinates Ideal := List => I -> (
@@ -324,13 +326,13 @@ Description
    This package implements procedures described in chapters 4, 5, and 14
    of the book "The Practice of Curves", by David Eisenbud and Joe Harris.
    
-   If C is a (possibly singular) plane curve, it is possible
-   to compute the complete linear series on the normalization C' of C
+   If C is a (possibly singular) irreducible plane curve, it is possible
+   to compute the complete linear series of a given divisor on the normalization C' of C
    by computations using data from the plane curve together
    with the conductor ideal $ann_C(C/C)$, which can be computed by Macaulay
    or supplied by the user. 
    
-   The main routine of the package is @TO linearSeries@. If D0' and Dinf'
+   The main routine of the package is @TOlinearSeries@. If D0' and Dinf'
    are effective divisors on C' whose ideals, as schemes, are pulled back
    from ideals D0 and Dinf of C, then 
    
@@ -340,11 +342,11 @@ Description
    fixed point locus B on C' (including the conductor scheme) and form a basis
    of |D0'-Dinf'|+B.
    
-   The routine @TO projectiveImage@ provides the image of the map to projective space given
+   The routine @TOprojectiveImage@ provides the image of the map to projective space given
    by |D0-Dinf|.  There are special routines for the most important case,
-   @TO canonicalSeries@ and @TO canonicalImage@.
+   @TOcanonicalSeries@ and @TO canonicalImage@.
    
-   The functions @TO addition@, @TO negative@ implement the group law in the case
+   The functions @TO addition@ and @TO negative@ implement the group law in the case
    of a curve of genus 1.
 ///
 
@@ -372,8 +374,8 @@ Outputs
  I: Ideal
 Description
   Text
-   If C is a plane curve of genus 1 then the set of smooth
-   points of C is a principal homogeneous space under the group Pic_0 C
+   If E is an irreducible plane curve of degree 3 then the set of smooth
+   points of C is a principal homogeneous space under the group Pic_0 E
    of invertible sheaves of degree 0. Thus if we choose a smooth
    point o the map p -> O_E(p-o) identifies the set of smooth points with
    such invertible sheaves. 
@@ -385,7 +387,7 @@ Description
    allow us to implement the group law.
 
    The points o,p,q may be represented either by their homogeneous coordinates
-   or by ideal in the ring C. The functions @TO fromCoordinates@
+   or by ideal in the ring E. The functions @TO fromCoordinates@
    and @TO toCoordinates@ pass between these two representations.
    
    Here is an example with a smooth plane cubic:
@@ -396,23 +398,24 @@ Description
    q = {1,0,0}; qS = fromCoordinates(q,S)
    o = {1,1,1}; oS = fromCoordinates(o,S)
 
-   I = ideal random(3, intersect(oS, pS,qS))
+   I = ideal random(3, intersect(oS, pS, qS))
    E = S/I   
 
    r = addition(o,p,q, E)
    addition(o, negative(o, p, E), r, E)
   Text
    It is known that when one takes multiples of a point that is not torsion,
-   the "height" - roughly the size of the coordinate - is squared
-   with each iteraction, that is, the number of digits doubles:
+   the "height" - roughly the number of digits in the coordinates - is doubled
+   with each iteration, that is, the number of digits doubles:
   Example
    q' := o;
-   netList for i from 0 to 3 list(
-   q' = addition(o,p,q',E)
-    )
+   netList ({q}| for i from 0 to 3 list(
+   q' = addition(o,p,q',E)))
+   
   Text
    On the other hand, over a finite field, a curve has only finitely many
    points, so any subgroup of the Jacobian is finite:
+   
   Example
    kk = ZZ/7
    S = kk[x,y,z]
