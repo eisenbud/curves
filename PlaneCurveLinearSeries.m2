@@ -342,7 +342,7 @@ Description
    
    The routine @TO projectiveImage@ provides the image of the map to projective space given
    by |D0-Dinf|.  There are special routines for the most important case,
-   @TO canonicalSeries@ and @To canonicalImage@.
+   @TO canonicalSeries@ and @TO canonicalImage@.
    
    The functions @TO addition@, @TO negative@ implement the group law in the case
    of a curve of genus 1.
