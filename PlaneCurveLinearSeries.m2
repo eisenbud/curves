@@ -1,14 +1,14 @@
 newPackage(
           "PlaneCurveLinearSeries",
-          Version => "0.1",
-          Date => "October 14, 2023",
+          Version => "1.0",
+          Date => "February 4, 2024",
           Headline => "Linear series on the normalization of a plane curve",
           Authors => {{ Name => "David Eisenbud", 
 		  Email => "de@berkeley.edu", 
 		  HomePage => "eisenbud.io.github.com"}},
-	  PackageExports => {"IntegralClosure","PrimaryDecomposition","ReesAlgebra"},
+	  PackageExports => {"IntegralClosure","PrimaryDecomposition"},
           AuxiliaryFiles => false,
-          DebuggingMode => true
+          DebuggingMode => false
           )
       export {
 	  "canonicalSeries",
@@ -26,15 +26,6 @@ newPackage(
 	  "ShowBase"
 	  }
       
-///
-restart
-loadPackage ("PlaneCurveLinearSeries", Reload => true)
-uninstallPackage "PlaneCurveLinearSeries"      
-restart
-installPackage "PlaneCurveLinearSeries"      
-check"PlaneCurveLinearSeries"      
-viewHelp PlaneCurveLinearSeries
-///
 toCoordinates = method()
 toCoordinates Ideal := List => I -> (
     --I should be a complete intersection of linear
@@ -44,12 +35,17 @@ toCoordinates Ideal := List => I -> (
     (entries transpose syz D)_0)
 
 fromCoordinates = method()
-   --construct ideal of point on a curve in P3 from its coordinates
+   -- construct ideal of point on a curve in P3 from its coordinates;
+   -- or the ideal of a linear series, given a list of coordinate lists
+
 fromCoordinates (List, Ring) := Ideal =>  (P, C) ->(
-    PC := sub (matrix {toList P}, C);
-    I := ideal(vars C * (syz PC));
+    if class P_0 =!= List then P' := {P} else P' = P;
+    I := product apply(P', L ->(
+    PC := sub (matrix {L}, C);
+    ideal(vars C * (syz PC))));
     if dim I == 0 then error"point does not lie on curve";
     I)
+
 fromCoordinates (ZZ,ZZ,ZZ, Ring) := Ideal => (x,y,z, R) -> 
     fromCoordinates (toList(x,y,z),R)
 
@@ -63,47 +59,8 @@ geometricGenus Ring := ZZ => o -> R -> (
 
 geometricGenus Ideal := ZZ => o-> I -> geometricGenus((ring I)/I, Conductor => o.Conductor)
 
--*
-isLocalMinimalReduction = (F,I,bound) -> (
-    --checks that an ideal F is a reduction of an ideal I on an
-    --ambient projective curve
-    --by checking that FI^m = I^(m+1) locally at the minimal primes of I
-    --with m up to the constant bound.
-    P := primaryDecomposition radical I;
-    t := all(P, p-> not isSubset(((F*I): I^2), p));-- true if F*I:is not in p
-    count := 1;
-    while (not t and count < bound) do(
-              t = all(P, p-> not isSubset(((F*I^(count+1)): I^(count +2)), p));
-	    count = count+1;
-	    );
-    t)
-
-localMinimalReduction = method(Options => {Tries => 20, Check => false})
-localMinimalReduction Ideal :=  Ideal => o -> I -> (
-    --use Check => true over very small fields
-    I' := trim I;
-    if codim I' != 1 then error "expected codim 1 ideal";
-    if numgens I' == 1 then return I' else (
-	f := max((I'_*/degree)_0);
-	F := ideal random(f, I');
-       
-        if o.Check == false then return F else(
-            t :=isLocalMinimalReduction(F,I', 10);
-            if t then F else(
-    		count := o.Tries;
-		while (count >0 and not t) do (
-	    	    F = ideal random(f+1, I');
-            	    t = isLocalMinimalReduction(F,I', 10);
-	    	    count = count - 1
-		                              );
-        	if t then F else 
-		error "couldn't find local minimal reduction")
-		            )))
-*-
-
 linearSeries = method(Options => {Conductor=>null, 
 	                          ShowBase => false})
-
 linearSeries (Ideal,Ideal) := Matrix => o-> (D0,Dinf)  ->(
     -- returns a matrix whose elements span the complete linear series 
     --|D0-Dinf|+base points,
@@ -137,6 +94,14 @@ linearSeries Ideal := Matrix => o -> D0 ->  (
     Dinf := ideal(1_(ring D0));
     linearSeries(D0, Dinf, o)
     )
+
+linearSeries(List, List, Ring) := Matrix => o -> (D0List, DinfList, C) ->(
+    (D0, Dinf) := apply({D0List, DinfList}, D -> fromCoordinates(D,C));
+    linearSeries(D0, Dinf))
+
+linearSeries(List, Ring) := Matrix => o -> (D0List, C) ->(
+    D0 := fromCoordinates(D0,C);
+    linearSeries D0)
 
 ///--case of a nodal cubic over a finite field
 restart
@@ -291,6 +256,15 @@ projectiveImage Ideal := Ring => o -> D0 ->(
     projectiveImage(D0, ideal(1_(ring D0)), 
 	              Conductor => o.Conductor))
 
+projectiveImage(List, List, Ring) := Matrix => o -> (D0List, DinfList, C) ->(
+    (D0, Dinf) := apply({D0List, DinfList}, D -> fromCoordinates(D,C));
+    projectiveImage (D0, Dinf))
+
+projectiveImage(List, Ring) := Matrix => o -> (D0List, C) ->(
+    D0 := fromCoordinates(D0,C);
+    projectiveImage D0)
+
+
 projectiveImage Matrix := Ring => o -> M -> (
  -- in this case M is a 1-m matrix respresenting a
  --linear series.
@@ -332,7 +306,7 @@ Description
    with the conductor ideal $ann_C(C/C)$, which can be computed by Macaulay
    or supplied by the user. 
    
-   The main routine of the package is @TOlinearSeries@. If D0' and Dinf'
+   The main routine of the package is @TO linearSeries@. If D0' and Dinf'
    are effective divisors on C' whose ideals, as schemes, are pulled back
    from ideals D0 and Dinf of C, then 
    
@@ -342,9 +316,9 @@ Description
    fixed point locus B on C' (including the conductor scheme) and form a basis
    of |D0'-Dinf'|+B.
    
-   The routine @TOprojectiveImage@ provides the image of the map to projective space given
+   The routine @TO projectiveImage@ provides the image of the map to projective space given
    by |D0-Dinf|.  There are special routines for the most important case,
-   @TOcanonicalSeries@ and @TO canonicalImage@.
+   @TO canonicalSeries@ and @TO canonicalImage@.
    
    The functions @TO addition@ and @TO negative@ implement the group law in the case
    of a curve of genus 1.
@@ -531,7 +505,7 @@ Usage
  I = fromCoordinates(x,y,z, C)
 Inputs
  L: List
-  of three integers or field elements
+  of three integers or field elements OR a list of lists of that type
  x: RingElement
  y: RingElement
  z: RingElement
@@ -540,7 +514,7 @@ Inputs
   the ring in which the ideal of the point will be created
 Outputs
  I: Ideal 
-  of C, defining a point
+  of C, defining the subscheme corresponding to the list L of points.
 Description
   Text 
    Convenient way to compute the ideal of a point on a plane curve,
@@ -554,10 +528,10 @@ Description
    P = {0,1,1}
    Q = {1,1,0}
    fromCoordinates(P,C)
-   --fromCoordinates(Q,C) --would return an error.   
+   fromCoordinates({P,P},C)
+   -- fromCoordinates(Q,C) gives the error "point does not lie on curve"
 SeeAlso
  toCoordinates
-
 ///
 
 
@@ -690,6 +664,8 @@ Key
  linearSeries
  (linearSeries, Ideal)
  (linearSeries, Ideal, Ideal)
+ (linearSeries, List, Ring)
+ (linearSeries, List, List, Ring)
  [linearSeries, Conductor]
  [linearSeries, ShowBase] 
 Headline
@@ -697,17 +673,39 @@ Headline
 Usage
  D = linearSeries Dplus
  D = linearSeries (Dplus, Dminus)
+ D = linearSeries (DplusList, Ring)
+ D = linearSeries (DplusList, DminusList, Ring)
 Inputs
  Dplus: Ideal
    in the homogeneous coordinate ring A of a plane curve C
  Dminus: Ideal   
    in A
+ DplusList: List
+ DminusList: List
+  lists representing the coordinates of points in P^2.
 Outputs
  D: Matrix
    of size 1 x dim H^0(Dplus-Dminus). Entries are a basis of |Dplus - Dminus|
 Description
+
   Text
-   A quintic plane curve with an ordinary triple point
+   Given C, a (possibly singular) irreducible plane curve, this routine computes
+   the complete linear series of a given divisor on the normalization C' of C
+   by computations using data from the plane curve together
+   with the conductor ideal $cond =ann_C(C/C)$, which can be computed by Macaulay
+   or supplied by the user using the optional argument Conductor => cond.
+   
+   If D0' and Dinf'
+   are effective divisors on C' whose ideals, as schemes, are pulled back
+   from ideals D0 and Dinf of C, then 
+   
+   ell = linearSeries(D0,Dinf)
+   
+   returns a one-row matrix ell whose entries span a linear series with
+   fixed point locus B on C' (including the conductor scheme) and form a basis
+   of |D0'-Dinf'|+B.
+
+   As an example, consider a quintic plane curve with an ordinary triple point
    and two more marked points:
   Example
    S = ZZ/32003[a,b,c]
@@ -727,13 +725,24 @@ Description
    genus C
    g = geometricGenus C
    conductor C
-   m = 10
+  Text
+   As another example, we compute the complete linear series m*p_2-e*p1 for values of
+   m from 3 to 12. In the following chart, each column represents one value of the degree, m-2.
+   The first row gives the degree, the second row gives the value of the Euler characteristic
+   
+   $\chi {\mathcal O}_C(m*p2 - 2*p1)$
+   
+   as computed by the Riemann-Roch Theorem, and the last row gives the dimension of the 
+   complete linear series as computed by this program. Since the linear series is
+   general The last two rows agree starting in degree since the series is nonspecial from
+   there on.
+  Example
    e=2
    netList{
-       {"degree: "} | apply(m, i->(i+3-e)),
-       {"chi: "} | apply(m, i->(i+3-e -g+1)),
-       {"computed: "} | apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1^e))
-   }
+    {"degree m*p2 - 2*p1: "} | for m from 3 to 12 list m-e,
+    {"chi, from Riemann-Roch: "} | for m from 3 to 12 list m-e-g+1,
+    {"computed dimension: "} | for m from 3 to 12 list numgens trim ideal linearSeries(p2^m, p1^e)
+    }
 References
  "The Practic of Algebraic Curves" by David Eisenbud and Joe Harris
 Caveat
@@ -747,19 +756,29 @@ doc///
 Key
  projectiveImage
  (projectiveImage, Ideal)
- (projectiveImage, Matrix) 
  (projectiveImage, Ideal, Ideal)
+ (projectiveImage, List, Ring)
+ (projectiveImage, List, List, Ring)
+ (projectiveImage, Matrix) 
  [projectiveImage, Conductor]
 Headline
  Projective image of the map defined by a divisor or matrix
 Usage
  I = projectiveImage Dplus
  I = projectiveImage (Dplus, Dminus)
+ I = projectiveImage (DplusList, DminusList, C)
+ I = projectiveImage (DplusList, C)
+
 Inputs
  Dplus: Ideal
    in the homogeneous coordinate ring A of a plane curve C
  Dminus: Ideal   
    in A
+ DplusList: List
+ DminusList: List
+  lists representing the coordinates of points in P^2.
+ C: Ring
+  the homogeneous coordinate ring of a plane curve  
 Outputs
  I: Ideal
    the ideal of the image curve
@@ -779,13 +798,15 @@ Description
    P5 = ZZ/101[x_0..x_5]
    P2 = ZZ/101[a,b,c]
    fourpoints = {
-       ideal(a,b), 
-       ideal(b,c), 
-       ideal(a,c), 
-       ideal(a-b, a-c)
-       }
-   nodes = intersect apply(fourpoints, p -> p)
-   sings' = intersect apply(fourpoints, p -> p^2)
+       {0,0,1},
+       {1,0,0},
+       {0,1,0},
+       {1,1,1}}
+   
+   fourPointsIdeals = apply (fourpoints, L -> fromCoordinates(L,P2))
+
+   nodes = intersect apply(fourPointsIdeals, p -> p)
+   sings' = intersect apply(fourPointsIdeals, p -> p^2)
    C0 = P2/(ideal random(6, sings'))
    sings = sub (sings', C0)
    conductor C0 == sub(nodes, C0)
@@ -843,14 +864,9 @@ Description
   Example
    P5 = ZZ/101[x_0..x_5]
    P2 = ZZ/101[a,b,c]
-   fourpoints = {
-       ideal(a,b), 
-       ideal(b,c), 
-       ideal(a,c), 
-       ideal(a-b, a-c)
-       }
-   nodes = intersect apply(fourpoints, p -> p)
-   sings' = intersect apply(fourpoints, p -> p^2)
+   fourPoints = {{1,0,0},{0,1,0},{0,0,1},{1,1,1}}
+   nodes = fromCoordinates(fourPoints, P2)
+   sings' = intersect apply(fourPoints, p -> (fromCoordinates(p,P2))^2)
    C0 = P2/(ideal random(6, sings'))
    sings = sub (sings', C0)
    conductor C0 == sub(nodes, C0)
@@ -1161,273 +1177,13 @@ check "PlaneCurveLinearSeries"
 viewHelp PlaneCurveLinearSeries
 ///
 
--- Here are many small examples; some should be in the docs, some
--- in the TESTs, some deleted.
-
-restart
-load "PlaneCurveLinearSeries.m2"
-kk = ZZ/101
-S = kk[x,y,z]
-use S
-C1 = ideal (y^3 - x^2*(x-z)) -- cubic with a node; geometric genus 0
-C2 = ideal(x^2+y^2+z^2)
-
-sing = (ideal (x,y))^2 -- doublePoint
-sing = (ideal (x,y))^3 -- triplePoint
-use S
-C3 = ideal random(6, sing) -- quintic with ord 3-point; genus 3, hyperell.
-use S
-R = S/C3
-geometricGenus C3
-geometricGenus R
-omega = canonicalSeries R
-numgens omega
-(linearSeries ideal z) -- does not return Cartier divisors
-sections ideal z -- right aswer
-projectiveImage ideal (x^3)
-degree singularLocus projectiveImage ideal (z^2)
-genus oo
-
-geometricGenus oo
-
-projectiveImage oo
-ideal z
-(linearSeries ideal z^2)
-gens trim ideal sections(ideal z^2, ideal 1_R)
-ideal R
-conductor R
-
-projectiveImage (ideal z^2, ideal 1_R)
-minimalBetti oo
-
-D0 = ideal (z^4)
-Dinfty = ideal (x+y+z)
-Ds = linearSeries(D0,Dinfty);#Ds
-I = projectiveImage(D0, Dinfty)
-I = projectiveImage (ideal (z^2), ideal 1_R);
-numgens
-minimalBetti I
 
 
---quintic with 3 double points
-restart
-load "PlaneCurveLinearSeries"
-S = ZZ/32003[a,b,c]
-p1 = ideal(a,b)
-p2 = ideal(b,c)
-p3 = ideal(a,c)
-p4S = ideal (a-b, a-c)
-sings = intersect (p1^2, p2^2, p3^2, p4S); 
-
-I = ideal random(5, sings)--quintic with 3 double points
-R = S/I
-red = map(R,S)
-
-genus R == 6 -- arithmetic genus
-geometricGenus R == 3 -- curve smooth away from the 3 double points
-degree singularLocus R == 3 -- another confirmation
-conductor R == ideal (b*c, a*c, a*b) -- and yet another
-omega = canonicalSeries R;
-numgens omega
-
-p4 = red p4S
-for i from 1 to 11 list rank source linearSeries p4^i
-
-
-
-
-restart
-loadPackage ("PlaneCurveLinearSeries", Reload => true)
---Plane cubic with one node:
-S = ZZ/32003[a,b,c]
-p1 = ideal(a,c)
-p2S = ideal (b, c)
-sings = intersect (p1^2, p2S)
-I = ideal random(3, sings)--rational plane cubic with a node
-I = ideal (c^3-a^2*b) -- rational plane cubic with a cusp
-R = S/I
-conductor R
-red = map(R,S)
-geometricGenus R
-p2 = red p2S
-linearSeries (D0=p2) 
-for i from 0 to 10 list rank source linearSeries p2^i
-
-
-
---S = QQ[a,b,c] -- using QQ is substantially slower
-S = ZZ/32003[a,b,c]
-p1 = ideal(a,b)
-p2 = ideal(b,c)
-p3 = ideal(a,c)
-p4S = ideal (a-b, a-c)
-sings = intersect (p1^2, p2^2, p3^2, p4S); 
-
-I = ideal random(5, sings)--quintic with 3 double points
-R = S/I
-red = map(R,S)
-
-genus R == 6 -- arithmetic genus
-geometricGenus R == 3 -- curve smooth away from the 3 double points
-degree singularLocus R == 3 -- another confirmation
-conductor R == ideal (b*c, a*c, a*b) -- and yet another
-omega = canonicalSeries R;
-numgens omega
-
-p4 = red p4S
-for i from 1 to 11 list rank source linearSeries p4^i
-
---further examples
-restart
-loadPackage("PlaneCurveLinearSeries", Reload => true)
-S = ZZ/32003[a,b,c]
-p = ideal(a,b)
-p1' = ideal(b,c)
-p2' = ideal(a,c)
-
-use S
-marked = intersect (p^3, p1', p2')
-degree marked
-C = S/(random(5, marked))
-genus C
-g = geometricGenus C
-conductor C
-red = map(C,S)
-p1 = red p1'
-p2 = red p2'
-
---with a curve of degree 4 and a double point (g=2), the linear series 3p_2-p1 seems to be
---special, 4p_2-p_1 nonspecial (as it must be) but 5p_2-p1 has an extra section, dim 4
-m = 10
-e=2
-netList{
-    {"degree: "} | apply(m, i->(i+3-e)),
-    {"chi: "} | apply(m, i->(i+3-e -g+1)),
-    {"computed: "} | apply(m, i-> numgens trim ideal linearSeries(p2^(i+3), p1^e))
-}
-
-restart
-loadPackage ("PlaneCurveLinearSeries", Reload => true)
---Plane cubic with one node:
-S = ZZ/32003[a,b,c]
-p1 = ideal(a,c)
-p2S = ideal (b, c)
-sings = intersect (p1^2, p2S)
-I = ideal random(3, sings)--rational plane cubic with a node
-I = ideal (c^3-a^2*b) -- rational plane cubic with a cusp
-R = S/I
-conductor R
-red = map(R,S)
-geometricGenus R
-p2 = red p2S
-linearSeries (D0=p2) 
-for i from 0 to 10 list rank source linearSeries p2^i
-
-----to fix: why doesn't the canonical embedding lie on the del Pezzo?
-restart
-needsPackage "PlaneCurveLinearSeries"
-  P5 = ZZ/101[x_0..x_5]
-  P2 = ZZ/101[a,b,c]
-   fourpoints = {
-       ideal(a,b), 
-       ideal(b,c), 
-       ideal(a,c), 
-       ideal(a-b, a-c)
-       }
-   nodes = intersect apply(fourpoints, p -> p)
-   sings' = intersect apply(fourpoints, p -> p^2)
-   C0 = P2/(ideal random(6, sings'))
-   sings = sub (sings', C0)
-   assert(conductor C0 == sub(nodes, C0))
-   B' = gens image basis (3,nodes)
-   B = sub(B',C0);
-   assert(canonicalSeries(C0) == B)
-   
-   X = projectiveImage B'
-   C = projectiveImage B
-   betti res ideal C
-   betti res ideal X
-   assert(isSubset(sub(ideal X, ring ideal C), ideal C))
---but   
-   isSubset(ideal X, sub(ideal C, ring ideal X)) -- fails
 
 
  
 
 
---The following fails -- apparently the particular seed
---leads to a reducible curve C6
-    
-setRandomSeed 0
-S = QQ[x,y,z]
-sing3 = (ideal(x,y))^3
-sing1 = (ideal(x,z))^2
-C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
-C5 = ideal random(5, sing1) -- quintic with node, genus 5
-C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
-netList decompose C6
-conductor (S/C6)
-degree singularLocus (S/C6)
-
---this succeeds
-setRandomSeed 27
-S = QQ[x,y,z]
-sing3 = (ideal(x,y))^3
-sing1 = (ideal(x,z))^2
-C4 = ideal random(5, sing3) -- quintic with ord 3-point; genus 3, hyperell.
-C5 = ideal random(5, sing1) -- quintic with node, genus 5
-C6 = ideal random(5, intersect(sing1, sing3))-- quintic with ord 3-point and a node; genus 2
-netList decompose C6
-conductor (S/C6)
-degree singularLocus (S/C6)
-
-S = QQ
-randomQQ = n -> sub(random (n*1000), QQ)/1000
-randomQQ 100
 
 
--*
-linearSeries = method (Options => {Conductor=>null, 
-	                          ConductorReduction => null, 
-				  ShowBase => false,
-				  Check => false})
-linearSeries (Ideal, Ideal) := Matrix =>  o-> (D0, Dinf) ->(
-    -- returns a matrix whose elements span the complete linear series |D_0|+base points,
-    -- where D_0 \subset R
-    -- is the ideal of an effective divisor in the ring R = S of an ACM curve C0,
-    -- with normalization C, eg a plane curve
-    -- If the conductor ideal cond is known in advance (eg for a nodal curve) then its ideal should be
-    -- given with Conductor => cond.
-    R := ring D0;
-    D0sat := saturate D0;
-    Dinfsat := saturate Dinf;
 
-    dsing := dim singularLocus R;
-    if dsing <= 0 then (
-	cond := ideal 1_R;
-	condRed := 1_R) else(
-        if o.Conductor === null then 
-	    cond = conductor R else
-	    cond = o.Conductor;
-        if o.ConductorReduction === null then 
-          condRed = localMinimalReduction(cond, Check => o.Check) else
-          condRed = o.Conductor);
-    --now cond is the conductor ideal of $R$, 
-    --and condRed is a minimal reduction.
-    base := saturate(D0sat*cond);
---    base := D0sat*condRed;--this is saturated*principal, so saturated
-    F := ideal(base_*_0);
-    f := degree F_0;
-    A := F:base;    
-    F == intersect(A,base);
-    --Now  F~A + D0 + conductor
---    Aminus := saturate(A*Dinfsat*condRed);
---    Aminus := saturate(A*Dinfsat);    
-    Aminus := saturate(A*Dinfsat*cond);    
---    Aminus := saturate(A*Dinfsat*condRed);    
-    ls := gens image basis(f, Aminus);
-error();
-    if o.ShowBase == false then ls else (ls, Aminus)
-)
-
-*-
