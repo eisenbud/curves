@@ -1,0 +1,172 @@
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+
+\ProvidesPackage{amstixfixes}[2020/06/22 v1.04]
+
+\RequirePackage{ifxetex}
+
+\ifxetex\else\endinput\fi
+
+%% This is a temporary package to address some bugs with STIX Two
+%% and/or XeTeX.
+
+% Patch 1: Superscripts after \sin are raised too high.  This is a
+% kludge to get around that.
+
+\newcommand{\Sine}{}
+\let\Sine\sin
+
+\let\sin\relax
+\DeclareRobustCommand{\sin}{%
+    \@ifnextchar ^{\sin@exp}{\Sine}%
+}
+
+\newcommand{\sin@exp}{}
+
+\def\sin@exp^#1{%
+    \mathop{\Sine{\!}^{#1}}%
+}
+
+% Patch 2: Enable AMS STIX hacks if available.
+
+\ifdefined\AMSTIXhacks
+    \AMSTIXhacks=1
+\fi
+
+\ifdefined\AMSextensions
+    \AMSextensions=12  % AMS_DENOM2 | AMS_NUM2_3
+\fi
+
+% Patch 3: Increase space after operator names before open
+% delimiters.  This is especially noticeable before curly braces, but
+% we add it before ( and [ as well, although it's less clear that's
+% really desirable.
+
+\DeclareRobustCommand{\qopname}[3]{%
+    \mathop{#1\kern\z@\operator@font#3}%
+    \csname n#2limits@\endcsname
+    \qopname@space
+}
+
+\def\qopname@space{\futurelet\@let@token\qopname@space@}
+
+% Add half a thinspace before ( [ \{ \[bB]igg?l
+% Reduce space before \left by same amount.
+
+\def\qopname@space@{%
+    \ifx\@let@token\{\mskip0.5\thinmuskip
+    \else\ifx\@let@token(\mskip0.5\thinmuskip
+    \else\ifx\@let@token[\mskip0.5\thinmuskip
+    \else\ifx\@let@token\left\mskip-0.5\thinmuskip
+    \else
+        \xdef\meaning@{\meaning\@let@token..........}%
+        \@xp\macro@\meaning@\macro@
+        \ifgtest@
+            \@xp\protect@\meaning@\protect@
+            \ifgtest@
+                \typeout{*** Found \string\protect}%
+                \@xp\BIGL@\meaning@\BIGL@
+                \ifgtest@
+                    \typeout{*** Found \meaning@@}%
+                    \mskip0.5\thinmuskip
+                \fi
+            \fi
+        \fi
+    \fi \fi \fi \fi
+}
+
+\begingroup
+    \uccode`\S=`\\
+    \uccode`\P=`\p
+    \uccode`\R=`\r
+    \uccode`\O=`\o
+    \uccode`\T=`\t
+    \uccode`\E=`\e
+    \uccode`\C=`\c
+
+    \uppercase{%
+        \gdef\protect@#1#2#3#4#5#6#7#8#9\protect@{%
+            \gtest@false
+            \if S#1%
+            \if P#2%
+            \if R#3%
+            \if O#4%
+            \if T#5%
+            \if E#6%
+            \if C#7%
+            \if T#8%
+                \xdef\meaning@{#9}%
+                \gtest@true
+            \fi\fi\fi\fi\fi\fi\fi\fi
+        }%
+    }
+\endgroup
+
+\begingroup
+    \uccode`\S=`\\
+    \uccode`\B=`\B
+    \uccode`\b=`\b
+    \uccode`\I=`\i
+    \uccode`\G=`\g
+    \uccode`\L=`\l
+
+    \uppercase{%
+        \gdef\BIGL@#1#2#3#4#5#6#7\BIGL@{%
+            \gtest@false
+            \if S#1%
+                \if b#2%
+                    \gtest@true
+                \else \if B#2
+                    \gtest@true
+                \fi \fi
+                \ifgtest@
+                    \gtest@false
+                    \if I#3%
+                    \if G#4%
+                        \if L#5%
+                            \xdef\meaning@{#6#7}%
+                            \xdef\meaning@@{#2#3#4#5}%
+                            \gtest@true
+                        \else
+                            \if G#5%
+                                \if L#6%
+                                    \xdef\meaning@{#7}%
+                                    \xdef\meaning@@{#2#3#4#5#6}%
+                                    \gtest@true
+                                \fi
+                            \fi
+                        \fi
+                    \fi\fi
+                \fi
+            \fi
+        }%
+    }
+\endgroup
+
+\begingroup
+    \uccode`7=`\o \uccode`8=`p \uccode`9=`e \uccode`0=`n
+    \uppercase{%
+        \gdef\mathopen@#1#2#3#4#5\mathopen@{%
+            \gtest@false
+            \ifx 7#1\ifx 8#2\ifx 9#3\ifx 0#4
+                \xdef\meaning@{#5}%
+                \gtest@true
+            \fi\fi\fi\fi
+        }%
+    }
+\endgroup
+
+% Patch 4: The dots in U+2026 HORIZONTAL ELLIPSIS in STIX Two v2.0.x
+% are spaced much more tightly than, for example, the dots in U+22EF
+% MIDLINE HORIZONTAL ELLIPSIS.  This will be fixed in 2.1.0, but for
+% now we redefine \mathellipsis to match \textellipsis.  Postponed
+% until \begin{document} to circumvent unicode-math.sty.
+
+\AtBeginDocument{%
+    \def\mathellipsis{%
+        \mathinner{%
+            \mathrm{.\kern \fontdimen 3\font .\kern \fontdimen 3\font .}%
+        }%
+    }%
+}
+
+\endinput
