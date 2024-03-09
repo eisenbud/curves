@@ -1,1 +1,147 @@
-curvesBook.tex
+%The following line prevents the headers and the \begin{document}\end{document}
+%from being executed in the individual files.
+\def\whole{}
+\documentclass[leqno,ebook]{gsm-l}
+%\usepackage{msri
+
+\input style-for-curves.sty
+\input sl-macros.sty
+\usepackage{hyperref}
+\usepackage{msribib}
+
+\usepackage{pdfpages}
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT:\ \ \today}
+\SetWatermarkScale{3}
+\SetWatermarkColor[gray]{0.9}
+
+%\input header.tex 
+
+\usepackage{xcolor}
+
+\errorcontextlines=1000
+
+%\usepackage{makeidx}
+\makeindex
+% \index{word} in the doc; \index{variety!algebraic} gives variety, algebraic
+% PUT a % after each \index{***}
+
+\overfullrule=5pt
+\catcode`\@\active
+\def@{\mskip1.5mu} %produce a small space in math with an @
+
+%%the following allows flexible naming of chapters, but then the sections don't appear in the toc
+\newcommand{\mychapter}[2]{
+    \setcounter{chapter}{#1}
+    \setcounter{section}{0}
+    \chapter*{#2}
+    \addcontentsline{toc}{chapter}{#2}
+}
+
+\title{The Practice of Algebraic Curves}
+\author{\copyright David Eisenbud and Joe Harris}
+%\includeonly{2-RR, 5-Curvesofgenus2and3}
+%\includeonly{5-Curvesofgenus2and3}
+%\includeonly{0-intro, 1-LinearSeries, 2-RR, 3-CurvesOfGenus0And1, 4-Jacobians, 5-Curvesofgenus2and3}
+%\includeonly{0-intro, 1-LinearSeries, 2-RR, 3-CurvesOfGenus0And1, 4-Jacobians, 5-Curvesofgenus2and3}
+%\includeonly{0-intro, 1-LinearSeries, 2-RR, 3-CurvesOfGenus0And1, 4-Jacobians, 5-Curvesofgenus2and3, 7-Curvesofgenus45}
+%\includeonly{2-RR}
+%\includeonly{1-LinearSeries, 2-RR, 3-CurvesOfGenus0And1, 4-Jacobians}
+%\includeonly{12-HilbertSchemes, 13-HilbertSchemesII }
+%\def\all{toc,out1,chern,out2,lefschetz,out3,bib,ind, out1a}
+%\includeonly{\all}
+
+%\includeonly{19-Appendix-History}
+
+\seriesinfo{gsm}{eisenbud2}{000}
+
+\let\cal\mathcal
+
+\usepackage{amstix2}
+
+\definecolor{linkblue}{rgb}{0,0,.65}
+\newif\ifcolorlinks 
+\colorlinkstrue   
+
+\ifcolorlinks
+\usepackage{microtype}
+  \hypersetup{%
+    bookmarks=true,%
+    colorlinks=true,%
+    linkcolor=linkblue,%
+    citecolor=linkblue,%
+    filecolor=linkblue,%
+    menucolor=linkblue,%
+    pagecolor=linkblue,%
+    urlcolor=linkblue,%
+  }
+\else
+  \hypersetup{%
+    bookmarks=false,%
+    colorlinks=false,%
+    linkcolor=black,% for super-prudent similarity
+    citecolor=black,%
+    filecolor=black,%
+    menucolor=black,%
+    pagecolor=black,%
+    urlcolor=black,%
+  }
+\fi
+
+\begin{document}
+
+\frontmatter
+
+\makehalftitle
+
+\maketitle
+
+\begin{dedication}
+Dedicated to\dots
+\end{dedication}
+
+\tableofcontents
+
+\mainmatter
+
+%\begin{document}
+%\maketitle
+%
+%\pagenumbering{roman}
+%\setcounter{page}5
+%\pagenumbering{arabic}
+\tableofcontents
+
+\include{0-intro}
+\include{1-LinearSeries}
+\include{2-RR}
+%\include{3-CurvesOfGenus0And1}
+\include{3a-CurvesOfGenus0}
+\include{3b-genus1AndPlaneCurves}
+\include{4-Jacobians}
+\include{5-Curvesofgenus2and3}
+\include{6-FineModuli}
+\include{7-CurvesModuli}
+\include{8-Curvesofgenus45}
+\include{9-hyperplaneSections}
+\include{10-monodromy}
+\include{11-BrillNoether}
+\include{12-Inflections} 
+\include{13-BrillNoetherproof}
+\include{14-PlaneCurves}
+\include{15-Linkage}
+\include{16-Scrolls}
+\include{17-Syzygies}
+\include{18-HilbertSchemes}
+\include{19-Appendix-History}
+
+\makeatletter \def\@biblabel#1{\ignorespaces} \makeatother
+\include{bib}
+
+
+\end{document}
+
+
+%\include{ind}%requires makeindex
+
+
