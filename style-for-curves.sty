@@ -3,6 +3,8 @@
 \usepackage{graphicx}
 \usepackage{diagrams}
 \usepackage{cite}
+\usepackage[color,leftbars]{changebar}
+\cbcolor{blue}
 
 
 \input preamble.tex
@@ -88,5 +90,17 @@
 \raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
 \makeatother
 
+\def\captionPlus#1#2{\caption[{\protect\footnotesize [#1.pdf]}\quad #2]{#2}}
+\def\inprogress{\centerline {\color{red}IN PROGRESS\hfil}\vss\hrule height0pt}
 
+\def\marginparstyle{\Small\normalfont\raggedright\openup-2pt }
+\DeclareRobustCommand\marginparhere[2][0pt]{%
+  \ifhmode\unskip\fi
+  \ifmmode\ssty\mathclose{\fi %avoid implicit spacing and consequent movement
+    \rlap{\hskip\marginparsep\smash{%
+      \vtop to 0pt{\marginparstyle \hsize\marginparwidth 
+        \leftskip=#1 \rightskip=-#1 plus20pt \noindent#2\vss}}}%
+  \ifmmode}\else{} \ignorespaces\fi% avoid glomming onto next word if % follows
+}
 
+\AtBeginDocument{\leftmargini=0.5\leftmargini}
