@@ -20,11 +20,6 @@
 %\documentclass{cambridge7A}
 %\usepackage{ag2}
 \usepackage{xcolor}
-%\usepackage{mtpro2}
-%\usepackage{times}
-%\usepackage{hatcher}
-%\usepackage{msribib,local} 
-%\usepackage{geompsfi}
 
 \errorcontextlines=1000
 
@@ -35,7 +30,10 @@
 
 \overfullrule=5pt
 \catcode`\@\active
-\def@{\mskip1.5mu} %produce a small space in math with an @
+\def@{\mskip1.5mu} %produce a small space in math with an @ = 1/2 of \,
+\mathcode`\@="8000 
+\mathcode`\`="8000
+\bgroup\catcode`\`\active \gdef`{\mskip-1mu}\egroup % backspace, 1/3 of \!
 
 %%the following allows flexible naming of chapters, but then the sections don't appear in the toc
 \newcommand{\mychapter}[2]{
@@ -71,7 +69,7 @@
 \include{0-intro}
 \include{1-LinearSeries}
 \include{2-RR}
-j%\include{3-CurvesOfGenus0And1}
+%\include{3-CurvesOfGenus0And1}
 \include{3a-CurvesOfGenus0}
 \include{3b-genus1AndPlaneCurves}
 \include{4-Jacobians}
@@ -99,11 +97,6 @@ j%\include{3-CurvesOfGenus0And1}
 
 \makeatletter \def\@biblabel#1{\ignorespaces} \makeatother
 \include{bib}
-
+\include{ind}
 
 \end{document}
-
-
-%\include{ind}%requires makeindex
-
-
