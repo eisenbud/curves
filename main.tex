@@ -14,9 +14,8 @@
 \SetWatermarkScale{.3}
 \SetWatermarkColor[gray]{0.9}
 
-
-%\input header.tex 
-
+\usepackage{amstix2}
+\usepackage{microtype}
 \usepackage{xcolor}
 
 \errorcontextlines=1000
@@ -31,7 +30,12 @@
 
 \overfullrule=5pt
 \catcode`\@\active
-\def@{\mskip1.5mu} %produce a small space in math with an @
+\def@{\mskip1.5mu} %produce a small space in math with an @ = 1/2 of \,
+\mathcode`\@="8000 
+\mathcode`\`="8000
+\bgroup\catcode`\`\active 
+\AtBeginDocument{\def`{\mskip-1mu}} % backspace, 1/3 of \!
+\egroup
 
 %%the following allows flexible naming of chapters, but then the sections don't appear in the toc
 \newcommand{\mychapter}[2]{
@@ -59,9 +63,6 @@
 \seriesinfo{gsm}{eisenbud2}{000}
 
 \let\cal\mathcal
-
-\usepackage{amstix2}
-\usepackage{microtype}
 
 \definecolor{linkblue}{rgb}{0,0,.65}
 \newif\ifcolorlinks 
@@ -99,21 +100,13 @@
 
 \maketitle
 
-\begin{dedication}
-Dedicated to\dots
-\end{dedication}
+%\begin{dedication}
+%Dedicated to\dots
+%\end{dedication}
 
 \tableofcontents
 
 \mainmatter
-
-%\begin{document}
-%\maketitle
-%
-%\pagenumbering{roman}
-%\setcounter{page}5
-%\pagenumbering{arabic}
-\tableofcontents
 
 \include{0-intro}
 \include{1-LinearSeries}
@@ -140,11 +133,6 @@ Dedicated to\dots
 
 \makeatletter \def\@biblabel#1{\ignorespaces} \makeatother
 \include{bib}
-
+\include{ind}
 
 \end{document}
-
-
-<%\include{ind}%requires makeindex
-
-
