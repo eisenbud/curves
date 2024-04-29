@@ -1,24 +1,85 @@
 \usepackage{amsmath,amscd,amsthm,amsxtra,latexsym,epsfig,epic,graphics} %amssymb,
 %
 \usepackage[matrix,arrow,curve]{xy}
-%\usepackage{graphicx}
-\usepackage{diagrams}
+%<<<<<<< HEAD
+%%\usepackage{graphicx}
+%\usepackage{diagrams}
+%=======
+\usepackage{graphicx}
+
 \usepackage{cite}
-\usepackage[color,leftbars]{changebar}
-\cbcolor{blue}
+\usepackage{wasysym}% for \photon only
+%\usepackage[color,leftbars]{changebar} % gives \marginpar a spurious space
+%\cbcolor{blue}
 
 
 \input preamble.tex
-%\usepackage{amsrefs}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\textwidth16cm
-%\textheight20cm
-%\topmargin-2cm
-\oddsidemargin.8cm
-\evensidemargin1cm
-\setlength{\parskip}{5pt}
 
-%\newtheorem{fact}[theorem]{Cheerful Fact}
+\def\thesection{\thechapter\Alph{section}}
+\def\thesubsection{\thesection\arabic{subsection}}
+
+\let\dsty\displaystyle \let\tsty\textstyle
+\let\ssty\scriptstyle \let\sssty\scriptscriptstyle
+% binomial coefficiently with lines not so far apart
+\def\cramped#1{\radical0 {\kern-\nulldelimiterspace#1}}
+\def\mbinom#1#2{\Bigl({\tsty{\tsty\medmuskip1mu\hbox{$#1$}\lower2.5pt\hbox{}\atop
+      \tsty\medmuskip1mu\hbox{$\cramped{#2}$}\vbox to9pt{}}}\Bigr)}
+\def\tbinom#1#2{\bigl({\tsty{\medmuskip1mu\hbox{$\ssty#1$}\lower3pt\hbox{}\atop
+      \medmuskip1mu\raise4pt\hbox{$\cramped{\ssty#2}$}\vbox to9pt{}}}\bigr)}
+
+\hyphenation{homo-morphism homo-morphisms auto-morphism auto-morphisms}
+
+\def\emdash{\unskip\thinspace---\hskip.16667em\ignorespaces}
+
+% \redden prints its argument in red; an optional argument goes into a
+% marginpar.  The {redden} environment is analogous (but doens't prescan).
+% We don't need to say \newenvironment{redden}; just defining 
+% \redden and \endredden is enough and simplifies some things.
+
+\makeatletter
+
+\usepackage[nohug]{diagrams}
+\def\@marginparreset{\marginparstyle}
+\def\marginparstyle{\reset@font\SMALL\normalfont\@setminipage\raggedright\openup-2pt}
+\@mparswitchfalse
+\long\def \@savemarbox #1#2{%
+  \global\setbox #1%
+      \vtop{%
+        \hsize\marginparwidth
+        \@parboxrestore
+        \reset@font
+        \@setnobreak
+        \@setminipage
+        \@marginparreset
+        \hskip 0pt % otherwise hyphenation of the first word is inhibited 
+        #2%
+        \par
+        \global\@minipagefalse
+        }%
+}
+
+\DeclareRobustCommand{\redden}{\@ifnextchar*
+  {\@latex@error{{redden*} is only an environment}}
+  {\@ifnextchar[{\r@dden}{\r@dd@n}}}
+\def\r@dden[#1]{\ifmmode\@mperr{math}\else\ifinner\@mperr{inner}%
+  \else\leavevmode\marginpar{\leavevmode#1\endgraf}\fi\fi\r@dd@n}
+\def\r@dd@n{\def\reserved@a{redden}% Check if being called within environment
+  \ifx\@currenvir\reserved@a\redd@n\bgroup\ignorespaces
+  \else\expandafter\redd@n\fi}
+\def\endredden{\unskip\egroup}
+\def\@mperr#1{\@latex@warning{redden in #1 mode: no marginpar possible}}
+%\def\redd@n#1{\leavevmode\ifproofs{\color{red}#1}\else
+%    \@latex@warning{\string\redden\space suppressed in final version}{#1}\fi}
+\def\redd@n#1{\leavevmode{\color{red}#1}}
+\def\blue#1{\leavevmode{\color{blue}#1}\marginpar{indexed}}
+
+% The {redden*} environment places a big red star in a marginpar,
+% besides printing its contents in red. If there is
+% an optional argument, that's the continuation of the marginpar.
+\newenvironment{redden*}[1][]
+  {\redden[\smash{\color{red}\Large$*$} #1]\bgroup\ignorespaces}
+  {\unskip\egroup}
+
 
 \def\grd{{g^{r}_{d}}}
 \def\balpha{{\boldsymbol{\alpha}}}
@@ -30,57 +91,57 @@
 \def\ram{{\operatorname{ram}}}
 %%%%%Definitions
 \def\TU{{\bf U}}
-\def\AA{{\mathbb A}}
-\def\BB{{\mathbb B}}
-\def\CC{{\mathbb C}}
-\def\QQ{{\mathbb Q}}
-\def\RR{{\mathbb R}}
-\def\PP{{\mathbb P}}
+\def\AA{\mathbb A}
+\def\BB{\mathbb B}
+\def\QQ{\mathbb Q}
+\def\PP{\mathbb P}
 
 \def\facet{{\bf facet}}
 \def\image{{\rm image}}
 \def\red{{\rm red}}
 \def\div{{\rm div}}
-\def\cC{{\cal C}}
+\def\cC{\cal C}
 \def\cD{{\cal D}}
-\def\cE{{\cal E}}
-\def\cF{{\cal F}}
-\def\cG{{\cal G}}
-\def\cH{{\cal H}}
-\def\cP{{\cal P}}
-\def\cW{{\cal W}}
-\def\cK{{\cal K}}
+\def\cE{\cal E}
+\def\cF{\cal F}
+\def\cG{\cal G}
+\def\cH{\cal H}
+\def\cP{\cal P}
+\def\cW{\cal W}
+\def\cK{\cal K}
 
-\def\gb{{\beta}}
-\def\ff{{\mathfrak f}}
-\def\fA{{\mathfrak A}}
+\def\gb{\beta}
+\def\ff{\mathfrak f}
+\def\fA{\mathfrak A}
 \def\Mor{{\rm Mor}}
 
-\def\cHom{{\mathcal Hom}}
+\def\ot{\leftarrow}
+\def\cHom{\mathcal Hom}
 \def\h{{\rm h}}
 \newarrow {Dashto} {}{dash}{}{dash}>
-\def\ram{{\operatorname{ram}}}
-\def\PGL{{\operatorname{PGL}}}
-\def\pic{{\operatorname{Pic}}}
+\def\rmspan{\operatorname{span}}
+\def\ram{\operatorname{ram}}
+\def\PGL{\operatorname{PGL}}
+\def\pic{\operatorname{Pic}}
+\def\Div{\operatorname{Div}}
+\def\Ann{\operatorname{Ann}}
 
-\def\g{{\operatorname{\rm g}}}
-\def\p{{\operatorname{\rm p_{a})}}}
+\def\g{\operatorname{\rm g}}
+\def\p{\operatorname{\rm p_{a})}}
 
-\def\Sec{{\operatorname {Sec}}}
-\def\sExt{{\mathcal Ext}}
-\def\pd{{\operatorname{\rm pd}}}
-%\newtheorem{question}{Question}[section]
-%\newtheorem{theorem}{Theorem}[section]
+\def\Sec{\operatorname{Sec}}
+\def\sExt{\mathcal Ext}
+\def\pd{\operatorname{pd}}
 
 \def\TRR{{Theorem~\ref{RR}}}
-\def\trr{{the Riemann-Roch Theorem }}
-\def\trh{{the Riemann-Hurwitz Theorem }}
-\def\bt{{Bezout's Theorem}}
+\def\trr{{the Riemann--Roch Theorem }}
+\def\trh{{the Riemann--Hurwitz Theorem }}
+\def\bt{{B\'ezout's Theorem}}
 
 \newcommand{\ha}{\frac{1}{2}}
 
-\def\Cd{{C^{(d)}}}
-\def\Jac{{\rm Jac}}
+\def\Cd{C^{(d)}}
+\def\Jac{\operatorname{Jac}}
 \def\cW{{\mathcal W}}
 
 \def\op#1#2{{\cO_{\PP^{#1}}(#2)}}
@@ -89,12 +150,10 @@
 \def\Ddots{\mathinner{\mkern1mu\raise\p@
 \vbox{\kern7\p@\hbox{.}}\mkern2mu
 \raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
-\makeatother
 
 \def\captionPlus#1#2{\caption[{\protect\footnotesize [#1.pdf]}\quad #2]{#2}}
 \def\inprogress{\centerline {\color{red}IN PROGRESS\hfil}\vss\hrule height0pt}
 
-\def\marginparstyle{\Small\normalfont\raggedright\openup-2pt }
 \DeclareRobustCommand\marginparhere[2][0pt]{%
   \ifhmode\unskip\fi
   \ifmmode\ssty\mathclose{\fi %avoid implicit spacing and consequent movement
@@ -104,4 +163,18 @@
   \ifmmode}\else{} \ignorespaces\fi% avoid glomming onto next word if % follows
 }
 
-\AtBeginDocument{\leftmargini=0.5\leftmargini}
+\AtBeginDocument{\leftmargini=0.5\leftmargini
+\belowdisplayshortskip=\belowdisplayskip
+\def\smallmath{\def\f@size{9.5}\glb@settings}
+\diagramstyle[labelstyle=\smallmath]}
+
+% use when it's necessary for lines to mesh
+\newcommand\meshing[1][-1pt]{%
+  \lineskiplimit=#1\relax
+  \normallineskiplimit=#1\relax
+  \lineskip=#1\relax
+  \normallineskip=#1\relax
+  \advance\jot 1pt %try to compensate for possible squeezing of math alignments
+}
+
+\makeatother

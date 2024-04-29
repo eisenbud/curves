@@ -21,14 +21,14 @@ A more complete presentation of the material in this section may be found in~\ci
 Let $M$ be a finitely generated graded module over $S := \CC[x_0, \dots x_r]$. A \emph{free resolution} of $M$ is an exact complex
 of graded free modules, with maps of degree 0:
 $$
-(\FF, \phi):\quad 0\lTo N \lTo^\epsilon \bigoplus_jS(-j)^{\beta_{0,j}} \lTo\cdots
+(\FF, \phi):\quad 0\lTo M \lTo^\epsilon \bigoplus_jS(-j)^{\beta_{0,j}} \lTo\cdots
  \lTo^{\phi_t}\bigoplus_jS(-j)^{\beta_{t,j}}\lTo 0.
 $$
 Here $S(-j)$ denotes the graded free module of rank 1 with generator in degree $j$.
 %$$
 %\FF: \cdots \rTo F_s \rTo^{\phi_s} F_{s-1} \rTo^{\phi_{s-1}} \cdots \rTo F_1 \rTo^{\phi_1}  F_0 \rTo^\epsilon M \rTo 0.
 %$$
-(The map to $N$ is not considered part of the free resolution). The resolution is \emph{minimal} if a minimal set of generators of $F_i$ maps to a minimal set of generators of the kernel of the following map,
+(The map to $M$ is not considered part of the free resolution). The resolution is \emph{minimal} if a minimal set of generators of $F_i := \bigoplus_jS(-j)^{\beta_{t,j}}$ maps to a minimal set of generators of the kernel of the following map,
 or equivalently (by Nakayama's lemma) the maps in $\FF\otimes_S \CC$ are all 0.
 
 The first examples of a minimal free resolution are the Koszul complexes
@@ -111,23 +111,23 @@ results of Auslander, Buchsbaum and Serre say that a local ring $R$ is \emph{reg
 of generators of $\gm$---if and only if the minimal free resolution of the residue field is finite, in which case
 the minimal free resolution of every module is finite.)
 
-To construct this, suppose that a minimal homogeneous set of generators of $N$
+To construct this, suppose that a minimal homogeneous set of generators of $M$
 contains $\beta_{0,j}$ generators of degree $j$ for each $j$; this defines a degree 0 map $\epsilon$
 from 
 $
 \oplus_jS(-j)^{\beta_{0,j}}
 $
-onto $N$. We proceed similarly with the kernel of $\epsilon$, and continue to construct the whole resolution.
+onto $M$. We proceed similarly with the kernel of $\epsilon$, and continue to construct the whole resolution.
 Hilbert's syzygy theorem \cite[Corollary 19.7]{Eisenbud1995} implies that the process ends after $t\leq r$ steps with a map $\phi_t$ whose
 kernel is 0. 
 
-The number $t$ is then the projective dimension of $N$. 
+The number $t$ is then the projective dimension of $M$. 
 Equivalently, 
 $$
 \pd\ M = \max\{t \mid \Ext_S^t(M,k) \neq 0 \}.
 $$
 It follows from the Auslander-Buchsbaum
-theorem~\cite[Theorem 19.9]{Eisenbud1995} that $t \geq \codim \ann_S(N)$, the codimension of the support of $N$.
+theorem~\cite[Theorem 19.9]{Eisenbud1995} that $t \geq \codim \ann_S(M)$, the codimension of the support of $M$.
 Minimal free resolutions of a given module $M$ are all isomorphic.
 
 \section{Classification of 1-generic \texorpdfstring{$2\times f$}{2 x f} matrices}\label{Kronecker}
@@ -318,8 +318,8 @@ The maximal length of such a sequence is called the \emph{depth} of $M$, or more
 The length of any all maximal $M$-regular sequences are the same, as one shows by proving
 
 \begin{theorem} (Auslander-Buchsbaum)\label{Auslander-Buchsbaum}
-If $M$ is a finitely generated $S := \CC[x_0, \dots x_r]$-module, then the length of every $M$-regular sequence is
-the smallest integer $m$ such that $\Ext_S^m(S/(x_0, \dots x_r), M) \neq 0$ and is also $r+1 - \pd\  M$.
+If $M$ is a finitely generated $S := \CC[x_0, \dots x_r]$-module, then the length of every $M$-regular sequence is $m = r+1 - \pd\  M$,
+and $m$ is the smallest integer $m$ such that $\Ext_S^m(S/(x_0, \dots x_r), M) \neq 0$.
 \end{theorem}
  
  The depth of a module $M$ is bounded above by $\dim M$, the Krull dimension. The reason is that if the dimension of $M$
@@ -455,7 +455,7 @@ $$
 $$
 and it turns out that this is in a sense even more natural. 
 
-It is convenient to think of $R$ as an $S := \ZZ[x_{1},\dots, z_{f}]$-algebra by the map sending 
+It is convenient to think of $R$ as an $S := \ZZ[x_{1},\dots, x_{f}]$-algebra by the map sending 
 $x_{i}$ to $\phi_{i}$; we  define the Koszul complex of $\phi$ over $R$ by tensoring
 the Koszul complex of $(x_{1}, \dots, x_{f})$ with $R$.
 
@@ -463,7 +463,7 @@ Thus for the definition we take the map $\phi$ to be
 $$
 \phi: S^{f}\rTo^{
 \begin{pmatrix}
-x_{0} &\dots & x_{f}
+x_{1} &\dots & x_{f}
 \end{pmatrix}
 } S.
 $$
@@ -494,16 +494,18 @@ Theorem~\ref{WMACE} immediately implies that if $K(\phi)$ is acyclic then
 $\rank \delta_{f} = 1$ and $\grade I(\delta_{f}) \geq f$. Since $I(\delta_{f}) = I$, this proves one implication.
 
 Now assume that $\grade I \geq f$. We first prove that 
-$K(\phi)$ is split exact when $I = R$. The condition $I=R$ implies that
+$K(\phi)$ is split exact when $I = R$; that is, $\wedge^{i}F = \ker \delta_{i} \oplus \image\ \delta_{i}$ for every $i$, or equivalently
+$\wedge^{i}F^{*} = \image\ \partial_{i}\oplus\coker \partial_{i}$ for every $i$. The condition $I=R$ implies that $\delta_{1}$ is s split surjection, 
+or equivalently that 
  $\partial_{1}$ is a split injection. In this case we may write $F^{*} = R\oplus F'^{*}$ in such a way that $\partial_{1}$ is the injection into the first summand, and we may
 choose a basis $\{\hat e_{i}\}$ of $F^{*}$ so that the last $f-1$ basis elements are a basis for $F'^{*}$. 
 Specializing the sequence $x_{1},x_{2}, \dots, x_{f}$ to the sequence $1, 0,\dots, 0$, the differential of $K(\phi)^{*}$
 becomes the multiplication by  $1\otimes e_{1}$.
 
 The module
-$\wedge^{i}F$  decomposes as 
+$\wedge^{i}F^{*}$  decomposes as 
 $$
-\wedge^{i}F = \bigl(Re_{1}\otimes_{R} \wedge^{i-1}F^{*} \bigr) \oplus \wedge^{i}F'^{*}.
+\wedge^{i}F^{*} = \bigl(Re_{1}\otimes_{R} \wedge^{i-1}F^{*} \bigr) \oplus \wedge^{i}F'^{*}.
 $$
 Because $e_{1}\wedge e_{1} = 0$ the differential $\partial_{i}$ has the form
 $$
@@ -677,7 +679,7 @@ has free resolution of the form
 $$
 \FF: R\lTo^{\alpha} R^{f}\lTo^{\phi} G\lTo 0
 $$
-where $I = I_{1(\alpha})$, so by Theorem~\ref{WMACE} the free module $G$ has rank $g = f-1$, the $g\times g$
+where $I = I_{1}(\alpha)$, so by Theorem~\ref{WMACE} the free module $G$ has rank $g = f-1$, the $g\times g$
 minors of $\phi$ generate an ideal $I'$ of grade $\geq 2$, and the ideal $I$ has grade $\geq 1$. Theorem~\ref{WMACE} implies
 that both the Eagon-Northcott complex $EN(\phi)$
 and its dual are acyclic. 
@@ -685,7 +687,7 @@ and its dual are acyclic.
 The dual of the complex $\FF$ will not be acyclic unless $\grade I = 2$, but there is at least a comparison map
 $$
 \begin{diagram}
-\FF^{*}:&&G^{*}& \lTo^{\phi^{*}} & G^{*}&\lTo^{\alpha^{*}} &R&\lTo &0\\
+\FF^{*}:&&G^{*}& \lTo^{\phi^{*}} & F^{*}&\lTo^{\alpha^{*}} &R&\lTo &0\\
 &&\dTo_{=}&&\dTo_{=}&&\dTo_{a}\\
 EN(\phi)^{*}:&& G^{*}&\lTo^{\phi^{*}}&F^{*}&\lTo^{\wedge^{g}\phi^{*}} &R&\lTo &0\\
 \end{diagram}
@@ -725,9 +727,9 @@ where:
 \item It is convenient to give a formula for $\partial_{i} = \delta_{i}^{*}$ by taking advantage of the 
 algebra structures of $\Sym(G)$ and $\wedge F^{*}$. To do this, choose dual bases $\{e_{i}\}$ and $\{\hat e_{i}\}$ for $F$ and $F^{*}$. In these terms
 $$
-\delta_{i^{*}} = \partial_{i}: 
-\Sym^{i-2}G \otimes \wedge^{g+i-2}F^{*} \to 
-\Sym^{i-1}G \otimes \wedge^{g+i-1}F^{*}
+\delta_{i}^{*} = \partial_{i}: 
+\Sym^{i-2}G \otimes \bigwedge^{g+i-2}F^{*} \to 
+\Sym^{i-1}G \otimes \bigwedge^{g+i-1}F^{*}
 $$
  is multiplication by the element
 $\sum_{i = 1}^{f} \phi(e_{i}) \otimes \hat e_{i}$.
@@ -742,16 +744,16 @@ can be thought of as coming from a rank $g+1$ summand of $F$, and the value of $
 is the same as it would be if $F$ were replaced by this summand. Thus from the case $f=g+1$ we see
 that $\delta_{1}\delta_{2}b = 0$, and thus $\delta_{2}\delta_{1} = 0$.
 
-On the other hand, for $i\geq 1$ the map $\delta_{i}\delta_{i+1}$ is multiplication by
+On the other hand, for $i\geq 1$ the map $\partial_{i+1}\partial_{i}$ is multiplication by
 $$
 \left(\sum_{i = 1}^{f} \phi(e_{i}) \otimes \hat e_{i}\right)^{2},
 $$
 which we may think of as the square of an element of degree 1 in the exterior algebra
-of the free $\Sym(G)$-module $\wedge(\Sym(G)\otimes F)$, and hence this square is 0.
+of the free $\Sym(G)$-module $\wedge(\Sym(G)\otimes F^{*}) = \Sym(G) \otimes \wedge F^{*}$, and hence this square is 0.
 Thus the given maps do define a complex.
 
 \begin{theorem}\label{ENgeneral}
- Suppose that $S$ is a ring and $\phi: F\to G$ is a map of  free $R$-modules, 
+ Suppose that $R$ is a ring and $\phi: F\to G$ is a map of  free $R$-modules, 
  where $G$ has rank $g$ and $F$ has rank $f \geq g$.
  The complex $EN(\phi)$ is acyclic if and only if the ideal $I := I_{g}(\phi)$ has grade $\geq f-g+1$.
  \end{theorem}
@@ -861,7 +863,7 @@ that are the $g\times g$ minors of a matrix for $\phi$ are linearly independent 
 \end{corollary}
 
 \begin{proof}
-From the resolution $EN(M)$ we see that the projective dimension of $S/I_2(M)$ is $n-1$. Since the projective dimension of a module
+From the resolution $EN(M)$ we see that the projective dimension of $S/I_g(M)$ is $f-g+1$. Since the projective dimension of a module
 is at least the codimension of its annihilator, the equality follows, and the Auslander-Buchsbaum formula implies that $S/I_2(M)$ is 
 Cohen-Macaulay. The linear independence of the minors of $M$ follows because $EN(M)$ is a resolution and there
 $EN(M)_2$ is generated in degree 3, so all the relations on the minors have coefficients of degree 1.
@@ -1018,7 +1020,7 @@ $j\backslash i$&0&1&2&\dots&$d-3$&$d-2$&\dots&$g-d-1$&$g-d$&\dots&$g-3$&$g-2$\\
 
 We can summarize this by saying
 that if the curve $C$ has a line bundle $\sL$ of degree $d$ with exactly 2 sections (which is thus of Clifford index $c = d-2$) the row labeled  2 
-in the Betti diagram definitely has $\beta_{c, c-2} \neq 0$. As with the case of the plane quintics above, one can
+in the Betti diagram definitely has $\beta_{c, c+2} \neq 0$. As with the case of the plane quintics above, one can
 make a similar argument for \emph{any} line bundle of Clifford index $c$. Thus:
 
 \begin{corollary}
@@ -1084,7 +1086,7 @@ is an exact sequence of nonzero finitely generated modules over a local ring $R$
 $$
 \begin{aligned}
  \depth C &\geq \min\{\depth B, \depth A-1\}\\
- \depth A & \geq \min\{depth B, \depth C +1\}
+ \depth A & \geq \min\{\depth B, \depth C +1\}
  \end{aligned}
  $$
 Prove this in the special case when $R$ is regular using the characterization of depth
@@ -1096,7 +1098,7 @@ Prove this in the special case when $R$ is regular using the characterization of
  \item Prove that if $\phi: F\to G$ is a free presentation of a finitely generated module $M$
 then 
 $$
-\ann_{R}(\coker \phi)^{\rank G}\subset Fitt_{0}(\phi) \subset \ann_{R}(\coker \phi).
+\ann_{R}(\coker \phi)^{\rank G}\subset \Fitt_{0}(\phi) \subset \ann_{R}(\coker \phi).
 $$
 \item Prove that over a local ring every projective module is free; and show that 
 $I(\phi)$ defines the non-free locus of $\coker \phi$. 
@@ -1114,7 +1116,7 @@ Hint: Nakayama's Lemma can be used to prove that projectives are free in some ca
 \begin{exercise}
 Find a degree 6 embedding of a curve of genus 3 that is not arithmetically Cohen-Macaulay, and another that is.
 
-Hint: Show that the $3\times 3$ minors of a general $4\times 3$matrix of linear forms defines a Cohen-Macaulay curve
+Hint: Show that the $3\times 3$ minors of a general $4\times 3$ matrix of linear forms defines a Cohen-Macaulay curve
 of genus 3. Show that a curve of type $(2,4)$ on a smooth quadric in $\PP^3$ is not arithmetically Cohen-Macaulay.
 \end{exercise}
 
@@ -1162,7 +1164,7 @@ of the two sections corresponding to the generators of the module.
 
 \item Show that the sheafification of $\Sym^a(M)$ is $\sO_Q(a,0)$. Conclude that
  if $a\leq b$ then the relative ideal sheaf $\sI_{C/Q} = \sO(-a,-b)$ of a curve $C$ of type $(a,b)$
-is the sheafification of the module $Sym^{b-a}(M)(-b)$.
+is the sheafification of the module $\Sym^{b-a}(M)(-b)$.
 
 \item Let $S = \CC[x_0,\dots, x_3]$. Show that the minimal $S$-free resolution of $\Sym^a(M)$ 
 has the form 
@@ -1198,8 +1200,7 @@ $$
 $$
 where the map is the action of $F$ on $\wedge G^*$ via the map $q: F\to G$.
 \end{enumerate}
- Hint: Show that the sheafification of the graded module $\coker q$ is $\sO_Q(1,0)$ by computing the vanishing locus
-of the two sections corresponding to the generators of the module. Imitate the proof of Theorem~\ref{ENgeneral} to prove
+ Hint:  Imitate the proof of Theorem~\ref{ENgeneral} to prove
 the exactness of the given resolution of $\Sym^a(M)$. See also \cite[Appendix A2.6]{Eisenbud1995}. 
 \end{exercise}
 
