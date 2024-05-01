@@ -1,17 +1,7 @@
-\usepackage{amsmath,amscd,amsthm,amsxtra,latexsym,epsfig,epic,graphics} %amssymb,
-%
+\usepackage{amsmath,amscd,amsthm,amsxtra,latexsym,epsfig,epic,graphics}
 \usepackage[matrix,arrow,curve]{xy}
-%<<<<<<< HEAD
-%%\usepackage{graphicx}
-%\usepackage{diagrams}
-%=======
 \usepackage{graphicx}
-
 \usepackage{cite}
-\usepackage{wasysym}% for \photon only
-%\usepackage[color,leftbars]{changebar} % gives \marginpar a spurious space
-%\cbcolor{blue}
-
 
 \input preamble.tex
 
@@ -27,7 +17,11 @@
 \def\tbinom#1#2{\bigl({\tsty{\medmuskip1mu\hbox{$\ssty#1$}\lower3pt\hbox{}\atop
       \medmuskip1mu\raise4pt\hbox{$\cramped{\ssty#2}$}\vbox to9pt{}}}\bigr)}
 
-\hyphenation{homo-morphism homo-morphisms auto-morphism auto-morphisms}
+\hyphenation{
+homo-morphism homo-morphisms 
+homo-geneous
+auto-morphism auto-morphisms
+}
 
 \def\emdash{\unskip\thinspace---\hskip.16667em\ignorespaces}
 
@@ -38,7 +32,17 @@
 
 \makeatletter
 
-\usepackage[nohug]{diagrams}
+\newbox\trigabox
+\DeclareMathSymbol{\blacktriangleright} {\mathrel}{AMSa}{"49}
+\DeclareMathSymbol{\curlyvee}     {\mathbin}{AMSa}{"67}
+\DeclareMathSymbol{\curlywedge}   {\mathbin}{AMSa}{"66}
+\setbox\trigabox\hbox{\scalebox{0.4}{$\blacktriangleright$}\enspace}
+\renewcommand{\tocsection}[3]{%
+  \indentlabel{\@ifnotempty{#2}{\rlap{#2}\qquad}}#3}
+\renewcommand{\tocsubsection}[3]{%
+  \indentlabel{\qquad\raise2.4pt\copy\trigabox\@ifnotempty{#2}{#2\quad}}#3}
+
+\usepackage[nohug,heads=curlyvee]{diagrams}
 \def\@marginparreset{\marginparstyle}
 \def\marginparstyle{\reset@font\SMALL\normalfont\@setminipage\raggedright\openup-2pt}
 \@mparswitchfalse
@@ -80,6 +84,7 @@
   {\redden[\smash{\color{red}\Large$*$} #1]\bgroup\ignorespaces}
   {\unskip\egroup}
 
+\hyphenpenalty=500
 
 \def\grd{{g^{r}_{d}}}
 \def\balpha{{\boldsymbol{\alpha}}}
@@ -89,6 +94,18 @@
 \DeclareMathOperator{\grade}{\rm grade}
 \DeclareMathOperator{\Fitt}{\rm Fitt}
 \def\ram{{\operatorname{ram}}}
+
+\def\ruto#1{\mathrel{\hbox{$-\mskip-8mu\to$}%
+      \kern-13.5pt
+      \raise6pt\hbox{$\scriptstyle#1$}%
+      \kern7pt}}
+\def\ruuto#1{\mathrel{\hbox{$-\mskip-8mu-\mskip-8mu\to$}%
+      \kern-18.5pt
+      \raise6pt\hbox{$\scriptstyle#1$}%
+      \kern3pt}}
+
+\def\mwedge{\raise1pt\hbox{\small$\bigwedge\mskip-2mu$}}
+
 %%%%%Definitions
 \def\TU{{\bf U}}
 \def\AA{\mathbb A}
