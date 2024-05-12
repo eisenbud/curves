@@ -1,0 +1,329 @@
+\input{header}
+
+\chapter{Appendix: Dualizing sheaves}\label{dualizing appendix}
+
+\fix{Put the linkage computation of the dualizing sheaf in here explicitly!}
+%%in the text below we used \HH instead of H for cohomology. This is fixed with a macro:
+\def\HH{{H}}
+
+Other than  the structure sheaf, the most important line bundle on a smooth variety   $X$ over $\CC$ is the top exterior power of the complex cotangent bundle, usually called the canonical line bundle or canonical sheaf $\omega_{X}$. 
+
+In the case of curves  we have many times used it's key property, that if  $\cF$  is a line bundle on the smooth curve  $C$, then $\HH^{0}(\sF^{-1}\otimes \omega_{C})$ is the vector space dual of $\HH^{1}(\cF)$. Because $\sF$ is locally free, we may rewrite the formula in the attractively symmetric form:
+$$
+\Hom_{C}(\sF, \omega_{C})
+\cong 
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+The reward for writing the formula this way is that, in this form, 
+it holds for any coherent sheaf $\cF$:
+
+\begin{proposition} Let $C$ be a smooth curve.
+There are natural isomorphisms
+$$
+\eta_{\sF}: \Hom(\sF,\omega_{C}) =  
+\to 
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+for any coherent sheaf $\cF$ on $C$.
+\end{proposition}
+
+\begin{proof}
+ Let $\cF'$ be the torsion subsheaf  of $\cF$, a sheaf of finite support. And let
+ $\cF'' = \cF/\cF'$.
+ Since
+$\cF'$ is locally free, the sequence is locally split (in fact it is globally split too, but we don't need this.)
+
+Since $\omega_{C}$ is a line bundle, 
+$$
+\sHom_{\PP^1}(\sF, \omega_{C}) = 
+\sHom_{\PP^1}(\sF', \omega_{C}) \oplus \sHom_{\PP^1}(\sF'', \omega_{C})  = 
+\sHom_{\PP^1}(\sF', \omega_{C}) 
+$$
+and 
+$\HH^{1}(\cF) = \HH^{1}(\cF'')
+$
+because $\HH^{1}(\cF') = 0$, so the duality formula for arbitrary coherent sheaves follows from the case of line bundles.
+\end{proof}
+
+An equivalent formulation can be made using a \emph{residue isomorphism} $\eta: H^{1}\omega \to k$. When $C$ is smooth over $\CC$, then regarding elements of 
+$\HH^{1}(\omega_{C})$ as rational differential forms modulo linear equivalence,
+we may take $\eta$ to be the classical ``sum of the residues'' map of complex analysis.
+Of course, given the natural isomorphisms $\eta_{\sF}$ above, we can take
+$$
+\eta := \eta_{\omega_{C}}(1_{\omega_{C}}).
+$$ Conversely,an isomorphism $\eta$, 
+determines, for every $\sF$ a map
+$$
+\eta_{\sF}:\Hom_{C}(\sF, \omega_{C})
+\to
+\Hom_{k}(\HH^{1}(\cF), k).
+$$
+sending a homomorphism
+$\alpha \in \Hom_{C}(\sF, \omega_{C}) $
+to $\eta \circ \HH^{1}(\alpha)$. In particular, we see that $\eta$ itself corresponds to the 
+identity map of $\omega_{C}$  
+
+%Another manifestation of these phenomena is a
+%special case of the Serre duality theorem on $\PP^{r}$, which asserts that  there is an isomorphism $\eta: H^{r}(\omega_{\PP^{r}}) \cong k$, where $\omega_{\PP^{r}} = \cO_{\PP^{r}}(-r-1)$, the top exterior power of the cotangent bundle. Again, there is
+%a natural map
+%$$
+%H^{0}(\cF^{-1}\otimes \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), k)
+%$$
+%Of course $\cF^{-1}\otimes \omega_{\PP^{r}}$ may be rewritten as
+%$\Hom(\cF, \omega_{\PP^{r}})$, and in the form
+%$$
+%\Hom(\cF, \omega_{\PP^{r}}) \to \Hom(H^{r}(\cF), H^{r}(\omega_{\PP^{r}})) 
+%\rTo^{\eta \circ -} \Hom(H^{r}(\cF), k)
+%$$
+%the map is, as before, an isomorphism for every coherent sheaf $\cF$.
+%
+
+Grothendieck extended these ideas to all pure-dimensional projective schemes and beyond. Here is the basic definition:
+
+\begin{definition}
+If $X$ is a purely $r$-dimensional projective scheme over the field $k$, we say that a coherent sheaf $\omega$ on $X$, together with a linear
+functional $\eta:\HH^{r}(\omega) \to k$ is \emph{dualizing} if the map
+$$
+f_{\eta}: \HH^{0}(\sHom_{X}(\sF, \omega))
+\to
+\Hom_{k}(\HH^{r}(\cF), k).
+$$
+defined as above is an isomorphism for every coherent sheaf $\sF$.
+\end{definition}
+
+\begin{proposition} Any two dualizing pairs $(\omega_{X}, \eta)$ and $(\omega'_{X}, \eta')$, on a scheme $X$ are canonically isomorphic.
+\end{proposition}
+
+\begin{proof}
+We will show that there is a unique isomorphism $g: \omega\to \omega'$ making the diagram
+$$
+\begin{diagram}
+ H^{1}(\omega)&\rTo^{g}&H^{1}(\omega')\\
+ &\rdTo_{\eta}&\dTo_{\eta'}\\
+ &&k
+\end{diagram}
+$$
+commute. 
+
+ The duality property of $\omega'$ yields
+$$
+\Hom_{X}(\omega, \omega')  = \Hom(\HH^{1}(\omega), k).
+$$
+Let $g: \omega \to \omega'$ be the map corresponding under this isomorphism to $\eta'$. It follows from the relation of $\eta'$ to the duality isomorphism, that 
+$\eta'g = \eta$. Similarly, we get a map $g':\omega'\to \omega$ such that
+$\eta g = \eta'$, and it also follows that $\eta gg' = f_{\eta}(gg') =  \eta$, so that
+$gg' = 1_{\omega'}$. Similarly, $g'g = 1_{\omega}$, and we are done.
+\end{proof}
+ 
+We often abuse the terminology, and say simply that $\omega$ is a \emph{dualizing sheaf} or a \emph {canonical sheaf} on $X$. If $X$ is reduced and connected, so that $\HH^{0} (\sHom(\sO_{X} , \sO_{X})) = k$, then
+$\HH^{r}(\omega) \cong k$, whence $\eta$ is, in any case, unique up to a nonzero scalar. 
+
+Of course it is far from obvious that such a dualizing sheaf will exist on an arbitrary pure-dimensional scheme, and in general there is no such sheaf! However, dualizing sheaves do exist on any pure-dimensional scheme that is embeddable in a smooth scheme, and thus, in particular, they exist on any projective scheme.
+
+On a smooth projective variety, Serre duality shows that we can choose the dualizing sheaf to be the top exterior power of the sheaf of differential forms, as already explained. To understand how dualizing sheaves are constructed in general, we must abandon the idea that the the canonical sheaf of $X$ must ``come from'' differential forms on $X$. For example, consider the ring $R = k[x,y,z]/x^{2}$ and the scheme $X = \Proj R$, a double line in $\PP^{2}$. Writing $d: \sO_{X}\to \Omega_{\sO_{X}/k}$ for the universal derivation, we have $0 = d(x^{2}) = 2xd(x)$ so (at least in characteristic $\neq 2$), $dx = 0$. Thus 
+\def\red{{\rm red}}
+$$
+\Omega_{\sO_{X}/k} = \Omega_{\sO_{X_{\red}}/k} = \omega_{X_{\red}};
+$$ 
+that is, the differentials do not ``see'' the nilpotent part of the structure sheaf at all. Furthermore, 
+$
+h^{0}(\sO_{X}(1)) = 3
+$
+(as would be the case with a smooth conic in the plane)
+while 
+$
+h^{1}(\Omega_{X} (-1)) = h^{1}(\Omega_{X_{red}} (-1)) = h^{1}\sO_{\PP^{1}}(-3) = 2
+$
+so Serre duality would fail if we took $\omega_{X} = \Omega_{X}$ as we would do for smooth curves.
+
+In general, a dualizing sheaf on a scheme $X$ can be constructed by comparing $X$ with a 
+variety $Y$ that already has a dualizing sheaf, such as $Y=\PP^{r}$. To understand the motivation behind the construction, 
+consider first the situation where $\iota: X\subset Y$ is a closed immersion of smooth varieties, and suppose thta $X$ has dimension $d$ and codimension $c$ in $Y$.
+In this case the conormal bundle of $X$ in $Y$ is by definition the sheaf
+$\cI/\cI^{2}$, where $\cI$ is the ideal sheaf of $X$ in $Y$. If $p\in X$ then because $X$ is smooth, the kernel of the map of local rings $\cO_{Y,p} \rTo^{\iota^{*}} \cO_{X,p}$ is generated by a subset of a set of minimal generators of the maximal ideal $\gm_{Y,p}\subset \cO_{Y,p}$, and is thus a complete intersection. It follows that the left-most term of the right exact sequence
+$$
+\cI/\cI^{2} \to \iota^{*}(\Omega_{Y}) \to\Omega_{X} \to 0
+$$
+is a vector bundle on $X$ whose rank is  $c = \rank \Omega_{Y} -\rank \Omega_{X}$, so the sequence is exact on the left as well. All the terms are vector bundles on $X$, and thus the sequence
+is locally split. It follows that 
+$$
+\omega_X = \wedge^{d}\Omega_{X} = \wedge^{c+d} \iota^{*}(\Omega_{Y})\otimes \wedge^{c}(\cI/\cI^{2})^{\vee} = \sHom(\wedge^{c}(\cI/\cI^{2}), \omega_{Y}).
+$$ 
+
+The next step is to recognize that this expression for $\omega_X$ can be interpreted as saying, always in the case $X\subset Y$ is smooth of
+codimension $c$, that
+$$
+\omega_{X} = \sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}).
+$$
+To motivate this formula, consider just the simple case where $X$ is a complete intersection of hypersurfaces
+of degrees $d_{i}$ in $Y = \PP^{n}$. In this case the Koszul complex
+$$
+0\to \wedge^{c} (\oplus_{i}\cO(-d_{i})) \rTo^{\phi_{c}} \cdots \to \oplus_{i}\cO(-d_{i}) \rTo^{\phi_{1}}\cO_{Y,p} \to\cO_{X,p} \to 0.
+$$
+Thus $\sExt^{c}_{\cO_{Y}}(\cO_{X}, \omega_{Y}) = \sHom(\coker \phi_{c}^{\vee}, \omega_{Y})$
+and $\coker \phi_{c}^{\vee}$ may be canonically identified with $\wedge^{c}(\cI/\cI^{2})$.
+
+This computation suggests the bold idea that the dualizing module of a closed subscheme
+$X\subset Y$ of pure codimension $c$ can be computed by the formula
+$$
+\omega_{X} : = \sExt_{Y}^{c}(\cO_{X}, \omega_{Y}),
+$$
+or, still more generally, that given any finite morphism $\pi: X\to Y$ we have
+$$
+\omega_{X} : = \sExt_{Y}^{c}(\cO_{X}, \omega_{Y}),
+$$
+Where we can give the sheaf on the right the unique structure of a sheaf on $X$
+such that $\pi_{*}\sExt_{Y}^{c}(\cO_{X}, \omega_{Y}) = \sExt_{Y}^{c}(\pi_{*}\cO_{X}, \omega_{Y})$, as explained below in the case $c=0$.
+
+The truth of this assertion implies a web of theorems proving that the sheaf 
+$\sExt_{Y}^{c}(\cO_{X}, \pi^{*}\omega_{Y})$ is independent of $\pi$; and moreover that such sheaves satisfy some form of Serre duality. For all this, see the book
+\ref{Altman-Kleiman}.
+
+We now explain the construction above in the one case we will need for studying the linkage of curves in $\PP^{3}$.
+
+
+\begin{theorem}\label{construction of omega}
+Let $\pi: X \to Y$ is a finite morphism of a purely $1$-dimensional schemes, and suppose that
+$\omega_{Y}, \eta_{y}$ is a dualizing pair on $Y$. 
+Let $\omega := \sHom(\pi_{*}\cO_{X}, \omega_{Y})$ regarded as a sheaf on $X$. There are
+natural isomorphisms 
+$$
+\eta_{\sF}: \Hom_{X}(\sF, \omega) \to \Hom(H^{1}(\sF), k),
+$$
+and thus $\omega$, together with $\eta = \eta_{\omega}(1_{\omega})$ is a dualizing pair for $X$.
+\end{theorem}
+
+Note that one possible choice of $\pi: X\to Y$ in the theorem would be a Noether normalization, that is, a finite map to $X \to \PP^{1}$; in this form, at least when $X$ is smooth, it is the Riemann-Hurwitz formula \fix{did we decide on this name?} Another is the inclusion of $X$ into another curve, perhaps a complete intersection curve, and this is the one we need for linkage:
+
+\begin{corollary}\label{dualizing formula}
+ Let $X\subset Y\subset \PP^{n}$ be closed, purely 1-dimensional schemes. If  $\omega_{Y} = \sO_{Y}(d)$ for some integer $d$, then 
+ $$
+ \omega_{X} = \frac{\sI_{Y}:\sI_{X}}{\sI_{Y}}(d).
+ $$
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{construction of omega} we have 
+$$
+\omega_{X} = \sHom(\sO_{X}, \omega_{Y}) = \sHom(\sO_{X}, \sO_{Y})(d).
+$$
+Clearly any  section of $\sI_{Y}:\sI_{X}$ on on open set $U$ gives rise by multiplication to a
+map   
+$\sO_{X}(U) \to \sO_{Y}(U)$, and the sections of  $\sI_{Y}$ give the zero map,
+so there a natural mapping $\frac{\sI_{Y}:\sI_{X}}{\sI_{Y}} \to \sHom(\sO_{X}, \sO_{Y})$,
+and locally this is an isomorphism because every map from $\sO_{X}$ is determined by the image of the global section 1.
+\end{proof}
+
+
+\begin{proof}[Proof of Theorem~\ref{construction of omega}]
+The sheaf  
+$\omega:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
+which is, a priori a sheaf on $Y$, has the structure of a sheaf on $X$
+specified by the property that
+$$
+\pi_{*}(\omega) = \sHom(\pi_{*}\cO_{X}, \omega_{Y}).
+$$
+as a sheaf on $Y$.
+
+To see that there is such a sheaf, take an open affine cover $\{U_{i}\}$ of $Y$ and pull it back to an open affine cover $\{V_{i} = \pi^{-1}(U_{i})\}$ of $X$. Because $\pi$ is finite, the restriction of 
+$\pi_{*} \cO_{X}$ to $U_{i}$ is naturally isomorphic to $\sO_{V_{i}}$, regarded as an $\sO_{U_{i}}$-module, and thus the restriction of
+$\sHom(\pi_{*}\cO_{X}, \omega_{Y})$ to $U_{i}$ is 
+$Hom_{U_{i}}(\cO_{V_{i}}, \omega_{Y}|_{U_{i}})$,
+which is naturally a module over $\cO_{V_{i}}$. This gives $\omega_{X}:= \sHom(\pi_{*}\cO_{X}, \omega_{Y})$
+the structure of a sheaf on $X$, and it is obvious from the construction that this has the desired pushforward. 
+
+Because $\pi$ is finite we have
+\begin{align*}
+ \Hom(\HH^{1}(\omega),k) &= \Hom(H^{1}(\pi_{*}\omega), k)\\ 
+&= \Hom(\HH^{1}(\sHom(\pi_{*}\cO_{X}, \omega_{Y})),k)\\
+&\cong \Hom(\cHom(\pi_{*}\cO_{X},\omega_{Y}), \omega_{Y})
+\end{align*}
+by the dualizing property of $\omega_{Y}$. 
+
+%We may use the structure map $\cO_{Y} \to \pi_{*}\cO_{X}$ to deduce
+%a map  
+%$$
+%\HH^{1}(\omega) = 
+%\HH^{1}(\pi_{*}\sHom(\cO_{X}, \omega_{Y})
+%\to
+%\HH^{1}(\sHom(\cO_{Y}, \omega_{Y})
+%= \HH^{1}\omega_{Y})
+%$$
+%and thus any residue map $\eta_{Y}: \HH^{1}(\omega_{Y}) \to k$
+%gives rise, by composition, to a residue map 
+%$\eta: \HH^{1}(\omega)\to k$.
+
+It now suffices to show that there exist natural isomorphisms $\Hom_{X}(\sF, \omega) \cong \Hom_{k}(H^{1}(\sF), k)$.  Because $\pi$ is finite, the cohomology of a sheaf on $X$ is the same as the cohomology of its pushforward. In view of the construction of $\omega$, and the fact that $\omega_{Y}$ is a dualizing sheaf for $Y$, it suffices to show that there is a natural isomorphism
+$$
+\phi: \pi_{*}\sHom_{X}(\sF,\sHom_{Y}(\sO_{X}, \omega_{Y})) \to \sHom_{Y}(\pi_{*}\sF, \omega_{Y}).
+$$
+Passing to an affine open set $U_{i}\subset Y$ and its preimage $V_{i}\subset X$
+as in the definition of $\omega$,  the left hand side becomes
+$$
+\Hom_{V_{i}}(\sF|_{V_{i}}, \Hom_{U_{i}}(\cO_{X}|V_{i}, \omega_{Y}|_{U_{i}}))
+$$
+where $\cO_{X}|V_{i}$ is considered a $U_{i}$-modules via the structure
+map $\cO_{U_{i}} \to \cO_{V_{i}}$.  Note that $\sF|_{V_{i}} = \pi_{*}\sF|_{U_{i}}$. We define
+$\phi$ to be the map sending an element $a$ in the left hand side to 
+$$
+\phi(a) \in \sHom_{U_{i}}(\pi_{*}\sF|_{U_{i}}, \omega_{Y}|_{U_{i}})\qquad \phi(a): t \mapsto a(t)(1).
+$$
+It is easy to check that this is a natural
+isomorphism. 
+\end{proof}
+
+\begin{fact}[Dualizing sheaves in higher dimension]  There are two important extensions of Theorem~\ref{construction of omega}:
+
+First, the proof given for curves above actually works for a purely $r$-dimensional projective scheme $X$ over $k$ if we replace the occurrences of  $\HH^{1}$ by $\HH^{r}$, and shows that every such scheme has a dualizing sheaf $\omega$. However, the isomorphisms
+$$
+\HH^{i} (\sHom(\sF, \omega)) \cong \Hom_{k}(\HH^{r-i}(\sF), k) 
+$$
+hold for all coherent $\sF$ \emph{ if and only if} $X$ is Cohen-Macaulay. In our situation
+this condition means that, if $\pi: X\to \PP^{r}$ is a finite map, then $\pi_{*}\cO_{X}$
+is locally free.
+\end{fact}
+
+ 
+
+\begin{exercise}[Adjunction formula] \label{canonical of CI}Prove directly that if $\omega_{Y}$ is a dualizing sheaf on a surface $Y$ and $X$ is a Cartier divisor on $Y$, then
+$\omega := \cO_{X}\otimes_{Y}\omega_{Y}(X))$ is a dualizing sheaf for $X$.  
+Use this to show by induction that if 
+$$
+X = \bigcap_{i=1}^{c}H_{1}\cap \cdots \cap H_{n}
+$$ 
+is a complete intersection
+in $\PP^{r}$ of hypersurfaces of degrees $\deg H_{i} = d_{i}$,  then
+$$
+\omega_{X} = \cO_{X}(\sum_{i=1}^{c} d_{i} - r-1).
+$$
+\end{exercise}
+
+Here is a special case that will be important to us:
+\begin{proposition}\label{computation of omega}
+ Suppose that 
+$C \subset \PP^{n}$ is a purely 1-dimensional scheme. If $(f_{1}, \dots, f_{n-1}) \subset I_{C}$ is a regular sequence of forms of degrees $d_{1}\dots,d_{r}$ defining the scheme $X\supset C$, then 
+$$
+\omega_{C}\cong \frac{\widetilde
+{\cI_{X}:\cI_{C}}}{\cI_{X}}(q),
+$$
+where $q = (\sum_{i=1}^{n-1} d_{i}) -r-1.$
+\end{proposition}
+ \fix{both the prop and the proof should be done for affine cones, then localized.}
+\begin{proof}
+ By Theorem~\ref{} we know that $\omega_{X} = \cO_{X}(q)$. Further, the map
+ $C\to X$ is finite, so 
+ $$
+ \omega_{C} = Hom(\cO_{C}, \omega_{X}) = \Hom(\cO_{C}, \cO_{X})(q).
+ $$
+ But $\Hom(\cO_{C}, \cO_{X}) = (\cI_{X}:\cI_{C})/\cI_{X}$, completing the proof.
+\end{proof}
+
+\fix{Add: computation of the Hilbert functions, and the degree, genus formula, as a corollary. Should be in P-S}
+%\begin{theorem} \label{canonical of Gor}
+% $R$ is Gorenstein if and only if $R$ is Cohen-Macaulay and $\omega_{R} \cong R$ (up to twist in the graded case)
+%\end{theorem}
+%\begin{proof}
+ 
+
+
+\input{footer}
