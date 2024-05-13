@@ -1,78 +1,44 @@
 %header and footer for separate chapter files
 
 \ifx\whole\undefined
-\documentclass[12pt, leqno]{book}
-\usepackage{graphicx}
-\usepackage{eps-to-pdf}
+\documentclass[leqno,ebook]{gsm-l}
+
+\let\printindex\relax
+\usepackage{xcolor}
 \input style-for-curves.sty
 %\input sl-macros.sty
 \usepackage{hyperref}
 \usepackage{showkeys} %This shows the labels.
 \usepackage{msribib}
+
 \usepackage{pdfpages}
 \usepackage{draftwatermark}
 \SetWatermarkText{DRAFT:\ \today}
-\SetWatermarkScale{2}
+\SetWatermarkScale{.3}
 \SetWatermarkColor[gray]{0.9}
 
-%\usepackage{SLAG,msribib,local}
-%\usepackage{amsmath,amscd,amsthm,amssymb,amsxtra,latexsym,epsfig,epic,graphics}
-%\usepackage[matrix,arrow,curve]{xy}
-%\usepackage{graphicx}
-%\usepackage{diagrams}
-%
-%%\usepackage{amsrefs}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%\textwidth16cm
-%%\textheight20cm
-%%\topmargin-2cm
-%\oddsidemargin.8cm
-%\evensidemargin1cm
-%
-%%%%%%Definitions
-%\input preamble.tex
-%\input style-for-curves.sty
-%\def\TU{{\bf U}}
-%\def\AA{{\mathbb A}}
-%\def\BB{{\mathbb B}}
-%\def\CC{{\mathbb C}}
-%\def\QQ{{\mathbb Q}}
-%\def\RR{{\mathbb R}}
-%\def\facet{{\bf facet}}
-%\def\image{{\rm image}}
-%\def\cE{{\cal E}}
-%\def\cF{{\cal F}}
-%\def\cG{{\cal G}}
-%\def\cH{{\cal H}}
-%\def\cHom{{{\cal H}om}}
-%\def\h{{\rm h}}
-% \def\bs{{Boij-S\"oderberg{} }}
-%
-%\makeatletter
-%\def\Ddots{\mathinner{\mkern1mu\raise\p@
-%\vbox{\kern7\p@\hbox{.}}\mkern2mu
-%\raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
-%\makeatother
+\usepackage{amstix2}
+\usepackage{microtype}
 
-%%
-%\pagestyle{myheadings}
-
-%\input style-for-curves.tex
-%\documentclass{cambridge7A}
-%\usepackage{hatcher_revised} 
-%\usepackage{3264}
-   
 \errorcontextlines=1000
-%\usepackage{makeidx}
+
+\setcounter{tocdepth}{2}
+\numberwithin{figure}{chapter}
+
 \let\see\relax
 \usepackage{makeidx}
-\makeindex
+% \makeindex
 % \index{word} in the doc; \index{variety!algebraic} gives variety, algebraic
 % PUT a % after each \index{***}
 
 \overfullrule=5pt
 \catcode`\@\active
-\def@{\mskip1.5mu} %produce a small space in math with an @
+\def@{\mskip1.5mu} %produce a small space in math with an @ = 1/2 of \,
+\mathcode`\@="8000 
+\mathcode`\`="8000
+\bgroup\catcode`\`\active 
+\AtBeginDocument{\def`{\mskip-1mu}} % backspace, 1/3 of \!
+\egroup
 
 \title{A Chapter from ``The Practice of Algebraic Curves"}
 \author{\copyright David Eisenbud and Joe Harris}
@@ -93,6 +59,8 @@
 
 \begin{document}
 \maketitle
+
+\let\cal\mathcal
 
 \pagenumbering{roman}
 \setcounter{page}{5}
