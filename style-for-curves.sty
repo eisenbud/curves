@@ -2,6 +2,8 @@
 \usepackage[matrix,arrow,curve]{xy}
 \usepackage{xcolor}
 
+\def\sfrac#1#2{\vcenter{\offinterlineskip
+ \halign{\hfil$\ssty ##$\hfil\cr#1\cr\noalign{\vskip1pt\hrule\vskip1pt}#2\cr}}}
 \input preamble.tex
 
 \def\thesection{\thechapter\Alph{section}}
@@ -10,11 +12,21 @@
 \let\dsty\displaystyle \let\tsty\textstyle
 \let\ssty\scriptstyle \let\sssty\scriptscriptstyle
 % binomial coefficiently with lines not so far apart
-\def\cramped#1{\radical0 {\kern-\nulldelimiterspace#1}}
+%\def\cramped#1{\radical0 {\kern-\nulldelimiterspace#1}}
 \def\mbinom#1#2{\Bigl({\tsty{\tsty\medmuskip1mu\hbox{$#1$}\lower2.5pt\hbox{}\atop
-      \tsty\medmuskip1mu\hbox{$\cramped{#2}$}\vbox to9pt{}}}\Bigr)}
-\def\tbinom#1#2{\bigl({\tsty{\medmuskip1mu\hbox{$\ssty#1$}\lower3pt\hbox{}\atop
-      \medmuskip1mu\raise4pt\hbox{$\cramped{\ssty#2}$}\vbox to9pt{}}}\bigr)}
+      \tsty\medmuskip1mu\smash{#2}\vbox to9pt{}}}\Bigr)}
+\def\tbinom#1#2{\bigl(\smash{\tsty{\medmuskip1mu\hbox{$\ssty#1$}\lower3pt\hbox{}\atop
+      \medmuskip1mu\raise4pt\hbox{$\ssty#2$}\vbox to9pt{}}}\bigr)}
+\def\overkern#1#2#3{{}\mskip#1mu\overline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
+\def\underkern#1#2#3{{}\mskip#1mu\underline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
+
+\def\ovD{\overkern31D}
+\def\ovR{\overkern31R}
+
+\def\[{[\mskip-3mu[}
+\def\]{]\mskip-3mu]}
+%\def\lparr{(\mskip-1.5mu(}
+%\def\rparr{)\mskip-1.5mu)}
 
 \hyphenation{
 homo-morphism homo-morphisms 
@@ -141,6 +153,7 @@ auto-morphism auto-morphisms
 \def\pic{\operatorname{Pic}}
 \def\Div{\operatorname{Div}}
 \def\Ann{\operatorname{Ann}}
+\def\Res{\operatorname{Res}}
 
 \def\g{\operatorname{\rm g}}
 \def\p{\operatorname{\rm p_{a})}}
@@ -150,9 +163,7 @@ auto-morphism auto-morphisms
 \def\pd{\operatorname{pd}}
 
 \def\TRR{{Theorem~\ref{RR}}}
-\def\trr{{the Riemann--Roch Theorem }}
-\def\trh{{the Riemann--Hurwitz Theorem }}
-\def\bt{{B\'ezout's Theorem}}
+\def\bt{{B\'ezout's theorem}}
 
 \newcommand{\ha}{\frac{1}{2}}
 
