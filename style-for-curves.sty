@@ -6,8 +6,56 @@
  \halign{\hfil$\ssty ##$\hfil\cr#1\cr\noalign{\vskip1pt\hrule\vskip1pt}#2\cr}}}
 \input preamble.tex
 
+\def\unif{\vspace*{-\parskip}}% uniformize space at end of theorems
+
 \def\thesection{\thechapter\Alph{section}}
 \def\thesubsection{\thesection\arabic{subsection}}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{satz}{Satz}[section]
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+\definecolor{factcolor}{cmyk}{0.5,0.1,0,0}
+\def\cbstart{\bgroup\color{factcolor}%
+  \hrule width\hsize height3pt\vskip2pt\hrule width\hsize height1pt\vskip1pt
+  \egroup}
+\def\cbend{\hskip0pt\lower7pt\hbox{}\par\bgroup\color{factcolor}%
+  \hrule width\hsize height1pt\vskip2pt\hrule width\hsize height3pt\relax
+  \egroup}
+\newenvironment{fact}[1][\unskip]
+  {\par\goodbreak\begin{npt}\begin{factoid}[#1]
+    \vskip3pt\cbstart\normalfont\fontsize{11}{13}\selectfont}
+  {\cbend\end{factoid}\end{npt}}
+\def\cfword{Cheerful Fact}
+\newtheorem{factoid}[theorem]{\cfword}
+
+\def\manyfacts{\def\cfword{Cheerful Facts}% 
+% use: \begingroup\manyfacts \begin{fact} \item... \end{fact}\endgroup
+  \def\item{\quad$\bullet$\enspace
+    \def\item{\par\noindent$\bullet$\enspace}}}
+
+\let\oup\upshape
+\newenvironment{npt}{% "no parens thm" used when a thm starts with a citation
+  \def\textup##1{{\oup##1}}%
+  \gdef\upshape(##1){\oup##1\global\let\upshape\oup} % \upshape is last token
+    % in the expansion of \thm@notefont, so this trick strips off the parens
+}{}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{thmdef}[theorem]{Theorem-Definition}
+\newtheorem{propdef}[theorem]{Proposition-Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remdef}[theorem]{Remark-Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{Exercise}[chapter]
+\def\theexercise{\thechapter\hbox{-}\arabic{exercise}}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{sub}[subsubsection]{}
 
 \let\dsty\displaystyle \let\tsty\textstyle
 \let\ssty\scriptstyle \let\sssty\scriptscriptstyle
@@ -17,6 +65,8 @@
       \tsty\medmuskip1mu\smash{#2}\vbox to9pt{}}}\Bigr)}
 \def\tbinom#1#2{\bigl(\smash{\tsty{\medmuskip1mu\hbox{$\ssty#1$}\lower3pt\hbox{}\atop
       \medmuskip1mu\raise4pt\hbox{$\ssty#2$}\vbox to9pt{}}}\bigr)}
+\def\sbinom#1#2{(\vcenter to0pt{\offinterlineskip\vss\halign{\hfil$\sssty##$\hfil\cr#1\cr\noalign{\vskip1pt}#2\cr}\vss})}
+
 \def\overkern#1#2#3{{}\mskip#1mu\overline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
 \def\underkern#1#2#3{{}\mskip#1mu\underline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
 
@@ -28,7 +78,20 @@
 %\def\lparr{(\mskip-1.5mu(}
 %\def\rparr{)\mskip-1.5mu)}
 
+\def\0{$0$}
+\def\1{$1$}
+\def\2{$2$}
+\def\3{$3$}
+\def\4{$4$}
+\def\5{$5$}
+\def\6{$6$}
+\def\7{$7$}
+\def\8{$8$}
+\def\9{$9$}
+
 \hyphenation{
+non-zero-divisor non-zero-divisors
+hyper-elliptic
 homo-morphism homo-morphisms 
 homo-geneous
 auto-morphism auto-morphisms
@@ -54,6 +117,13 @@ auto-morphism auto-morphisms
   \indentlabel{\qquad\raise2.4pt\copy\trigabox\@ifnotempty{#2}{#2\quad}}#3}
 
 \usepackage[nohug,heads=curlyvee]{diagrams}
+
+% \subsubsection was too wimpy in terms of vertical skip and title font.
+% It needs to stand out at least as much as a theorem.
+\def\subsubsection{\@startsection{subsubsection}{3}%
+  \z@{.25\linespacing\@plus.35\linespacing}{-.5em}%
+  {\normalfont\itshape\bfseries}}
+
 \def\@marginparreset{\marginparstyle}
 \def\marginparstyle{\reset@font\SMALL\normalfont\@setminipage\raggedright\openup-2pt}
 \@mparswitchfalse
@@ -149,6 +219,7 @@ auto-morphism auto-morphisms
 \newarrow {Dashto} {}{dash}{}{dash}>
 \def\rmspan{\operatorname{span}}
 \def\ram{\operatorname{ram}}
+\def\SL{\operatorname{SL}}
 \def\PGL{\operatorname{PGL}}
 \def\pic{\operatorname{Pic}}
 \def\Div{\operatorname{Div}}
