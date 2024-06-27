@@ -2,6 +2,8 @@
 \usepackage[matrix,arrow,curve]{xy}
 \usepackage{xcolor}
 
+\def\colonequals{:=} % temporary until I find out where it's defined
+
 \def\sfrac#1#2{\vcenter{\offinterlineskip
  \halign{\hfil$\ssty ##$\hfil\cr#1\cr\noalign{\vskip1pt\hrule\vskip1pt}#2\cr}}}
 \input preamble.tex
@@ -96,6 +98,7 @@ hyper-elliptic
 homo-morphism homo-morphisms 
 homo-geneous
 auto-morphism auto-morphisms
+quasi-projec-tive
 }
 
 \def\emdash{\unskip\thinspace---\hskip.16667em\ignorespaces}
@@ -106,6 +109,8 @@ auto-morphism auto-morphisms
 % \redden and \endredden is enough and simplifies some things.
 
 \makeatletter
+
+\def\tsum{\mathop{\tsty\sum@}\limits}\def\tprod{\mathop{\tsty\prod@}\limits}
 
 \newbox\trigabox
 \DeclareMathSymbol{\blacktriangleright} {\mathrel}{AMSa}{"49}
@@ -157,7 +162,7 @@ auto-morphism auto-morphisms
 %\def\redd@n#1{\leavevmode\ifproofs{\color{red}#1}\else
 %    \@latex@warning{\string\redden\space suppressed in final version}{#1}\fi}
 \def\redd@n#1{\leavevmode{\color{red}#1}}
-\def\blue#1{\leavevmode{\color{blue}#1}\marginpar{indexed}}
+\def\blue#1{\leavevmode{\color{blue}#1}}
 
 % The {redden*} environment places a big red star in a marginpar,
 % besides printing its contents in red. If there is
@@ -183,6 +188,10 @@ auto-morphism auto-morphisms
       \kern7pt}}
 \def\ruuto#1{\mathrel{\hbox{$-\mskip-8mu-\mskip-8mu\to$}%
       \kern-18.5pt
+      \raise6pt\hbox{$\scriptstyle#1$}%
+      \kern3pt}}
+\def\ruuuto#1{\mathrel{\hbox{$-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu\to$}%
+      \kern-49pt
       \raise6pt\hbox{$\scriptstyle#1$}%
       \kern3pt}}
 
@@ -274,6 +283,19 @@ auto-morphism auto-morphisms
   \lineskip=#1\relax
   \normallineskip=#1\relax
   \advance\jot 1pt %try to compensate for possible squeezing of math alignments
+}
+
+\newenvironment{tcases}{% helps make the braces less huge
+  \matrix@check\tcases\env@tcases
+}{%
+  \crcr\noalign{\vskip-2pt}\endarray\right.%
+}
+\def\env@tcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrace
+  \def\arraystretch{1.1}%
+  \array{@{}l@{\quad}l@{}}%
+  \noalign{\vskip-2pt}
 }
 
 \makeatother
