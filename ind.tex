@@ -3,14 +3,16 @@
 % f and n
 % some authors have all works collected at the end
 
+\begingroup
 \catcode`\^\active
 %if ^ is followed by 
 % 1:  print f, gobble the following ^ and the next character
 % 0:  print n, gobble the following ^
-% any other letter: print letter
+% any other letter: normal subscript
 \makeatletter
 \def^#1{\ifx1#1f\expandafter\@gobbletwo\else
-        \ifx0#1n\expandafter\expandafter\expandafter\@gobble\else#1\fi\fi}
+        \ifx0#1n\expandafter\expandafter\expandafter\@gobble
+        \else\sp{#1}\fi\fi}
 \makeatother
 \let\moreadhoc\relax
 \def\indexintro{%An author's cited works appear at the end of the
@@ -19,3 +21,4 @@
 %\smallbreak\noindent
 The letter `f' after a page number indicates a figure, `n' a footnote.}
 \printindex[gen]
+\endgroup % end of \catcode
