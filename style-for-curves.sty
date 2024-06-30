@@ -1,13 +1,20 @@
 \usepackage{amsmath,amscd,amsthm,amsxtra,latexsym,epsfig,epic,graphicx}
 \usepackage[matrix,arrow,curve]{xy}
 \usepackage{xcolor}
+\usepackage{mathtools} % for \coloneqq
 
-\def\colonequals{:=} % temporary until I find out where it's defined
+\input preamble.tex
+
+\AtBeginDocument{
+\let\colonequals\coloneqq
+\let\equalscolon\eqqcolon
+}
 
 \def\sfrac#1#2{\vcenter{\offinterlineskip
  \halign{\hfil$\ssty ##$\hfil\cr#1\cr\noalign{\vskip1pt\hrule\vskip1pt}#2\cr}}}
-\input preamble.tex
 
+\def\upstrut{\noindent\vbox to 13pt{}}
+\def\downstrut{\noindent\lower5.5pt\vbox{}}
 \def\unif{\vspace*{-\parskip}}% uniformize space at end of theorems
 
 \def\thesection{\thechapter\Alph{section}}
@@ -122,7 +129,8 @@ quasi-projec-tive
 \def\tocsubsection#1#2#3{%
   \indentlabel{\qquad\raise2.4pt\copy\trigabox\@ifnotempty{#2}{#2\quad}}#3}
 
-\usepackage[nohug,heads=curlyvee]{diagrams}
+% \usepackage[nohug,heads=curlyvee]{diagrams}
+\usepackage[nohug]{diagrams}
 
 % \subsubsection was too wimpy in terms of vertical skip and title font.
 % It needs to stand out at least as much as a theorem.
