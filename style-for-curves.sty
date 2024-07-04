@@ -10,8 +10,18 @@
 \let\equalscolon\eqqcolon
 }
 
+\def\defi#1{{\bf#1}}
+
 \def\sfrac#1#2{\vcenter{\offinterlineskip
  \halign{\hfil$\ssty ##$\hfil\cr#1\cr\noalign{\vskip1pt\hrule\vskip1pt}#2\cr}}}
+% in \mfrac, hbox is needed for medmuskip to take effect
+\def\mfrac#1#2{{\tsty{\tsty\medmuskip1mu\hbox{$#1$}\lower2.5pt\hbox{}\over
+      \tsty\medmuskip1mu \hbox{$#2$}\vbox to9pt{}}}}
+\def\unfrac#1{#1/}
+\def\punfrac#1#2{(#1/#2)}
+\def\upnfrac#1#2{(#1)/#2}
+\def\unpfrac#1#2{#1/(#2)}
+\def\upnpfrac#1#2{(#1)/(#2)}
 
 \def\upstrut{\noindent\vbox to 13pt{}}
 \def\downstrut{\noindent\lower5.5pt\vbox{}}
@@ -76,11 +86,14 @@
       \medmuskip1mu\raise4pt\hbox{$\ssty#2$}\vbox to9pt{}}}\bigr)}
 \def\sbinom#1#2{(\vcenter to0pt{\offinterlineskip\vss\halign{\hfil$\sssty##$\hfil\cr#1\cr\noalign{\vskip1pt}#2\cr}\vss})}
 
-\def\overkern#1#2#3{{}\mskip#1mu\overline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
+\def\overlow#1{\overline{\vbox to 6.8pt{}\smash{#1}}}
+
+\def\overkern#1#2#3{{}\mskip#1mu\overlow{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
 \def\underkern#1#2#3{{}\mskip#1mu\underline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
 
-\def\ovD{\overkern31D}
-\def\ovR{\overkern31R}
+\def\ovD{\overkern20D}
+\def\ovR{\overkern20R}
+\def\ovM{\overkern20M}
 
 \def\[{[\mskip-3mu[}
 \def\]{]\mskip-3mu]}
@@ -186,10 +199,6 @@ quasi-projec-tive
 \def\bbeta{{\boldsymbol{\beta}}}
 \def\bdelta{{\boldsymbol{\delta}}}
 
-\DeclareMathOperator{\grade}{\rm grade}
-\DeclareMathOperator{\Fitt}{\rm Fitt}
-\def\ram{{\operatorname{ram}}}
-
 \def\ruto#1{\mathrel{\hbox{$-\mskip-8mu\to$}%
       \kern-13.5pt
       \raise6pt\hbox{$\scriptstyle#1$}%
@@ -229,13 +238,16 @@ quasi-projec-tive
 \def\gb{\beta}
 \def\ff{\mathfrak f}
 \def\fA{\mathfrak A}
-\def\Mor{{\rm Mor}}
+\def\Mor{\mathrm{Mor}}
+\def\Hur{\mathrm{Hur}}
 
 \def\ot{\leftarrow}
-\def\cHom{\mathcal Hom}
+\def\cHom{\mathcal{H}om}
 \def\h{{\rm h}}
 \newarrow {Dashto} {}{dash}{}{dash}>
 \def\rmspan{\operatorname{span}}
+\def\grade{\operatorname{grade}}
+\def\Fitt{\operatorname{Fitt}}
 \def\ram{\operatorname{ram}}
 \def\SL{\operatorname{SL}}
 \def\PGL{\operatorname{PGL}}
@@ -250,6 +262,7 @@ quasi-projec-tive
 \def\Sec{\operatorname{Sec}}
 \def\sExt{\mathcal Ext}
 \def\pd{\operatorname{pd}}
+\def\sing{\mathrm{sing}}
 
 \def\TRR{{Theorem~\ref{RR}}}
 \def\bt{{B\'ezout's theorem}}
@@ -261,7 +274,7 @@ quasi-projec-tive
 \def\cW{{\mathcal W}}
 
 \def\op#1#2{{\cO_{\PP^{#1}}(#2)}}
-\def\quot{{/\kern-3pt/}}
+\def\quot{{/\mkern-4mu/}}
 \makeatletter
 \def\Ddots{\mathinner{\mkern1mu\raise\p@
 \vbox{\kern7\p@\hbox{.}}\mkern2mu
