@@ -27,8 +27,8 @@
 \def\downstrut{\noindent\lower5.5pt\vbox{}}
 \def\unif{\vspace*{-\parskip}}% uniformize space at end of theorems
 
-\def\thesection{\thechapter\Alph{section}}
-\def\thesubsection{\thesection\arabic{subsection}}
+\def\thesection{\thechapter.\arabic{section}}
+\def\thesubsection{\thesection.\arabic{subsection}}
 
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -56,25 +56,11 @@
   \def\item{\quad$\bullet$\enspace
     \def\item{\par\noindent$\bullet$\enspace}}}
 
-\let\oup\upshape
-\newenvironment{npt}{% "no parens thm" used when a thm starts with a citation
-  \def\textup##1{{\oup##1}}%
-  \gdef\upshape(##1){\oup##1\global\let\upshape\oup} % \upshape is last token
-    % in the expansion of \thm@notefont, so this trick strips off the parens
-}{}
-
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{thmdef}[theorem]{Theorem-Definition}
-\newtheorem{propdef}[theorem]{Proposition-Definition}
 \newtheorem{remark}[theorem]{Remark}
-\newtheorem{remdef}[theorem]{Remark-Definition}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}{Exercise}[chapter]
-\def\theexercise{\thechapter\hbox{-}\arabic{exercise}}
-\newtheorem{algorithm}[theorem]{Algorithm}
-\newtheorem{sub}[subsubsection]{}
 
 \let\dsty\displaystyle \let\tsty\textstyle
 \let\ssty\scriptstyle \let\sssty\scriptscriptstyle
@@ -89,6 +75,7 @@
 \def\lessbigcap{\mathop{\raise0.5pt\hbox{\smash{\small$\bigcap$}\hskip0.5pt}\lower2pt\vbox to 9pt{}}}
 
 \def\overlow#1{\overline{\vbox to 6.8pt{}\smash{#1}}}
+\def\overlw#1#2#3{{}\mskip#1mu\overline{\vbox to 5pt{}\smash{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}}
 
 \def\overkern#1#2#3{{}\mskip#1mu\overlow{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
 \def\underkern#1#2#3{{}\mskip#1mu\underline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
@@ -96,6 +83,8 @@
 \def\ovD{\overkern20D}
 \def\ovR{\overkern20R}
 \def\ovM{\overkern20M}
+\def\Vk{V_{\mskip-5mu k}} % V_k and W_k have huge gaps
+\def\Vkmi{V_{\mskip-5mu k-1}}
 
 \def\[{[\mskip-3mu[}
 \def\]{]\mskip-3mu]}
@@ -131,6 +120,16 @@ quasi-projec-tive
 % \redden and \endredden is enough and simplifies some things.
 
 \makeatletter
+
+\let\lpar( \let\rpar)
+\def\thmhead@plain#1#2#3{%
+  \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}%
+  \thmnote{ {\the\thm@notefont\lpar#3\rpar}}}
+
+\newenvironment{npt}{% "no parens thm" used when a thm starts with a citation
+  \def\lpar{}
+  \def\rpar{}
+}{}
 
 \def\tsum{\mathop{\tsty\sum@}\limits}\def\tprod{\mathop{\tsty\prod@}\limits}
 
@@ -242,6 +241,8 @@ quasi-projec-tive
 \def\fA{\mathfrak A}
 \def\Mor{\mathrm{Mor}}
 \def\Hur{\mathrm{Hur}}
+\def\mult(#1){\operatorname{mult}#1}
+\def\stat(#1){\operatorname{stat}#1}
 
 \def\ot{\leftarrow}
 \def\cHom{\mathcal{H}om}
