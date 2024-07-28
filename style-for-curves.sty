@@ -121,6 +121,23 @@ quasi-projec-tive
 
 \makeatletter
 
+\def\eqalign#1{%
+ \chardef\dspbrk@context\@ne % protection against a misguided \displaybreak;
+                             % else it would force a break after the \eqalign
+ \null\,\vcenter{\openup\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil
+      &&\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\eqalignbot#1{%
+ \chardef\dspbrk@context\@ne
+ \null\,\vbox{\openup\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil
+      &&\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\eqaligntop#1{%
+ \chardef\dspbrk@context\@ne
+ \null\,\vtop{\openup\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil
+      &&\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+
 \let\lpar( \let\rpar)
 \def\thmhead@plain#1#2#3{%
   \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}%
