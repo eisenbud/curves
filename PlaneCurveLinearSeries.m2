@@ -1177,6 +1177,24 @@ check "PlaneCurveLinearSeries"
 viewHelp PlaneCurveLinearSeries
 ///
 
+--lower bound for a component of the restricted Hilbert scheme:
+h = (g,r,d) -> (r+1)*d - (r-3)*(g-1)
+
+--Castelnuovo bound on the genus of a curve of degree d in Pr
+CBound = (r,d) -> (
+    M = (d-1)//(r-1);
+    eps = (d-1)%(r-1);
+    binomial(M,2)*(r-1) +M*eps
+    )
+ --theses fail to imply the non-existence of rigid curves when some values of the following are <=0.
+test = (r,d) -> (
+    for g from 0 to CBound(r,d) list h(g,r,d)
+    )
+
+netList flatten for r from 4 to 20 list for g from 0 to 10 list test(r, g)
+
+r=4;d=36
+h(CBound(r,d), r,d)
 
 
 
