@@ -8,19 +8,27 @@
 In Chapter~\ref{LinkageChapter} we related the resolutions of curves
 in $\PP^3$ to their Hartshorne--Rao modules. The simplest case was
 that in which the Hartshorne--Rao module vanishes, that is, the case
-of arithmetically Cohen--Macaulay curves. In this chapter we first
-quote a result that is a step toward understanding the structure of
-free resolutions, and use it to explain how the condition that a curve
+of arithmetically Cohen--Macaulay curves. The first 3 sections of this
+chapter constitue a quick review of some necessary parts of
+ homological commutative algebra; see~\cite[Part III]{Eisenbud1995}
+ for a more complete exposition. In particular, we
+  explain how the condition that a curve
 in $\PP^r$ is arithmetically Cohen--Macaulay manifests itself in the
-free resolution of the homogeneous ideal of the curve. We will then
+free resolution of the homogeneous ideal of the curve. We then
 introduce the Eagon--Northcott complexes, and explain their relation to
 the free resolutions of canonical curves. We close the chapter with an
 explanation of Green's conjecture, which proposes a way in which the
 intrinsic geometry of a curve may be connected to the shape of its
 minimal free resolution of its ideal in the canonical embedding.
 
-There are two related contexts for the results of this section:
-\marginpar{dropped ``Remark'' heading (in part to avoid breaking Nakayama's name}
+
+\section{Free resolutions}
+
+
+The basic results described here depend on 
+\blue{Nakayama's lemma} and hold 
+\index{Nakayama's lemma}%
+ in two parallel contexts:
 \blue{modules over a local ring,}
 \index{module!over a local ring}%
 \index{local ring!module over}%
@@ -28,17 +36,20 @@ and
 \blue{graded modules over a polynomial ring}
 \index{graded module}%
 \index{polynomial ring}%
-whose variables have positive degree. These are parallel, essentially
-because
-\blue{Nakayama's lemma}
-\index{Nakayama's lemma}%
-works in both cases. We will simply work
-with local rings or polynomial rings over a field with variables in
-degree 1 and leave the translations to the reader.
+whose variables have positive degree. 
+We will work both with local rings and with
+polynomial rings whose variables have degree 1,
+as appropriate, and leave the translations to the reader.
+%%These are similar
+%The similarity is essentially because
+%%because
+%\blue{Nakayama's lemma}
+%\index{Nakayama's lemma}%
+%works in both cases. We will work in either context, as convenient,
+%%with local rings or with polynomial rings over a field with variables in
+%%degree 1 as convenient, 
 
-\section{Free resolutions}
-A more complete presentation of the material in this section may be
-found in \cite[Chapter 19]{Eisenbud1995}.
+
 
 Let $M$ be a finitely generated graded module over $S \colonequals
 \CC[x_0, \dots x_r]$. A \emph{free resolution} of $M$ is an
@@ -55,28 +66,29 @@ $$
 $$
 Here $S(-j)$ denotes the graded free module of rank 1 with generator in
 degree~$j$.
-(The map to $M$ is not considered part of the free resolution). The
-resolution is \emph{minimal} if a minimal set of generators of $F_i
+The map to $M$ is not considered part of the free resolution. The
+resolution is called \emph{minimal} if a minimal set of generators of $F_i
 \index{minimal free resolution}%
 \index{free resolution!minimal}%
 \colonequals  \bigoplus_jS(-j)^{\beta_{t,j}}$ maps to a minimal set of
 generators of the kernel of the following map,
 or equivalently (by Nakayama's lemma) the maps in $\FF\otimes_S \CC$
 \index{Nakayama's lemma}%
-are all 0.
+are all 0. The numbers $\beta_{i,j}$ are called the \blue{\emph{betti numbers}}
+\index{betti numbers}%
+of $M$.
 
-The first examples of a minimal free resolution are the Koszul complexes
+The most basic examples of minimal free resolutions are the Koszul complexes
 \index{Koszul complex}%
 \index{historic context}%
-(first defined, despite the name, in \cite{Cayley}, and repeated,
+(first defined, despite the name, in \cite{Cayley}, and found
 \index{Cayley, David}%
 \index{Hilbert, David}%
-\marginpar{indexed Cayley and Hilbert}
 as examples,
 in \cite{Hilbert1890}), which resolve $S/I$ when
 $I = (f_1,\dots, f_t)$
 is a complete intersection, that is, $f_1,\dots, f_t$ is a regular
-sequence, with $\deg f_i = d_i$.  For $t = 2,3$, these look like
+sequence.  For $t = 2,3$, if $\deg f_i = d_i$, these have the form
 $$
 \xymatrix@C=30pt{
 S
@@ -112,15 +124,44 @@ F_2=
 F_3 =
 S(-d_1-d_2-d_3).
 $$
+Minimal free resolutions of a given module $M$ are all isomorphic, and thus provide
+interesting invariants of $M$.
+
+To construct the minimal free resolution of a finitely generated graded module $M$, suppose that a minimal homogeneous set of generators
+of $M$
+contains $\beta_{0,j}$ generators of degree $j$ for each $j$; the choice of generators
+defines a degree 0 map $\epsilon$
+from
+$
+\oplus_jS(-j)^{\beta_{0,j}}
+$
+onto $M$. We proceed to do the same with the kernel of $\epsilon$ to construct $\phi_{1}$, and continue similarly to construct $\phi_{2}\dots$.
 Hilbert's basis theorem
 \index{Hilbert's basis theorem}%
 and
-\marginpar{split up ``theorems'' (but let ``Hilbert's'' be shared)}
 syzygy theorem
 \index{Hilbert's syzygy theorem}%
-together imply that every finitely
+together imply that 
+that for some $t\leq r+1$ we will find that $\phi_t$ has
+kernel equal to 0; that is,
+every finitely
 generated $S$-module has a finite free resolution
-of length no greater than the number of variables, $r+1$. (Fundamental
+of length $t\leq r+1$
+\cite[Corollary 19.7]{Eisenbud1995}.
+The minimal such $t$ is called the \blue{\emph{projective dimension} }of $M$ written \blue{$\pd\ M$}.
+\index{projective dimension}%
+\index{\pd}%
+Computing $\Ext(M,-)$ from such a resolution, Nakayama's lemma implies that,
+$$
+t = \max\{s \mid \Ext_S^s(M,k) \neq 0 \}.
+$$
+It follows from the Auslander--Buchsbaum
+\index{Auslander--Buchsbaum theorem}%
+theorem \cite[Theorem 19.9]{Eisenbud1995} that $t \geq \codim \ann_S(M)$,
+the codimension of the support of $M$.
+
+\begin{fact}
+ Fundamental
 results of Auslander, Buchsbaum and Serre say that a local ring $R$
 \index{Serre, Jean-Pierre}%
 \index{Buchsbaum, David A.}%
@@ -131,34 +172,13 @@ is \emph{regular}\emdash that is, the
 \index{Krull dimension}%
 of $R$ is equal to the
 minimal number
-of generators of $\gm$\emdash if and only~if the minimal free resolution
+of generators of is maximal ideal \emdash if and only~if the minimal free resolution
 of the residue field is finite, in which case
-the minimal free resolution of every module is finite.)
+the minimal free resolution of every module is finite.
+\end{fact}
+ 
 
-To construct this, suppose that a minimal homogeneous set of generators
-of $M$
-contains $\beta_{0,j}$ generators of degree $j$ for each $j$; this
-defines a degree 0 map $\epsilon$
-from
-$
-\oplus_jS(-j)^{\beta_{0,j}}
-$
-onto $M$. We proceed similarly with the kernel of $\epsilon$, and continue
-to construct the whole resolution.
-Hilbert's syzygy theorem \cite[Corollary 19.7]{Eisenbud1995} implies
-that the process ends after $t\leq r$ steps with a map $\phi_t$ whose
-kernel is 0.
 
-The number $t$ is then the projective dimension of $M$.
-Equivalently,
-$$
-\pd\ M = \max\{t \mid \Ext_S^t(M,k) \neq 0 \}.
-$$
-It follows from the Auslander--Buchsbaum
-\index{Auslander--Buchsbaum theorem}%
-theorem \cite[Theorem 19.9]{Eisenbud1995} that $t \geq \codim \ann_S(M)$,
-the codimension of the support of $M$.
-Minimal free resolutions of a given module $M$ are all isomorphic.
 
 \section{Classification of 1-generic \texorpdfstring{$2\times f$}{2 x f}
 matrices}\label{Kronecker}
@@ -167,8 +187,6 @@ We can use the uniqueness of minimal free resolutions to give a simple
 proof of Kronecker's classification of 1-generic $2\times f$
 \index{Kronecker, Leopold}%
 matrices, which was announced in Chapter~\ref{ScrollsChapter}.
-\marginpar{removed Gantmacher citation, which is given later for the
-same result}
 
 \begin{theorem}\label{matrix pencils}
 Every
@@ -197,7 +215,7 @@ An  $a\times b$ matrix of linear forms in $c$ variables $M$ corresponding
 to $A\otimes B \to C$ is 1-generic if and only~if the $c \times b$ matrix
 $N$ of linear forms in $a$ variables corresponding to $C^{*}\otimes B
 \to A$ has constant rank $b$; that is,
-for point $x$ in $\PP^{a-1}$, the rank of $N$ evaluated at $x$ is $b$.
+for any point $x$ in $\PP^{a-1}$, the rank of $N$ evaluated at $x$ is $b$.
 \unif
 \end{proposition}
 
@@ -218,12 +236,11 @@ forms in $r+1$ variables of Theorem~\ref{matrix pencils} is equivalent
 to the classification
 of \emph{matrix pencils} of constant maximal rank\emdash that is $f \times
 \index{matrix pencil}%
-(r+1)$ matrices of linear forms over $\PP^{1}$ with constant rank $r$.
+(r+1)$ matrices of linear forms over $\PP^{1}$ with constant rank $f$.
 Such ``matrix pencils'' were first classified by Kronecker; see
 \index{Kronecker, Leopold}%
 \cite[Chapter 12]{Gantmacher} for an exposition, and
 \cite{Eisenbud-Harris-Centennial} for a geometric approach.
-We will give a still simpler proof:
 
 \begin{proof}[Proof of Theorem~\ref{matrix pencils}]
 Let $M$ be a 1-generic $2\times b$ matrix in $r+1$ variables. We may
@@ -236,24 +253,27 @@ $$
 of linear forms over $\PP^{1}$ has constant rank $b$.
 For every point $x\in \PP^{1}$ the scalar matrix $N(x)$ is a split
 inclusion, and thus
-$\coker N$ is a vector bundle, necessarily isomorphic to $\sum_{i
+$\coker N$ is a vector bundle on $\PP^{1}$ that is generated by its global sections, and thus, necessarily of the form $\sum_{i
 =1}^{d}\sO_{\PP^{1}}(a_{i})$ for some
 integers $a_{i}\geq 0$.
 
-Regarded as a matrix over $\CC[s,t]$ it follows that the exact sequence
+Regarding $N$ as a matrix over the homogeneous coordinate ring $S\colonequals \CC[s,t]$ of $\PP^{1}$, and taking global sections of all
+non-negative twists, we get
 $$
 \tsty
-0\to \sO_{\PP^{1}}(-1)^{b} \ruto {N}
-\sO_{\PP^{1}}^{r+1}  \to \bigoplus\limits_{i = 1}^{d}\,\bigl(
-\bigoplus\limits_{j=0}^{\infty}H^{0}(\sO_{\PP^{1}}(j-a_{i}))\bigr)\to 0
+0\to S(-1)^{b} \ruto {N}
+S^{r+1}  \to \bigoplus\limits_{i = 1}^{d}\,\bigl(
+\bigoplus\limits_{j=0}^{\infty}H^{0}(\sO_{\PP^{1}}(j+a_{i}))\bigr)\to 0,
 $$
-is a minimal free resolution. It follows that the map $N$ is the direct
-sum of the minimal free resolutions over $\CC[s,t]$
+which is a minimal free resolution because $H^{1}(\sO_{\PP^{1}}(j)) = 0$ for all $j\geq -1$.
+It follows that the map $N$ is the direct
+sum of the minimal $S$-free resolutions
 of the modules
 $$
 \tsty
-\bigoplus\limits_{j=0}^{\infty}H^{0}(\sO_{\PP^{1}}(j-a_{i})) = (s,t)^{a_{i}}.
+\bigoplus\limits_{j=0}^{\infty}H^{0}(\sO_{\PP^{1}}(j+a_{i})) = (s,t)^{a_{i}},
 $$
+where we take the generators to be in degree 0.
 As we will explain in Example~\ref{res of max ideal power}, the minimal
 presentation of $(s,t)^{a_{i}}$ is the $(a_{i}+1)\times a_{i}$ matrix
 $$
@@ -272,14 +292,10 @@ s&0&0&\dots&0\\
 .
 \label{phia} % for page number
 $$
-
+ Thus, by a change of bases and variables, the matrix $N$ can be
+transformed into the direct sum of such matrices.
 The direct sum decomposition of $N$ corresponds to a block decomposition
-\marginpar{\vskip-50pt added $\phi_a=$ for later reference; also made entries 2 and 3 on last two rows 0 instead of dots, right?}
-of $M$,
-and thus after a change of bases and variables the matrix $N$ is
-transformed into the direct sum of these matrices.
-Translating this
-\marginpar{dropped ``form'' (to allow line break and avoid echo)}
+of $M$. Translating this
 back to a $2\times (r+d-1)$ matrix $M$, we have
 transformed $M$ into a matrix of
 the desired form.
@@ -292,15 +308,14 @@ bulky to describe; the
 \index{Betti table}%
 information in the resolution.
 Suppose that
-$F$ is a minimal free resolution of a module $M$ as illustrated in the
+$F$ is a minimal free resolution of a graded module $M$ as illustrated in the
 beginning of the previous section. Since we choose a minimal set of
 generators at each stage, the matrices of the $\phi_i$ have entries in
 the maximal
 ideal $(x_0,\dots,x_r)$, and thus each $\beta_{i+1, j}$ must be strictly
 greater than some $\beta_{i,j}$. For this reason it
-is convenient to tabulate the numbers so that $\beta_{i,j}$ is in the
+is convenient to tabulate the betti numbers so that $\beta_{i,j}$ is in the
 $i$-th column and $(j-i)$-th row:
-\marginpar{\vskip10pt replaced $j\backslash i$ idiom on header row, ok?}
 $$
 \small
 \begin{tabular}{r|@{\hskip17pt}ccccc}
@@ -340,8 +355,7 @@ $j$&\llap{$i={}$}0&1&2&3\\
 \end{tabular}
 $$
 where 
-\redden{a dash}
-\marginpar{I move this from a later Betti table to where the dash is first used.  Also I made the dashes shorter than a minus sign}
+a dash
 represents 0.  
 \end{example}
 
@@ -352,19 +366,21 @@ of the ideal of $X$''.
 \subsection*{When is a finite free complex a resolution?}
 How does a free resolution over $S \colonequals  \CC[x_0, \dots x_r]$
 ``know'' to end no later than the $(r+1)$-st step?
-The following result describes a sense in which the maps in the resolution
-change as the resolution continues.
-The result is proven in \cite[Theorem 20.9]{Eisenbud1995}.
+The main theorem of \cite{WMACE}, describes a sense in which the maps in the resolution
+change as the resolution continues.See \cite[Theorem 20.9]{Eisenbud1995}
+for further exposition.
 
 A central role in the theorem is played by the ideals of minors of the
 differentials in the complex: If $\phi: F\to G$ is a map of finitely
 generated free $R$-modules with cokernel $M$, then
 $I_t(\phi)$ denotes the ideal generated by all the $t\times t$ minors
-\marginpar{removed equals sign in parenthesis}
 (subdeterminants) of a matrix representing $\phi$; this is independent
 of the choice of bases used to represent $\phi$ as a matrix.
 The ideal $I_{\rank G -j}(\phi)$ depends only on $M$; it called the
-$j$-th Fitting ideal of $\coker \phi$  and
+$j$-th \emph{Fitting ideal} of $\coker \phi$  and
+\index{ideal!Fitting}%
+\index{Fitting ideal}%
+\index{Fitting, Hans, 1906--1938}
 usually written $\Fitt_{j} M$. Some basic properties of these ideals are
 given in Exercise~\ref{Fitt}, where the reader may show that the
 annihilator of $M$ has the
@@ -374,7 +390,7 @@ same radical as $\Fitt_{0} M$. Actually more is true:
 If $F\to G \to M \to 0$ is an exact sequence of finitely generated
 $R$-modules, then
 $$
-\ann_{R}(\coker \phi)^{\rank G}\subset \Fitt_{0}\phi \subset
+(\ann_{R}(\coker \phi))^{\rank G}\subset \Fitt_{0}\phi \subset
 \ann_{R}(\coker \phi).
 $$
 For this and other such inequalities, see \cite{MR476736}.
@@ -399,14 +415,15 @@ the construction localizes, and we see that $I(\phi)$ defines the locus
 $P\in \Spec R$ where $(\coker \phi)_{P}$
 is not free.
 
-Recall that the grade of an ideal is the length of a maximal regular
+The \emph{grade} of an ideal $I$ is defined to be the length of a maximal regular
 \index{grade!of ideal}%
 sequence
-contained in it, or $\infty$ if $I=R$. If $R$ is a
-\blue{Cohen--Macaulay ring,}
+contained $I$, or $\infty$ if $I=R$. If $R$ is a
+\blue{Cohen--Macaulay ring}
 \index{Cohen--Macaulay ring}%
-\redden{say}
-$\CC[x_{0},\dots, x_{r}]$, then the grade
+such as
+%say
+$\CC[x_{0},\dots, x_{r}]$ then the grade
 of any proper ideal is equal to its codimension, so grade becomes a
 geometric notion.
 Readers less familiar with commutative algebra will lose little if they
@@ -416,7 +433,8 @@ suffices, for example, for the applications
 \index{Eagon--Northcott complex}%
 of the Eagon--Northcott complex described below.
 
-\begin{theorem}\label{WMACE}
+\begin{theorem}\label{WMACE}  (\cite{WMACE}) 
+
 Let $R$ be a Noetherian ring and let
 $$
 \FF:\quad
@@ -430,7 +448,6 @@ The complex $@\FF$ is
 \index{acyclic|defi}%
 (that is, $H_i(\FF) = 0$ for all $i>0$) if and only~if,
 for all $i$,
-\marginpar{moved ``for all $i$''\\[2pt]reformatted for better layout}
 $$
 \rank F_i = r_i+r_{i+1}\quad\hbox{ and }\quad
 \grade @I_{r_{i}}(\phi_i) \geq i.
@@ -438,22 +455,21 @@ $$
 $$
 \end{theorem}
 
-\redden{Therefore,}
-if $R$ is Noetherian, then a map of finitely generated
-free modules
-\redden{$\phi:F\to G$}
-\marginpar{or does it have be written with a left arrow?}
-is injective
-if and only~if $I_{\rank F}(\phi)$ contains a nonzerodivisor.
 
 A familiar case occurs when  $r=1$ and $R$ is a domain. In this case the
 theorem says that a map $F_1\to F_0$ is a monomorphism if and only~if
 it becomes a monomorphism after tensoring with the field of rational
 functions $K$, which follows from the flatness of
 localization and the fact that $F_1$ is torsion-free, so that
-$F_1 \subset F_1 \otimes K$.
+$F_1 \subset F_1 \otimes K$. More generally, 
+if $R$ is Noetherian, then a map of finitely generated
+free modules
+$\phi:F\to G$
+is injective
+if and only~if $I_{\rank F}(\phi)$ contains a nonzerodivisor.
 
-To see the relevance of the second hypothesis to the conclusion, suppose
+
+To see the relevance of the grade hypothesis to the conclusion, suppose
 for a moment that $R$ is
 a regular local ring of dimension $r$, and suppose that the complex
 $\FF$ is acyclic. The hypothesis $\grade I(\phi_{d+1}) \geq d+1$ can
@@ -471,24 +487,20 @@ on $M$, $f_2$ is a nonzerodivisor on $M/(f_1M)$, and so on.
 The maximal length of such a sequence is called the \emph{depth} of $M$,
 \index{depth!of a module|defi}%
 or more properly the depth of $(x_0,\dots, x_r)$ on $M$.
-The length of
-\marginpar{dropped ``any'' and
-\llap{replaced sentence }fragment by colon}
+The lengths of
 all maximal $M$-regular sequences
 \index{maximal $M$-regular sequence}%
-\redden{is}
+are
 the same:
 
 \begin{theorem}[Auslander--Buchsbaum]\label{Auslander--Buchsbaum}
-If $M$ is a finitely generated module
-\redden{over $S \colonequals  \CC[x_0, \dots x_r]$,}
-\marginpar{to allow line break}
+If $M$ is a finitely generated graded module
+over $S \colonequals  \CC[x_0, \dots x_r]$,
 then the length of every $M$-regular sequence is
 $$m = r+1 - \pd\  M,$$
 and $m$ is the smallest integer $m$ such that
 $\Ext_S^m(S/(x_0, \dots x_r), M) \neq 0$.
 \index{Ext@$Ext_S^m$}%
-\marginpar{added square as you do elsewhere}
 \qed
 \end{theorem}
 
@@ -512,32 +524,31 @@ As we showed in Chapter~\ref{linkageChapter}, a curve $C\subset \PP^3$
 is linked to a complete intersection
 if and only~if
 $H^1_*(\sI_C) \colonequals  \bigoplus_{m\in \ZZ} H^1(\sI_C(m)) = 0$,
-in which case $C$ is said to be is
+in which case we said that $C$ was
 \blue{arithmetically Cohen--Macaulay.}
 \index{ACM}%
-From the
-Auslander--Buchsbaum theorem
-\index{Auslander--Buchsbaum theorem}%
-and Theorem~\ref{ACM basics} we
-see that $C$ is arithmetically Cohen--Macaulay if
-and only~if the homogeneous coordinate ring $R_C$ is Cohen--Macaulay,
-and this is true
-if and only~if $\pd R_C = \codim C$.
+This is equivalent to the condition that the homogeneous coordinate
+ring $R_{C}$ of $C$ is Cohen-Macaulay.
+In general, we say that a projective scheme $X\subset \PP^{r}$
+is arithmetically Cohen-Macaulay if its homogeneous coordinate ring $R_{X}$
+is Cohen-Macaulay, and this is true
+if and only~if $\pd R_X = \codim X$. 
 
 \subsection*{The Gorenstein property}
-Another important homological condition is the condition that
+An important homological condition on a scheme $X$ is the condition that
 $\omega_X$ is an invertible sheaf; when this holds, we say that $X$
 is \emph{quasi-Gorenstein}. When, in addition, $X$ is Cohen--Macaulay
 \index{quasi-Gorenstein}%
 \index{Gorenstein!module|defi}%
-we say that $X$ is \emph{Gorenstein}. Any scheme that is locally a
+we say that $X$ is \emph{Gorenstein}. As with the Cohen--Macaulay property,
+the Gorenstein property is interpreted locally
+on a scheme. 
+Any scheme that is locally a
 complete intersection, such as any smooth scheme, is Gorenstein. Since
 the restriction
 of $\sO_{\PP^r}(1)$ to a subvariety is always invertible, saying that
 a scheme $X$ is canonically embedded implies that
-$X$ is at least quasi-Gorenstein. As with the Cohen--Macaulay property,
-the Gorenstein property is interpreted locally
-on a scheme. We say that a projective scheme $X$ is
+$X$ is at least quasi-Gorenstein. We say that a projective scheme $X$ is
 \emph{arithmetically Gorenstein}
 \index{arithmetically Gorenstein}%
 if its homogeneous coordinate ring is Gorenstein, and it follows that
@@ -554,7 +565,7 @@ Since $\omega_{\PP^r} = \sO_{\PP^r}(-r-1)$, the sheafification of this
 module is  $\omega_C$.
 
 If $C$ is arithmetically Cohen--Macaulay, so that
-$\pd (C) = \codim(C) = r-1$,  then
+$\pd (C) = \codim(C) = r-1$,  then by
 computing $\Ext^{r-1}_S(R_C, S(-r-1))$ from the 
 \blue{minimal free resolution}
 \index{minimal free resolution}%
@@ -581,7 +592,7 @@ $$
 $$
 so $\coker \phi_{r-2}^* = R_C(r)$. Thus $(\FF^*(-r), \phi^*)$ is a
 minimal free resolution of $R_C$, and is therefore isomorphic to
-$(\FF^*, \phi^*)$; that is, $(\FF^*, \phi^*)$ is self-dual.
+$(\FF^*, \phi^*)$; that is, $(\FF, \phi)$ is self-dual.
 We have seen an example already
 in the Koszul complex (a complete intersection is arithmetically Gorenstein).
 
@@ -591,7 +602,7 @@ map to summands $S(-l)$ of $F_i$ with $\ell < j$, and similarly for the
 dual, we see that the
 Betti table of the minimal free resolution of a canonical curve of genus
 \index{Betti table}%
-$g$ must have the form
+$g\geq 4$ must have the form
 $$
 \small
 \begin{tabular}{r|@{\hskip20pt}cccccc}
@@ -610,21 +621,21 @@ but since the Hilbert function of the curve is the alternating sum of
 \index{Hilbert function}%
 the Hilbert functions in the resolution,
 the differences $b_i- b_{g-i-1}$ are independent of the curve.
+This together with the self-duality implies that the whole betti table
+of a canonical curve
+is determined by the numbers $b_{1}, \dots, b_{g-2}$.
 
-To go further, we can 
-\redden{use}
-\marginpar{to allow line break}
-the invertible sheaves $\sL$ on $C$
-with $h^0(\sL)=2$ and $h^1(\sL)\geq 2$.
-The existence of such a series guarantees that the ideal of $C$ contains
-the ideal of $2\times 2$ minors of the $2\times h^1(\sL)$
-matrix
-corresponding to the multiplication map
+The geometry of linear series on $C$ influences these betti numbers.
+If $|\sL|$ is a $g^{r}_{d}$ on $C$ then the multiplication map
 $H^0(\sL) \otimes H^0(\sL^{-1}\otimes \omega_C) \to H^0(\omega_C) =
 H^0(\sO_C(1))$
+corresponds to a $2\times h^{1}(\sL)$ matrix of linear forms on $\PP^{g-1}$
 as in Chapter~\ref{ScrollsChapter}.
-The mechanism is a resolution of
-the ideal generated by the minors of this matrix.
+and
+the ideal $I$ generated by the minors of this matrix is contained in the homogeneous
+ideal of $C$. It turns out that the whole resolution of $I$ is a subcomplex of
+the resolution of $R_{C}$. Resolutions of such determinantal ideals can be
+described explicitly, and we turn now to this description.
 
 \section{The Eagon--Northcott complex}\label{EN section}
 
@@ -659,14 +670,12 @@ consider the case $\rank F = \rank G + 1$.
 
 \smallbreak
 \noindent
-\underline{Case $\rank G = 1$}
-\marginpar{used word ``Case'' and underline instead of level-4 header}
+\underline{The case $\rank G = 1$}
 \smallbreak
 
-In this subsection we let $\phi:F = R^{f}\to R$ be a homomorphism from
-a free module to a ring $R$, and we
-\marginpar{dropped ``we will'' (``we'' was repeated)}
-we will analyze the Koszul complex $K(\phi)$.
+Let $\phi:F = R^{f}\to R$ be a homomorphism from
+a free module to a ring $R$. We will
+analyze the Koszul complex $K(\phi)$.
 
 We may write
 $K(\phi) = EN(\phi)$ in the form
@@ -710,9 +719,9 @@ $\phi$ sending $V\otimes 1\subset F$ by the identity to $V = S_{1}\subset S$
 \emdash the 
 \blue{\emph{tautological map.}}
 \index{tautological map}%
-\marginpar{changed quotes to italics, ok?}
-Let $t\in V\otimes V^{*}\subset S\otimes \mwedge \,V^{*}$ be the ``trace
-element'' represented in terms of any basis $\{x_{i}\}$ of $V$
+Let $t\in V\otimes V^{*}\subset S\otimes \mwedge \,V^{*}$ be the \blue{\emph{trace element}}
+\index{trace}%
+represented in terms of any basis $\{x_{i}\}$ of $V$
 and dual basis $\{\hat e_{i}\}$ of $V^{*}$ as $t = \sum x_{i}\otimes
 \hat e_{i}$. Because $\mwedge \,V^{*}$ is
 an anti-commutative algebra, we have $t^{2} = 0$.
@@ -739,7 +748,7 @@ I_{1}(\phi)$ has grade $\geq f$.
 
 \begin{proof}
 Theorem~\ref{WMACE} 
-\redden{directly} 
+directly 
 \marginpar{to allow line break}
 implies that if $K(\phi)$ is acyclic then
 $\rank \delta_{f} = 1$ and $\grade I(\delta_{f}) \geq f$. Since
@@ -751,7 +760,6 @@ $K(\phi)$ is
 \index{split exact}%
 when $I = R$; that is, 
 $\mwedge^{i}@F = \ker \delta_{i} \oplus \im \delta_{i}$ 
-\marginpar{image $\to$ im (your usage in chapters 6 and 17)}
 for every $i$, or equivalently
 $\mwedge^{i}@F^{*} = \im \partial_{i}\oplus\coker \partial_{i}$ for
 every $i$. The condition $I=R$ implies that $\delta_{1}$ is s split
