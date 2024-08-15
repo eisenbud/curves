@@ -5,22 +5,26 @@
 
 \def\length{\mathrm{ length}}
 
-In Chapter~\ref{LinkageChapter} we related the resolutions of curves
-in $\PP^3$ to their Hartshorne--Rao modules. The simplest case was
-that in which the Hartshorne--Rao module vanishes, that is, the case
-of arithmetically Cohen--Macaulay curves. The first 3 sections of this
-chapter constitue a quick review of some necessary parts of
+In Chapter~\ref{LinkageChapter} we related the free resolution of the homogeneous
+coordinate ring of a curve $C$
+in $\PP^3$ to the Hartshorne--Rao module $H^{1}_{*}(I_{C})$ of the curve. These 
+are extrinsic invariants \emdash they depend on the particular embedding of the curve.
+ In this chapter we will develop the
+language and machinery to understand Green's conjecture, which posits a
+subtle relationshiip between the intrinsic geometry of a curve and the free resolution
+of the canonical image of that curve.
+
+The first 3 sections of this
+chapter constitute a quick review of some necessary parts of
  homological commutative algebra; see~\cite[Part III]{Eisenbud1995}
  for a more complete exposition. In particular, we
   explain how the condition that a curve
 in $\PP^r$ is arithmetically Cohen--Macaulay manifests itself in the
-free resolution of the homogeneous ideal of the curve. We then
-introduce the Eagon--Northcott complexes, and explain their relation to
-the free resolutions of canonical curves. We close the chapter with an
-explanation of Green's conjecture, which proposes a way in which the
-intrinsic geometry of a curve may be connected to the shape of its
-minimal free resolution of its ideal in the canonical embedding.
-
+free resolution of the homogeneous ideal of the curve. In section 4 we
+introduce the Eagon--Northcott complexes and give a full proof of their
+properties. We also explain their relation to
+the free resolutions of rational normal scrolls. We close the chapter with an
+explanation of Green's conjecture in section 5.
 
 \section{Free resolutions}
 
@@ -74,9 +78,17 @@ resolution is called \emph{minimal} if a minimal set of generators of $F_i
 generators of the kernel of the following map,
 or equivalently (by Nakayama's lemma) the maps in $\FF\otimes_S \CC$
 \index{Nakayama's lemma}%
-are all 0. The numbers $\beta_{i,j}$ are called the \blue{\emph{Betti numbers}}
+are all 0, so $\beta_{i,j} = \dim_{\CC}\Tor_{i}^{S}(M, \CC).$ 
+\index{Tor}%
+The numbers $\beta_{i,j}$ are called the \blue{\emph{Betti numbers}}
 \index{Betti numbers}%
-of $M$.
+of $M$. 
+
+The Betti numbers of a graded module over the polynomial ring determine
+the Hilbert function of the module as an alternating sum of the Hilbert functions of
+the free modules in the resolutions \emdash this was Hilbert's original motivation
+for proving the  syzygy  theorem. As we shall see in the last section of this chapter,
+the Betti numbers are a much finer invariant.
 
 The most basic examples of minimal free resolutions are the Koszul complexes
 \index{Koszul complex}%
@@ -1459,20 +1471,63 @@ completing the proof.
 
 \section{Green's Conjecture}
 
+To begin to describe Green's conjectured relationship of the geometry of
+a curve and the Betti table of its homogeneous coordinate ring
+in its canonical embedding, we begin at the beginning of the resolution, with 
+the number of quadratic and cubic generators of the homogeneous ideal.
+
 Corollary~\ref{canonical hilbert function} implies that the dimension
 \index{Green's Conjecture}%
 of the vector space of forms of degree $d$
 vanishing on a canonical curve is independent of the curve; for example,
-for $d=2$ we get
+we have seen that for every  curve $C$ of genus $g\geq 3$ that is not hyperelliptic,
 $
-\dim ({I_{C}})_{2} = \tbinom{g-2}{2}.
+\dim ({I_{C}})_{2} = \tbinom{g-2}{2}
 $
-The Hilbert function of $I_C$ is determined by the Betti table of its
-\index{Betti table}%
-resolution, so that the table generally has more information.
+and since there are no linear forms in the ideal this implies that in the 
+Betti table of the homogeneous coordinate ring of every canonically embedded
+curve of genus $g$ we have 
+$\beta_{1,2} =  \tbinom{g-2}{2}$ for every canonical curve.
 
-For example,
-when $C$ is trigonal then by the 
+However, $\beta_{2,2}$, the number of cubic generators required, may vary, and reflects the geometry of the curve.  We have seen in Chapter ***
+that if $C$ is a canonically embedded curve of genus 5 in $\PP^{4}$ that is not trigonal,
+then $C$ is the complete intersection of three quadrics, and thus the 
+Betti table of the homogeneous coordinate ring $S_{C}$ is
+$$
+\small
+\begin{tabular}{r|@{\hskip20pt}ccccc}
+\downstrut
+$j$&\llap{$i={}$}0&1&2&3\\
+\hline\upstrut
+0&1&--&--&--\\
+1&--&3&--&--\\
+2&--&--&3&--\\
+3&--&--&--&1\\
+\end{tabular}
+$$
+whereas if $C$ is trigonal then 
+ the ideal of $C$ requires two cubic generators in addition to three quadrics. 
+ 
+Since the Hilbert functions are the same in the two cases, the number of 
+linear relations on the quadrics, must increase from 0 to 2. Since the homogeneous
+coordinate ring of a canonical curve is Gorenstein, the free resolution is symmetric,
+and is therefore
+$$
+\small
+\begin{tabular}{r|@{\hskip20pt}ccccc}
+\downstrut
+$j$&\llap{$i={}$}0&1&2&3\\
+\hline\upstrut
+0&1&--&--&--\\
+1&--&3&2&--\\
+2&--&2&3&--\\
+3&--&--&--&1\\
+\end{tabular}
+$$
+in the trigonal case. 
+
+Using the knowledge of scrolls from Chapter~\ref{ScrollsChapter} we can refine this
+observation further. By the
 \index{Riemann--Roch theorem!geometric}%
 \blue{geometric Riemann--Roch theorem,} 
 $C$ has
@@ -1494,15 +1549,29 @@ by the minors of $M$. The exactness of the Eagon--Northcott complex
 associated to this matrix shows that there are no relations of degree
 0 on these minors\emdash that is, they are linearly independent over
 the ground field. It follows that they generate the vector space of all
-quadrics containing $C$.
+quadrics containing $C$. We have seen that the minimal resolution
+of the ideal of the scroll is, term by term, a summand of the minimal
+resolution of $I_{C}$, and indeed we see the Betti table 
+$$
+\small
+\begin{tabular}{r|@{\hskip20pt}ccccc}
+\downstrut
+$j$&\llap{$i={}$}0&1&2&3\\
+\hline\upstrut
+0&1&--&--&--\\
+1&--&3&2&--\\
+\end{tabular}
+$$
+of the scroll in the first two rows of the Betti table for $C$ above.
 
-Furthermore, if $g = 6$ and $C$ is isomorphic to a 
+Another example of a canonical curve whose ideal requires cubic generators occurs in genus 6:
+If $C$ is isomorphic to a 
 \blue{plane quintic} 
 \index{quintic curve!plane}%
 curve,
 then the canonical series of the plane quintic is $5-3 = 2$ times the
 hyperplane series, and it follows that the canonical image of $C$ lies on
-the Veronese surface in $\PP^{5}$. Thus the Veronese surface is contained
+the Veronese surface in $\PP^{5}$. By Theorem *** the Veronese surface is contained
 in (in fact, equal to) the intersection of the quadrics defined by the
 $2\times 2$ minors of a generic symmetric matrix, coming from the
 multiplication map
@@ -1511,10 +1580,41 @@ H^{0}(\sO_{\PP^{2}}(1))\otimes H^{0}(\sO_{\PP^{2}}(1)) \to
 H^{0}(\sO_{\PP^{2}}(2)) = H^{0}(\sO_{\PP^{5}}(1))
 $$
 and there are $6 = \tbinom{g-2}{ 2}$ independent quadrics in this
-ideal. Again in this case, they cannot generate the ideal of the curve.
+ideal, so these are all the quadrics in $I_{C}$. Thus $I_{C}$ requires cubic generators.
+One can show that if $C$ is not trigonal and not isomorphic to a plane quintic,
+then the resolution of $S_{C}$ has Betti table
+$$
+\small
+\begin{tabular}{r|@{\hskip20pt}ccccc}
+\downstrut
+$j$&\llap{$i={}$}0&1&2&3&4\\
+\hline\upstrut
+0&1&--&--&--&--\\
+1&--&6&5&--&--\\
+2&--&--&5&6&--\\
+3&--&--&--&--&1\\
+\end{tabular}
+$$
+whereas if $C$ is either trigonal or isomorphic to a plane quintic, the Betti table is
+$$
+\small
+\begin{tabular}{r|@{\hskip20pt}ccccc}
+\downstrut
+$j$&\llap{$i={}$}0&1&2&3&4\\
+\hline\upstrut
+0&1&--&--&--&--\\
+1&--&6&8&3&--\\
+2&--&3&8&6&--\\
+3&--&--&--&--&1\\
+\end{tabular}
+$$
+and the first two rows are the Betti tables of either the rational normal scroll
+swept out by the trisecant lines (in the trigonal case) or the Veronese surface
+(in the plane quintic case). 
 
-One might fear that this is the beginning of some long series of examples,
-but in fact it is not:
+One might fear that these examples were the beginning of a long series of
+types of curves whose canonical image is not cut out by quadrics, but
+this is not the case:
 
 \begin{theorem} [Petri]
 The ideal of a canonical curve of genus $\geq 5$ is generated by the
@@ -1528,7 +1628,10 @@ the ideal of the curve is generated by quadrics and cubics.
 For a modern treatment of Petri's theorem in this level of generality see
 \cite{Schreyer}; for a different treatment see \cite{Arbarello-Sernesi}.
 
-The two exceptions can be described simultaneously by using the 
+It is interesting to note that the Betti tables above
+do not distinguish between the two exceptional types of 
+curves of genus 6. In fact, the two exceptions in Petri's theorem are unified  by  the 
+notion of the
 \index{Clifford index:}%
 Clifford index:
 
@@ -1552,114 +1655,116 @@ genus $g\geq 2$ is $\leq \lceil g/2\rceil+1$, with equality for a general
 curve, as one sees from the Brill--Noether Theorem~\ref{basic BN}, and for
 ``most'' curves the line bundle $\sL$ of maximal Clifford index has only
 2 sections, though there is an infinite sequence of examples where this
-``Clifford dimension'' is greater.
+``Clifford dimension'' is greater beginning with plane quintics
+and complete intersections of two cubics in $\PP^{3}$~\cite{****}.
 
-Moving to cubic forms, we see that $\dim ({I_C})_3 = 
-\tbinom{g+2}{ 3}-(5g-5)$. Comparing this number with the number of (possibly linearly
-dependent)
-cubics obtained by multiplying $g$ linear forms and $\tbinom{g-2}{ 2}$
-quadrics, we see that the ideal of the curve has at least
-$
-\tbinom{g-2}{ 2} - \tbinom{g+2}{ 3}-(5g-5)
-$
-independent syzygies of total degree 3 (that is, linear syzygies on the
-quadrics). For example when $g=4$ so that $C\subset \PP^3$ there is one
-quadric and 5 independent
-cubics, at most 4 of which are multiples of the quadric. Since the curve
-has degree $6 = 2\times 3$, the ideal of the curve must be generated by
-the quadric and one cubic. When $g=5$ there are genuinely two
-possibilities: the three quadrics in the ideal might be a complete
-intersection
-(then they generate the ideal), so the Betti table would be
-\index{Betti table}%
-$$
-\small
-\begin{tabular}{r|@{\hskip20pt}ccc}
-\downstrut
-$j$&\llap{$i={}$}0&1&2\\
-\hline
-\upstrut
-0&1&--&--\\
-1&--&2&--\\
-2&--&--&$1$\\
-\end{tabular}
-$$
-\emdash or the curve could be trigonal, in which case the 3 quadrics
-generate the ideal of a surface scroll $F$. In the latter
-case, the Eagon--Northcott complex resolves the 
-\index{homogeneous coordinate ring}%
-\blue{homogeneous coordinate ring}
-$S_F$ of the scroll,
-$$
-0\to S^2(-3) \to S^3(-2) \to S \to S_F \to 0
-,
-$$
-which has Betti table
-$$
-\small
-\begin{tabular}{r|@{\hskip20pt}ccc}
-\downstrut
-$j$&\llap{$i={}$}0&1&2\\
-\hline
-\upstrut
-0&1&--&--\\
-1&--&3&$2$\\
-\end{tabular}
-$$
-and we see that there are 2 linear relations among the
-quadrics. Thus the minimal generators of $I_C$ must include exactly
-2 cubics as well as the 3 quadrics. Since the homogeneous ring of a
-canonical curve is Gorenstein, its minimal free resolution is symmetric,
-and this is enough for us to fill in its Betti table:
-$$
-\small
-\begin{tabular}{r|@{\hskip20pt}cccc}
-\downstrut
-$j$&\llap{$i={}$}0&1&2&3\\
-\hline
-\upstrut
-0&1&--&--&--\\
-1&--&3&$2$&--\\
-2&--&$2$&$3$&--\\
-3&--&--&--&$1$\\
-\end{tabular}
-$$
-Note that we can see the scroll reflected in the top two
-lines of the table.
-
-From the analogue of the 
-\blue{Hilbert--Burch theorem}
-\index{Hilbert--Burch theorem}%
- for 
-\blue{Gorenstein rings} 
-\index{Gorenstein rings}%
-of
-codimension 3 one can show that the 5 generators can be written as the
-\blue{Pfaffians}
-\index{Pfaffian}%
-of a skew symmetric $5\times 5$ matrix whose entries are of
-degrees 1 and 2, in the following pattern (we give just the degrees,
-and 
-use -- for 0):
-$$
-\catcode`\-=\active \def-{\hbox{\char`\-\char`\-}}
-\left(@
-\begin{matrix}
--&-&1&1&1\\
--&-&1&1&1\\
-1&1&-&2&2\\
-1&1&2&-&2\\
-1&1&2&2&-
-\end{matrix}
-@\right)
-.
-$$
-Here the $2\times 2$ minors of the upper $2\times 3$ block of linear
-forms generate the ideal of the scroll.
-
-Applying this logic more generally we get the following result about
-the canonical embedding of curves with low degree maps to $\PP^1$:
-
+%
+%Moving to cubic forms, we see that $\dim ({I_C})_3 = 
+%\tbinom{g+2}{ 3}-(5g-5)$. Comparing this number with the number of (possibly linearly
+%dependent)
+%cubics obtained by multiplying $g$ linear forms and $\tbinom{g-2}{ 2}$
+%quadrics, we see that the ideal of the curve has at least
+%$
+%\tbinom{g-2}{ 2} - \tbinom{g+2}{ 3}-(5g-5)
+%$
+%independent syzygies of total degree 3 (that is, linear syzygies on the
+%quadrics). For example when $g=4$ so that $C\subset \PP^3$ there is one
+%quadric and 5 independent
+%cubics, at most 4 of which are multiples of the quadric. Since the curve
+%has degree $6 = 2\times 3$, the ideal of the curve must be generated by
+%the quadric and one cubic. When $g=5$ there are genuinely two
+%possibilities: the three quadrics in the ideal might be a complete
+%intersection
+%(then they generate the ideal), so the Betti table would be
+%\index{Betti table}%
+%$$
+%\small
+%\begin{tabular}{r|@{\hskip20pt}ccc}
+%\downstrut
+%$j$&\llap{$i={}$}0&1&2\\
+%\hline
+%\upstrut
+%0&1&--&--\\
+%1&--&2&--\\
+%2&--&--&$1$\\
+%\end{tabular}
+%$$
+%\emdash or the curve could be trigonal, in which case the 3 quadrics
+%generate the ideal of a surface scroll $F$. In the latter
+%case, the Eagon--Northcott complex resolves the 
+%\index{homogeneous coordinate ring}%
+%\blue{homogeneous coordinate ring}
+%$S_F$ of the scroll,
+%$$
+%0\to S^2(-3) \to S^3(-2) \to S \to S_F \to 0
+%,
+%$$
+%which has Betti table
+%$$
+%\small
+%\begin{tabular}{r|@{\hskip20pt}ccc}
+%\downstrut
+%$j$&\llap{$i={}$}0&1&2\\
+%\hline
+%\upstrut
+%0&1&--&--\\
+%1&--&3&$2$\\
+%\end{tabular}
+%$$
+%and we see that there are 2 linear relations among the
+%quadrics. Thus the minimal generators of $I_C$ must include exactly
+%2 cubics as well as the 3 quadrics. Since the homogeneous ring of a
+%canonical curve is Gorenstein, its minimal free resolution is symmetric,
+%and this is enough for us to fill in its Betti table:
+%$$
+%\small
+%\begin{tabular}{r|@{\hskip20pt}cccc}
+%\downstrut
+%$j$&\llap{$i={}$}0&1&2&3\\
+%\hline
+%\upstrut
+%0&1&--&--&--\\
+%1&--&3&$2$&--\\
+%2&--&$2$&$3$&--\\
+%3&--&--&--&$1$\\
+%\end{tabular}
+%$$
+%Note that we can see the scroll reflected in the top two
+%lines of the table.
+%
+%From the analogue of the 
+%\blue{Hilbert--Burch theorem}
+%\index{Hilbert--Burch theorem}%
+% for 
+%\blue{Gorenstein rings} 
+%\index{Gorenstein rings}%
+%of
+%codimension 3 one can show that the 5 generators can be written as the
+%\blue{Pfaffians}
+%\index{Pfaffian}%
+%of a skew symmetric $5\times 5$ matrix whose entries are of
+%degrees 1 and 2, in the following pattern (we give just the degrees,
+%and 
+%use -- for 0):
+%$$
+%\catcode`\-=\active \def-{\hbox{\char`\-\char`\-}}
+%\left(@
+%\begin{matrix}
+%-&-&1&1&1\\
+%-&-&1&1&1\\
+%1&1&-&2&2\\
+%1&1&2&-&2\\
+%1&1&2&2&-
+%\end{matrix}
+%@\right)
+%.
+%$$
+%Here the $2\times 2$ minors of the upper $2\times 3$ block of linear
+%forms generate the ideal of the scroll.
+%
+%Applying this logic more generally we get the following result about
+%the canonical embedding of curves with low degree maps to $\PP^1$:
+%
 \begin{theorem}
 Let $C\subset \PP^{g-1}$ be a reduced, irreducible canonical curve. If
 $C$ has a line bundle $\sL$ of degree $d \leq g-1$ with $h^0(\sL) =
