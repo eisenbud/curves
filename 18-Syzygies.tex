@@ -8,14 +8,14 @@
 In Chapter~\ref{LinkageChapter} we related the free resolution of the homogeneous
 coordinate ring of a curve $C$
 in $\PP^3$ to the Hartshorne--Rao module $H^{1}_{*}(I_{C})$ of the curve. These 
-are extrinsic invariants \emdash they depend on the particular embedding of the curve.
+are extrinsic invariants \emdash they depend on the choice of an embedding of the curve.
  In this chapter we will develop the
 language and machinery to understand Green's conjecture, which posits a
 subtle relationship between the intrinsic geometry of a curve and the free resolution
 of the canonical image of that curve.
 
 The first 2 sections of this
-chapter constitute a quick review of some necessary parts of
+chapter constitute a quick review of some
  homological commutative algebra; see~\cite[Part III]{Eisenbud1995}
  for a more complete exposition. In particular, we
   explain how the condition that a curve
@@ -27,7 +27,7 @@ scrolls. In section 3 we
 introduce the Eagon--Northcott complexes and give a full proof of their
 properties. We also explain their relation to
 the free resolutions of rational normal scrolls. We close the chapter in section 4 with an
-explanation of Green's conjecture.
+introduction to Green's conjecture.
 
 \section{Free resolutions}
 
@@ -42,10 +42,12 @@ and
 \blue{graded modules over a polynomial ring}
 \index{graded module}%
 \index{polynomial ring}%
-whose variables have positive degree. 
+whose variables have positive degree,  in which case we restrict attention
+to graded modules and homogeneous ideals. 
 We will work both with local rings and with
 polynomial rings whose variables have degree 1,
-as appropriate, and leave the translations to the reader.
+as convenient, and leave the formulation of the corresponding results
+in the other context to the reader.
 %%These are similar
 %The similarity is essentially because
 %%because
@@ -67,7 +69,7 @@ $$
 \let\quad\enspace
 (\FF, \phi):\quad 0\leftarrow M \luto{\ \epsilon}
 \tsty\bigoplus_jS(-j)^{@\beta_{0,j}}
-\leftarrow\cdots
+\luto{\ \phi_1}\cdots
 \luto{\ \phi_t}\bigoplus_jS(-j)^{@\beta_{t,j}}\leftarrow 0.
 $$
 Here $S(-j)$ denotes the graded free module of rank 1 with generator in
@@ -80,18 +82,76 @@ resolution is called \emph{minimal} if a minimal set of generators of $F_i
 generators of the kernel of the following map,
 or equivalently (by Nakayama's lemma) the maps in $\FF\otimes_S \CC$
 \index{Nakayama's lemma}%
-are all 0, so $\beta_{i,j} = \dim_{\CC}\Tor_{i}^{S}(M, \CC).$ 
+are all 0. In this case $\beta_{i,j} = \dim_{\CC}\Tor_{i}^{S}(M, \CC).$ 
 \index{Tor}%
 The numbers $\beta_{i,j}$ are called the \blue{\emph{Betti numbers}}
 \index{Betti numbers}%
 of $M$. 
 
+Minimal free resolutions of a given module $M$ are all isomorphic, and thus provide
+interesting invariants of $M$.
 The Betti numbers of a graded module over the polynomial ring determine
 the Hilbert function of the module as an alternating sum of the Hilbert functions of
 the free modules in the resolutions \emdash this was Hilbert's original motivation
 for proving the  syzygy  theorem. As we shall see in the last section of this chapter,
 the Betti numbers are a much finer invariant.
 
+
+To construct the minimal free resolution of a finitely generated graded module $M$, suppose that a minimal homogeneous set of generators
+of $M$
+contains $\beta_{0,j}$ generators of degree $j$ for each $j$; the choice of generators
+defines a degree 0 map $\epsilon$
+from
+$
+\oplus_jS(-j)^{\beta_{0,j}}
+$
+onto $M$. We proceed to do the same with the kernel of $\epsilon$ to construct $\phi_{1}$, and continue similarly to construct $\phi_{2}\dots$.
+Hilbert's basis theorem
+\index{Hilbert's basis theorem}%
+and
+syzygy theorem
+\index{Hilbert's syzygy theorem}%
+together imply that 
+that for some $t\leq r+1$ we will find that $\phi_t$ has
+kernel equal to 0; that is,
+every finitely
+generated $S$-module has a finite free resolution
+of length $t\leq r+1$
+\cite[Corollary 19.7]{Eisenbud1995}.
+The minimal such $t$ is called the \emph{projective dimension} of $M$,
+written $\pd\ M$.
+\index{projective dimension}%
+\index{pd@$\pd$}%
+Computing $\Ext(M,-)$ from such a resolution, Nakayama's lemma implies that,
+$$
+\pd M = \max\{s \mid \Ext_S^s(M,k) \neq 0 \}.
+$$
+It follows from the Auslander--Buchsbaum
+\index{Auslander--Buchsbaum theorem}%
+theorem \cite[Theorem 19.9]{Eisenbud1995} that $t \geq \codim \ann_S(M)$,
+the codimension of the support of $M$.
+
+
+\begin{fact}
+ Fundamental
+results of Auslander, Buchsbaum and Serre say that a local ring $R$
+\index{Serre, Jean-Pierre}%
+\index{Buchsbaum, David A.}%
+\index{Auslander, Maurice}%
+is \emph{regular}\emdash that is, the
+\index{regular!ring|defi}%
+\blue{Krull dimension}
+\index{Krull dimension}%
+of $R$ is equal to the
+minimal number
+of generators of is maximal ideal \emdash if and only~if the minimal free resolution
+of the residue field is finite, in which case
+ every module has a finite free resolution.
+\end{fact}
+ 
+
+
+\begin{example}\label{Koszul examples}
 Koszul complexes were
 \index{Koszul complex}%
 \index{historic context}%
@@ -138,61 +198,10 @@ F_2=
 F_3 =
 S(-d_1-d_2-d_3).
 $$
-Minimal free resolutions of a given module $M$ are all isomorphic, and thus provide
-interesting invariants of $M$.
 
-To construct the minimal free resolution of a finitely generated graded module $M$, suppose that a minimal homogeneous set of generators
-of $M$
-contains $\beta_{0,j}$ generators of degree $j$ for each $j$; the choice of generators
-defines a degree 0 map $\epsilon$
-from
-$
-\oplus_jS(-j)^{\beta_{0,j}}
-$
-onto $M$. We proceed to do the same with the kernel of $\epsilon$ to construct $\phi_{1}$, and continue similarly to construct $\phi_{2}\dots$.
-Hilbert's basis theorem
-\index{Hilbert's basis theorem}%
-and
-syzygy theorem
-\index{Hilbert's syzygy theorem}%
-together imply that 
-that for some $t\leq r+1$ we will find that $\phi_t$ has
-kernel equal to 0; that is,
-every finitely
-generated $S$-module has a finite free resolution
-of length $t\leq r+1$
-\cite[Corollary 19.7]{Eisenbud1995}.
-The minimal such $t$ is called the \emph{projective dimension} of $M$,
-written $\pd\ M$.
-\index{projective dimension}%
-\index{pd@$\pd$}%
-Computing $\Ext(M,-)$ from such a resolution, Nakayama's lemma implies that,
-$$
-t = \max\{s \mid \Ext_S^s(M,k) \neq 0 \}.
-$$
-It follows from the Auslander--Buchsbaum
-\index{Auslander--Buchsbaum theorem}%
-theorem \cite[Theorem 19.9]{Eisenbud1995} that $t \geq \codim \ann_S(M)$,
-the codimension of the support of $M$.
-
-\begin{fact}
- Fundamental
-results of Auslander, Buchsbaum and Serre say that a local ring $R$
-\index{Serre, Jean-Pierre}%
-\index{Buchsbaum, David A.}%
-\index{Auslander, Maurice}%
-is \emph{regular}\emdash that is, the
-\index{regular!ring|defi}%
-\blue{Krull dimension}
-\index{Krull dimension}%
-of $R$ is equal to the
-minimal number
-of generators of is maximal ideal \emdash if and only~if the minimal free resolution
-of the residue field is finite, in which case
-the minimal free resolution of every module is finite.
-\end{fact}
- 
-
+Any Koszul complexes $K$ is \emph{symmetric} in the sense that 
+$\Hom(K, S)$ is isomorphic to $S$ up to a shift.
+\end{example}
 
 
 \subsection*{The classification of 1-generic \texorpdfstring{$2\times f$}{2 x f}
@@ -214,36 +223,36 @@ $2 \times f$ matrix define a scroll.
 \end{theorem}
 
 To prove this result we first reinterpret the 1-generic condition:
-We have observed that an
-$a\times b$ matrix of linear forms in $c$ variables is the same as a
+An
+$a\times b$ matrix of linear forms in $c$ variables can be interpreted as a
 $\CC$-linear map of vector spaces
 $A \otimes B \to C$, where $A, B$ and $C$ have dimensions $a,b$ and $c$
 respectively. Such a map
 can be viewed in several ways, for example as a map $C^{*} \otimes B\to
 A^{*}$\emdash in other words, a $c\times b$ matrix in $a$ variables\emdash
-or equivalently an $a$-dimensional family of $c\times b$ matrices (and
+or equivalently an $a$-dimensional family of $c\times b$ scalar matrices (and
 similarly for other permutations of $A,B,C$).
 This bit of trivial formalism pays off in the following observation:
 
 \begin{proposition}\label{reinterpretation of 1-generic}
-An  $a\times b$ matrix $M$ of linear forms in $c$ variables  corresponding
-to $A\otimes B \to C$ is 1-generic if and only~if the $c \times b$ matrix
-$N$ of linear forms in $a$ variables corresponding to $C^{*}\otimes B
-\to A$ has constant rank $b$; that is,
-for any point $x$ in $\PP^{a-1}$, the rank of $N$ evaluated at $x$ is $b$.
+An  $a\times b$ matrix $M$ of linear forms  over $S = \CC[x_{0},\dots, x_{r}]$
+is 1-generic if and only if
+he corresponding family $N$ of $b\times c$ scalar matrices over $\PP^{a-1}$
+ has constant rank $b$; that is,
+for any point $x \in \PP^{a-1}$, the rank of $N$ evaluated at $x$ is $b$.
 \unif
 \end{proposition}
 
 \begin{proof}
-The $b$ columns of $N$ correspond to the $b$ columns of $M$, while the
-rows of $N$ are indexed
-by the $c$ variables in $M$ and the variables in $N$ are indexed by the
-$a$ rows of $M$. Thus the
-evaluation of $N$ at a point $x$ corresponds to a generalized row of $M$;
+By Lemma~\ref{variables needed},  $c \geq a+b-1 \geq b$.
+ The $b$ rows of $N$ correspond to the $b$ columns of $M$, while the
+columns of $N$ are indexed
+by the $c$ variables in $M$. The
+evaluation of $N$ at $x$ corresponds to a generalized row of $M$;
 and the image of $N(x)$
-is the span of the variables in that generalized row. The matrix $M$
+is the span of the variables in that generalized column of $M$. The matrix $M$
 is 1-generic if the dimension
-of that span is $b$ for every generalized row.
+of that span is $b$ for every generalized column.
 \end{proof}
 
 Thus the classification of 1-generic $2\times f$ matrices of linear
@@ -291,7 +300,7 @@ $$
 where we take the generators to be in degree 0.
 As we will explain in Example~\ref{res of max ideal power}, the minimal
 presentation of $(s,t)^{a_{i}}$ is the $(a_{i}+1)\times a_{i}$ matrix
-$$
+\label{phia}$$
 \phi_a=
 \left(\,
 \begin{matrix}
@@ -305,7 +314,7 @@ s&0&0&\dots&0\\
 \end{matrix}
 \right)
 .
-\label{phia} % for page number
+ % for page number
 $$
  Thus, by a change of bases and variables, the matrix $N$ can be
 transformed into the direct sum of such matrices.
@@ -317,18 +326,22 @@ the desired form.
 \end{proof}
 
 \subsection*{How to look at a resolution}
-As is apparent even in the example $t=3$ above, free resolutions can be
+As is apparent even in Example~\ref{Koszul examples}, free resolutions can be
 bulky to describe; the
 \emph{Betti table} is a compact representation of the numerical
 \index{Betti table}%
-information in the resolution.
+information in the resolution introduced by Bayer and Stillman to
+\index{Bayer, David}%
+\index{Stillman, Mike}%
+\index{Macaulay}%
+improve the output of their symbolic computation system \emph{Macaulay}.
 Suppose that
-$F$ is a minimal free resolution of a graded module $M$ as illustrated in the
+$F$ is a minimal free resolution of a graded module $M$ as constructed in the
 beginning of the previous section. Since we choose a minimal set of
 generators at each stage, the matrices of the $\phi_i$ have entries in
 the maximal
-ideal $(x_0,\dots,x_r)$, and thus each $\beta_{i+1, j}$ must be strictly
-greater than some $\beta_{i,j}$. For this reason it
+ideal $(x_0,\dots,x_r)$, and thus if $\beta_{i+1, j}\neq 0$ there must
+be a number $\ell< j$ such that $\beta_{i,\ell}\neq 0$. For this reason it
 is convenient to tabulate the Betti numbers so that $\beta_{i,j}$ is in the
 $i$-th column and $(j-i)$-th row:
 $$
@@ -344,8 +357,22 @@ $\vdots$&$\vdots$&$\vdots$ &    &$\vdots$     \cr
 \end{tabular}
 $$
 
-\begin{example}
-The Koszul complex that resolves the homogeneous coordinate ring $S/(Q,
+\begin{example}\index{Betti table}%
+\begin{enumerate}
+ \item The differentials in the
+  Koszul complex $K(x_{0}, \dots, x_{r})$ that resolves the module $S/(x_{0}, \dots, x_{r})$
+  are all linear, so $\beta_{i,j}(K)= 0$ unless $i=j$; thus the Betti table of $K$ has the form 
+ $$
+\small
+\begin{tabular}{r|@{\hskip20pt}ccccc}
+\downstrut
+$j$&\llap{$i={}$}0&1&2&$\dots$&r+1\\
+\hline\upstrut
+0&1&$r+1$&$\binom{r+1}{2}$&$\cdots$&1\\
+\end{tabular}
+$$
+
+\item The Koszul complex that resolves the homogeneous coordinate ring $S/(Q,
 \index{Koszul complex}%
 F_1, F_2)$ of the complete intersection of  2 quadrics and a cubic in
 $\PP^3$ has the form
@@ -354,7 +381,7 @@ $$
 S \lTo S(-2)\oplus S(-3)^2 \lTo S(-5)^2\oplus S(-6) \lTo S(-8) \lTo 0,
 $$
 which has Betti table
-\index{Betti table}%
+
 $$
 \small
 \begin{tabular}{r|@{\hskip20pt}ccccc}
@@ -372,11 +399,8 @@ $$
 where 
 a dash
 represents 0.  
+\end{enumerate}
 \end{example}
-
-To simplify our language, we will speak of the \emph{Betti table of a
-scheme $X$} rather than the ``Betti table of the minimal free resolution
-of the ideal of $X$''.
 
 \subsection*{When is a finite free complex a resolution?}
 How does a free resolution over $S \colonequals  \CC[x_0, \dots x_r]$
@@ -404,12 +428,12 @@ annihilator of $M$ has the
 same radical as $\Fitt_{0} M$. Actually more is true:
 
 \begin{fact}
-If $F\to G \to M \to 0$ is an exact sequence of finitely generated
-$R$-modules, then
-$$
-(\ann_{R}(\coker \phi))^{\rank G}\subset \Fitt_{0}\phi \subset
-\ann_{R}(\coker \phi).
-$$
+If $\phi: F\to G$ is an exact sequence of finitely generated
+$R$-modules and we set $I = ann\coker \phi$ , then
+$
+I^{\rank G}\subset \Fitt_{0}\phi \subset
+I.
+$
 For this and other such inequalities, see \cite{MR476736}.
 \end{fact}
 
@@ -425,16 +449,17 @@ is nonzero.
 We define
 $I(\phi): = I_{\rank \phi}(\phi)$; if the source or target of $\phi$ is 0 then, since an empty
 product is equal to 1,
-we set $I(\phi) = R$.  The ideal $I(\phi)$ plays a special role: the cokernel
+we set $I(\phi) = R$.  The ideal $I(\phi)$ plays a special role: 
+If $I(\phi)$ contains a 
+\blue{nonzerodivisor,}
+\index{nonzerodivisor}%
+then the construction of $I(\phi)$
+commutes with localization, and the cokernel
 of $\phi$
 is  
 \blue{locally free}
 index{free!locally}
- if and only~if $I(\phi) = R$. When
-$I(\phi)$ contains a 
-\blue{nonzerodivisor,}
-\index{nonzerodivisor}%
- the construction localizes. We consider the local case:
+ if and only~if $I(\phi) = R$. 
 
 \begin{lemma}\label{free coker}
 If $R$ is a local ring and $\phi: F\to G$ is a map of free $R$ modules
@@ -467,7 +492,8 @@ of any proper ideal is equal to its codimension, so grade becomes a
 geometric notion.
 Readers less familiar with commutative algebra will lose little if they
 stick with the case when $R$ is
-regular, or even the case when $R$ is $\CC[x_{0},\dots, x_{r}]$. This
+regular, or even the case when $R$ is $\CC[x_{0},\dots, x_{r}]$,
+and replace ``grade'' by ``codimension''. This
 suffices, for example, for the applications
 \index{Eagon--Northcott complex}%
 of the Eagon--Northcott complex described below.
@@ -495,7 +521,7 @@ $$
 \end{theorem}
 
 
-A familiar case occurs when  $r=1$ and $R$ is a domain. In this case the
+A familiar case occurs when  $n=1$ and $R$ is a domain. In this case the
 theorem says that a map $F_1\to F_0$ is a monomorphism if and only~if
 it becomes a monomorphism after tensoring with the field of rational
 functions $K$, which follows from the flatness of
@@ -508,12 +534,12 @@ is injective
 if and only~if $I_{\rank F}(\phi)$ contains a nonzerodivisor.
 
 
-To see the relevance of the grade hypothesis to the conclusion, suppose
-for a moment that $R$ is
-a regular local ring of dimension $r$, and suppose that the complex
-$\FF$ is acyclic. The hypothesis $\grade I(\phi_{d+1}) \geq d+1$ can
-only be satisfied if $I(\phi_{d+1}) = R$ (so that its grade is $\infty$
-by convention). This  is equivalent to the cokernel of $\phi_{d+1}$
+To see the relevance of the grade hypothesis, suppose
+for a moment that $R = \CC[x_{0}, \dots, x_{r}$ and that the $\FF$ is
+a finite free resolution of an $R$-module.
+The conclusion thatl the grade of $I(\phi_{r+2})$ is at least $r+2$ can
+only be satisfied if $I(\phi_{r+2}) = R$ (so that its grade is $\infty$
+by convention). This  is equivalent to $\coker \phi_{r+2} = \ker \phi_{r}$
 being free. Thus the theorem ``explains'' why a minimal free resolution
 has length $\leq r+1$.
 
@@ -559,7 +585,7 @@ is a
 \index{Cohen--Macaulay module}%
 \emph{Cohen--Macaulay module}.
 
-As we showed in Chapter~\ref{linkageChapter}, a curve $C\subset \PP^3$
+As we asserted in Chapter~\ref{linkageChapter}, a curve $C\subset \PP^3$
 is linked to a complete intersection
 if and only~if
 $H^1_*(\sI_C) \colonequals  \bigoplus_{m\in \ZZ} H^1(\sI_C(m)) = 0$,
@@ -571,7 +597,10 @@ ring $R_{C}$ of $C$ is Cohen-Macaulay.
 In general, we say that a projective scheme $X\subset \PP^{r}$
 is arithmetically Cohen-Macaulay if its homogeneous coordinate ring $R_{X}$
 is Cohen-Macaulay, and this is true
-if and only~if $\pd R_X = \codim X$. 
+if and only~if $\pd R_X = \codim X$. A scheme $X\subset \PP^{r}$ is said to be Cohen-Macaulay
+if all its local rings are Cohen-Macaulay; this is weaker  than saying that $X$ is ACM.
+For example, every smooth scheme is Cohen-Macaulay, but most curves in $\PP^{3}$
+are not ACM.
 
 \subsection*{The Gorenstein property}
 An important homological condition on a scheme $X$ is the condition that
@@ -580,60 +609,70 @@ is \emph{quasi-Gorenstein}. When, in addition, $X$ is Cohen--Macaulay
 \index{quasi-Gorenstein}%
 \index{Gorenstein!module|defi}%
 we say that $X$ is \emph{Gorenstein}. As with the Cohen--Macaulay property,
-the Gorenstein property is interpreted locally
-on a scheme. 
-Any scheme that is locally a
+the Gorenstein property is interpreted locally.
+Thus any scheme that is locally a
 complete intersection, such as any smooth scheme, is Gorenstein. Since
 the restriction
 of $\sO_{\PP^r}(1)$ to a subvariety is always invertible, saying that
 a scheme $X$ is canonically embedded implies that
-$X$ is at least quasi-Gorenstein. We say that a projective scheme $X$ is
-\emph{arithmetically Gorenstein}
-\index{arithmetically Gorenstein}%
-if its homogeneous coordinate ring is Gorenstein, and it follows that
-$\omega_{S/I} \cong S/I(a)$ for some integer $a = a(X)$.
+$X$ is quasi-Gorenstein. 
 
 In Chapter~\ref{LinkageChapter},  we expressed $\omega_X$
 for a subscheme $X\subset Y$ of a scheme $Y$ as
-$\Ext^{\codim X}_{\sO_Y}(\sO_X, \omega_Y)$. Slightly extending this idea,
-if $C\subset \PP^r$ is a curve
-with homogeneous coordinate ring $R_{C}$,
-we define $\omega_{R_C}$ to be $\Ext^{r-1}_S(R_C, S(-r-1))$, where $S$
+$\Ext^{\codim X}_{\sO_Y}(\sO_X, \omega_Y)$. 
+Since $\omega_{\PP^{r}} = \sO_{\PP^{r}}(-r-1)$,
+we take $\omega_{S} = S(-r-1)$
+where $S$
 is the homogeneous coordinate ring of $\PP^r` `$.
-Since $\omega_{\PP^r} = \sO_{\PP^r}(-r-1)$, the sheafification of this
-module is  $\omega_C$.
+If $X\subset \PP^r$ is a scheme
+with homogeneous coordinate ring $R_{X}$,
+we define $\omega_{R_X}$ to be 
+$
+\Ext^{r-1}_S(R_C, S(-r-1)),
+$
+ a graded module whose sheafification 
+ is  $\omega_C$.
+We say that a projective scheme $X$ is
+\emph{arithmetically Gorenstein}
+\index{arithmetically Gorenstein}%
+if it is ACM and 
+$\omega_{R_{X}} \cong R_{X}(a)$ for some integer $a = a(X)$. Since
+canonically embedded curves are Castelnuovo curves they are ACM
+\index{curve!Castelnuovo}
+and thus arithmetically Gorenstein.
 
-If $C$ is arithmetically Cohen--Macaulay, so that
-$\pd (C) = \codim C = r-1$,  then by
-computing $\Ext^{r-1}_S(R_C, S(-r-1))$ from the 
+If $X\subset \PP^{r}$ has codimension $c$ and is arithmetically Cohen--Macaulay, so that
+$\pd (X) = c$,  then by
+computing $\Ext^{c}_S(R_X, S(-r-1))$ from the 
 \blue{minimal free resolution}
 \index{minimal free resolution}%
 $$
 (\FF, \phi):\quad 
-0\leftarrow R_C \leftarrow S\luto{\phi_1} F_1 \leftarrow \cdots \leftarrow 
-F_{r-2} \luto{\!\phi_{r-1}}\hskip-15pt-\ F_r\leftarrow 0
+0\leftarrow R_X \leftarrow S\luto{\phi_1} F_1 \leftarrow \cdots  
+F_{c -1} \luto{\!\phi_{c}}\hskip-15pt-\ F_{c}\leftarrow 0
 $$
-we see that $\omega_{R_C}$ is the cokernel of the dual $\phi_{r-1}^{*} = \Hom(\phi_{r-1}, S)$
-of the last map $\phi_{r-1}$ in the resolution. 
-\index{omega@$\omega_{R_C}$}%
+we see that $\omega_{R_X}$ is (up to twist)
+ the cokernel of the dual $\phi_{c}^{*} = \Hom(\phi_{c}, S)$
+of the last map $\phi_{c}$ in the resolution. 
+\index{omega@$\omega_{R_X}$}%
 Theorem~\ref{WMACE}
 implies that the complex $(\FF^*, \phi^*)$ which is the dual
 of the  resolution $(\FF, \phi)$ is again acyclic, so it is the minimal
-free resolution of $\omega_{R_C}$. Thus
-$\omega_{R_C}$ is a Cohen--Macaulay module. Just as the Cohen--Macaulay
+free resolution of $\omega_{R_X}$. Thus
+$\omega_{R_X}$ is a Cohen--Macaulay module. Just as the Cohen--Macaulay
 property of
-$R_C$ implies that $R_C = H^0_*(\sO_C)$, it follows that $\omega_{R_C}
-= H^0_*(\omega_C)$.
+$R_X$ implies that $R_X = H^0_*(\sO_X)$, it follows that $\omega_{R_X}
+= H^0_*(\omega_X)$.
 
-If, in addition, $C$ is a canonical curve, so that $\omega_C = \sO_C(1)$,
+If $C\subset \PP^{g-1}$ is a canonical curve, so that $\omega_C = \sO_C(1)$,
 then we derive:
 $$
-\omega_{R_C} = \coker(\phi_{r-2}^*)(-r-1) = R_C(1)
+\omega_{R_C} = \coker(\phi_{g-2}^*)(-g) = R_C(1)
 $$
-so $\coker \phi_{r-2}^* = R_C(r)$. Thus $(\FF^*(-r), \phi^*)$ is a
+so $\coker \phi_{g-2}^* = R_C(r)$. Thus $\Hom(\FF, S(-g-1))$ is a
 minimal free resolution of $R_C$, and is therefore isomorphic to
-$(\FF^*, \phi^*)$; that is, $(\FF, \phi)$ is self-dual.
-We have seen an example already
+$\FF$; that is, $\FF$ is self-dual, up to shift.
+We have seen a different example of such a duality already
 in the Koszul complex (a complete intersection is arithmetically Gorenstein).
 
 Taking into account that in a resolution $(\FF, \phi)$ each summand
@@ -666,14 +705,15 @@ of a canonical curve
 is determined by the numbers $b_{1}, \dots, b_{g-2}$.
 
 The geometry of linear series on $C$ influences these Betti numbers.
-If $|\sL|$ is a $g^{r}_{d}$ on $C$ then the multiplication map
+For example, if $|\sL|$ is a $g^{1}_{d}$ on $C$ then the multiplication map
 $H^0(\sL) \otimes H^0(\sL^{-1}\otimes \omega_C) \to H^0(\omega_C) =
 H^0(\sO_C(1))$
 corresponds to a $2\times h^{1}(\sL)$ matrix of linear forms on $\PP^{g-1}$
 as in Chapter~\ref{ScrollsChapter}.
 and
 the ideal $I$ generated by the minors of this matrix is contained in the homogeneous
-ideal of $C$. It turns out that the whole resolution of $I$ is a subcomplex of
+ideal of $C$. In fact by Proposition~\ref{containment of resolutions} below,
+ the whole resolution of $I$ is a subcomplex of
 the resolution of $R_{C}$. Resolutions of such determinantal ideals can be
 described explicitly, and we turn now to this description.
 
@@ -806,7 +846,7 @@ or equivalently that
 $\partial_{1}$ is a split injection. In this case we may write $F^{*}
 = R\oplus F'^{*}$ in such a way that $\partial_{1}$ is the injection
 into the first summand, and we may
-choose a basis $\{\hat e_{i}\}$ of $F^{*}$ so that the last $f-1$ basis
+choose a basis of $F^{*}$ such that the last $f-1$ basis
 elements are a basis for $F'^{*}$.
 Specializing the sequence $x_{1},x_{2}, \dots, x_{f}$ to the sequence $1,
 0,\dots, 0$, the differential of $K(\phi)^{*}$
@@ -902,13 +942,13 @@ multiples of the column
 $\Delta_{1}, \dots, \Delta_{g}$ where the $\Delta_{j}$ is 
 $(-1)^{j}$
 times the determinant
-of the matrix obtained from $\phi$ by leaving out the $j$-th column. This
-works
-because the composition of the two maps is a column matrix whose $i$-th
+of the matrix obtained from $\phi$ by leaving out the $j$-th column. 
+The composition $\delta_{1}\delta_{2}$ is zero
+because the composition  is a column matrix whose $i$-th
 entry is the
-expansion of the $(g+1)\times (g+1)$ determinant of the matrix obtained
+$(g+1)\times (g+1)$ determinant of the matrix obtained
 from $\phi$ by
-repeating the $i$-th row.
+repeating the $i$-th row, and is thus zero.
 
 \begin{theorem}\label{EN grade 2}
 Suppose that $R$ is a ring and $\phi: F\to G$ is a map of  free
@@ -1014,7 +1054,7 @@ satisfied.
 \subsection*{The Hilbert--\kern-0.5pt Burch theorem}
 
 \hskip-3pt
-In a regular local ring any ideal of whose primary components all have 
+In a regular local ring any ideal whose primary components all have 
 \null codimension\kern1.5pt 1 is 
 principal (divisors are all Cartier). What about
 ideals of codimension 2? The answer is the content of the
@@ -1409,7 +1449,7 @@ The map $\phi$ is represented by a 1-generic matrix of size $2\times (1+\codim X
 \begin{corollary}\label{E-N cor}
 With notation as in Theorem~\ref{ENgeneral} suppose that $R$ is a local ring
 with residue field $k$ and that
-and $k\otimes_{R}\phi = 0$.
+ $k\otimes_{R}\phi = 0$.
 If $I_{g}(\phi)$
 has codimension $\geq f-g+1$ then it has
 codimension exactly $f-g+1$, the ring $S/I_g(M)$ is Cohen--Macaulay,
@@ -1473,9 +1513,12 @@ completing the proof.
 
 \section{Green's Conjecture}
 
-To begin to describe Green's conjectured relationship of the geometry of
+To describe relationship between the geometry of
 a curve and the Betti table of its homogeneous coordinate ring
-in its canonical embedding, we begin at the beginning of the resolution, with 
+in its canonical embedding
+conjectured by Mark Green,
+\index{Green!Mark}%
+ we begin at the beginning of the resolution, with 
 the number of quadratic and cubic generators of the homogeneous ideal.
 
 Corollary~\ref{canonical hilbert function} implies that the dimension
@@ -1484,9 +1527,9 @@ of the vector space of forms of degree $d$
 vanishing on a canonical curve is independent of the curve; for example,
 if $C$ is a curve of genus $g\geq 3$ that is not hyperelliptic,
 $
-\dim ({I_{C}})_{2} = \tbinom{g-2}{2}
+\dim ({I_{C}})_{2} = \tbinom{g-2}{2}.
 $
-and since there are no linear forms in the ideal this implies that in the 
+Since there are no linear forms in the ideal this implies that in the 
 Betti table of the homogeneous coordinate ring of every canonically embedded
 curve of genus $g$ we have 
 $\beta_{1,2} =  \tbinom{g-2}{2}$.
@@ -1531,28 +1574,28 @@ Using the knowledge of scrolls from Chapter~\ref{ScrollsChapter} we can refine t
 observation. By the
 \index{Riemann--Roch theorem!geometric}%
 \blue{geometric Riemann--Roch theorem,} 
-$C$ has
+$C'$ has
 \index{trigonal}%
 a 1-dimensional family of 
 \blue{trisecant lines,}
 \index{trisecant}%
-and any quadric containing $C$
+and any quadric containing $C'$
 must contain all these. As we have seen in Chapter~\ref{ScrollsChapter},
 these lines sweep
 out the 2-dimensional rational normal scroll defined by the 1-generic
 $2\times (g-2)$ matrix $M$ corresponding to the decomposition of
-$\sO_C(1)$
-into a tensor product of the  line bundle $\sL$ associated to the
-$g^{1}_{3}$ and the residual line bundle $\omega_{C}\otimes \sL^{-1}$. The
+$\sO_{C'}(1)$
+into a tensor product of the  invertible sheaf $\sL$ associated to the
+$g^{1}_{3}$ and the residual sheaf $\omega_{C'}\otimes \sL^{-1}$. The
 latter has $g-2$ sections, and we see from section~\ref{particular name}
 that the scroll itself lies on the $\tbinom{g-2}{2}$ quadrics defined
 by the minors of $M$. The exactness of the Eagon--Northcott complex
 associated to this matrix shows that there are no relations of degree
 0 on these minors\emdash that is, they are linearly independent over
 the ground field. It follows that they generate the vector space of all
-quadrics containing $C$. We have seen that the minimal resolution
+quadrics containing $C'$. We have seen that the minimal resolution
 of the ideal of the scroll is, term by term, a summand of the minimal
-resolution of $I_{C}$, and indeed we see the Betti table 
+resolution of $I_{C'}$, and indeed we see the Betti table 
 $$
 \small
 \begin{tabular}{r|@{\hskip20pt}ccccc}
@@ -1563,14 +1606,15 @@ $j$&\llap{$i={}$}0&1&2&3\\
 1&--&3&2&--\\
 \end{tabular}
 $$
-of the scroll in the first two rows of the Betti table for $C$ above.
+of the scroll in the first two rows of the Betti table for $C'$ above.
 
-Another example of a canonical curve whose ideal requires cubic generators occurs in genus 6:
-If $C$ is isomorphic to a 
+Another example of a canonical curve whose ideal requires cubic generators occurs in genus 6
+when
+$C$ is isomorphic to a 
 \blue{plane quintic} 
 \index{quintic curve!plane}%
-curve,
-then the canonical series of the plane quintic is $5-3 = 2$ times the
+curve.
+The canonical series of the plane quintic is $5-3 = 2$ times the
 hyperplane series, and it follows that the canonical image of $C$ lies on
 the Veronese surface in $\PP^{5}$. As explained in the general construction
 at the beginning of section~\ref{particular name},  the Veronese surface is contained
@@ -1627,10 +1671,10 @@ is either trigonal or isomorphic to a plane quintic; in the latter cases,
 the ideal of the curve is generated by quadrics and cubics.
 \unif
 \end{theorem}
-For a modern treatment of Petri's theorem in this level of generality see
-\cite{Schreyer}; for a different treatment see \cite{Arbarello-Sernesi}.
+For modern treatments of Petri's theorem see
+\cite{Schreyer} or \cite{Arbarello-Sernesi}.
 
-The Betti tables for curves of genus 6
+As we have just seen, the Betti tables for curves of genus 6
 do not distinguish between the two exceptional types of 
 curves of genus 6, and this is a clue to the general case.
 The two exceptions in Petri's theorem are unified  by  the 
@@ -1639,145 +1683,39 @@ notion of the
 Clifford index:
 
 \begin{definition}
-The \emph{Clifford index} Cliff $\sL$ of a line bundle $\sL$ on a curve
+The \emph{Clifford index} Cliff $\sL$ of an invertible sheaf $\sL$ on a curve
 \index{Cliff@Cliff $\sL$}%
 $C$ is $d-2r$, where $d \colonequals  \deg \sL$ and $r \colonequals
 h^0(\sL)-1$. The Clifford index Cliff $C$ of
 a curve $C$ of genus $\geq 2$ is the minimum of the Clifford indices
-of special line bundles with at least 2 sections.
+of the invertible sheaves $\sL$  with $h^{0}(\sL) \geq 2$ and $h^{1}(\sL)\geq 2$.
 \unif
 \end{definition}
+See Exercise~\ref{forms of Clifford} for some equivalent formulations.
 
 Clifford's theorem (Corollaries \ref{Clifford bound} and ~\ref{equality
-in Clifford from Martens}) shows that, for any curve $C$,
+in Clifford from Martens}) asserts that, for any curve $C$,
  Cliff $C \geq 0$, and Cliff $C =
 \index{Clifford's theorem}%
 0$ if and only~if $C$ is hyperelliptic. If $C$ is not hyperelliptic, then
  Cliff $C=1$ if and only~if $C$ is either trigonal or
 isomorphic to a plane quintic, the two exceptional cases in Theorem~\ref{Petri}.
- The special case Corollary~\ref{gonality bound} of the Brill-Noether Theorem~\ref{basic BN} 
+Corollary~\ref{gonality bound} 
  shows
  that the Clifford index of any smooth curve of
-genus $g\geq 2$ is $\leq \lceil \frac{g-2}{2} rceil$, with equality for a general
-curve, as one sees from the Brill--Noether Theorem~\ref{basic BN}. The line bundle $\sL$ of maximal Clifford index often has only
+genus $g\geq 2$ is $\leq \lceil \frac{g-2}{2} \rceil$, with equality for a general
+curve. An invertible sheaf $\sL$ of maximal Clifford index often has only
 2 sections, though there is an infinite sequence of examples where this
 ``Clifford dimension'' is greater beginning with plane quintics
 and complete intersections of two cubics in $\PP^{3}$~\cite{MR1030141}.
 
-%
-%Moving to cubic forms, we see that $\dim ({I_C})_3 = 
-%\tbinom{g+2}{ 3}-(5g-5)$. Comparing this number with the number of (possibly linearly
-%dependent)
-%cubics obtained by multiplying $g$ linear forms and $\tbinom{g-2}{ 2}$
-%quadrics, we see that the ideal of the curve has at least
-%$
-%\tbinom{g-2}{ 2} - \tbinom{g+2}{ 3}-(5g-5)
-%$
-%independent syzygies of total degree 3 (that is, linear syzygies on the
-%quadrics). For example when $g=4$ so that $C\subset \PP^3$ there is one
-%quadric and 5 independent
-%cubics, at most 4 of which are multiples of the quadric. Since the curve
-%has degree $6 = 2\times 3$, the ideal of the curve must be generated by
-%the quadric and one cubic. When $g=5$ there are genuinely two
-%possibilities: the three quadrics in the ideal might be a complete
-%intersection
-%(then they generate the ideal), so the Betti table would be
-%\index{Betti table}%
-%$$
-%\small
-%\begin{tabular}{r|@{\hskip20pt}ccc}
-%\downstrut
-%$j$&\llap{$i={}$}0&1&2\\
-%\hline
-%\upstrut
-%0&1&--&--\\
-%1&--&2&--\\
-%2&--&--&$1$\\
-%\end{tabular}
-%$$
-%\emdash or the curve could be trigonal, in which case the 3 quadrics
-%generate the ideal of a surface scroll $F$. In the latter
-%case, the Eagon--Northcott complex resolves the 
-%\index{homogeneous coordinate ring}%
-%\blue{homogeneous coordinate ring}
-%$S_F$ of the scroll,
-%$$
-%0\to S^2(-3) \to S^3(-2) \to S \to S_F \to 0
-%,
-%$$
-%which has Betti table
-%$$
-%\small
-%\begin{tabular}{r|@{\hskip20pt}ccc}
-%\downstrut
-%$j$&\llap{$i={}$}0&1&2\\
-%\hline
-%\upstrut
-%0&1&--&--\\
-%1&--&3&$2$\\
-%\end{tabular}
-%$$
-%and we see that there are 2 linear relations among the
-%quadrics. Thus the minimal generators of $I_C$ must include exactly
-%2 cubics as well as the 3 quadrics. Since the homogeneous ring of a
-%canonical curve is Gorenstein, its minimal free resolution is symmetric,
-%and this is enough for us to fill in its Betti table:
-%$$
-%\small
-%\begin{tabular}{r|@{\hskip20pt}cccc}
-%\downstrut
-%$j$&\llap{$i={}$}0&1&2&3\\
-%\hline
-%\upstrut
-%0&1&--&--&--\\
-%1&--&3&$2$&--\\
-%2&--&$2$&$3$&--\\
-%3&--&--&--&$1$\\
-%\end{tabular}
-%$$
-%Note that we can see the scroll reflected in the top two
-%lines of the table.
-%
-%From the analogue of the 
-%\blue{Hilbert--Burch theorem}
-%\index{Hilbert--Burch theorem}%
-% for 
-%\blue{Gorenstein rings} 
-%\index{Gorenstein rings}%
-%of
-%codimension 3 one can show that the 5 generators can be written as the
-%\blue{Pfaffians}
-%\index{Pfaffian}%
-%of a skew symmetric $5\times 5$ matrix whose entries are of
-%degrees 1 and 2, in the following pattern (we give just the degrees,
-%and 
-%use -- for 0):
-%$$
-%\catcode`\-=\active \def-{\hbox{\char`\-\char`\-}}
-%\left(@
-%\begin{matrix}
-%-&-&1&1&1\\
-%-&-&1&1&1\\
-%1&1&-&2&2\\
-%1&1&2&-&2\\
-%1&1&2&2&-
-%\end{matrix}
-%@\right)
-%.
-%$$
-%Here the $2\times 2$ minors of the upper $2\times 3$ block of linear
-%forms generate the ideal of the scroll.
-%
-%Applying this logic more generally we get the following result about
-%the canonical embedding of curves with low degree maps to $\PP^1$:
-%
 Putting together the construction of section~\ref{particular name} with
 Proposition~\ref{containment of resolutions} allows us to say
 something about the meaning of the Betti table of a canonical curve.
 
-\begin{theorem}
+\begin{theorem}\label{form of canonical betti table}
 Let $C\subset \PP^{g-1}$ be a reduced, irreducible canonical curve. If
-$C$ has a line bundle $\sL$ of degree $d \leq g-1$ with $h^0(\sL) =
+$C$ has an invertible sheaf $\sL$ of degree $d \leq g-1$ with $h^0(\sL) =
 2$  then
 there is a 1-generic  $2\times (g+1-d)$ matrix of linear forms whose
 minors define a scroll of codimension $g-d$ containing $C$; and thus an
@@ -1788,6 +1726,15 @@ termwise $\geq$ that of the homogeneous coordinate ring of the scroll.
 \unif
 \end{theorem}
 
+\begin{proof}
+With notation as in the theorem, $h^{1}(\sL) = h^{0}(\sL^{-1}\otimes \omega_{C}) = g-d+1$, and the scroll
+corresponding to the product 
+$$
+H^{0}(\sL)\otimes H^{0}(\sL^{-1}\otimes \omega_{C}) \to H^{0}(\omega_{C})
+$$
+has codimension $g-d$.
+\end{proof}
+
 %We have stated this theorem for canonical curves, but in fact the
 %construction applies much more generally to a linearly normal variety
 %$X \subset \PP^n$ of any dimension: if $X$ has a divisor $D$ that moves
@@ -1795,7 +1742,8 @@ termwise $\geq$ that of the homogeneous coordinate ring of the scroll.
 %the planes spanned by the divisors of the pencil $|D|$ sweep out a
 %rational normal scroll.
 
-Thus the existence of the $g^1_d$ on $C$, together with the symmetry
+For a curve as in the Theorem, 
+the existence of the $g^1_d$ on $C$, together with the symmetry
 of the resolution of the Gorenstein ring $R_C$,
 implies that the Betti table of $R_C$ has the form%
 \index{Betti table}%
@@ -1804,7 +1752,7 @@ $$
 \medmuskip1mu
 \begin{tabular}{r|@{\hskip20pt}cccccccccccc}
 \downstrut
-$j$&\llap{$i={}$}0&1&2&\dots&$d-3$&$d-2$&\dots&$g-d-1$&$g-d$&\dots&$g-3$&$g-2$\\
+$j$&\llap{$i={}$}0&1&2&\dots&$d-3$&$d-2$&\dots&$g-d$&$g-d+1$&\dots&$g-3$&$g-2$\\
 \hline
 \upstrut
 0&1&--&--&$\cdots$&--&--&--&--&--&--&--&--\\
@@ -1813,26 +1761,26 @@ $j$&\llap{$i={}$}0&1&2&\dots&$d-3$&$d-2$&\dots&$g-d-1$&$g-d$&\dots&$g-3$&$g-2$\\
 3&--&--&--&$\cdots$&--&--&--&--&--&--&--&1
 \end{tabular}
 $$
-where we have assumed for illustration that $d-2<g-d-1$. 
+where we have assumed for illustration that $d-2<g-d$. 
 As before, a dash indicates a place that is
 definitely 0; 
 asterisks indicate some that are
 definitely
-nonzero. The entries of the rows marked 0 and 1 are 
+nonzero. The entries of row 1 are 
 greater than or equal to
 the
-corresponding entries of the Betti table of the scroll.
+corresponding entries of the Betti table of the scroll. Note that Cliff $\sL = d-2$ in this case.
 
 We can summarize this by saying
-that if the curve $C$ has a line bundle $\sL$ of degree $d$ with exactly
-2 sections (which is thus of Clifford index $c = d-2$) the row labeled  2
-in the Betti diagram definitely has $\beta_{c, c+2} \neq 0$. As with
+that if the curve $C$ has an invertible sheaf $\sL$ of degree $d$ with exactly
+2 sections (which is thus of Clifford index $c = d-2$) then $\beta_{g-d,1}\neq 0$
+and, by symmetry, $\beta_{c,c+2} \neq 0$. As with
 the case of the plane quintics above, one can
-make a similar argument for \emph{any} line bundle of Clifford index
+make a similar argument for \emph{any} invertible sheaf of Clifford index
 $c$. Thus:
 
 \begin{corollary}
-If\, $\mathrm{Cliff}\, C \leq c$ then $\beta_{c,c+2}(S/I_C)) \neq 0$.
+If\, $\mathrm{Cliff}\, C \leq c$ then $\beta_{c,c+2}(S/I_C) \neq 0$.
 \unif
 \end{corollary}
 
@@ -1841,7 +1789,8 @@ Starting from examples such as the case of genus 6, Mark Green made a
 bold conjecture that is still open as of this writing:
 
 \begin{conjecture}[Green's conjecture]
-If $C$ is a smooth canonical curve of genus $g$ and $R_{C}$ is the
+If $C$ is a smooth canonical curve of genus $g$ over a field of characteristic 0,
+ and $R_{C}$ is the
 \index{Green's conjecture}%
 homogeneous coordinate ring of $C$ in its canonical embedding,
 then the Clifford index of $C$ is $\leq c$ if and only~if
@@ -1875,15 +1824,15 @@ for more information.
 
 Perhaps the most definitive of the various partial results related to Green's conjecture
 amounts to a complete characterization of curves
-of maximal Clifford index in the odd genus case; it is 
-is a theorem involving work of Hirschowitz, Ramanan and Voisin \cite{***}.
+of maximal Clifford index in the odd genus case; it 
+is a theorem combining work from~\cite{MR1603255} and \cite{MR2157134}.
 The reader may compare the theorem to the special case of genus 5 at the 
 beginning of this section.
 
 \begin{theorem}\label{generic odd}
 Let $g = 2c+1$ be an odd integer. The curves of Clifford index $<c$ form an effective
-divisor $\Delta$ in $M_{g}$, and the Betti tables of the homogeneous coordinate rings of
-curves outside this divisor all have the form
+divisor $\Delta$ in $M_{g}$, and the Betti tables of the homogeneous coordinate rings of the
+canonical embeddings of curves outside this divisor all have the form
 \index{Betti table}%
 $$
 \small
@@ -1905,7 +1854,7 @@ as predicted by Green's conjecture.
 One can at least understand a local equation for the divisor $\Delta$ directly. Let $C$
 be
 a curve of genus $2c+1$ and Clifford index $c$, and consider a small affine neighborhood $U$ of 
-$C$ in the Hilbert scheme of smooth canonical curves of this genus, The correspond family of homogeneous coordinate
+$C$ in the Hilbert scheme of smooth canonical curves of this genus, The corresponding family of homogeneous coordinate
 rings over $U$ will have Betti table of the form
 $$
 \small
@@ -1937,140 +1886,21 @@ by the vanishing of the determinant.
 
 The divisor $\Delta$ plays another important role
 in the history of our subject: it is a crucial ingredient in the original proof in
-\cite{***} of the fact that $M_{g}$ is of general type for large odd values of $g$!
+\cite{Harris-MumfordModuli} of the fact that $M_{g}$ is of general type for large odd values of $g$!
 
 \section{Exercises}
-
-\begin{exercise}\label{WMACE corollary}
-Let $S = k[x_0,\dots, x_r]$, and let
-$$
-\FF:\quad  
-F_0\luto{\phi_1}F_1 \leftarrow \cdots \leftarrow F_{n-1}\luto{\phi_n} F_n\leftarrow 0
-$$
-be a finite complex of free $S$-modules. Set
-$$
-X_i =\big\{p\in \AA^{n+1} \mid  H_i(\FF \otimes \kappa(p)) \neq 0 \big\}.
-$$
-Use Theorem~\ref{WMACE} to prove that $\FF$ is 
-\blue{acyclic}
-\index{acyclic}%
-if and only~if
-$
-\codim X_i \geq i
-$
-for all $i>0$. Moreover, $X_{0}\supseteq X_{1}\supseteq \cdots \supseteq
-X_{n}$.
-
-Hint: Elementary linear algebra shows that, if $k$ is a field, then a
-complex $$k^p \lTo^{\phi} k^q \lTo^\psi k^r$$ is exact at $k^q$ if and
-only~if $\rank \phi +\rank \psi = q$.
-\end{exercise}
-
-\begin{exercise}
-Prove that if $X\subset \PP^r$ is 
-\blue{arithmetically Cohen--Macaulay}
-\index{ACM}%
-then
-the dual of the minimal free resolution of $S/I_X$
-is the minimal free resolution of $\omega_X$.
-
-Hint: Use Theorem~\ref{WMACE}
-and the characterization of $\omega_{S/I_X}$
-as an Ext module.
-\end{exercise}
-
-\begin{exercise}
-The \emph{depth lemma} states that if
-\index{depth lemma}%
-$$
-0\to A\to B\to C \to 0
-$$
-is an exact sequence of nonzero finitely generated modules over a local
-ring $R$ then
-$$
-\begin{aligned}
-\depth C &\geq \min\{\depth B, \depth A-1\},\\
-\depth A & \geq \min\{\depth B, \depth C +1\}.
-\end{aligned}
-$$
-Prove this in the special case when $R$ is regular using the
-characterization of depth
-via projective dimension.
-\end{exercise}
-
-\begin{exercise}
+\begin{exercise}\label{forms of Clifford}
+Show that if $C$ is a curve of genus $g\geq 2$, 
+and $\sL$ is an invertible sheaf on $C$ then 
 \begin{enumerate}
-\item Prove that if $\phi: F\to G$ is a free presentation of a finitely
-generated module $M$
-then
-$$
-\ann_{R}(\coker \phi)^{\rank G}\subset \Fitt_{0}\phi \subset
-\ann_{R}(\coker \phi).
-$$
-\item Prove that over a local ring every projective module is free;
-and show that
-$I(\phi)$ defines the nonfree locus of $\coker \phi$.
+ \item Cliff $\sL = g+1-(h^{0}(\sL)+h^{1}(\sL))$.
+ \item Cliff $C = \min\{\hbox {Cliff }\sL \mid \deg \sL \leq g-1 \hbox{ and } h^{0}(\sL) \geq 2\}.$
 \end{enumerate}
+
+Hint: Use the Riemann-Roch theorem.
 \end{exercise}
 
-\begin{exercise}
-In dealing with arithmetically Gorenstein schemes, we used the fact that
-\blue{arithmetically Gorenstein}
-\index{arithmetically Gorenstein}%
-if $\omega_{S/I}$ is an invertible
-sheaf (over $\Spec(S/I)$) then it is isomorphic to $S/I(a)$ for some
-$a$. Why is this true?
-
-Hint: Nakayama's lemma can be used to prove that projectives are free
-\index{Nakayama's lemma}%
-in some cases.
-\end{exercise}
-
-\begin{exercise}
-Find a degree 6 embedding of a curve of genus 3 that is not arithmetically
-Cohen--Macaulay, and another that is.
-
-Hint: Show that the $3\times 3$ minors of a general $4\times 3$ matrix
-of linear forms defines a Cohen--Macaulay curve
-of genus 3. Show that a curve of type $(2,4)$ on a smooth quadric in
-$\PP^3$ is not arithmetically Cohen--Macaulay.
-\end{exercise}
-
-\begin{exercise}
-Referring to the Betti table of a canonical curve just before
-\index{Betti table}%
-Section~\ref{EN section}, give a formula
-for the differences $b_i- b_{g-i-1}$ that depends only on $i$ and $g$.
-\end{exercise}
-
-\begin{exercise}
-Show that if $I \subset S \colonequals  \CC[x_0,\dots, x_r]$ is a
-codimension 2 ideal, then $S/I$ is Cohen--Macaulay if and only
-if the minimal $S$-free resolution of $S/I$ has the form
-$$
-0\to S^{n-1} \to S^n \to S
-$$
-for some $n$. Show that $S/I$ is Gorenstein if and only~if $I$ is a
-complete intersection.
-
-Hint: for the first part, tensor with
-the field of rational functions.
-\end{exercise}
-
-\begin{exercise}
-Which sets of 4 distinct points in $\PP^2$ are arithmetically
-Gorenstein? Which sets of 5 points? Which sets of 6 points?
-\end{exercise}
-
-\begin{exercise}
-Give an example of a set of points in $\PP^3$ that is arithmetically
-Gorenstein but not a complete intersection.
-
-Hint: take the
-hyperplane section of a trigonal canonical curve of genus 5.
-\end{exercise}
-
-\begin{exercise}
+\begin{exercise}\label{resolutions of curves on a quadric}
 Let $q:F\to G$, with $F = S^2(-1)$ and $G = S^2$,
 be described by the matrix $\bigl(` `\begin{smallmatrix} x_0&x_1\\ x_2&x_3 \end{smallmatrix}` `\bigr)@$, and let $Q\subset \PP^3$ be the quadric defined by the determinant of $q$.
 \begin{enumerate}
@@ -2095,8 +1925,11 @@ G(-1)\to \Sym^a G.
 $$
 
 Hint: Use multilinear algebra (as in \cite{Eisenbud1995}) to define the
-maps, and use
-Theorem~\ref{WMACE} to prove that this is a resolution.
+maps, and 
+Imitate the proof of Theorem~\ref{ENgeneral} to prove
+the exactness of the given resolution of $\Sym^a(M)$. See also
+\cite[Appendix A2.6]{Eisenbud1995}.
+
 
 \item Show that if $C\subset \PP^3$ is a curve of type $(a, b)$ with
 $a\leq b$ then
@@ -2116,7 +1949,10 @@ $$
 \vspace*{5pt}
 $$
 
-\item Conclude that the deficiency module of a curve of type $(a, b)$
+\item Using the construction above, compute the Betti table of the homogeneous
+coordinate ring of a curve of type $(a,b)$ on the smooth quadric in $\PP^{3}$.
+
+\item Conclude that the Hartshorne-Rao module of a curve of type $(a, b)$
 with $a\leq b$ is the cokernel of a map
 $$
 \mwedge^2 F^* \otimes \Sym^{b-a-2} (G^*)(b+2) \luto{\,F^*}\otimes \Sym^{b-a-1}
@@ -2130,26 +1966,118 @@ $$
 where the map is the action of $F$ on $\mwedge \,G^*$ via the map $q:F\to G$.
 \end{enumerate}
 
-Hint:  Imitate the proof of Theorem~\ref{ENgeneral} to prove
-the exactness of the given resolution of $\Sym^a(M)$. See also
-\cite[Appendix A2.6]{Eisenbud1995}.
+\end{exercise}
+
+\begin{exercise}\label{WMACE corollary}
+Let $S = k[x_0,\dots, x_r]$, and let
+$$
+\FF:\quad  
+F_0\luto{\phi_1}F_1 \leftarrow \cdots \leftarrow F_{n-1}\luto{\phi_n} F_n\leftarrow 0
+$$
+be a finite complex of free $S$-modules. Set
+$$
+X_i =\big\{p\in \AA^{n+1} \mid  H_i(\FF \otimes \kappa(p)) \neq 0 \big\}.
+$$
+Use Theorem~\ref{WMACE} to prove that $\FF$ is 
+\blue{acyclic}
+\index{acyclic}%
+if and only~if
+$
+\codim X_i \geq i
+$
+for all $i>0$ and that $X_{0}\supseteq X_{1}\supseteq \cdots \supseteq
+X_{n}$.
+
+Hint: Elementary linear algebra shows that, if $k$ is a field, then a
+complex $$k^p \lTo^{\phi} k^q \lTo^\psi k^r$$ is exact at $k^q$ if and
+only~if $\rank \phi +\rank \psi = q$.
 \end{exercise}
 
 \begin{exercise}
-\label{Fitt}
-Let $\phi: F\to G \to M\to 0$ be an exact sequence of finitely generated
-$R$-modules,
-with $F$ and $G$ free.
+The \emph{depth lemma} states that if
+\index{depth lemma}%
+$$
+0\to A\to B\to C \to 0
+$$
+is an exact sequence of nonzero finitely generated modules over a local
+ring $R$ then
+$$
+\begin{aligned}
+\depth C &\geq \min\{\depth B, \depth A-1\},\\
+\depth A & \geq \min\{\depth B, \depth C +1\}.
+\end{aligned}
+$$
+Prove this in the special case when $R$ is regular using the
+characterization of depth
+via projective dimension.
+\end{exercise}
 
+\begin{exercise}
 \begin{enumerate}
-\item Show that the annihilator of  $\coker \phi$ has the
-same radical as the ideal 
-of minors
-$I_{\rank G}(\phi)$.
-\item 
-Show that the cokernel of $\phi$
-is locally free if and only~if $I_{\rank \phi}(\phi)= R$.
+ Prove that over a local ring every projective module is free;
+and show that
+$I(\phi)$ defines the nonfree locus of $\coker \phi$.
 \end{enumerate}
 \end{exercise}
+
+\begin{exercise} Suppose that $X\subset \PP^{r}$ is arithmetically Gorenstein.
+Profe that 
+\blue{arithmetically Gorenstein}
+\index{arithmetically Gorenstein}%
+if $\omega_{R_{X}}$  is isomorphic to $R_{X}(a)$ for some
+$a$. 
+
+Hint: Nakayama's lemma can be used to prove that projectives are free
+\index{Nakayama's lemma}%
+in some cases.
+\end{exercise}
+
+\begin{exercise}
+Find a degree 6 embedding of a curve of genus 3 that is not arithmetically
+Cohen--Macaulay, and another that is.
+
+Hint: Show that the $3\times 3$ minors of a general $4\times 3$ matrix
+of linear forms defines a Cohen--Macaulay curve
+of genus 3. Show that a curve of type $(2,4)$ on a smooth quadric in
+$\PP^3$ is not arithmetically Cohen--Macaulay.
+\end{exercise}
+
+\begin{exercise}
+Referring to the Betti table of a canonical curve just after Theorem~\ref{form of canonical betti table},
+\index{Betti table}%
+give a formula
+for the differences $b_i- b_{g-i-1}$ that depends only on $i$ and $g$.
+
+Hint: Use the formula for the Hilbert function of the canonical curve.
+\end{exercise}
+
+\begin{exercise}
+Show that if $I \subset S \colonequals  \CC[x_0,\dots, x_r]$ is a
+codimension 2 ideal, then $S/I$ is Cohen--Macaulay if and only
+if the minimal $S$-free resolution of $S/I$ has the form
+$$
+0\to S^{n-1} \to S^n \to S
+$$
+for some $n$. Show that $S/I$ is Gorenstein if and only~if $I$ is a
+complete intersection.
+
+Hint: To show that the rank of the syzygy matrix is $n-1$, tensor with
+the field of rational functions.
+\end{exercise}
+
+\begin{exercise}
+Show that sets of points are always ACM schemes. 
+Which sets of 4 distinct points in $\PP^2$ are arithmetically
+Gorenstein? Which sets of 5 points in $\PP^2$? Which sets of 6 points in $\PP^2$?
+\end{exercise}
+
+\begin{exercise}
+Give an example of a set of points in $\PP^3$ that is arithmetically
+Gorenstein but not a complete intersection.
+
+Hint: Consider the
+hyperplane section of a trigonal canonical curve of genus 5.
+\end{exercise}
+
 
 \input{footer}
