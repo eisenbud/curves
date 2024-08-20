@@ -1,43 +1,6 @@
-% This is msribib.bst
-% $Revision: 1.15 $
-% $Date: 2000/02/25 04:50:52 $
+% This is curves.bst, based on msribib.bst -r1.15
 %
-% This file is derived from chicago.bst by Glenn Pauley.  It is called
-% msribib.bst and was developed by Silvio Levy for the book series
-% Mathematical Sciences Research Insitute Publications.  It follows the
-% Chicago Manual of Style in using author and year as the bib key.
-%
-% Place this file in the BibTeX search path.
-% You need to say \usepackage{msribib} in your latex document. You
-% should have received the files msribib.sty and url.sty together with
-% this one.
-%
-% Usage:
-%
-% \cite{key}       gives        [author-last-name year]
-% \citeyear{key}   gives        [year]
-% \citeNP{key}     gives        author-last-name year
-% \citeyearNP{key} gives        year
-%
-% Simple example:
-%
-% For details, see \cite{foo,bar}
-%
-% gives [Foote 1993; Barlow 1994]
-%
-% Complicated examples:  
-%
-% See [\citeNP[p.~666]{foo}; \citeNP{bar}]
-%
-% gives [Foote 1993, p.~666; Barlow 1994]
-%
-% It was proved in [\citeNP{Paper1bySoAndSo}; \citeyearNP{Paper1bySoAndSo}]
-%
-% gives [SoAndSo 1993; 1994]
-%
-%   Reference list ordering: alphabetical by author or whatever passes
-%    for author in the absence of one.
-%
+% This file is ultimately derived from chicago.bst by Glenn Pauley.
 
 ENTRY
   { address
@@ -429,6 +392,7 @@ FUNCTION {format.authors}
     { "" }
     { author format.names }
   if$
+  " (" sort.year ")" * * *
 }
 
 FUNCTION {format.key}
