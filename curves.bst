@@ -8,6 +8,7 @@ ENTRY
     booktitle
     chapter
     description
+    doi
     edition
     editor
     howpublished
@@ -184,6 +185,13 @@ FUNCTION {url.output}
   if$
 }
 
+FUNCTION {doi.output}
+{ doi empty$
+    {}
+    {"DOI: \href{https://doi.org/" doi * "}{" * doi * "}" * output.nonnull}
+  if$
+}
+
 FUNCTION {desc.output}
 { description empty$
     {}
@@ -194,6 +202,7 @@ FUNCTION {desc.output}
 FUNCTION {fin.entry}
 {
   new.sentence
+  doi.output
   url.output
   new.sentence
   note output
