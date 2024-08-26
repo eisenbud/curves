@@ -484,13 +484,14 @@ $\phi$ has unit determinant, and after row and column operations we
 can write $\phi \cong \phi_{1}\oplus \phi_{2}$. If $\phi_{2}$
 were nonzero
 the rank of $\phi$ would be greater than $r$, so $\phi_{2} = 0$, and
-$\coker \phi$ is a free module isomorphic to the target of $\phi_{2}$.
+$\coker \phi$ is a free module isomorphic to the target of~$\phi_{2}$.
 \end{proof}
 
-The \emph{grade} of an ideal $I$ is defined to be the length of a maximal regular
-\index{grade!of ideal}%
+Recall that in Section~\ref{ACM} we defined
+the \emph{grade} of an ideal $I$ to be the length of a maximal regular
+\index{grade!of an ideal}%
 sequence
-contained $I$, or $\infty$ if $I=R$. If $R$ is a
+contained in $I$, or $\infty$ if $I=R$. If $R$ is a
 Cohen--Macaulay ring
 \index{Cohen--Macaulay!ring}%
 such as
@@ -795,7 +796,7 @@ $\delta_{i}\delta_{i+1} = 0$. Since the modules are free, it suffices
 to do this for the
 dual maps
 $$
-\partial_{i}: \mwedge^{i}F^{*} \to \mwedge^{i+1}F^{*},
+\delta_{i+1}^* = \partial_{i}: \mwedge^{i}F^{*} \to \mwedge^{i+1}F^{*},
 $$
 and it turns out that this is in a sense even more natural.
 
@@ -863,14 +864,17 @@ $K(\phi)$ is
 split exact
 \index{split exact}%
 when $I = R$; that is, 
-$\mwedge^{i}@F = \ker \delta_{i} \oplus \im \delta_{i}$ 
-for every $i$, or equivalently
-$\mwedge^{i}@F^{*} = \im \partial_{i}\oplus\coker \partial_{i}$ for
+$\mwedge^{i}@F \cong \ker \delta_{i} \oplus \im \delta_{i}$ 
+ and $\ker \delta_{i} = \im \delta_{i+1}$
+ for every $i$, or equivalently
+$\mwedge^{i}@F^{*} \cong \ker \partial_{i}\oplus\im \partial_{i}$
+and $\ker \partial_{i} = \im \partial_{i-1}$
+ for
 every $i$. The condition $I=R$ implies that $\delta_{1}$ is a split
 surjection,
 or equivalently that
-$\partial_{1}$ is a split injection. In this case we may write $F^{*}
-= R\oplus F'^{*}$ in such a way that $\partial_{1}$ is the injection
+$\partial_{0}$ is a split injection. In this case we may write $F^{*}
+= R\oplus F'^{*}$ in such a way that $\partial_{0}$ is the injection
 into the first summand, and we may
 choose a basis of $F^{*}$ such that the last $f-1$ basis
 elements are a basis for $F'^{*}$.
@@ -907,14 +911,14 @@ maps $\phi_{i}$. Because ranks of free modules are additive in direct
 sums, it is obvious that
 in the split exact case the condition on the ranks of the $\phi_{i}$
 is satisfied; more precisely,
-$\rank(\delta_{i}) = \tbinom{i-1}{f-1}$. We also see that after inverting
+$\rank(\delta_{i}) = \tbinom{f-1}{i-1}$. We also see that after inverting
 a nonzerodivisor in $I(\delta_{1})$ we have $I(\delta_{i}) = R$;
 equivalently,
 $$
 \tsty % tame the square root
 I  \subset \sqrt {I(\delta_{i})}.
 $$
-(In fact $I(\delta_{i}) = I^{\sbinom{i-1}{f-1}}$, though this requires a
+(In fact $I(\delta_{i}) = I^{\sbinom{f-1}{i-1}}$, though this requires a
 separate argument.) Thus if $\grade I = f$ then  $\grade I(\delta_{i})
 \geq i$ for all $i$, so $K(\phi)$ is acyclic.
 \end{proof}
@@ -1036,7 +1040,7 @@ verifying the assertion.
 \begin{proof}
 Once having shown that $EN(\phi)$ is a complex, as we did above,  the
 proof of the equivalence in the theorem follows the same pattern as the
-proof given above for the Koszul complex.
+proof given above for the Koszul complex:
 \index{Koszul complex}%
 
 If $EN(\phi)$ is acyclic, then by Theorem~\ref{WMACE} the $g\times g$
@@ -1058,26 +1062,28 @@ $$
 Thus 
 $EN(\phi)$ is split exact in this case.
 
-We now apply Theorem~\ref{WMACE}: From what we just proved we see that
+We next show that if $I_{g}(\phi)$ has grade 2 then both conditions of
+Theorem~\ref{WMACE} are
+satisfied.
+From what we just proved we see that
 if we localize
 $S$ by inverting any element of $I$ then the complex $EN(\phi)$ becomes
-split exact,
+split exact. Since we have assumed that $I_1(\delta_1) = I_g(\phi)$ has grade at least 2,
+we can choose the element to be a nonzerodivisor
+\index{nonzerodivisor}%
 and therefore, before localizing,
 $\rank(\delta_{1}) = 1$ and $\rank \delta_{2} = g$. In this
 case it follows from the definition that $I_{1}(\delta_{1}) = I_{g}(\phi)
 = I_{g}(\delta_{2})$
-so if $I_{g}(\phi)$ has grade 2 then both conditions of
-Theorem~\ref{WMACE} are
-satisfied.
-\end{proof}
+so, by Theorem~\ref{WMACE}, the complex is exact. \end{proof}
 
 \subsection*{The Hilbert--\kern-0.5pt Burch theorem}
 
 \hskip-3pt
 In a regular local ring any ideal whose primary components all have 
 \null codimension\kern1.5pt 1 is 
-principal (divisors are all Cartier). What about
-ideals of codimension 2? The answer is the content of the
+principal (divisors are all Cartier) and thus of projective dimension 0. What about
+ideals of projective dimension 1? The answer is the content of the
 \emph{Hilbert--Burch} theorem, proven
 in 1890 by David Hilbert in the case of homogeneous ideals in
 \index{Hilbert @Hilbert, David}%
@@ -1201,7 +1207,7 @@ is identified with $\mwedge^{g}@\phi$.
 
 \item For $i>1$ the dual of the differential $\delta_{i}$,
 $$
-\partial_{i} \colonequals \delta_{i}^{*}: \Sym^{i-2}G \otimes \mwedge^{g+i-2}@F^{*} \to
+\partial_{i-1} \colonequals \delta_{i}^{*}: \Sym^{i-2}G \otimes \mwedge^{g+i-2}@F^{*} \to
 \Sym^{i-1}G \otimes \mwedge^{g+i-1}@F^{*}
 $$ 
 is multiplication by the trace element
@@ -1225,7 +1231,7 @@ is the same as it would be if $F$ were replaced by this summand. Thus
 from the case $f=g+1$ we see
 that $\delta_{1}\delta_{2}b = 0$, and thus $\delta_{2}\delta_{1} = 0$.
 
-On the other hand if $i\geq 1$ then, just as in the case $f=1$,
+On the other hand if $i\geq 2$ then, just as in the case $f=1$,
  the map $\partial_{i+1}\partial_{i}$
 is multiplication by
 $$
@@ -1275,17 +1281,17 @@ grade $\geq f-g+1$.
 \end{theorem}
 
 \begin{proof}
-The dual of the last differential of $EN(\phi)$ is
+The dual of the last differential, $\delta_{f-g+1}$, of $EN(\phi)$ is
 $$
-\partial_{f-g+1}: \Sym^{f-g-1}G \otimes \mwedge^{f-1}@F^{*} \to
+\partial_{f-g}: \Sym^{f-g-1}G \otimes \mwedge^{f-1}@F^{*} \to
 \Sym^{f-g}(G) \otimes \mwedge^{f}F^{*}.
 $$
 After choosing a generator of $\mwedge^{f}F^{*}$ we
 may identify $\mwedge^{f}F^{*}$ with $S$ and $\mwedge^{f-1}F^{*}$ with $F$,
-and the map $\partial_{f-g+1}$
+and the map $\partial_{f-g}$
 is then identified with the multiplication map
 $$
-\Sym^{f-g-1}G \otimes F \ruto {\!1\cdot \phi} \Sym^{f-g}G
+\Sym^{f-g-1}G \otimes F \ruto {\!1\times \phi} \Sym^{f-g}G
 ,
 $$
 whose cokernel is $\Sym^{f-g}(\coker \phi)$ by the right exactness of
@@ -1294,18 +1300,17 @@ the symmetric algebra functor \cite[Proposition A2.2]{Eisenbud1995}.
 Because $\Sym$ is a multilinear functor,
 the
 support of $\Sym^{f-g}(\coker \phi)$ is contained in the support
-of $\coker \phi$, but in fact they are equal,
-because
+of $\coker \phi$, but in fact they are equal:
 if a localization of
-$\coker \phi$, over a local ring $S_{P}$,
+$(\coker \phi)_P$ over a local ring $S_{P}$
 is nonzero, then by
 Nakayama's lemma
-it surjects onto $S_{P}/P_{P} = \kappa(P)$, and again
+it surjects onto $S_{P}/P_{P} = \kappa(P)$. By
 \index{Nakayama's lemma}%
-by the right exactness
+the right exactness
 of the symmetric algebra functor $\Sym^{f-g}(\coker \phi)_{P}$ surjects
 onto
-$\Sym^{f-g}(\kappa(P)) = \kappa(P)$.
+$(\Sym^{f-g}(\kappa(P)))_P = \kappa(P)\neq 0$. 
 
 By Theorem~\ref{WMACE} we see from this that if $EN(\phi)$ is acyclic,
 then the support of $\coker \phi$
@@ -1426,11 +1431,11 @@ Now suppose that $I_{g}(\phi)$ has grade $\geq f-g+1$. Since this number is
 at least 1, it follows from the preceding argument that the rank condition
 of Theorem~\ref{WMACE} is satisfied. Moreover after localizing at any prime
 not containing $I_{g}(\phi)$ the ideals $I(\delta_{i})$ become equal to the unit ideal.
-By Lemma~\ref{free coker},
- $$
+Thus 
+ $
 \tsty % tame the square root
-I_{g}(\phi) \subset \sqrt{I(\delta_i)}.
-$$
+I_{g}(\phi) \subset \sqrt{I(\delta_i)},
+$
 so that all the ideals have grade at least $\geq f-g+1$, verifying the grade condition
 of Theorem~\ref{WMACE} and completing the proof of Theorem~\ref{ENgeneral}.
 \end{proof}
@@ -1446,35 +1451,37 @@ The map $\phi$ is represented by a 1-generic matrix of size $2\times (1+\codim X
 \end{proof}
 
 \begin{corollary}\label{E-N cor}
-With notation as in Theorem~\ref{ENgeneral}, suppose that $R$ is a local ring
-with residue field $k$ and that
+With notation as in Theorem~\ref{ENgeneral}, suppose that $(R,\gm, k)$ is a local
+Cohen--Macaulay ring
+ and that
  $k\otimes_{R}\phi = 0$.
 If $I_{g}(\phi)$
 has codimension $\geq f-g+1$ then it has
-codimension exactly $f-g+1$, the ring $S/I_g(M)$ is Cohen--Macaulay,
+codimension exactly $f-g+1$, 
 and the $\tbinom{f}{g}$ forms
 that are the $g\times g$ minors of a matrix for $\phi$ are linearly
-independent over $\CC$.
+independent over $k$ in $I_g(\phi)/(\gm I_g(\phi))$, and 
+$R/I_g(\phi)$ is Cohen--Macaulay.
 \unif
 \end{corollary}
 
 \begin{proof}
-From the resolution $EN(M)$ we see that the projective dimension of
-$S/I_g(M)$ is at most $f-g+1$. Since the projective dimension of a module
+By Theorem~\ref{ENgeneral}  the projective dimension of
+$R/I_g(\phi)$ is at most $f-g+1$. Since the projective dimension of a module
 is at least the codimension of its annihilator, the equality follows,
-and the Auslander--Buchsbaum formula implies that $S/I_g(M)$ is
+and the Auslander--Buchsbaum formula implies that $R/I_g(\phi)$ is
 \index{Auslander--Buchsbaum formula}%
 \index{Cohen--Macaulay}%
-Cohen--Macaulay. The linear independence of the minors of $M$ follows
-because $EN(M)$ is a resolution and the differential $\delta_{2}$, which 
+Cohen--Macaulay. The linear independence of the minors of $\phi$ follows
+because $EN(\phi)$ is a resolution and the differential $\delta_{2}$, which 
 exhibits the relations on the $g\times g$ minors, has image in the
 maximal ideal time $EN(\phi)_{1}$.
 \end{proof}
 
 In general when $X\subset Y\subset \PP^r` `$, so that $I_X \supset I_Y$,
-it may be hard to see which syzygies of $X$ come
-from syzygies of $Y$. But when the degrees of the syzygies of $Y$ are
-smaller than those from $X$, the situation is simpler.
+it may be hard to see which syzygies of $I_X$ come
+from syzygies of $I_Y$. But when the degrees of the syzygies of $I_Y$ are
+smaller than those of $I_X$, the situation is simpler.
 Here is the special case we will use:
 
 \begin{proposition}\label{containment of resolutions}

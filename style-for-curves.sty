@@ -11,16 +11,21 @@
 \let\equalscolon\eqqcolon
 }
 
+% for the index
 \def\see#1#2{\emph{see} #1}
 \def\seeunder#1#2{\emph{see under} #1}
+
+% for the hints section
 \def\tohint#1{\hskip 1em minus 0.5em\rm(p.~\pageref{hint#1})\label{tnih#1}}
 \def\tohin#1{\hskip 1em minus 0.5em(p.~\pageref{hint#1})}
 \def\hinthead#1{\label{hint#1}\subsubsection*{\protect\ref{tnih#1}}}
 
+% bold italic
 \def\defi#1{{\bf#1}}
 \def\bfa{\mathbfit{a}}
 \def\bfb{\mathbfit{b}}
 
+% various kinds of fractions
 \def\sfrac#1#2{\vcenter{\offinterlineskip
  \halign{\hfil$\ssty ##$\hfil\cr#1\cr\noalign{\vskip1pt\hrule\vskip1pt}#2\cr}}}
 % in \mfrac, hbox is needed for medmuskip to take effect
@@ -31,13 +36,14 @@
 \def\upnfrac#1#2{(#1)/#2}
 \def\unpfrac#1#2{#1/(#2)}
 \def\upnpfrac#1#2{(#1)/(#2)}
-
+% a decent one-half
 \def\haa{{\ssty\frac{\ssty1}{\ssty2}}}
 
 \def\upstrut{\noindent\vbox to 13pt{}}
 \def\downstrut{\noindent\lower5.5pt\vbox{}}
 \def\unif{\unskip\vspace*{-\parskip}}% uniformize space at end of theorems
 
+% the agreed-on numbering scheme
 \def\thesection{\thechapter.\arabic{section}}
 \def\thesubsection{\thesection.\arabic{subsection}}
 
@@ -50,6 +56,8 @@
 %\newtheorem{satz}{Satz}[section]
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{question}[theorem]{Question}
+
+% cheerful fact(s)
 \definecolor{factcolor}{cmyk}{1.0,0.6,0,0}
 \def\cbstart{\bgroup\color{factcolor}%
   \hrule width\hsize height3pt\vskip2pt\hrule width\hsize height1pt\vskip1pt
@@ -75,8 +83,10 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}{Exercise}[chapter]
 
+% syntactic sugar
 \let\dsty\displaystyle \let\tsty\textstyle
 \let\ssty\scriptstyle \let\sssty\scriptscriptstyle
+
 % binomial coefficiently with lines not so far apart
 %\def\cramped#1{\radical0 {\kern-\nulldelimiterspace#1}}
 \def\mbinom#1#2{\Bigl({\tsty{\tsty\medmuskip1mu\hbox{$#1$}\lower2.5pt\hbox{}\atop
@@ -85,8 +95,10 @@
       \medmuskip1mu\raise4pt\hbox{$\ssty#2$}\vbox to9pt{}}}\bigr)}
 \def\sbinom#1#2{(\vcenter to0pt{\offinterlineskip\vss\halign{\hfil$\sssty##$\hfil\cr#1\cr\noalign{\vskip1pt}#2\cr}\vss})}
 
+% we want bigcaps
 \def\lessbigcap{\mathop{\raise0.5pt\hbox{\smash{\small$\bigcap$}\hskip0.5pt}\lower2pt\vbox to 9pt{}}}
 
+% overkern and its relatives; see letter 
 \def\overlow#1{\overline{\vbox to 6.8pt{}\smash{#1}}}
 \def\overlw#1#2#3{{}\mskip#1mu\overline{\vbox to 5pt{}\smash{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}}
 
@@ -99,6 +111,7 @@
 \def\Vk{V_{\mskip-5mu k}} % V_k and W_k have huge gaps
 \def\Vkmi{V_{\mskip-5mu k-1}}
 
+% syntactic sugar
 \def\[{[\mskip-3mu[}
 \def\]{]\mskip-3mu]}
 \def\({(\mskip-1.5mu(}
@@ -136,6 +149,7 @@ quasi-projec-tive
 
 \makeatletter
 
+% hack for the Appendix portion of the table of contents
 \def\addAtotocsection{
 \def\tocsection##1##2##3{%
   \indentlabel{\@ifnotempty{##2}{\rlap{A.##2}\hskip2.75em}}##3}
@@ -181,7 +195,7 @@ quasi-projec-tive
   \indentlabel{\qquad\raise2.4pt\copy\trigabox\@ifnotempty{#2}{#2\quad}}#3}
 
 % \usepackage[nohug,heads=curlyvee]{diagrams}
-\usepackage[nohug]{diagrams}
+% \usepackage[nohug]{diagrams}
 
 % \subsubsection was too wimpy in terms of vertical skip and title font.
 % It needs to stand out at least as much as a theorem.
@@ -238,6 +252,8 @@ quasi-projec-tive
 \def\bbeta{{\boldsymbol{\beta}}}
 \def\bdelta{{\boldsymbol{\delta}}}
 
+% hacked arrows that can bear superscripts
+
 \def\luto#1{\mathrel{\hbox{$\leftarrow\mskip-8mu-$}%
       \kern-13.5pt
       \raise6pt\hbox{$\scriptstyle#1$}%
@@ -254,6 +270,7 @@ quasi-projec-tive
       \kern-49pt
       \raise6pt\hbox{$\scriptstyle#1$}%
       \kern3pt}}
+\def\rOnto{\mathrel{{\to}\mskip-19mu{\to}}}
 
 \def\mwedge{\raise1pt\hbox{\small$\bigwedge\mskip-2mu$}}
 
@@ -285,7 +302,7 @@ quasi-projec-tive
 \def\ot{\leftarrow}
 \def\cHom{\mathcal{H}om}
 \def\h{{\rm h}}
-\newarrow {Dashto} {}{dash}{}{dash}>
+%\newarrow {Dashto} {}{dash}{}{dash}>
 \def\rmspan{\operatorname{span}}
 \def\grade{\operatorname{grade}}
 \def\Fitt{\operatorname{Fitt}}
@@ -334,10 +351,11 @@ quasi-projec-tive
   \ifmmode}\else{} \ignorespaces\fi% avoid glomming onto next word if % follows
 }
 
+% Avoid waste in level 1 enumerates
 \AtBeginDocument{\leftmargini=0.5\leftmargini
-\belowdisplayshortskip=\belowdisplayskip
+\belowdisplayshortskip=\belowdisplayskip % avoid unbalanced displays
 \def\smallmath{\def\f@size{9.5}\glb@settings}
-\diagramstyle[labelstyle=\smallmath]}
+}
 
 % use when it's necessary for lines to mesh
 \newcommand\meshing[1][-1pt]{%
