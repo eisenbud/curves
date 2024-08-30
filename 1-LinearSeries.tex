@@ -2,184 +2,288 @@
 
 \chapter{Linear series and morphisms to projective space}\label{linear series}
 
-This Chapter and the next are intended largely as a review of material that should be familiar, couched in the language we will use throughout the book. Experienced readers 
-may want to skip it, and return if and when it is needed. Nearly all of the material can be found in texts such as \cite{H}.
+In the first two sections of this chapter we lay out four major definitions:
+divisors, linear series, invertible sheaves, and maps to projective space; and
+we explain the close relationships among them. We will use these ideas throughout
+this book. In the last section we will explore some special cases, culminating with
+the condition for an invertible sheaf to provide an embedding of a curve in projective space.
 
-%\section{Morphisms to projective space and families of Cartier divisors}
+We will prove only some of our assertions; a reader who wants to see all the proofs should keep a copy of \cite{Hartshorne1977} or the equivalent handy. On the other hand, a more experienced reader
+could skip ahead to Chapter 3.
 
-In this book we work over the field of complex numbers $\CC$, though much of what we do
-could be done over any field. 
-Schemes are assumed quasi-projective, and \emph{varieties} are reduced and irreducible---that is, \emph{integral}---schemes. ``Points'' will always be closed points unless we explicitly say otherwise.
+As an analytic space, a complex projective smooth curve is a compact Riemann surface. This is a compact, orientable 2-manifold with a complex structure but it's hard to ``see'' the global complex structure. Any two Riemann surfaces with the same genus are $C^\infty$ isomorphic,\footnote{The notion of genus was introduced by Riemann in his great paper~\cite{Riemann}, though he never used the term. Instead,
+he defined the \emph{connectivity} (Zusamenhang) of a Riemann surface $X$---the number of disjoint closed curves $C_i$ (1-dimensional real submanifolds) that can be drawn on $X$ such that $X\setminus \cup C_i$ is connected. The term genus (Geschlect) was first used by Clebsch. Both uses
+were subtly different than the modern usage: where we speak of genus as a property of a given surface, Riemann and Clebsch
+used this idea as a way of partitioning the family of all Riemann surfaces into groups \cite{MR4175877}. }
+but except for genus 0, where the sphere has a unique complex structure,
+there are continuous families of non-isomorphic global structures.  The differences among Riemann surfaces or algebraic curves is revealed in  geometry of their maps to projective spaces. Throughout this book we will study curves in this way. The algebraic and
+complex analytic theories are equivalent, and in this book we generally take the algebraic path.
 
-A complex projective smooth curve may  be regarded abstractly as a compact Riemann surface. A Riemann surface is a compact, orientable 2-manifold with a complex structure, but it's hard to see the complex structure. For example though there
-are $\CC^\infty$ isotopies that take any point to any other, the algebraic local rings of the points may well all be non-isomorphic. This variation and much else is revealed in the projective geometry of embeddings. Throughout this book we will study curves through their embeddings and other maps to projective space, defined in terms of linear series. 
+Since the only  globally defined regular functions (that is, functions locally equal to a polynomial in affine coordinates) on a projective variety are the constant functions, we must take a different approach to describing the maps we will study, and a large part of this chapter is devoted to the necessary machinery for doing this. The idea is simple: a point in projective space is the intersection of the hyperplanes containing it, so a map $\phi: C\to \PP^r$ from a curve to projective space can be described set-theoretically
+by the set of preimages of these hyperplanes: a point $p\in C$ is sent to the point
+that is the intersection of those hyperplanes whose preimages contain $p$.
+ 
+\begin{figure}
+ \caption{Divisors of a linear system are preimages of hyperplanes in target}
+\centerline {\includegraphics[height=2in]{"Fig1.1.pdf"}}
+\end{figure}
 
-Though affine varieties are defined by the functions on them---the coordinate ring, which is defined by the variety---the globally defined functions on projective varieties are constant, and
-the homogeneous coordinate ring of a variety $X\subset \PP^n$ is not characteristic of $X$, but of $X$ together with some auxiliary data, 
-either a family of divisors of a simple kind, or an invertible sheaf and a collection of global sections. Such data, more generally, can be used to define a morphism or a birational map
-to a projective space, and we begin by describing these relations.
+Some hyperplanes in $\PP^{r}$ will be tangent to the image $\phi(C)$ at a point $\phi(p)$, and in that case the point $p$ should be counted with higher multiplicity in the preimage of that hyperplane; in
+this way we arrive at a notion of divisor as a sum of points with multiplicities.
 
-Let $\phi: C\to \PP^{r}$ be a morphism from a smooth curve $C$. If $H\subset \PP^r$ is a hyperplane that does not contain $\phi(C)$, then the preimage of $H$ is a finite set of points on $C$, with multiplicities when $H$ is tangent to $\phi(C)$ or (possibly) when $H$ passes through a singular point of $\phi(C)$. Such a set of points with non-negative integer multiplicities is called an \emph{effective divisor} on $C$; more generally, a \emph{divisor} (sometimes called a \emph{Weil divisor}) on a scheme $X$ is an integral linear combination of codimension 1 subvarieties, and it is called \emph{effective} if the coefficients are all non-negative. The \emph{degree} of a divisor on a smooth curve
-is the sum of the coefficients. 
 
-The divisors that arise as the pullbacks of general hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function,
-and for a general hyperplane, this will be a nonzerodivisor; that is, it is an  \emph{effective Cartier divisor}. See \cite[pp. 140-146]{H} for more information; on a smooth curve every divisor is Cartier, so the difference between Weil and Cartier divisors will not be an issue for us.
-The  word ``local'' scattered through the previous paragraph is needed because, if $X$ is a projective variety, then the only algebraic functions $X\to \CC$ are constant functions. Equivalently, the only projective subvarieties of an affine variety are points.
+%If we choose homogenous coordinates $x_0,\dots, x_r$ on $\PP^r$ then hyperplanes
+%are defined by the vanishing of linear forms such as $x_i=0$. A general linear form
+%$\ell = \sum r_ix_i$ is does not define a function on $\PP^r$, but $\ell/x_i$ is a regular function on the affine space subset where $x_i\neq 0$, and we could also
+% specify $\phi$ by specifying its composition with such regular functions. Thus we can refine the the notion of the divisor that is the preimage of $\ell=0$ by including the generic order of vanishing of $\ell/x_i \circ \phi$---this corresponds roughly to the order of tangency
+% of the hyperplane $\ell=0$ with the image $\phi(C)$ of $C$---and we take the divisor of a rational
+% function to be the difference of the divisors associated to the numerator and denominator.
 
-If we are given the family of divisors on $C$ that are the preimages of the intersections of hyperplanes with  $\phi(C)$, we can recover the morphism $\phi$ set-theoretically: it takes a point $p\in C$ to the point of projective space that is the intersection of those
-hyperplanes whose preimages contain $p$. 
+\section{Divisors}
 
-The relationship of two divisors on $C$ that are preimages of intersections of $\phi(C)$ with hyperplanes is simple to describe: If hyperplanes
-$H, H'\subset \PP^r$ are defined by the linear forms $h, h'$  then $h/h'$ has a simple pole along $H'$---we may say that it ``vanishes along $H$'' to degree $-1$.
-In this sense the divisor $H-H'$ on $\PP^n$ is defined by the rational function $\lambda= h/h'$. If neither $H$ nor $H'$ contain $\phi(C)$ then the pullback of $\lambda$ is a well-defined, nonzero rational function on $C$, and the divisor 
-$\phi^{-1}(\phi(C)\cap H') - \phi^{-1}(\phi(C)\cap H)$ is defined by the pullback  $\phi^*(\lambda) := \lambda \circ \phi$. Thus the divisors arising from a given morphism to $\PP^{r}$ differ by the divisors of zeros minus poles of rational functions on $C$. 
+We  begin again, more formally:
 
-If $C$ is a smooth curve then the local ring $\sO_{C,p}$ of $C$ at a point $p$ is a discrete valuation ring, and if $\pi$ is a generator of the maximal ideal of $\sO_{C,p}$, then any rational
-function $\lambda$ on $C$ can be expressed uniquely as $u\pi^k$ where $u\in \sO_{C,p}$ is a unit and $k\in \ZZ$. We say that $k$ is
-the \emph{order} of $\lambda$ at $p$, and write $k = \ord_p \lambda$. We associate to $\lambda$  the divisor
+On a smooth projective curve $C$, we define a \emph{divisor} to be a finite formal sum of points of $C$ with integer coefficients, which we can write compactly as $\sum_{p\in C} m_p\cdot p$ with all but finitely many $m_p=0$.  The coefficient $m_p$ is called the \emph{multiplicity} of the point $p$ in the divisor $D$; if all coefficients $m_p$ are nonnegative we say that $D$ is \emph{effective}. Thus the group of divisors $Div(C)$ is the free abelian group whose generators
+are the points of $C$.
+
+% If $D = \sum m_p\cdot p$ and $E = \sum n_p\cdot p$ are any two divisors, we write $E \geq D$ to mean $n_p \geq m_p$ for all $p \in C$.
+
+The \emph{degree} of  $D = \sum_{p\in C} m_p\cdot p$ is by definition the sum $\sum m_p$ of its coefficients. Because the curve is smooth each local ring is a discrete valuation ring, so two elements of
+$\sO_{C,p}$ with the same order of vanishing at $p$ generate the same ideal in the local ring. Thus an effective divisor 
+can be identified with a finite subscheme of $C$, and vice versa.
+
+\section{Divisors and rational functions}
+
+Let $C$ be a smooth projective curve, $U \subset C$ an open subset and $f \in \cO_C(U)$ a regular function, not identically zero. At every point $p \in U$, we define the \emph{order} of $f$ at $p$, denoted $\ord_p(f)$, to be the highest power of the maximal ideal $m_p \subset \cO_p$ containing $f$, and we define the divisor $(f)$ associated to the function $f$ by
 $$
-(\lambda) := \sum_{p\in C} (\ord_p\lambda)p.
+(f) := \sum_{p \in U} \ord_p(f) \cdot p.
 $$
-The \emph{class group} of $C$ is defined to be the the group of divisors on $C$ modulo the divisors of rational functions.
-Thus the divisors on $C$ that are preimages of intersections of $\phi(C)$ with different hyperplanes all belong to the same
-\emph{divisor class}, and form a linear series in the sense of the following section.
 
-It is important to note that the degree of the divisor associated to a rational function on a smooth curve is always 0: this is evident on $\PP^1$, where rational 
-functions are the ratios of two forms of the same degree; and a rational function $\phi$ on a smooth curve may be regarded as the pullback of a rational function
-on $\PP^1$ under the map given by $\phi$; since any non-constant map of smooth curves is flat, the pullback multiplies the degree of a divisor by the degree 
-of the covering. 
+More generally, if $h$ is any rational function on $C$, given locally as a quotient $f/g$ of regular functions $f$ and $g$, we define the divisor of $h$ to be
+$$
+(h) := (f) - (g);
+$$
+this is independent of the choice of $f$ and $g$. The divisor of a rational function $h$ is called a \emph{principal divisor}; principal divisors form a subgroup $Div_0(C)$ of the group $Div(C)$ of all divisors. We say that two divisors $D$ and $E$ on $C$ are \emph{linearly equivalent} if their difference $D-E$ is a principal divisor. The group $Div(C)/Div_0(C)$ of linear equivalence classes of divisors is called the \emph{Picard group} of $C$, denoted $\pic(C)$. 
 
-\section{Linear series}
+Linear equivalence is important in the description of a map $C\to \PP^{r}$ by divisors
+because in $\PP^{r}$ any two hyperplanes, defined by the vanishing of linear forms  $\ell_{1}=0$ and $\ell_{2}=0$, differ by the globally defined rational
+function $\ell_{1}/\ell_{2}$. The preimages of these hyperplanes differ by the pull-back of this rational function,
+and are thus linearly equivalent divisors.
 
-We want to understand morphisms to $\PP^r$ more than set-theoretically, and we want to be able to produce them from data on $C$. For this we use the notion of linear series (sometimes called linear system). Our goal in the next sections is to explain this connection:
 
-\begin{definition}
- A \emph{linear series} on a scheme $C$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf (defined in Section ~\ref{Invertible sheaves}) on $C$ and
- $V$ is a vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
- $$
- \dim \sV := \dim V -1,
- $$
-If $\sV$ has degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}---the old language means that $\sV$ it represents a group of $d$ points ``moving'' up to linear equivalence with $r$ degrees of freedom. If $C$ is a smooth curve, then the divisor of zeros and the divisor of poles of a (rational) section of $\sV$ are subschemes, and the \emph{degree} of $\sV$ is by definition the degree of the divisor of poles minus the degree of the divisor of zeros of any of its sections; since the 
- ratio of two sections is a rational function, this is independent of the section chosen. \end{definition}
 
-The apparently perverse definition of the dimension of the linear series is because morphisms of a curve to $\PP^r$ are connected to linear series that have dimension $r$ in the sense above.
+%If effective divisors $D, E$ in a smooth curve $C$ are defined on
+%some affine open set by equations $f$ and $g$, then  $D - E$ corresponds to the rational function $f/g$ on that open set;
+%This makes sense because if $f$ vanishes to order $m$ at a point $p$ where $g$ vanishes to order $n$, so that
+%$D = mp + ?$ and $E = np+?$, then $f/g$ vanishes to order $m-n$ at $p$, and $D-E = (m-n)p+?$ too. Here we are
+%using the fact that the 1-dimensional local rings of $C$ have unique factorization; the argument would not
+%work on a singular curve (but does work more generally on a variety that is smooth in codimension 1).
+%
+%Write $K(X)$ for the field of rational functions on $X$. If divisors $D,E$ on $C$
+%are such that $D-E$ corresponds to the global rational function $\phi$ locally on each open set, then we say that $(phi):=D-E$
+%is a principal divisor, or that $D$ is linearly equivalent to $E$, and we write $D\sim E$ to denote this.
+%Taking the positive and negative parts of $D-E$ we get the divisor of zeros (respectively the divisor of poles)
+%$(\phi)_{0}$ and $(\phi)_{\infty}$ of $\phi$, so that $(\phi)= (\phi)_{0}-(\phi)_{\infty}$.
+%
+%Linear equivalence is important in the description of a map $C\to \PP^{r}$ by divisors
+%because in $\PP^{r}$ any two hyperplanes, defined by the vanishing of linear forms  $\ell_{1}=0$ and $\ell_{2}=0$, differ by then globally defined rational
+%function $\ell_{1}/\ell_{2}$. The preimages of these hyperplanes differ by the pull-back of this rational function,
+%and are thus linearly equivalent divisors.
+%
+%A divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients.
+%
 
-\begin{theorem}\label{morphisms and linear series}
-There is a natural bijection between the set of nondegenerate morphisms $\phi : C \to \PP^r$ modulo $PGL_{r+1}$, and basepoint-free linear series of dimension $r$ on $C$, up to isomorphism.\end{theorem}
+\subsection{Generalizations}
 
-Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane; the dimension of the series
- $\sV  = (\sL, V)$ is $\dim_\CC V -1$; and basepoint-free means that there is no point of $C$ where all the sections in $V$
-vanish.
+We can generalize the notion of a divisor on a smooth curve in two respects.
 
-The proof of Theorem~\ref{morphisms and linear series} is contained in sections~\ref{morphism from series}
-and \ref{series from morphism}.
+First, we can extend the notion to higher dimensional smooth varieties $X$, defining a divisor to be a finite formal linear combination of irreducible subvarieties of codimension 1 in $X$. In this setting, most of the notions introduced above have natural analogues; for example, a divisor is called \emph{effective} if all the irreducible varieties in its expression as a sum appear with nonnegative coefficients. We can similarly define the divisor of a rational function on $X$, and the notion of linear equivalence of divisors. (One notion that does not have an obvious analog is the degree of a divisor.)
 
+We can also extend the notion to possibly singular varieties $X$, though this requires more care. We can mimic the definition above, defining a divisor to be a finite formal linear combination of irreducible subvarieties of codimension 1 in $X$; this is called a \emph{Weil divisor} on $X$. But for most purposes we have to introduce a slightly different notion of divisor, called a \emph{Cartier divisor}. We first define and \emph{effective Cartier divisor} to be a subscheme locally defined on some open covering $U_{i}$ by the vanishing of one non-zerodivisor in $\sO_{X}(U_{i})$; and a \emph{Cartier divisor} to be a difference of effective Cartier divisors
+
+A simple example will serve to illustrate this. Suppose $C \subset \AA^2$ is a plane curve with a node at a point $p = (0,0) \in C$. The point $p$ itself (that is, the reduced subscheme) is \emph{not} a Cartier divisor, since its ideal $(x,y)$ is not generated by a single element. Likewise, the ``fat point"---that is, the subscheme $\Gamma = V(x^2, xy, y^2) \subset C$---is not Cartier. But a subscheme of degree 2 supported at $p$---that is, a scheme of the form
+$$
+\Gamma_{\alpha, \beta} := V(\alpha x + \beta y, x^2, xy, y^2) \subset C \text{---}
+$$
+is in general be Cartier, as it is defined---globally as well as locally---by the equation $\alpha x + \beta y = 0$. 
+For distinct lines $L$ the schemes $\Gamma_{L}$ are also distinct, since $\Gamma_{L}\subset L$. The two exceptions, when $\Gamma_{L}$ is not Cartier, occur when the line $L$ is tangent to either branch of $C$ at the node; in these cases the scheme $\Gamma_{\alpha, \beta}$ is not a Cartier divisor on $C$ (the intersection $L \cap C$ has multiplicity 3 at $p$, and is not equal to $\Gamma_{\alpha, \beta}$). All of these assertions are the content of Exercise~\ref{Cartier examples} below; the reader who is not already familiar with the notion of Cartier divisor is encouraged to carry out the verifications.
+
+Here is another way to characterize Cartier divisors on a scheme $X$: for each open affine set $U\subset X$ we define $K_X(U)$ to be the field of fractions of $\sO_X(U)$, and write $K_X$ for the
+associated sheaf. We write $\sO_X^*$ and $K_X^*$ for the sheaves of groups of units in $\sO_X(U)$ and $K_X(U)$.
+A Cartier divisor on $X$ is then by definition a global section of $K_X^*/\cO_X^*$. 
+Moreover, if $X$ is a normal scheme (so that its local rings at the generic points of codimension 1 subvarieties are discrete valuation rings) then the Cartier divisors are the same as locally principal Weil divisors. See~\cite[Section II.6]{Hartshorne1977} for more information. 
+
+In this book, we will be dealing for the most part with smooth curves; even when singular curves $C$ arise, they will be viewed as images of smooth curves $\tilde C$  (their normalizations) and their geometry analyzed in terms of that of $\tilde C$. Thus for the most part we'll be dealing with divisors in the simplest setting of smooth curves. But there will be occasions when we want to extend our analysis to singular curves and/or higher-dimensional varieties, and in those cases the notion of Cartier divisor is called for.
+
+%There is a natural map $\div$
+%from the group of Cartier divisors on $C$ to $Div(C)$, the free group on the points of $C$:
+% for any rational function $f$ on an open set $U\subset C$
+%and any 
+%point $p\in U$ the local ring $\sO_{C,p}$ is a discrete valuation
+%ring and we can write $f$ uniquely in the form $f = ut^m$ where $t$ generates
+%the maximal ideal of $\sO_{C,p}$ and $u$ is a unit in $\sO_{C,p}$. We define
+%$m:= \ord_p(f)$, and we set
+%$$
+%div(f) := \sum_{p\in C}\ord_p(f) \cdot p
+%$$
+%When
+%confusion is unlikely we write $(f) $ in place of $div(f)$, and we let
+%$(f)_0, (f)_\infty$ be the effective divisors that are the sums of the terms in $(f)$ that appear with positive
+%or  negative coefficients, so that $(f) = (f)_0-(f)_\infty$. 
+%
+%\begin{theorem}
+%If $C$ is a smooth curve, then the map $div: Pic(C) \to D$ is an isomorphism.
+%\end{theorem}
+%
+%Two Cartier divisors are said to be \emph{linearly equivalent}
+%if they differ by the divisor of a globally defined rational function $f \in K(C)$, called a \emph{principal divisor}.
+%\begin{definition}
+%The group of Cartier divisors modulo linear equivalence is called $\pic(C)$.
+%\end{definition}
+ 
+%Cartier divisors and linear equivalence make sense on any scheme $X$, but one must
+%be quite careful about the definitions (See~\cite{MR570309}). 
+%The map $\div$ is also defined in the same way when $X$ is nonsingular in codimension 1, yielding
+%a map from the group of Cartier divisors to the free group on
+%codimension 1 subvarieties, called the group of Weil divisors. See~\cite{Hartshorne1977} for this and further generalizations. 
+ 
+ 
+ %
+%
+%and for a general hyperplane, this will be a non-zerodivisor
+%
+%%Let $\phi: C\to \PP^{r}$ be a morphism from a smooth curve $C$. If $H\subset \PP^r$ is a hyperplane that does not contain $\phi(C)$, then the preimage of $H$ is a finite set of points on $C$, with multiplicities when $H$ is tangent to $\phi(C)$ or (possibly) when $H$ passes through a singular point of $\phi(C)$. Such a set of points with non-negative integer multiplicities is called an \emph{effective divisor} on $C$; more generally, a \emph{divisor} (sometimes called a \emph{Weil divisor}) on a scheme $X$ is an integral linear combination of codimension 1 subvarieties, and it is called \emph{effective} if the coefficients are all non-negative. The \emph{degree} of a divisor on a smooth curve
+%%is the sum of the coefficients. 
+%
+%The divisors that arise as the pullbacks of general hyperplanes are special: since a hyperplane is defined by just one equation, which is locally given by the vanishing of a function, the pullback of a hyperplane will be locally defined by the vanishing of a single function,
+%and for a general hyperplane, this will be a non-zerodivisor; that is, it is an  \emph{effective Cartier divisor}. See \cite[pp. 140-146]{Hartshorne1977} for more information; on a smooth curve every divisor is Cartier, so the difference between Weil and Cartier divisors will not be an issue for us.
+%The  word ``local'' scattered through the previous paragraph is needed because, if $X$ is a projective variety, then the only algebraic functions $X\to \CC$ are constant functions. Equivalently, the only projective subvarieties of an affine variety are points.
+
+\subsection{Divisors of functions}
+Returning to the case of smooth curves, we have:
+\begin{theorem}\label{degree defn}
+Let $C$ be a smooth projective curve. If $f\in K(C)$, then the degree of the divisor $(f)$ is 0. Thus any two linearly equivalent divisors on $C$ have the
+same degree.
+\end{theorem}
+
+\begin{proof}
+ The result is evident on $\PP^1$, where a rational 
+function is the ratio of two forms of the same degree. In general, is a rational function $\phi$ on a smooth curve $C$ defines a map $\pi : C \to \PP^1$, such that
+$$
+(\phi) = \pi^{-1}(0) - \pi^{-1}(\infty);
+$$
+since any non-constant map of smooth curves is flat, any two fibers have the same degree. 
+\end{proof}
+
+In particular, we see that if $C\to \PP^{r}$ is a morphism, then the pullbacks of different hyperplanes
+have the same degree, and we define this to be the \emph{degree of the morphism}.
+
+It follows from Theorem~\ref{degree defn} that we can write $\pic(C)$ as a disjoint union
+$$
+\pic(C) = \bigsqcup_{d \in \ZZ} \pic_d(C),
+$$
+where $\pic_d(C)$ is the set of linear equivalence classes of divisors of degree $d$.
+
+%On $\PP^r$ the divisors of hypersurfaces  $F = 0$ and $G=0$ of degree $d$ differ by the principal divisor of the rational function $F/G$,
+%and thus are linearly equivalent. It follows that if $\phi : C \to \PP^r$ is a morphism, then the preimages
+%of any two hyperplanes that don't contain the image $\phi(C)$ are linearly equivalent. In particular, they have the same
+%degree, called the \emph{degree of $\phi$}. If $\phi$ is an inclusion, we call this the \emph{degree of $C\subset \PP^r$.}
 
 \subsection{Invertible sheaves}\label{Invertible sheaves}
 
-Recall first that a \emph{coherent sheaf} $\sL$ on a scheme $X$ may be defined by
+To deal with families of linearly equivalent divisors we will use the language of invertible sheaves. 
+
+%For simplicity we will assume in this section that $X$ is a smooth projective
+%scheme, so that divisors may be thought of as formal linear combinations of
+%subvarieties of codimension 1 with integer coefficients; 
+%  an account greater generality may be found in~\cite{Hartshorne1977}.
+
+Recall first that a \emph{coherent sheaf} $\sL$ on $X$ may be defined by
 giving 
 \begin{itemize}
  \item An open affine cover $\{U_{i}\}$ of $X$; 
  \item For each $i$, a finitely generated $\sO_{X}(U_{i})$-module $L_{i}$;
- \item For each $i,j$, an isomorphism $\sigma_{i,j}: L_{i}\mid_{U_{i}\cap U_{j}} \to L_{j}\mid_{U_{i}\cap U_{j}}$
+ \item For each $i,j$, an isomorphism $\sigma_{i,j}: L_{i}|_{U_{i}\cap U_{j}} \to L_{j}|_{U_{i}\cap U_{j}}$
  satisfying the compatibility conditions $\sigma_{j,k}\sigma_{i,j} = \sigma_{i,k}$. 
  \end{itemize}
 
 A \emph{global section} of $\sL$ is a family of elements $t_{i}\in L_{i}$ such that 
 $\sigma_{i,j} t_{i} = t_{j}$. Such a section may be realized as the image of the constant function 1 under
-a homomorphism of sheaves $\sO_{X} \to \sL$. If $X$ is projective, then 
-by Theorem \cite[Thm III.5.2]{H} the space $H^{0}(\sL)$  of global sections is
-a finite-dimensional vector space. If, moreover, $X$ is reduced and irreducible, then $H^{0}(\sO_{X}) = \CC$ because the only globally defined
-functions on $X$ are the constant functions.
+a homomorphism of sheaves $\sO_{X} \to \sL$. 
 
-The coherent sheaf $\sL$ is said to be an \emph{invertible sheaf} on $X$ if there is an open cover as above with the additional property
-that $L_{i} \cong \sO_X(U_{i})$, the free module on one generator. 
+A coherent sheaf $\cL$ is said to be \emph{locally free} if the modules $L_i$ are all free; when $X$ is irreducible, the ranks of the free modules $L_{i}$ are all the same, and this is called the \emph{rank} of $\cL$.
+An \emph{invertible sheaf} is a locally free coherent sheaf of rank 1;  that is, $L|_U \cong \sO_U$,
+for every open set in some covering of $X$. 
 
-If $\sigma \in H^0\sL$ is a global section of an invertible sheaf
-on $X$, and $p\in X$ is a point, then $\sigma(p)$ denotes the image of $\sigma$ under the natural map $H^0\sL$ to the stalk $\sL_{p}$, an $\sO_{X,p}$-module isomorphic to $\sO_{X,p}$. Since the isomorphism is not canonical, $\sigma$ does not define a function on $X$ at $p$; but since any two isomorphisms
-differ by a unit in $\sO_{X,p}$, the vanishing locus, denoted $(\sigma)_0$ of $\sigma$ \emph{is} a well-defined subscheme of $X$. Moreover, if $X$ is integral, then the ratio of two global sections is a well-defined rational function, so the divisor class of 
-$(\sigma)_0$ is independent of the choice of $\sigma$.
+Invertible sheaves form a group: the tensor product  $\sL_1\otimes_{\sO_X}\sL_2$ of two invertible sheaves is  again an invertible sheaf. The inverse is given by the dual invertible sheaf $\sL^{-1} := Hom_{\sO_X}(\cL,\sO_X)$
+(Proof: Evaluation of functions defines a natural map $\sF \otimes  Hom_{\sO_X}(\cF,\sO_X)$,
+and when $\sF = \sL$ is locally free of rank 1 this is locally an isomorphism). 
+%There is a natural map
+%$\cL \otimes \sL^{-1} \to \cO_X$ that is an isomorphism, as one checks locally. 
 
-The terminology of ``vanishing'' is slightly confusing: when we  say that $\sigma$ vanishes at $p$ we mean
-that if we choose a local isomorphism $\sL(U) \cong \sO_X(U)$, then $\sigma$ vanishes as a rational function using this
-identification. This means that the section $\sigma(p)\in \sO_{X,p}$ is in the maximal ideal of the local ring $ \sO_{X,p}$, not that $\sigma(p)$ is zero
-as an element of the local ring. Similarly, we say that $\sigma$ vanishes to order $m$ at $p$ if $\sigma(p)$ lies in the
-$m$-th power of the maximal ideal. This idea is perhaps more natural under the identification of invertible sheaves and line bundles, described below.
-
-\begin{proposition}
- The invertible sheaves on $X$ form a group under $\otimes_{X}$, called the 
-\emph{Picard group of $X$}, denoted $\Pic(X)$. 
-\end{proposition}
-\begin{proof}
- If $\sF, \sG$ are invertible sheaves then so are $\sF\otimes_{\cO_X}\sG$ and  $\Hom_{\cO_X}(\sF, \sG)$, as one sees immediately by
-restricting to the open sets where $\sF$ and $\sG$ are isomorphic to $\sO_{X}$. Moreover the natural isomorphisms
+Invertible sheaves can be defined from divisors on a smooth scheme (or more generally from Cartier divisors on any scheme). In case $C$ is a smooth projective curve, this is concrete: if $D = \sum m_p \cdot p$, then we define the sections of $\cO_C(D)$ on any open set $U$ by
 $$
-\sF(U) \otimes_{X} \Hom(\sF(U), \sO_{X}(U)) \to \sO_{X}(U)\quad s \otimes f \mapsto f(s)
-$$ 
-patch together to define a global isomorphism 
+\cO_C(D)(U) := \{ \text{rational functions } f \mid \ord_p(f) + m_p \geq 0 \text{ for all } p \in U \}.
 $$
-\sF \otimes_{\cO_X} \Hom(\sF, \sO_{X}) \to \sO_{X}
-$$
-justifying the definition
-$\sF^{-1} := \Hom(\sF, \sO_{X})$ and thus the name ``invertible sheaf''. 
-\end{proof}
- 
-If $D\subset X$ is an effective divisor, then we define $\sO_{X}(-D)$ to be the ideal sheaf of $D$. If $D$ is locally defined by the vanishing of a (locally defined) nonzerodivisor in $\sO_{X}$, (that is, $D$ is a Cartier divisor), then
-$\sO_{X}(-D)$ is an invertible
-sheaf.
-We write $\sO_{X}(D)$ for the inverse, $\sO_{X}(-D)^{-1}$. The dual of the inclusion
-$\sO_{X}(-D)\subset \sO_{X}$ is a map $\sO_{X} \to \sO_{X}(D)$ sending the global section $1\in \sO_{X}$ to a section
-$\sigma\in \sO_{X}(D)$ that vanishes precisely on $D$.
+Thus, at a point $p$ with $m_p > 0$, we are allowing $f$ to have a pole of order at most $m_p$; if $m_p \leq 0$ then $f$ must be regular at $p$, with a zero of order at least $-m_p$.
 
-\begin{example} [Invertible sheaves on $\PP^{r}$]\label{linear series on Pr} If $H\subset \PP^{r}$ is a hyperplane defined by the vanishing of a linear form $\ell = \ell(x_{0}, \dots x_{r})$ then the ideal sheaf $\sO_{\PP^{r}}(-1) := \sI_{H/\PP^{r}}\subset \sO_{\PP^{r}}$ is generated on the open affine set 
-$U_{i}:= \{x_{i}\neq 0\} \cong \AA^{r}$
-by $\ell/x_{i}$, and is thus an invertible sheaf with $\sO_{\PP^{r}}(-1)\mid_{U_i} \cong \sO_{\PP^{r}}(U_i)$.
-Moreover, if $H'$ is the hyperplane defined by another linear form $\ell'$, then 
-$$
-\frac{\ell'}{\ell}\cdot\sI_{H/\PP^{r}} = \sI_{H'/\PP^{r}} 
-$$
-so the sheaves $\sI_{H/\PP^{r}}$ and $\sI_{H'/\PP^{r}} $ are isomorphic, justifying the name $\sO_{\PP^{r}}(-1)$.
+More generally, we can associate an invertible sheaf to any Cartier divisor on a scheme $X$.
+First, if
+ $D\subset X$ is an effective Cartier divisor (and thus locally defined by the vanishing of a non-zerodivisor) then
+$D$ corresponds to a subscheme of $X$ whose ideal sheaf $\sI_{D/X}$
+is invertible. We define $\cO_X(-D)$ to be the ideal sheaf $\sI_{D/X}$, and define $\sO_{X}(D)$ to be 
+its inverse. The dual of the inclusion of
+$\cO_X(-D) \subset \cO_X$ is a homomorphism $\sigma := \cO_X \to \cO_X(D)$, that we regard as a global section. It
+vanishes precisely along $D$. 
 
-The $d$-th tensor power of $\sO_{\PP^{r}}(-1)$ is called $\sO_{\PP^{r}}(-d)$; it is isomorphic to the
-ideal sheaf of any hypersurface of degree $d$. Because polynomials satisfy the unique factorization property,
-every effective divisor $D\subset \PP^{r}$ is a hypersurface of some degree $d$, so
-$\sO_{\PP^{r}}(-D) \cong \sO_{\PP^{r}}(-d)$. Note that if $d>0$ then $H^{0}(\sO_{\PP^{r}}(-D)) = 0$, since it may be realized
-as the sheaf of locally defined functions vanishing on $D$, and there are no such
-globally defined functions except 0.
-
-We take $\sO_{\PP^{r}}(d)$ to be the inverse of $\sO_{\PP^{r}}(-d)$. If $D$ is the hypersurface defined by 
-a form $F$ of degree $d$, then $\sO_{\PP^{r}}(-D)$ is generated on $U_{i}$ by $F/x_{i}^{d}$, so
-$\sO_{\PP^{r}}(D)$ is generated on $U_{i}$ by $x_{i}^{d}/F$.
-Starting from the inclusion 
-$
-\sO_{\PP^{r}}(-D) \subset \sO_{\PP^{r}}
-$
-and taking inverses, we see that 
-$
-\sO_{\PP^{r}} \subset \sO_{\PP^{r}}(D)
-$
-and the global section $1\in H^0(\sO_{\PP^{r}})\subset H^0(\sO_{\PP^{r}}(D))$, restricted to
-$U_{i}$, is $F/x_{i}^{d}$ times the local generator of $\sO_{\PP^{r}}(D)$ and thus vanishes on $D$.
- 
-To compute $H^0(\cO_{\PP^1} (d))$ directly, let $D = z_1 +z_2 +\cdots+z_d$ be a divisor of degree d and suppose that the coordinates are chosen so that none of the $z_i$ are at infinity. The sections of $\cO_{\PP^1} (D)$ are the rational functions with poles in $\AA^1$ only at 
-the $z_i$. In affine coordinates, identifying the $z_i$ with complex numbers, these can each be written
+For a general (Cartier) divisor $D = E - F$, we define
 $$
-\frac{g(z)}{(z-z_1)(z-z_2)\cdots(z-z_d)}
+\cO_X(D) := \cO_X(E) \otimes \cO_X(F)^{-1}.
 $$
-where $g$ is a polynomial. The condition that the point at infinity is not a pole is the condition $\deg(g) \leq d$. With this condition, these rational functions form a vector space of dimension $d+1$.
 
-More generally, because every
-rational function on $\PP^{r}$ has degree 0, and any two global sections differ by a rational
-function, it follows that every global section of $\sO_{\PP^{r}}(d)$ vanishes on a divisor of degree $d$. Thus
-we may identify $H^{0}(\sO_{\PP^{r}}(d))$ with the ${r+d\choose r}$-dimensional vector space of forms of degree $d$ on $\PP^{r}$.
-\end{example}
+%we can write $D = \sum m_iD_i 
+%$$
+%\sO_{X}(\sum_{i} m_{i}D_{i} = \bigotimes_{i} \sO(D_{i})^{\otimes m_{i}}.
+%$$
+
+ If $D$ and $E$ are linearly equivalent divisors on $C$---that is, there is a rational function $f$ on $C$ with $(f) = D - E$---then multiplication by $f$ defines an isomorphism $\cO_C(E) \rTo^{\cong} \cO_C(D)$; thus the isomorphism class of the invertible sheaf $\cO_C(D)$ corresponds to the linear equivalence class of $D$. We will soon see that every invertible sheaf on a projective scheme has this form  (Corollary~\ref{invertible sheaves and divisors}).
+
+
+%For example, if $C$ is a smooth curve, and $D = \sum m_p\cdot p$ is a divisor on $C$ then the sections of the invertible sheaf
+%$\sO_D(U)$ on an open set $U$ is the space of rational functions $f$ on $U$ such that $\ord_p(f) + m_p \geq 0$ for all $p \in U$. 
+%In particular, if $D$ is effective, sections of $\cO_C(D)$ are rational functions, regular away from the points $p$ with $m_p > 0$, but which are allowed to have a pole at a point $p$ of order at most $m_p$. 
+
+If $\sigma\in H^0(\sL)$ is a global section of an invertible sheaf on $X$ and $p\in X$ is a point, then the \emph{value $\sigma(p)$ of $\sigma$ at $p$} is the image  of $\sigma$ under the natural map $H^0(\sL)$ to the fiber $\kappa(p) \otimes \sL_{p} \cong \CC$.
+Since the isomorphism is not canonical, $\sigma$ does not define a function on $X$ at $p$; but since any two isomorphisms
+differ by a unit in $\sO_{X,p}$, the vanishing locus of $\sigma$, denoted $(\sigma)_0$, is a well-defined subscheme of $X$.\footnote{The terminology of ``vanishing'' is slightly confusing: when we  say that $\sigma$ vanishes at $p$, or $\sigma(p) = 0$, we mean that the image of $\sigma$ in the stalk $\sL_p = \sL \otimes_{\sO_{X}} \sO_{X,p}$ is in 
+the maximal ideal $\gm_{X,p}$ of $\sO_{X,p}$ times $\sL_p$
+---and \emph{not} that $\sigma$ is zero
+as an element of the stalk $\sL_p$ itself. Similarly, we say that $\sigma$ vanishes to order $m$ at $p$ if $\sigma(p)$ lies in $\gm_{X,p}^m\sL_p$. }
+ Moreover, if $X$ is reduced and irreducible, then the ratio $\sigma/\tau$ of two global sections
+ of the same invertible sheaf is a well-defined rational function
+$\sigma(p)/\tau(p)$ at all the points where the denominator $\tau(p)$ is not 0, so the divisor class of 
+$(\sigma)_0$ is independent of the choice of $\sigma \in $.
+
+The tensor product of (rational) sections $\sigma$ of $\sL$ and $\sigma'$
+of $\sL'$ is a rational section of $\sL \otimes \sL'$ that has divisor the sum of the divisors of $\sigma$ and 
+$\sigma'$. Thus the group of divisor classes $\pic(X)$ is naturally isomorphic to the group of invertible
+sheaves under $\otimes$, and we will identify the two.
+
+
 
 \subsection{Invertible sheaves and line bundles}
 
 If $\sL$ is an invertible sheaf on a variety $X$, and $p\in X$ is a point then the \emph{stalk} $\sL_p$ of $\sL$ is isomorphic to the local
 ring $\sO_{X,p}$. We write $\gm_{X,p}$ for the maximal ideal of $\sO_{X,p}$. By definition the \emph{fiber} of $\sL$ is 
-$\sL_p/\gm_{X,p}\cong \CC$. It is not hard to prove that the collection of these stalks forms a line bundle on $X$. Moreover,
+$$
+\kappa(p) \otimes \sL =\sL_p/\gm_{X,p}\sL_p\cong \CC
+$$
+where $\kappa(p) := \sO_{X,p}/\gm_{X,p}$ is the residue field of $X$ at $p$.
+It is not hard to prove that the collection of these fibers forms a line bundle on $X$; that is,
+a morphism of schemes $L \to X$ whose fibers have the structure of 1-dimensional vector spaces
+such that $L|_{U_{i}} \cong U_{i}\times \CC^{1}$ for some open covering $\{U_{i}\}$ of $X$.
+
+Moreover,
 given a line bundle $L$ on $X$, we can recover an invertible sheaf $\sL$ associated to $L$ by defining
 $\sL(U)$ to be the set of sections of $L$ defined over $U$. These two processes are inverse to one another, and allow
 us to think of invertible sheaves and line bundles interchangeably.
@@ -189,39 +293,180 @@ section of the line bundle as a function. Second, and more serious, given a morp
 pullback $f^*(\sL)$ of an invertible sheaf $\sL$ on $X$ is defined as the tensor product of $\sO_Y$ with a sort of naive pullback; whereas the pullback of a line bundle is a straightforward set-theoretic operation.
 
 
-\subsection{The morphism to projective space coming from a linear series} \label{morphism from series}
-For any $\CC$-vector space $V$ of dimension $r+1$ with basis $x_{0}, \dots, x_{r}$, we write $\Sym(V) \cong \CC[x_{0},\dots, x_{r}]$ for the symmetric algebra on $V$, and
-$\PP(V)\cong \PP^{r}_{\CC}$ to be the projective space ${\rm Proj}(\Sym(V))$, which is naturally isomorphic to the
-space of lines in $V^{*}$ or, equivalently,  the space of 1-dimensional quotients of $V$. Note that the isomorphism $\PP(V)\cong \PP^{r}_{\CC}$ is well-defined up to the action
-of $\Aut(\PP^r) = PGL(r+1)$.
+%\begin{proposition}
+% The invertible sheaves on $X$ form a group under $\otimes_{X}$, called the 
+%\emph{Picard group of $X$}, denoted $\Pic(X)$. 
+%\end{proposition}
+%\begin{proof}
+% If $\sF, \sG$ are invertible sheaves then so are $\sF\otimes_{\cO_X}\sG$ and  $\Hom_{\cO_X}(\sF, \sG)$, as one sees immediately by
+%restricting to the open sets where $\sF$ and $\sG$ are isomorphic to $\sO_{X}$. Moreover the natural isomorphisms
+%$$
+%\sF(U) \otimes_{X} \Hom(\sF(U), \sO_{X}(U)) \to \sO_{X}(U)\quad s \otimes f \mapsto f(s)
+%$$ 
+%patch together to define a global isomorphism 
+%$$
+%\sF \otimes_{\cO_X} \Hom(\sF, \sO_{X}) \to \sO_{X}
+%$$
+%justifying the definition
+%$\sF^{-1} := \Hom(\sF, \sO_{X})$ and thus the name ``invertible sheaf''. 
+%\end{proof}
+% 
+%If $D\subset X$ is an effective divisor, then we define $\sO_{X}(-D)$ to be the ideal sheaf of $D$. If $D$ is locally defined by the vanishing of a (locally defined) nonzerodivisor in $\sO_{X}$, (that is, $D$ is a Cartier divisor), then
+%$\sO_{X}(-D)$ is an invertible
+%sheaf.
+%We write $\sO_{X}(D)$ for the inverse, $\sO_{X}(-D)^{-1}$. The dual of the inclusion
+%$\sO_{X}(-D)\subset \sO_{X}$ is a map $\sO_{X} \to \sO_{X}(D)$ sending the global section $1\in \sO_{X}$ to a section
+%$\sigma\in \sO_{X}(D)$ that vanishes precisely on $D$.
 
-Given a linear series $\sV:=(\sL, V)$  of dimension $r$ on a scheme $X$
-we define the \emph{base locus} of $\sV$ to be the closed subscheme 
-$$
-B_\sV := \bigcap_{\sigma\in V}\{\sigma = 0\}.
-$$
-Note that we could have restricted the intersection to a basis of $V$, with the same result.
-Let $W:=X\setminus B_\sV$ be the open subscheme where not all sections $\sigma_{i}$ vanish.
+\begin{example} [Invertible sheaves on $\PP^{r}$]\label{linear series on Pr} Since $\CC[x_0,\dots,x_r]$ is a 
+unique factorization domain, the ideal of any codimension 1 subvariety of $\PP^r$ is generated by one
+nonzero element, which is thus a non-zerodivisor---it is a hypersurface.  As we explained above,
+any two hypersurfaces of degree $d$ differ by the divisor of a rational function, so
+the group of divisor classes on $\PP^r$ is $\ZZ$---that is, the class of a divisor is defined by its degree.
+Thus if $D = V(F)\subset \PP^{r}$ is a hypersurface defined by the vanishing of a  form 
+$F$ of degree $d$,
+it is natural to use the name $\sO_{\PP^r}(d)$  for $\sO_{\PP^r}(D)$.
 
-For any point $q\in W$ we  may choose an open neighborhood $W'\subset W$ of $q$, and an identification 
+If $D$ is an effective divisor other than 0, then $H^{0}(\sO_{\PP^{r}}(-D)) = 0$, since there are
+no globally defined functions vanishing on $D$ except 0.
+ 
+To compute $H^0(\cO_{\PP^1} (d))$ directly, let $D = z_1 +z_2 +\cdots+z_d$ be a divisor of degree d and suppose that the coordinates are chosen so that none of the $z_i$ are at infinity. The sections of $\cO_{\PP^1} (D)$ are the rational functions with poles in $\PP^1$ only at 
+the $z_i$. Identifying $\PP^1\setminus \{\infty\} = \AA^1$ with $\CC$ these can each be written
 $$
-t: \sL\mid_{W'} \rTo^{\cong} \sO_{W'}
+\frac{g(z)}{(z-z_1)(z-z_2)\cdots(z-z_d)}
 $$
-and define $\phi_{\sV}: W' \to \PP(V)$ by 
-$$
-W'\ni p \mapsto \bigl(t(\sigma_{0}(p)),\dots, t(\sigma_{r}(p))\bigr) \in \PP(V).
-$$
-This  is a morphism on $W'$. A change of neighborhoods $W'$ or of identifications $t$ would multiply
-each value $t(\sigma_{i}(p))$ by a unit, the same one for each $i$, and thus the construction would define the same morphism. It follows that the morphisms
-defined on different $W'$ agree on overlaps, and thus define a morphism $W \to \PP(V) \cong \PP^r$. This is the reason
-that the dimension of $\sV$ is defined to be $r=\dim V -1$ instead of $\dim V$.
+where $g$ is a polynomial. The condition that the point at infinity is not a pole is the condition $\deg(g) \leq d$. With this condition, these rational functions form a vector space of dimension $d+1$.
 
-The most useful linear series are those that define morphisms defined on all of $X$. This happens when $B_\sV = \emptyset$,
-that is, for every point $q\in X$, there is a section $\sigma \in V$ such that $\sigma$ does not vanish at $q$. In this case we say that $(\sL, \sV)$ is \emph{basepoint-free}.
+More generally, because every
+rational function on $\PP^{r}$ has degree 0, and any two global sections differ by a rational
+function, it follows that every global section of $\sO_{\PP^{r}}(d)$ vanishes on a divisor of degree $d$. Thus
+we may identify $H^{0}(\sO_{\PP^{r}}(d))$ with the ${r+d\choose r}$-dimensional vector space of forms of degree $d$ on $\PP^{r}$.
+
+Putting this together for future reference we have:
+\begin{proposition}
+ Every invertible sheaf $\sL$ on $\PP^r$ has the form $\sL \cong \sO_{\PP^r}(m)$ for a unique $m = \deg \sL \in \ZZ$; and
+ $$
+ H^0(\sO_{\PP^r}(m)) = \CC[x_0,\dots, x_r]_m
+ $$
+ the space of forms of degree $m$ in $r+1$ variables.
+\end{proposition}
+\end{example}
+
+
+\section{Linear series and maps to projective space}
+
+We will use invertible sheaves to  describe maps of a given variety $X$ to projective space. For this we add the notion of linear series (sometimes called linear system). 
+
+\begin{definition}
+ A \emph{linear series} on a scheme $X$ is a pair $\sV  = (\sL, V)$ where $\sL$ is an invertible sheaf  on $X$ and
+ $V$ is a nonzero vector space of global sections of $\sL$. We define the \emph{dimension} of the linear series to be 
+ $$
+ \dim \sV := \dim_\CC V -1.
+ $$
+  \end{definition}
+  
+To every global section $\sigma$ of an invertible sheaf $\cL$ on a variety $X$  we can associate an effective divisor $(\sigma) = (\sigma)_0$ defined by the vanishing of $\sigma$. If $\tau$ is a scalar multiple of $\sigma$, it has the same divisor; and if 
+ $H^0(\sO_X) = \CC$ (for example if $X$ is reduced, connected, and
+ projective) then the converse is true: two sections of $\cL$ with the same divisor differ by multiplication by a scalar.  
+ 
+ We sometimes write
+ $|\sL|$ for the complete linear series $(\sL, H^0(\cL))$. If $\sL = \sO(D)$ we often write this as $|D|$.
+
+Thus a linear series $\sV = (\cL, V)$ gives rise to a family of effective divisors on $X$, all in the same linear equivalence class, parametrized by the projective space $\PP V^*$ of nonzero $\sigma \in V$ mod scalars. This is indeed the way 
+we think of a linear series: as a family of divisors parametrized by a projective space. This is reflected in the definition of the dimension of a linear series above: it's not the dimension of $V$ as a vector space, but the dimension of the corresponding projective space. It is also reflected in the terminology: we often speak of ``the divisors of a linear series $\sV$'' or as divisors ``moving'' in a linear series. The intersection of the vanishing loci of all the sections in $V$ is called the \emph{base locus} of $\sV$. It is in general a subscheme of $C$. The points in its support are called \emph{base points} of $\sV$.  If the vector space $V = H^0(\cL)$, the linear system is said to be \emph{complete}; in terms of the ``family of divisors" point of view, this is the same as saying the linear system includes every effective divisor in the linear equivalence class.
+ 
+Suppose that $C$ is a smooth projective curve. Since the divisors in a linear series are linearly equivalent, they all have the same 
+degree, called the degree of the linear series. If $\sV$ is a linear series of degree $d$ and dimension $r$ we say that \emph{$\sV$ is a $g^r_d$}---this classical  language means that $\sV$ it represents a group of $d$ points ``moving'' within a linear equivalence class with $r$ degrees of freedom.\footnote{The ``$g$" in the symbol $g^r_d$ has nothing to do with the genus of the curve $C$; it's short for \emph{gruppi di punti}, Italian for ``divisors."}
+
+The next result is fundamental:
+
+\begin{theorem}\label{morphisms and linear series}
+For any scheme $X$ there is a natural bijection between the set of nondegenerate morphisms $\phi : X \to \PP^r$ modulo $PGL_{r+1}$, and base-point free linear series of dimension $r$ on $X$, up to isomorphism.
+\end{theorem}
+
+%Given an embedding $X\subset \PP^r$ write $\sO_C(1)$ for the restriction of $\sO_{\PP^r}(1)$.
+
+Here ``nondegenerate" means the image of the morphism $\phi$ is not contained in any hyperplane. The phrase ``modulo $PGL_{r+1}$'' is needed because the notation $\PP^r$ supposes a choice of projective coordinates, and
+$PGL_{r+1}$ is the group of linear coordinate transformations (actually all automorphisms, by Exercise~\ref{aut Pr}).
+To get a correspondence without the dependence on a basis we could think of morphisms to $\PP V$, the set of 1-quotients of $V$.
+
+Suppose that $(\sL, V)$ is a linear series on a smooth projective curve $C$ that does have a base locus $D_0$. We can then subtract $D_0$ from all the divisors of the linear series, replacing $\sL$ by $\sL(-D)$ and dividing each section in $V$
+by the section $\sigma$ of $\cO_C(D_0)$ vanishing on $D_0$ to get a new, base-point free linear series of the same dimension (but of lower degree). 
+
+We will prove Theorem~\ref{morphisms and linear series} by describing the correspondence in both directions:
+
+\subsubsection{The linear series coming from a morphism to projective space}\label{series from morphism}
+
+Let $f : X \to \PP^r$ be any nondegenerate morphism. The associated linear series $\sV = (\cL, V)$ on $X$ has $\cL = f^*\cO_{\PP^r}(1)$, the pullback of the invertible sheaf $\cO_{\PP^r}(1)$, and 
+$$
+V = f^*H^0(\cO_{\PP^r}(1)) \subset H^0(\cL).
+$$
+In geometric terms, if we think of a linear series as a family of effective divisors, this is the linear series on $X$ consisting of preimages of hyperplanes in $\PP^r$. The condition of nondegeneracy assures us that the preimage of a hyperplane in $\PP^r$ is indeed a divisor on $X$.
+
+%Conversely, suppose that we are given a morphism $\phi: X\to \PP^{r}$. With notation as in Example~\ref{linear series on Pr} we may choose an open affine cover $W_{i,j}$ of $X$ such that $\phi(W_{i,j})\subset U_{j}$. Composing the regular
+%functions
+%$x_{0}/x_{j},\dots, x_{r}/x_{j}$ with $\phi$ we get functions $\sigma_{0},\dots,\sigma_{r}$ on $W_{i,j}$.  The function $\sigma_{j}$ is the image under $\phi^*: \sO_{U_j} \to \sO_{W_{i,j}}$ of the function $x_j/x_j = 1$ on $U_{j}$, so $\sigma_j = 1\in \sO_{W_{i,j}}$. 
+%
+%In particular, the module $\sL\mid_{W_{i,j}}$ generated by the rational functions 
+%$$
+%\{\sigma_p\mid_{W_{i,j}}\}= 
+%\{\phi^*((x_p/x_j)\mid_{U_j})\}
+%_{0\leq p\leq r}
+%$$
+% is a free $\sO_{W_{i,j}}$-module on 1 generator. On the preimage of $U_j\cap U_k$ these sections differ by the common unit $\phi^*(x_k/x_j)$, and thus the collection of these modules defines an invertible sheaf $\sL$ on $X$ together with an
+%$r+1$-dimensional space of global sections $\sV := \langle \sigma_0,\dots \sigma_r\rangle$ that forms a base-point free linear series. Note that the subscheme  $\{\sigma_p = 0\} \subset W_{i,j}$  is the scheme-theoretic preimage of the
+%the hyperplane $\{x_p = 0\}\subset \PP^r$. This association of a linear series to a morphism is inverse to the construction
+%of Section~\ref{morphism from series},  completing the explanation and proof of Theorem~\ref{morphisms and linear series}\qed
+
+
+
+\subsubsection{The morphism to projective space coming from a linear series} \label{morphism from series}
+
+Suppose  that $X$ is any scheme, and $\sV = (\cL, V)$ is a base-point free linear series of dimension $r$ on $X$; we want to describe a corresponding morphism $f : X \to \PP^r$. Choose a basis $\sigma_0, \dots, \sigma_r$ for $V$. If we let $D_i = (\sigma_i) \subset X$ be the divisor of zeroes of $\sigma_i$ and $U_i := X \setminus D_i$, then the ratio $\sigma_j/\sigma_i$ is a regular function on $U_i$, and
+we can define a map $f_i : U_i \to \PP^r$ by
+$$
+f_i : p \; \mapsto \; \big(\frac{\sigma_0}{\sigma_i}(p), \dots, \frac{\sigma_r}{\sigma_i}(p)\big), 
+$$
+where the component $\sigma_i/\sigma_i = 1$ ensures that not all the components are 0, so that the image point is well-defined..
+The maps $f_i$ and $f_j$ agree on the overlap $U_i \cap U_j$, and by the hypothesis that $\sV$ is base-point free the $U_i$ cover $X$;
+so together they define a regular map $f$ from $X$ to $\PP^r$. 
+
+We can describe this map set-theoretically without having to choose a basis: since $\sV$ is assumed base-point free, for any point $p \in X$ the subspace $H_p := \{ \sigma \in V \mid \sigma(p) = 0 \}$ is a hyperplane in $V$; thus we get a map $f : X \to \PP V$.
+
+
+%
+%For any $\CC$-vector space $V$ of dimension $r+1$ with basis $x_{0}, \dots, x_{r}$, we write $\Sym(V) \cong \CC[x_{0},\dots, x_{r}]$ for the symmetric algebra on $V$, and
+%$\PP(V)\cong \PP^{r}_{\CC}$ to be the projective space ${\rm Proj}(\Sym(V))$, which is naturally isomorphic to the
+%space of lines in $V^{*}$ or, equivalently,  the space of 1-dimensional quotients of $V$. Note that the isomorphism $\PP(V)\cong \PP^{r}_{\CC}$ is well-defined up to the action
+%of $\Aut(\PP^r) = PGL(r+1)$.
+%
+%Given a linear series $\sV:=(\sL, V)$  of dimension $r$ on a scheme $X$
+%we define the \emph{base locus} of $\sV$ to be the closed subscheme 
+%$$
+%B_\sV := \bigcap_{\sigma\in V}\{\sigma = 0\}.
+%$$
+%Note that we could have restricted the intersection to a basis of $V$, with the same result.
+%Let $W:=X\setminus B_\sV$ be the open subscheme where not all sections $\sigma_{i}$ vanish.
+%
+%For any point $q\in W$ we  may choose an open neighborhood $W'\subset W$ of $q$, and an identification 
+%$$
+%t: \sL\mid_{W'} \rTo^{\cong} \sO_{W'}
+%$$
+%and define $\phi_{\sV}: W' \to \PP(V)$ by 
+%$$
+%W'\ni p \mapsto \bigl(t(\sigma_{0}(p)),\dots, t(\sigma_{r}(p))\bigr) \in \PP(V).
+%$$
+%This  is a morphism on $W'$. A change of neighborhoods $W'$ or of identifications $t$ would multiply
+%each value $t(\sigma_{i}(p))$ by a unit, the same one for each $i$, and thus the construction would define the same morphism. It follows that the morphisms
+%defined on different $W'$ agree on overlaps, and thus define a morphism $W \to \PP(V) \cong \PP^r$. This is the reason
+%that the dimension of $\sV$ is defined to be $r=\dim V -1$ instead of $\dim V$.
+%
+%The most useful linear series are those that define morphisms defined on all of $X$. This happens when $B_\sV = \emptyset$,
+%that is, for every point $q\in X$, there is a section $\sigma \in V$ such that $\sigma$ does not vanish at $q$. In this case we say that $(\sL, \sV)$ is \emph{base-point free}.
 
 \begin{example}\label{Veronese definition}
-The morphism from $\PP^r$ defined by the  linear series $(\cO_{\PP^r}(d), H^0(\cO_{\PP^r}(d))$ has target
-$\PP^{{r+d\choose r}-1}$, and takes a point $x_0,\dots x_r$ to the point whose coordinates are all the monomials of
+The morphism from $\PP^r$ defined by the complete linear series $(\cO_{\PP^r}(d), H^0(\cO_{\PP^r}(d))$ has target
+$\PP^{{r+d\choose r}-1}$, and takes a point $(a_0,\dots a_r)$ to the point whose coordinates are all the monomials of
 degree $d$ in $x_0,\dots x_r$. It is called the \emph{$d$-th Veronese morphism} from $\PP^r$. For example on $\PP^1$, this has the form
 $$
 (x_0,x_1) \mapsto (x_0^d,\ x_0^{d-1}x_1,\ \dots,x_1^d).
@@ -232,71 +477,48 @@ by the Veronese morphism of degree 2 now simply called \emph{the Veronese surfac
 \end{example}
 
 
-\subsection{The linear series coming from a morphism to projective space}\label{series from morphism}
 
-Conversely, suppose that we are given a morphism $\phi: X\to \PP^{r}$. With notation as in Example~\ref{linear series on Pr} we may choose an open affine cover $W_{i,j}$ of $X$ such that $\phi(W_{i,j})\subset U_{j}$. Composing the regular
-functions
-$x_{0}/x_{j},\dots, x_{r}/x_{j}$ with $\phi$ we get functions $\sigma_{0},\dots,\sigma_{r}$ on $W_{i,j}$.  The function $\sigma_{j}$ is the image under $\phi^*: \sO_{U_j} \to \sO_{W_{i,j}}$ of the function $x_j/x_j = 1$ on $U_{j}$, so $\sigma_j = 1\in \sO_{W_{i,j}}$. 
 
-In particular, the module $\sL\mid_{W_{i,j}}$ generated by the rational functions 
-$$
-\{\sigma_p\mid_{W_{i,j}}\}= 
-\{\phi^*((x_p/x_j)\mid_{U_j})\}
-_{0\leq p\leq r}
-$$
- is a free $\sO_{W_{i,j}}$-module on 1 generator. On the preimage of $U_j\cap U_k$ these sections differ by the common unit $\phi^*(x_k/x_j)$, and thus the collection of these modules defines an invertible sheaf $\sL$ on $X$ together with an
-$r+1$-dimensional space of global sections $\sV := \langle \sigma_0,\dots \sigma_r\rangle$ that forms a basepoint-free linear series. Note that the subscheme  $\{\sigma_p = 0\} \subset W_{i,j}$  is the scheme-theoretic preimage of the
-the hyperplane $\{x_p = 0\}\subset \PP^r$. This association of a linear series to a morphism is inverse to the construction
-of Section~\ref{morphism from series},  completing the explanation and proof of Theorem~\ref{morphisms and linear series}\qed
+
+\section{The geometry of linear series}
 
 \subsection{An upper bound on $h^0(\sL)$}
 
 We will develop sophisticated ways of estimating the dimensions of linear series. We begin with an elementary bound:
 
 \begin{theorem}\label{characterization of P1}
-Let $C$ be a reduced, irreducible projective curve and let $\cL$ be an invertible sheaf of degree $d\geq 1$ on $C$. If $\h^0(\cL) \geq d+1$ then
-$$C \cong \PP^1,\ \cL \cong \cO_{\PP^1}(d), \hbox{ and  } \h^0(\cL) = d+1.
-$$
+Let $C$ be a smooth projective curve. If $\cL$ is an invertible sheaf of degree $d\geq 0$ on $C$, then $h^0(\cL)\leq d+1$; and
+equality holds if and only if $C \cong \PP^1$.
 \end{theorem}
 
 \begin{proof}
-First, suppose that $d=1$. The linear series $(\cL, H^0(\cL))$ cannot have any base points, since
-otherwise after subtracting one, we would get an invertible sheaf of degree $0$ with two independent global sections. This is impossible, since some linear combination of the sections would vanish at any given point, showing that the degree would be
-$\geq 1$.
+First, let $p_1,\dots,p_{d+1}$ be any points of $C$. If $h^0(\cL)\geq d+2$, there would be a nonzero section $\sigma \in H^0(\cL)$ vanishing at $p_1,\dots,p_{d+1}$; the divisor $(\sigma)$ would then have degree $\geq d+1$, contradicting the hypothesis that $\deg(\cL) = d$.
 
-Thus we see that the linear series $(\cL, H^0(\cL))$ defines a morphism $\phi: C\to \PP^1$ of degree 1 whose fibers are the divisors defined by
-the vanishing of sections of $\cL$, and which are thus of degree 1. Thus if $p\in C$ is the preimage of $q\in \PP^1$, the induced map of local rings
-$\phi^*:\cO_{\PP^1, q} \to \cO_{C, p}$ is a finite, birational map. Since $\cO_{\PP^1, q}$ is integrally closed, this is an isomorphism. Thus 
-$\phi$ is an isomorphism, and the statements $\cL \cong \cO_{\PP^1}(d), \hbox{ and  } \h^0(\cL) = d+1$ follow from the classification of invertible sheaves on $\PP^1$. 
-
-If $d>1$, let $p_1,\dots p_{d-1}$ be general points of $C$, and set $\cL':=\cL(-p_1-\cdots-p_{d-1})$, a sheaf of degree 1.
- Since $\cL$ is locally isomorphic to the sheaf of functions on $C$, the condition of vanishing at a point imposes at most 1 linear condition on 
-the global sections of $\cL$, and thus $H^0(\cL') \geq 2$. From the case $d=1$ we see that $C\cong \PP^1$, and the statements
-about $\cL$ follow as before.
+For the second part, suppose that $h^0(\cL) = d+1$. If $p_1,\dots,p_{d}$ are any points of $C$, there is a nonzero section $\sigma \in H^0(\cL)$ vanishing at $p_1,\dots,p_{d}$; by degree considerations, it cannot vanish anywhere else. It follows that \emph{any two divisors of degree $d$ on $C$ are linearly equivalent}, hence that any two points $p,q \in C$ are linearly equivalent. Thus there is a rational function $f$ on $C$ with exactly one zero and one pole, giving an isomorphism $C \cong \PP^1$.
  \end{proof}
 
 From the correspondence between invertible sheaves and maps to projective space, we now get:
 \begin{corollary}\label{minimal degree curves}
-If $C\subset \PP^d$ is a reduced, irreducible, non-degenerate curve, then the degree of $C$ is $\geq d$ with equality only in the case
-of the rational normal curve.\qed
+If $C\subset \PP^d$ is a  nondegenerate curve, then the degree of $C$ is $\geq d$ with equality only in the case
+that $C$ is a rational normal curve.\qed
 \end{corollary}
 
 Recall from Example~\ref{Veronese definition} that the image of the $d$-th \emph{Veronese map}  
 $$
-\phi_d: \PP^1 \to \PP(H^0(\cO_{\PP^1}(d)) \cong \PP^d; \quad (s,t) \mapsto (s^d, s^{d-1}t, \dots, t^d)
+\phi_d: \PP^1 \to \PP H^0(\cO_{\PP^1}(d)) \cong \PP^d; \quad (s,t) \mapsto (s^d, s^{d-1}t, \dots, t^d)
 $$
-corresponding to by the complete linear series $|\cO_{\PP^1}(d)|$ is called the \emph{rational normal curve} of degree $d$. Rational normal curves arise often in the literature because they have many extremal properties, such as those of Corollaries~\ref{minimal degree curves} and \ref{points on a RNC}.
-
-For a related result see Corollary~\ref{uninflected}.
+corresponding to the complete linear series $|\cO_{\PP^1}(d)|$ is called the \emph{rational normal curve} of degree $d$. Rational normal curves arise often in the literature because they have many extremal properties, such as those of Corollaries~\ref{minimal degree curves} and \ref{independence of points on a RNC}. For a related result see Corollary~\ref{uninflected curves}. Since there is only
+one invertible sheaf of degree $d$ on $\PP^1$ any two rational normal curves of degree $d$ differ by a transformation in $\PGL_{d+1}$,
+and we will therefore often speak of ``the rational normal curve''.
 
 \begin{corollary}\label{independence of points on a RNC}
-Let $C\subset \PP^d$ be the rational normal curve of degree $d$. If $E$ is a divisor on $C$ of degree $e\leq d+1$, then the
-span of $E$ (that is the dimension of the smallest linear space meeting $C$ in a divisor containing $E$) has dimension $e-1$.
+Let $C\subset \PP^d$ be the rational normal curve of degree $d$. If $E$ is an effective divisor on $C$ of degree $e\leq d+1$, then the
+span of $E$ (that is the dimension of the smallest linear space containing the subscheme $E$) has dimension $e-1$.
 \end{corollary}
 Less formally: any finite set or subscheme of $C$ is as linearly independent as possible
 
 \begin{proof}
-Let $L$ be the span of $E$. Since $E$ can impose at most $e$ conditions on hyperplanes, it follows that the dimension of the span of $E$ is
+Let $L$ be the span of $E$. Since $E$  imposes at most $e$ conditions on hyperplanes, it follows that the dimension of the span of $E$ is
 at most $e-1$.
 
 On the other hand, the hyperplanes containing $E$ meet $C$ in a divisor of the form $E+E'$, where
@@ -305,8 +527,8 @@ so from Corollary~\ref{minimal degree curves} we get $d-e \geq d-(\dim {\rm span
 \end{proof}
 
 In the case of distinct points on a rational normal curve
-it is easy to make a direct argument why they are as independent as possible: In affine coordinates chosen so that none of the points are
-at infinity we can identify the points $\lambda_1,\dots,\lambda_{d+1} \in C \cong \PP^1$ with distinct complex numbers, and the independence (for $\ell = d+1$) is equivalent to the the nonvanishing of the Vandermonde determinant
+it is easy to make a direct argument why they are as independent as possible: Choose coordinates so that none of the points are
+at infinity. We can identify the points $\lambda_1,\dots,\lambda_{d+1} \in C \cong \PP^1$ with distinct complex numbers, and the independence (for $\ell = d+1$) is equivalent to the the nonvanishing of the Vandermonde determinant
 $$
 \begin{vmatrix}
 1 & \lambda_1 & \lambda_1^2 & \dots & \lambda_1^d \\
@@ -320,34 +542,32 @@ $$
 
 \subsection{Incomplete linear series}
 
+ If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. In classical algebraic geometry a linear series of dimension 1 is called a \emph{pencil}, a linear series of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear series is called a \emph{web}.  We will use only the first of these.
 
-Let $\sV = (\sL, V)$ be a linear series on $X$.  The linear series is said to be \emph{complete} if $V = H^0(\cL)$; in this case it is sometimes denoted $|\cL|$. If $\cL \cong \cO_C(D)$, we also write it as $|D|$. 
- If $D$ is any divisor on $C$ we write $r(D)$ for the dimension of the complete linear series $|D|$; that is, $r(D) = h^0(\cO_C(D)) - 1$. Finally, in classical algebraic geometry a linear series of dimension 1 is called a \emph{pencil}, a linear series of dimension 2 is called a \emph{net} and, less commonly, a three-dimensional linear series is called a \emph{web}.  Only the first of these will be
- used in this book.
+\begin{figure}
+ \caption{Projection of a space curve from a general point to $\PP^2$}
+\centerline {\includegraphics[height=3in]{"Fig1.2.pdf"}}
+\end{figure}
 
-We can relate the geometry of the morphism associated to an incomplete linear series $V \subset H^0(\cL)$ to the geometry of the morphism associated to the complete linear series $|\cL|$. In general, if $V \subset W \subset H^0(\cL)$ are a pair of nested linear series, then a 1-dimensional quotient of $W$ restricts to a 1-dimensional quotient of $V$ unless it vanishes on $V$.
-Thus we have a partially defined linear morphism $\pi: \PP(W)  \to \PP(V)$. The \emph{indeterminacy locus} of the map
-consists of the set of 1-quotients vanishing on $V$, that is, to $\PP(W/V) \subset \PP(W)$; we will call it the 
+The morphism associated to an incomplete linear series $V \subset H^0(\cL)$ is the composition of the morphism associated to the complete linear series $|\cL|$ with a linear projection. In general, if $V \subset W \subset H^0(\cL)$ are a pair of nested linear series, then a 1-dimensional quotient of $W$ restricts to a 1-dimensional quotient of $V$ unless it vanishes on $V$.
+Thus we have a partially defined linear morphism $\pi: \PP W  \to \PP V$. The \emph{indeterminacy locus} of the map
+consists of the set of 1-quotients vanishing on $V$, that is, to $\PP(W/V) \subset \PP W$; we will call it the 
 \emph{center of the projection $\pi$.} (It is sometimes useful to
 think of the dual picture: lines in $W^*$ map to lines in $V^*$ except when they lie in the subspace $(W/V)^* = Ann(V)\subset W^*$.)
-The relation between the maps $\phi_V$ and $\phi_W$ is a factorization:
-$$
-\phi_V = \pi \circ \phi_W;
-$$
-that is, we have the diagram 
-
+Thus there is a commutative diagram
 \begin{diagram}
 & & \PP W^* \\
 & \ruTo^{\phi_W} & \dDashto_\pi \\
 C & \rTo^{\phi_V} & \PP V^*.
 \end{diagram}
-Thus if $W$ is basepoint-free, then $V$ is basepoint-free if and only if the center of the projection $\pi$ is disjoint from $\phi_W(C)$, and in this case we say that $\pi$ is \emph{regular} on $C$.
+
+If $W$ is base-point free, then $V$ is base-point free if and only if the center of the projection $\pi$ is disjoint from $\phi_W(C)$. In this case we say that $\pi$ is \emph{regular} on $C$.
 
 By way of language, we will say that a curve $C \subset \PP^r$ embedded by a complete linear series $|\sL|$ is \emph{linearly normal}; this is equivalent to saying that the pullback map
 $$
 H^0(\cO_{\PP^r}(1)) \to H^0(\sL)
 $$
-is surjective. Since regular projections of a curve correspond to subseries, this is equivalent to saying that $C$ is \emph{not} the regular  projection of a nondegenerate curve $\tilde C \subset \PP^{r+1}$. We write $\sO_C(1)$ for the restriction of $\sO_{\PP^r}(1)$ to $C$.
+is surjective. Since regular projections of a curve correspond to subseries, this is equivalent to saying that $C$ is \emph{not} the regular  projection of a nondegenerate curve $\tilde C \subset \PP^{r+1}$. 
 
 \subsection{Sums of linear series}
 If
@@ -357,7 +577,17 @@ $$
 $$
 where $U \subset H^0(\cL \otimes \cM)$ is the subspace generated by the image of $V \otimes W$, under the multiplication/cup product map $H^0(\cL) \otimes H^0(\cM) \to H^0(\cL \otimes \cM)$---in other words, it's the subspace of the complete linear series $|\cL\otimes \cM|$ spanned by divisors of the form $D+E$, with effective divisors $D \in \cD$ and $E \in \cE$.
  
- 
+The sum of two base-point free linear series is clearly base-point free; if the two series correspond to maps
+$C\rTo^\phi \PP^r$ and $C\rTo^\psi \PP^s$ then the sum corresponds to the composition of the map
+$(\phi, \psi): C\to \PP^r\times \PP^s$ with the \emph{Segre} embedding $\sigma : \PP^r\times \PP^s \to \PP^{(r+1)(s+1)-1}$
+given in coordinates by
+$$
+((x_0,\dots, x_r), (y_0, \dots, y_s))\mapsto (x_0y_0, \dots, x_iy_j, \dots, x_ry_s).
+$$
+
+Note that this days nothing about the dimension of $\cD + \cE$, since the composite map $\sigma \circ (\phi, \psi)$ will typically not be nondegenerate. In fact, the best we can do in general is the following proposition.
+
+
 \begin{proposition}\label{sum of linear series}
  If $\cD$ and $\cE$ are two  linear series that contain effective divisors on a curve $C$, then
 $$
@@ -368,9 +598,14 @@ $$
 Saying $\dim \cD \geq m$ is equivalent to saying that we can find a divisor $D \in \cD$ containing any given $m$ points of $C$; since $\cD + \cE$ contains all pairwise sums $D + E$ with $D \in \cD$ and $E \in \cE$, we can certainly find a divisor $F \in \cD + \cE$ containing any given $\dim \cD + \dim \cE$ points of $C$.
 \end{proof}
 
-\section{Which linear series define embeddings?}
+\subsection{Which linear series define embeddings?}
 
-A linear series $\sV = (\sL, V)$ is called  \emph{very ample}  if it is basepoint-free and defines an embedding. If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear series $|D|$ is very ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$.
+A linear series $\sV = (\sL, V)$ is called  \emph{very ample}  if it is base-point free and defines an embedding (what Hartshorne calls a ``closed immersion''). If $D$ is a Cartier divisor on $X$, then we say that $D$ is \emph{very ample} if the complete linear series $|D|$ is very ample, and we say that $D$ is \emph{ample} if $mD$ is very ample for some integer $m>0$. 
+
+Similarly, $\sV$ or $D$ are called \emph{birationally very ample}
+if $\V$ or $D$ are base-point free and define a map that is generically one-to-one or, equivalently,
+an embedding when restricted to an open set. This arises frequently when speaking of a map from a smooth
+curve $C$ onto a curve $C_{0}$ in the plane, since the latter frequently has singularities.
 
 Given a linear series $\sV = (\sL, V)$ and an effective divisor $D$ on $C$, we  set
 $
@@ -382,61 +617,89 @@ $$
 $$
 The difference $\dim \sV - \dim \sV(-D)$ is called the \emph{number of conditions imposed by $D$ on the linear series $\sV$}; we say that $D$ \emph{imposes independent conditions} on $\sV$ if $\dim \sV - \dim \s V(-D) = \deg(D)$.
 
-Via the correspondence of Theorem~\ref{morphisms and linear series}, the statements about the geometry of a morphism $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear series. In the case of complete series, these are statements about the vector space $H^{0}(\sL)$ of global sections of $\sL$. As is customary, we write $h^{0}(\sL)$ for the dimension of this vector space. It is useful to have criteria
-in these terms for when a linear series defines an embedding, or even to be basepoint-free so that it
+Via the correspondence of Theorem~\ref{morphisms and linear series}, statements about the geometry of a morphism $\phi : C \to \PP^r$ can be formulated as statements about the relevant linear series. In the case of complete series, these are statements about the vector space $H^{0}(\sL)$ of global sections of $\sL$. We write $h^{0}(\sL)$ for the vector space dimension of $H^0(\sL)$ (and similarly for other cohomology groups). It is useful to have criteria
+in these terms for when a linear series defines an embedding, or even to be base-point free so that it
 defines a morphism:
 
-\begin{proposition}\label{very ample}\cite[Thm. IV.3.1]{H}
-Let $\cL$ be an invertible sheaf on a smooth curve $C$. The complete linear series $|\cL|$ is basepoint-free iff
+\begin{proposition}\label{very ample}\cite[Thm. IV.3.1]{Hartshorne1977}
+Let $\cL$ be an invertible sheaf on a smooth curve $C$. The complete linear series $|\cL|$ is base-point free if and only if
 $$
 h^0(\cL(-p)) = h^0(\cL) - 1 \quad \forall p \in C;
 $$
-and $\sL$ is very ample, iff
+and $\sL$ is very ample if and only if
 $$
 h^0(\cL(-p-q)) = h^0(\cL) - 2 \quad \forall p, q \in C.
 $$
 \end{proposition} 
 
+\begin{figure}
+ \caption{Two distinct points or one double point might impose just one condition on a linear series}
+\centerline {\includegraphics[height=2in]{"Fig1.3.pdf"}}
+\end{figure}
+
 \begin{proof}
-First, since vanishing at a point imposes one linear condition on sections of $\sL$ we have $h^0(\sL(-D)) \geq h^0(\sL)-\deg D$ for any
+First, if $\cL$ is base-point free, then vanishing at a point imposes one linear condition on sections of $\sL$, so 
+$h^0(\sL(-D)) \geq h^0(\sL)-\deg D$ for any
 effective divisor $D$.
 
-To say that $|\cL|$ is basepoint-free means that for every point $p\in C$ there is a section of $\sL$ that does not vanish at $p$; thus vanishing
+To say that $|\cL|$ is base-point free means that for every point $p\in C$ there is a section of $\sL$ that does not vanish at $p$; thus vanishing
 at $p$ is a nontrivial linear condition on $H^0(\sL)$. Conversely, if $h^0(\cL(-p)) = h^0(\cL) - 1$ then $p$ imposes a nontrivial condition, so
 some section of $\sL$ does not vanish at $p$.
 
-Since a divisor of degree $d$ cannot impose more than $d$ condtions on a linear series, the statement $h^0(\cL(-p-q)) = h^0(\cL) - 2$ for all $p, q$ implies the condition for basepoint freeness; and saying that $\phi_\cL(p) \neq \phi_\cL(q)$ implies that the linear series defines a set-theoretic injection. The tangent space of $C$ at $p$ is $(\sI_C(p)/\sI_C(p)^2)^*$, so the condition that there is a section of $\sL$ that vanishes at $p$, but does not vanish
-to order 2, implies that the differential $d\phi_\cL$ is injective at $p$ as well.
+Since a divisor of degree $d$ cannot impose more than $d$ condtions on a linear series, the statement $h^0(\cL(-p-q)) = h^0(\cL) - 2$ for all $p, q$ implies the condition for base-point freeness; and saying that $\phi_\cL(p) \neq \phi_\cL(q)$ implies that the linear series defines a set-theoretic injection. 
+
+%The Zariski tangent space of $C$ at $p$ is the dual of $\gm_{C,p}/\gm_{C,p)^2$, so the condition that there is a section of $\sL$ that vanishes at $p$, but does not vanish
+%to order 2, implies that the differential $d\phi_\cL$ is injective at $p$ as well.
 
 Let $\phi:C \to \PP^r$ be the map defined by $\sL$. To say that $\phi$  is an embedding locally at a point $p$, we need to know that the map of local rings
 $$
 \phi^*: \sO_{\PP^r,\phi(p)} \to \sO_{C,p} 
 $$
-is surjective. Since $C$ is proper, the map $C\to \phi(C)$ is finite,
-so $\phi_*(\sO_{C})$ is coherent.
- The constants  $\CC =\sO_{\PP^r,\phi(p)}/\gm_{\PP^r,\phi(p)}$ pull back to the constants in
-$\sO_{C,p}/\gm_{C,p}$. 
-By Nakayama's lemma, the surjectivity will follow if 
+is surjective. 
+
+Since $C$ is projective, the map $C\to \phi(C)$ is finite,
+so $\phi^*$ makes $\sO_{C,p}$ into a finitely generated $\sO_{\PP^r,\phi(p)}$-module.
+By Nakayama's lemma it suffices to show that 
+$\sO_{C,p}/\phi^*(\gm_{\PP^r,\phi(p)})$
+is generated by the image of $\sO_{\PP^r,\phi(p)}/\gm_{\PP^r,\phi(p)} = \CC.$
+
+ Since the constants  $\CC =\sO_{\PP^r,\phi(p)}/\gm_{\PP^r,\phi(p)}$ pull back to the constants in
+$\sO_{C,p}/\gm_{C,p}$,
+surjectivity will follow if 
 $$
 \frac{\sO_{C,p}}
 {\phi^*(\gm_{\PP^r,\phi(p)})  \sO_{C,p}}
 $$
-is 1-dimensional; that is, if  the pullback of $\gm_{\PP^r,\phi(p)}$ is not contained in the square of the
-maximal ideal $\gm_{C,p}$. The inequality $h^0(\sL(-2p) \neq h^0(\sL(-p))$ shows that there is a 
-section in $H^0(\sL(-p))$ that does not vanish to order 2, completing the proof.
+is 1-dimensional; that is, if the linear series contains
+a section that vanishes to order exactly 1 at $p$, which is equivalent to the condition
+that $h^0(\sL(-2p) \neq h^0(\sL(-p))$.
 \end{proof}
 
+A more geometric version of the last part of the proof would be to say that the condition of the existence of a section
+vanishing to order exactly 1 implies that $\phi$ is an injection on the tangent space to $C$ at $p$. This implies that
+the map is analytically an isomorphism onto its image, and together with the finiteness of the map, this suffices.
 
-For another example of the relationship between linear series on curves and morphisms of curves to projective space, consider a smooth curve $C \subset \PP^r$ embedded in projective space, and assume that $C$ is linearly normal. If $\phi : C \to C$ is any automorphism, we can ask whether $\phi$ is induced by an automorphism of $\PP^r$; in other words, does there exist an automorphism $\Phi : \PP^r \to \PP^r$ such that $\Phi(C) = C$ and $\Phi|_C = \phi$? The answer is expressed in Exercise~\ref{projective automorphism}.
-
-
-If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of $\phi$} is the number of points in the preimage of a general point of $\phi(X)$. It follows that if $D := \sum_{p\in C} n_pp$ is a divisor on a smooth curve, and the linear series $|D|$ is basepoint-free, then the degree of the morphism associated to $|D|$ is $\deg D := \sum_{p\in C} n_p$.
+If $\phi:X \to \PP^r$ is a generically finite morphism, then the \emph{degree of $\phi$} is the number of points in the preimage of a general point of $\phi(X)$. It follows that if $D := \sum_{p\in C} n_pp$ is a divisor on a smooth curve, and the linear series $|D|$ is base-point free, then the degree of the morphism associated to $|D|$ is $\deg D := \sum_{p\in C} n_p$.
 
 \section{Exercises}
 
 \begin{exercise}\label{here there be basepoints}
  Show that there is no non-constant morphism $\PP^r\to \PP^s$ when $s<r$ by showing that any nontrivial linear
  series of dimension $<r$ has a non-empty base locus.
+\end{exercise}
+
+\begin{exercise}
+Let 
+$$
+V = \langle s^{a_0}t^{d-a_0}, \dots, s^{a_r}t^{d-a_r}\rangle \subset \CC[s,t]_d,
+$$
+and let $\sV = (\sO_{\PP^1}(d), V)$. Determine the conditions for:
+\begin{enumerate}
+ \item $\sV$ is base-point free.
+ \item $\sV$ is ample.
+ \item $\sV$ is very ample.
+ \item $\sV$ is complete.
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
@@ -447,24 +710,35 @@ $$
 $$
 \end{exercise}
 
-\begin{exercise}
-An automorphism of $\PP^r$ takes hyperplanes to hyperplanes. Deduce that it is given by the linear series
-$\sV = (\sO_{\PP^r}(1), H^0(\sO_{\PP^r}(1)))$, and use this to show that $\Aut \PP^r = PGL(r+1)$. 
+\begin{exercise}\label{aut Pr}
+Show that an automorphism of $\PP^r$ takes hyperplanes to hyperplanes. Deduce that it is given by the linear series
+$\sV = (\sO_{\PP^r}(1), H^0(\sO_{\PP^r}(1)))$, and use this to show that $\Aut \PP^r = PGL(r+1)$. Hint: for the first part, use B\'ezout's theorem.
 \end{exercise}
 
 \begin{exercise}\label{projective automorphism}
-In the circumstances above, the automorphism $\phi$ is induced by an automorphism of $\PP^r$ if and only if $\phi$ carries the invertible sheaf $\cO_{C}(1)$ to itself; that is, $\phi^*(\cO_{C}(1)) \cong \cO_{C}(1)$. In this case we say that the automorphism
+Let $C \subset \PP^r$ be any linearly normal curve and $\phi: C \to C$ an automorphism. Show that $\phi$ is induced by an automorphism of $\PP^r$ if and only if $\phi$ carries the invertible sheaf $\cO_{C}(1)$ to itself; that is, $\phi^*(\cO_{C}(1)) \cong \cO_{C}(1)$. In this case we say that the automorphism
 is projective. Show that every automorphism of a rational normal curve $C \subset \PP^d$  extends to $\PP^d$. Since the
-automorphism group $PSL_3$ acts transitively on $\PP^1$, we say that
+automorphism group $PGL_2$ of $\PP^1$ acts transitively on $\PP^1$, we say that
 $C$ is \emph{projectively homogeneous}.
-
-
 \end{exercise}
 
 \begin{exercise}\label{normality of RNC}
- Show that $\CC[s^d,s^{d-1}t,\dots, t^d]$ is normal (ie, integrally closed) by noting that its integral closure must be
+ Show that the ring $\CC[s^d,s^{d-1}t,\dots, t^d]$ is normal ($=$ integrally closed) by noting that its integral closure must be
  contained in $\CC[s,t]$ and then showing that if $f$ is any polynomial
  in the integral closure then the homogeneous components of $f$ are also in the integral closure.
+\end{exercise}
+
+\begin{exercise}\label{Cartier examples}
+Suppose $C = V(y^2 - x^2 - x^3) \subset \AA^2$ (so that $C$ is a plane curve with a node at the point $p = (0,0) \in C$). 
+\begin{enumerate}
+\item Show that the point $p$ itself (that is, the reduced subscheme) is not a Cartier divisor, since its ideal $(x,y)$ is not generated by a single element. 
+\item Show that the ``fat point"---that is, the subscheme $\Gamma = V(x^2, xy, y^2)$---is contained in $C$ but is not a Cartier divisor on $C$. 
+\item Let $\Gamma_{\alpha, \beta} := V(\alpha x + \beta y, x^2, xy, y^2) \subset C$. Show that if $\beta \neq \pm \alpha$ then $\Gamma_{\alpha, \beta}$ is a Cartier divisor on $C$; and
+\item With $\Gamma_{\alpha, \beta}$ as above, show that if $\beta = \pm \alpha$ then $\Gamma_{\alpha, \beta}$ is not a Cartier divisor on $C$.
+\end{enumerate}
+
+Hint: for the last two parts, observe that if $\beta \neq \pm \alpha$ then $\Gamma_{\alpha, \beta}$  is locally the intersection of $C$ with the line $L \subset \AA^2$ given by $\alpha x + \beta y = 0$, but when $\beta = \pm \alpha$ 
+the intersection $L \cap C$ has multiplicity 3 at $p$, and is not equal to $\Gamma_{\alpha, \beta}$.
 \end{exercise}
 
 
