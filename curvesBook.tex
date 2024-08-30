@@ -2,27 +2,26 @@
 %from being executed in the individual files.
 \def\whole{}
 \documentclass[leqno]{book}
-%\usepackage{msri
+
+\usepackage{amssymb}
+\let\SMALL\small
+\def\smaller[2]{\relax}
+\def\printindex#1{\relax}
 \input style-for-curves.sty
+%\input sl-macros.sty
 \usepackage{hyperref}
 \usepackage{msribib}
 
 \usepackage{pdfpages}
 \usepackage{draftwatermark}
 \SetWatermarkText{DRAFT:\ \ \today}
-\SetWatermarkScale{3}
+\SetWatermarkScale{.3}
 \SetWatermarkColor[gray]{0.9}
 
 %\input header.tex 
 
 %\documentclass{cambridge7A}
 %\usepackage{ag2}
-\usepackage{xcolor}
-%\usepackage{mtpro2}
-%\usepackage{times}
-%\usepackage{hatcher}
-%\usepackage{msribib,local} 
-%\usepackage{geompsfi}
 
 \errorcontextlines=1000
 
@@ -33,7 +32,10 @@
 
 \overfullrule=5pt
 \catcode`\@\active
-\def@{\mskip1.5mu} %produce a small space in math with an @
+\def@{\mskip1.5mu} %produce a small space in math with an @ = 1/2 of \,
+\mathcode`\@="8000 
+\mathcode`\`="8000
+\bgroup\catcode`\`\active \gdef`{\mskip-1mu}\egroup % backspace, 1/3 of \!
 
 %%the following allows flexible naming of chapters, but then the sections don't appear in the toc
 \newcommand{\mychapter}[2]{
@@ -43,7 +45,7 @@
     \addcontentsline{toc}{chapter}{#2}
 }
 
-\title{Practical Curves}
+\title{The Practice of Algebraic Curves}
 \author{\copyright David Eisenbud and Joe Harris}
 %\includeonly{2-RR, 5-Curvesofgenus2and3}
 %\includeonly{5-Curvesofgenus2and3}
@@ -56,7 +58,7 @@
 %\def\all{toc,out1,chern,out2,lefschetz,out3,bib,ind, out1a}
 %\includeonly{\all}
 
-%\includeonly{7-CurvesModuli, 7a-CurvesModuli}
+%\includeonly{19-Appendix-History}
 
 \begin{document}
 \maketitle
@@ -66,33 +68,31 @@
 \pagenumbering{arabic}
 \tableofcontents
 
-%\mychapter{1}{1 Linear Systems}
 \include{0-intro}
 \include{1-LinearSeries}
 \include{2-RR}
-\include{3-CurvesOfGenus0And1}
-\include{4-Jacobians}
-\include{5-Curvesofgenus2and3}
-\include{6-FineModuli}
-\include{7-CurvesModuli}
-\include{8-Curvesofgenus45}
-\include{9-hyperplaneSections}
-\include{10-monodromy}
-\include{11-BrillNoether}
-\include{12-Inflections} 
-\include{13-BrillNoetherProof}
-\include{14-PlaneCurves}
-\include{15-Linkage}
-\include{16-Scrolls}
-\include{17-Syzygies}
-\include{18-HilbertSchemes}
+\include{3-CurvesOfGenus0}
+\include{4-genus1AndPlaneCurves}
+\include{5-Jacobians}
+\include{6-Curvesofgenus2and3}
+\include{7-FineModuli}
+\include{8-CurvesModuli}
+\include{9-Curvesofgenus45}
+\include{10-hyperplaneSections}
+\include{11-monodromy}
+\include{12-BrillNoether}
+\include{13-Inflections}
+\include{14-BrillNoetherproof}
+\include{15-PlaneCurves}
+\include{16-Linkage}
+\include{17-Scrolls}
+\include{18-Syzygies}
+\include{19-HilbertSchemes}
+\include{20-Appendix-History}
+
+
 \makeatletter \def\@biblabel#1{\ignorespaces} \makeatother
 \include{bib}
-
+\include{ind}
 
 \end{document}
-
-
-%\include{ind}%requires makeindex
-
-

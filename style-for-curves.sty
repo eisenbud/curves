@@ -1,90 +1,382 @@
-\usepackage{amsmath,amscd,amsthm,amssymb,amsxtra,latexsym,epsfig,epic,graphics}
-\usepackage[matrix,arrow,curve]{xy}
-\usepackage{graphicx}
-\usepackage{diagrams}
-\usepackage{cite}
-
+\usepackage{amsmath,amscd,amsthm,amsxtra,latexsym,epsfig,epic,graphicx}
+\usepackage[all]{xy}
+\UseTips
+\usepackage{xcolor}
+\usepackage{mathtools} % for \coloneqq
 
 \input preamble.tex
-%\usepackage{amsrefs}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\textwidth16cm
-%\textheight20cm
-%\topmargin-2cm
-\oddsidemargin.8cm
-\evensidemargin1cm
-\setlength{\parskip}{5pt}
 
-%\newtheorem{fact}[theorem]{Cheerful Fact}
+\AtBeginDocument{
+\let\colonequals\coloneqq
+\let\equalscolon\eqqcolon
+}
 
+% for the index
+\def\see#1#2{\emph{see} #1}
+\def\seeunder#1#2{\emph{see under} #1}
+
+% for the hints section
+\def\tohint#1{\hskip 1em minus 0.5em\rm(p.~\pageref{hint#1})\label{tnih#1}}
+\def\tohin#1{\hskip 1em minus 0.5em(p.~\pageref{hint#1})}
+\def\hinthead#1{\label{hint#1}\subsubsection*{\protect\ref{tnih#1}}}
+
+% bold italic
+\def\defi#1{{\bf#1}}
+\def\bfa{\mathbfit{a}}
+\def\bfb{\mathbfit{b}}
+
+% various kinds of fractions
+\def\sfrac#1#2{\vcenter{\offinterlineskip
+ \halign{\hfil$\ssty ##$\hfil\cr#1\cr\noalign{\vskip1pt\hrule\vskip1pt}#2\cr}}}
+% in \mfrac, hbox is needed for medmuskip to take effect
+\def\mfrac#1#2{{\tsty{\tsty\medmuskip1mu\hbox{$#1$}\lower2.5pt\hbox{}\over
+      \tsty\medmuskip1mu \hbox{$#2$}\vbox to9pt{}}}}
+\def\unfrac#1{#1/}
+\def\punfrac#1#2{(#1/#2)}
+\def\upnfrac#1#2{(#1)/#2}
+\def\unpfrac#1#2{#1/(#2)}
+\def\upnpfrac#1#2{(#1)/(#2)}
+% a decent one-half
+\def\haa{{\ssty\frac{\ssty1}{\ssty2}}}
+
+\def\upstrut{\noindent\vbox to 13pt{}}
+\def\downstrut{\noindent\lower5.5pt\vbox{}}
+\def\unif{\unskip\vspace*{-\parskip}}% uniformize space at end of theorems
+
+% the agreed-on numbering scheme
+\def\thesection{\thechapter.\arabic{section}}
+\def\thesubsection{\thesection.\arabic{subsection}}
+
+\newtheorem*{untheorem}{Theorem}
+\newtheorem*{unproposition}{Proposition}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{satz}{Satz}[section]
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+
+% cheerful fact(s)
+\definecolor{factcolor}{cmyk}{1.0,0.6,0,0}
+\def\cbstart{\bgroup\color{factcolor}%
+  \hrule width\hsize height3pt\vskip2pt\hrule width\hsize height1pt\vskip1pt
+  \egroup}
+\def\cbend{\hskip0pt\lower7pt\hbox{}\par\bgroup\color{factcolor}%
+  \hrule width\hsize height1pt\vskip2pt\hrule width\hsize height3pt\relax
+  \egroup}
+\newenvironment{fact}[1][\unskip]
+  {\par\goodbreak\begin{npt}\begin{factoid}[#1]
+    \vskip3pt\cbstart\normalfont\fontsize{11}{13}\selectfont}
+  {\cbend\end{factoid}\end{npt}}
+\def\cfword{Cheerful Fact}
+\newtheorem{factoid}[theorem]{\cfword}
+
+\def\manyfacts{\def\cfword{Cheerful Facts}% 
+% use: \begingroup\manyfacts \begin{fact} \item... \end{fact}\endgroup
+  \def\item{\quad$\bullet$\enspace
+    \def\item{\par\noindent$\bullet$\enspace}}}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{Exercise}[chapter]
+
+% syntactic sugar
+\let\dsty\displaystyle \let\tsty\textstyle
+\let\ssty\scriptstyle \let\sssty\scriptscriptstyle
+
+% binomial coefficiently with lines not so far apart
+%\def\cramped#1{\radical0 {\kern-\nulldelimiterspace#1}}
+\def\mbinom#1#2{\Bigl({\tsty{\tsty\medmuskip1mu\hbox{$#1$}\lower2.5pt\hbox{}\atop
+      \tsty\medmuskip1mu\smash{#2}\vbox to9pt{}}}\Bigr)}
+\def\tbinom#1#2{\bigl(\smash{\tsty{\medmuskip1mu\hbox{$\ssty#1$}\lower3pt\hbox{}\atop
+      \medmuskip1mu\raise4pt\hbox{$\ssty#2$}\vbox to9pt{}}}\bigr)}
+\def\sbinom#1#2{(\vcenter to0pt{\offinterlineskip\vss\halign{\hfil$\sssty##$\hfil\cr#1\cr\noalign{\vskip1pt}#2\cr}\vss})}
+
+% we want bigcaps
+\def\lessbigcap{\mathop{\raise0.5pt\hbox{\smash{\small$\bigcap$}\hskip0.5pt}\lower2pt\vbox to 9pt{}}}
+
+% overkern and its relatives; see letter 
+\def\overlow#1{\overline{\vbox to 6.8pt{}\smash{#1}}}
+\def\overlw#1#2#3{{}\mskip#1mu\overline{\vbox to 5pt{}\smash{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}}
+
+\def\overkern#1#2#3{{}\mskip#1mu\overlow{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
+\def\underkern#1#2#3{{}\mskip#1mu\underline{\mskip-#1mu #3\mskip-#2mu}\mskip#2mu{}}
+
+\def\ovD{\overkern20D}
+\def\ovR{\overkern20R}
+\def\ovM{\overkern20M}
+\def\Vk{V_{\mskip-5mu k}} % V_k and W_k have huge gaps
+\def\Vkmi{V_{\mskip-5mu k-1}}
+
+% syntactic sugar
+\def\[{[\mskip-3mu[}
+\def\]{]\mskip-3mu]}
+\def\({(\mskip-1.5mu(}
+\def\){)\mskip-1.5mu)}
+
+\def\0{$0$}
+\def\1{$1$}
+\def\2{$2$}
+\def\3{$3$}
+\def\4{$4$}
+\def\5{$5$}
+\def\6{$6$}
+\def\7{$7$}
+\def\8{$8$}
+\def\9{$9$}
+
+\hyphenation{
+Apo-llonius Des-argues %per Gray
+Pfaff-ian Pfaff-ians
+Clebsch
+non-zero-divisor non-zero-divisors
+hyper-elliptic
+homo-morphism homo-morphisms 
+homo-geneous
+auto-morphism auto-morphisms
+quasi-projec-tive
+}
+
+\def\emdash{\unskip\thinspace---\hskip.16667em\ignorespaces}
+
+% \redden prints its argument in red; an optional argument goes into a
+% marginpar.  The {redden} environment is analogous (but doens't prescan).
+% We don't need to say \newenvironment{redden}; just defining 
+% \redden and \endredden is enough and simplifies some things.
+
+\makeatletter
+
+% hack for the Appendix portion of the table of contents
+\def\addAtotocsection{
+\def\tocsection##1##2##3{%
+  \indentlabel{\@ifnotempty{##2}{\rlap{A.##2}\hskip2.75em}}##3}
+}
+
+\def\eqalign#1{%
+ \chardef\dspbrk@context\@ne % protection against a misguided \displaybreak;
+                             % else it would force a break after the \eqalign
+ \null\,\vcenter{\openup\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil
+      &&\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\eqalignbot#1{%
+ \chardef\dspbrk@context\@ne
+ \null\,\vbox{\openup\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil
+      &&\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\eqaligntop#1{%
+ \chardef\dspbrk@context\@ne
+ \null\,\vtop{\openup\jot\m@th
+  \ialign{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil
+      &&\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+
+\let\lpar( \let\rpar)
+\def\thmhead@plain#1#2#3{%
+  \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}%
+  \thmnote{ {\the\thm@notefont\lpar#3\rpar}}}
+
+\newenvironment{npt}{% "no parens thm" used when a thm starts with a citation
+  \def\lpar{}
+  \def\rpar{}
+}{}
+
+\def\tsum{\mathop{\tsty\sum@}\limits}\def\tprod{\mathop{\tsty\prod@}\limits}
+
+\newbox\trigabox
+\DeclareMathSymbol{\blacktriangleright} {\mathrel}{AMSa}{"49}
+\DeclareMathSymbol{\curlyvee}     {\mathbin}{AMSa}{"67}
+\DeclareMathSymbol{\curlywedge}   {\mathbin}{AMSa}{"66}
+\setbox\trigabox\hbox{\scalebox{0.4}{$\blacktriangleright$}\enspace}
+\def\tocsection#1#2#3{%
+  \indentlabel{\@ifnotempty{#2}{\rlap{#2}\hskip2.75em}}#3}
+\def\tocsubsection#1#2#3{%
+  \indentlabel{\qquad\raise2.4pt\copy\trigabox\@ifnotempty{#2}{#2\quad}}#3}
+
+% \usepackage[nohug,heads=curlyvee]{diagrams}
+% \usepackage[nohug]{diagrams}
+
+% \subsubsection was too wimpy in terms of vertical skip and title font.
+% It needs to stand out at least as much as a theorem.
+\def\subsubsection{\@startsection{subsubsection}{3}%
+  \z@{.25\linespacing\@plus.35\linespacing}{-.5em}%
+  {\normalfont\itshape\bfseries}}
+
+\def\@marginparreset{\marginparstyle}
+\def\marginparstyle{\reset@font\SMALL\normalfont\@setminipage\raggedright\openup-2pt}
+\@mparswitchfalse
+\long\def \@savemarbox #1#2{%
+  \global\setbox #1%
+      \vtop{%
+        \hsize\marginparwidth
+        \@parboxrestore
+        \reset@font
+        \@setnobreak
+        \@setminipage
+        \@marginparreset
+        \hskip 0pt % otherwise hyphenation of the first word is inhibited 
+        #2%
+        \par
+        \global\@minipagefalse
+        }%
+}
+
+\DeclareRobustCommand{\redden}{\@ifnextchar*
+  {\@latex@error{{redden*} is only an environment}}
+  {\@ifnextchar[{\r@dden}{\r@dd@n}}}
+\def\r@dden[#1]{\ifmmode\@mperr{math}\else\ifinner\@mperr{inner}%
+  \else\leavevmode\marginpar{\leavevmode#1\endgraf}\fi\fi\r@dd@n}
+\def\r@dd@n{\def\reserved@a{redden}% Check if being called within environment
+  \ifx\@currenvir\reserved@a\redd@n\bgroup\ignorespaces
+  \else\expandafter\redd@n\fi}
+\def\endredden{\unskip\egroup}
+\def\@mperr#1{\@latex@warning{redden in #1 mode: no marginpar possible}}
+%\def\redd@n#1{\leavevmode\ifproofs{\color{red}#1}\else
+%    \@latex@warning{\string\redden\space suppressed in final version}{#1}\fi}
+\def\redd@n#1{\leavevmode{\color{red}#1}}
+\def\blue#1{\leavevmode{\color{blue}#1}}
+
+% The {redden*} environment places a big red star in a marginpar,
+% besides printing its contents in red. If there is
+% an optional argument, that's the continuation of the marginpar.
+\newenvironment{redden*}[1][]
+  {\redden[\smash{\color{red}\Large$*$} #1]\bgroup\ignorespaces}
+  {\unskip\egroup}
+
+\hyphenpenalty=500
+
+\def\adj{{\mathfrak F}}
 \def\grd{{g^{r}_{d}}}
 \def\balpha{{\boldsymbol{\alpha}}}
 \def\bbeta{{\boldsymbol{\beta}}}
 \def\bdelta{{\boldsymbol{\delta}}}
 
-\DeclareMathOperator{\grade}{\rm grade}
-\DeclareMathOperator{\Fitt}{\rm Fitt}
-\def\ram{{\operatorname{ram}}}
+% hacked arrows that can bear superscripts
+
+\def\luto#1{\mathrel{\hbox{$\leftarrow\mskip-8mu-$}%
+      \kern-13.5pt
+      \raise6pt\hbox{$\scriptstyle#1$}%
+      \kern7pt}}
+\def\ruto#1{\mathrel{\hbox{$-\mskip-8mu\to$}%
+      \kern-13.5pt
+      \raise6pt\hbox{$\scriptstyle#1$}%
+      \kern7pt}}
+\def\ruuto#1{\mathrel{\hbox{$-\mskip-8mu-\mskip-8mu\to$}%
+      \kern-18.5pt
+      \raise6pt\hbox{$\scriptstyle#1$}%
+      \kern3pt}}
+\def\ruuuto#1{\mathrel{\hbox{$-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu-\mskip-8mu\to$}%
+      \kern-49pt
+      \raise6pt\hbox{$\scriptstyle#1$}%
+      \kern3pt}}
+\def\rOnto{\mathrel{{\to}\mskip-19mu{\to}}}
+
+\def\mwedge{\raise1pt\hbox{\small$\bigwedge\mskip-2mu$}}
+
 %%%%%Definitions
 \def\TU{{\bf U}}
-\def\AA{{\mathbb A}}
-\def\BB{{\mathbb B}}
-\def\CC{{\mathbb C}}
-\def\QQ{{\mathbb Q}}
-\def\RR{{\mathbb R}}
-\def\PP{{\mathbb P}}
+\def\AA{\mathbb A}
+\def\BB{\mathbb B}
+\def\QQ{\mathbb Q}
+\def\PP{\mathbb P}
 
-\def\facet{{\bf facet}}
-\def\image{{\rm image}}
-\def\red{{\rm red}}
-\def\div{{\rm div}}
-\def\cC{{\cal C}}
+\def\cC{\cal C}
 \def\cD{{\cal D}}
-\def\cE{{\cal E}}
-\def\cF{{\cal F}}
-\def\cG{{\cal G}}
-\def\cH{{\cal H}}
-\def\cP{{\cal P}}
-\def\cW{{\cal W}}
-\def\cK{{\cal K}}
+\def\cE{\cal E}
+\def\cF{\cal F}
+\def\cG{\cal G}
+\def\cH{\cal H}
+\def\cP{\cal P}
+\def\cW{\cal W}
+\def\cK{\cal K}
 
-\def\gb{{\beta}}
-\def\ff{{\mathfrak f}}
-\def\fA{{\mathfrak A}}
-\def\Mor{{\rm Mor}}
+\def\gb{\beta}
+\def\ff{\mathfrak f}
+\def\fA{\mathfrak A}
+\def\Mor{\mathrm{Mor}}
+\def\Hur{\mathrm{Hur}}
+\def\mult#1{\operatorname{mult}#1}
+\def\stat(#1){\operatorname{stat}#1}
 
-\def\cHom{{\mathcal Hom}}
+\def\ot{\leftarrow}
+\def\cHom{\mathcal{H}om}
 \def\h{{\rm h}}
-\newarrow {Dashto} {}{dash}{}{dash}>
-\def\ram{{\operatorname{ram}}}
-\def\PGL{{\operatorname{PGL}}}
-\def\pic{{\operatorname{Pic}}}
+%\newarrow {Dashto} {}{dash}{}{dash}>
+\def\rmspan{\operatorname{span}}
+\def\grade{\operatorname{grade}}
+\def\Fitt{\operatorname{Fitt}}
+\def\ram{\operatorname{ram}}
+\def\SL{\operatorname{SL}}
+\def\PGL{\operatorname{PGL}}
+\def\pic{\operatorname{Pic}}
+\def\Div{\operatorname{Div}}
+\def\Ann{\operatorname{Ann}}
+\def\Res{\operatorname{Res}}
+\def\Tr{\operatorname{Tr}}
 
-\def\g{{\operatorname{\rm g}}}
-\def\p{{\operatorname{\rm p_{a})}}}
+\def\g{\operatorname{\rm g}}
+\def\p{\operatorname{\rm p_{a})}}
 
-\def\Sec{{\operatorname {Sec}}}
-\def\sExt{{\mathcal Ext}}
-\def\pd{{\operatorname{\rm pd}}}
-%\newtheorem{question}{Question}[section]
-%\newtheorem{theorem}{Theorem}[section]
+\def\Sec{\operatorname{Sec}}
+\def\sExt{\mathcal E\mkern-1mu xt}
+\def\pd{\operatorname{pd}}
+\def\sing{\mathrm{sing}}
 
 \def\TRR{{Theorem~\ref{RR}}}
-\def\trr{{the Riemann-Roch Theorem }}
-\def\trh{{the Riemann-Hurwitz Theorem }}
-\def\bt{{Bezout's Theorem}}
+\def\bt{{B\'ezout's theorem}}
 
-\def\Cd{{C^{(d)}}}
-\def\Jac{{\rm Jac}}
+\newcommand{\ha}{\frac{1}{2}}
+
+\def\Cd{C^{(d)}}
+\def\Jac{\operatorname{Jac}}
 \def\cW{{\mathcal W}}
 
 \def\op#1#2{{\cO_{\PP^{#1}}(#2)}}
-
+\def\quot{{/\mkern-4mu/}}
 \makeatletter
 \def\Ddots{\mathinner{\mkern1mu\raise\p@
 \vbox{\kern7\p@\hbox{.}}\mkern2mu
 \raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
+
+\def\captionPlus#1#2{\caption[{\protect\footnotesize [#1.pdf]}\quad #2]{#2}}
+\def\inprogress{\centerline {\color{red}IN PROGRESS\hfil}\vss\hrule height0pt}
+
+\DeclareRobustCommand\marginparhere[2][0pt]{%
+  \ifhmode\unskip\fi
+  \ifmmode\ssty\mathclose{\fi %avoid implicit spacing and consequent movement
+    \rlap{\hskip\marginparsep\smash{%
+      \vtop to 0pt{\marginparstyle \hsize\marginparwidth 
+        \leftskip=#1 \rightskip=-#1 plus20pt \noindent#2\vss}}}%
+  \ifmmode}\else{} \ignorespaces\fi% avoid glomming onto next word if % follows
+}
+
+% Avoid waste in level 1 enumerates
+\AtBeginDocument{\leftmargini=0.5\leftmargini
+\belowdisplayshortskip=\belowdisplayskip % avoid unbalanced displays
+\def\smallmath{\def\f@size{9.5}\glb@settings}
+}
+
+% use when it's necessary for lines to mesh
+\newcommand\meshing[1][-1pt]{%
+  \lineskiplimit=#1\relax
+  \normallineskiplimit=#1\relax
+  \lineskip=#1\relax
+  \normallineskip=#1\relax
+  \advance\jot 1pt %try to compensate for possible squeezing of math alignments
+}
+
+\newenvironment{tcases}{% helps make the braces less huge
+  \matrix@check\tcases\env@tcases
+}{%
+  \crcr\noalign{\vskip-2pt}\endarray\right.%
+}
+\def\env@tcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrace
+  \def\arraystretch{1.1}%
+  \array{@{}l@{\quad}l@{}}%
+  \noalign{\vskip-2pt}
+}
+
 \makeatother
-
-
-
