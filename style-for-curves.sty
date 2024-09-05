@@ -15,9 +15,20 @@
 \def\see#1#2{\emph{see} #1}
 \def\seeunder#1#2{\emph{see under} #1}
 
-% for the hints section
-\def\tohint#1{\hskip 1em minus 0.5em\rm(p.~\pageref{hint#1})\label{tnih#1}}
-\def\tohin#1{\hskip 1em minus 0.5em(p.~\pageref{hint#1})}
+% black diamond symbol; taken from marquinho's answer at
+% https://tex.stackexchange.com/questions/633631
+\DeclareFontFamily{U}{mathb}{}
+\DeclareFontShape{U}{mathb}{m}{n}{<-5.5> mathb5 <5.5-6.5> mathb6 
+<6.5-7.5> mathb7 <7.5-8.5> mathb8 <8.5-9.5> mathb9 <9.5-11> mathb10 
+<11-> mathb12}{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+\DeclareFontSubstitution{U}{mathb}{m}{n}
+
+\DeclareMathSymbol{\blackdiamond}{\mathbin}{mathb}{"0C}  % \mathbin for a binary operator
+
+% for the hints section; hbox because in one place it appears in a display
+\def\tohint#1{\hskip 1em minus 0.5em\hbox{$\blackdiamond$}\label{tnih#1}}
+\def\tohin#1{\hskip 1em minus 0.5em$\blackdiamond$}
 \def\hinthead#1{\label{hint#1}\subsubsection*{\protect\ref{tnih#1}}}
 
 % bold italic
