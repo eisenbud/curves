@@ -1,0 +1,117 @@
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+
+\ProvidesPackage{amstix2}[2022/04/12 v1.05]
+
+%% This is a temporary package to be used while we are transitioning
+%% from Computer Modern to STIX Two.  Eventually this functionality
+%% will be included in amsbook.cls and this package will no longer be
+%% necessary.
+
+\RequirePackage{ifxetex}
+
+\RequireXeTeX
+
+\RequirePackage{amstixfixes}
+
+\RequirePackage[mathrm=sym,mathup=sym,mathit=sym,%
+             mathsf=sym,mathbf=sym,mathtt=sym]%
+{unicode-math}[2015/09/24]
+
+\def\square{\mdlgwhtsquare}
+\def\blacksquare{\mdlgblksquare}
+
+\setmainfont{STIX Two Text}[%
+    Script=Default,
+    Ligatures=TeX,
+    ItalicFeatures={StylisticSet=2},
+    BoldItalicFeatures={StylisticSet=2}
+]
+
+\setmathfont{STIX Two Math}[
+    CharacterVariant=3,
+    CharacterVariant=4,
+    SizeFeatures={
+        {Size=8-},
+        {Size=6-8,Font=STIX Two Math,Style=MathScript},
+        {Size= -6,Font=STIX Two Math,Style=MathScriptScript}
+    }]
+
+\setmathfontface\mathbf{STIX Two Text Bold}
+\setmathfontface\mathit{STIX Two Text Italic}
+%\setmathfontface\mathsf{UniversLTStd}
+
+% \setmathfontface\mathtt{???}
+
+\def\square{\mdlgwhtsquare}
+\def\blacksquare{\mdlgblksquare}
+
+%\DeclareUnicodeEncoding{UniversEnc}{%
+%    \input{tuenc.def}
+%    \DeclareTextAccent{\v}{UniversEnc}{"02C7}
+%    \DeclareTextAccent{\=}{UniversEnc}{"02C9}
+%    \DeclareTextAccent{\u}{UniversEnc}{"02D8}
+%    \DeclareTextAccent{\.}{UniversEnc}{"02D9}
+%    \DeclareTextAccent{\r}{UniversEnc}{"02DA}
+%        \DeclareTextComposite{\r}{UniversEnc}{a}{"00E5}
+%        \DeclareTextComposite{\r}{UniversEnc}{A}{"00C5}
+%    \DeclareTextAccent{\k}{UniversEnc}{"02DB}
+%    \DeclareTextAccent{\~}{UniversEnc}{"02DC}
+%        \DeclareTextComposite{\~}{UniversEnc}{a}{"00E3}
+%        \DeclareTextComposite{\~}{UniversEnc}{o}{"00F5}
+%        \DeclareTextComposite{\~}{UniversEnc}{A}{"00C3}
+%        \DeclareTextComposite{\~}{UniversEnc}{O}{"00D5}
+%    \DeclareTextAccent{\H}{UniversEnc}{"02DD}
+%}
+
+%\setsansfont{UniversLTStd}[
+%            Ligatures=TeX,
+%            FontFace={c}{n}{UniversLTStd-Cn},
+%            FontFace={bc}{n}{UniversLTStd-BoldCn},
+%            NFSSEncoding=UniversEnc,
+%]
+
+\def\@xipt{11}
+\def\@xiipt{12}
+\def\@xivpt{14}
+\def\@xviipt{17}
+\def\@xxpt{21}
+\def\@xxvpt{25}
+
+\providecommand{\@mainsize}{10}
+
+%% Note that these are for 10pt body size.
+
+\def\@typesizes{%
+    \do{5}{6}%         \Tiny
+    \do{6}{7}%         \tiny
+    \do{7}{8}%         \SMALL (\scriptsize)
+    \do{8}{10}%        \Small (\footnotesize)
+    \do{9}{11}%        \small
+    \do{10}{12.5}%     \normalsize
+    \do{\@xipt}{13.5}% \large
+    \do{\@xiipt}{15}%  \Large
+    \do{\@xivpt}{17}%  \LARGE
+    \do{\@xviipt}{20}% \huge
+    \do{\@xxpt}{24}%   \Huge
+}
+
+\ifnum\@mainsize = 11
+    \def\@typesizes{%
+        \do{6}{7}%          \Tiny
+        \do{7}{8}%          \tiny
+        \do{8}{10}%         \SMALL (\scriptsize)
+        \do{9}{11}%         \Small (\footnotesize)
+        \do{10}{12}%        \small
+        \do{\@xipt}{13.5}%  \normalsize
+        \do{\@xiipt}{14.5}% \large
+        \do{\@xivpt}{17}%   \Large
+        \do{\@xviipt}{20}%  \LARGE
+        \do{\@xxpt}{24}%    \huge
+        \do{\@xxvpt}{30}%   \Huge
+    }%
+\fi
+
+\def\do{\@nx\or}
+\xdef\@typesizes{\@typesizes}
+
+\endinput

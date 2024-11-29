@@ -1,0 +1,116 @@
+% url.tex = url.sty
+% Copyright 1996 Silvio Levy, levy@geom.umn.edu
+%
+% $Header: /usr/home/levy/texts/macros/RCS/url.tex,v 1.5 98/12/24 20:23:38 levy Exp Locker: levy $
+
+%\ifx\fmtname\format@e
+\ProvidesPackage{url}[1996/01/20]
+%\fi
+%
+% DO NOT CHANGE THIS FILE!  Send suggested improvements to levy@geom.umn.edu.
+%
+% This file defines a macro \url to typeset URL's nicely.
+% It works under plain tex and amstex (under the name url.tex) or
+% under latex (under the name url.tex or url.sty).
+%
+% USAGE: \url{http://www.geom.umn.edu/~levy}
+%
+% The characters % _ ^ $ # can be used without quoting, 
+% but \ { } keep their usual meaning so the URL can include macros.
+%
+% THIS STUFF MAY NOT WORK RIGHT in footnotes!  And you shouldn't use footnotes.
+%
+%
+% USER-CONTROLLED MACROS:
+%
+% \urlstyle changes the style of type.  Example: \def\urlstyle#1{\tt #1}.
+%
+% \homedir is the macro called when a ~ is encountered in the URL.
+%
+% \urlragged{true,false}: when false (the default), lines can be broken 
+% after /, but they will be right justified (unless \raggedright is 
+% in effect).  This will likely lead to overfull boxes for long URL's.  
+% When true, lines ending at a / will be ragged right if there is no 
+% other way to avoid overfull boxes.  Either way, // is unbreakable
+% and appropriately kerned. 
+%
+% \urlhyphens{true,false}: when true, hyphenation within the URL is
+% controlled by the current \hyphenpenalty.  When false (the default), no
+% hyphenation is allowed.
+%
+% NOTE: Under default settings, \urlraggedtrue takes precedence 
+% over \urlhyphenstrue.  If you want both hyphenation and ragged right
+% to be allowed, but hyphenation to be tried before ragged right, you
+% must say \pretolerance=-1.
+
+\edef\atcatcode{\the\catcode`\@}
+\catcode`@=11 
+
+% define these two control sequences only if not already defined
+%
+\expandafter\ifx\csname urlstyle\endcsname\relax \let\urlstyle\relax \fi
+\expandafter\ifx\csname homedir\endcsname\relax 
+        \def\homedir{\kern-.1em\lower.9ex\hbox{\char`\~}}\fi
+\newif\ifurlragged
+\newif\ifurlhyphens
+
+%
+% Check if we're in latex; if not, define \@ifnextchar.
+%
+\expandafter\ifx\csname @ifnextchar\endcsname\relax 
+\let\@colon\:  %in case \: has a value
+\def\@ifnextchar#1#2#3{\let\@tempe #1\def\@tempa{#2}\def\@tempb{#3}\futurelet
+    \@tempc\@ifnch}
+\def\@ifnch{\ifx \@tempc \@sptoken \let\@tempd\@xifnch
+      \else \ifx \@tempc \@tempe\let\@tempd\@tempa\else\let\@tempd\@tempb\fi
+      \fi \@tempd}
+\def\:{\let\@sptoken= } \:  % this makes \@sptoken a space token
+\def\:{\@xifnch} \expandafter\def\: {\futurelet\@tempc\@ifnch}
+\let\:\@colon
+\fi
+
+\def\@inextremis{\nobreak\hskip\z@ plus .0001fil
+        \penalty9999 \hskip\z@ plus -.0001fil }
+
+\def\@lessextreme{\nobreak\hskip\z@ plus .0001fil
+        \penalty1000 \hskip\z@ plus -.0001fil }
+
+{\catcode`\/=\active
+\gdef/{\@ifnextchar/{\char`\/\kern-.2em}{\char`\/\egroup %stop filling box
+\ifurlragged\@inextremis\else\hskip\z@\fi                %allow break after /
+\ifurlhyphens\unhbox0\else\box0\fi      %retain box if hyphenation not allowed
+\setbox0\hbox\bgroup}}}                 %start filling new box
+
+\def\url{\ifurlragged\@lessextreme\fi
+\bgroup % prepare the ground by changing catcodes
+\catcode`\@=12
+\catcode`\%=11 \catcode`\_=11 \catcode`\^=11 \catcode`\$=11 \catcode`\#=11 %$
+\catcode`\~=\active \let~\homedir \catcode`\/=\active \processurl}
+
+\def\processurl#1{\urlstyle{\setbox0\hbox{#1}%           % / separates boxes
+\ifurlhyphens\unhbox0\else\ifdim\wd0=\z@\else\box0\fi\fi % don't add empty box
+\ifurlragged\else\unskip\fi}% last skip might cause break before punctuation
+\egroup} 
+
+\catcode`@=\atcatcode
+
+% $Log:	url.tex,v $
+%Revision 1.5  98/12/24  20:23:38  levy
+%set the catcode of @ to other within \url
+%(in case @ is active in the document)
+%
+%Revision 1.4  98/05/24  09:10:57  levy
+%use \ProvidesPackage, improve \ifurlragged
+%
+%Revision 1.3  96/01/20  22:02:13  levy
+%removed spurious space in def'n of \processurl
+%inserted \unskip to avoid break between URL and subsequent punctuation 
+%instituted lookahead so a trailing / doesn't cause an empty \hbox at the end
+%\urlstyle and \homedir will only be defined if they don't already exist
+%
+%Revision 1.2  96/01/18  15:51:45  levy
+%fixed typos in doc
+%
+%Revision 1.1  96/01/18  15:43:16  levy
+%Initial revision
+%
