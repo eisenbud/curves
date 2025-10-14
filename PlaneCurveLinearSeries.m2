@@ -636,24 +636,26 @@ Description
    g can be represented as a plane curve of degree
    g+2 with a g-fold ordinary singularity, and thus
    conductor equal to the (g-1)st power of the maximal
-   ideal. As of 1/20/2024, Macaulay2 crashes on computing
-   the conductor when g >= 6, but knowing the 
-   conductor one can go much farther:
+   ideal. 
   
    We make a general hyperelliptic curve of genus
    g with singularity at q'.
 
-  Example
-   g = 20
+ Example
+   g = 6
    S = ZZ/101[a,b,c]
    q' = ideal(a,b);
-  Text
-  Example
+ Example
    I = q'^g
    C = S/(ideal random(g+2, I));
-   p = sub(p', C);
    q = sub(q', C);
-   geometricGenus (C, Conductor => q'^(g-1))
+   elapsedTime geometricGenus (C, Conductor => q'^(g-1))
+ Text
+   Giving the conductor as above makes the
+   computation much faster.
+ Example
+   elapsedTime geometricGenus C
+
 
 SeeAlso
  canonicalSeries
@@ -1195,6 +1197,17 @@ netList flatten for r from 4 to 20 list for g from 0 to 10 list test(r, g)
 
 r=4;d=36
 h(CBound(r,d), r,d)
+
+g = 6
+S = ZZ/101[a,b,c]
+q' = ideal(a,b);
+I = q'^g
+C = S/(ideal random(g+2, I));
+--p = sub(p', C);
+q = sub(q', C);
+elapsedTime conductor C
+elapsedTime geometricGenus (C, Conductor => q'^(g-1))
+elapsedTime geometricGenus C
 
 
 
